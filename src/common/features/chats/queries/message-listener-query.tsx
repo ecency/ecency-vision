@@ -51,6 +51,7 @@ export function useMessageListenerQuery<TQData, TQKey extends QueryKey>(
 
   const listener = (nextData: TQData) => {
     const resolver = (data: TQData) => queryClient.setQueryData(key, data);
+    queryClient.invalidateQueries(key);
     queryFn(query.data!!, nextData, resolver);
   };
 

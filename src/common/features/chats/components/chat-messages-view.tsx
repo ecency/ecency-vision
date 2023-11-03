@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchCommunityMessages, fetchDirectMessages } from "../utils";
+import { fetchCommunityMessages } from "../utils";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import ChatsProfileBox from "./chat-profile-box";
@@ -12,7 +12,7 @@ import { CHATPAGE } from "./chat-popup/chat-constants";
 import { ChatContext } from "../chat-context-provider";
 import { classNameObject } from "../../../helper/class-name-object";
 import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
-import { useDirectContactsQuery } from "../queries";
+import { useMessagesQuery } from "../queries";
 
 interface Props {
   username: string;
@@ -32,14 +32,12 @@ export default function ChatsMessagesView({
   history
 }: Props) {
   const { messageServiceInstance } = useContext(ChatContext);
-  const { data: directContacts } = useDirectContactsQuery();
+  const { data: messages } = useMessagesQuery(username.replace("@", ""));
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
   const { chat } = useMappedStore();
   const [directUser, setDirectUser] = useState("");
-  const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
-  const [directMessages, setDirectMessages] = useState<DirectMessage[]>([]);
   const [communityName, setCommunityName] = useState("");
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [isTop, setIsTop] = useState(false);
@@ -51,10 +49,10 @@ export default function ChatsMessagesView({
   }, []);
 
   useEffect(() => {
-    if (publicMessages.length < 25) {
+    if (messages.length < 25) {
       setHasMore(false);
     }
-  }, [publicMessages]);
+  }, [messages]);
 
   useEffect(() => {
     isDirectUserOrCommunity();
@@ -66,7 +64,7 @@ export default function ChatsMessagesView({
 
   useEffect(() => {
     if (directUser) {
-      getDirectMessages();
+      // getDirectMessages();
     } else if (communityName && currentChannel) {
       getChannelMessages();
     }
@@ -90,7 +88,7 @@ export default function ChatsMessagesView({
 
     setInProgress(true);
     messageServiceInstance
-      ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
+      ?.fetchPrevMessages(currentChannel!.id, messages[0].created)
       .then((num) => {
         if (num < 25) {
           setHasMore(false);
@@ -120,15 +118,8 @@ export default function ChatsMessagesView({
         currentChannel.hiddenMessageIds
       );
       const messages = publicMessages.sort((a, b) => a.created - b.created);
-      setPublicMessages(messages);
+      // setPublicMessages(messages);
     }
-  };
-
-  const getDirectMessages = () => {
-    const user = directContacts?.find((item) => item.name === directUser);
-    const messages = user && fetchDirectMessages(user?.pubkey, chat.directMessages);
-    const directMessages = messages?.sort((a, b) => a.created - b.created);
-    setDirectMessages(directMessages!);
   };
 
   const scrollToBottom = () => {
@@ -140,18 +131,14 @@ export default function ChatsMessagesView({
   };
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-    var element = event.currentTarget;
+    const element = event.currentTarget;
     const isScrollToBottom =
       element.scrollTop + messagesBoxRef?.current?.clientHeight! < element.scrollHeight - 200;
     setIsScrollToBottom(isScrollToBottom);
     const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
     setIsScrolled(isScrolled);
-    const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
-    if (communityName && scrollerTop) {
-      setIsTop(true);
-    } else {
-      setIsTop(false);
-    }
+    const scrollerTop = element.scrollTop <= 600 && messages.length > 25;
+    setIsTop(!!communityName && scrollerTop);
   };
 
   return (
@@ -176,7 +163,7 @@ export default function ChatsMessagesView({
             <ChatsChannelMessages
               username={username}
               history={history}
-              publicMessages={publicMessages}
+              publicMessages={messages as PublicMessage[]}
               currentChannel={currentChannel!}
               isScrollToBottom={isScrollToBottom}
               from={CHATPAGE}
@@ -187,7 +174,7 @@ export default function ChatsMessagesView({
           </>
         ) : (
           <ChatsDirectMessages
-            directMessages={directMessages}
+            directMessages={messages as DirectMessage[]}
             currentUser={directUser!}
             isScrolled={isScrolled}
             isScrollToBottom={isScrollToBottom}
@@ -210,7 +197,6 @@ export default function ChatsMessagesView({
           isCommunity={!!communityName}
           currentUser={directUser}
           currentChannel={currentChannel!}
-          isCurrentUserJoined={true}
         />
       </div>
     </>

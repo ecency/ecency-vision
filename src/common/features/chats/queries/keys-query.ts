@@ -3,6 +3,7 @@ import { ChatQueries } from "./queries";
 import { getPrivateKey, getUserChatPublicKey } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { NostrKeysType } from "../types";
+import { useMemo } from "react";
 
 /**
  * Custom React hook for managing queries related to a user's public and private keys in a chat application.
@@ -16,8 +17,8 @@ import { NostrKeysType } from "../types";
  *   - refetch: A function to manually trigger a refetch of the public and private keys.
  */
 export function useKeysQuery(
-  activeUserKeys: NostrKeysType,
-  setActiveUserKeys: (keys: NostrKeysType) => void
+  activeUserKeys?: NostrKeysType,
+  setActiveUserKeys?: (keys: Partial<NostrKeysType>) => void
 ) {
   const { activeUser } = useMappedStore();
 
@@ -31,8 +32,8 @@ export function useKeysQuery(
         queryFn: () => getUserChatPublicKey(activeUser?.username!),
         onSuccess: (key: string | null) => {
           if (key) {
-            setActiveUserKeys({
-              ...activeUserKeys,
+            setActiveUserKeys?.({
+              ...(activeUserKeys ?? {}),
               pub: key
             });
           }
@@ -43,8 +44,8 @@ export function useKeysQuery(
         queryFn: () => getPrivateKey(activeUser?.username!),
         onSuccess: (key: string | null) => {
           if (key) {
-            setActiveUserKeys({
-              ...activeUserKeys,
+            setActiveUserKeys?.({
+              ...(activeUserKeys ?? {}),
               priv: key
             });
           }
@@ -53,9 +54,12 @@ export function useKeysQuery(
     ]
   });
 
+  const hasKeys = useMemo(() => !!publicKey && !!privateKey, [publicKey, privateKey]);
+
   return {
     publicKey,
     privateKey,
+    hasKeys,
     refetch: () => {
       refetchPublicKey();
       refetchPrivateKey();

@@ -9,18 +9,14 @@ import { useDirectContactsQuery } from "./direct-contacts-query";
 import isCommunity from "../../../helper/is-community";
 import { useChatProfilesQuery } from "./chat-profiles-query";
 
-export function useDirectMessagesQuery(username?: string) {
+export function useMessagesQuery(username?: string) {
   const { messageServiceInstance } = useContext(ChatContext);
   const queryClient = useQueryClient();
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: profiles } = useChatProfilesQuery();
 
-  const contact = useMemo(
-    () => directContacts?.find((i) => i.name === username),
-    [directContacts, username]
-  );
-  const isPublic = useMemo(() => isCommunity(username ?? ""), [username]);
+  const hasContacts = useMemo(() => (directContacts?.length ?? 0) > 0, [directContacts]);
 
   // const checkDirectMessageSending = (peer: string, data: DirectMessage) => {
   //   setTimeout(() => {
@@ -46,39 +42,38 @@ export function useDirectMessagesQuery(username?: string) {
   //     });
   //   };
 
-  // TODO: CONCACT MESSAGES AND CHECK FOR DUPLICATES
-  const onBeforeSent = (nextData: Message[] | undefined) => {
-    const nextMessages = [
-      ...(queryClient.getQueryData<Message[]>([ChatQueries.DIRECT_MESSAGES, username]) ?? []),
-      ...(nextData?.filter((i) =>
-        !isPublic && "peer" in i ? i.peer === contact?.pubkey : i.root === contact?.pubkey
-      ) ?? [])
+  const updateQueries = (nextData: Message[] | undefined) => {
+    let nextMessages: Message[] = [
+      ...(queryClient.getQueryData<PublicMessage[]>([ChatQueries.MESSAGES]) ?? []),
+      ...(nextData ?? [])
     ];
-    queryClient.setQueryData([ChatQueries.DIRECT_MESSAGES, username], nextMessages);
-    queryClient.invalidateQueries([ChatQueries.DIRECT_MESSAGES, username]);
-  };
 
-  const onAfterSent = (nextData: Message[]) => {
-    const nextMessages = [
-      ...(queryClient.getQueryData<Message[]>([ChatQueries.DIRECT_MESSAGES, username]) ?? []),
-      ...(nextData?.filter((i) =>
-        !isPublic && "peer" in i ? i.peer === contact?.pubkey : i.root === contact?.pubkey
-      ) ?? [])
-    ];
-    queryClient.setQueryData([ChatQueries.DIRECT_MESSAGES, username], nextMessages);
-    queryClient.invalidateQueries([ChatQueries.DIRECT_MESSAGES, username]);
+    directContacts?.forEach((contact) => {
+      queryClient.setQueryData(
+        [ChatQueries.MESSAGES, contact.name],
+        nextMessages.filter((i) =>
+          !isCommunity(contact.name) && "peer" in i
+            ? i.peer === contact?.pubkey
+            : i.root === contact?.pubkey
+        ) ?? []
+      );
+      queryClient.invalidateQueries([ChatQueries.MESSAGES, contact.name]);
+    });
+
+    queryClient.setQueryData([ChatQueries.MESSAGES, "all"], nextMessages);
+    queryClient.invalidateQueries([ChatQueries.MESSAGES, "all"]);
   };
 
   useMessageListenerQuery<Message[], ChatQueries[]>(
     [ChatQueries.BEFORE_DIRECT_MESSAGES_TEMP],
     MessageEvents.DirectMessageBeforeSent,
     (_, nextData, resolver) => {
-      onBeforeSent(nextData);
+      updateQueries(nextData);
       resolver(nextData);
     },
     {
       queryFn: () => [],
-      enabled: !!contact,
+      enabled: hasContacts,
       initialData: []
     }
   );
@@ -87,14 +82,14 @@ export function useDirectMessagesQuery(username?: string) {
     [ChatQueries.AFTER_DIRECT_MESSAGES_TEMP],
     MessageEvents.DirectMessageAfterSent,
     (_, nextData, resolver) => {
-      onAfterSent(nextData);
+      updateQueries(nextData);
       resolver(nextData);
 
       messageServiceInstance?.checkProfiles(nextData.map((x) => x.peer));
     },
     {
       queryFn: () => [],
-      enabled: !!contact,
+      enabled: hasContacts,
       initialData: []
     }
   );
@@ -103,12 +98,12 @@ export function useDirectMessagesQuery(username?: string) {
     [ChatQueries.BEFORE_PUBLIC_MESSAGES_TEMP],
     MessageEvents.PublicMessageBeforeSent,
     (_, nextData, resolver) => {
-      onBeforeSent(nextData);
+      updateQueries(nextData);
       resolver(nextData);
     },
     {
       queryFn: () => [],
-      enabled: !!contact,
+      enabled: hasContacts,
       initialData: []
     }
   );
@@ -117,7 +112,7 @@ export function useDirectMessagesQuery(username?: string) {
     [ChatQueries.AFTER_PUBLIC_MESSAGES_TEMP],
     MessageEvents.PublicMessageAfterSent,
     (_, nextData, resolver) => {
-      onAfterSent(nextData);
+      updateQueries(nextData);
       resolver(nextData);
 
       const uniqueUsers = nextData
@@ -127,7 +122,7 @@ export function useDirectMessagesQuery(username?: string) {
     },
     {
       queryFn: () => [],
-      enabled: !!contact,
+      enabled: hasContacts,
       initialData: []
     }
   );
@@ -137,28 +132,30 @@ export function useDirectMessagesQuery(username?: string) {
     MessageEvents.PreviousPublicMessages,
     (_, nextData, resolver) => {
       queryClient.setQueryData(
-        [ChatQueries.DIRECT_MESSAGES, username],
+        [ChatQueries.MESSAGES, username],
         [
-          ...(queryClient.getQueryData<PublicMessage[]>([ChatQueries.DIRECT_MESSAGES]) ?? []),
+          ...(queryClient.getQueryData<PublicMessage[]>([ChatQueries.MESSAGES, username]) ?? []),
           ...(nextData ?? [])
         ]
       );
+      queryClient.invalidateQueries([ChatQueries.MESSAGES, username]);
 
       resolver(nextData);
     },
     {
       queryFn: () => [],
-      enabled: !!contact,
+      enabled: hasContacts,
       initialData: []
     }
   );
 
   return useQuery<Message[]>(
-    [ChatQueries.DIRECT_MESSAGES, username],
-    () => queryClient.getQueryData<DirectMessage[]>([ChatQueries.DIRECT_MESSAGES, username]) ?? [],
+    [ChatQueries.MESSAGES, username],
+    () => queryClient.getQueryData<Message[]>([ChatQueries.MESSAGES, username]) ?? [],
     {
-      enabled: !!contact,
-      initialData: []
+      enabled: hasContacts,
+      initialData: [],
+      select: (data) => [...data]?.sort((a, b) => a.created - b.created)
     }
   );
 }

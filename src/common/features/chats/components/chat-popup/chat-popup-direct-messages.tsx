@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { _t } from "../../../../i18n";
-import { getCommunityLastMessage, getDirectLastMessage, getJoinedCommunities } from "../../utils";
+import { getCommunityLastMessage, getJoinedCommunities } from "../../utils";
 import ImportChats from "../import-chats";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectMessage } from "./chat-direct-message";
-import { useDirectContactsQuery } from "../../queries";
+import { useDirectContactsLastMessagesQuery, useDirectContactsQuery } from "../../queries";
 import { Channel } from "../../managers/message-manager-types";
 
 interface Props {
@@ -27,6 +27,7 @@ export function ChatPopupDirectMessages({
   const { activeUserKeys, showSpinner } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
+  const { data: directContactsLastMessages } = useDirectContactsLastMessagesQuery();
 
   const [communities, setCommunities] = useState<Channel[]>([]);
 
@@ -63,7 +64,7 @@ export function ChatPopupDirectMessages({
                 userClicked(v);
               }}
               key={user.pubkey}
-              lastMessage={getDirectLastMessage(user.pubkey, chat.directMessages)?.content}
+              lastMessage={directContactsLastMessages[user.name]?.content}
             />
           ))}
         </>

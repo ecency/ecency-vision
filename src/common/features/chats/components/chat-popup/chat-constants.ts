@@ -1,23 +1,3 @@
-export const EmojiPickerStyle = {
-  width: "94%",
-  bottom: "58px",
-  left: "0px",
-  marginLeft: "14px",
-  borderTopLeftRadius: "8px",
-  borderTopRightRadius: "8px",
-  borderBottomLeftRadius: "0px"
-};
-
-export const GifPickerStyle = {
-  width: "94%",
-  bottom: "49px",
-  left: 0,
-  marginLeft: "14px",
-  borderTopLeftRadius: "8px",
-  borderTopRightRadius: "8px",
-  borderBottomLeftRadius: "0px"
-};
-
 export const DropDownStyle = {
   width: "35px",
   height: "35px"

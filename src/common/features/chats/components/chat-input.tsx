@@ -26,7 +26,6 @@ interface Props {
   isCommunity: boolean;
   currentChannel: Channel;
   currentUser: string;
-  isCurrentUserJoined: boolean;
 }
 
 export default function ChatInput({

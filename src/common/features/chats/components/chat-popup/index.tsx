@@ -41,7 +41,7 @@ export const ChatPopUp = () => {
     setRevealPrivKey,
     setShowSpinner
   } = useContext(ChatContext);
-  const { mutateAsync: joinChat } = useJoinChat();
+  const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
   const { data: directContacts } = useDirectContactsQuery();
 
   const routerLocation = useLocation();
@@ -50,25 +50,22 @@ export const ChatPopUp = () => {
 
   const [expanded, setExpanded] = useState(false);
   const [currentUser, setCurrentUser] = useState("");
-  const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
-  const [isSpinner, setIsSpinner] = useState(false);
   const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
-  const [isCurrentUserJoined, setIsCurrentUserJoined] = useState(true);
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [currentCommunity, setCurrentCommunity] = useState<Community>();
   const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [isChatPage, setIsChatPage] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
   const canSendMessage = useMemo(
     () =>
       !currentUser && hasUserJoinedChat && !!activeUserKeys?.priv && !isCommunity && !revealPrivKey,
@@ -76,10 +73,15 @@ export const ChatPopUp = () => {
   );
 
   useMount(() => {
-    // deleteChatPublicKey(activeUser);
-    setShow(!!activeUser?.username && !isChatPage);
+    setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
 
+  // Show or hide the popup if current pathname was changed or user changed
+  useEffect(() => {
+    setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
+  }, [routerLocation, activeUser]);
+
+  // todo: ??
   useEffect(() => {
     if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
       setIsCommunity(false);
@@ -87,16 +89,7 @@ export const ChatPopUp = () => {
     }
   }, [chat.leftChannelsList]);
 
-  useEffect(() => {
-    handleRouterChange();
-  }, [routerLocation]);
-
-  useEffect(() => {
-    if (isChatPage) {
-      setShow(false);
-    }
-  }, [isChatPage]);
-
+  // todo ???
   useEffect(() => {
     const updated: ChannelUpdate = chat.updatedChannel
       .filter((x) => x.channelId === currentChannel?.id!)
@@ -125,17 +118,12 @@ export const ChatPopUp = () => {
     }
   }, [chat.updatedChannel]);
 
+  // Fetching previous messages when scrol achieved top
   useEffect(() => {
     if (isTop) {
       fetchPrevMessages();
     }
   }, [isTop]);
-
-  useEffect(() => {
-    if (messageServiceInstance) {
-      setIsSpinner(false);
-    }
-  }, [messageServiceInstance]);
 
   useEffect(() => {
     const msgsList = fetchDirectMessages(receiverPubKey!);
@@ -146,7 +134,6 @@ export const ChatPopUp = () => {
   useEffect(() => {
     if (prevActiveUser?.username !== activeUser?.username) {
       setIsCommunity(false);
-      setIsCurrentUser(false);
       setCurrentUser("");
       setCommunityName("");
     }
@@ -200,7 +187,6 @@ export const ChatPopUp = () => {
       const isCurrentUserFound = directContacts?.find((contact) => contact.name === currentUser);
       if (isCurrentUserFound) {
         setReceiverPubKey(isCurrentUserFound.pubkey);
-        setIsCurrentUserJoined(true);
       } else {
         setInProgress(true);
         fetchCurrentUserData();
@@ -214,19 +200,9 @@ export const ChatPopUp = () => {
         setNostrkeys(activeUserKeys!);
       }
     } else {
-      setIsCurrentUserJoined(true);
       setInProgress(false);
     }
   }, [currentUser]);
-
-  const handleRouterChange = () => {
-    if (routerLocation.pathname.match("/chats")) {
-      setShow(false);
-      setIsChatPage(true);
-    } else {
-      setShow(!!activeUser?.username);
-    }
-  };
 
   const fetchCommunity = async () => {
     const community = await getCommunity(communityName, activeUser?.username);
@@ -275,19 +251,14 @@ export const ChatPopUp = () => {
     } else {
       setReceiverPubKey("");
     }
-    setIsCurrentUserJoined(!!nsKey);
     setInProgress(false);
-  };
-
-  const userClicked = (username: string) => {
-    setIsCurrentUser(true);
-    setCurrentUser(username);
   };
 
   const fetchPrevMessages = () => {
     if (!hasMore || inProgress) return;
 
     setInProgress(true);
+    // todo: make it infinite query
     messageServiceInstance
       ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
       .then((num) => {
@@ -356,7 +327,6 @@ export const ChatPopUp = () => {
 
   const handleBackArrowSvg = () => {
     setCurrentUser("");
-    setIsCurrentUser(false);
     setCommunityName("");
     setIsCommunity(false);
     setShowSearchUser(false);
@@ -414,20 +384,15 @@ export const ChatPopUp = () => {
                     currentUser={currentUser}
                     isCommunity={isCommunity}
                     communityName={communityName}
-                    directMessagesList={directMessagesList}
-                    publicMessages={publicMessages}
                   />
                 ) : showSearchUser ? (
-                  <ChatPopupSearchUser
-                    setCurrentUser={setCurrentUser}
-                    setIsCurrentUser={setIsCurrentUser}
-                  />
+                  <ChatPopupSearchUser setCurrentUser={setCurrentUser} />
                 ) : (
                   <ChatPopupDirectMessages
                     communityClicked={communityClicked}
                     setReceiverPubKey={setReceiverPubKey}
                     setShowSearchUser={setShowSearchUser}
-                    userClicked={userClicked}
+                    userClicked={(username) => setCurrentUser(username)}
                   />
                 )}
               </>
@@ -438,11 +403,8 @@ export const ChatPopUp = () => {
             ) : (
               <Button
                 className="join-chat-btn"
-                onClick={() => {
-                  setIsSpinner(true);
-                  joinChat();
-                }}
-                icon={isSpinner ? <Spinner style={{ marginRight: "6px" }} /> : undefined}
+                onClick={() => joinChat()}
+                icon={isJoinChatLoading && <Spinner className="w-3.5 h-3.5" />}
                 iconPlacement="left"
               >
                 {_t("chat.join-chat")}
@@ -473,7 +435,6 @@ export const ChatPopUp = () => {
                 isCommunity={isCommunity}
                 currentUser={currentUser}
                 currentChannel={currentChannel!}
-                isCurrentUserJoined={isCurrentUserJoined}
               />
             )}
           </div>

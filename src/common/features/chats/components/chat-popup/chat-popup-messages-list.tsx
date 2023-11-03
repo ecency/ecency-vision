@@ -7,6 +7,7 @@ import React, { useContext } from "react";
 import { ChatContext } from "../../chat-context-provider";
 import { Community } from "../../../../store/communities";
 import { DirectMessage, PublicMessage } from "../../managers/message-manager-types";
+import { useMessagesQuery } from "../../queries";
 
 interface Props {
   isCurrentUser: boolean;
@@ -14,8 +15,6 @@ interface Props {
   isCommunity: boolean;
   communityName: string;
   currentCommunity?: Community;
-  directMessagesList: DirectMessage[];
-  publicMessages: PublicMessage[];
 }
 
 export function ChatPopupMessagesList({
@@ -23,11 +22,10 @@ export function ChatPopupMessagesList({
   currentUser,
   isCurrentUser,
   currentCommunity,
-  communityName,
-  directMessagesList,
-  publicMessages
+  communityName
 }: Props) {
   const { currentChannel, setCurrentChannel } = useContext(ChatContext);
+  const { data: messages } = useMessagesQuery(currentUser);
 
   return (
     <div className="chats">
@@ -50,7 +48,7 @@ export function ChatPopupMessagesList({
       </Link>
       {isCurrentUser ? (
         <ChatsDirectMessages
-          directMessages={directMessagesList}
+          directMessages={messages as DirectMessage[]}
           currentUser={currentUser}
           isScrollToBottom={false}
         />
@@ -58,7 +56,7 @@ export function ChatPopupMessagesList({
         <ChatsChannelMessages
           history={history!}
           username={communityName}
-          publicMessages={publicMessages}
+          publicMessages={messages as PublicMessage[]}
           currentChannel={currentChannel!}
           isScrollToBottom={false}
           currentChannelSetter={setCurrentChannel}

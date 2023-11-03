@@ -9,10 +9,9 @@ import { Spinner } from "@ui/spinner";
 
 interface Props {
   setCurrentUser: (v: string) => void;
-  setIsCurrentUser: (v: boolean) => void;
 }
 
-export function ChatPopupSearchUser({ setCurrentUser, setIsCurrentUser }: Props) {
+export function ChatPopupSearchUser({ setCurrentUser }: Props) {
   const [search, setSearch] = useState("");
   const { data, isLoading, refetch } = useSearchUsersQuery(search);
 
@@ -39,10 +38,7 @@ export function ChatPopupSearchUser({ setCurrentUser, setIsCurrentUser }: Props)
             <div
               key={index}
               className="search-content"
-              onClick={() => {
-                setCurrentUser(user.account);
-                setIsCurrentUser(true);
-              }}
+              onClick={() => setCurrentUser(user.account)}
             >
               <div className="search-user-img">
                 <span>
