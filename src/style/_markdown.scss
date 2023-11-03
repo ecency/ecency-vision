@@ -15,9 +15,10 @@
   h4,
   h5,
   h6 {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.65;
     margin: 0 0 0.7em 0;
+    font-family: $font-family-base;
   }
 
   h1 {
@@ -30,6 +31,7 @@
 
   h2 {
     font-size: 20px;
+    font-weight: bold;
 
     @media (min-width: $md-break) {
       font-size: 24px;
@@ -80,7 +82,7 @@
   }
 
   p {
-    line-height: 150%;
+    line-height: 1.55;
     margin: 0 0 1em 0;
     text-rendering: optimizeLegibility;
   }
@@ -166,8 +168,26 @@
     border-radius: 6px;
   }
 
+  p + pre, h1 + pre, h2 + pre, h3 + pre, h4 + pre, h5 + pre {
+    margin-top: 0.5rem;
+  }
+
+  ol {
+    list-style: circle;
+    padding-left: 40px;
+  }
+
+  ul {
+    list-style: decimal;
+    padding-left: 40px;
+  }
+
   pre {
+    overflow-x: auto;
+    font-size: 18px;
     padding: 15px;
+    font-family: $font-family-sans-serif;
+    margin: 1.5rem 0;
 
     @include themify(day) {
       border: 1px solid;
@@ -179,10 +199,11 @@
     }
   }
 
-  pre, code {
-    font-size: 18px;
-    font-family: $font-family-sans-serif;
+  code {
+    font-size: 0.875rem;
+  }
 
+  pre, code {
     @include themify(day) {
       @apply bg-light-600;
       @apply text-gray-charcoal;
@@ -220,11 +241,21 @@
       .ll-key {
         color: rgb(255, 123, 114);
       }
-      .ll-str { color: rgb(126, 231, 135); }
-      .ll-com { color: rgb(139, 148, 158); }
-      .ll-pct { color: rgb(121, 192, 255); }
-      .ll-num { color: rgb(255, 166, 87); }
-      .ll-rex { color: rgb(210, 168, 255); }
+      .ll-str {
+        color: rgb(126, 231, 135);
+      }
+      .ll-com {
+        color: rgb(139, 148, 158);
+      }
+      .ll-pct {
+        color: rgb(121, 192, 255);
+      }
+      .ll-num {
+        color: rgb(255, 166, 87);
+      }
+      .ll-rex {
+        color: rgb(210, 168, 255);
+      }
     }
   }
 
@@ -368,6 +399,7 @@
       width: 100%;
       height: 500px;
     }
+
     &.portrait-embed {
       @media (min-width: $xsm-break) {
         width: 180px;

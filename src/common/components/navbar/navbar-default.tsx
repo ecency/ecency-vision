@@ -24,7 +24,6 @@ import Search from "../search";
 import { History } from "history";
 import SwitchLang from "../switch-lang";
 import * as ls from "../../util/local-storage";
-import NotificationHandler from "../notification-handler";
 import UserNotifications from "../notifications";
 import { PurchaseQrDialog } from "../purchase-qr";
 import Gallery from "../gallery";
@@ -266,7 +265,6 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           </div>
         </div>
       </div>
-      {global.usePrivate && <NotificationHandler />}
       {gallery && <Gallery onHide={() => setGallery(!gallery)} />}
       {ui.notifications && activeUser && <UserNotifications history={history} />}
       {drafts && activeUser && <Drafts onHide={() => setDrafts(!drafts)} history={history} />}

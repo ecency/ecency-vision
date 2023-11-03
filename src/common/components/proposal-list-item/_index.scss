@@ -7,11 +7,11 @@
   box-shadow: $box-shadow-alt;
 
   @include themify(day) {
-    @apply text-gray-steel;
+    @apply text-gray-steel bg-light-300;
   }
 
-  @include themify(day) {
-    @apply bg-light-300;
+  @include themify(night) {
+    @apply text-white-500;
   }
 
   @include themify(night) {
@@ -22,7 +22,7 @@
     @include themify(day) {
       @apply bg-blue-faded;
     }
-  
+
     @include themify(night) {
       @apply bg-tundora;
     }
@@ -66,7 +66,7 @@
           }
 
           @include themify(night) {
-            @apply text-silver;
+            @apply text-white;
           }
         }
 

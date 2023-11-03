@@ -35,7 +35,7 @@ export default class ModalConfirm extends Component<Props> {
         <ModalHeader closeButton={true}>
           <ModalTitle>{titleText || _t("confirm.title")}</ModalTitle>
         </ModalHeader>
-        <ModalFooter>
+        <ModalFooter className="flex gap-3">
           <Button appearance="secondary" outline={true} onClick={this.cancel}>
             {" "}
             {cancelText || _t("confirm.cancel")}
