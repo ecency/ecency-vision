@@ -160,7 +160,6 @@
 
             .author {
               align-items: center;
-              display: inline-flex;
               padding: 2px;
 
               .author-name {
@@ -188,6 +187,7 @@
                   content: ")";
                 }
               }
+
               &:hover {
                 @include themify(day) {
                   @apply bg-blue-duck-egg;
@@ -219,6 +219,10 @@
 
             @include themify(day) {
               @apply text-tundora;
+            }
+
+            @include themify(night) {
+              @apply text-white;
             }
           }
 
@@ -311,6 +315,7 @@
       }
     }
   }
+
   .profile-container-top {
     @media (min-width: $md-break) {
       width: 45%;
@@ -318,6 +323,7 @@
       left: -20px
     }
   }
+
   .profile-container-bottom {
     @media (min-width: $md-break) {
       width: 45%;
@@ -346,7 +352,7 @@
   flex: 1
 }
 
-.dropdown-container{
+.dropdown-container {
   .dropdown-btn {
     color: #939a9f !important
   }

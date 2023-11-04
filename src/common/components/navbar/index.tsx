@@ -14,6 +14,7 @@ import "./_index.scss";
 import { NavbarMobile } from "./navbar-mobile";
 import { NavbarDesktop } from "./navbar-desktop";
 import Login from "../login";
+import NotificationHandler from "../notification-handler";
 
 interface Props {
   match?: any;
@@ -143,6 +144,7 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
         setSmVisible={setSmVisible}
       />
       {ui.login && <Login history={history} />}
+      {global.usePrivate && <NotificationHandler />}
     </div>
   );
 }
