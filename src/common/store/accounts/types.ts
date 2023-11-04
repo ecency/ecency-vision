@@ -62,6 +62,7 @@ export interface FullAccount {
     };
     profile?: AccountProfile;
     follow_stats?: AccountFollowStats;
+    pending_claimed_accounts: number;
     __loaded?: true;
 }
 

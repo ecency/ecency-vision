@@ -1,6 +1,6 @@
 import hs from "hivesigner";
 
-import {PrivateKey, Operation, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
+import {PrivateKey, Operation, OperationName, TransactionConfirmation, AccountUpdateOperation, CustomJsonOperation} from '@hiveio/dhive';
 
 import {Parameters} from 'hive-uri';
 
@@ -20,6 +20,7 @@ import {hotSign} from "../helper/hive-signer";
 
 import {_t} from "../i18n";
 import { TransactionType } from "../components/buy-sell-hive";
+import { KeyTypes } from "../helper/onboard";
 
 export interface MetaData {
     links?: string[];
@@ -1088,4 +1089,126 @@ export const hiveNotifySetLastRead = (username: string): Promise<TransactionConf
     return broadcastPostingOperations(username, opArray);
 }
 
-export const updatePassword = (update: AccountUpdateOperation[1], ownerKey: PrivateKey): Promise<TransactionConfirmation> => hiveClient.broadcast.updateAccount(update, ownerKey)
+export const updatePassword = (
+    update: AccountUpdateOperation[1], 
+    ownerKey: PrivateKey
+    ): Promise<TransactionConfirmation> => 
+hiveClient.broadcast.updateAccount(update, ownerKey);
+
+export const createHiveAccount = async (data: any, creator_account: string) => {
+        
+    try {
+        const { username, keys } = data;
+    
+        const account = {
+        name: username,
+        ...keys,
+        active: false
+        };
+        console.log(account)
+    
+        const op_name: OperationName = "account_create";
+    
+        const owner = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.ownerPubKey, 1]]
+        };
+        const active = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.activePubKey, 1]]
+        };
+        const posting = {
+        weight_threshold: 1,
+        account_auths: [["ecency.app", 1]],
+        key_auths: [[account.postingPubKey, 1]]
+        };
+        const ops: Array<any> = [];
+        const params: any = {
+        creator: creator_account,
+        new_account_name: account.name,
+        owner,
+        active,
+        posting,
+        memo_key: account.memoPubKey,
+        json_metadata: "",
+        extensions: [],
+        fee: "3.000 HIVE"
+        };
+        const operation: Operation = [op_name, params];
+        ops.push(operation);
+        try {
+
+        const response = await keychain.broadcast(creator_account, [operation], "Active");
+        console.log(response)
+            return response;
+            } catch (err: any) {
+            console.log(err);
+            return err;
+            }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// Create account with credit
+export const createAccountWithCredit = async (data: any, creator_account: string) => {
+    try {
+      const { username, keys } = data;
+  
+      const account = {
+        name: username,
+        ...keys,
+        active: false
+      };
+  
+      let tokens: any = await hiveClient.database.getAccounts([creator_account]);
+      console.log(tokens)
+      tokens = tokens[0]?.pending_claimed_accounts;
+  
+      let fee = null;
+      let op_name: OperationName = "create_claimed_account";
+  
+      const owner = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.ownerPubKey, 1]]
+      };
+      const active = {
+        weight_threshold: 1,
+        account_auths: [],
+        key_auths: [[account.activePubKey, 1]]
+      };
+      const posting = {
+        weight_threshold: 1,
+        account_auths: [["ecency.app", 1]],
+        key_auths: [[account.postingPubKey, 1]]
+      };
+      const ops: Array<any> = [];
+      const params: any = {
+        creator: creator_account,
+        new_account_name: account.name,
+        owner,
+        active,
+        posting,
+        memo_key: account.memoPubKey,
+        json_metadata: "",
+        extensions: []
+      };
+  
+      if (fee) params.fee = fee;
+      const operation: Operation = [op_name, params];
+      ops.push(operation);
+      try {
+        const newAccount = await keychain.broadcast(creator_account, [operation], "Active");
+        return newAccount;
+      } catch (err: any) {
+        return err;
+      }
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
+  

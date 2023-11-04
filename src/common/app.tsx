@@ -12,6 +12,7 @@ import AuthContainer from "./pages/auth";
 import SubmitContainer from "./pages/submit";
 import MarketPage from "./pages/market";
 import SignUpContainer from "./pages/sign-up";
+import OnboardFriend from "./components/onboard-friend";
 import NotFound from "./components/404";
 
 import Tracker from "./tracker";
@@ -132,6 +133,12 @@ const App = ({ setLang }: any) => {
                 strict={true}
                 path={routes.SIGN_UP}
                 component={SignUpContainer}
+              />
+              <Route
+                exact={true}
+                strict={true}
+                path={routes.ONBOARD}
+                component={OnboardFriend}
               />
               <Route
                 exact={true}

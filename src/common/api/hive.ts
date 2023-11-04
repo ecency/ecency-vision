@@ -184,6 +184,7 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
                 voting_manabar: x.voting_manabar,
                 voting_power: x.voting_power,
                 downvote_manabar: x.downvote_manabar,
+                pending_claimed_accounts: x.pending_claimed_accounts,
                 __loaded: true,
             };
 

@@ -9,6 +9,7 @@ export default {
   GUESTS: `/guest-posts`,
   CONTRIBUTE: `/contribute`,
   SIGN_UP: `/signup`,
+  ONBOARD: `/onboard-friend/:hash`,
   WHITE_PAPER: `/whitepaper`,
   MARKET: `/market`,
   PRIVACY: `/privacy-policy`,

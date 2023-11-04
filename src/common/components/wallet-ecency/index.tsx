@@ -201,10 +201,7 @@ export const WalletEcency = (props: Props) => {
 
     useEffect(() => {
         setIsMounted(true);
-        // if (!global.usePrivate) {
-        //     history.push("/");
-        // }
-        let user = history.location.pathname.split("/")[1];
+         let user = history.location.pathname.split("/")[1];
             user = user.replace('@','')
         global.isElectron && initiateOnElectron(user);
         getEstimatedPointsValue();
