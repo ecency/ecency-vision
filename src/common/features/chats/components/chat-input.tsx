@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { EmojiPicker } from "../../../components/emoji-picker";
-import { error } from "../../../components/feedback";
 import {
   attachFileSvg,
   chatBoxImageSvg,
@@ -8,18 +7,19 @@ import {
   gifIcon,
   messageSendSvg
 } from "../../../img/svg";
-import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle, UPLOADING } from "./chat-popup/chat-constants";
+import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle } from "./chat-popup/chat-constants";
 import { _t } from "../../../i18n";
 import { ChatContext } from "../chat-context-provider";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { useChatFileUpload } from "../mutations";
+import { useChatFileUpload, useSendMessage } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
-import { useDirectContactsQuery } from "../queries";
 import { Channel } from "../managers/message-manager-types";
+import { Spinner } from "@ui/spinner";
+import { useChannelsQuery } from "../queries";
 
 interface Props {
   isCurrentUser: boolean;
@@ -34,18 +34,25 @@ export default function ChatInput({
   currentChannel,
   currentUser
 }: Props) {
+  useChannelsQuery();
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
-  const { data: directContacts } = useDirectContactsQuery();
   const { messageServiceInstance, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
   const [showGifPicker, setShowGifPicker] = useState(false);
-  const [isMessageText, setIsMessageText] = useState(false);
 
-  const { mutateAsync } = useChatFileUpload(setMessage, setIsMessageText);
+  const { mutateAsync: upload } = useChatFileUpload(setMessage);
+  const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
+    currentChannel,
+    currentUser,
+    () => {
+      setMessage("");
+    }
+  );
 
   const isDisabled = useMemo(
     () => (isCurrentUser && !receiverPubKey) || isActiveUserRemoved,
@@ -60,30 +67,6 @@ export default function ChatInput({
     }
   }, [isCommunity, isCurrentUser]);
 
-  const sendMessage = () => {
-    if (message.length !== 0 && !message.includes(UPLOADING)) {
-      if (isCommunity) {
-        if (!isActiveUserRemoved) {
-          messageServiceInstance?.sendPublicMessage(currentChannel, message, [], "");
-        } else {
-          error(_t("chat.message-warning"));
-        }
-      }
-      if (isCurrentUser) {
-        messageServiceInstance?.sendDirectMessage(receiverPubKey!, message);
-      }
-      setMessage("");
-      setIsMessageText(false);
-    }
-    if (
-      receiverPubKey &&
-      !directContacts?.some((contact) => contact.name === currentUser) &&
-      isCurrentUser
-    ) {
-      messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
-    }
-  };
-
   const checkFile = (filename: string) => {
     const filenameLow = filename.toLowerCase();
     return CHAT_FILE_CONTENT_TYPES.some((el) => filenameLow.endsWith(el));
@@ -97,7 +80,7 @@ export default function ChatInput({
       e.preventDefault();
     }
 
-    files.forEach((file) => mutateAsync(file));
+    files.forEach((file) => upload(file));
 
     // reset input
     e.target.value = "";
@@ -132,7 +115,7 @@ export default function ChatInput({
         onSubmit={(e: React.FormEvent) => {
           e.preventDefault();
           e.stopPropagation();
-          sendMessage();
+          sendMessage(message);
         }}
         className="w-full flex items-center gap-2 p-2"
       >
@@ -158,13 +141,12 @@ export default function ChatInput({
           autoFocus={true}
           onChange={(e) => {
             setMessage(e.target.value);
-            setIsMessageText(e.target.value.length !== 0);
           }}
           required={true}
           type="text"
           placeholder={_t("chat.start-chat-placeholder")}
           autoComplete="off"
-          disabled={isDisabled}
+          disabled={isDisabled || isSendMessageLoading}
         />
         <div className="flex items-center px-2 h-full gap-3">
           <div className="relative">
@@ -184,9 +166,9 @@ export default function ChatInput({
           <Button
             noPadding={true}
             appearance="gray-link"
-            icon={messageSendSvg}
-            disabled={isDisabled}
-            onClick={sendMessage}
+            icon={isSendMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : messageSendSvg}
+            disabled={isDisabled || isSendMessageLoading}
+            onClick={() => sendMessage(message)}
           />
         </div>
       </Form>

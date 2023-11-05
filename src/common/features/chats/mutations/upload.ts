@@ -11,14 +11,11 @@ class FileUploadingError {
   constructor(public code: number, public message: string) {}
 }
 
-export function useChatFileUpload(
-  setMessage: (v: string) => void,
-  setIsMessageText: (v: boolean) => void
-) {
+export function useChatFileUpload(setMessage: (v: string) => void) {
   const { activeUser, global } = useMappedStore();
 
   return useMutation(
-    ["chat-file-upload"],
+    ["chats/file-upload"],
     async (file: File) => {
       const username = activeUser?.username;
 
@@ -47,8 +44,6 @@ export function useChatFileUpload(
       if (imgTag) {
         setMessage(imgTag);
       }
-
-      setIsMessageText(true);
     },
     {
       onError: (e) => {

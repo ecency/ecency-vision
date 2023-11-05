@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { NostrKeysType } from "../types";
 import {
-  Channel,
-  ChannelUpdate,
   DirectMessage,
   Keys,
   MessagesObject,
@@ -145,34 +143,6 @@ const MessageManager = () => {
     };
   }, [messageService, chat.profiles]);
 
-  // Channel creation handler
-  const handleChannelCreation = (data: Channel[]) => {
-    addChannels(data.filter((x) => !chat.channels.find((y) => y.id === x.id)));
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
-    messageService?.addListener(MessageEvents.ChannelCreation, handleChannelCreation);
-
-    return () => {
-      messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
-    };
-  }, [messageService]);
-
-  // Channel update handler
-  const handleChannelUpdate = (data: ChannelUpdate[]) => {
-    UpdateChannels(data);
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
-    messageService?.addListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
-
-    return () => {
-      messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
-    };
-  }, [messageService]);
-
   const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
     setTimeout(() => {
       verifyPublicMessageSending(channelId, data);
@@ -302,27 +272,10 @@ const MessageManager = () => {
     };
   }, [messageService, chat.profiles, chat.publicMessages]);
 
-  // Left channel handler
-  const handleLeftChannelList = (data: string[]) => {
-    addleftChannels(data);
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
-    messageService?.addListener(MessageEvents.LeftChannelList, handleLeftChannelList);
-
-    return () => {
-      messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
-    };
-  }, [messageService, chat.leftChannelsList]);
-
   useEffect(() => {
     return () => {
       messageService?.removeListener(MessageEvents.Ready, handleReadyState);
       messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
-      messageService?.removeListener(MessageEvents.ChannelCreation, handleChannelCreation);
-      messageService?.removeListener(MessageEvents.LeftChannelList, handleLeftChannelList);
-      messageService?.removeListener(MessageEvents.ChannelUpdate, handleChannelUpdate);
       messageService?.removeListener(
         MessageEvents.PreviousPublicMessages,
         handlePreviousPublicMessages

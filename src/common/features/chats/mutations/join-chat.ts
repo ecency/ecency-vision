@@ -17,7 +17,7 @@ import { ChatQueries } from "../queries";
  */
 export function useJoinChat(onSuccess?: () => void) {
   const { activeUser, chat, resetChat } = useMappedStore();
-  const { mutateAsync: uploadPublicKey } = useMutation(["chat-upload-public-key"], (key: string) =>
+  const { mutateAsync: uploadPublicKey } = useMutation(["chats/upload-public-key"], (key: string) =>
     uploadChatPublicKey(activeUser, key)
   );
   const queryClient = useQueryClient();

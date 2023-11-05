@@ -17,7 +17,7 @@ export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKe
   const { setReceiverPubKey } = useContext(ChatContext);
 
   const { data: directMessagesLastMessages } = useDirectContactsLastMessagesQuery();
-  const rawUsername = useMemo(() => username.replace("@", ""), [username]);
+  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(
     () => getRelativeDate(directMessagesLastMessages[contact.name]?.created),
     [directMessagesLastMessages]

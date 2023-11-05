@@ -78,7 +78,9 @@
     "first": "First",
     "last": "Last",
     "ok": "OK",
-    "join": "Join"
+    "join": "Join",
+    "resend": "Resend",
+    "failed": "Failed"
   },
   "confirm": {
     "title": "Are you sure?",

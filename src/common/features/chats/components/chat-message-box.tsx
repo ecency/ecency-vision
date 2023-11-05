@@ -79,6 +79,7 @@ export default function ChatsMessagesBox(props: Props) {
     checkUserCommunityMembership();
   }, [updatedChannel, username, channels]);
 
+  // TODO: MAKE QUERY
   const fetchCurrentChannel = (communityName: string) => {
     const channel = channels.find((channel) => channel.communityName === communityName);
     if (channel) {

@@ -419,7 +419,7 @@ export const ChatPopUp = () => {
                 <div
                   className="scroller"
                   style={{
-                    bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "20px" : "55px"
+                    bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "0" : "55px"
                   }}
                   onClick={scrollerClicked}
                 >
@@ -428,7 +428,7 @@ export const ChatPopUp = () => {
               </Tooltip>
             )}
           </div>
-          <div className="px-3">
+          <div className="pl-2">
             {(isCurrentUser || isCommunity) && (
               <ChatInput
                 isCurrentUser={isCurrentUser}

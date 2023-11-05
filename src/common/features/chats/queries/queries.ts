@@ -10,5 +10,6 @@ export enum ChatQueries {
   BEFORE_PUBLIC_MESSAGES_TEMP = "chats/before-public-messages-temp",
   AFTER_PUBLIC_MESSAGES_TEMP = "chats/after-public-messages-temp",
   PREVIOUS_PUBLIC_MESSAGES = "chats/previous-public-messages",
-  PROFILES = "chats/profiles"
+  PROFILES = "chats/profiles",
+  CHANNELS = "chats/channels"
 }

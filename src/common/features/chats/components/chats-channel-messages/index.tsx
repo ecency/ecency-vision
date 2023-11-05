@@ -14,17 +14,13 @@ import UserAvatar from "../../../../components/user-avatar";
 import FollowControls from "../../../../components/follow-controls";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../../i18n";
-import Tooltip from "../../../../components/tooltip";
-import { failedMessageSvg, hideSvg, resendMessageSvg } from "../../../../img/svg";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { error } from "../../../../components/feedback";
 import { CHATPAGE, COMMUNITYADMINROLES, PRIVILEGEDROLES } from "../chat-popup/chat-constants";
 import { Theme } from "../../../../store/global/types";
 import {
   checkContiguousMessage,
-  formatMessageDate,
   formatMessageDateAndDay,
-  formatMessageTime,
   isMessageGif,
   isMessageImage
 } from "../../utils";
@@ -35,7 +31,7 @@ import { Popover, PopoverContent } from "@ui/popover";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
-import { Spinner } from "@ui/spinner";
+import { ChatMessageItem } from "../chat-message-item";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -400,168 +396,11 @@ export default function ChatsChannelMessages(props: Props) {
                   </div>
                 )}
 
-                {pMsg.creator !== activeUserKeys?.pub ? (
-                  <div
-                    key={pMsg.id}
-                    className="receiver"
-                    onMouseEnter={() => !showMessageActions && setHoveredMessageId(pMsg.id)}
-                    onMouseLeave={() => !showMessageActions && setHoveredMessageId("")}
-                  >
-                    {!isSameUserMessage || (isSameUserMessage && dayAndMonth) ? (
-                      <div className="community-user-img">
-                        {/*<OverlayTrigger*/}
-                        {/*  trigger="click"*/}
-                        {/*  placement="right"*/}
-                        {/*  show={clickedMessage === pMsg.id}*/}
-                        {/*  overlay={popover}*/}
-                        {/*  delay={1000}*/}
-                        {/*  onToggle={() => handleImageClick(pMsg.id, pMsg.creator)}*/}
-                        {/*>*/}
-                        {/*  <span>*/}
-                        {/*    <UserAvatar username={name!} size="medium" />*/}
-                        {/*  </span>*/}
-                        {/*</OverlayTrigger>*/}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-
-                    <div
-                      className={`user-info ${
-                        isSameUserMessage && !dayAndMonth
-                          ? "same-user-msg"
-                          : dayAndMonth
-                          ? "date-changed"
-                          : ""
-                      }`}
-                    >
-                      {(!isSameUserMessage || dayAndMonth) && (
-                        <p className="user-msg-time">
-                          <span className="username-community">{name}</span>
-                        </p>
-                      )}
-
-                      <div
-                        className="receiver-message"
-                        onClick={() => handelMessageActions(pMsg.id)}
-                      >
-                        <Tooltip
-                          content={
-                            formatMessageDate(pMsg.created).split(",")[1] +
-                            " " +
-                            formatMessageTime(pMsg.created)
-                          }
-                        >
-                          <div
-                            className={`receiver-message-wrapper  ${isGif ? "gif" : ""} ${
-                              isImage ? "chat-image" : ""
-                            }`}
-                          >
-                            <div
-                              className={`receiver-message-content  ${isGif ? "gif" : ""} ${
-                                isImage ? "chat-image" : ""
-                              }`}
-                              dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                            />
-                            <p className="receiver-msg-time">{formatMessageTime(pMsg.created)}</p>
-                          </div>
-                        </Tooltip>
-                        {hoveredMessageId === pMsg.id &&
-                          privilegedUsers.includes(activeUser?.username!) && (
-                            <Tooltip content={"Hide Message"}>
-                              <div className="hide-msg receiver">
-                                <p
-                                  className="hide-msg-svg"
-                                  onClick={() => {
-                                    setClickedMessage("");
-                                    setStep(1);
-                                    setHiddenMsgId(pMsg.id);
-                                  }}
-                                >
-                                  {hideSvg}
-                                </p>
-                              </div>
-                            </Tooltip>
-                          )}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    key={pMsg.id}
-                    className="sender"
-                    onMouseEnter={() => !showMessageActions && setHoveredMessageId(pMsg.id)}
-                    onMouseLeave={() => !showMessageActions && setHoveredMessageId("")}
-                  >
-                    <div
-                      className={`sender-message ${
-                        pMsg.sent === 2 ? "failed" : pMsg.sent === 0 ? "sending" : ""
-                      }`}
-                      onClick={() => handelMessageActions(pMsg.id)}
-                    >
-                      {hoveredMessageId === pMsg.id && !isActiveUserRemoved && (
-                        <Tooltip content={"Hide Message"}>
-                          <div className="hide-msg">
-                            <p
-                              className="hide-msg-svg"
-                              onClick={() => {
-                                setClickedMessage("");
-                                setStep(1);
-                                setHiddenMsgId(pMsg.id);
-                              }}
-                            >
-                              {hideSvg}
-                            </p>
-                          </div>
-                        </Tooltip>
-                      )}
-                      {pMsg.sent === 2 && (
-                        <Tooltip content={"Resend"}>
-                          <span
-                            className="resend-svg"
-                            onClick={() => {
-                              setStep(4);
-                              setResendMessage(pMsg);
-                            }}
-                          >
-                            {resendMessageSvg}
-                          </span>
-                        </Tooltip>
-                      )}
-
-                      <Tooltip
-                        content={
-                          formatMessageDate(pMsg.created).split(",")[1] +
-                          " " +
-                          formatMessageTime(pMsg.created)
-                        }
-                      >
-                        <div
-                          className={`sender-message-wrapper ${isGif ? "gif" : ""} ${
-                            isImage ? "chat-image" : isSameUserMessage ? "same-user-message" : ""
-                          }`}
-                        >
-                          <div
-                            className="sender-message-content"
-                            dangerouslySetInnerHTML={{ __html: renderedPreview }}
-                          />
-                          <p className="sender-message-time">{formatMessageTime(pMsg.created)}</p>
-                        </div>
-                      </Tooltip>
-
-                      {pMsg.sent === 0 && (
-                        <span style={{ margin: "10px 0 0 5px" }}>
-                          <Spinner />
-                        </span>
-                      )}
-                      {pMsg.sent === 2 && (
-                        <Tooltip content={"Failed"}>
-                          <span className="failed-svg">{failedMessageSvg}</span>
-                        </Tooltip>
-                      )}
-                    </div>
-                  </div>
-                )}
+                <ChatMessageItem
+                  type={pMsg.creator !== activeUserKeys?.pub ? "receiver" : "sender"}
+                  message={pMsg}
+                  isSameUser={isSameUserMessage}
+                />
               </React.Fragment>
             );
           })}
