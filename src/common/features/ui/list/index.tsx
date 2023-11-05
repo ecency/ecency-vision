@@ -5,6 +5,7 @@ import { useFilteredProps } from "../../../util/props-filter";
 interface Props {
   defer?: boolean;
   inline?: boolean;
+  grid?: boolean;
 }
 
 export function List(props: HTMLProps<HTMLDivElement> & Props) {
@@ -14,7 +15,8 @@ export function List(props: HTMLProps<HTMLDivElement> & Props) {
     <div
       {...nativeProps}
       className={classNameObject({
-        "flex overflow-hidden": true,
+        "flex overflow-hidden": !props.grid ?? true,
+        "grid grid-cols-2": props.grid ?? false,
         "gap-3": props.defer ?? false,
         "flex-row flex-wrap": props.inline ?? false,
         "flex-col rounded-xl border border-[--border-color] bg-gray-100 dark:bg-gray-900":
