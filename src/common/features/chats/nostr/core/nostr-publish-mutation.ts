@@ -1,11 +1,11 @@
 import { MutationKey, useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { useContext } from "react";
-import { NostrContext } from "../nostr";
-import { Event, getEventHash, Kind, signEvent } from "../../../../lib/nostr-tools/event";
-import { ChatContext } from "../chat-context-provider";
-import { Metadata } from "../managers/message-manager-types";
+import { Metadata } from "../../managers/message-manager-types";
+import { Event, getEventHash, Kind, signEvent } from "../../../../../lib/nostr-tools/event";
+import { NostrContext } from "../nostr-context";
+import { ChatContext } from "../../chat-context-provider";
 
-type Payload = { eventMetadata: Metadata; tags: string[][] };
+type Payload = { eventMetadata: Metadata | string; tags: string[][] };
 
 export function useNostrPublishMutation(
   key: MutationKey,
@@ -32,7 +32,8 @@ export function useNostrPublishMutation(
             kind,
             id: "",
             sig: "",
-            content: JSON.stringify(eventMetadata),
+            content:
+              typeof eventMetadata === "object" ? JSON.stringify(eventMetadata) : eventMetadata,
             pubkey: activeUserKeys.pub,
             created_at: Math.floor(Date.now() / 1000),
             tags

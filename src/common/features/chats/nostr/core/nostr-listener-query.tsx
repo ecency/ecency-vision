@@ -6,7 +6,7 @@ import useMap from "react-use/lib/useMap";
 import useDebounce from "react-use/lib/useDebounce";
 import { UseQueryOptions } from "@tanstack/react-query/src/types";
 
-export const MessageListenerQueriesContext = createContext<{
+export const NostrListenerQueriesContext = createContext<{
   subscribers: Record<string, boolean>;
   set: (key: string, value: boolean) => void;
   get: (key: string) => boolean;
@@ -16,16 +16,16 @@ export const MessageListenerQueriesContext = createContext<{
   get: () => false
 });
 
-export function MessageListenerQueriesProvider({ children }: PropsWithChildren<unknown>) {
+export function NostrListenerQueriesProvider({ children }: PropsWithChildren<unknown>) {
   const [subscribers, { set, get }] = useMap<Record<string, boolean>>();
 
   return (
-    <MessageListenerQueriesContext.Provider value={{ subscribers, set, get }} children={children} />
+    <NostrListenerQueriesContext.Provider value={{ subscribers, set, get }} children={children} />
   );
 }
 
 /**
- * Custom hook for listening to messages and updating a query with new data.
+ * Custom hook for listening to Nostr events and updating a query with new data.
  *
  * @template TQData - The data type returned by the query.
  * @template TQKey - The key used to identify the query.
@@ -35,14 +35,14 @@ export function MessageListenerQueriesProvider({ children }: PropsWithChildren<u
  * @param {UseQueryOptions<TQData>} [queryOptions] - Additional query options.
  * @returns {QueryObserverResult<TQData, unknown>} - The result of the query, including data and query status.
  */
-export function useMessageListenerQuery<TQData, TQKey extends QueryKey>(
+export function useNostrListenerQuery<TQData, TQKey extends QueryKey>(
   key: TQKey,
   event: MessageEvents,
   queryFn: (data: TQData, nextData: TQData, resolver: (data: TQData) => void) => void,
   queryOptions?: UseQueryOptions<TQData>
 ): QueryObserverResult<TQData> {
   const { messageServiceInstance } = useContext(ChatContext);
-  const { set, get } = useContext(MessageListenerQueriesContext);
+  const { set, get } = useContext(NostrListenerQueriesContext);
   const queryClient = useQueryClient();
 
   const query = useQuery<TQData>(key, () => queryClient.getQueryData<TQData>(key)!!, queryOptions);

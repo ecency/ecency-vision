@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useMemo, useRef } from "react";
 import SimplePool from "../../../../lib/nostr-tools/pool";
 import { NostrContext } from "./nostr-context";
 
-const RELAYS = {
+export const RELAYS = {
   "wss://relay1.nostrchat.io": { read: true, write: true },
   "wss://relay2.nostrchat.io": { read: true, write: true },
   "wss://relay.damus.io": { read: true, write: true },

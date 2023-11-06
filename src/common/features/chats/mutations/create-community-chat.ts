@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useNostrPublishMutation } from "../nostr/nostr-publish-mutation";
+import { useNostrPublishMutation } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 import { Community } from "../../../store/communities";
 import { useNostrJoinedCommunityTeamQuery } from "../queries";
@@ -13,7 +13,7 @@ import { updateProfile } from "../../../api/operations";
 export function useCreateCommunityChat(community: Community) {
   const { data: communityTeam } = useNostrJoinedCommunityTeamQuery(community);
   const { mutateAsync: createChannel } = useNostrPublishMutation(
-    ["chats/create-channel"],
+    ["chats/nostr-create-channel"],
     Kind.ChannelCreation,
     () => {},
     {}

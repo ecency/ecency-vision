@@ -3,16 +3,22 @@ import { UPLOADING } from "../components/chat-popup/chat-constants";
 import { useContext } from "react";
 import { ChatContext } from "../chat-context-provider";
 import { Channel } from "../managers/message-manager-types";
-import { useDirectContactsQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
+import { useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
+import { useAddDirectContact } from "./add-direct-contact";
 
 export function useSendMessage(
   currentChannel: Channel,
   currentUser: string,
   onSuccess: () => void
 ) {
-  const { messageServiceInstance, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
-  const { data: directContacts } = useDirectContactsQuery();
+  const { activeUserKeys, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { mutateAsync: sendDirectMessage } = useNostrSendDirectMessage(
+    activeUserKeys.priv,
+    receiverPubKey
+  );
+  const { mutateAsync: sendPublicMessage } = useNostrSendPublicMessage(currentChannel.id);
+  const { mutateAsync: addDirectContact } = useAddDirectContact();
 
   return useMutation(
     ["chats/send-message"],
@@ -25,23 +31,18 @@ export function useSendMessage(
         throw new Error("[Chat][SendMessage] – no active user");
       }
 
-      // Set the user as direct contact if it isn't there yet
-      if (
-        receiverPubKey &&
-        !directContacts?.some((contact) => contact.name === currentUser) &&
-        !!currentUser
-      ) {
-        messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
-      }
+      // Add user to direct contacts if its not there yet
+      // E.g. if user opened chat room directly from the address bar
+      addDirectContact({ pubkey: receiverPubKey, name: currentUser });
 
       if (!currentChannel && isCommunity(currentUser)) {
         throw new Error("[Chat][SendMessage] – provided user is community but channel not found");
       }
 
       if (currentChannel) {
-        return messageServiceInstance?.sendPublicMessage(currentChannel, message, [], "");
+        return sendPublicMessage({ message });
       } else if (currentUser) {
-        return messageServiceInstance?.sendDirectMessage(receiverPubKey!, message);
+        return sendDirectMessage(message);
       } else {
         throw new Error("[Chat][SendMessage] – no receiver");
       }

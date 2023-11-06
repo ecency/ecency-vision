@@ -1,13 +1,13 @@
 import { useContext, useMemo } from "react";
 import { ChatContext } from "../chat-context-provider";
 import { MessageEvents } from "../../../helper/message-service";
-import { useMessageListenerQuery } from "./message-listener-query";
 import { ChatQueries } from "./queries";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { DirectMessage, Message, PublicMessage } from "../managers/message-manager-types";
 import { useDirectContactsQuery } from "./direct-contacts-query";
 import isCommunity from "../../../helper/is-community";
 import { useChatProfilesQuery } from "./chat-profiles-query";
+import { useNostrListenerQuery } from "../nostr";
 
 export function useMessagesQuery(username?: string) {
   const { messageServiceInstance } = useContext(ChatContext);
@@ -64,7 +64,7 @@ export function useMessagesQuery(username?: string) {
     queryClient.invalidateQueries([ChatQueries.MESSAGES, "all"]);
   };
 
-  useMessageListenerQuery<Message[], ChatQueries[]>(
+  useNostrListenerQuery<Message[], ChatQueries[]>(
     [ChatQueries.BEFORE_DIRECT_MESSAGES_TEMP],
     MessageEvents.DirectMessageBeforeSent,
     (_, nextData, resolver) => {
@@ -78,7 +78,7 @@ export function useMessagesQuery(username?: string) {
     }
   );
 
-  useMessageListenerQuery<DirectMessage[], ChatQueries[]>(
+  useNostrListenerQuery<DirectMessage[], ChatQueries[]>(
     [ChatQueries.AFTER_DIRECT_MESSAGES_TEMP],
     MessageEvents.DirectMessageAfterSent,
     (_, nextData, resolver) => {
@@ -94,7 +94,7 @@ export function useMessagesQuery(username?: string) {
     }
   );
 
-  useMessageListenerQuery<PublicMessage[], ChatQueries[]>(
+  useNostrListenerQuery<PublicMessage[], ChatQueries[]>(
     [ChatQueries.BEFORE_PUBLIC_MESSAGES_TEMP],
     MessageEvents.PublicMessageBeforeSent,
     (_, nextData, resolver) => {
@@ -108,7 +108,7 @@ export function useMessagesQuery(username?: string) {
     }
   );
 
-  useMessageListenerQuery<PublicMessage[], ChatQueries[]>(
+  useNostrListenerQuery<PublicMessage[], ChatQueries[]>(
     [ChatQueries.AFTER_PUBLIC_MESSAGES_TEMP],
     MessageEvents.PublicMessageAfterSent,
     (_, nextData, resolver) => {
@@ -127,7 +127,7 @@ export function useMessagesQuery(username?: string) {
     }
   );
 
-  useMessageListenerQuery<PublicMessage[], ChatQueries[]>(
+  useNostrListenerQuery<PublicMessage[], ChatQueries[]>(
     [ChatQueries.PREVIOUS_PUBLIC_MESSAGES],
     MessageEvents.PreviousPublicMessages,
     (_, nextData, resolver) => {
