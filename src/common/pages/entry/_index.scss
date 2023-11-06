@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 @import "../../../style/vars_mixins";
 
 .circle-separator {
@@ -43,7 +44,7 @@
 }
 
 .entry-page {
-  font-family: Georgia, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Lora, Georgia, serif;
 
   .the-entry {
     margin: 0 auto 90px auto;
@@ -351,7 +352,7 @@
       font-size: 21px;
 
       @include themify(day) {
-        @apply text-tundora;
+        @apply text-black;
       }
 
       @include themify(night) {

@@ -3,7 +3,7 @@
 .suggestion {
   position: relative;
 
-  :first-child {
+  > :first-child {
     position: relative;
     z-index: 10;
   }
@@ -80,6 +80,7 @@
       }
     }
   }
+
   .more-result {
     .list-item {
       @include themify(day) {

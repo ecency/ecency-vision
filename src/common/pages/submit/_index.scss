@@ -154,6 +154,10 @@
       @include themify(day) {
         @apply text-tundora;
       }
+
+      @include themify(night) {
+        @apply text-white;
+      }
     }
 
     .preview-title {

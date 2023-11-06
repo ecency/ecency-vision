@@ -660,7 +660,9 @@ export function Submit(props: PageProps & MatchProps) {
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
                             </FormControl>
-                            <small className="text-gray-600">{_t("submit.reward-hint")}</small>
+                            <small className="text-gray-600 dark:text-gray-400">
+                              {_t("submit.reward-hint")}
+                            </small>
                           </div>
                         </div>
                         <div className="grid grid-cols-12 mb-4">
@@ -687,7 +689,7 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <small className="text-gray-600">
+                            <small className="text-gray-600 dark:text-gray-400">
                               {_t("submit.beneficiaries-hint")}
                             </small>
                           </div>
@@ -708,7 +710,7 @@ export function Submit(props: PageProps & MatchProps) {
                           rows={3}
                           maxLength={200}
                         />
-                        <small className="text-gray-600">
+                        <small className="text-gray-600 dark:text-gray-400">
                           {description !== "" ? description : postBodySummary(body, 200)}
                         </small>
                       </div>
@@ -727,7 +729,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-gray-600 dark:text-gray-400">
                                 {_t("submit.schedule-hint")}
                               </div>
                             </div>
@@ -749,7 +751,9 @@ export function Submit(props: PageProps & MatchProps) {
                               setReblogSwitch(v);
                             }}
                           />
-                          <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
+                          <small className="text-gray-600 dark:text-gray-400">
+                            {_t("submit.reblog-hint")}
+                          </small>
                         </div>
                       </div>
                     )}
@@ -785,7 +789,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
+                                  <div className="text-green check absolute bg-white rounded-full p-1 flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}
