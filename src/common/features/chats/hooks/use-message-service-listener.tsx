@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import MessageService from "../../../helper/message-service";
-import { useMappedStore } from "../../../store/use-mapped-store";
+import { useChannelsQuery } from "../queries";
 
 export const useMessageServiceListener = (
   messageServiceReady: boolean,
   messageService: MessageService | undefined
 ) => {
-  const {
-    chat: { channels }
-  } = useMappedStore();
+  const { data: channels } = useChannelsQuery();
 
   const [since, setSince] = useState(0);
 
@@ -17,8 +15,13 @@ export const useMessageServiceListener = (
 
     const timer = setTimeout(
       () => {
+        if (!channels || channels.length === 0) {
+          return;
+        }
+
+        // TODO THIS THING
         messageService?.listen(
-          channels.map((x) => x.id),
+          channels?.map((x) => x.id),
           Math.floor((since || Date.now()) / 1000)
         );
         setSince(Date.now());

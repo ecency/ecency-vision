@@ -3,6 +3,7 @@ import { Channel } from "../../managers/message-manager-types";
 
 export interface EventConverterResult {
   [Kind.ChannelCreation]: Channel;
+  30078: string[];
 }
 
 export function convertEvent<KIND extends keyof EventConverterResult>(
@@ -15,7 +16,7 @@ export function convertEvent<KIND extends keyof EventConverterResult>(
       return null;
     }
 
-    switch (event.kind) {
+    switch (event.kind as any) {
       case Kind.ChannelCreation:
         return {
           id: event.id,
@@ -28,7 +29,9 @@ export function convertEvent<KIND extends keyof EventConverterResult>(
           name: content.name,
           about: content.about,
           picture: content.picture
-        };
+        } as any;
+      case "30078":
+        return content;
       default:
         return content;
     }

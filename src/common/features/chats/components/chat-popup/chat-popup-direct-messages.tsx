@@ -1,18 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useMemo } from "react";
 import { _t } from "../../../../i18n";
-import { getCommunityLastMessage, getJoinedCommunities } from "../../utils";
+import { getJoinedCommunities } from "../../utils";
 import ImportChats from "../import-chats";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectMessage } from "./chat-direct-message";
-import {
-  useChannelsQuery,
-  useDirectContactsLastMessagesQuery,
-  useDirectContactsQuery
-} from "../../queries";
-import { Channel } from "../../managers/message-manager-types";
+import { useChannelsQuery, useDirectContactsQuery, useLastMessagesQuery } from "../../queries";
+import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -27,34 +22,32 @@ export function ChatPopupDirectMessages({
   setReceiverPubKey,
   setShowSearchUser
 }: Props) {
-  const { chat } = useMappedStore();
   const { activeUserKeys, showSpinner } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
-  const { data: directContactsLastMessages } = useDirectContactsLastMessagesQuery();
+  const { data: directContactsLastMessages } = useLastMessagesQuery();
   const { data: channels } = useChannelsQuery();
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
-  const [communities, setCommunities] = useState<Channel[]>([]);
-
-  useEffect(() => {
-    const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
-    setCommunities(communities);
-  }, [chat.channels, chat.leftChannelsList]);
+  const communities = useMemo(
+    () => getJoinedCommunities(channels ?? [], leftChannelsIds ?? []),
+    [channels, leftChannelsIds]
+  );
 
   return (
     <>
-      {(directContacts?.length !== 0 || (chat.channels.length !== 0 && communities.length !== 0)) &&
+      {(directContacts?.length !== 0 || (channels?.length !== 0 && communities.length !== 0)) &&
       !showSpinner &&
       activeUserKeys?.priv ? (
         <>
-          {chat.channels.length !== 0 && communities.length !== 0 && (
+          {channels?.length !== 0 && communities.length !== 0 && (
             <>
               <div className="community-header">{_t("chat.communities")}</div>
               {communities.map((channel) => (
                 <ChatDirectMessage
                   key={channel.id}
                   username={channel.communityName!!}
-                  lastMessage={getCommunityLastMessage(channel.id, chat.publicMessages)}
+                  lastMessage={directContactsLastMessages[channel.name]?.content}
                   userClicked={() => communityClicked(channel.communityName!)}
                 />
               ))}

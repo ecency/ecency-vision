@@ -39,7 +39,6 @@ import {
 } from "./notifications";
 import { setSigningKey } from "./signing-key";
 import {
-  addChannels,
   addDirectMessages,
   addleftChannels,
   addPreviousPublicMessages,
@@ -101,7 +100,6 @@ export const ACTIONS = {
   setNotificationsSettingsItem,
   addDirectMessages,
   resetChat,
-  addChannels,
   addPublicMessage,
   addProfile,
   addleftChannels,

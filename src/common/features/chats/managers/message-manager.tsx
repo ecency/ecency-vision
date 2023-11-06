@@ -14,7 +14,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { usePrevious } from "../../../util/use-previous";
 import { useMessageServiceListener } from "../hooks/use-message-service-listener";
-import { useDirectContactsQuery } from "../queries";
+import { useChannelsQuery, useDirectContactsQuery } from "../queries";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -31,7 +31,6 @@ const MessageManager = () => {
     chat,
     addDirectMessages,
     addPublicMessage,
-    addChannels,
     addProfile,
     addleftChannels,
     UpdateChannels,
@@ -43,6 +42,7 @@ const MessageManager = () => {
     resetChat
   } = useMappedStore();
   const { data: directContacts } = useDirectContactsQuery();
+  const { data: channels } = useChannelsQuery();
 
   const prevActiveUser = usePrevious(activeUser);
 
@@ -60,13 +60,13 @@ const MessageManager = () => {
     useContext(ChatContext);
 
   useEffect(() => {
-    if (chat.channels.length !== 0) {
+    if (channels?.length !== 0) {
       setIsCommunityCreated(true);
     }
     if (chat.directMessages.length !== 0) {
       setIsDirectChatCreated(true);
     }
-  }, [chat.channels, chat.directMessages]);
+  }, [channels, chat.directMessages]);
 
   useEffect(() => {
     window.addEventListener("createMSInstance", createMSInstance);
@@ -226,7 +226,7 @@ const MessageManager = () => {
   }, [messageService, chat.profiles, chat.publicMessages]);
 
   useEffect(() => {
-    if (chat.channels.length !== 0 && publicMessageBuffer.length !== 0) {
+    if (channels?.length !== 0 && publicMessageBuffer.length !== 0) {
       setPublicMessages();
     }
   }, [chat.publicMessages, publicMessageBuffer]);

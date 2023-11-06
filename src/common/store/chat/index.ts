@@ -1,5 +1,4 @@
 import {
-  Channel,
   ChannelUpdate,
   DirectMessage,
   MessagesObject,
@@ -11,7 +10,6 @@ import { Dispatch } from "redux";
 import {
   Actions,
   ActionTypes,
-  AddChannelsAction,
   AddPreviousPublicMessagesAction,
   Chat,
   DeleteDirectMessagesAction,
@@ -53,21 +51,6 @@ export default (state: Chat = initialState, action: Actions): Chat => {
 
     case ActionTypes.RESET:
       return initialState;
-
-    case ActionTypes.CHANNELS: {
-      const { data } = action;
-
-      const defaultPublicMessages = data.map((channel) => ({
-        channelId: channel.id,
-        PublicMessage: {}
-      }));
-
-      return {
-        ...state,
-        channels: [...state.channels, ...data],
-        publicMessages: [...state.publicMessages, ...defaultPublicMessages]
-      };
-    }
 
     case ActionTypes.PUBLICMESSAGES: {
       const { channelId, data } = action;
@@ -266,10 +249,6 @@ export const resetChat = () => (dispatch: Dispatch) => {
   dispatch(resetChatAct());
 };
 
-export const addChannels = (data: Channel[]) => (dispatch: Dispatch) => {
-  dispatch(addChannelsAct(data));
-};
-
 export const addPublicMessage =
   (channelId: string, data: PublicMessage) => (dispatch: Dispatch) => {
     dispatch(addPublicMessagesAct(channelId, data));
@@ -345,14 +324,6 @@ export const resetChatAct = (): ResetChatAction => {
     type: ActionTypes.RESET
   };
 };
-
-export const addChannelsAct = (data: Channel[]): AddChannelsAction => {
-  return {
-    type: ActionTypes.CHANNELS,
-    data
-  };
-};
-
 export const addProfilesAct = (data: Profile[]): ProfilesAction => {
   return {
     type: ActionTypes.PROFILES,

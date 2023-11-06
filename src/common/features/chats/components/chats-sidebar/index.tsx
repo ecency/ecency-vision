@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { History } from "history";
 import {
@@ -17,8 +17,8 @@ import { ChatSidebarSearch } from "./chat-sidebar-search";
 import { ChatSidebarSearchItem } from "./chat-sidebar-search-item";
 import { ChatSidebarDirectContact } from "./chat-sidebar-direct-contact";
 import { _t } from "../../../../i18n";
-import { useDirectContactsQuery } from "../../queries";
-import { Channel } from "../../managers/message-manager-types";
+import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
+import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 
 interface Props {
   username: string;
@@ -29,8 +29,10 @@ export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { chat } = useMappedStore();
   const { revealPrivKey, setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
-  const { channels, leftChannelsList } = chat;
+
   const { data: directContacts } = useDirectContactsQuery();
+  const { data: channels } = useChannelsQuery();
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
 
@@ -38,7 +40,11 @@ export default function ChatsSideBar(props: Props) {
   const [showDivider, setShowDivider] = useState(false);
   const [userList, setUserList] = useState<AccountWithReputation[]>([]);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
-  const [communities, setCommunities] = useState<Channel[]>([]);
+
+  const communities = useMemo(
+    () => getJoinedCommunities(channels ?? [], leftChannelsIds ?? []),
+    [channels, leftChannelsIds]
+  );
 
   useEffect(() => {
     if (username) {
@@ -47,11 +53,6 @@ export default function ChatsSideBar(props: Props) {
       }
     }
   }, [username]);
-
-  useEffect(() => {
-    const communities = getJoinedCommunities(channels, leftChannelsList);
-    setCommunities(communities);
-  }, [channels, leftChannelsList]);
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;

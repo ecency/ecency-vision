@@ -7,36 +7,6 @@ import { convertEvent } from "../nostr/utils/event-converter";
 
 export function useChannelsQuery() {
   const { hasKeys } = useKeysQuery();
-  // useMessageListenerQuery<Channel[], ChatQueries[]>(
-  //   [ChatQueries.CHANNELS],
-  //   MessageEvents.ChannelCreation,
-  //   (data, nextData, resolver) =>
-  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
-  //   {
-  //     initialData: []
-  //   }
-  // );
-  //
-  // useMessageListenerQuery<Channel[], ChatQueries[]>(
-  //   [ChatQueries.CHANNELS],
-  //   MessageEvents.ChannelUpdate,
-  //   (data, nextData, resolver) =>
-  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
-  //   {
-  //     initialData: []
-  //   }
-  // );
-  //
-  // useMessageListenerQuery<Channel[], ChatQueries[]>(
-  //   [ChatQueries.CHANNELS],
-  //   MessageEvents.LeftChannelList,
-  //   (data, nextData, resolver) =>
-  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
-  //   {
-  //     initialData: []
-  //   }
-  // );
-
   return useNostrFetchQuery<Channel[]>(
     [ChatQueries.CHANNELS],
     [Kind.ChannelCreation],

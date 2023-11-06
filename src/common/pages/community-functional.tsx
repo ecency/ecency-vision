@@ -1,10 +1,9 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { match } from "react-router";
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useMemo, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
-import { Channel } from "../features/chats/managers/message-manager-types";
 import { usePrevious } from "../util/use-previous";
 
 import { getJoinedCommunities } from "../features/chats/utils";
@@ -45,6 +44,8 @@ import { ChatContext } from "../features/chats/chat-context-provider";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { useJoinChat } from "../features/chats/mutations/join-chat";
+import { useChannelsQuery } from "../features/chats/queries";
+import { useLeftCommunityChannelsQuery } from "../features/chats/queries/left-community-channels-query";
 
 interface MatchParams {
   filter: string;
@@ -64,6 +65,8 @@ export const CommunityPage = (props: Props) => {
 
   const queryClient = useQueryClient();
   const { data: community } = useCommunityCache(props.match.params.name);
+  const { data: channels } = useChannelsQuery();
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
   const [account, setAccount] = useState<Account | undefined>(
     props.accounts.find(({ name }) => [props.match.params.name])
@@ -75,8 +78,6 @@ export const CommunityPage = (props: Props) => {
   const [isJoinCommunity, setIsJoinCommunity] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [channelId, setChannelId] = useState("");
-  const [communities, setCommunities] = useState<Channel[]>([]);
-  const [isCommunityAlreadyJoined, setIsCommunityAlreadyJoined] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadCommunity, setLoadCommunity] = useState(false);
 
@@ -86,15 +87,13 @@ export const CommunityPage = (props: Props) => {
   const { messageServiceInstance, hasUserJoinedChat } = useContext(ChatContext);
   const { mutateAsync: joinChat } = useJoinChat();
 
-  useEffect(() => {
-    const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
-    setCommunities(communities);
-  }, [chat.channels, chat.leftChannelsList]);
-
-  useEffect(() => {
-    const isAlreadyExists = communities.some((community) => community.id === channelId);
-    setIsCommunityAlreadyJoined(isAlreadyExists);
-  }, [communities]);
+  const isCommunityAlreadyJoined = useMemo(
+    () =>
+      getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
+        (community) => community.id === channelId
+      ),
+    [channels, leftChannelsIds]
+  );
 
   useEffect(() => {
     if (messageServiceInstance && loadCommunity) {

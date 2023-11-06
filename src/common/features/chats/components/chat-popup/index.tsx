@@ -25,7 +25,7 @@ import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
 import { useJoinChat } from "../../mutations/join-chat";
-import { useDirectContactsQuery } from "../../queries";
+import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -42,7 +42,9 @@ export const ChatPopUp = () => {
     setShowSpinner
   } = useContext(ChatContext);
   const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
+
   const { data: directContacts } = useDirectContactsQuery();
+  const { data: channels } = useChannelsQuery();
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -210,7 +212,7 @@ export const ChatPopUp = () => {
   };
 
   const fetchCurrentChannel = (communityName: string) => {
-    const channel = chat.channels.find((channel) => channel.communityName === communityName);
+    const channel = channels?.find((channel) => channel.communityName === communityName);
     if (channel) {
       const updated: ChannelUpdate = chat.updatedChannel
         .filter((x) => x.channelId === channel.id)

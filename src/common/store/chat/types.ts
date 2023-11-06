@@ -35,7 +35,6 @@ export enum ActionTypes {
   DIRECTCONTACTS = "@chat/DIRECTCONTACTS",
   DIRECTMESSAGES = "@chat/DIRECTMESSAGES",
   RESET = "@chat/RESET",
-  CHANNELS = "@chat/CHANNELS",
   PUBLICMESSAGES = "@chat/PUBLICMESSAGES",
   PROFILES = "@chat/PROFILES",
   LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST",
@@ -68,11 +67,6 @@ export interface PublicMessagesAction {
   type: ActionTypes.PUBLICMESSAGES;
   data: PublicMessage;
   channelId: string;
-}
-
-export interface AddChannelsAction {
-  type: ActionTypes.CHANNELS;
-  data: Channel[];
 }
 
 export interface ProfilesAction {
@@ -136,7 +130,6 @@ export type Actions =
   | DirectContactsAction
   | DirectMessagesAction
   | ResetChatAction
-  | AddChannelsAction
   | PublicMessagesAction
   | ProfilesAction
   | LeftChannelsAction

@@ -1,9 +1,5 @@
 import { ChatQueries } from "./queries";
-import { DirectContact, Message } from "../managers/message-manager-types";
-import { useQuery } from "@tanstack/react-query";
-import isCommunity from "../../../helper/is-community";
-import { useMessagesQuery } from "./messages-query";
-import { getDirectLastMessage } from "../utils";
+import { DirectContact } from "../managers/message-manager-types";
 import { useKeysQuery } from "./keys-query";
 import { useChannelsQuery } from "./channels-query";
 import { useNostrFetchQuery } from "../nostr";
@@ -32,36 +28,7 @@ export function useDirectContactsQuery() {
     },
     {
       initialData: [],
-      enabled: hasKeys && (isChannelsLoaded || isChannelsFailed),
-      select: (data) => [
-        ...(channels ?? []).map((channel) => ({
-          name: channel.name,
-          pubkey: ""
-        })),
-        ...data
-      ]
-    }
-  );
-}
-
-export function useDirectContactsLastMessagesQuery() {
-  const { data: contacts } = useDirectContactsQuery();
-  const { data: messages } = useMessagesQuery("all");
-
-  return useQuery<Record<string, Message>>(
-    [ChatQueries.DIRECT_CONTACTS_LAST_MESSAGES],
-    async () =>
-      (contacts ?? []).reduce<Record<string, Message>>((acc, current) => {
-        const currentMessages = messages.filter((i) =>
-          !isCommunity(current.name) && "peer" in i
-            ? i.peer === current?.pubkey
-            : i.root === current?.pubkey
-        );
-        return { ...acc, [current.name]: getDirectLastMessage(currentMessages) };
-      }, {}),
-    {
-      initialData: {},
-      enabled: (contacts?.length ?? 0) > 0 && messages.length > 0
+      enabled: hasKeys && (isChannelsLoaded || isChannelsFailed)
     }
   );
 }

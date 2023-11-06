@@ -5,7 +5,7 @@ import { ChatContext } from "../../chat-context-provider";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { DirectContact } from "../../managers/message-manager-types";
-import { useDirectContactsLastMessagesQuery } from "../../queries";
+import { useLastMessagesQuery } from "../../queries";
 
 interface Props {
   contact: DirectContact;
@@ -16,7 +16,7 @@ interface Props {
 export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKey }: Props) {
   const { setReceiverPubKey } = useContext(ChatContext);
 
-  const { data: directMessagesLastMessages } = useDirectContactsLastMessagesQuery();
+  const { data: directMessagesLastMessages } = useLastMessagesQuery();
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(
     () => getRelativeDate(directMessagesLastMessages[contact.name]?.created),

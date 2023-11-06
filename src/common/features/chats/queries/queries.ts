@@ -3,7 +3,7 @@ export enum ChatQueries {
   PUBLIC_KEY = "chats/public-key",
   PRIVATE_KEY = "chats/private-key",
   DIRECT_CONTACTS = "chats/direct-contacts",
-  DIRECT_CONTACTS_LAST_MESSAGES = "chats/direct-contacts-last-messages",
+  LAST_MESSAGES = "chats/last-messages",
   MESSAGES = "chats/messages",
   BEFORE_DIRECT_MESSAGES_TEMP = "chats/before-direct-messages-temp",
   AFTER_DIRECT_MESSAGES_TEMP = "chats/after-direct-messages-temp",
@@ -12,7 +12,7 @@ export enum ChatQueries {
   PREVIOUS_PUBLIC_MESSAGES = "chats/previous-public-messages",
   PROFILES = "chats/profiles",
   CHANNELS = "chats/channels",
-  JOINED_CHANNELS = "chats/joined-channels",
+  LEFT_CHANNELS = "chats/left-channels",
   COMMUNITY_CHANNEL = "chats/community-channel",
   COMMUNITY_ROLES = "chats/community-roles"
 }
