@@ -14,12 +14,12 @@ export type Metadata = {
   about: string;
   picture: string;
   communityName?: string;
-  communityModerators?: communityModerator[];
+  communityModerators?: CommunityModerator[];
   hiddenMessageIds?: string[];
   removedUserIds?: string[];
 };
 
-export type communityModerator = {
+export type CommunityModerator = {
   name: string;
   pubkey: string;
   role: string;

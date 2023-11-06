@@ -3,7 +3,7 @@ import { useMount } from "react-use";
 import mediumZoom, { Zoom } from "medium-zoom";
 import {
   Channel,
-  communityModerator,
+  CommunityModerator,
   Profile,
   PublicMessage
 } from "../../managers/message-manager-types";
@@ -192,7 +192,7 @@ export default function ChatsChannelMessages(props: Props) {
     }
   };
 
-  const getPrivilegedUsers = (communityModerators: communityModerator[]) => {
+  const getPrivilegedUsers = (communityModerators: CommunityModerator[]) => {
     const privilegedUsers = communityModerators.filter((user) =>
       PRIVILEGEDROLES.includes(user.role)
     );

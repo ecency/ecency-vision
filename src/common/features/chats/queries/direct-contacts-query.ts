@@ -1,34 +1,45 @@
 import { ChatQueries } from "./queries";
-import { MessageEvents } from "../../../helper/message-service";
 import { DirectContact, Message } from "../managers/message-manager-types";
-import { useMessageListenerQuery } from "./message-listener-query";
 import { useQuery } from "@tanstack/react-query";
 import isCommunity from "../../../helper/is-community";
 import { useMessagesQuery } from "./messages-query";
 import { getDirectLastMessage } from "../utils";
 import { useKeysQuery } from "./keys-query";
+import { useChannelsQuery } from "./channels-query";
+import { useNostrFetchQuery } from "../nostr";
+import { Kind } from "../../../../lib/nostr-tools/event";
 
 export function useDirectContactsQuery() {
   const { hasKeys } = useKeysQuery();
+  const {
+    data: channels,
+    isSuccess: isChannelsLoaded,
+    isError: isChannelsFailed
+  } = useChannelsQuery();
 
-  return useMessageListenerQuery<DirectContact[], ChatQueries[]>(
+  return useNostrFetchQuery<DirectContact[]>(
     [ChatQueries.DIRECT_CONTACTS],
-    MessageEvents.DirectContact,
-    (data, directContacts, resolver) => {
-      const result = [...data];
-      directContacts.forEach(({ name, pubkey }) => {
-        const isPresent = data.some((obj) => obj.name === name && obj.pubkey === pubkey);
-        if (!isPresent) {
-          result.push({ name, pubkey });
-        }
-      });
-      if (result.length !== 0) {
-        resolver(result);
+    [Kind.Contacts],
+    (events) => {
+      // Get first event with profile info
+      // note: events could be duplicated
+      // todo: think about duplications filtering
+      const profileEvent = events.find((event) => event.kind === Kind.Contacts);
+      if (profileEvent) {
+        return profileEvent.tags.map(([pubkey, name]) => ({ pubkey, name }));
       }
+      return [];
     },
     {
       initialData: [],
-      enabled: hasKeys
+      enabled: hasKeys && (isChannelsLoaded || isChannelsFailed),
+      select: (data) => [
+        ...(channels ?? []).map((channel) => ({
+          name: channel.name,
+          pubkey: ""
+        })),
+        ...data
+      ]
     }
   );
 }

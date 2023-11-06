@@ -1,5 +1,5 @@
 import { Sub } from "../../lib/nostr-tools/relay";
-import { Kind } from "../../lib/nostr-tools/event";
+import { Event, getEventHash, Kind, signEvent } from "../../lib/nostr-tools/event";
 import { Filter } from "../../lib/nostr-tools/filter";
 import { TypedEventEmitter } from "./message-event-emitter";
 import {
@@ -7,14 +7,12 @@ import {
   ChannelUpdate,
   DirectContact,
   DirectMessage,
-  Keys,
   Metadata,
   Profile,
   PublicMessage
 } from "../features/chats/managers/message-manager-types";
-import { encrypt, decrypt } from "../../lib/nostr-tools/nip04";
+import { decrypt, encrypt } from "../../lib/nostr-tools/nip04";
 import SimplePool from "../../lib/nostr-tools/pool";
-import { signEvent, getEventHash, Event } from "../../lib/nostr-tools/event";
 
 const relays = {
   "wss://relay1.nostrchat.io": { read: true, write: true },
@@ -59,25 +57,20 @@ type EventHandlerMap = {
 };
 
 class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
+  public directContacts: any = [];
+  listenerSub: Sub | null = null;
+  messageListenerSub: Sub | null = null;
   private pool: SimplePool;
   private poolL: SimplePool;
-
   private readonly priv: string | "nip07";
   private readonly pub: string;
-
   private readonly readRelays = Object.keys(relays).filter((r) => relays[r].read);
   private readonly writeRelays = Object.keys(relays).filter((r) => relays[r].write);
-
   private eventQueue: Event[] = [];
   private eventQueueTimer: any;
   private eventQueueFlag = true;
   private eventQueueBuffer: Event[] = [];
-  public directContacts: any = [];
-
   private nameCache: Record<string, number> = {};
-
-  listenerSub: Sub | null = null;
-  messageListenerSub: Sub | null = null;
 
   constructor(priv: string, pub: string) {
     super();
@@ -91,76 +84,34 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     this.init().then();
   }
 
-  private async init() {
-    this.eventQueue = [];
-    this.eventQueueFlag = true;
-    this.eventQueueBuffer = [];
+  static normalizeMetadata(meta: Metadata) {
+    return {
+      name: meta.name || "",
+      about: meta.about || "",
+      picture: meta.picture || ""
+    };
+  }
 
-    const filters: Filter[] = [
-      {
-        kinds: [Kind.Contacts],
-        authors: [this.pub]
-      },
-      {
-        kinds: [Kind.ChannelCreation, Kind.EventDeletion],
-        authors: [this.pub]
-      },
-      {
-        kinds: [Kind.ChannelMessage],
-        authors: [this.pub]
-      },
-      {
-        kinds: [NewKinds.Arbitrary],
-        authors: [this.pub],
-        "#d": ["left-channel-list", "read-mark-map"]
-      }
-    ];
-    this.fetchP(filters).then((resp) => {
-      const events = resp.sort((a, b) => b.created_at - a.created_at);
-      const deletions = resp
-        .filter((x) => x.kind === Kind.EventDeletion)
-        .map((x) => MessageService.findTagValue(x, "e"));
-      const profile = events.find((x) => x.kind === Kind.Contacts);
-      if (profile && profile?.tags.length !== 0) {
-        this.directContacts = profile?.tags;
-        this.pushToEventBuffer(profile!);
-      }
+  static parseJson(d: string) {
+    try {
+      return JSON.parse(d);
+    } catch (e) {
+      return null;
+    }
+  }
 
-      const leftChannelList = events.find(
-        (x) =>
-          x.kind.toString() === NewKinds.Arbitrary.toString() &&
-          MessageService.findTagValue(x, "d") === "left-channel-list"
-      );
+  static isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);
 
-      if (leftChannelList) {
-        this.pushToEventBuffer(leftChannelList);
-      }
+  static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+    return value !== null && value !== undefined;
+  }
 
-      const channels = Array.from(
-        new Set(
-          events
-            .map((x) => {
-              if (x.kind === Kind.ChannelCreation) {
-                return x.id;
-              }
+  static findTagValue(ev: Event, tag: "e" | "p" | "d") {
+    return ev.tags.find(([t]) => t === tag)?.[1];
+  }
 
-              if (x.kind === Kind.ChannelMessage) {
-                return MessageService.findTagValue(x, "e");
-              }
-
-              return undefined;
-            })
-            .filter((x) => !deletions.includes(x))
-            .filter(MessageService.notEmpty)
-        )
-      );
-      if (channels.length !== 0) {
-        this.fetchChannels(channels);
-      }
-
-      this.fetchMessages();
-      this.emit(MessageEvents.Ready);
-    });
+  static filterTagValue(ev: Event, tag: "e" | "p" | "d") {
+    return ev.tags.filter(([t]) => t === tag);
   }
 
   public fetchPrevMessages(channel: string, until: number) {
@@ -363,57 +314,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     });
   }
 
-  private addDirectContact(event: Event) {
-    let isAdded = false;
-    const user = {
-      id: event.id,
-      creator: event.pubkey,
-      created: event.created_at,
-      name: JSON.parse(event.content).name,
-      about: JSON.parse(event.content).about || "",
-      picture: JSON.parse(event.content).picture || ""
-    };
-    const { creator, name } = user;
-    if (!isAdded) {
-      this.publishContacts(name, creator);
-      isAdded = true;
-    }
-  }
-
-  private fetch(filters: Filter[], unsub: boolean = true, isDirectContact: boolean = false) {
-    const sub = this.pool.sub(this.readRelays, filters);
-
-    sub.on("event", (event: Event) => {
-      event.kind === Kind.Metadata && isDirectContact
-        ? this.addDirectContact(event)
-        : this.pushToEventBuffer(event);
-    });
-
-    sub.on("eose", () => {
-      if (unsub) {
-        sub.unsub();
-      }
-    });
-
-    return sub;
-  }
-
-  private fetchP(filters: Filter[], lowLatencyPool: boolean = false): Promise<Event[]> {
-    return new Promise((resolve) => {
-      const sub = (lowLatencyPool ? this.poolL : this.pool).sub(this.readRelays, filters);
-      const events: Event[] = [];
-
-      sub.on("event", (event: Event) => {
-        events.push(event);
-      });
-
-      sub.on("eose", () => {
-        sub.unsub();
-        resolve(events);
-      });
-    });
-  }
-
   public listen(channels: string[], since: number) {
     if (this.listenerSub) {
       this.listenerSub.unsub();
@@ -516,17 +416,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     this.emit(MessageEvents.DirectMessageBeforeSent, eventArray);
   }
 
-  private async findHealthyRelay(relays: string[]) {
-    for (const relay of relays) {
-      try {
-        await this.pool.ensureRelay(relay);
-        return relay;
-      } catch (e) {}
-    }
-
-    throw new Error("Couldn't find a working relay");
-  }
-
   public async updateProfile(profile: Metadata) {
     return this.publish(Kind.Metadata, [], JSON.stringify(profile));
   }
@@ -556,60 +445,6 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
       mentions.forEach((m) => tags.push(["p", m]));
     }
     return this.publish(Kind.ChannelMessage, tags, message);
-  }
-
-  private publish(kind: number, tags: Array<any>[], content: string): Promise<Event> {
-    return new Promise((resolve, reject) => {
-      this.signEvent({
-        kind,
-        tags,
-        pubkey: this.pub,
-        content,
-        created_at: Math.floor(Date.now() / 1000),
-        id: "",
-        sig: ""
-      })
-        .then((event) => {
-          if (!event) {
-            reject("Couldn't sign event!");
-            return;
-          }
-          if (event.kind === Kind.ChannelMessage) {
-            this.emitPublicMessageBeforeSent(event);
-          } else if (event.kind === Kind.EncryptedDirectMessage) {
-            this.emitDirectMessageBeforeSent(event);
-          }
-          const pub = this.pool.publish(this.writeRelays, event);
-          pub.on("ok", () => {
-            resolve(event);
-            if (event.kind === Kind.Contacts) {
-              this.getContacts();
-            }
-            if (event.kind === Kind.Metadata) {
-              this.pushToEventBuffer(event);
-            }
-          });
-
-          pub.on("failed", () => {
-            reject("Couldn't sign event!");
-          });
-        })
-        .catch(() => {
-          reject("Couldn't sign event!");
-        });
-    });
-  }
-
-  private async signEvent(event: Event): Promise<Event | undefined> {
-    if (this.priv === "nip07") {
-      return window.nostr?.signEvent(event);
-    } else {
-      return {
-        ...event,
-        id: getEventHash(event),
-        sig: await signEvent(event, this.priv)
-      };
-    }
   }
 
   pushToEventBuffer(event: Event) {
@@ -806,34 +641,192 @@ class MessageService extends TypedEventEmitter<MessageEvents, EventHandlerMap> {
     this.removeAllListeners();
   };
 
-  static normalizeMetadata(meta: Metadata) {
-    return {
-      name: meta.name || "",
-      about: meta.about || "",
-      picture: meta.picture || ""
-    };
+  private async init() {
+    this.eventQueue = [];
+    this.eventQueueFlag = true;
+    this.eventQueueBuffer = [];
+
+    const filters: Filter[] = [
+      {
+        kinds: [Kind.Contacts],
+        authors: [this.pub]
+      },
+      {
+        kinds: [Kind.ChannelCreation, Kind.EventDeletion],
+        authors: [this.pub]
+      },
+      {
+        kinds: [Kind.ChannelMessage],
+        authors: [this.pub]
+      },
+      {
+        kinds: [NewKinds.Arbitrary],
+        authors: [this.pub],
+        "#d": ["left-channel-list", "read-mark-map"]
+      }
+    ];
+    this.fetchP(filters).then((resp) => {
+      const events = resp.sort((a, b) => b.created_at - a.created_at);
+      const deletions = resp
+        .filter((x) => x.kind === Kind.EventDeletion)
+        .map((x) => MessageService.findTagValue(x, "e"));
+      const profile = events.find((x) => x.kind === Kind.Contacts);
+      if (profile && profile?.tags.length !== 0) {
+        this.directContacts = profile?.tags;
+        this.pushToEventBuffer(profile!);
+      }
+
+      const leftChannelList = events.find(
+        (x) =>
+          x.kind.toString() === NewKinds.Arbitrary.toString() &&
+          MessageService.findTagValue(x, "d") === "left-channel-list"
+      );
+
+      if (leftChannelList) {
+        this.pushToEventBuffer(leftChannelList);
+      }
+
+      const channels = Array.from(
+        new Set(
+          events
+            .map((x) => {
+              if (x.kind === Kind.ChannelCreation) {
+                return x.id;
+              }
+
+              if (x.kind === Kind.ChannelMessage) {
+                return MessageService.findTagValue(x, "e");
+              }
+
+              return undefined;
+            })
+            .filter((x) => !deletions.includes(x))
+            .filter(MessageService.notEmpty)
+        )
+      );
+      if (channels.length !== 0) {
+        this.fetchChannels(channels);
+      }
+
+      this.fetchMessages();
+      this.emit(MessageEvents.Ready);
+    });
   }
 
-  static parseJson(d: string) {
-    try {
-      return JSON.parse(d);
-    } catch (e) {
-      return null;
+  private addDirectContact(event: Event) {
+    let isAdded = false;
+    const user = {
+      id: event.id,
+      creator: event.pubkey,
+      created: event.created_at,
+      name: JSON.parse(event.content).name,
+      about: JSON.parse(event.content).about || "",
+      picture: JSON.parse(event.content).picture || ""
+    };
+    const { creator, name } = user;
+    if (!isAdded) {
+      this.publishContacts(name, creator);
+      isAdded = true;
     }
   }
 
-  static isSha256 = (s: string) => /^[a-f0-9]{64}$/gi.test(s);
+  private fetch(filters: Filter[], unsub: boolean = true, isDirectContact: boolean = false) {
+    const sub = this.pool.sub(this.readRelays, filters);
 
-  static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
-    return value !== null && value !== undefined;
+    sub.on("event", (event: Event) => {
+      event.kind === Kind.Metadata && isDirectContact
+        ? this.addDirectContact(event)
+        : this.pushToEventBuffer(event);
+    });
+
+    sub.on("eose", () => {
+      if (unsub) {
+        sub.unsub();
+      }
+    });
+
+    return sub;
   }
 
-  static findTagValue(ev: Event, tag: "e" | "p" | "d") {
-    return ev.tags.find(([t]) => t === tag)?.[1];
+  private fetchP(filters: Filter[], lowLatencyPool: boolean = false): Promise<Event[]> {
+    return new Promise((resolve) => {
+      const sub = (lowLatencyPool ? this.poolL : this.pool).sub(this.readRelays, filters);
+      const events: Event[] = [];
+
+      sub.on("event", (event: Event) => {
+        events.push(event);
+      });
+
+      sub.on("eose", () => {
+        sub.unsub();
+        resolve(events);
+      });
+    });
   }
 
-  static filterTagValue(ev: Event, tag: "e" | "p" | "d") {
-    return ev.tags.filter(([t]) => t === tag);
+  private async findHealthyRelay(relays: string[]) {
+    for (const relay of relays) {
+      try {
+        await this.pool.ensureRelay(relay);
+        return relay;
+      } catch (e) {}
+    }
+
+    throw new Error("Couldn't find a working relay");
+  }
+
+  private publish(kind: number, tags: Array<any>[], content: string): Promise<Event> {
+    return new Promise((resolve, reject) => {
+      this.signEvent({
+        kind,
+        tags,
+        pubkey: this.pub,
+        content,
+        created_at: Math.floor(Date.now() / 1000),
+        id: "",
+        sig: ""
+      })
+        .then((event) => {
+          if (!event) {
+            reject("Couldn't sign event!");
+            return;
+          }
+          if (event.kind === Kind.ChannelMessage) {
+            this.emitPublicMessageBeforeSent(event);
+          } else if (event.kind === Kind.EncryptedDirectMessage) {
+            this.emitDirectMessageBeforeSent(event);
+          }
+          const pub = this.pool.publish(this.writeRelays, event);
+          pub.on("ok", () => {
+            resolve(event);
+            if (event.kind === Kind.Contacts) {
+              this.getContacts();
+            }
+            if (event.kind === Kind.Metadata) {
+              this.pushToEventBuffer(event);
+            }
+          });
+
+          pub.on("failed", () => {
+            reject("Couldn't sign event!");
+          });
+        })
+        .catch(() => {
+          reject("Couldn't sign event!");
+        });
+    });
+  }
+
+  private async signEvent(event: Event): Promise<Event | undefined> {
+    if (this.priv === "nip07") {
+      return window.nostr?.signEvent(event);
+    } else {
+      return {
+        ...event,
+        id: getEventHash(event),
+        sig: await signEvent(event, this.priv)
+      };
+    }
   }
 }
 

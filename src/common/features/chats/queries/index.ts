@@ -5,3 +5,5 @@ export * from "./message-listener-query";
 export * from "./messages-query";
 export * from "./chat-profiles-query";
 export * from "./channels-query";
+export * from "./nostr-joined-community-team-query";
+export * from "./community-channel-query";

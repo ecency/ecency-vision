@@ -13,6 +13,7 @@ import { ChatContext } from "../chat-context-provider";
 import { classNameObject } from "../../../helper/class-name-object";
 import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
 import { useMessagesQuery } from "../queries";
+import isCommunity from "../../../helper/is-community";
 
 interface Props {
   username: string;
@@ -53,10 +54,6 @@ export default function ChatsMessagesView({
       setHasMore(false);
     }
   }, [messages]);
-
-  useEffect(() => {
-    isDirectUserOrCommunity();
-  }, [chat.channels]);
 
   useEffect(() => {
     getChannelMessages();
@@ -101,12 +98,10 @@ export default function ChatsMessagesView({
   };
 
   const isDirectUserOrCommunity = () => {
-    if (username) {
-      if (username && username.startsWith("@")) {
-        setDirectUser(username.replace("@", ""));
-      } else {
-        setCommunityName(username);
-      }
+    if (isCommunity(username)) {
+      setCommunityName(username.replace("@", ""));
+    } else {
+      setDirectUser(username.replace("@", ""));
     }
   };
 

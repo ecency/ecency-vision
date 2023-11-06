@@ -7,7 +7,11 @@ import { Button } from "@ui/button";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectMessage } from "./chat-direct-message";
-import { useDirectContactsLastMessagesQuery, useDirectContactsQuery } from "../../queries";
+import {
+  useChannelsQuery,
+  useDirectContactsLastMessagesQuery,
+  useDirectContactsQuery
+} from "../../queries";
 import { Channel } from "../../managers/message-manager-types";
 
 interface Props {
@@ -28,6 +32,7 @@ export function ChatPopupDirectMessages({
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: directContactsLastMessages } = useDirectContactsLastMessagesQuery();
+  const { data: channels } = useChannelsQuery();
 
   const [communities, setCommunities] = useState<Channel[]>([]);
 

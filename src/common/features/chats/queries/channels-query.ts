@@ -1,44 +1,52 @@
-import { useMessageListenerQuery } from "./message-listener-query";
 import { ChatQueries } from "./queries";
-import { MessageEvents } from "../../../helper/message-service";
 import { Channel } from "../managers/message-manager-types";
+import { useNostrFetchQuery } from "../nostr";
+import { Kind } from "../../../../lib/nostr-tools/event";
+import { useKeysQuery } from "./keys-query";
+import { convertEvent } from "../nostr/utils/event-converter";
 
 export function useChannelsQuery() {
-  console.log("starting");
+  const { hasKeys } = useKeysQuery();
+  // useMessageListenerQuery<Channel[], ChatQueries[]>(
+  //   [ChatQueries.CHANNELS],
+  //   MessageEvents.ChannelCreation,
+  //   (data, nextData, resolver) =>
+  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
+  //   {
+  //     initialData: []
+  //   }
+  // );
+  //
+  // useMessageListenerQuery<Channel[], ChatQueries[]>(
+  //   [ChatQueries.CHANNELS],
+  //   MessageEvents.ChannelUpdate,
+  //   (data, nextData, resolver) =>
+  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
+  //   {
+  //     initialData: []
+  //   }
+  // );
+  //
+  // useMessageListenerQuery<Channel[], ChatQueries[]>(
+  //   [ChatQueries.CHANNELS],
+  //   MessageEvents.LeftChannelList,
+  //   (data, nextData, resolver) =>
+  //     resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]),
+  //   {
+  //     initialData: []
+  //   }
+  // );
 
-  useMessageListenerQuery<Channel[], ChatQueries[]>(
+  return useNostrFetchQuery<Channel[]>(
     [ChatQueries.CHANNELS],
-    MessageEvents.ChannelCreation,
-    (data, nextData, resolver) => {
-      console.log(nextData);
-      resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]);
-    },
+    [Kind.ChannelCreation],
+    (events) =>
+      events
+        .map((event) => convertEvent<Kind.ChannelCreation>(event))
+        .filter((channel) => !!channel) as Channel[],
     {
-      initialData: []
-    }
-  );
-
-  useMessageListenerQuery<Channel[], ChatQueries[]>(
-    [ChatQueries.CHANNELS],
-    MessageEvents.ChannelUpdate,
-    (data, nextData, resolver) => {
-      console.log(nextData);
-      resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]);
-    },
-    {
-      initialData: []
-    }
-  );
-
-  useMessageListenerQuery<Channel[], ChatQueries[]>(
-    [ChatQueries.CHANNELS],
-    MessageEvents.LeftChannelList,
-    (data, nextData, resolver) => {
-      console.log(nextData);
-      resolver([...data, ...nextData.filter((ch) => !data.some((dCh) => ch.id === dCh.id))]);
-    },
-    {
-      initialData: []
+      initialData: [],
+      enabled: hasKeys
     }
   );
 }

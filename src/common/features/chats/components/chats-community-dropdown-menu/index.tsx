@@ -26,7 +26,7 @@ import { getAccountFull } from "../../../../api/hive";
 import { Button } from "@ui/button";
 import { FormControl, InputGroup } from "@ui/input";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { Channel, communityModerator } from "../../managers/message-manager-types";
+import { Channel, CommunityModerator } from "../../managers/message-manager-types";
 
 interface Props {
   history: History;
@@ -46,7 +46,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const [user, setUser] = useState("");
   const [addRoleError, setAddRoleError] = useState("");
   const [role, setRole] = useState("admin");
-  const [moderator, setModerator] = useState<communityModerator>();
+  const [moderator, setModerator] = useState<CommunityModerator>();
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [removedUserId, setRemovedUserID] = useState("");
@@ -93,7 +93,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
 
   const updateRole = (
     event: React.ChangeEvent<HTMLSelectElement>,
-    moderator: communityModerator
+    moderator: CommunityModerator
   ) => {
     const selectedRole = event.target.value;
     const moderatorIndex = currentChannel?.communityModerators?.findIndex(

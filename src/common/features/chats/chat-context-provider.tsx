@@ -6,8 +6,9 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { NostrKeysType } from "./types";
 import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
-import { useJoinChat } from "./mutations/join-chat";
+import { useJoinChat } from "./mutations";
 import { MessageListenerQueriesProvider } from "./queries";
+import { NostrProvider } from "./nostr";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -169,7 +170,7 @@ export const ChatContextProvider = (props: Props) => {
           initMessageServiceInstance
         }}
       >
-        {props.children}
+        <NostrProvider>{props.children}</NostrProvider>
       </ChatContext.Provider>
     </MessageListenerQueriesProvider>
   );

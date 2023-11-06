@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { History } from "history";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import ChatsCommunityDropdownMenu from "./chats-community-dropdown-menu";
 import UserAvatar from "../../../components/user-avatar";
 import { CHATPAGE } from "./chat-popup/chat-constants";
-import { Chat } from "../../../store/chat/types";
 import { formattedUserName } from "../utils";
 import Link from "../../../components/alink";
 import { expandSideBar } from "../../../img/svg";
 import { Button } from "@ui/button";
 import { ChatContext } from "../chat-context-provider";
+import { useChannelsQuery } from "../queries";
 
 interface Props {
   username: string;
@@ -19,13 +18,13 @@ interface Props {
 export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
   const { setReceiverPubKey } = useContext(ChatContext);
-  const { chat } = useMappedStore();
+  const { data: channels } = useChannelsQuery();
 
   const isChannel = (username: string) => !username.startsWith("@");
 
-  const formattedName = (username: string, chat: Chat) => {
+  const formattedName = (username: string) => {
     if (username && !username.startsWith("@")) {
-      const community = chat.channels.find((channel) => channel.communityName === username);
+      const community = channels?.find((channel) => channel.communityName === username);
       if (community) {
         return community.name;
       }
@@ -50,7 +49,7 @@ export default function ChatsMessagesHeader(props: Props) {
           target="_blank"
         >
           <UserAvatar username={formattedUserName(username)} size="medium" />
-          <div>{formattedName(username, chat)}</div>
+          <div>{formattedName(username)}</div>
         </Link>
       </div>
 

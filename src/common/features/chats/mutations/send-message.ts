@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ChatContext } from "../chat-context-provider";
 import { Channel } from "../managers/message-manager-types";
 import { useDirectContactsQuery } from "../queries";
+import isCommunity from "../../../helper/is-community";
 
 export function useSendMessage(
   currentChannel: Channel,
@@ -31,6 +32,10 @@ export function useSendMessage(
         !!currentUser
       ) {
         messageServiceInstance?.publishContacts(currentUser, receiverPubKey);
+      }
+
+      if (!currentChannel && isCommunity(currentUser)) {
+        throw new Error("[Chat][SendMessage] – provided user is community but channel not found");
       }
 
       if (currentChannel) {

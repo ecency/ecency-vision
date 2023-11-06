@@ -11,6 +11,7 @@ import { ChatContext } from "../chat-context-provider";
 import { useMount } from "react-use";
 import { Button } from "@ui/button";
 import { Channel, ChannelUpdate } from "../managers/message-manager-types";
+import { useChannelsQuery } from "../queries";
 
 interface MatchParams {
   filter: string;
@@ -27,10 +28,11 @@ interface Props {
 
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
+  const { data: channels } = useChannelsQuery();
 
   const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
 
-  const { channels, updatedChannel } = chat;
+  const { updatedChannel } = chat;
   const { match } = props;
   const username = match.params.username;
 
@@ -61,8 +63,8 @@ export default function ChatsMessagesBox(props: Props) {
 
   const checkUserCommunityMembership = () => {
     getCommunityProfile();
-    const communities = getJoinedCommunities(chat.channels, chat.leftChannelsList);
-    const isCommunity = chat.channels.some((channel) => channel.communityName === username);
+    const communities = getJoinedCommunities(channels ?? [], chat.leftChannelsList);
+    const isCommunity = channels?.some((channel) => channel.communityName === username);
     if (isCommunity) {
       setIsCommunityChatEnabled(true);
       const isJoined = communities.some((channel) => channel.communityName === username);
@@ -81,7 +83,7 @@ export default function ChatsMessagesBox(props: Props) {
 
   // TODO: MAKE QUERY
   const fetchCurrentChannel = (communityName: string) => {
-    const channel = channels.find((channel) => channel.communityName === communityName);
+    const channel = channels?.find((channel) => channel.communityName === communityName);
     if (channel) {
       const updated: ChannelUpdate = updatedChannel
         .filter((x) => x.channelId === channel.id)
