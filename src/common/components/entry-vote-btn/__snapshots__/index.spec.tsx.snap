@@ -5,12 +5,19 @@ Array [
   <div
     className="voting-controls voting-controls-up disable"
   >
-    <div
-      className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
+      size="xs"
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <span
-        className="btn-inner"
+      <div
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <svg
           className="slider-svg-up"
@@ -21,8 +28,8 @@ Array [
             fill="currentColor"
           />
         </svg>
-      </span>
-    </div>
+      </div>
+    </button>
     <div
       className="estimated"
     >
@@ -139,12 +146,19 @@ Array [
     >
       100.0%
     </div>
-    <div
-      className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
+      size="xs"
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <span
-        className="btn-inner"
+      <div
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <svg
           className="slider-svg-down"
@@ -159,8 +173,8 @@ Array [
             fill="currentColor"
           />
         </svg>
-      </span>
-    </div>
+      </div>
+    </button>
   </div>,
   <div
     className="vote-error error-message"
