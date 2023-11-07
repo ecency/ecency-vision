@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { History } from "history";
-import ChatsCommunityDropdownMenu from "./chats-community-dropdown-menu";
+import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
 import { CHATPAGE } from "./chat-popup/chat-constants";
 import { formattedUserName } from "../utils";
@@ -9,6 +9,7 @@ import { expandSideBar } from "../../../img/svg";
 import { Button } from "@ui/button";
 import { ChatContext } from "../chat-context-provider";
 import { useChannelsQuery } from "../queries";
+import isCommunity from "../../../helper/is-community";
 
 interface Props {
   username: string;
@@ -19,8 +20,6 @@ export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
   const { setReceiverPubKey } = useContext(ChatContext);
   const { data: channels } = useChannelsQuery();
-
-  const isChannel = (username: string) => !username.startsWith("@");
 
   const formattedName = (username: string) => {
     if (username && !username.startsWith("@")) {
@@ -53,8 +52,8 @@ export default function ChatsMessagesHeader(props: Props) {
         </Link>
       </div>
 
-      {isChannel(username) && (
-        <div className="community-menu">
+      {isCommunity(username) && (
+        <div className="flex items-center justify-center">
           <ChatsCommunityDropdownMenu
             from={CHATPAGE}
             history={props.history}

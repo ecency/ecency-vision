@@ -4,3 +4,6 @@ export * from "./join-chat";
 export * from "./create-community-chat";
 export * from "./add-community-channel";
 export * from "./add-direct-contact";
+export * from "./leave-community-channel";
+export * from "./update-community-channel";
+export * from "./update-channel-moderator";

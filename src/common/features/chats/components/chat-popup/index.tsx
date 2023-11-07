@@ -26,6 +26,7 @@ import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
 import { useJoinChat } from "../../mutations/join-chat";
 import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
+import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -45,6 +46,7 @@ export const ChatPopUp = () => {
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
+  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
   const directContact = useMemo(
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
     [directContacts]
@@ -88,11 +90,11 @@ export const ChatPopUp = () => {
 
   // todo: ??
   useEffect(() => {
-    if (currentChannel && chat.leftChannelsList.includes(currentChannel.id)) {
+    if (currentChannel && leftCommunityChannelsIds?.includes(currentChannel.id)) {
       setIsCommunity(false);
       setCommunityName("");
     }
-  }, [chat.leftChannelsList]);
+  }, [leftCommunityChannelsIds]);
 
   // todo ???
   useEffect(() => {
@@ -365,12 +367,7 @@ export const ChatPopUp = () => {
           </div>
           <div className="pl-2">
             {(isCurrentUser || isCommunity) && (
-              <ChatInput
-                isCurrentUser={isCurrentUser}
-                isCommunity={isCommunity}
-                currentUser={currentUser}
-                currentChannel={currentChannel!}
-              />
+              <ChatInput currentUser={currentUser} currentChannel={currentChannel ?? undefined} />
             )}
           </div>
         </div>

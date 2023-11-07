@@ -21,8 +21,8 @@ export function useMessagesQuery(username?: string) {
   const { data: initialPublicMessages } = usePublicMessagesQuery(channels ?? []);
 
   const currentChannel = useMemo(
-    () => channels?.find((channel) => channel.name === username),
-    [channels]
+    () => channels?.find((channel) => channel.communityName === username),
+    [channels, username]
   );
 
   return useQuery<Message[]>(
@@ -49,11 +49,11 @@ export function useMessagesQuery(username?: string) {
       initialData: [],
       select: (messages) => {
         if (currentChannel) {
-          return messages.filter(
-            (message) => !currentChannel.hiddenMessageIds?.includes(message.id)
-          );
+          return messages
+            .filter((message) => !currentChannel.hiddenMessageIds?.includes(message.id))
+            .sort((a, b) => a.created - b.created);
         }
-        return messages;
+        return messages.sort((a, b) => a.created - b.created);
       }
     }
   );

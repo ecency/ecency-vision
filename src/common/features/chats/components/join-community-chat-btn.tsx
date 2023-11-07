@@ -20,8 +20,8 @@ interface Props {
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
-  const { messageServiceInstance, activeUserKeys, hasUserJoinedChat } = useContext(ChatContext);
-  const { chat, activeUser } = useMappedStore();
+  const { activeUserKeys, hasUserJoinedChat } = useContext(ChatContext);
+  const { activeUser } = useMappedStore();
 
   const { data: currentChannel } = useCommunityChannelQuery(props.community);
   const { data: channels } = useChannelsQuery();
@@ -48,12 +48,6 @@ export default function JoinCommunityChatBtn(props: Props) {
   const join = async () => {
     if (!hasUserJoinedChat) {
       await joinChat();
-    }
-    // TODO: need to write it as query and mutation that if we left the chat then re-join again
-    if (chat.leftChannelsList.includes(currentChannel?.id!)) {
-      messageServiceInstance?.updateLeftChannelList(
-        chat.leftChannelsList.filter((x) => x !== currentChannel?.id)
-      );
     }
     await addCommunityChannel();
   };

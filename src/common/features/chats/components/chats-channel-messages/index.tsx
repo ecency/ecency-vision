@@ -1,5 +1,4 @@
 import React, { RefObject, useContext, useEffect, useRef, useState } from "react";
-import { useMount } from "react-use";
 import mediumZoom, { Zoom } from "medium-zoom";
 import {
   Channel,
@@ -8,7 +7,6 @@ import {
   PublicMessage
 } from "../../managers/message-manager-types";
 import { History } from "history";
-import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import UserAvatar from "../../../../components/user-avatar";
 import FollowControls from "../../../../components/follow-controls";
@@ -16,22 +14,16 @@ import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../../i18n";
 import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { error } from "../../../../components/feedback";
-import { CHATPAGE, COMMUNITYADMINROLES, PRIVILEGEDROLES } from "../chat-popup/chat-constants";
+import { COMMUNITYADMINROLES, PRIVILEGEDROLES } from "../chat-popup/chat-constants";
 import { Theme } from "../../../../store/global/types";
-import {
-  checkContiguousMessage,
-  formatMessageDateAndDay,
-  isMessageGif,
-  isMessageImage
-} from "../../utils";
+import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
 import { ChatContext } from "../../chat-context-provider";
 
 import "./index.scss";
 import { Popover, PopoverContent } from "@ui/popover";
 import { Button } from "@ui/button";
-import { Form } from "@ui/form";
-import { FormControl } from "@ui/input";
 import { ChatMessageItem } from "../chat-message-item";
+import ChatInput from "../chat-input";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -42,7 +34,6 @@ interface Props {
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   scrollToBottom?: () => void;
-  currentChannelSetter: (channel: Channel) => void;
 }
 
 let zoom: Zoom | null = null;
@@ -54,8 +45,7 @@ export default function ChatsChannelMessages(props: Props) {
     isScrollToBottom,
     isScrolled,
     currentChannel,
-    scrollToBottom,
-    currentChannelSetter
+    scrollToBottom
   } = props;
   const {
     chat,
@@ -79,22 +69,12 @@ export default function ChatsChannelMessages(props: Props) {
   const channelMessagesRef = React.createRef<HTMLDivElement>();
 
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
-  const [hoveredMessageId, setHoveredMessageId] = useState("");
   const [step, setStep] = useState(0);
-  const [dmMessage, setDmMessage] = useState("");
   const [clickedMessage, setClickedMessage] = useState("");
   const [removedUserId, setRemovedUserID] = useState("");
   const [privilegedUsers, setPrivilegedUsers] = useState<string[]>([]);
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
-
-  const [showMessageActions, setShowMessageActions] = useState(false);
-
-  useMount(() => {
-    if (window.innerWidth <= 768) {
-      setShowMessageActions(true);
-    }
-  });
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -111,12 +91,6 @@ export default function ChatsChannelMessages(props: Props) {
       scrollToBottom && scrollToBottom();
     }
   }, [publicMessages, isScrollToBottom, channelMessagesRef]);
-
-  useEffect(() => {
-    if (windowWidth <= 768) {
-      setShowMessageActions(true);
-    }
-  }, [windowWidth]);
 
   useEffect(() => {
     if (currentChannel) {
@@ -156,17 +130,6 @@ export default function ChatsChannelMessages(props: Props) {
     };
   }, [clickedMessage]);
 
-  const sendDM = (name: string, pubkey: string) => {
-    if (dmMessage) {
-      messageServiceInstance?.sendDirectMessage(pubkey, dmMessage);
-      setClickedMessage("");
-      setDmMessage("");
-      if (from && from === CHATPAGE) {
-        history?.push(`/chats/@${name}`);
-      }
-    }
-  };
-
   const zoomInitializer = () => {
     const elements: HTMLElement[] = [...document.querySelectorAll<HTMLElement>(".chat-image img")];
     zoom = mediumZoom(elements);
@@ -178,17 +141,6 @@ export default function ChatsChannelMessages(props: Props) {
       zoom?.update({ background: "#ffffff" });
     } else {
       zoom?.update({ background: "#131111" });
-    }
-  };
-
-  const handleImageClick = (msgId: string, pubkey: string) => {
-    if (clickedMessage === msgId) {
-      popoverRef.current = null;
-      setClickedMessage("");
-    } else {
-      popoverRef.current = null;
-      setClickedMessage(msgId);
-      setRemovedUserID(pubkey);
     }
   };
 
@@ -267,18 +219,10 @@ export default function ChatsChannelMessages(props: Props) {
 
     try {
       messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
-      currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
+      // currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
       setStep(0);
     } catch (err) {
       error(_t("chat.error-updating-community"));
-    }
-  };
-
-  const handelMessageActions = (msgId: string) => {
-    if (showMessageActions && hoveredMessageId !== msgId) {
-      setHoveredMessageId(msgId);
-    } else {
-      setHoveredMessageId("");
     }
   };
 
@@ -291,16 +235,6 @@ export default function ChatsChannelMessages(props: Props) {
             const dayAndMonth = formatMessageDateAndDay(pMsg, i, publicMessages);
 
             const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);
-
-            let renderedPreview = renderPostBody(pMsg.content, false, global.canUseWebp);
-
-            renderedPreview = renderedPreview.replace(/<p[^>]*>/g, "");
-            renderedPreview = renderedPreview.replace(/<\/p>/g, "");
-
-            const isGif = isMessageGif(pMsg.content);
-
-            const isImage = isMessageImage(pMsg.content);
-
             const name = getProfileName(pMsg.creator, chat.profiles);
 
             const popover = (
@@ -363,23 +297,7 @@ export default function ChatsChannelMessages(props: Props) {
                           )}
                       </div>
 
-                      <Form
-                        onSubmit={(e: React.FormEvent) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          sendDM(name!, pMsg.creator);
-                        }}
-                      >
-                        <FormControl
-                          value={dmMessage}
-                          autoFocus={true}
-                          onChange={(e) => setDmMessage(e.target.value)}
-                          required={true}
-                          type="text"
-                          placeholder={"Send direct message"}
-                          autoComplete="off"
-                        />
-                      </Form>
+                      <ChatInput currentChannel={currentChannel} currentUser="" />
                     </div>
                   </div>
                 </PopoverContent>

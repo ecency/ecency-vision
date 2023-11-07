@@ -8,8 +8,8 @@ interface Payload {
   mentions?: string[];
 }
 
-export function useNostrSendPublicMessage(channelId: string, parent?: string) {
-  const { mutateAsync: publishEncryptedMessage } = useNostrPublishMutation(
+export function useNostrSendPublicMessage(channelId?: string, parent?: string) {
+  const { mutateAsync: publishChannelMessage } = useNostrPublishMutation(
     ["chats/nostr-publish-channel-message"],
     Kind.ChannelMessage,
     () => {}
@@ -18,6 +18,12 @@ export function useNostrSendPublicMessage(channelId: string, parent?: string) {
 
   return useMutation(["chats/send-public-message"], async ({ message, mentions }: Payload) => {
     const root = parent || channelId;
+
+    if (!root) {
+      console.error("[Chat][Nostr] – trying to send public message to not existing channel");
+      return;
+    }
+
     const relay = await findHealthyRelay(root);
 
     const tags: string[][] = [];
@@ -29,7 +35,7 @@ export function useNostrSendPublicMessage(channelId: string, parent?: string) {
       mentions.forEach((m) => tags.push(["p", m]));
     }
 
-    return publishEncryptedMessage({
+    return publishChannelMessage({
       tags,
       eventMetadata: message
     });

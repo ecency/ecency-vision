@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { match } from "react-router";
 import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
 import LinearProgress from "../../../components/linear-progress";
-import { formattedUserName, getJoinedCommunities, getProfileMetaData } from "../utils";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { CHANNEL } from "./chat-popup/chat-constants";
-import { ChatContext } from "../chat-context-provider";
-import { useMount } from "react-use";
+import { getJoinedCommunities } from "../utils";
 import { Button } from "@ui/button";
-import { Channel, ChannelUpdate } from "../managers/message-manager-types";
-import { useChannelsQuery } from "../queries";
+import { useChannelsQuery, useCommunityChannelQuery } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
+import { useCommunityCache } from "../../../core";
+import { useAddCommunityChannel } from "../mutations";
 
 interface MatchParams {
   filter: string;
@@ -28,106 +25,37 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  const { chat } = useMappedStore();
+  const { data: community } = useCommunityCache(props.match.params.username);
+
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
+  const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
+  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
 
-  const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
+  const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
+    useAddCommunityChannel(props.match.params.name);
 
-  const { updatedChannel } = chat;
   const { match } = props;
   const username = match.params.username;
 
   const [inProgress, setInProgress] = useState(false);
-  const [isCommunityChatEnabled, setIsCommunityChatEnabled] = useState(false);
-  const [isCommunityJoined, setIsCommunityChatJoined] = useState(false);
-  const [currentCommunity, setCurrentCommunity] = useState<Channel>();
-  const [hasLeftCommunity, setHasLeftCommunity] = useState(false);
 
-  useMount(() => {
-    checkUserCommunityMembership();
-  });
-
-  useEffect(() => {
-    if (currentCommunity && leftChannelsIds?.includes(currentCommunity.id)) {
-      setHasLeftCommunity(true);
-    }
-  }, [currentCommunity]);
-
-  useEffect(() => {
-    if (username && !username.startsWith("@")) {
-      checkUserCommunityMembership();
-    } else {
-      setIsCommunityChatJoined(false);
-      setIsCommunityChatEnabled(true);
-    }
-  }, [username]);
-
-  const checkUserCommunityMembership = () => {
-    getCommunityProfile();
-    const communities = getJoinedCommunities(channels ?? [], leftChannelsIds ?? []);
-    const isCommunity = channels?.some((channel) => channel.communityName === username);
-    if (isCommunity) {
-      setIsCommunityChatEnabled(true);
-      const isJoined = communities.some((channel) => channel.communityName === username);
-      if (isJoined) {
-        setIsCommunityChatJoined(true);
-      }
-    } else {
-      setIsCommunityChatJoined(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCurrentChannel(formattedUserName(username));
-    checkUserCommunityMembership();
-  }, [updatedChannel, username, channels]);
-
-  // TODO: MAKE QUERY
-  const fetchCurrentChannel = (communityName: string) => {
-    const channel = channels?.find((channel) => channel.communityName === communityName);
-    if (channel) {
-      const updated: ChannelUpdate = updatedChannel
-        .filter((x) => x.channelId === channel.id)
-        .sort((a, b) => b.created - a.created)[0];
-      if (updated) {
-        const channel = {
-          name: updated.name,
-          about: updated.about,
-          picture: updated.picture,
-          communityName: updated.communityName,
-          communityModerators: updated.communityModerators,
-          id: updated.channelId,
-          creator: updated.creator,
-          created: currentChannel?.created!,
-          hiddenMessageIds: updated.hiddenMessageIds,
-          removedUserIds: updated.removedUserIds
-        };
-        setCurrentChannel(channel);
-      } else {
-        setCurrentChannel(channel);
-      }
-    }
-  };
-
-  const getCommunityProfile = async () => {
-    const communityProfile = await getProfileMetaData(username);
-    setCurrentCommunity(communityProfile?.channel);
-    const haschannelMetaData = communityProfile && communityProfile.hasOwnProperty(CHANNEL);
-    setIsCommunityChatEnabled(haschannelMetaData);
-  };
-
-  const handleJoinCommunity = () => {
-    if (currentCommunity) {
-      if (hasLeftCommunity) {
-        messageServiceInstance?.updateLeftChannelList(
-          leftChannelsIds?.filter((x) => x !== currentCommunity?.id) ?? []
-        );
-      }
-      messageServiceInstance?.loadChannel(currentCommunity?.id);
-      setIsCommunityChatJoined(true);
-    }
-  };
+  const currentChannel = useMemo(
+    () => channels?.find((c) => c.communityName === community?.name),
+    [channels]
+  );
+  const hasCommunityChat = useMemo(() => !!communityChannel, [communityChannel]);
+  const hasLeftCommunity = useMemo(
+    () => leftCommunityChannelsIds?.includes(currentChannel?.id ?? ""),
+    [currentChannel]
+  );
+  const isCommunityJoined = useMemo(
+    () =>
+      getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
+        (channel) => channel.id === currentChannel?.id
+      ),
+    [channels, leftChannelsIds]
+  );
 
   return (
     <div
@@ -144,7 +72,7 @@ export default function ChatsMessagesBox(props: Props) {
         </div>
       ) : (
         <>
-          {username.startsWith("@") || (isCommunityChatEnabled && isCommunityJoined) ? (
+          {username.startsWith("@") || (hasCommunityChat && isCommunityJoined) ? (
             <>
               <ChatsMessagesHeader username={username} history={props.history} />
               {inProgress && <LinearProgress />}
@@ -153,23 +81,27 @@ export default function ChatsMessagesBox(props: Props) {
                 username={username}
                 currentChannel={currentChannel!}
                 inProgress={inProgress}
-                currentChannelSetter={setCurrentChannel}
                 setInProgress={setInProgress}
               />
             </>
-          ) : isCommunityChatEnabled && !isCommunityJoined ? (
-            <div className="no-chat-select">
-              <div className="text-center">
+          ) : hasCommunityChat && !isCommunityJoined ? (
+            <>
+              <div />
+              <div className="flex flex-col justify-center items-center">
                 <p className="info-message">
                   {hasLeftCommunity
                     ? "You have left this community chat. Rejoin the chat now!"
                     : " You are not part of this community. Join the community chat now!"}
                 </p>
-                <Button onClick={handleJoinCommunity}>
+                <Button
+                  onClick={() => addCommunityChannel()}
+                  disabled={isAddCommunityChannelLoading}
+                >
                   {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
                 </Button>
               </div>
-            </div>
+              <div />
+            </>
           ) : (
             <p className="no-chat-select">Community chat not started yet</p>
           )}

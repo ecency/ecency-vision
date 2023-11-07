@@ -27,49 +27,14 @@ import {
 } from "./types";
 
 export const initialState: Chat = {
-  directMessages: [],
-  channels: [],
-  publicMessages: [],
   profiles: [],
-  leftChannelsList: [],
   updatedChannel: []
 };
 
 export default (state: Chat = initialState, action: Actions): Chat => {
   switch (action.type) {
-    case ActionTypes.DIRECTMESSAGES: {
-      const { peer, data } = action;
-      return {
-        ...state,
-        directMessages: state.directMessages.map((contact) =>
-          contact.peer === peer
-            ? { peer: peer, chat: { ...contact.chat, [data.id]: data } }
-            : contact
-        )
-      };
-    }
-
     case ActionTypes.RESET:
       return initialState;
-
-    case ActionTypes.PUBLICMESSAGES: {
-      const { channelId, data } = action;
-
-      return {
-        ...state,
-        publicMessages: state.publicMessages.map((obj) =>
-          obj.channelId === channelId
-            ? {
-                channelId: channelId,
-                PublicMessage: {
-                  ...obj.PublicMessage,
-                  [data.id]: data // Add the new message object with its ID as the key
-                }
-              }
-            : obj
-        )
-      };
-    }
 
     case ActionTypes.PROFILES: {
       const { data } = action;
@@ -83,15 +48,6 @@ export default (state: Chat = initialState, action: Actions): Chat => {
         profiles: [...state.profiles, ...filteredProfiles]
       };
     }
-
-    case ActionTypes.LEFTCHANNELLIST: {
-      const { data } = action;
-      return {
-        ...state,
-        leftChannelsList: [...data]
-      };
-    }
-
     case ActionTypes.UPDATEDCHANNEL: {
       const { data } = action;
       return {
@@ -112,14 +68,7 @@ export default (state: Chat = initialState, action: Actions): Chat => {
       }
 
       return {
-        ...state,
-        publicMessages: [
-          ...state.publicMessages.map((obj) =>
-            obj.channelId === channelId
-              ? { channelId: channelId, PublicMessage: { ...publicChat } }
-              : obj
-          )
-        ]
+        ...state
       };
     }
 

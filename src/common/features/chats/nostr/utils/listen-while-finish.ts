@@ -20,7 +20,14 @@ export async function listenWhileFinish(
     const events: Event[] = [];
     subInfo?.on("event", (event: Event) => events.push(event));
     subInfo?.on("eose", () => {
-      resolve(events.sort((a, b) => b.created_at - a.created_at));
+      resolve(
+        events
+          .reduce<Event[]>(
+            (acc, event) => [...acc, ...(acc.some((e) => e.id === event.id) ? [] : [event])],
+            []
+          )
+          .sort((a, b) => b.created_at - a.created_at)
+      );
       subInfo?.unsub();
     });
   });

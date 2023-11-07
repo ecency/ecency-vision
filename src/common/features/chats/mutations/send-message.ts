@@ -8,9 +8,9 @@ import { useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
 import { useAddDirectContact } from "./add-direct-contact";
 
 export function useSendMessage(
-  currentChannel: Channel,
-  currentUser: string,
-  onSuccess: () => void
+  currentChannel?: Channel,
+  currentUser?: string,
+  onSuccess?: () => void
 ) {
   const { activeUserKeys, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
   const { mutateAsync: sendDirectMessage } = useNostrSendDirectMessage(
@@ -31,12 +31,14 @@ export function useSendMessage(
         throw new Error("[Chat][SendMessage] – no active user");
       }
 
-      // Add user to direct contacts if its not there yet
-      // E.g. if user opened chat room directly from the address bar
-      addDirectContact({ pubkey: receiverPubKey, name: currentUser });
-
       if (!currentChannel && isCommunity(currentUser)) {
         throw new Error("[Chat][SendMessage] – provided user is community but channel not found");
+      }
+
+      // Add user to direct contacts if it's not there yet
+      // E.g. if user opened chat room directly from the address bar
+      if (currentUser) {
+        addDirectContact({ pubkey: receiverPubKey, name: currentUser });
       }
 
       if (currentChannel) {
@@ -48,7 +50,7 @@ export function useSendMessage(
       }
     },
     {
-      onSuccess: () => onSuccess()
+      onSuccess: () => onSuccess?.()
     }
   );
 }

@@ -37,15 +37,14 @@ import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
 import LoginRequired from "../components/login-required";
-import { useMappedStore } from "../store/use-mapped-store";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
 import { ChatContext } from "../features/chats/chat-context-provider";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { useJoinChat } from "../features/chats/mutations/join-chat";
 import { useChannelsQuery } from "../features/chats/queries";
 import { useLeftCommunityChannelsQuery } from "../features/chats/queries/left-community-channels-query";
+import { useAddCommunityChannel, useJoinChat } from "../features/chats/mutations";
 
 interface MatchParams {
   filter: string;
@@ -61,12 +60,15 @@ export const CommunityPage = (props: Props) => {
     const updatedLocation = props.location.search.replace(/communityid=.*?(?=&|$)/, "");
     return updatedLocation.replace("?", "").replace("q", "").replace("=", "").replace("&", "");
   };
-  const { chat } = useMappedStore();
-
   const queryClient = useQueryClient();
   const { data: community } = useCommunityCache(props.match.params.name);
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
+
+  const currentChannel = useMemo(
+    () => channels?.find((channel) => channel.communityName === community?.name),
+    [channels, community]
+  );
 
   const [account, setAccount] = useState<Account | undefined>(
     props.accounts.find(({ name }) => [props.match.params.name])
@@ -77,31 +79,22 @@ export const CommunityPage = (props: Props) => {
   const [searchData, setSearchData] = useState<SearchResult[]>([]);
   const [isJoinCommunity, setIsJoinCommunity] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const [channelId, setChannelId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [loadCommunity, setLoadCommunity] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
 
-  const { messageServiceInstance, hasUserJoinedChat } = useContext(ChatContext);
+  const { hasUserJoinedChat } = useContext(ChatContext);
   const { mutateAsync: joinChat } = useJoinChat();
+  const { mutateAsync: addCommunityChannel } = useAddCommunityChannel(community?.name);
 
   const isCommunityAlreadyJoined = useMemo(
     () =>
       getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
-        (community) => community.id === channelId
+        (community) => community.name === currentChannel?.communityName
       ),
     [channels, leftChannelsIds]
   );
-
-  useEffect(() => {
-    if (messageServiceInstance && loadCommunity) {
-      messageServiceInstance?.loadChannel(channelId);
-      setInProgress(false);
-      setIsJoinCommunity(false);
-    }
-  }, [loadCommunity, messageServiceInstance]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -115,7 +108,6 @@ export const CommunityPage = (props: Props) => {
     const urlParams = new URLSearchParams(location.search);
     const communityId = urlParams.get("communityid");
     if (communityId) {
-      setChannelId(communityId);
       setIsJoinCommunity(true);
     }
 
@@ -233,20 +225,12 @@ export const CommunityPage = (props: Props) => {
     <NavBar {...props} />
   );
 
-  const joinCommunityChat = () => {
+  const joinCommunityChat = async () => {
     if (!hasUserJoinedChat) {
       setInProgress(true);
-      joinChat();
-      setLoadCommunity(true);
-      return;
+      await joinChat();
     }
-    if (chat.leftChannelsList.includes(channelId)) {
-      messageServiceInstance?.updateLeftChannelList(
-        chat.leftChannelsList.filter((x) => x !== channelId)
-      );
-    }
-    messageServiceInstance?.loadChannel(channelId);
-    setIsJoinCommunity(false);
+    await addCommunityChannel();
   };
 
   const joinCommunityModal = () => {

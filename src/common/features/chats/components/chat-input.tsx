@@ -22,25 +22,18 @@ import { Spinner } from "@ui/spinner";
 import { useChannelsQuery } from "../queries";
 
 interface Props {
-  isCurrentUser: boolean;
-  isCommunity: boolean;
-  currentChannel: Channel;
-  currentUser: string;
+  currentChannel?: Channel;
+  currentUser?: string;
 }
 
-export default function ChatInput({
-  isCommunity,
-  isCurrentUser,
-  currentChannel,
-  currentUser
-}: Props) {
+export default function ChatInput({ currentChannel, currentUser }: Props) {
   useChannelsQuery();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
-  const { messageServiceInstance, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
   const [showGifPicker, setShowGifPicker] = useState(false);
@@ -53,6 +46,9 @@ export default function ChatInput({
       setMessage("");
     }
   );
+
+  const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
+  const isCommunity = useMemo(() => !!currentChannel, [currentChannel]);
 
   const isDisabled = useMemo(
     () => (isCurrentUser && !receiverPubKey) || isActiveUserRemoved,
@@ -95,11 +91,7 @@ export default function ChatInput({
           gifImagesStyle={GifImagesStyle}
           shGif={true}
           changeState={(gifState) => setShowGifPicker(gifState!)}
-          fallback={(e) =>
-            isCurrentUser
-              ? messageServiceInstance?.sendDirectMessage(receiverPubKey!, e)
-              : messageServiceInstance?.sendPublicMessage(currentChannel, e, [], "")
-          }
+          fallback={(e) => sendMessage(e)}
         />
       )}
       <input

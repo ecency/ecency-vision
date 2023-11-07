@@ -14,6 +14,8 @@ import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
 import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
+import { useChannelsQuery } from "../queries";
+import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 
 interface Props extends PageProps {
   match: match<{
@@ -27,12 +29,21 @@ interface Props extends PageProps {
 
 export const Chats = (props: Props) => {
   const { activeUser, global } = useMappedStore();
-  const { match, history } = props;
-
-  const username = match.params.username;
-
   const { receiverPubKey, showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } =
     useContext(ChatContext);
+
+  const { data: channels } = useChannelsQuery();
+  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
+
+  const isChannel = useMemo(
+    () =>
+      channels?.some(
+        (channel) =>
+          channel.communityName === props.match.params.username &&
+          !leftCommunityChannelsIds?.includes(channel.name)
+      ),
+    [channels, leftCommunityChannelsIds]
+  );
 
   const isReady = useMemo(
     () => !!(activeUser && activeUserKeys?.pub && chatPrivKey),
@@ -40,14 +51,16 @@ export const Chats = (props: Props) => {
   );
   const isShowManageKey = useMemo(() => isReady && revealPrivKey, [isReady, revealPrivKey]);
   const isShowChatRoom = useMemo(
-    () => isReady && !showSpinner && !!receiverPubKey && !revealPrivKey,
+    () => isReady && !showSpinner && (!!receiverPubKey || isChannel) && !revealPrivKey,
     [isReady, showSpinner, receiverPubKey, revealPrivKey]
   );
   const isShowDefaultScreen = useMemo(
-    () => isReady && !receiverPubKey && !revealPrivKey && !showSpinner,
+    () => isReady && !receiverPubKey && !isChannel && !revealPrivKey && !showSpinner,
     [isReady, receiverPubKey, revealPrivKey, showSpinner]
   );
   const isShowImportChats = useMemo(() => !isReady && !showSpinner, [isReady, showSpinner]);
+
+  const { match, history } = props;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -65,7 +78,7 @@ export const Chats = (props: Props) => {
       <div className="container mx-auto md:py-6">
         <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">
           <div className="col-span-12 md:col-span-4 xl:col-span-3 border-r border-[--border-color] h-[calc(100vh-3rem-69px)] overflow-y-auto">
-            {isReady ? <ChatsSideBar history={history} username={username} /> : <></>}
+            {isReady ? <ChatsSideBar history={history} username={match.params.username} /> : <></>}
           </div>
           <div
             className={classNameObject({

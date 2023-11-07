@@ -1,5 +1,4 @@
 import {
-  Channel,
   ChannelUpdate,
   DirectMessage,
   MessagesObject,
@@ -24,15 +23,12 @@ export interface publicMessagesList {
 
 export interface Chat {
   profiles: Profile[];
-  leftChannelsList: string[];
   updatedChannel: ChannelUpdate[];
 }
 
 export enum ActionTypes {
   RESET = "@chat/RESET",
-  PUBLICMESSAGES = "@chat/PUBLICMESSAGES",
   PROFILES = "@chat/PROFILES",
-  LEFTCHANNELLIST = "@chat/LEFTCHANNELLIST",
   UPDATEDCHANNEL = "@chat/UPDATEDCHANNEL",
   REPLACEPUBLICMESSAGE = "@chat/REPLACEPUBLICMESSAGE",
   VERIFYPUBLICMESSAGESENDING = "@chat/VERIFYMESSAGESENDING",
@@ -43,35 +39,13 @@ export enum ActionTypes {
   ADDPREVIOUSPUBLICMESSAGES = "@chat/ADDPREVIOUSPUBLICMESSAGES"
 }
 
-export interface DirectContactsAction {
-  type: ActionTypes.DIRECTCONTACTS;
-  data: DirectContactsType[];
-}
-
 export interface ResetChatAction {
   type: ActionTypes.RESET;
-}
-
-export interface DirectMessagesAction {
-  type: ActionTypes.DIRECTMESSAGES;
-  data: DirectMessage;
-  peer: string;
-}
-
-export interface PublicMessagesAction {
-  type: ActionTypes.PUBLICMESSAGES;
-  data: PublicMessage;
-  channelId: string;
 }
 
 export interface ProfilesAction {
   type: ActionTypes.PROFILES;
   data: Profile[];
-}
-
-export interface LeftChannelsAction {
-  type: ActionTypes.LEFTCHANNELLIST;
-  data: string[];
 }
 
 export interface UpdateChannelAction {
@@ -122,12 +96,8 @@ export interface AddPreviousPublicMessagesAction {
 }
 
 export type Actions =
-  | DirectContactsAction
-  | DirectMessagesAction
   | ResetChatAction
-  | PublicMessagesAction
   | ProfilesAction
-  | LeftChannelsAction
   | UpdateChannelAction
   | ReplacePublicMessagesAction
   | VerifyPublicMessageSendingAction

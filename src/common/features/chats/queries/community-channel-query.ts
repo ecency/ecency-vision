@@ -8,8 +8,12 @@ import { Channel } from "../managers/message-manager-types";
  * Get the community's channel information
  * @see {@link ../mutations/create-community-chat.ts}
  */
-export function useCommunityChannelQuery(community: Community) {
-  return useQuery<Channel>([ChatQueries.COMMUNITY_CHANNEL, community.name], async () => {
+export function useCommunityChannelQuery(community?: Community) {
+  return useQuery<Channel>([ChatQueries.COMMUNITY_CHANNEL, community?.name], async () => {
+    if (!community) {
+      return undefined;
+    }
+
     const communityProfile = await getProfileMetaData(community.name);
     return communityProfile.channel;
   });

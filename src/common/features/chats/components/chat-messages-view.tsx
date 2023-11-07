@@ -18,7 +18,6 @@ interface Props {
   history: History;
   currentChannel: Channel;
   inProgress: boolean;
-  currentChannelSetter: (channel: Channel) => void;
   setInProgress: (d: boolean) => void;
 }
 
@@ -26,7 +25,6 @@ export default function ChatsMessagesView({
   username,
   currentChannel,
   inProgress,
-  currentChannelSetter,
   setInProgress,
   history
 }: Props) {
@@ -137,7 +135,6 @@ export default function ChatsMessagesView({
               from={CHATPAGE}
               isScrolled={isScrolled}
               scrollToBottom={scrollToBottom}
-              currentChannelSetter={currentChannelSetter}
             />
           </>
         ) : (
@@ -160,12 +157,7 @@ export default function ChatsMessagesView({
       </div>
 
       <div className="sticky bottom-0 border-t border-[--border-color] bg-white">
-        <ChatInput
-          isCurrentUser={!!directUser}
-          isCommunity={!!communityName}
-          currentUser={directUser}
-          currentChannel={currentChannel!}
-        />
+        <ChatInput currentUser={directUser} currentChannel={currentChannel} />
       </div>
     </>
   );

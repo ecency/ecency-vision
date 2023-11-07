@@ -8,7 +8,7 @@ import {
   expandArrow,
   extendedView
 } from "../../../../img/svg";
-import ChatsCommunityDropdownMenu from "../chats-community-dropdown-menu";
+import ChatsCommunityDropdownMenu from "../chats-community-actions";
 import { history } from "../../../../store";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";

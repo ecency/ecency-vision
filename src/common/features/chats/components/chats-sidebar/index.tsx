@@ -98,7 +98,11 @@ export default function ChatsSideBar(props: Props) {
           ))
         ) : (
           <>
-            {communities.length !== 0 && <p className="community-title">Communities</p>}
+            {communities.length !== 0 && (
+              <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
+                {_t("chat.communities")}
+              </div>
+            )}
             {communities.map((channel) => (
               <ChatSidebarChannel key={channel.id} channel={channel} username={username} />
             ))}
