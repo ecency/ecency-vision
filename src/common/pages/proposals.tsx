@@ -161,7 +161,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
           ...proposals_.filter(
             (x) =>
               ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator) &&
-              x.status === "active"
+              (x.status === "active" || new Date(x.start_date) > new Date())
           )
         ];
         break;

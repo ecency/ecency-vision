@@ -16,6 +16,7 @@ import { _t } from "../../i18n";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
+import { List, ListItem } from "@ui/list";
 
 interface Voter {
   name: string;
@@ -168,6 +169,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
       this.load();
     }
   };
+
   render() {
     const { loading, voters, page, sort, originalVoters } = this.state;
     if (loading && !voters.length && !originalVoters.length) {
@@ -190,15 +192,15 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
       <>
         {loading && <LinearProgress />}
 
-        <div className="voters-list">
-          <div className="list-body">
+        <div className="voters-list mb-4">
+          <List grid={true} inline={true} defer={true}>
             {sliced && sliced.length > 0 ? (
               sliced.map((x) => {
                 const strHp = numeral(x.hp).format("0.00,");
                 const strProxyHp = numeral(x.proxyHp).format("0.00,");
 
                 return (
-                  <div className="list-item" key={x.name}>
+                  <ListItem styledDefer={true} className="list-item" key={x.name}>
                     <div className="item-main">
                       {ProfileLink({
                         ...this.props,
@@ -227,7 +229,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                         </>
                       )}
                     </div>
-                  </div>
+                  </ListItem>
                 );
               })
             ) : (
@@ -235,7 +237,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                 {loading ? _t("proposals.searching") : _t("proposals.no-results")}
               </div>
             )}
-          </div>
+          </List>
         </div>
 
         <div className="list-tools">
@@ -281,6 +283,7 @@ interface ProposalVotesState {
   voteCount: string;
   isMoreData: boolean;
 }
+
 export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesState> {
   state: ProposalVotesState = {
     searchText: "",
@@ -296,6 +299,7 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
   checkIsMoreData = (check: boolean) => {
     this.setState({ isMoreData: check });
   };
+
   render() {
     const { proposal, onHide } = this.props;
     const { searchText, voteCount, isMoreData } = this.state;
@@ -309,12 +313,12 @@ export class ProposalVotes extends Component<ProposalVotesProps, ProposalVotesSt
         animation={false}
         className="proposal-votes-dialog"
       >
-        <ModalHeader closeButton={true} className="items-center px-0">
+        <ModalHeader closeButton={true} className="items-center">
           <ModalTitle>
             {modalTitle + _t("proposals.votes-dialog-title", { n: proposal.id })}
           </ModalTitle>
         </ModalHeader>
-        <div className="w-full mb-3">
+        <div className="w-full p-3 mb-3">
           <FormControl
             type="text"
             placeholder={_t("proposals.search-placeholder")}
