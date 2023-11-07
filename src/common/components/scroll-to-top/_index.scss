@@ -24,6 +24,12 @@
     }
 
     & ~ .floating-faq-button {
+
+      & > button {
+        bottom: 1.25rem !important;
+        right: 4.5rem !important;
+      }
+
       & > .floating-container {
         bottom: 4.4rem;
         right: 5rem;

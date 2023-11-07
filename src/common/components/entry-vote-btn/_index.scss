@@ -6,6 +6,7 @@
   @media (max-width: $xxsm-break) {
     margin-right: 5px;
   }
+
   .btn-vote {
     @include btn-vote;
   }
@@ -71,6 +72,7 @@
     pointer-events: none;
     opacity: 0.5;
   }
+
   .btn-vote {
     @include btn-vote;
   }
@@ -312,40 +314,6 @@
   @apply bg-transparent;
 }
 
-.primary-btn-vote {
-  @include themify(night) {
-    @apply text-blue-dark-sky;
-    @apply bg-transparent;
-  }
-
-  @include themify(day) {
-    @apply text-blue-dark-sky;
-    @apply bg-white;
-  }
-
-  .btn-inner {
-    @include themify(night) {
-      @apply text-blue-dark-sky;
-      @apply bg-transparent;
-    }
-
-    @include themify(day) {
-      @apply text-blue-dark-sky;
-      @apply bg-white;
-    }
-  }
-
-  &:hover {
-    @apply bg-blue-dark-sky;
-    @apply text-white;
-
-    .btn-inner {
-      @apply text-white;
-      @apply bg-blue-dark-sky;
-    }
-  }
-}
-
 .primary-btn-done {
   @include themify(night) {
     @apply text-white;
@@ -370,54 +338,13 @@
   }
 }
 
-.secondary-btn-vote {
-  @apply text-red-020;
-
-  @include themify(night) {
-    @apply bg-transparent;
-  }
-
-  @include themify(day) {
-    @apply bg-white;
-  }
-
-  svg {
-    @apply fill-red-020;
-    transform: none !important;
-  }
-
-  .btn-inner {
-    @apply text-red-020;
-
-    @include themify(night) {
-      @apply bg-transparent;
-    }
-    @include themify(day) {
-      @apply bg-white;
-    }
-  }
-
-  &:hover {
-    @apply bg-red-020;
-    @apply text-white;
-
-    .btn-inner {
-      @apply text-white;
-      @apply bg-red-020;
-
-      svg {
-        @apply fill-white;
-      }
-    }
-  }
-}
-
 .vote-error {
   font-size: 12px;
   @apply text-red;
   display: flex;
   justify-content: center;
   margin-top: 10px;
+
   p {
     margin: 0px;
   }
@@ -441,6 +368,7 @@
   display: flex;
   justify-content: center;
   margin-top: 8px;
+
   p {
     margin: 0px;
   }
@@ -460,6 +388,7 @@
   display: flex;
   justify-content: center;
   margin-top: 8px;
+
   p {
     margin: 0px;
   }

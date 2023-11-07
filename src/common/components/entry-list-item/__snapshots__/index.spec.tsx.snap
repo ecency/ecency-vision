@@ -117,7 +117,7 @@ exports[`(1) Default render 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>
@@ -401,7 +401,7 @@ exports[`(2) Grid view 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>
@@ -677,7 +677,7 @@ exports[`(3) Nsfw 1`] = `
     >
       <img
         alt="Awesome Hive"
-        className="w-full sm:w-auto"
+        className="w-full"
         src="nsfw.png"
       />
     </div>
@@ -728,7 +728,7 @@ exports[`(3) Nsfw 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>
@@ -1004,7 +1004,7 @@ exports[`(4) Nsfw with active user 1`] = `
     >
       <img
         alt="Awesome Hive"
-        className="w-full sm:w-auto"
+        className="w-full"
         src="nsfw.png"
       />
     </div>
@@ -1055,7 +1055,7 @@ exports[`(4) Nsfw with active user 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>
@@ -1331,7 +1331,7 @@ exports[`(5) Nsfw but allowed 1`] = `
     >
       <img
         alt="Awesome Hive"
-        className="w-full sm:w-auto"
+        className="w-full"
         src="nsfw.png"
       />
     </div>
@@ -1382,7 +1382,7 @@ exports[`(5) Nsfw but allowed 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>
@@ -1701,7 +1701,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           />
           <img
             alt=""
-            className="w-full sm:w-auto"
+            className="w-full"
           />
         </picture>
       </a>

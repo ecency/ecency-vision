@@ -77,7 +77,7 @@ export class List extends BaseComponent<Props, State> {
       <div className="conversion-content">
         <div className="list-body">
           {sliced.length === 0 && <div className="empty-list">{_t("g.empty-list")}</div>}
-          <Table>
+          <Table full={true}>
             <thead>
               <Tr>
                 <Th>{_t("conversion-requests.request-id")}</Th>
