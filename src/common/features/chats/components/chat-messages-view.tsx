@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchCommunityMessages } from "../utils";
 import { History } from "history";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import ChatsProfileBox from "./chat-profile-box";
 import ChatsChannelMessages from "./chats-channel-messages";
 import ChatsDirectMessages from "./chats-direct-messages";
@@ -37,7 +35,6 @@ export default function ChatsMessagesView({
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
-  const { chat } = useMappedStore();
   const [directUser, setDirectUser] = useState("");
   const [communityName, setCommunityName] = useState("");
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
@@ -50,22 +47,10 @@ export default function ChatsMessagesView({
   }, []);
 
   useEffect(() => {
-    if (messages.length < 25) {
+    if (messages.length < 45) {
       setHasMore(false);
     }
   }, [messages]);
-
-  useEffect(() => {
-    getChannelMessages();
-  }, [chat.publicMessages]);
-
-  useEffect(() => {
-    if (directUser) {
-      // getDirectMessages();
-    } else if (communityName && currentChannel) {
-      getChannelMessages();
-    }
-  }, [directUser, communityName, currentChannel, chat.directMessages]);
 
   useEffect(() => {
     setIsScrollToBottom(false);
@@ -102,18 +87,6 @@ export default function ChatsMessagesView({
       setCommunityName(username.replace("@", ""));
     } else {
       setDirectUser(username.replace("@", ""));
-    }
-  };
-
-  const getChannelMessages = () => {
-    if (currentChannel) {
-      const publicMessages = fetchCommunityMessages(
-        chat.publicMessages,
-        currentChannel,
-        currentChannel.hiddenMessageIds
-      );
-      const messages = publicMessages.sort((a, b) => a.created - b.created);
-      // setPublicMessages(messages);
     }
   };
 

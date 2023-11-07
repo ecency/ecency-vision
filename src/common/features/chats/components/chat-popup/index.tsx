@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { history } from "../../../../store";
 import { Community } from "../../../../store/communities";
-import { ChannelUpdate, DirectMessage, PublicMessage } from "../../managers/message-manager-types";
+import { ChannelUpdate } from "../../managers/message-manager-types";
 import Tooltip from "../../../../components/tooltip";
 import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
@@ -12,7 +12,7 @@ import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import { getCommunity } from "../../../../api/bridge";
 import "./index.scss";
-import { fetchCommunityMessages, getPrivateKey, getUserChatPublicKey } from "../../utils";
+import { getPrivateKey, getUserChatPublicKey } from "../../utils";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
@@ -25,7 +25,7 @@ import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
 import { useJoinChat } from "../../mutations/join-chat";
-import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
+import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -45,6 +45,11 @@ export const ChatPopUp = () => {
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
+  const directContact = useMemo(
+    () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
+    [directContacts]
+  );
+  const { data: messages } = useMessagesQuery(directContact?.name);
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -58,11 +63,9 @@ export const ChatPopUp = () => {
   const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
-  const [directMessagesList, setDirectMessagesList] = useState<DirectMessage[]>([]);
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [currentCommunity, setCurrentCommunity] = useState<Community>();
-  const [publicMessages, setPublicMessages] = useState<PublicMessage[]>([]);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -97,13 +100,14 @@ export const ChatPopUp = () => {
       .filter((x) => x.channelId === currentChannel?.id!)
       .sort((a, b) => b.created - a.created)[0];
     if (currentChannel && updated) {
-      const publicMessages: PublicMessage[] = fetchCommunityMessages(
-        chat.publicMessages,
-        currentChannel,
-        updated?.hiddenMessageIds
-      );
-      const messages = publicMessages.sort((a, b) => a.created - b.created);
-      setPublicMessages(messages);
+      // TODO: check that updated channel affecting messagse
+      // const publicMessages: PublicMessage[] = fetchCommunityMessages(
+      //   chat.publicMessages,
+      //   currentChannel,
+      //   updated?.hiddenMessageIds
+      // );
+      // const messages = publicMessages.sort((a, b) => a.created - b.created);
+      // setPublicMessages(messages);
       const channel = {
         name: updated.name,
         about: updated.about,
@@ -128,12 +132,6 @@ export const ChatPopUp = () => {
   }, [isTop]);
 
   useEffect(() => {
-    const msgsList = fetchDirectMessages(receiverPubKey!);
-    const messages = msgsList.sort((a, b) => a.created - b.created);
-    setDirectMessagesList(messages);
-  }, [chat.directMessages]);
-
-  useEffect(() => {
     if (prevActiveUser?.username !== activeUser?.username) {
       setIsCommunity(false);
       setCurrentUser("");
@@ -142,26 +140,10 @@ export const ChatPopUp = () => {
   }, [global.theme, activeUser]);
 
   useEffect(() => {
-    if (directMessagesList.length !== 0 && !isScrolled) {
+    if (messages.length !== 0 && !isScrolled) {
       scrollerClicked();
     }
-    if (!isScrolled && publicMessages.length !== 0 && isCommunity) {
-      scrollerClicked();
-    }
-  }, [directMessagesList, publicMessages]);
-
-  useEffect(() => {
-    if (currentChannel && isCommunity) {
-      messageServiceInstance?.fetchChannel(currentChannel.id);
-      const publicMessages: PublicMessage[] = fetchCommunityMessages(
-        chat.publicMessages,
-        currentChannel,
-        currentChannel.hiddenMessageIds
-      );
-      const messages = publicMessages.sort((a, b) => a.created - b.created);
-      setPublicMessages(messages);
-    }
-  }, [currentChannel, isCommunity, chat.publicMessages]);
+  }, [messages]);
 
   useEffect(() => {
     if ((isCurrentUser || isCommunity) && show) {
@@ -170,17 +152,10 @@ export const ChatPopUp = () => {
   }, [isCurrentUser, isCommunity, show]);
 
   useEffect(() => {
-    const msgsList = fetchDirectMessages(receiverPubKey!);
-    const messages = msgsList.sort((a, b) => a.created - b.created);
-    setDirectMessagesList(messages);
-  }, [activeUser]);
-
-  useEffect(() => {
     if (isCommunity && show) {
       fetchCommunity();
 
       scrollerClicked();
-      fetchCurrentChannel(communityName);
     }
   }, [isCommunity, communityName, show]);
 
@@ -194,10 +169,6 @@ export const ChatPopUp = () => {
         fetchCurrentUserData();
       }
 
-      const peer = directContacts?.find((x) => x.name === currentUser)?.pubkey ?? "";
-      const msgsList = fetchDirectMessages(peer!);
-      const messages = msgsList.sort((a, b) => a.created - b.created);
-      setDirectMessagesList(messages);
       if (!messageServiceInstance) {
         setNostrkeys(activeUserKeys!);
       }
@@ -209,41 +180,6 @@ export const ChatPopUp = () => {
   const fetchCommunity = async () => {
     const community = await getCommunity(communityName, activeUser?.username);
     setCurrentCommunity(community!);
-  };
-
-  const fetchCurrentChannel = (communityName: string) => {
-    const channel = channels?.find((channel) => channel.communityName === communityName);
-    if (channel) {
-      const updated: ChannelUpdate = chat.updatedChannel
-        .filter((x) => x.channelId === channel.id)
-        .sort((a, b) => b.created - a.created)[0];
-      if (updated) {
-        const channel = {
-          name: updated.name,
-          about: updated.about,
-          picture: updated.picture,
-          communityName: updated.communityName,
-          communityModerators: updated.communityModerators,
-          id: updated.channelId,
-          creator: updated.creator,
-          created: currentChannel?.created!,
-          hiddenMessageIds: updated.hiddenMessageIds,
-          removedUserIds: updated.removedUserIds
-        };
-        setCurrentChannel(channel);
-      } else {
-        setCurrentChannel(channel);
-      }
-    }
-  };
-
-  const fetchDirectMessages = (peer: string) => {
-    for (const item of chat.directMessages) {
-      if (item.peer === peer) {
-        return Object.values(item.chat);
-      }
-    }
-    return [];
   };
 
   const fetchCurrentUserData = async () => {
@@ -262,7 +198,7 @@ export const ChatPopUp = () => {
     setInProgress(true);
     // todo: make it infinite query
     messageServiceInstance
-      ?.fetchPrevMessages(currentChannel!.id, publicMessages[0].created)
+      ?.fetchPrevMessages(currentChannel!.id, messages[0].created)
       .then((num) => {
         if (num < 25) {
           setHasMore(false);
@@ -285,7 +221,7 @@ export const ChatPopUp = () => {
     setIsScrolled(isScrolled);
     setIsScrollToTop(isScrollToTop);
     setIsScrollToBottom(isScrollToBottom);
-    const scrollerTop = element.scrollTop <= 600 && publicMessages.length > 25;
+    const scrollerTop = element.scrollTop <= 600 && messages.length > 25;
     if (isCommunity && scrollerTop) {
       setIsTop(true);
     } else {
@@ -316,9 +252,6 @@ export const ChatPopUp = () => {
         priv: getPrivateKey(activeUser?.username!)!!
       };
       setNostrkeys(keys);
-      if (isCommunity && communityName) {
-        fetchCurrentChannel(communityName);
-      }
     }
   };
 

@@ -1,15 +1,16 @@
 import { QueryKey, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Event, Kind } from "../../../../lib/nostr-tools/event";
+import { Event, Kind } from "../../../../../lib/nostr-tools/event";
 import { useContext } from "react";
-import { NostrContext } from "./nostr-context";
-import { ChatContext } from "../chat-context-provider";
+import { NostrContext } from "../nostr-context";
+import { ChatContext } from "../../chat-context-provider";
 import { UseQueryOptions } from "@tanstack/react-query/src/types";
-import { listenWhileFinish } from "./utils";
+import { listenWhileFinish } from "../utils";
+import { Filter } from "../../../../../lib/nostr-tools/filter";
 
 export function useNostrFetchQuery<DATA>(
   key: QueryKey,
-  kinds: Kind[],
-  dataResolver: (events: Event[]) => DATA,
+  kindsOrFilters: (Kind | Filter)[],
+  dataResolver: (events: Event[]) => DATA | Promise<DATA>,
   queryOptions?: UseQueryOptions<DATA>
 ) {
   const { activeUserKeys } = useContext(ChatContext);
@@ -24,7 +25,13 @@ export function useNostrFetchQuery<DATA>(
         return queryData;
       }
 
-      const events = await listenWhileFinish(pool, readRelays, kinds, activeUserKeys.pub);
+      const kinds = kindsOrFilters.every((item) => typeof item === "number")
+        ? (kindsOrFilters as Kind[])
+        : [];
+      const filters = kindsOrFilters.every((item) => typeof item === "object")
+        ? (kindsOrFilters as Filter[])
+        : undefined;
+      const events = await listenWhileFinish(pool, readRelays, kinds, activeUserKeys.pub, filters);
       return dataResolver(events);
     },
     queryOptions

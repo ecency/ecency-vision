@@ -53,7 +53,6 @@ const MessageManager = () => {
   const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
   const [isCommunityCreated, setIsCommunityCreated] = useState(false);
   const [replacedPublicMessagesBuffer, setReplacedPublicMessagesBuffer] = useState<string[]>([]);
-  const [isDirectChatCreated, setIsDirectChatCreated] = useState(false);
   const [replacedDirectMessagesBuffer, setReplacedDirectMessagesBuffer] = useState<string[]>([]);
 
   const { messageServiceInstance, initMessageServiceInstance, setMessageServiceInstance } =
@@ -63,10 +62,7 @@ const MessageManager = () => {
     if (channels?.length !== 0) {
       setIsCommunityCreated(true);
     }
-    if (chat.directMessages.length !== 0) {
-      setIsDirectChatCreated(true);
-    }
-  }, [channels, chat.directMessages]);
+  }, [channels]);
 
   useEffect(() => {
     window.addEventListener("createMSInstance", createMSInstance);
@@ -143,151 +139,150 @@ const MessageManager = () => {
     };
   }, [messageService, chat.profiles]);
 
-  const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
-    setTimeout(() => {
-      verifyPublicMessageSending(channelId, data);
-    }, 20000);
-  };
+  // const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
+  //   setTimeout(() => {
+  //     verifyPublicMessageSending(channelId, data);
+  //   }, 20000);
+  // };
 
   //public message handle before sent
 
-  const handlePublicMessageBeforeSent = (data: PublicMessage[]) => {
-    data.map((m) => {
-      const { id, root } = m;
-      setReplacedPublicMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
-      addPublicMessage(root, m);
-      checkPublicMessageSending(root, m);
-    });
-  };
+  // const handlePublicMessageBeforeSent = (data: PublicMessage[]) => {
+  //   data.map((m) => {
+  //     const { id, root } = m;
+  //     setReplacedPublicMessagesBuffer((prevBuffer) => [...prevBuffer, id]);
+  //     addPublicMessage(root, m);
+  //     checkPublicMessageSending(root, m);
+  //   });
+  // };
 
-  useEffect(() => {
-    messageService?.removeListener(
-      MessageEvents.PublicMessageBeforeSent,
-      handlePublicMessageBeforeSent
-    );
-    messageService?.addListener(
-      MessageEvents.PublicMessageBeforeSent,
-      handlePublicMessageBeforeSent
-    );
-
-    return () => {
-      messageService?.removeListener(
-        MessageEvents.PublicMessageBeforeSent,
-        handlePublicMessageBeforeSent
-      );
-    };
-  }, [messageService, chat.profiles, chat.publicMessages]);
+  // useEffect(() => {
+  //   messageService?.removeListener(
+  //     MessageEvents.PublicMessageBeforeSent,
+  //     handlePublicMessageBeforeSent
+  //   );
+  //   messageService?.addListener(
+  //     MessageEvents.PublicMessageBeforeSent,
+  //     handlePublicMessageBeforeSent
+  //   );
+  //
+  //   return () => {
+  //     messageService?.removeListener(
+  //       MessageEvents.PublicMessageBeforeSent,
+  //       handlePublicMessageBeforeSent
+  //     );
+  //   };
+  // }, [messageService, chat.profiles, chat.publicMessages]);
 
   //Public Message handler after sent
-  const handlePublicMessageAfterSent = (data: PublicMessage[]) => {
-    console.log("data", data);
-    if (isCommunityCreated) {
-      data.forEach((message) => {
-        const { root, id } = message;
-        if (replacedPublicMessagesBuffer.includes(id)) {
-          setReplacedPublicMessagesBuffer((prevBuffer) =>
-            prevBuffer.filter((messageId) => messageId !== id)
-          );
-          replacePublicMessage(root, message);
-        } else {
-          addPublicMessage(root, message);
-        }
-      });
-    } else {
-      setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer, ...data]);
-    }
-    let uniqueUsers: string[] = [];
+  // const handlePublicMessageAfterSent = (data: PublicMessage[]) => {
+  //   if (isCommunityCreated) {
+  //     data.forEach((message) => {
+  //       const { root, id } = message;
+  //       if (replacedPublicMessagesBuffer.includes(id)) {
+  //         setReplacedPublicMessagesBuffer((prevBuffer) =>
+  //           prevBuffer.filter((messageId) => messageId !== id)
+  //         );
+  //         replacePublicMessage(root, message);
+  //       } else {
+  //         addPublicMessage(root, message);
+  //       }
+  //     });
+  //   } else {
+  //     setPublicMessageBuffer((publicMessageBuffer) => [...publicMessageBuffer, ...data]);
+  //   }
+  //   let uniqueUsers: string[] = [];
+  //
+  //   for (const item of data) {
+  //     const isCreatorMatch = chat.profiles.find((profile) => profile.creator === item.creator);
+  //
+  //     if (!isCreatorMatch) {
+  //       if (!uniqueUsers.includes(item.creator)) {
+  //         uniqueUsers.push(item.creator);
+  //       }
+  //     }
+  //   }
+  //   messageServiceInstance?.loadProfiles(uniqueUsers);
+  // };
 
-    for (const item of data) {
-      const isCreatorMatch = chat.profiles.find((profile) => profile.creator === item.creator);
+  // useEffect(() => {
+  //   messageService?.removeListener(
+  //     MessageEvents.PublicMessageAfterSent,
+  //     handlePublicMessageAfterSent
+  //   );
+  //   messageService?.addListener(MessageEvents.PublicMessageAfterSent, handlePublicMessageAfterSent);
+  //
+  //   return () => {
+  //     messageService?.removeListener(
+  //       MessageEvents.PublicMessageAfterSent,
+  //       handlePublicMessageAfterSent
+  //     );
+  //   };
+  // }, [messageService, chat.profiles, chat.publicMessages]);
 
-      if (!isCreatorMatch) {
-        if (!uniqueUsers.includes(item.creator)) {
-          uniqueUsers.push(item.creator);
-        }
-      }
-    }
-    messageServiceInstance?.loadProfiles(uniqueUsers);
-  };
+  // useEffect(() => {
+  //   if (channels?.length !== 0 && publicMessageBuffer.length !== 0) {
+  //     setPublicMessages();
+  //   }
+  // }, [chat.publicMessages, publicMessageBuffer]);
 
-  useEffect(() => {
-    messageService?.removeListener(
-      MessageEvents.PublicMessageAfterSent,
-      handlePublicMessageAfterSent
-    );
-    messageService?.addListener(MessageEvents.PublicMessageAfterSent, handlePublicMessageAfterSent);
-
-    return () => {
-      messageService?.removeListener(
-        MessageEvents.PublicMessageAfterSent,
-        handlePublicMessageAfterSent
-      );
-    };
-  }, [messageService, chat.profiles, chat.publicMessages]);
-
-  useEffect(() => {
-    if (channels?.length !== 0 && publicMessageBuffer.length !== 0) {
-      setPublicMessages();
-    }
-  }, [chat.publicMessages, publicMessageBuffer]);
-
-  const setPublicMessages = () => {
-    publicMessageBuffer.forEach((obj) => {
-      const { root } = obj;
-      const matchingStateItem = chat.publicMessages.find(
-        (stateItem) => stateItem.channelId === root
-      );
-      if (matchingStateItem) {
-        addPublicMessage(root, obj);
-        setPublicMessageBuffer((prevMessageBuffer) =>
-          prevMessageBuffer.filter((message) => message.id !== obj.id)
-        );
-      }
-    });
-  };
+  // const setPublicMessages = () => {
+  //   publicMessageBuffer.forEach((obj) => {
+  //     const { root } = obj;
+  //     const matchingStateItem = chat.publicMessages.find(
+  //       (stateItem) => stateItem.channelId === root
+  //     );
+  //     if (matchingStateItem) {
+  //       addPublicMessage(root, obj);
+  //       setPublicMessageBuffer((prevMessageBuffer) =>
+  //         prevMessageBuffer.filter((message) => message.id !== obj.id)
+  //       );
+  //     }
+  //   });
+  // };
 
   //previous public messages handler
-  const handlePreviousPublicMessages = (data: PublicMessage[]) => {
-    const channelId = data[0].root;
-    const messagesObject: MessagesObject = data.reduce((result, message) => {
-      result[message.id] = message;
-      return result;
-    }, {});
+  // const handlePreviousPublicMessages = (data: PublicMessage[]) => {
+  //   const channelId = data[0].root;
+  //   const messagesObject: MessagesObject = data.reduce((result, message) => {
+  //     result[message.id] = message;
+  //     return result;
+  //   }, {});
+  //
+  //   addPreviousPublicMessages(channelId, messagesObject);
+  // };
 
-    addPreviousPublicMessages(channelId, messagesObject);
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(
-      MessageEvents.PreviousPublicMessages,
-      handlePreviousPublicMessages
-    );
-    messageService?.addListener(MessageEvents.PreviousPublicMessages, handlePreviousPublicMessages);
-
-    return () => {
-      messageService?.removeListener(
-        MessageEvents.PreviousPublicMessages,
-        handlePreviousPublicMessages
-      );
-    };
-  }, [messageService, chat.profiles, chat.publicMessages]);
+  // useEffect(() => {
+  //   messageService?.removeListener(
+  //     MessageEvents.PreviousPublicMessages,
+  //     handlePreviousPublicMessages
+  //   );
+  //   messageService?.addListener(MessageEvents.PreviousPublicMessages, handlePreviousPublicMessages);
+  //
+  //   return () => {
+  //     messageService?.removeListener(
+  //       MessageEvents.PreviousPublicMessages,
+  //       handlePreviousPublicMessages
+  //     );
+  //   };
+  // }, [messageService, chat.profiles, chat.publicMessages]);
 
   useEffect(() => {
     return () => {
       messageService?.removeListener(MessageEvents.Ready, handleReadyState);
       messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
-      messageService?.removeListener(
-        MessageEvents.PreviousPublicMessages,
-        handlePreviousPublicMessages
-      );
-      messageService?.removeListener(
-        MessageEvents.PublicMessageBeforeSent,
-        handlePublicMessageBeforeSent
-      );
-      messageService?.removeListener(
-        MessageEvents.PublicMessageAfterSent,
-        handlePublicMessageAfterSent
-      );
+      // messageService?.removeListener(
+      //   MessageEvents.PreviousPublicMessages,
+      //   handlePreviousPublicMessages
+      // );
+      // messageService?.removeListener(
+      //   MessageEvents.PublicMessageBeforeSent,
+      //   handlePublicMessageBeforeSent
+      // );
+      // messageService?.removeListener(
+      //   MessageEvents.PublicMessageAfterSent,
+      //   handlePublicMessageAfterSent
+      // );
     };
   }, [messageService]);
 

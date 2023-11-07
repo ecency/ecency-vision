@@ -7,8 +7,7 @@ import { NostrKeysType } from "./types";
 import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
 import { useJoinChat } from "./mutations";
-import { MessageListenerQueriesProvider } from "./queries";
-import { NostrProvider } from "./nostr";
+import { NostrListenerQueriesProvider, NostrProvider } from "./nostr";
 
 interface Context {
   activeUserKeys: NostrKeysType;
@@ -147,7 +146,7 @@ export const ChatContextProvider = (props: Props) => {
   };
 
   return (
-    <MessageListenerQueriesProvider>
+    <NostrListenerQueriesProvider>
       <ChatContext.Provider
         value={{
           activeUserKeys,
@@ -172,6 +171,6 @@ export const ChatContextProvider = (props: Props) => {
       >
         <NostrProvider>{props.children}</NostrProvider>
       </ChatContext.Provider>
-    </MessageListenerQueriesProvider>
+    </NostrListenerQueriesProvider>
   );
 };

@@ -1,16 +1,8 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { History } from "history";
-import {
-  formattedUserName,
-  getCommunityLastMessage,
-  getJoinedCommunities,
-  getUserChatPublicKey
-} from "../../utils";
+import { formattedUserName, getJoinedCommunities, getUserChatPublicKey } from "../../utils";
 import ChatsScroller from "../chats-scroller";
-import UserAvatar from "../../../../components/user-avatar";
 import { AccountWithReputation } from "../../types";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatSidebarHeader } from "./chat-sidebar-header";
 import { ChatSidebarSearch } from "./chat-sidebar-search";
@@ -19,6 +11,7 @@ import { ChatSidebarDirectContact } from "./chat-sidebar-direct-contact";
 import { _t } from "../../../../i18n";
 import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
+import { ChatSidebarChannel } from "./chat-sidebar-channel";
 
 interface Props {
   username: string;
@@ -27,8 +20,7 @@ interface Props {
 
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
-  const { chat } = useMappedStore();
-  const { revealPrivKey, setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
+  const { setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
@@ -66,12 +58,6 @@ export default function ChatsSideBar(props: Props) {
     let srollHeight: number = (element.scrollHeight / 100) * 25;
     const isScrollToTop = element.scrollTop >= srollHeight;
     setIsScrollToTop(isScrollToTop);
-  };
-
-  const handleRevealPrivKey = () => {
-    if (revealPrivKey) {
-      setRevealPrivKey(false);
-    }
   };
 
   const getReceiverPubKey = async (username: string) => {
@@ -114,21 +100,7 @@ export default function ChatsSideBar(props: Props) {
           <>
             {communities.length !== 0 && <p className="community-title">Communities</p>}
             {communities.map((channel) => (
-              <Link to={`/chats/${channel.communityName}`} key={channel.id}>
-                <div
-                  className={`community ${username === channel.communityName ? "selected" : ""}`}
-                  key={channel.id}
-                  onClick={() => setRevealPrivKey(false)}
-                >
-                  <UserAvatar username={channel.communityName!} size="medium" />
-                  <div className="community-info">
-                    <p className="community-name">{channel.name}</p>
-                    <p className="community-last-message">
-                      {getCommunityLastMessage(channel.id, chat.publicMessages)}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+              <ChatSidebarChannel key={channel.id} channel={channel} username={username} />
             ))}
             {directContacts?.length !== 0 && (
               <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
@@ -140,7 +112,6 @@ export default function ChatsSideBar(props: Props) {
                 key={contact.pubkey}
                 contact={contact}
                 username={username}
-                handleRevealPrivKey={handleRevealPrivKey}
               />
             ))}
           </>

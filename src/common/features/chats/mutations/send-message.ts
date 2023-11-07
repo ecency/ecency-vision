@@ -17,7 +17,7 @@ export function useSendMessage(
     activeUserKeys.priv,
     receiverPubKey
   );
-  const { mutateAsync: sendPublicMessage } = useNostrSendPublicMessage(currentChannel.id);
+  const { mutateAsync: sendPublicMessage } = useNostrSendPublicMessage(currentChannel?.id);
   const { mutateAsync: addDirectContact } = useAddDirectContact();
 
   return useMutation(

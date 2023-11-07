@@ -12,6 +12,7 @@ import {
   useCommunityChannelQuery,
   useNostrJoinedCommunityTeamQuery
 } from "../queries";
+import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 
 interface Props {
   history: History;
@@ -31,6 +32,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
   const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
     useCreateCommunityChat(props.community);
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
   const isChatEnabled = useMemo(() => !!currentChannel, [currentChannel]);
   const isCommunityChatJoined = useMemo(
@@ -38,7 +40,7 @@ export default function JoinCommunityChatBtn(props: Props) {
       channels?.some(
         (item) =>
           item.communityName === props.community.name &&
-          !chat.leftChannelsList.includes(currentChannel?.id!)
+          leftChannelsIds?.includes(currentChannel?.id!)
       ),
     [channels]
   );

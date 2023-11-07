@@ -12,6 +12,7 @@ import { useMount } from "react-use";
 import { Button } from "@ui/button";
 import { Channel, ChannelUpdate } from "../managers/message-manager-types";
 import { useChannelsQuery } from "../queries";
+import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 
 interface MatchParams {
   filter: string;
@@ -29,6 +30,7 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   const { chat } = useMappedStore();
   const { data: channels } = useChannelsQuery();
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
   const { messageServiceInstance, currentChannel, setCurrentChannel } = useContext(ChatContext);
 
@@ -47,7 +49,7 @@ export default function ChatsMessagesBox(props: Props) {
   });
 
   useEffect(() => {
-    if (currentCommunity && chat.leftChannelsList.includes(currentCommunity.id)) {
+    if (currentCommunity && leftChannelsIds?.includes(currentCommunity.id)) {
       setHasLeftCommunity(true);
     }
   }, [currentCommunity]);
@@ -63,7 +65,7 @@ export default function ChatsMessagesBox(props: Props) {
 
   const checkUserCommunityMembership = () => {
     getCommunityProfile();
-    const communities = getJoinedCommunities(channels ?? [], chat.leftChannelsList);
+    const communities = getJoinedCommunities(channels ?? [], leftChannelsIds ?? []);
     const isCommunity = channels?.some((channel) => channel.communityName === username);
     if (isCommunity) {
       setIsCommunityChatEnabled(true);
@@ -119,7 +121,7 @@ export default function ChatsMessagesBox(props: Props) {
     if (currentCommunity) {
       if (hasLeftCommunity) {
         messageServiceInstance?.updateLeftChannelList(
-          chat.leftChannelsList.filter((x) => x !== currentCommunity?.id)
+          leftChannelsIds?.filter((x) => x !== currentCommunity?.id) ?? []
         );
       }
       messageServiceInstance?.loadChannel(currentCommunity?.id);

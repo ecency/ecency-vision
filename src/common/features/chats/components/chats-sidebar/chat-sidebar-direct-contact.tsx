@@ -10,11 +10,10 @@ import { useLastMessagesQuery } from "../../queries";
 interface Props {
   contact: DirectContact;
   username: string;
-  handleRevealPrivKey: () => void;
 }
 
-export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKey }: Props) {
-  const { setReceiverPubKey } = useContext(ChatContext);
+export function ChatSidebarDirectContact({ contact, username }: Props) {
+  const { setReceiverPubKey, revealPrivKey, setRevealPrivKey } = useContext(ChatContext);
 
   const { data: directMessagesLastMessages } = useLastMessagesQuery();
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
@@ -33,7 +32,9 @@ export function ChatSidebarDirectContact({ contact, username, handleRevealPrivKe
       to={`/chats/@${contact.name}`}
       onClick={() => {
         setReceiverPubKey(contact.pubkey);
-        handleRevealPrivKey();
+        if (revealPrivKey) {
+          setRevealPrivKey(false);
+        }
       }}
     >
       <UserAvatar username={contact.name} size="medium" />

@@ -23,17 +23,12 @@ export interface publicMessagesList {
 }
 
 export interface Chat {
-  directMessages: directMessagesList[];
-  channels: Channel[];
-  publicMessages: publicMessagesList[];
   profiles: Profile[];
   leftChannelsList: string[];
   updatedChannel: ChannelUpdate[];
 }
 
 export enum ActionTypes {
-  DIRECTCONTACTS = "@chat/DIRECTCONTACTS",
-  DIRECTMESSAGES = "@chat/DIRECTMESSAGES",
   RESET = "@chat/RESET",
   PUBLICMESSAGES = "@chat/PUBLICMESSAGES",
   PROFILES = "@chat/PROFILES",

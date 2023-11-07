@@ -30,7 +30,7 @@ export function useAddCommunityChannel(name: string | undefined) {
         events.forEach((event) => {
           switch (event.kind) {
             case Kind.ChannelCreation:
-              const channel = convertEvent(event);
+              const channel = convertEvent<Kind.ChannelCreation>(event);
               const hasChannelAlready = channels?.some(({ id }) => id === channel?.id);
               if (!hasChannelAlready && channel) {
                 queryClient.setQueryData([ChatQueries.CHANNELS], [...(channels ?? []), channel]);
