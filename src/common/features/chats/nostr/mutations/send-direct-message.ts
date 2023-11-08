@@ -3,12 +3,17 @@ import { Kind } from "../../../../../lib/nostr-tools/event";
 import { useMutation } from "@tanstack/react-query";
 import { encrypt } from "../../../../../lib/nostr-tools/nip04";
 import { useFindHealthyRelayQuery } from "./find-healthy-relay";
+import { convertEvent } from "../utils/event-converter";
+import { useContext } from "react";
+import { ChatContext } from "../../chat-context-provider";
 
 export function useNostrSendDirectMessage(
   ownerPrivateKey: string,
   destinationPublicKey: string,
   parent?: string
 ) {
+  const { activeUserKeys } = useContext(ChatContext);
+
   const { mutateAsync: publishEncryptedMessage } = useNostrPublishMutation(
     ["chats/nostr-publish-encrypted-message"],
     Kind.EncryptedDirectMessage,
@@ -26,9 +31,14 @@ export function useNostrSendDirectMessage(
         tags.push(["e", parent, relay, "root"]);
       }
     }
-    return publishEncryptedMessage({
+    const event = await publishEncryptedMessage({
       tags,
       eventMetadata: encryptedMessage
     });
+    return convertEvent<Kind.EncryptedDirectMessage>(
+      event,
+      activeUserKeys.pub,
+      activeUserKeys.priv
+    )!!;
   });
 }

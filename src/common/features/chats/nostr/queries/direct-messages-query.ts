@@ -3,6 +3,7 @@ import { DirectContact, Message } from "../../managers/message-manager-types";
 import { Filter } from "../../../../../lib/nostr-tools/filter";
 import { Kind } from "../../../../../lib/nostr-tools/event";
 import { convertEvent } from "../utils/event-converter";
+import { NostrQueries } from "./queries";
 
 export function useDirectMessagesQuery(
   directContacts: DirectContact[],
@@ -10,7 +11,7 @@ export function useDirectMessagesQuery(
   privateKey: string
 ) {
   return useNostrFetchQuery<Message[]>(
-    ["chats/encrypted-direct-messages"],
+    [NostrQueries.DIRECT_MESSAGES],
     directContacts.reduce<Filter[]>(
       (acc, contact) => [
         ...acc,

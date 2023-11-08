@@ -54,7 +54,7 @@ export default function ChatsMessagesBox(props: Props) {
       getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
         (channel) => channel.id === currentChannel?.id
       ),
-    [channels, leftChannelsIds]
+    [channels, currentChannel, leftChannelsIds]
   );
 
   return (

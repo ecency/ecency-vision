@@ -12,38 +12,36 @@ import { useLeftCommunityChannelsQuery } from "../../queries/left-community-chan
 interface Props {
   communityClicked: (v: string) => void;
   userClicked: (v: string) => void;
-  setReceiverPubKey: (v: string) => void;
   setShowSearchUser: (v: boolean) => void;
 }
 
-export function ChatPopupDirectMessages({
+export function ChatPopupContactsAndChannels({
   communityClicked,
   userClicked,
-  setReceiverPubKey,
   setShowSearchUser
 }: Props) {
-  const { activeUserKeys, showSpinner } = useContext(ChatContext);
+  const { activeUserKeys, showSpinner, setReceiverPubKey } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: directContactsLastMessages } = useLastMessagesQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
-  const communities = useMemo(
+  const joinedChannels = useMemo(
     () => getJoinedCommunities(channels ?? [], leftChannelsIds ?? []),
     [channels, leftChannelsIds]
   );
 
   return (
     <>
-      {(directContacts?.length !== 0 || (channels?.length !== 0 && communities.length !== 0)) &&
+      {(directContacts?.length !== 0 || (channels?.length !== 0 && joinedChannels.length !== 0)) &&
       !showSpinner &&
       activeUserKeys?.priv ? (
         <>
-          {channels?.length !== 0 && communities.length !== 0 && (
+          {joinedChannels.length !== 0 && (
             <>
               <div className="community-header">{_t("chat.communities")}</div>
-              {communities.map((channel) => (
+              {joinedChannels.map((channel) => (
                 <ChatDirectMessage
                   key={channel.id}
                   username={channel.communityName!!}

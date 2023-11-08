@@ -2,6 +2,7 @@ import { useNostrPublishMutation } from "../core";
 import { Kind } from "../../../../../lib/nostr-tools/event";
 import { useMutation } from "@tanstack/react-query";
 import { useFindHealthyRelayQuery } from "./find-healthy-relay";
+import { convertEvent } from "../utils/event-converter";
 
 interface Payload {
   message: string;
@@ -20,8 +21,7 @@ export function useNostrSendPublicMessage(channelId?: string, parent?: string) {
     const root = parent || channelId;
 
     if (!root) {
-      console.error("[Chat][Nostr] – trying to send public message to not existing channel");
-      return;
+      throw new Error("[Chat][Nostr] – trying to send public message to not existing channel");
     }
 
     const relay = await findHealthyRelay(root);
@@ -35,9 +35,10 @@ export function useNostrSendPublicMessage(channelId?: string, parent?: string) {
       mentions.forEach((m) => tags.push(["p", m]));
     }
 
-    return publishChannelMessage({
+    const event = await publishChannelMessage({
       tags,
       eventMetadata: message
     });
+    return convertEvent<Kind.ChannelMessage>(event)!!;
   });
 }

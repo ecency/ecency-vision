@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UPLOADING } from "../components/chat-popup/chat-constants";
 import { useContext } from "react";
 import { ChatContext } from "../chat-context-provider";
@@ -6,18 +6,27 @@ import { Channel } from "../managers/message-manager-types";
 import isCommunity from "../../../helper/is-community";
 import { useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
 import { useAddDirectContact } from "./add-direct-contact";
+import { ChatQueries, useMessagesQuery } from "../queries";
 
 export function useSendMessage(
   currentChannel?: Channel,
   currentUser?: string,
   onSuccess?: () => void
 ) {
+  const queryClient = useQueryClient();
+
   const { activeUserKeys, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { data: messages } = useMessagesQuery(currentChannel?.communityName ?? currentUser);
+
   const { mutateAsync: sendDirectMessage } = useNostrSendDirectMessage(
     activeUserKeys.priv,
-    receiverPubKey
+    receiverPubKey,
+    undefined
   );
-  const { mutateAsync: sendPublicMessage } = useNostrSendPublicMessage(currentChannel?.id);
+  const { mutateAsync: sendPublicMessage } = useNostrSendPublicMessage(
+    currentChannel?.id,
+    undefined
+  );
   const { mutateAsync: addDirectContact } = useAddDirectContact();
 
   return useMutation(
@@ -50,7 +59,18 @@ export function useSendMessage(
       }
     },
     {
-      onSuccess: () => onSuccess?.()
+      onSuccess: (message) => {
+        queryClient.setQueryData(
+          [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
+          [...messages, message]
+        );
+        queryClient.invalidateQueries([
+          ChatQueries.MESSAGES,
+          currentChannel?.communityName ?? currentUser
+        ]);
+
+        onSuccess?.();
+      }
     }
   );
 }

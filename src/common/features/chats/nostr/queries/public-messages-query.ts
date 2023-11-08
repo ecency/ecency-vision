@@ -3,10 +3,11 @@ import { Channel, Message } from "../../managers/message-manager-types";
 import { Filter } from "../../../../../lib/nostr-tools/filter";
 import { Kind } from "../../../../../lib/nostr-tools/event";
 import { convertEvent } from "../utils/event-converter";
+import { NostrQueries } from "./queries";
 
 export function usePublicMessagesQuery(channels: Channel[]) {
   return useNostrFetchQuery<Message[]>(
-    ["chats/nostr-public-messages"],
+    [NostrQueries.PUBLIC_MESSAGES],
     channels.reduce<Filter[]>(
       (acc, channel) => [
         ...acc,

@@ -19,17 +19,16 @@ import { classNameObject } from "../../../../helper/class-name-object";
 import { ChatPopupHeader } from "./chat-popup-header";
 import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
-import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
+import { ChatPopupContactsAndChannels } from "./chat-popup-contacts-and-channels";
 import { setNostrkeys } from "../../managers/message-manager";
 import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
-import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
 
   const {
-    messageServiceInstance,
+    receiverPubKey,
     revealPrivKey,
     activeUserKeys,
     hasUserJoinedChat,
@@ -38,14 +37,13 @@ export const ChatPopUp = () => {
   } = useContext(ChatContext);
   const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
 
-  const { data: directContacts } = useDirectContactsQuery();
-  const { data: channels } = useChannelsQuery();
-  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
+  const { data: directContacts, isLoading: isDirectContactsLoading } = useDirectContactsQuery();
   const directContact = useMemo(
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
-    [directContacts]
+    [directContacts, receiverPubKey]
   );
   const { data: messages } = useMessagesQuery(directContact?.name);
+  const { data: channels, isLoading: isChannelsLoading } = useChannelsQuery();
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -56,9 +54,7 @@ export const ChatPopUp = () => {
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
-  const [inProgress, setInProgress] = useState(false);
   const [show, setShow] = useState(false);
-  const [receiverPubKey, setReceiverPubKey] = useState("");
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [isTop, setIsTop] = useState(false);
@@ -87,14 +83,6 @@ export const ChatPopUp = () => {
   useEffect(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   }, [routerLocation, activeUser]);
-
-  // todo: ??
-  useEffect(() => {
-    if (currentChannel && leftCommunityChannelsIds?.includes(currentChannel.id)) {
-      setIsCommunity(false);
-      setCommunityName("");
-    }
-  }, [leftCommunityChannelsIds]);
 
   // Fetching previous messages when scrol achieved top
   useEffect(() => {
@@ -186,11 +174,6 @@ export const ChatPopUp = () => {
     }
   };
 
-  const communityClicked = (community: string) => {
-    setIsCommunity(true);
-    setCommunityName(community);
-  };
-
   const handleBackArrowSvg = () => {
     setCurrentUser("");
     setCommunityName("");
@@ -233,7 +216,7 @@ export const ChatPopUp = () => {
             handleRefreshSvgClick={handleRefreshSvgClick}
             showSearchUser={showSearchUser}
           />
-          {(inProgress || isFetchingMore) && <LinearProgress />}
+          {(isJoinChatLoading || isChannelsLoading || isFetchingMore) && <LinearProgress />}
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
@@ -248,9 +231,11 @@ export const ChatPopUp = () => {
                 ) : showSearchUser ? (
                   <ChatPopupSearchUser setCurrentUser={setCurrentUser} />
                 ) : (
-                  <ChatPopupDirectMessages
-                    communityClicked={communityClicked}
-                    setReceiverPubKey={setReceiverPubKey}
+                  <ChatPopupContactsAndChannels
+                    communityClicked={(community: string) => {
+                      setIsCommunity(true);
+                      setCommunityName(community);
+                    }}
                     setShowSearchUser={setShowSearchUser}
                     userClicked={(username) => setCurrentUser(username)}
                   />
