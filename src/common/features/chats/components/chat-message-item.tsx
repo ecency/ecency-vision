@@ -17,6 +17,7 @@ interface Props {
   currentChannel?: Channel;
 }
 
+// TODO: Add resend
 export function ChatMessageItem({ type, message, isSameUser, currentChannel }: Props) {
   const { global } = useMappedStore();
 

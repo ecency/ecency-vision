@@ -13,6 +13,7 @@ import { ChatContext } from "../../chat-context-provider";
 
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
+import { useKeysQuery } from "../../queries/keys-query";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -28,31 +29,20 @@ interface Props {
 let zoom: Zoom | null = null;
 export default function ChatsChannelMessages(props: Props) {
   const { publicMessages, isScrollToBottom, isScrolled, currentChannel, scrollToBottom } = props;
-  const {
-    chat,
-    global,
-    activeUser,
-    ui,
-    users,
-    deletePublicMessage,
-    setActiveUser,
-    updateActiveUser,
-    deleteUser,
-    toggleUIProp
-  } = useMappedStore();
+  const { global, activeUser, deletePublicMessage } = useMappedStore();
 
-  const { messageServiceInstance, activeUserKeys, windowWidth, isActiveUserRemoved } =
-    useContext(ChatContext);
+  const { messageServiceInstance, isActiveUserRemoved } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
 
   const [step, setStep] = useState(0);
-  const [clickedMessage, setClickedMessage] = useState("");
   const [removedUserId, setRemovedUserID] = useState("");
   const [hiddenMsgId, setHiddenMsgId] = useState("");
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
+
+  const { publicKey } = useKeysQuery();
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -156,7 +146,6 @@ export default function ChatsChannelMessages(props: Props) {
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
         {publicMessages.length !== 0 &&
-          activeUserKeys &&
           publicMessages.map((pMsg, i) => {
             const dayAndMonth = formatMessageDateAndDay(pMsg, i, publicMessages);
 
@@ -174,7 +163,7 @@ export default function ChatsChannelMessages(props: Props) {
 
                 <ChatMessageItem
                   currentChannel={currentChannel}
-                  type={pMsg.creator !== activeUserKeys?.pub ? "receiver" : "sender"}
+                  type={pMsg.creator !== publicKey ? "receiver" : "sender"}
                   message={pMsg}
                   isSameUser={isSameUserMessage}
                 />

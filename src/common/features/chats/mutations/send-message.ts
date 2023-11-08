@@ -7,6 +7,7 @@ import isCommunity from "../../../helper/is-community";
 import { useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
 import { useAddDirectContact } from "./add-direct-contact";
 import { ChatQueries, useMessagesQuery } from "../queries";
+import { useKeysQuery } from "../queries/keys-query";
 
 export function useSendMessage(
   currentChannel?: Channel,
@@ -15,11 +16,12 @@ export function useSendMessage(
 ) {
   const queryClient = useQueryClient();
 
-  const { activeUserKeys, isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { privateKey } = useKeysQuery();
   const { data: messages } = useMessagesQuery(currentChannel?.communityName ?? currentUser);
 
   const { mutateAsync: sendDirectMessage } = useNostrSendDirectMessage(
-    activeUserKeys.priv,
+    privateKey!!,
     receiverPubKey,
     undefined
   );

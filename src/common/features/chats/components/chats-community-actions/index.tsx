@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { History } from "history";
 import DropDown, { MenuItem } from "../../../../components/dropdown";
 
 import { chatLeaveSvg, editSVG, kebabMenuSvg, linkSvg, removeUserSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
-import { ADDROLE, DropDownStyle, LEAVECOMMUNITY, UNBLOCKUSER } from "../chat-popup/chat-constants";
+import { DropDownStyle, LEAVECOMMUNITY, UNBLOCKUSER } from "../chat-popup/chat-constants";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { error, success } from "../../../../components/feedback";
-import { ROLES } from "../../../../store/communities";
 import UserAvatar from "../../../../components/user-avatar";
 import { copyToClipboard } from "../../utils";
 import { ChatContext } from "../../chat-context-provider";
@@ -18,6 +17,7 @@ import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { CommunityModerator } from "../../managers/message-manager-types";
 import { useLeaveCommunityChannel } from "../../mutations";
 import { EditRolesModal } from "./edit-roles-modal";
+import { useChannelsQuery } from "../../queries";
 
 interface Props {
   history: History;
@@ -25,11 +25,8 @@ interface Props {
   username: string;
 }
 
-const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
-
 const ChatsCommunityDropdownMenu = (props: Props) => {
   const { activeUser, chat } = useMappedStore();
-  const { currentChannel, setCurrentChannel } = useContext(ChatContext);
   const { history, from } = props;
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
@@ -37,6 +34,12 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [removedUserId, setRemovedUserID] = useState("");
+
+  const { data: channels } = useChannelsQuery();
+  const currentChannel = useMemo(
+    () => channels?.find((channel) => channel.communityName === props.username),
+    [channels, props.username]
+  );
 
   const { mutateAsync: leaveChannel } = useLeaveCommunityChannel(() => {
     setKeyDialog(false);
@@ -50,7 +53,7 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
     getCommunityAdmins();
 
     if (currentChannel && currentChannel?.removedUserIds) {
-      getBlockedUsers(currentChannel?.removedUserIds!);
+      // getBlockedUsers(currentChannel?.removedUserIds!);
     }
   }, [currentChannel, removedUserId]);
 
@@ -72,12 +75,12 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
     setCommunityAdmins(communityAdminNames!);
   };
 
-  const getBlockedUsers = (blockedUser: string[]) => {
-    const blockedUsers = chat.profiles
-      .filter((item) => blockedUser.includes(item.creator))
-      .map((item) => ({ name: item.name, pubkey: item.creator }));
-    setBlockedUsers(blockedUsers);
-  };
+  // const getBlockedUsers = (blockedUser: string[]) => {
+  //   const blockedUsers = profiles
+  //     .filter((item) => blockedUser.includes(item.creator))
+  //     .map((item) => ({ name: item.name, pubkey: item.creator }));
+  //   setBlockedUsers(blockedUsers);
+  // };
 
   const handleBlockedUsers = () => {
     setKeyDialog(true);
@@ -269,10 +272,6 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
       removedUserIds: currentChannel?.removedUserIds
     };
     switch (operationType) {
-      case ADDROLE:
-        const updatedRoles = [...(currentChannel?.communityModerators || []), moderator!];
-        updatedMetaData.communityModerators = updatedRoles;
-        break;
       case UNBLOCKUSER:
         const NewUpdatedRemovedUsers = currentChannel?.removedUserIds?.filter(
           (item) => item !== removedUserId
@@ -284,7 +283,6 @@ const ChatsCommunityDropdownMenu = (props: Props) => {
     }
     try {
       messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
-      setCurrentChannel({ ...currentChannel!, ...updatedMetaData });
 
       if (operationType === UNBLOCKUSER) {
         setStep(5);

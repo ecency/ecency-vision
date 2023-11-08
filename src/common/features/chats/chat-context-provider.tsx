@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Channel, Keys } from "./managers/message-manager-types";
 import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
-import { useMappedStore } from "../../store/use-mapped-store";
 import { NostrKeysType } from "./types";
 import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
@@ -10,7 +9,6 @@ import { useJoinChat } from "./mutations";
 import { NostrListenerQueriesProvider, NostrProvider } from "./nostr";
 
 interface Context {
-  activeUserKeys: NostrKeysType;
   showSpinner: boolean;
   revealPrivKey: boolean;
   chatPrivKey: string;
@@ -24,7 +22,6 @@ interface Context {
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
-  setActiveUserKeys: (keys: NostrKeysType) => void;
   setReceiverPubKey: (key: string) => void;
   setMessageServiceInstance: (instance: MessageService | null) => void;
   initMessageServiceInstance: (keys: Keys) => MessageService | null;
@@ -35,7 +32,6 @@ interface Props {
 }
 
 export const ChatContext = React.createContext<Context>({
-  activeUserKeys: { pub: " ", priv: "" },
   showSpinner: false,
   revealPrivKey: false,
   chatPrivKey: "",
@@ -49,15 +45,13 @@ export const ChatContext = React.createContext<Context>({
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
   setChatPrivKey: () => {},
-  setActiveUserKeys: () => {},
   setReceiverPubKey: () => {},
   setMessageServiceInstance: () => {},
   initMessageServiceInstance: () => (({} as MessageService) || null)
 });
 
 export const ChatContextProvider = (props: Props) => {
-  const { activeUser, chat, resetChat } = useMappedStore();
-
+  // TODO: USE QUERY INTEAD
   const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: "", priv: "" });
   const [showSpinner, setShowSpinner] = useState(true);
   const [chatPrivKey, setChatPrivKey] = useState("");
@@ -65,16 +59,14 @@ export const ChatContextProvider = (props: Props) => {
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | null>(null);
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
-  const [shouldUpdateProfile, setShouldUpdateProfile] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isActiveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
-  const { privateKey, publicKey, refetch } = useKeysQuery(activeUserKeys, setActiveUserKeys);
+  const { privateKey, publicKey, refetch } = useKeysQuery();
 
   useJoinChat(() => {
     setHasUserJoinedChat(true);
-    setShouldUpdateProfile(true);
   });
 
   useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
@@ -111,26 +103,6 @@ export const ChatContextProvider = (props: Props) => {
     };
   }, []);
 
-  useEffect(() => {
-    refetch();
-    if (
-      messageServiceInstance &&
-      chat.profiles.some((profile) => profile.name === activeUser?.username)
-    ) {
-      setShouldUpdateProfile(false);
-    }
-  }, [messageServiceInstance, chat.profiles]);
-
-  useEffect(() => {
-    if (shouldUpdateProfile && messageServiceInstance) {
-      messageServiceInstance.updateProfile({
-        name: activeUser?.username!,
-        about: "",
-        picture: ""
-      });
-    }
-  }, [shouldUpdateProfile, messageServiceInstance]);
-
   const initMessageServiceInstance = (keys: Keys) => {
     if (messageServiceInstance) {
       messageServiceInstance.close();
@@ -149,7 +121,6 @@ export const ChatContextProvider = (props: Props) => {
     <NostrListenerQueriesProvider>
       <ChatContext.Provider
         value={{
-          activeUserKeys,
           showSpinner,
           revealPrivKey,
           receiverPubKey,
@@ -163,7 +134,6 @@ export const ChatContextProvider = (props: Props) => {
           setRevealPrivKey,
           setShowSpinner,
           setChatPrivKey,
-          setActiveUserKeys,
           setReceiverPubKey,
           setMessageServiceInstance,
           initMessageServiceInstance

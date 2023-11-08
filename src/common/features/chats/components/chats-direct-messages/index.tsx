@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import mediumZoom, { Zoom } from "medium-zoom";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
@@ -7,9 +7,9 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { _t } from "../../../../i18n";
 import "./index.scss";
-import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { DirectMessage } from "../../managers/message-manager-types";
 import { ChatMessageItem } from "../chat-message-item";
+import { useKeysQuery } from "../../queries/keys-query";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -21,14 +21,14 @@ interface Props {
 
 let zoom: Zoom | null = null;
 export default function ChatsDirectMessages(props: Props) {
-  const { directMessages, currentUser, isScrolled, isScrollToBottom, scrollToBottom } = props;
+  const { directMessages, isScrolled, isScrollToBottom, scrollToBottom } = props;
 
   const { global, activeUser, deleteDirectMessage } = useMappedStore();
-  const { activeUserKeys, messageServiceInstance, receiverPubKey } = useContext(ChatContext);
+  const { receiverPubKey } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
-  const [step, setStep] = useState(0);
-  const [resendMessage, setResendMessage] = useState<DirectMessage>();
+
+  const { publicKey } = useKeysQuery();
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -60,20 +60,6 @@ export default function ChatsDirectMessages(props: Props) {
     }
   };
 
-  const handleConfirm = () => {
-    switch (step) {
-      case 1:
-        if (resendMessage) {
-          deleteDirectMessage(receiverPubKey, resendMessage?.id);
-          messageServiceInstance?.sendDirectMessage(receiverPubKey!, resendMessage.content);
-        }
-        break;
-      default:
-        break;
-    }
-    setStep(0);
-  };
-
   return (
     <>
       <div className="direct-messages">
@@ -91,7 +77,7 @@ export default function ChatsDirectMessages(props: Props) {
                     </div>
                   )}
                   <ChatMessageItem
-                    type={msg.creator !== activeUserKeys?.pub ? "receiver" : "sender"}
+                    type={msg.creator !== publicKey ? "receiver" : "sender"}
                     message={msg}
                     isSameUser={checkContiguousMessage(msg, i, directMessages)}
                   />
@@ -103,16 +89,6 @@ export default function ChatsDirectMessages(props: Props) {
           <p className="not-joined">{_t("chat.not-joined")}</p>
         )}
       </div>
-      {step !== 0 && (
-        <ChatsConfirmationModal
-          actionType={"Confirmation"}
-          content={"Are you sure?"}
-          onClose={() => {
-            setStep(0);
-          }}
-          onConfirm={handleConfirm}
-        />
-      )}
     </>
   );
 }

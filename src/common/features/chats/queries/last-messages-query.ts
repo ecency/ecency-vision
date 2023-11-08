@@ -5,18 +5,16 @@ import { getDirectLastMessage } from "../utils";
 import { useDirectContactsQuery } from "./direct-contacts-query";
 import { useChannelsQuery } from "./channels-query";
 import { useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
-import { useContext } from "react";
-import { ChatContext } from "../chat-context-provider";
+import { useKeysQuery } from "./keys-query";
 
 export function useLastMessagesQuery() {
-  const { activeUserKeys } = useContext(ChatContext);
-
+  const { publicKey, privateKey } = useKeysQuery();
   const { data: contacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: initialDirectMessages } = useDirectMessagesQuery(
     contacts ?? [],
-    activeUserKeys.pub,
-    activeUserKeys.priv
+    publicKey!!,
+    privateKey!!
   );
   const { data: initialPublicMessages } = usePublicMessagesQuery(channels ?? []);
 

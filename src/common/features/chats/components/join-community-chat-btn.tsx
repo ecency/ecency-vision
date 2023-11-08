@@ -13,6 +13,7 @@ import {
   useNostrJoinedCommunityTeamQuery
 } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
+import { useKeysQuery } from "../queries/keys-query";
 
 interface Props {
   history: History;
@@ -20,7 +21,8 @@ interface Props {
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
-  const { activeUserKeys, hasUserJoinedChat } = useContext(ChatContext);
+  const { publicKey } = useKeysQuery();
+  const { hasUserJoinedChat } = useContext(ChatContext);
   const { activeUser } = useMappedStore();
 
   const { data: currentChannel } = useCommunityChannelQuery(props.community);
@@ -64,7 +66,7 @@ export default function JoinCommunityChatBtn(props: Props) {
                 await joinChat();
               }
 
-              if (communityTeam.some((role) => role.pubkey === activeUserKeys.pub)) {
+              if (communityTeam.some((role) => role.pubkey === publicKey)) {
                 await createCommunityChat();
                 await join();
               }

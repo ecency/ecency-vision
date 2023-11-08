@@ -7,7 +7,6 @@ import React, { useContext } from "react";
 import { ChatContext } from "../../chat-context-provider";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { History } from "history";
-import { setNostrkeys } from "../../managers/message-manager";
 
 interface Props {
   history: History;
@@ -15,13 +14,10 @@ interface Props {
 
 export function ChatSidebarHeader({ history }: Props) {
   const { resetChat } = useMappedStore();
-  const { activeUserKeys, setShowSpinner, revealPrivKey, chatPrivKey, setRevealPrivKey } =
-    useContext(ChatContext);
+  const { revealPrivKey, chatPrivKey, setRevealPrivKey } = useContext(ChatContext);
 
   const handleRefreshChat = () => {
     resetChat();
-    setNostrkeys(activeUserKeys!);
-    setShowSpinner(true);
   };
 
   return (

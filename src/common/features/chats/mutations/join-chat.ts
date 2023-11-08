@@ -4,6 +4,8 @@ import * as ls from "../../../util/local-storage";
 import { setNostrkeys } from "../managers/message-manager";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatQueries } from "../queries";
+import { useNostrPublishMutation } from "../nostr";
+import { Kind } from "../../../../lib/nostr-tools/event";
 
 /**
  * Custom React hook for joining a chat with some side effects.
@@ -16,11 +18,17 @@ import { ChatQueries } from "../queries";
  * @returns A function from the `useMutation` hook, which can be used to initiate the chat join process.
  */
 export function useJoinChat(onSuccess?: () => void) {
+  const queryClient = useQueryClient();
   const { activeUser, chat, resetChat } = useMappedStore();
+
   const { mutateAsync: uploadPublicKey } = useMutation(["chats/upload-public-key"], (key: string) =>
     uploadChatPublicKey(activeUser, key)
   );
-  const queryClient = useQueryClient();
+  const { mutateAsync: updateProfile } = useNostrPublishMutation(
+    ["chats/update-nostr-profile"],
+    Kind.Metadata,
+    () => {}
+  );
 
   return useMutation(
     ["chat-join-chat"],
@@ -36,6 +44,15 @@ export function useJoinChat(onSuccess?: () => void) {
         setNostrkeys(keys);
         queryClient.setQueryData([ChatQueries.PUBLIC_KEY], keys.pub);
         queryClient.setQueryData([ChatQueries.PRIVATE_KEY], keys.priv);
+
+        await updateProfile({
+          tags: [],
+          eventMetadata: {
+            name: activeUser?.username!,
+            about: "",
+            picture: ""
+          }
+        });
 
         onSuccess?.();
       }

@@ -15,6 +15,7 @@ import { classNameObject } from "../../../../helper/class-name-object";
 import React, { useContext } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { ChatContext } from "../../chat-context-provider";
+import { useKeysQuery } from "../../queries/keys-query";
 
 interface Props {
   currentUser: string;
@@ -45,8 +46,9 @@ export function ChatPopupHeader({
   handleExtendedView,
   setExpanded
 }: Props) {
-  const { revealPrivKey, activeUserKeys, hasUserJoinedChat, setRevealPrivKey } =
-    useContext(ChatContext);
+  const { revealPrivKey, hasUserJoinedChat, setRevealPrivKey } = useContext(ChatContext);
+
+  const { privateKey } = useKeysQuery();
 
   return (
     <div className="flex items-center justify-between border-b border-[--border-color] px-4 py-2 gap-2">
@@ -101,7 +103,7 @@ export function ChatPopupHeader({
             />
           </Tooltip>
         )}
-        {hasUserJoinedChat && activeUserKeys?.priv && !revealPrivKey && (
+        {hasUserJoinedChat && privateKey && !revealPrivKey && (
           <Tooltip content={_t("chat.refresh")}>
             <Button
               noPadding={true}
@@ -117,7 +119,7 @@ export function ChatPopupHeader({
             <ChatsCommunityDropdownMenu history={history!} username={communityName} />
           </div>
         )}
-        {!isCommunity && !isCurrentUser && activeUserKeys?.priv && (
+        {!isCommunity && !isCurrentUser && privateKey && (
           <div className="simple-menu" onClick={() => setExpanded(true)}>
             <ChatsDropdownMenu
               history={history!}

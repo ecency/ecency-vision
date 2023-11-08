@@ -16,6 +16,7 @@ import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
 import { useChannelsQuery } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
+import { useKeysQuery } from "../queries/keys-query";
 
 interface Props extends PageProps {
   match: match<{
@@ -29,9 +30,9 @@ interface Props extends PageProps {
 
 export const Chats = (props: Props) => {
   const { activeUser, global } = useMappedStore();
-  const { receiverPubKey, showSpinner, activeUserKeys, revealPrivKey, chatPrivKey } =
-    useContext(ChatContext);
+  const { receiverPubKey, showSpinner, revealPrivKey } = useContext(ChatContext);
 
+  const { publicKey, privateKey } = useKeysQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
 
@@ -45,10 +46,7 @@ export const Chats = (props: Props) => {
     [channels, leftCommunityChannelsIds]
   );
 
-  const isReady = useMemo(
-    () => !!(activeUser && activeUserKeys?.pub && chatPrivKey),
-    [activeUserKeys, activeUserKeys, chatPrivKey]
-  );
+  const isReady = useMemo(() => !!(activeUser && publicKey && privateKey), [publicKey, privateKey]);
   const isShowManageKey = useMemo(() => isReady && revealPrivKey, [isReady, revealPrivKey]);
   const isShowChatRoom = useMemo(
     () => isReady && !showSpinner && (!!receiverPubKey || isChannel) && !revealPrivKey,

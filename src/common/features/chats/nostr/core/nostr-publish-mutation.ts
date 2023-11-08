@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Metadata } from "../../managers/message-manager-types";
 import { Event, getEventHash, Kind, signEvent } from "../../../../../lib/nostr-tools/event";
 import { NostrContext } from "../nostr-context";
-import { ChatContext } from "../../chat-context-provider";
+import { useKeysQuery } from "../../queries/keys-query";
 
 type Payload = { eventMetadata: Metadata | string; tags: string[][] };
 
@@ -14,12 +14,12 @@ export function useNostrPublishMutation(
   options?: UseMutationOptions<Event, Error, Payload>
 ) {
   const { pool, writeRelays } = useContext(NostrContext);
-  const { activeUserKeys } = useContext(ChatContext);
+  const { publicKey, privateKey } = useKeysQuery();
 
   const sign = async (event: Event) => ({
     ...event,
     id: getEventHash(event),
-    sig: await signEvent(event, activeUserKeys.priv)
+    sig: await signEvent(event, privateKey!!)
   });
 
   return useMutation(
@@ -34,7 +34,7 @@ export function useNostrPublishMutation(
             sig: "",
             content:
               typeof eventMetadata === "object" ? JSON.stringify(eventMetadata) : eventMetadata,
-            pubkey: activeUserKeys.pub,
+            pubkey: publicKey!!,
             created_at: Math.floor(Date.now() / 1000),
             tags
           });

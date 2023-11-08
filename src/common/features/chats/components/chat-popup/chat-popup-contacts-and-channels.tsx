@@ -8,6 +8,7 @@ import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectMessage } from "./chat-direct-message";
 import { useChannelsQuery, useDirectContactsQuery, useLastMessagesQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
+import { useKeysQuery } from "../../queries/keys-query";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -20,8 +21,9 @@ export function ChatPopupContactsAndChannels({
   userClicked,
   setShowSearchUser
 }: Props) {
-  const { activeUserKeys, showSpinner, setReceiverPubKey } = useContext(ChatContext);
+  const { showSpinner, setReceiverPubKey } = useContext(ChatContext);
 
+  const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: directContactsLastMessages } = useLastMessagesQuery();
   const { data: channels } = useChannelsQuery();
@@ -36,7 +38,7 @@ export function ChatPopupContactsAndChannels({
     <>
       {(directContacts?.length !== 0 || (channels?.length !== 0 && joinedChannels.length !== 0)) &&
       !showSpinner &&
-      activeUserKeys?.priv ? (
+      privateKey ? (
         <>
           {joinedChannels.length !== 0 && (
             <>
@@ -64,7 +66,7 @@ export function ChatPopupContactsAndChannels({
             />
           ))}
         </>
-      ) : !activeUserKeys?.priv ? (
+      ) : !privateKey ? (
         <ImportChats />
       ) : showSpinner ? (
         <div className="no-chat">

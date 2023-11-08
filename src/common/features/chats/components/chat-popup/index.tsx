@@ -20,23 +20,18 @@ import { ChatPopupHeader } from "./chat-popup-header";
 import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupContactsAndChannels } from "./chat-popup-contacts-and-channels";
-import { setNostrkeys } from "../../managers/message-manager";
 import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
 import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
+import { useKeysQuery } from "../../queries/keys-query";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
 
-  const {
-    receiverPubKey,
-    revealPrivKey,
-    activeUserKeys,
-    hasUserJoinedChat,
-    setRevealPrivKey,
-    setShowSpinner
-  } = useContext(ChatContext);
+  const { receiverPubKey, revealPrivKey, hasUserJoinedChat, setRevealPrivKey, setShowSpinner } =
+    useContext(ChatContext);
   const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
 
+  const { privateKey, publicKey } = useKeysQuery();
   const { data: directContacts, isLoading: isDirectContactsLoading } = useDirectContactsQuery();
   const directContact = useMemo(
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
@@ -67,9 +62,8 @@ export const ChatPopUp = () => {
   );
   const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
   const canSendMessage = useMemo(
-    () =>
-      !currentUser && hasUserJoinedChat && !!activeUserKeys?.priv && !isCommunity && !revealPrivKey,
-    [currentUser, hasUserJoinedChat, activeUserKeys, isCommunity, revealPrivKey]
+    () => !currentUser && hasUserJoinedChat && !!privateKey && !isCommunity && !revealPrivKey,
+    [currentUser, hasUserJoinedChat, privateKey, isCommunity, revealPrivKey]
   );
 
   const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingMore } =
@@ -167,10 +161,9 @@ export const ChatPopUp = () => {
     if (getPrivateKey(activeUser?.username!)) {
       setShowSpinner(true);
       const keys = {
-        pub: activeUserKeys?.pub!,
-        priv: getPrivateKey(activeUser?.username!)!!
+        pub: publicKey!,
+        priv: privateKey
       };
-      setNostrkeys(keys);
     }
   };
 

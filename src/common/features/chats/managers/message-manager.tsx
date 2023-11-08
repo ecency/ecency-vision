@@ -1,13 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ActiveUser } from "../../../store/active-user/types";
 import { NostrKeysType } from "../types";
-import {
-  DirectMessage,
-  Keys,
-  MessagesObject,
-  Profile,
-  PublicMessage
-} from "./message-manager-types";
+import { DirectMessage, Keys, PublicMessage } from "./message-manager-types";
 import MessageService, { MessageEvents } from "../../../helper/message-service";
 import { getPrivateKey, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -28,7 +22,6 @@ export const setNostrkeys = (keys: NostrKeysType) => {
 const MessageManager = () => {
   const {
     activeUser,
-    chat,
     addDirectMessages,
     addPublicMessage,
     addProfile,
@@ -125,19 +118,6 @@ const MessageManager = () => {
       messageService?.removeListener(MessageEvents.Ready, handleReadyState);
     };
   }, [messageServiceReady, messageService]);
-
-  // Profile update handler
-  const handleProfileUpdate = (data: Profile[]) => {
-    addProfile(data);
-  };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
-    messageService?.addListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
-    return () => {
-      messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
-    };
-  }, [messageService, chat.profiles]);
 
   // const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
   //   setTimeout(() => {
@@ -270,7 +250,6 @@ const MessageManager = () => {
   useEffect(() => {
     return () => {
       messageService?.removeListener(MessageEvents.Ready, handleReadyState);
-      messageService?.removeListener(MessageEvents.ProfileUpdate, handleProfileUpdate);
       // messageService?.removeListener(
       //   MessageEvents.PreviousPublicMessages,
       //   handlePreviousPublicMessages

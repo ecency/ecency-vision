@@ -5,8 +5,6 @@ import { getProfileMetaData } from "../utils";
 import { Community, ROLES } from "../../../store/communities";
 import { NOSTRKEY } from "../components/chat-popup/chat-constants";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { useContext } from "react";
-import { ChatContext } from "../chat-context-provider";
 import { useKeysQuery } from "./keys-query";
 
 /**
@@ -14,22 +12,18 @@ import { useKeysQuery } from "./keys-query";
  */
 export function useNostrJoinedCommunityTeamQuery(community: Community) {
   const { activeUser } = useMappedStore();
-  const { activeUserKeys } = useContext(ChatContext);
 
-  const { hasKeys } = useKeysQuery();
+  const { hasKeys, publicKey } = useKeysQuery();
 
   return useQuery(
     [ChatQueries.COMMUNITY_ROLES, community.name],
     async () => {
-      if (!activeUserKeys || activeUser?.username === community.name) {
-      }
-
       let communityTeam: CommunityModerator[] = [];
       const ownerData = await getProfileMetaData(community.name);
 
       communityTeam.push({
         name: activeUser!.username,
-        pubkey: activeUserKeys?.pub || ownerData.nsKey,
+        pubkey: publicKey || ownerData.nsKey,
         role: "owner"
       });
 

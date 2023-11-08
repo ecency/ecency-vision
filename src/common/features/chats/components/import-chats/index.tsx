@@ -4,7 +4,6 @@ import { _t } from "../../../../i18n";
 import { keySvg } from "../../../../img/svg";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import OrDivider from "../../../../components/or-divider";
-import * as ls from "../../../../util/local-storage";
 import { ChatContext } from "../../chat-context-provider";
 import "./index.scss";
 import LinearProgress from "../../../../components/linear-progress";
@@ -12,8 +11,8 @@ import ChatsConfirmationModal from "../chats-confirmation-modal";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { FormControl, InputGroup } from "@ui/input";
-import { setNostrkeys } from "../../managers/message-manager";
 import { useJoinChat } from "../../mutations/join-chat";
+import { useKeysQuery } from "../../queries/keys-query";
 
 export default function ImportChats() {
   const { activeUser } = useMappedStore();
@@ -24,21 +23,21 @@ export default function ImportChats() {
   const [privKey, setPrivKey] = useState("");
   const [step, setStep] = useState(0);
 
-  const { activeUserKeys, hasUserJoinedChat, setChatPrivKey } = useContext(ChatContext);
+  const { hasUserJoinedChat, setChatPrivKey } = useContext(ChatContext);
   const { mutateAsync: joinChat } = useJoinChat();
+
+  const { publicKey, privateKey } = useKeysQuery();
 
   const handleImportChatSubmit = () => {
     try {
       setInProgress(true);
       const pubKey = getPublicKey(privKey);
-      if (pubKey === activeUserKeys?.pub) {
+      if (pubKey === publicKey) {
         setChatPrivKey(privKey);
-        ls.set(`${activeUser?.username}_nsPrivKey`, privKey);
         const keys = {
-          pub: activeUserKeys?.pub!,
-          priv: privKey
+          pub: publicKey,
+          priv: privateKey
         };
-        setNostrkeys(keys);
         setImportPrivKey(false);
         setChatPrivKey(privKey);
       } else {
