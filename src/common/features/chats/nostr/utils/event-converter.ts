@@ -1,5 +1,5 @@
 import { Event, Kind } from "../../../../../lib/nostr-tools/event";
-import { Channel, Message } from "../../managers/message-manager-types";
+import { Channel, Message, Profile } from "../../managers/message-manager-types";
 import { findTagValue } from "./find-tag-value";
 import { filterTagValue } from "./filter-tag-value";
 import { decrypt } from "../../../../../lib/nostr-tools/nip04";
@@ -8,6 +8,7 @@ export interface EventConverterResult {
   [Kind.ChannelCreation]: Channel;
   [Kind.EncryptedDirectMessage]: Promise<Message>;
   [Kind.ChannelMessage]: Message;
+  [Kind.Metadata]: Profile;
   30078: string[];
 }
 
@@ -86,6 +87,19 @@ export function convertEvent<KIND extends keyof EventConverterResult>(
             sent: 1
           }
         : (null as any);
+    case Kind.Metadata:
+      if (!content) {
+        return null;
+      }
+
+      return {
+        id: event.id,
+        creator: event.pubkey,
+        created: event.created_at,
+        name: content.name || "",
+        about: content.about || "",
+        picture: content.picture || ""
+      } as any;
     case "30078":
       return content;
     default:

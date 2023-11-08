@@ -1,4 +1,4 @@
-import { Message } from "../managers/message-manager-types";
+import { Channel, Message } from "../managers/message-manager-types";
 import Tooltip from "../../../components/tooltip";
 import { failedMessageSvg, resendMessageSvg } from "../../../img/svg";
 import { formatMessageTime, isMessageGif, isMessageImage } from "../utils";
@@ -8,14 +8,16 @@ import { classNameObject } from "../../../helper/class-name-object";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
+import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-extension";
 
 interface Props {
   type: "sender" | "receiver";
   message: Message;
   isSameUser: boolean;
+  currentChannel?: Channel;
 }
 
-export function ChatMessageItem({ type, message, isSameUser }: Props) {
+export function ChatMessageItem({ type, message, isSameUser, currentChannel }: Props) {
   const { global } = useMappedStore();
 
   const isFailed = useMemo(() => message.sent === 2, [message]);
@@ -63,6 +65,12 @@ export function ChatMessageItem({ type, message, isSameUser }: Props) {
             "same-user-message": isSameUser
           })}
         >
+          {currentChannel && (
+            <ChatMessageChannelItemExtension
+              creator={message.creator}
+              currentChannel={currentChannel}
+            />
+          )}
           <div
             className="sender-message-content"
             dangerouslySetInnerHTML={{ __html: renderedPreview }}
