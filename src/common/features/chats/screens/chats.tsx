@@ -9,7 +9,6 @@ import Feedback from "../../../components/feedback";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
 import { Spinner } from "@ui/spinner";
-import ImportChats from "../components/import-chats";
 import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
 import { classNameObject } from "../../../helper/class-name-object";
@@ -17,6 +16,7 @@ import "./_chats.scss";
 import { useChannelsQuery } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 import { useKeysQuery } from "../queries/keys-query";
+import { ChatsImport } from "../components/chats-import";
 
 interface Props extends PageProps {
   match: match<{
@@ -98,9 +98,9 @@ export const Chats = (props: Props) => {
                 <Spinner className="w-6 h-6" />
               </div>
             )}
-            {isShowImportChats && (
+            {isShowImportChats && activeUser && (
               <div className="h-full w-full flex items-center justify-center">
-                <ImportChats />
+                <ChatsImport />
               </div>
             )}
             {isShowChatRoom && <ChatsMessagesBox match={match} history={history} />}
@@ -112,7 +112,7 @@ export const Chats = (props: Props) => {
                 <div>Search a person or community and start messaging</div>
               </div>
             )}
-            {!isReady && (
+            {!isReady && !isShowImportChats && !showSpinner && (
               <div className="flex justify-center items-center full-page">
                 <JoinChat />
               </div>

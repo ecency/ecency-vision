@@ -19,7 +19,7 @@ import { Kind } from "../../../../lib/nostr-tools/event";
  */
 export function useJoinChat(onSuccess?: () => void) {
   const queryClient = useQueryClient();
-  const { activeUser, chat, resetChat } = useMappedStore();
+  const { activeUser } = useMappedStore();
 
   const { mutateAsync: uploadPublicKey } = useMutation(["chats/upload-public-key"], (key: string) =>
     uploadChatPublicKey(activeUser, key)
@@ -30,32 +30,25 @@ export function useJoinChat(onSuccess?: () => void) {
     () => {}
   );
 
-  return useMutation(
-    ["chat-join-chat"],
-    async () => {
-      resetChat();
-      return createNoStrAccount();
-    },
-    {
-      onSuccess: async (keys: ReturnType<typeof createNoStrAccount>) => {
-        ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
-        await uploadPublicKey(keys.pub);
+  return useMutation(["chat-join-chat"], async () => createNoStrAccount(), {
+    onSuccess: async (keys: ReturnType<typeof createNoStrAccount>) => {
+      ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
+      await uploadPublicKey(keys.pub);
 
-        setNostrkeys(keys);
-        queryClient.setQueryData([ChatQueries.PUBLIC_KEY], keys.pub);
-        queryClient.setQueryData([ChatQueries.PRIVATE_KEY], keys.priv);
+      setNostrkeys(keys);
+      queryClient.setQueryData([ChatQueries.PUBLIC_KEY], keys.pub);
+      queryClient.setQueryData([ChatQueries.PRIVATE_KEY], keys.priv);
 
-        await updateProfile({
-          tags: [],
-          eventMetadata: {
-            name: activeUser?.username!,
-            about: "",
-            picture: ""
-          }
-        });
+      await updateProfile({
+        tags: [],
+        eventMetadata: {
+          name: activeUser?.username!,
+          about: "",
+          picture: ""
+        }
+      });
 
-        onSuccess?.();
-      }
+      onSuccess?.();
     }
-  );
+  });
 }

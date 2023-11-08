@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { _t } from "../../../../i18n";
 import { getJoinedCommunities } from "../../utils";
-import ImportChats from "../import-chats";
+import { ChatsImport } from "../chats-import";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import { ChatContext } from "../../chat-context-provider";
@@ -67,7 +67,7 @@ export function ChatPopupContactsAndChannels({
           ))}
         </>
       ) : !privateKey ? (
-        <ImportChats />
+        <ChatsImport />
       ) : showSpinner ? (
         <div className="no-chat">
           <Spinner />

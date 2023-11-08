@@ -9,7 +9,7 @@ import { queryClient } from "../../../core";
 import { useKeysQuery } from "./keys-query";
 
 export function useMessagesQuery(username?: string) {
-  const { privateKey, publicKey } = useKeysQuery();
+  const { privateKey, publicKey, hasKeys } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
 
@@ -47,6 +47,7 @@ export function useMessagesQuery(username?: string) {
     },
     {
       initialData: [],
+      enabled: hasKeys,
       select: (messages) => {
         if (currentChannel) {
           return messages

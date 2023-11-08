@@ -9,3 +9,4 @@ export * from "./update-community-channel";
 export * from "./update-channel-moderator";
 export * from "./fetch-previous-messages";
 export * from "./update-channel-blocked-users";
+export * from "./import-chat-by-key";
