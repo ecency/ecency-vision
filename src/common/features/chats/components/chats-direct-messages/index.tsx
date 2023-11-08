@@ -23,7 +23,7 @@ let zoom: Zoom | null = null;
 export default function ChatsDirectMessages(props: Props) {
   const { directMessages, isScrolled, isScrollToBottom, scrollToBottom } = props;
 
-  const { global, activeUser, deleteDirectMessage } = useMappedStore();
+  const { global, activeUser } = useMappedStore();
   const { receiverPubKey } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);

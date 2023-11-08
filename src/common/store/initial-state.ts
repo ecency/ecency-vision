@@ -15,7 +15,6 @@ import { initialState as notificationsInitialState } from "./notifications";
 import { initialState as entriesInitialState } from "./entries";
 import { initialState as signingKeyInitialState } from "./signing-key";
 import { initialState as persistentPageScrollInitialState } from "./persistent-page-scroll";
-import { initialState as chatInitialState } from "./chat";
 
 const initialState: AppState = {
   global: globalInitialState,
@@ -32,8 +31,7 @@ const initialState: AppState = {
   notifications: notificationsInitialState,
   entries: entriesInitialState,
   signingKey: signingKeyInitialState,
-  persistentPageScroll: persistentPageScrollInitialState,
-  chat: chatInitialState
+  persistentPageScroll: persistentPageScrollInitialState
 };
 
 export default initialState;

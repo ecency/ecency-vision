@@ -38,21 +38,6 @@ import {
   updateNotificationsSettings
 } from "./notifications";
 import { setSigningKey } from "./signing-key";
-import {
-  addDirectMessages,
-  addleftChannels,
-  addPreviousPublicMessages,
-  addProfile,
-  addPublicMessage,
-  deleteDirectMessage,
-  deletePublicMessage,
-  replaceDirectMessage,
-  replacePublicMessage,
-  resetChat,
-  UpdateChannels,
-  verifyDirectMessageSending,
-  verifyPublicMessageSending
-} from "./chat";
 
 // @note Do not use it directly
 export const ACTIONS = {
@@ -97,20 +82,7 @@ export const ACTIONS = {
   setSigningKey,
   updateNotificationsSettings,
   fetchNotificationsSettings,
-  setNotificationsSettingsItem,
-  addDirectMessages,
-  resetChat,
-  addPublicMessage,
-  addProfile,
-  addleftChannels,
-  UpdateChannels,
-  replacePublicMessage,
-  verifyPublicMessageSending,
-  replaceDirectMessage,
-  verifyDirectMessageSending,
-  deletePublicMessage,
-  deleteDirectMessage,
-  addPreviousPublicMessages
+  setNotificationsSettingsItem
 };
 
 export const getActions = () => ({

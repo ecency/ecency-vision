@@ -29,7 +29,7 @@ interface Props {
 let zoom: Zoom | null = null;
 export default function ChatsChannelMessages(props: Props) {
   const { publicMessages, isScrollToBottom, isScrolled, currentChannel, scrollToBottom } = props;
-  const { global, activeUser, deletePublicMessage } = useMappedStore();
+  const { global, activeUser } = useMappedStore();
 
   const { messageServiceInstance, isActiveUserRemoved } = useContext(ChatContext);
 
@@ -120,13 +120,13 @@ export default function ChatsChannelMessages(props: Props) {
         break;
       case 4:
         if (resendMessage) {
-          deletePublicMessage(currentChannel.id, resendMessage?.id);
-          messageServiceInstance?.sendPublicMessage(
-            currentChannel!,
-            resendMessage?.content,
-            [],
-            ""
-          );
+          // // deletePublicMessage(currentChannel.id, resendMessage?.id);
+          // messageServiceInstance?.sendPublicMessage(
+          //   currentChannel!,
+          //   resendMessage?.content,
+          //   [],
+          //   ""
+          // );
         }
         break;
       default:

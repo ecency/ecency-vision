@@ -21,7 +21,6 @@ import signingKey from "./signing-key";
 import persistentPageScroll from "./persistent-page-scroll";
 
 import filterTagExtract from "../helper/filter-tag-extract";
-import chat from "./chat";
 
 let reducers = {
   global,
@@ -38,8 +37,7 @@ let reducers = {
   subscriptions,
   notifications,
   signingKey,
-  persistentPageScroll,
-  chat
+  persistentPageScroll
 };
 
 export let history: History | undefined;

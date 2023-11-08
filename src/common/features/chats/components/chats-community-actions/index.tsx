@@ -14,7 +14,6 @@ import { ChatContext } from "../../chat-context-provider";
 import "./index.scss";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { CommunityModerator } from "../../managers/message-manager-types";
 import { useLeaveCommunityChannel } from "../../mutations";
 import { EditRolesModal } from "./edit-roles-modal";
 import { useChannelsQuery } from "../../queries";
@@ -26,11 +25,10 @@ interface Props {
 }
 
 const ChatsCommunityDropdownMenu = (props: Props) => {
-  const { activeUser, chat } = useMappedStore();
+  const { activeUser } = useMappedStore();
   const { history, from } = props;
   const [step, setStep] = useState(0);
   const [keyDialog, setKeyDialog] = useState(false);
-  const [moderator, setModerator] = useState<CommunityModerator>();
   const [communityAdmins, setCommunityAdmins] = useState<string[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<{ name: string; pubkey: string }[]>([]);
   const [removedUserId, setRemovedUserID] = useState("");

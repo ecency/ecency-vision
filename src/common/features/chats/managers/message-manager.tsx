@@ -1,14 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ActiveUser } from "../../../store/active-user/types";
+import React, { useState } from "react";
 import { NostrKeysType } from "../types";
-import { DirectMessage, Keys, PublicMessage } from "./message-manager-types";
-import MessageService, { MessageEvents } from "../../../helper/message-service";
-import { getPrivateKey, getProfileMetaData } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-context-provider";
 import { usePrevious } from "../../../util/use-previous";
-import { useMessageServiceListener } from "../hooks/use-message-service-listener";
-import { useChannelsQuery, useDirectContactsQuery } from "../queries";
 
 export const setNostrkeys = (keys: NostrKeysType) => {
   const detail: NostrKeysType = {
@@ -20,104 +13,27 @@ export const setNostrkeys = (keys: NostrKeysType) => {
 };
 
 const MessageManager = () => {
-  const {
-    activeUser,
-    addDirectMessages,
-    addPublicMessage,
-    addProfile,
-    addleftChannels,
-    UpdateChannels,
-    replacePublicMessage,
-    verifyPublicMessageSending,
-    replaceDirectMessage,
-    verifyDirectMessageSending,
-    addPreviousPublicMessages,
-    resetChat
-  } = useMappedStore();
-  const { data: directContacts } = useDirectContactsQuery();
-  const { data: channels } = useChannelsQuery();
-
+  const { activeUser } = useMappedStore();
   const prevActiveUser = usePrevious(activeUser);
 
   const [messageServiceReady, setMessageServiceReady] = useState(false);
-  const [keys, setKeys] = useState<Keys>();
-  const [messageService, setMessageService] = useState<MessageService | undefined>(undefined);
-  const [directMessageBuffer, setDirectMessageBuffer] = useState<DirectMessage[]>([]);
-  const [publicMessageBuffer, setPublicMessageBuffer] = useState<PublicMessage[]>([]);
-  const [isCommunityCreated, setIsCommunityCreated] = useState(false);
-  const [replacedPublicMessagesBuffer, setReplacedPublicMessagesBuffer] = useState<string[]>([]);
-  const [replacedDirectMessagesBuffer, setReplacedDirectMessagesBuffer] = useState<string[]>([]);
-
-  const { messageServiceInstance, initMessageServiceInstance, setMessageServiceInstance } =
-    useContext(ChatContext);
-
-  useEffect(() => {
-    if (channels?.length !== 0) {
-      setIsCommunityCreated(true);
-    }
-  }, [channels]);
-
-  useEffect(() => {
-    window.addEventListener("createMSInstance", createMSInstance);
-
-    return () => {
-      window.removeEventListener("createMSInstance", createMSInstance);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (keys?.priv) {
-      const messageService = initMessageServiceInstance(keys);
-      setMessageServiceInstance(messageService);
-      setMessageService(messageService!);
-    } else {
-      setMessageServiceInstance(null);
-    }
-  }, [keys]);
-
-  useEffect(() => {
-    if (activeUser) {
-      getNostrKeys(activeUser);
-    }
-    if (prevActiveUser?.username !== activeUser?.username) {
-      resetChat();
-      getNostrKeys(activeUser!);
-    }
-  }, [activeUser]);
-
-  const createMSInstance = (e: Event) => {
-    const detail = (e as CustomEvent).detail as NostrKeysType;
-    const messageService = initMessageServiceInstance(detail);
-    setMessageServiceInstance(messageService);
-    setMessageService(messageService!);
-  };
-
-  const getNostrKeys = async (activeUser: ActiveUser) => {
-    const profile = await getProfileMetaData(activeUser.username);
-    const noStrPrivKey = getPrivateKey(activeUser.username);
-    const keys = {
-      pub: profile?.nsKey,
-      priv: noStrPrivKey!!
-    };
-    setKeys(keys);
-  };
 
   //Listen for events in an interval.
-  useMessageServiceListener(messageServiceReady, messageService);
+  // useMessageServiceListener(messageServiceReady, messageService);
 
   // // Ready state handler
   const handleReadyState = () => {
     setMessageServiceReady(true);
   };
-
-  useEffect(() => {
-    messageService?.removeListener(MessageEvents.Ready, handleReadyState);
-    messageService?.addListener(MessageEvents.Ready, handleReadyState);
-
-    return () => {
-      messageService?.removeListener(MessageEvents.Ready, handleReadyState);
-    };
-  }, [messageServiceReady, messageService]);
+  //
+  // useEffect(() => {
+  //   messageService?.removeListener(MessageEvents.Ready, handleReadyState);
+  //   messageService?.addListener(MessageEvents.Ready, handleReadyState);
+  //
+  //   return () => {
+  //     messageService?.removeListener(MessageEvents.Ready, handleReadyState);
+  //   };
+  // }, [messageServiceReady, messageService]);
 
   // const checkPublicMessageSending = (channelId: string, data: PublicMessage) => {
   //   setTimeout(() => {
@@ -246,24 +162,6 @@ const MessageManager = () => {
   //     );
   //   };
   // }, [messageService, chat.profiles, chat.publicMessages]);
-
-  useEffect(() => {
-    return () => {
-      messageService?.removeListener(MessageEvents.Ready, handleReadyState);
-      // messageService?.removeListener(
-      //   MessageEvents.PreviousPublicMessages,
-      //   handlePreviousPublicMessages
-      // );
-      // messageService?.removeListener(
-      //   MessageEvents.PublicMessageBeforeSent,
-      //   handlePublicMessageBeforeSent
-      // );
-      // messageService?.removeListener(
-      //   MessageEvents.PublicMessageAfterSent,
-      //   handlePublicMessageAfterSent
-      // );
-    };
-  }, [messageService]);
 
   return <>{}</>;
 };

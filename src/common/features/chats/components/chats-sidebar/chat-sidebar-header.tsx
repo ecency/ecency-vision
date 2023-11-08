@@ -5,7 +5,6 @@ import { _t } from "../../../../i18n";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import React, { useContext } from "react";
 import { ChatContext } from "../../chat-context-provider";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { History } from "history";
 
 interface Props {
@@ -13,12 +12,9 @@ interface Props {
 }
 
 export function ChatSidebarHeader({ history }: Props) {
-  const { resetChat } = useMappedStore();
   const { revealPrivKey, chatPrivKey, setRevealPrivKey } = useContext(ChatContext);
 
-  const handleRefreshChat = () => {
-    resetChat();
-  };
+  const handleRefreshChat = () => {};
 
   return (
     <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] pl-4 pr-2 py-3 gap-4">

@@ -730,7 +730,6 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  resetChat: () => void;
 }
 
 class LoginDialog extends Component<Props> {
@@ -751,7 +750,7 @@ class LoginDialog extends Component<Props> {
   doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
     const profile = await getProfileMetaData(account.name);
 
-    const { global, setActiveUser, updateActiveUser, addUser, resetChat } = this.props;
+    const { global, setActiveUser, updateActiveUser, addUser } = this.props;
 
     // get access token from code
     return hsTokenRenew(hsCode).then((x) => {
@@ -765,9 +764,6 @@ class LoginDialog extends Component<Props> {
 
       // add / update user data
       addUser(user);
-
-      //reset the already stored chat
-      resetChat();
 
       //create new message service instance for newly logged in user
       if (profile && profile.nsKey && getPrivateKey(account.name)) {
@@ -830,8 +826,7 @@ export default ({ history }: Pick<Props, "history">) => {
     setActiveUser,
     updateActiveUser,
     deleteUser,
-    toggleUIProp,
-    resetChat
+    toggleUIProp
   } = useMappedStore();
   const location = useLocation();
 
@@ -843,7 +838,6 @@ export default ({ history }: Pick<Props, "history">) => {
       ui={ui}
       users={users}
       activeUser={activeUser}
-      resetChat={resetChat}
       addUser={addUser}
       setActiveUser={setActiveUser}
       updateActiveUser={updateActiveUser}

@@ -25,7 +25,7 @@ import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
 import { useKeysQuery } from "../../queries/keys-query";
 
 export const ChatPopUp = () => {
-  const { activeUser, global, chat, resetChat } = useMappedStore();
+  const { activeUser, global } = useMappedStore();
 
   const { receiverPubKey, revealPrivKey, hasUserJoinedChat, setRevealPrivKey, setShowSpinner } =
     useContext(ChatContext);
@@ -156,7 +156,6 @@ export const ChatPopUp = () => {
 
   const handleRefreshSvgClick = () => {
     setExpanded(true);
-    resetChat();
     handleBackArrowSvg();
     if (getPrivateKey(activeUser?.username!)) {
       setShowSpinner(true);
