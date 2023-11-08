@@ -38,15 +38,7 @@ interface Props {
 
 let zoom: Zoom | null = null;
 export default function ChatsChannelMessages(props: Props) {
-  const {
-    publicMessages,
-    history,
-    from,
-    isScrollToBottom,
-    isScrolled,
-    currentChannel,
-    scrollToBottom
-  } = props;
+  const { publicMessages, isScrollToBottom, isScrolled, currentChannel, scrollToBottom } = props;
   const {
     chat,
     global,

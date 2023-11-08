@@ -3,63 +3,43 @@ import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
 import ChatsChannelMessages from "../chats-channel-messages";
 import { history } from "../../../../store";
-import React, { useContext } from "react";
-import { ChatContext } from "../../chat-context-provider";
-import { Community } from "../../../../store/communities";
+import React, { useMemo } from "react";
 import { DirectMessage, PublicMessage } from "../../managers/message-manager-types";
-import { useMessagesQuery } from "../../queries";
+import { useChannelsQuery, useMessagesQuery } from "../../queries";
+import { useCommunityCache } from "../../../../core";
 
 interface Props {
-  isCurrentUser: boolean;
-  currentUser: string;
-  isCommunity: boolean;
-  communityName: string;
-  currentCommunity?: Community;
+  username: string;
 }
 
-export function ChatPopupMessagesList({
-  isCommunity,
-  currentUser,
-  isCurrentUser,
-  currentCommunity,
-  communityName
-}: Props) {
-  const { currentChannel, setCurrentChannel } = useContext(ChatContext);
-  const { data: messages } = useMessagesQuery(currentUser);
+export function ChatPopupMessagesList({ username }: Props) {
+  const { data: currentCommunity } = useCommunityCache(username);
+  const { data: messages } = useMessagesQuery(username);
+  const { data: channels } = useChannelsQuery();
+  const currentChannel = useMemo(
+    () => channels?.find((channel) => channel.communityName === currentCommunity?.name),
+    [channels, currentCommunity]
+  );
 
   return (
     <div className="chats">
       {" "}
-      <Link
-        to={
-          isCurrentUser
-            ? `/@${currentUser}`
-            : isCommunity
-            ? `/created/${currentCommunity?.name}`
-            : ""
-        }
-      >
-        <ChatsProfileBox
-          isCommunity={isCommunity}
-          isCurrentUser={isCurrentUser}
-          communityName={communityName}
-          currentUser={currentUser}
-        />
+      <Link to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${username}`}>
+        <ChatsProfileBox communityName={username} currentUser={username} />
       </Link>
-      {isCurrentUser ? (
-        <ChatsDirectMessages
-          directMessages={messages as DirectMessage[]}
-          currentUser={currentUser}
-          isScrollToBottom={false}
-        />
-      ) : (
+      {!!currentChannel ? (
         <ChatsChannelMessages
           history={history!}
-          username={communityName}
+          username={username}
           publicMessages={messages as PublicMessage[]}
           currentChannel={currentChannel!}
           isScrollToBottom={false}
-          currentChannelSetter={setCurrentChannel}
+        />
+      ) : (
+        <ChatsDirectMessages
+          directMessages={messages as DirectMessage[]}
+          currentUser={username}
+          isScrollToBottom={false}
         />
       )}
     </div>

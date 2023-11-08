@@ -3,10 +3,9 @@ import UserAvatar from "../../../components/user-avatar";
 import { dateToFormatted } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
 import { getAccountFull } from "../../../api/hive";
-import { formattedUserName } from "../utils";
 import { useCommunityCache } from "../../../core";
 
-export interface profileData {
+export interface ProfileData {
   joiningData: string;
   about: string | undefined;
   followers: number | undefined;
@@ -15,27 +14,18 @@ export interface profileData {
 }
 
 interface Props {
-  username?: string;
-  isCommunity?: boolean;
-  isCurrentUser?: boolean;
   communityName?: string;
   currentUser?: string;
 }
 
-export default function ChatsProfileBox({
-  username,
-  isCommunity,
-  isCurrentUser,
-  communityName,
-  currentUser
-}: Props) {
-  const [profileData, setProfileData] = useState<profileData>();
+export default function ChatsProfileBox({ communityName, currentUser }: Props) {
+  const [profileData, setProfileData] = useState<ProfileData>();
 
-  const { data: community } = useCommunityCache(username ? username! : communityName!);
+  const { data: community } = useCommunityCache(communityName!);
 
   useEffect(() => {
     fetchProfileData();
-  }, [username, isCommunity, isCurrentUser, communityName, currentUser]);
+  }, [communityName, currentUser]);
 
   const formatFollowers = (count: number | undefined) => {
     if (count) {
@@ -49,44 +39,23 @@ export default function ChatsProfileBox({
   };
 
   const fetchProfileData = async () => {
-    if (username && username?.length !== 0) {
-      if (username?.startsWith("@")) {
-        const response = await getAccountFull(formattedUserName(username));
-        setProfileData({
-          joiningData: response.created,
-          about: response.profile?.about,
-          followers: response.follow_stats?.follower_count,
-          name: response.name,
-          username: response.name
-        });
-      } else {
-        setProfileData({
-          joiningData: community?.created_at!,
-          about: community?.about,
-          followers: community?.subscribers,
-          name: community?.title!,
-          username: community?.name!
-        });
-      }
-    } else {
-      if (isCurrentUser && currentUser?.length !== 0) {
-        const response = await getAccountFull(currentUser!);
-        setProfileData({
-          joiningData: response.created,
-          about: response.profile?.about,
-          followers: response.follow_stats?.follower_count,
-          name: response.name,
-          username: response.name
-        });
-      } else {
-        setProfileData({
-          joiningData: community?.created_at!,
-          about: community?.about,
-          followers: community?.subscribers,
-          name: community?.title!,
-          username: community?.name!
-        });
-      }
+    if (community) {
+      setProfileData({
+        joiningData: community?.created_at!,
+        about: community?.about,
+        followers: community?.subscribers,
+        name: community?.title!,
+        username: community?.name!
+      });
+    } else if (currentUser) {
+      const response = await getAccountFull(currentUser.replace("@", ""));
+      setProfileData({
+        joiningData: response.created,
+        about: response.profile?.about,
+        followers: response.follow_stats?.follower_count,
+        name: response.name,
+        username: response.name
+      });
     }
   };
 

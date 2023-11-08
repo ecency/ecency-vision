@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { History } from "history";
 import ChatsProfileBox from "./chat-profile-box";
@@ -7,28 +7,25 @@ import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
 import ChatsScroller from "./chats-scroller";
 import { CHATPAGE } from "./chat-popup/chat-constants";
-import { ChatContext } from "../chat-context-provider";
 import { classNameObject } from "../../../helper/class-name-object";
 import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
 import { useMessagesQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
+import { useFetchPreviousMessages } from "../mutations";
 
 interface Props {
   username: string;
   history: History;
   currentChannel: Channel;
-  inProgress: boolean;
   setInProgress: (d: boolean) => void;
 }
 
 export default function ChatsMessagesView({
   username,
   currentChannel,
-  inProgress,
   setInProgress,
   history
 }: Props) {
-  const { messageServiceInstance } = useContext(ChatContext);
   const { data: messages } = useMessagesQuery(username.replace("@", ""));
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
@@ -40,9 +37,16 @@ export default function ChatsMessagesView({
   const [hasMore, setHasMore] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingPreviousMessages } =
+    useFetchPreviousMessages(currentChannel, () => {});
+
   useEffect(() => {
     isDirectUserOrCommunity();
   }, []);
+
+  useEffect(() => {
+    setInProgress(isFetchingPreviousMessages);
+  }, [isFetchingPreviousMessages]);
 
   useEffect(() => {
     if (messages.length < 45) {
@@ -64,20 +68,16 @@ export default function ChatsMessagesView({
   }, [isTop]);
 
   const fetchPrevMessages = () => {
-    if (!hasMore || inProgress) return;
+    if (!hasMore) return;
 
     setInProgress(true);
-    messageServiceInstance
-      ?.fetchPrevMessages(currentChannel!.id, messages[0].created)
-      .then((num) => {
-        if (num < 25) {
+    fetchPreviousMessages()
+      .then((events) => {
+        if (events.length < 25) {
           setHasMore(false);
         }
       })
-      .finally(() => {
-        setInProgress(false);
-        setIsTop(false);
-      });
+      .finally(() => setIsTop(false));
   };
 
   const isDirectUserOrCommunity = () => {
@@ -122,7 +122,7 @@ export default function ChatsMessagesView({
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
           target="_blank"
         >
-          <ChatsProfileBox username={username} />
+          <ChatsProfileBox communityName={username} currentUser={username} />
         </Link>
         {communityName.length !== 0 ? (
           <>

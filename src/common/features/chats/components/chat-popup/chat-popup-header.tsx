@@ -14,7 +14,6 @@ import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";
 import React, { useContext } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { Community } from "../../../../store/communities";
 import { ChatContext } from "../../chat-context-provider";
 
 interface Props {
@@ -30,7 +29,6 @@ interface Props {
   handleRefreshSvgClick: () => void;
   handleExtendedView: () => void;
   setExpanded: (v: boolean) => void;
-  currentCommunity?: Community;
 }
 
 export function ChatPopupHeader({
@@ -45,8 +43,7 @@ export function ChatPopupHeader({
   handleMessageSvgClick,
   handleRefreshSvgClick,
   handleExtendedView,
-  setExpanded,
-  currentCommunity
+  setExpanded
 }: Props) {
   const { revealPrivKey, activeUserKeys, hasUserJoinedChat, setRevealPrivKey } =
     useContext(ChatContext);
@@ -67,17 +64,14 @@ export function ChatPopupHeader({
         )}
         <div className="flex items-center gap-3" onClick={() => setExpanded(!expanded)}>
           {(currentUser || isCommunity) && (
-            <UserAvatar
-              username={isCurrentUser ? currentUser : (isCommunity && currentCommunity?.name) || ""}
-              size="small"
-            />
+            <UserAvatar username={isCurrentUser ? currentUser : communityName || ""} size="small" />
           )}
 
           <div className="text-lg truncate max-w-[180px] font-semibold">
             {currentUser
               ? currentUser
               : isCommunity
-              ? currentCommunity?.title
+              ? communityName
               : showSearchUser
               ? _t("chat.new-message")
               : revealPrivKey

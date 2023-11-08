@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { history } from "../../../../store";
-import { Community } from "../../../../store/communities";
-import { ChannelUpdate } from "../../managers/message-manager-types";
 import Tooltip from "../../../../components/tooltip";
 import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
@@ -10,9 +8,8 @@ import ChatInput from "../chat-input";
 import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
-import { getCommunity } from "../../../../api/bridge";
 import "./index.scss";
-import { getPrivateKey, getUserChatPublicKey } from "../../utils";
+import { getPrivateKey } from "../../utils";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
@@ -24,9 +21,9 @@ import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupDirectMessages } from "./chat-popup-direct-messages";
 import { setNostrkeys } from "../../managers/message-manager";
-import { useJoinChat } from "../../mutations/join-chat";
 import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
+import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
 
 export const ChatPopUp = () => {
   const { activeUser, global, chat, resetChat } = useMappedStore();
@@ -35,10 +32,7 @@ export const ChatPopUp = () => {
     messageServiceInstance,
     revealPrivKey,
     activeUserKeys,
-    showSpinner,
     hasUserJoinedChat,
-    currentChannel,
-    setCurrentChannel,
     setRevealPrivKey,
     setShowSpinner
   } = useContext(ChatContext);
@@ -67,17 +61,23 @@ export const ChatPopUp = () => {
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
-  const [currentCommunity, setCurrentCommunity] = useState<Community>();
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const currentChannel = useMemo(
+    () => channels?.find((channel) => channel.communityName === communityName),
+    [communityName, channels]
+  );
   const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
   const canSendMessage = useMemo(
     () =>
       !currentUser && hasUserJoinedChat && !!activeUserKeys?.priv && !isCommunity && !revealPrivKey,
     [currentUser, hasUserJoinedChat, activeUserKeys, isCommunity, revealPrivKey]
   );
+
+  const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingMore } =
+    useFetchPreviousMessages(currentChannel);
 
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
@@ -95,36 +95,6 @@ export const ChatPopUp = () => {
       setCommunityName("");
     }
   }, [leftCommunityChannelsIds]);
-
-  // todo ???
-  useEffect(() => {
-    const updated: ChannelUpdate = chat.updatedChannel
-      .filter((x) => x.channelId === currentChannel?.id!)
-      .sort((a, b) => b.created - a.created)[0];
-    if (currentChannel && updated) {
-      // TODO: check that updated channel affecting messagse
-      // const publicMessages: PublicMessage[] = fetchCommunityMessages(
-      //   chat.publicMessages,
-      //   currentChannel,
-      //   updated?.hiddenMessageIds
-      // );
-      // const messages = publicMessages.sort((a, b) => a.created - b.created);
-      // setPublicMessages(messages);
-      const channel = {
-        name: updated.name,
-        about: updated.about,
-        picture: updated.picture,
-        communityName: updated.communityName,
-        communityModerators: updated.communityModerators,
-        id: updated.channelId,
-        creator: updated.creator,
-        created: currentChannel?.created!,
-        hiddenMessageIds: updated.hiddenMessageIds,
-        removedUserIds: updated.removedUserIds
-      };
-      setCurrentChannel(channel);
-    }
-  }, [chat.updatedChannel]);
 
   // Fetching previous messages when scrol achieved top
   useEffect(() => {
@@ -155,61 +125,20 @@ export const ChatPopUp = () => {
 
   useEffect(() => {
     if (isCommunity && show) {
-      fetchCommunity();
-
       scrollerClicked();
     }
   }, [isCommunity, communityName, show]);
 
-  useEffect(() => {
-    if (currentUser) {
-      const isCurrentUserFound = directContacts?.find((contact) => contact.name === currentUser);
-      if (isCurrentUserFound) {
-        setReceiverPubKey(isCurrentUserFound.pubkey);
-      } else {
-        setInProgress(true);
-        fetchCurrentUserData();
-      }
-
-      if (!messageServiceInstance) {
-        setNostrkeys(activeUserKeys!);
-      }
-    } else {
-      setInProgress(false);
-    }
-  }, [currentUser]);
-
-  const fetchCommunity = async () => {
-    const community = await getCommunity(communityName, activeUser?.username);
-    setCurrentCommunity(community!);
-  };
-
-  const fetchCurrentUserData = async () => {
-    const nsKey = await getUserChatPublicKey(currentUser);
-    if (nsKey) {
-      setReceiverPubKey(nsKey);
-    } else {
-      setReceiverPubKey("");
-    }
-    setInProgress(false);
-  };
-
   const fetchPrevMessages = () => {
-    if (!hasMore || inProgress) return;
+    if (!hasMore) return;
 
-    setInProgress(true);
-    // todo: make it infinite query
-    messageServiceInstance
-      ?.fetchPrevMessages(currentChannel!.id, messages[0].created)
-      .then((num) => {
-        if (num < 25) {
+    fetchPreviousMessages()
+      .then((events) => {
+        if (events.length < 25) {
           setHasMore(false);
         }
       })
-      .finally(() => {
-        setInProgress(false);
-        setIsTop(false);
-      });
+      .finally(() => setIsTop(false));
   };
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
@@ -303,9 +232,8 @@ export const ChatPopUp = () => {
             handleMessageSvgClick={handleMessageSvgClick}
             handleRefreshSvgClick={handleRefreshSvgClick}
             showSearchUser={showSearchUser}
-            currentCommunity={currentCommunity}
           />
-          {inProgress && <LinearProgress />}
+          {(inProgress || isFetchingMore) && <LinearProgress />}
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
@@ -316,12 +244,7 @@ export const ChatPopUp = () => {
             {hasUserJoinedChat && !revealPrivKey ? (
               <>
                 {currentUser.length !== 0 || communityName.length !== 0 ? (
-                  <ChatPopupMessagesList
-                    isCurrentUser={isCurrentUser}
-                    currentUser={currentUser}
-                    isCommunity={isCommunity}
-                    communityName={communityName}
-                  />
+                  <ChatPopupMessagesList username={currentUser ? currentUser : communityName} />
                 ) : showSearchUser ? (
                   <ChatPopupSearchUser setCurrentUser={setCurrentUser} />
                 ) : (

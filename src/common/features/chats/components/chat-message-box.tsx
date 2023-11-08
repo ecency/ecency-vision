@@ -42,7 +42,7 @@ export default function ChatsMessagesBox(props: Props) {
 
   const currentChannel = useMemo(
     () => channels?.find((c) => c.communityName === community?.name),
-    [channels]
+    [channels, community]
   );
   const hasCommunityChat = useMemo(() => !!communityChannel, [communityChannel]);
   const hasLeftCommunity = useMemo(
@@ -80,7 +80,6 @@ export default function ChatsMessagesBox(props: Props) {
                 history={props.history}
                 username={username}
                 currentChannel={currentChannel!}
-                inProgress={inProgress}
                 setInProgress={setInProgress}
               />
             </>

@@ -24,8 +24,7 @@ export default function ChatsDirectMessages(props: Props) {
   const { directMessages, currentUser, isScrolled, isScrollToBottom, scrollToBottom } = props;
 
   const { global, activeUser, deleteDirectMessage } = useMappedStore();
-  const { activeUserKeys, messageServiceInstance, windowWidth, receiverPubKey } =
-    useContext(ChatContext);
+  const { activeUserKeys, messageServiceInstance, receiverPubKey } = useContext(ChatContext);
 
   let prevGlobal = usePrevious(global);
   const [step, setStep] = useState(0);
@@ -82,8 +81,6 @@ export default function ChatsDirectMessages(props: Props) {
           <>
             {directMessages?.map((msg, i) => {
               const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
-              const isSameUser = checkContiguousMessage(msg, i, directMessages);
-
               return (
                 <React.Fragment key={msg.id}>
                   {dayAndMonth && (
@@ -96,7 +93,7 @@ export default function ChatsDirectMessages(props: Props) {
                   <ChatMessageItem
                     type={msg.creator !== activeUserKeys?.pub ? "receiver" : "sender"}
                     message={msg}
-                    isSameUser={isSameUser}
+                    isSameUser={checkContiguousMessage(msg, i, directMessages)}
                   />
                 </React.Fragment>
               );

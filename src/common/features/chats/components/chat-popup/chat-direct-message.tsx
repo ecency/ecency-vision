@@ -4,7 +4,7 @@ import UserAvatar from "../../../../components/user-avatar";
 
 interface Props {
   username: string;
-  lastMessage: string;
+  lastMessage?: string;
   userClicked: (username: string) => void;
 }
 
