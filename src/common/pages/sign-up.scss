@@ -155,6 +155,43 @@
         }
       }
     }
+    .google-signup-btn {
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid #dcdcdc;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+      color: #5f6368;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      height: 39px;
+      line-height: 36px;
+      margin-bottom: 12px;
+      padding: 0 24px;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+    }
+    .google-signup-btn:hover {
+      background-color: #f5f5f5;
+    }
+    .google-icon-wrapper {
+      display: inline-block;
+      height: 18px;
+      margin-right: 10px;
+      width: 18px;
+    }
+    .google-icon {
+      border-radius: 2px;
+      height: 100%;
+      width: 100%;
+    }
+    .btn-text {
+      margin: 0;
+      padding: 0;
+    }
   }
 
   .card {
