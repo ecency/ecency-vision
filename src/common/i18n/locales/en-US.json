@@ -1957,7 +1957,7 @@
       "what-are-tags-header": "What are tags or topics?",
       "what-are-tags-body": "<p>A tag is a description of the assigned content, used by search engines to identify and provide accurate search results. Tags must be in lowercase letters and cannot contain spaces, but hyphenated words with a single dash are acceptable.</p>",
       "how-use-tags-header": "How to use tags?",
-      "how-use-tags-body": "<p>Users have the freedom to create their own tags, but it is important to choose a relevant and useful tag in order to make your post easily discoverable. For instance, using the "introduction" tag can make your first introduction post popular. It is crucial to use tags that are related to your post to avoid receiving downvotes for mislabeling.</p>",
+      "how-use-tags-body": "<p>Users have the freedom to create their own tags, but it is important to choose a relevant and useful tag in order to make your post easily discoverable. For instance, using the 'introduction' tag can make your first introduction post popular. It is crucial to use tags that are related to your post to avoid receiving downvotes for mislabeling.</p>",
       "why-publish-gray-header": "Why is the Publish button grayed out?",
       "why-publish-gray-body": "<p>Once you have finished writing your post, make sure that you have selected a suitable title and at least one valid tag. If you forget to do so, the Publish button will remain grayed out and you will not be able to proceed.</p>",
       "what-links-show-header": "What do the Trending, Hot, New, Rising and Controversial links show?",
@@ -2075,9 +2075,9 @@
       "what-delegated-HP-header": "What is Delegated Hive Power?",
       "what-delegated-HP-body": "<p>When you delegate Hive power you make a portion of your HIVE Power available to another user. Delegated Hive Power increases Voting Powe, Curation Rewards and Recourse Credits of that account. When a delegation is cancelled the HIVE Power will only be available again after 7 days.</p>",
       "what-information-feed-header": "What kind of information contain Feed?",
-      "what-information-feed-body":  "<p>The feed consists of a collection of posts with their titles, the community they were published in, the rewards they received, and the number of upvotes and comments they received. To perform further actions on a post, simply click on the three dots located below it.</p>",
+      "what-information-feed-body": "<p>The feed consists of a collection of posts with their titles, the community they were published in, the rewards they received, and the number of upvotes and comments they received. To perform further actions on a post, simply click on the three dots located below it.</p>",
       "what-hot-feed-header": "What does the Hot feed show?",
-       "what-hot-feed-body": "<p>The Hot Feed displays the most popular posts from the past few hours.</p>,
+      "what-hot-feed-body": "<p>The Hot Feed displays the most popular posts from the past few hours.</p>"
     }
   },
   "contributors": {

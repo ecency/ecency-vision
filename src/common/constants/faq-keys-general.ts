@@ -22,7 +22,7 @@ export const faqKeysGeneral = [
   "what-do-hive-tokens",
   "value-hive-hbd",
   "what-are-hive",
-  "what-are-hive-power",
+  "what-is-hive-power",
   "what-are-hd",
   "what-delegated-hp",
   "what-powering-up",
