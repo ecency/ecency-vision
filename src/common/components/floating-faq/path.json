@@ -1,112 +1,41 @@
 {
   "faqPaths": [
     {
-      "path": "/hot$",
-      "suggestions": [
-        "what-hot-feed",
-        "what-information-feed",
-        "what-is-ecency",
-        "what-is-difference",
-        "what-is-hive"
-      ]
-    },
-    {
-      "path": "/created$",
-      "suggestions": [
-        "what-information-profile",
-        "why-score-going-down",
-        "what-new-feed",
-        "what-mean-promoted",
-        "how-change-design"
-      ]
-    },
-    {
-      "path": "/trending$",
-      "suggestions": [
-        "what-trending-feed",
-        "how-to-sort-feed",
-        "what-links-show",
-        "what-are-tags",
-        "how-use-tags"
-      ]
-    },
-    {
-      "path": "/rising$",
-      "suggestions": [
-        "what-rising-feed",
-        "how-sort-rising",
-        "how-voting-works",
-        "what-voting-power",
-        "how-many-vote"
-      ]
-    },
-    {
-      "path": "/controversial$",
-      "suggestions": [
-        "what-controversial-feed",
-        "how-sort-controversial",
-        "why-choose-ecency",
-        "how-ecency-works"
-      ]
-    },
-    {
-      "path": "/discover$",
+      "path": "/discover",
       "suggestions": ["find-friends", "accounts-included-leaderboard"]
     },
     {
-      "path": "/communities$",
+      "path": "/@.+/(blog|posts|wallet|points|engine|permissions|spk)",
+      "suggestions": [
+        "what-are-hd",
+        "what-delegated-hp",
+        "what-powering-up",
+        "what-powering-down",
+        "what-are-rc"
+      ]
+    },
+    {
+      "path": "/community",
       "suggestions": [
         "find-communities",
         "what-communities",
-        "how-create-community",
         "how-post-community",
-        "leave-community"
+        "leave-community",
+        "how-create-community"
       ]
     },
     {
-      "path": "/witnesses$",
+      "path": "/@.+/(wallet)",
       "suggestions": [
-        "what-hive-witnesses",
-        "how-vote-witnesses",
-        "how-many-witnesses",
-        "sort-witnesses-page"
-      ]
-    },
-    {
-      "path": "/proposals$",
-      "suggestions": ["how-dhf-work", "how-vote-proposals"]
-    },
-    {
-      "path": "/submit",
-      "suggestions": [
-        "what-are-tags",
-        "how-use-tags",
-        "add-images-videos",
-        "what-thumbnail-image",
-        "how-set-beneficiaries"
-      ]
-    },
-    {
-      "path": "/search$",
-      "suggestions": ["how-to-search", "what-appears-search"]
-    },
-    {
-      "path": "/market$",
-      "suggestions": ["how-market-works", "how-to-swap-header"]
-    },
-    {
-      "path": "/@.+/wallet",
-      "suggestions": [
-        "what-are-hive",
+        "what-ecency-wallet",
         "what-are-hd",
-        "what-is-hive-power",
+        "what-delegated-hp",
         "what-powering-up",
-        "what-powering-down",
-        "what-delegated-hp"
+        "what-powering-down"
       ]
     },
     {
-      "path": "/@.+/points",
+      "path": "/@.+/(points)",
       "suggestions": [
         "what-is-points",
         "where-tokens-come",
@@ -116,38 +45,107 @@
       ]
     },
     {
-      "path": "/@.+/engine",
+      "path": "/@.+/(engine)",
       "suggestions": ["what-engine-tokens", "what-staking", "how-to-stake", "how-to-transfer"]
     },
     {
-      "path": "/@.+/posts",
-      "suggestions": ["what-can-post", "how-see-rewards", "when-claim-rewards", "who-are-curators"]
+      "path": "/@.+/(posts)",
+      "suggestions": [
+        "what-can-post",
+        "how-see-rewards",
+        "when-claim-rewards",
+        "what-curation",
+        "who-are-curators"
+      ]
     },
     {
-      "path": "/@.+/feed",
+      "path": "/submit",
       "suggestions": [
-        "how-to-sort-feed",
-        "what-mean-promoted",
-        "what-is-reblogging",
-        "exclude-reblogs-feed",
+        "how-set-beneficiaries",
+        "what-are-tags",
+        "how-use-tags",
+        "add-images-videos",
+        "what-thumbnail-image"
+      ]
+    },
+    {
+      "path": "/feed",
+      "suggestions": [
+        "what-friends-feed",
+        "what-is-reblog",
+        "how-to-reblog",
+        "how-sort-feed",
         "what-dollar-amount"
       ]
     },
     {
-      "path": "/@.+/settings",
-      "suggestions": ["can-change-username", "can-delete-account"]
+      "path": "/settings",
+      "suggestions": ["can-change-username", "can-delete-account", "why-different-keys"]
     },
     {
-      "path": "/@.+/referrals",
-      "suggestions": ["what-are-referrals", "how-referrals-work"]
+      "path": "/trending",
+      "suggestions": [
+        "what-trending-feed",
+        "how-sort-trending",
+        "what-are-tags",
+        "how-use-tags",
+        "how-search-tags"
+      ]
     },
     {
-      "path": "/.+/@.+/.+",
-      "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
+      "path": "/hot",
+      "suggestions": [
+        "what-hot-feed",
+        "what-information-feed",
+        "what-is-ecency",
+        "what-is-difference",
+        "what-is-hive"
+      ]
     },
-
     {
-      "path": "/@.+/blog",
+      "path": "/created",
+      "suggestions": [
+        "what-new-feed",
+        "what-mean-promoted",
+        "how-change-design",
+        "what-is-deck",
+        "what-deck-types"
+      ]
+    },
+    {
+      "path": "/rising",
+      "suggestions": [
+        "what-rising-feed",
+        "how-sort-rising",
+        "how-voting-works",
+        "what-voting-power",
+        "how-many-vote"
+      ]
+    },
+    {
+      "path": "/controversial",
+      "suggestions": [
+        "what-controversial-feed",
+        "how-sort-controversial",
+        "why-choose-ecency",
+        "how-ecency-works"
+      ]
+    },
+    {
+      "path": "/witnesses",
+      "suggestions": [
+        "what-hive-witnesses",
+        "how-vote-witnesses",
+        "how-many-witnesses",
+        "sort-witnesses-page"
+      ]
+    },
+    {
+      "path": "/proposals",
+      "suggestions": ["how-dhf-work", "how-vote-proposals"]
+    },
+    {
+      "path": "/@.+/",
       "suggestions": [
         "what-my-blog",
         "what-information-profile",
@@ -157,7 +155,7 @@
       ]
     },
     {
-      "path": "/@.+/comments",
+      "path": "/@.+/(comments)",
       "suggestions": [
         "how-find-comments",
         "how-often-comment",
@@ -166,7 +164,7 @@
       ]
     },
     {
-      "path": "/@.+/replies",
+      "path": "/@.+/(replies)",
       "suggestions": [
         "what-information-available",
         "how-to-search",
@@ -174,6 +172,10 @@
         "how-to-follow",
         "how-find-information-followers"
       ]
+    },
+    {
+      "path": "/market",
+      "suggestions": ["how-market-works", "how-to-swap-header"]
     }
   ]
 }
