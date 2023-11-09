@@ -15,10 +15,17 @@ interface Props {
   message: Message;
   isSameUser: boolean;
   currentChannel?: Channel;
+  onContextMenu?: () => void;
 }
 
 // TODO: Add resend
-export function ChatMessageItem({ type, message, isSameUser, currentChannel }: Props) {
+export function ChatMessageItem({
+  type,
+  message,
+  isSameUser,
+  currentChannel,
+  onContextMenu
+}: Props) {
   const { global } = useMappedStore();
 
   const isFailed = useMemo(() => message.sent === 2, [message]);
@@ -43,6 +50,13 @@ export function ChatMessageItem({ type, message, isSameUser, currentChannel }: P
           failed: isFailed,
           sending: isSending
         })}
+        onContextMenu={(e) => {
+          if (onContextMenu) {
+            e.stopPropagation();
+            e.preventDefault();
+            onContextMenu();
+          }
+        }}
       >
         {message.sent === 2 && (
           <Tooltip content={_t("g.resend")}>
@@ -59,7 +73,7 @@ export function ChatMessageItem({ type, message, isSameUser, currentChannel }: P
         )}
         <div
           className={classNameObject({
-            "text-sm p-2.5 rounded-b-2xl min-w-[4rem]": !isGif && !isImage,
+            "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage,
             "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender",
             "bg-gray-200 rounded-tr-2xl": type === "receiver",
             "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage,

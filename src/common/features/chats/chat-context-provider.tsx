@@ -15,7 +15,6 @@ interface Context {
   receiverPubKey: string;
   messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
-  currentChannel: Channel | null;
   windowWidth: number;
   isActiveUserRemoved: boolean;
   setCurrentChannel: (channel: Channel) => void;
@@ -38,7 +37,6 @@ export const ChatContext = React.createContext<Context>({
   receiverPubKey: "",
   messageServiceInstance: null,
   hasUserJoinedChat: false,
-  currentChannel: null,
   windowWidth: 0,
   isActiveUserRemoved: false,
   setCurrentChannel: () => {},
@@ -127,7 +125,6 @@ export const ChatContextProvider = (props: Props) => {
           chatPrivKey,
           messageServiceInstance,
           hasUserJoinedChat,
-          currentChannel,
           windowWidth,
           isActiveUserRemoved,
           setCurrentChannel,

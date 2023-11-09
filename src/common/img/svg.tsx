@@ -2032,6 +2032,8 @@ export const hideSvg = (
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
+    width={16}
+    height={16}
   >
     <path
       strokeLinecap="round"

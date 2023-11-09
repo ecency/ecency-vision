@@ -1,41 +1,47 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import mediumZoom, { Zoom } from "medium-zoom";
-import { Channel, PublicMessage } from "../../managers/message-manager-types";
-import { History } from "history";
-import { useMappedStore } from "../../../../store/use-mapped-store";
+import { Channel, PublicMessage } from "../managers/message-manager-types";
+import { useMappedStore } from "../../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
-import { _t } from "../../../../i18n";
-import ChatsConfirmationModal from "../chats-confirmation-modal";
-import { error } from "../../../../components/feedback";
-import { Theme } from "../../../../store/global/types";
-import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
-import { ChatContext } from "../../chat-context-provider";
-
-import "./index.scss";
-import { ChatMessageItem } from "../chat-message-item";
-import { useKeysQuery } from "../../queries/keys-query";
+import { _t } from "../../../i18n";
+import ChatsConfirmationModal from "./chats-confirmation-modal";
+import { error } from "../../../components/feedback";
+import { Theme } from "../../../store/global/types";
+import { checkContiguousMessage, formatMessageDateAndDay } from "../utils";
+import { ChatContext } from "../chat-context-provider";
+import { ChatMessageItem } from "./chat-message-item";
+import { useKeysQuery } from "../queries/keys-query";
+import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
+import { hideSvg, removeUserSvg } from "../../../img/svg";
+import { useHideMessageInChannel } from "../mutations";
+import { Spinner } from "@ui/spinner";
 
 interface Props {
   publicMessages: PublicMessage[];
   currentChannel: Channel;
-  username: string;
-  from?: string;
-  history: History;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   scrollToBottom?: () => void;
 }
 
 let zoom: Zoom | null = null;
-export default function ChatsChannelMessages(props: Props) {
-  const { publicMessages, isScrollToBottom, isScrolled, currentChannel, scrollToBottom } = props;
+
+export function ChatsChannelMessages({
+  publicMessages,
+  isScrollToBottom,
+  isScrolled,
+  currentChannel,
+  scrollToBottom
+}: Props) {
   const { global, activeUser } = useMappedStore();
 
   const { messageServiceInstance, isActiveUserRemoved } = useContext(ChatContext);
-
   let prevGlobal = usePrevious(global);
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
+
+  // Message where users interacted with context menu
+  const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
 
   const [step, setStep] = useState(0);
   const [removedUserId, setRemovedUserID] = useState("");
@@ -43,6 +49,17 @@ export default function ChatsChannelMessages(props: Props) {
   const [resendMessage, setResendMessage] = useState<PublicMessage>();
 
   const { publicKey } = useKeysQuery();
+
+  const { mutateAsync: hideMessage, isLoading: isHideMessageLoading } =
+    useHideMessageInChannel(currentChannel);
+
+  const messages = useMemo(
+    () =>
+      publicMessages.filter((m) =>
+        currentChannel.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
+      ),
+    [publicMessages, currentChannel]
+  );
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -52,13 +69,13 @@ export default function ChatsChannelMessages(props: Props) {
   }, [global.theme, activeUser]);
 
   useEffect(() => {
-    if (publicMessages.length !== 0) {
+    if (messages.length !== 0) {
       zoomInitializer();
     }
-    if (!isScrollToBottom && publicMessages.length !== 0 && !isScrolled) {
+    if (!isScrollToBottom && messages.length !== 0 && !isScrolled) {
       scrollToBottom && scrollToBottom();
     }
-  }, [publicMessages, isScrollToBottom, channelMessagesRef]);
+  }, [messages, isScrollToBottom, channelMessagesRef]);
 
   useEffect(() => {
     if (currentChannel) {
@@ -145,31 +162,55 @@ export default function ChatsChannelMessages(props: Props) {
   return (
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
-        {publicMessages.length !== 0 &&
-          publicMessages.map((pMsg, i) => {
-            const dayAndMonth = formatMessageDateAndDay(pMsg, i, publicMessages);
+        {messages.map((message, i) => (
+          <React.Fragment key={message.id}>
+            {formatMessageDateAndDay(message, i, messages) && (
+              <div className="custom-divider">
+                <span className="flex justify-center items-center mt-3 text-gray-600 dark:text-gray-400 my-4 text-sm">
+                  {formatMessageDateAndDay(message, i, messages)}
+                </span>
+              </div>
+            )}
 
-            const isSameUserMessage = checkContiguousMessage(pMsg, i, publicMessages);
-
-            return (
-              <React.Fragment key={pMsg.id}>
-                {dayAndMonth && (
-                  <div className="custom-divider">
-                    <span className="flex justify-center items-center mt-3 custom-divider-text">
-                      {dayAndMonth}
-                    </span>
-                  </div>
-                )}
-
-                <ChatMessageItem
-                  currentChannel={currentChannel}
-                  type={pMsg.creator !== publicKey ? "receiver" : "sender"}
-                  message={pMsg}
-                  isSameUser={isSameUserMessage}
+            <Dropdown
+              show={currentInteractingMessageId === message.id}
+              setShow={(v) =>
+                setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
+              }
+              closeOnClickOutside={false}
+            >
+              <ChatMessageItem
+                currentChannel={currentChannel}
+                type={message.creator !== publicKey ? "receiver" : "sender"}
+                message={message}
+                isSameUser={checkContiguousMessage(message, i, messages)}
+                onContextMenu={() => {
+                  if (currentChannel.communityName === activeUser?.username) {
+                    setCurrentInteractingMessageId(message.id);
+                  }
+                }}
+              />
+              <DropdownMenu
+                className="top-[70%]"
+                align={message.creator === publicKey ? "right" : "left"}
+              >
+                <DropdownItemWithIcon
+                  icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
+                  label={_t("chat.hide-message")}
+                  onClick={() =>
+                    hideMessage({
+                      hide:
+                        currentChannel.hiddenMessageIds?.some((id) => id === message.id) === false,
+                      messageId: message.id
+                    })
+                  }
                 />
-              </React.Fragment>
-            );
-          })}
+                <DropdownItemWithIcon icon={removeUserSvg} label={_t("chat.block-author")} />
+              </DropdownMenu>
+            </Dropdown>
+          </React.Fragment>
+        ))}
+        {/*TODO: CHeck it in messages query*/}
         {isActiveUserRemoved && (
           <span className="flex justify-center items-center mt-3">
             You have been blocked from this community

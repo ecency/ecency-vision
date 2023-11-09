@@ -77,7 +77,6 @@ export default function ChatsMessagesBox(props: Props) {
               <ChatsMessagesHeader username={username} history={props.history} />
               {inProgress && <LinearProgress />}
               <ChatsMessagesView
-                history={props.history}
                 username={username}
                 currentChannel={currentChannel!}
                 setInProgress={setInProgress}

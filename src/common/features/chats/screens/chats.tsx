@@ -43,18 +43,21 @@ export const Chats = (props: Props) => {
           channel.communityName === props.match.params.username &&
           !leftCommunityChannelsIds?.includes(channel.name)
       ),
-    [channels, leftCommunityChannelsIds]
+    [channels, leftCommunityChannelsIds, props.match.params.username]
   );
 
-  const isReady = useMemo(() => !!(activeUser && publicKey && privateKey), [publicKey, privateKey]);
+  const isReady = useMemo(
+    () => !!(activeUser && publicKey && privateKey),
+    [publicKey, privateKey, activeUser]
+  );
   const isShowManageKey = useMemo(() => isReady && revealPrivKey, [isReady, revealPrivKey]);
   const isShowChatRoom = useMemo(
     () => isReady && !showSpinner && (!!receiverPubKey || isChannel) && !revealPrivKey,
-    [isReady, showSpinner, receiverPubKey, revealPrivKey]
+    [isReady, showSpinner, receiverPubKey, revealPrivKey, isChannel]
   );
   const isShowDefaultScreen = useMemo(
     () => isReady && !receiverPubKey && !isChannel && !revealPrivKey && !showSpinner,
-    [isReady, receiverPubKey, revealPrivKey, showSpinner]
+    [isReady, receiverPubKey, revealPrivKey, showSpinner, isChannel]
   );
   const isShowImportChats = useMemo(() => !isReady && !showSpinner, [isReady, showSpinner]);
 

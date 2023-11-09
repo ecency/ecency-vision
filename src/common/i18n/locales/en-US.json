@@ -1881,7 +1881,9 @@
     "extended-view": "Extended View",
     "you-haven-t-joined": "You haven't joined the chat yet. Please join the chat to start chatting.",
     "invalid-private-key": "Invalid private key",
-    "enter-username": "Enter temporary username"
+    "enter-username": "Enter temporary username",
+    "hide-message": "Hide message",
+    "block-author": "Block author"
   },
   "add-image": {
     "title": "Add Image",

@@ -1,31 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { History } from "history";
 import ChatsProfileBox from "./chat-profile-box";
-import ChatsChannelMessages from "./chats-channel-messages";
 import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
 import ChatsScroller from "./chats-scroller";
-import { CHATPAGE } from "./chat-popup/chat-constants";
 import { classNameObject } from "../../../helper/class-name-object";
 import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
 import { useMessagesQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
 import { useFetchPreviousMessages } from "../mutations";
+import { ChatsChannelMessages } from "./chat-channel-messages";
 
 interface Props {
   username: string;
-  history: History;
   currentChannel: Channel;
   setInProgress: (d: boolean) => void;
 }
 
-export default function ChatsMessagesView({
-  username,
-  currentChannel,
-  setInProgress,
-  history
-}: Props) {
+export default function ChatsMessagesView({ username, currentChannel, setInProgress }: Props) {
   const { data: messages } = useMessagesQuery(username.replace("@", ""));
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
@@ -127,12 +119,9 @@ export default function ChatsMessagesView({
         {communityName.length !== 0 ? (
           <>
             <ChatsChannelMessages
-              username={username}
-              history={history}
               publicMessages={messages as PublicMessage[]}
               currentChannel={currentChannel!}
               isScrollToBottom={isScrollToBottom}
-              from={CHATPAGE}
               isScrolled={isScrolled}
               scrollToBottom={scrollToBottom}
             />
