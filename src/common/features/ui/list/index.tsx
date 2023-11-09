@@ -39,8 +39,7 @@ export function ListItem(props: ListItemProps) {
     <div
       {...nativeProps}
       className={classNameObject({
-        "ececny-list-item text-sm text-gray-600 border-b border-[--border-color] last:border-b-0":
-          true,
+        "list-item text-sm text-gray-600 border-b border-[--border-color] last:border-b-0": true,
         "px-2 py-3": props.small ?? false,
         "px-3 py-4": !props.small,
         "rounded-xl border border-[--border-color] bg-gray-100 dark:bg-gray-900": props.styledDefer,
