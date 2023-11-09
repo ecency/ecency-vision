@@ -17,6 +17,7 @@ import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl } from "@ui/input";
 import { List, ListItem } from "@ui/list";
+import { Badge } from "@ui/badge";
 
 interface Voter {
   name: string;
@@ -200,34 +201,35 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
                 const strProxyHp = numeral(x.proxyHp).format("0.00,");
 
                 return (
-                  <ListItem styledDefer={true} className="list-item" key={x.name}>
-                    <div className="item-main">
-                      {ProfileLink({
-                        ...this.props,
-                        username: x.name,
-                        children: <UserAvatar username={x.name} size="small" />
-                      })}
-
-                      <div className="item-info">
+                  <ListItem styledDefer={true} className="!flex gap-3" key={x.name}>
+                    {ProfileLink({
+                      ...this.props,
+                      username: x.name,
+                      children: <UserAvatar username={x.name} size="small" />
+                    })}
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
                         {ProfileLink({
                           ...this.props,
                           username: x.name,
                           children: <span className="item-name notranslate">{x.name}</span>
                         })}
-                        <span className="item-reputation">{accountReputation(x.reputation)}</span>
+                        <Badge className="text-xs leading-3">
+                          {accountReputation(x.reputation)}
+                        </Badge>
                       </div>
-                    </div>
-                    <div className="item-extra">
-                      <span>{`${strHp} HP`}</span>
-                      {x.proxyHp > 0 && (
-                        <>
-                          {" + "}
-                          <span>
-                            {`${strProxyHp} HP`}
-                            {" (proxy) "}
-                          </span>
-                        </>
-                      )}
+                      <div className="item-extra">
+                        <span>{`${strHp} HP`}</span>
+                        {x.proxyHp > 0 && (
+                          <>
+                            {" + "}
+                            <span>
+                              {`${strProxyHp} HP`}
+                              {" (proxy) "}
+                            </span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </ListItem>
                 );
