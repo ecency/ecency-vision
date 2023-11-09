@@ -147,30 +147,24 @@ const FloatingFAQ = () => {
           >
             {display && !isSubmitPage && (
               <Button
-                className={`help-btn ${innerWidth <= 666 ? "small-screen" : ""} `}
+                noPadding={innerWidth < 768}
+                className="fixed bottom-4 right-4 w-[40px] h-[40px] md:w-auto md:h-[40px]"
                 onClick={handleShow}
                 icon={helpIconSvg}
                 iconPlacement="left"
-                size="sm"
               >
-                {innerWidth >= 792 ? _t("floating-faq.help") : ""}
+                {innerWidth >= 768 ? _t("floating-faq.help") : ""}
               </Button>
             )}
 
             {show && display ? (
-              <div
-                className={`floating-container ${isSubmitPage ? className : ""} ${
-                  innerWidth <= 666 ? "small-screen" : ""
-                }`}
-              >
+              <div className={`floating-container ${isSubmitPage ? className : ""}`}>
                 <div className="faq-welcome">
                   <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
                   <Button
-                    appearance="link"
-                    className="close-btn"
-                    onClick={() => {
-                      setShow(false);
-                    }}
+                    className="absolute top-7 right-4"
+                    appearance="gray-link"
+                    onClick={() => setShow(false)}
                     icon={closeSvg}
                   />
                 </div>

@@ -188,7 +188,7 @@ exports[`(1) Default render 1`] = `
           className="switch-language"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -199,7 +199,7 @@ exports[`(1) Default render 1`] = `
           type="button"
         >
           <div
-            className="flex items-center w-5 h-5 undefined"
+            className="flex justify-center items-center w-5 h-5 undefined"
           >
             <svg
               viewBox="0 0 24 24"
@@ -218,7 +218,7 @@ exports[`(1) Default render 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -227,7 +227,7 @@ exports[`(1) Default render 1`] = `
               type="button"
             >
               <div
-                className="flex items-center w-5 h-5 undefined"
+                className="flex justify-center items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -321,7 +321,7 @@ exports[`(2) Night Theme 1`] = `
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/hot"
+        href="/"
         onClick={[Function]}
       >
         <img
@@ -381,7 +381,7 @@ exports[`(2) Night Theme 1`] = `
         className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/hot"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -495,49 +495,20 @@ exports[`(2) Night Theme 1`] = `
       >
         <div
           className="switch-language"
-        >
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="dropdown-btn"
-            >
-              <div
-                className="label"
-              >
-                EN
-              </div>
-              <div
-                className="menu-down"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7,10L12,15L17,10H7Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
               "outline": "none",
             }
           }
-          title="Night Theme"
+          title=""
           type="button"
         >
           <div
-            className="flex items-center w-5 h-5 undefined"
+            className="flex justify-center items-center w-5 h-5 undefined"
           >
             <svg
               viewBox="0 0 24 24"
@@ -556,7 +527,7 @@ exports[`(2) Night Theme 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -565,7 +536,7 @@ exports[`(2) Night Theme 1`] = `
               type="button"
             >
               <div
-                className="flex items-center w-5 h-5 undefined"
+                className="flex justify-center items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -640,22 +611,6 @@ exports[`(2) Night Theme 1`] = `
               />
             </svg>
           </span>
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </div>
         </div>
       </div>
     </div>
@@ -851,7 +806,7 @@ exports[`(3) With active user 1`] = `
           className="switch-language"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -862,7 +817,7 @@ exports[`(3) With active user 1`] = `
           type="button"
         >
           <div
-            className="flex items-center w-5 h-5 undefined"
+            className="flex justify-center items-center w-5 h-5 undefined"
           >
             <svg
               viewBox="0 0 24 24"
@@ -881,7 +836,7 @@ exports[`(3) With active user 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -890,7 +845,7 @@ exports[`(3) With active user 1`] = `
               type="button"
             >
               <div
-                className="flex items-center w-5 h-5 undefined"
+                className="flex justify-center items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -984,7 +939,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/hot"
+        href="/"
         onClick={[Function]}
       >
         <img
@@ -1044,7 +999,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/hot"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -1158,49 +1113,20 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       >
         <div
           className="switch-language"
-        >
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="dropdown-btn"
-            >
-              <div
-                className="label"
-              >
-                EN
-              </div>
-              <div
-                className="menu-down"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7,10L12,15L17,10H7Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
               "outline": "none",
             }
           }
-          title="Night Theme"
+          title=""
           type="button"
         >
           <div
-            className="flex items-center w-5 h-5 undefined"
+            className="flex justify-center items-center w-5 h-5 undefined"
           >
             <svg
               viewBox="0 0 24 24"
@@ -1219,7 +1145,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             title="Create Post"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
               style={
                 Object {
                   "outline": "none",
@@ -1228,7 +1154,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               type="button"
             >
               <div
-                className="flex items-center w-5 h-5 undefined"
+                className="flex justify-center items-center w-5 h-5 undefined"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -1303,22 +1229,6 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               />
             </svg>
           </span>
-          <div
-            className="custom-dropdown float-right"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <span
-              className="user-avatar medium"
-              onClick={[Function]}
-              style={
-                Object {
-                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
-                }
-              }
-            />
-          </div>
         </div>
       </div>
     </div>

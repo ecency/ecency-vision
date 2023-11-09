@@ -1,20 +1,8 @@
 @import "src/style/vars_mixins";
 
-.help-btn {
-  position: fixed;
-  z-index: 99;
-  right: 2rem;
-  bottom: 1rem;
-  border-radius: 20px 2px 20px 20px !important;
-  height: 40px;
-}
-
-@media (max-width: 791px) {
-  .help-btn {
-    width: 40px;
-    border-radius: 50% !important;
-    padding: 0 !important;
-  }
+.scroll-to-top.visible ~ .floating-faq-button button {
+  right: 4rem;
+  bottom: 1.25rem;
 }
 
 .floating-container {
@@ -88,6 +76,7 @@
       }
     }
   }
+
   .faq-content-list {
     height: 59vh;
     margin-top: -2.4rem;
@@ -133,6 +122,7 @@
       @apply text-light-600;
     }
   }
+
   .section {
     padding: 12px;
     cursor: pointer;

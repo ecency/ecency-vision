@@ -4,7 +4,6 @@ import AuthorInfoCard from "../../components/author-info-card";
 import { _t } from "../../i18n";
 import { renderPostBody } from "@ecency/render-helper";
 import React from "react";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import { Props } from "./props.type";
 import EditHistory from "../../components/edit-history";
@@ -26,20 +25,13 @@ interface DeletedPostProps {
 }
 
 export const DeletedPostScreen = (props: Props & DeletedPostProps) => {
-  const nav = props.global.isElectron ? (
-    NavBarElectron({
-      ...props,
-      reloadFn: props.reload,
-      reloading: props.loading
-    })
-  ) : (
-    <NavBar history={props.history} match={props.match} />
-  );
-  const staticNav = <StaticNavbar fullVersionUrl="" />;
-
   return (
     <div>
-      {props.staticNav ? staticNav : nav}
+      {props.staticNav ? (
+        <StaticNavbar fullVersionUrl="" />
+      ) : (
+        <NavBar history={props.history} match={props.match} />
+      )}
       {props.deletedEntry && (
         <div className="container overflow-x-hidden">
           <ScrollToTop />

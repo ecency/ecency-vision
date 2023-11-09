@@ -15,7 +15,7 @@ export const InfiniteScrollLoader = ({
   failed
 }: Props) => {
   return data.length > 0 ? (
-    <div className="p-4 text-center text-secondary">
+    <div className="p-4 text-center text-gray-600">
       {failed
         ? _t("decks.columns.infinite-failed")
         : isEndReached

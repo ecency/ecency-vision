@@ -27,6 +27,7 @@ export interface JsonMetadata {
   format?: string;
   original_author?: string;
   original_permlink?: string;
+  image?: string[];
 }
 
 export interface Entry {

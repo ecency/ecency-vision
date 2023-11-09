@@ -16,13 +16,11 @@
   @include padding-top(0.75rem);
 
   @include themify(day) {
-    @apply bg-white;
-    @apply border-gray-300;
+    @apply bg-white border-gray-300;
   }
 
   @include themify(night) {
-    @apply bg-dark-200;
-    @apply border-gray-800;
+    @apply bg-dark-200 border-gray-800;
   }
 
   &::-webkit-scrollbar {
@@ -126,13 +124,11 @@
 
     &:hover {
       @include themify(day) {
-        @apply bg-gray-100;
-        @apply text-gray-600;
+        @apply bg-gray-100 text-gray-600;
       }
 
       @include themify(night) {
-        @apply bg-dark-default;
-        @apply text-gray-500;
+        @apply bg-dark-default text-gray-500;
       }
     }
 
@@ -165,7 +161,7 @@
       align-items: center;
       justify-content: center;
 
-      @apply duration-300 rounded-full ml-[auto];
+      @apply duration-300 ml-[auto] rounded-full;
 
       &.switched svg {
         transform: rotate(180deg);

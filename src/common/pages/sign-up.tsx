@@ -14,7 +14,6 @@ import Meta from "../components/meta";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
@@ -58,16 +57,11 @@ export const SignUp = (props: PageProps) => {
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
 
-  const signupSvg = props.global.isElectron ? "./img/signup.png" : require("../img/signup.png");
-  const logoCircle = props.global.isElectron
-    ? "./img/logo-circle.svg"
-    : require("../img/logo-circle.svg");
+  const signupSvg = require("../img/signup.png");
+  const logoCircle = require("../img/logo-circle.svg");
 
   useEffect(() => {
     const { referral } = queryString.parse(props.location.search);
-    if (props.global.isElectron) {
-      setIsVerified(true);
-    }
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);
@@ -209,14 +203,8 @@ export const SignUp = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? NavBarElectron({ ...props }) : <NavBar history={props.history} />}
-      <div
-        className={
-          props.global.isElectron
-            ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
-            : "app-content sign-up-page mb-lg-0"
-        }
-      >
+      <NavBar history={props.history} />
+      <div className="app-content sign-up-page mb-lg-0">
         <div className="sign-up">
           <div className={"left-image " + stage}>
             <img src={signupSvg} alt="Signup" />
@@ -330,15 +318,13 @@ export const SignUp = (props: PageProps) => {
                     />
                     <small className="text-red pl-3">{referralError}</small>
                   </div>
-                  {!props.global.isElectron && (
-                    <div style={{ marginTop: "16px", marginBottom: "16px" }}>
-                      <ReCAPTCHA
-                        sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                        onChange={captchaCheck}
-                        size="normal"
-                      />
-                    </div>
-                  )}
+                  <div style={{ marginTop: "16px", marginBottom: "16px" }}>
+                    <ReCAPTCHA
+                      sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                      onChange={captchaCheck}
+                      size="normal"
+                    />
+                  </div>
                   {stage === Stage.FORM ? (
                     <>
                       <div className="flex justify-center">

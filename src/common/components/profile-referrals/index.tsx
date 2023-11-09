@@ -247,9 +247,8 @@ export class ProfileReferrals extends BaseComponent<Props, State> {
         </Tsx>
       </div>
     );
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
     return (
-      <div className={"app-content witnesses-page mt-0 mx-0" + containerClasses}>
+      <div className="app-content witnesses-page mt-0 mx-0">
         {(() => {
           if (loading) {
             return (

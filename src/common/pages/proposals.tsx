@@ -16,7 +16,6 @@ import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProposalListItem from "../components/proposal-list-item";
 import NotFound from "../components/404";
@@ -162,7 +161,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
           ...proposals_.filter(
             (x) =>
               ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator) &&
-              x.status === "active"
+              (x.status === "active" || new Date(x.start_date) > new Date())
           )
         ];
         break;
@@ -218,27 +217,15 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
       isReturnProposalId,
       thresholdProposalId
     } = this.state;
-    const navBar = global.isElectron ? (
-      NavBarElectron({
-        ...this.props,
-        reloadFn: this.load,
-        reloading: loading
-      })
-    ) : (
-      <NavBar history={this.props.history} />
-    );
 
     if (loading) {
       return (
         <>
-          {navBar}
+          <NavBar history={this.props.history} />
           <LinearProgress />
         </>
       );
     }
-    let containerClasses = global.isElectron
-      ? "app-content proposals-page mt-0 pt-6"
-      : "app-content proposals-page";
 
     return (
       <>
@@ -246,8 +233,9 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {navBar}
-        <div className={containerClasses}>
+        <NavBar history={this.props.history} />
+
+        <div className="app-content proposals-page">
           <div className="page-header mt-5">
             <h1 className="header-title">{_t("proposals.page-title")}</h1>
             <Tsx k="proposals.page-description">
@@ -390,20 +378,10 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
     const { global } = this.props;
     const { loading, proposal, entry } = this.state;
 
-    const navBar = global.isElectron ? (
-      NavBarElectron({
-        ...this.props,
-        reloadFn: this.load,
-        reloading: loading
-      })
-    ) : (
-      <NavBar history={this.props.history} />
-    );
-
     if (loading) {
       return (
         <>
-          {navBar}
+          <NavBar history={this.props.history} />
           <LinearProgress />
         </>
       );
@@ -425,9 +403,6 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
       modified: parseDate(entry.updated).toISOString(),
       image: catchPostImage(entry.body, 600, 500, global.canUseWebp ? "webp" : "match")
     };
-    let containerClasses = global.isElectron
-      ? "app-content proposals-page proposals-detail-page mt-0 pt-6"
-      : "app-content proposals-page proposals-detail-page";
 
     return (
       <>
@@ -435,8 +410,8 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {navBar}
-        <div className={containerClasses}>
+        <NavBar history={this.props.history} />
+        <div className="app-content proposals-page proposals-detail-page">
           <div className="page-header mt-5">
             <h1 className="header-title">{_t("proposals.page-title")}</h1>
             <p className="see-all">

@@ -22,7 +22,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLink
       // Basic
       "cursor-pointer rounded-full duration-300 no-wrap": true,
       // Outline basics
-      "border-[1.5px] border-solid": props.outline ?? false,
+      "border-[1.25px] border-solid": props.outline ?? false,
       // With icon
       "flex items-center justify-center gap-2": !!props.icon,
       "flex-row-reverse": props.iconPlacement === "left",
@@ -39,7 +39,9 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLink
     });
 
     const icon = props.icon ? (
-      <div className={"flex items-center w-5 h-5 " + props.iconClassName}>{props.icon}</div>
+      <div className={"flex justify-center items-center w-5 h-5 " + props.iconClassName}>
+        {props.icon}
+      </div>
     ) : (
       <></>
     );

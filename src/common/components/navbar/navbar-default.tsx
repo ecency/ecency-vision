@@ -24,7 +24,6 @@ import Search from "../search";
 import { History } from "history";
 import SwitchLang from "../switch-lang";
 import * as ls from "../../util/local-storage";
-import NotificationHandler from "../notification-handler";
 import UserNotifications from "../notifications";
 import { PurchaseQrDialog } from "../purchase-qr";
 import Gallery from "../gallery";
@@ -95,7 +94,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                   <Search containerClassName="w-full" history={history} />
                   <div
                     onClick={() => setShowMobileSearch(false)}
-                    className="w-6 h-6 text-secondary ml-2"
+                    className="w-6 h-6 text-gray-600 ml-2"
                   >
                     {closeSvg}
                   </div>
@@ -244,7 +243,8 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                 <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark">
                   <div className="icon-stroke text-dark">{walletSvg}</div>
                   <div className="ml-3 text-15 flex">
-                    {_t("user-nav.wallet")} <div className="dot align-self-start ml-1" />
+                    {_t("user-nav.wallet")}
+                    <div className="dot align-self-start ml-1" />
                   </div>
                 </div>
               </Link>
@@ -265,7 +265,6 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           </div>
         </div>
       </div>
-      {global.usePrivate && <NotificationHandler />}
       {gallery && <Gallery onHide={() => setGallery(!gallery)} />}
       {ui.notifications && activeUser && <UserNotifications history={history} />}
       {drafts && activeUser && <Drafts onHide={() => setDrafts(!drafts)} history={history} />}

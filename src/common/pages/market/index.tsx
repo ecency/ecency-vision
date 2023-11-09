@@ -7,7 +7,6 @@ import * as ls from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
@@ -27,23 +26,15 @@ const MarketPage = (props: PageProps) => {
     if (hash === "#advanced") setMode(MarketMode.ADVANCED);
   }, []);
 
-  const navbar = props.global.isElectron ? (
-    NavBarElectron({
-      ...props,
-      reloadFn: () => {},
-      reloading: false
-    })
-  ) : (
-    <NavBar {...props} />
-  );
-
   return (
     <>
       <Meta title={title} description={description} />
       <Feedback activeUser={props.activeUser} />
       <div className={"flex justify-center market-page " + mode}>
         <div className={mode !== MarketMode.ADVANCED ? "sm:w-[75%] p-3 sm:p-0" : "w-full"}>
-          <div style={{ marginBottom: "6rem" }}>{navbar}</div>
+          <div style={{ marginBottom: "6rem" }}>
+            <NavBar {...props} />
+          </div>
           {mode !== MarketMode.ADVANCED ? (
             <div className="mb-5 flex flex-col gap-3 text-center">
               <h2 className="text-3xl font-bold">{_t("market.title")}</h2>

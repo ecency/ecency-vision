@@ -78,17 +78,6 @@ export default class MdHandler extends Component<Props> {
       let href = el.getAttribute("href");
       !!href && this.goToElement(href);
     }
-
-    // TODO: check if moving markdown-img-link from <a> into <img> didn't break this
-    if (global.isElectron && el.classList.contains("markdown-img-link")) {
-      e.preventDefault();
-      const href = el.getAttribute("href");
-      if (!href) {
-        return;
-      }
-
-      window.open(href);
-    }
   };
 
   goToElement = (hashKey: string = "") => {

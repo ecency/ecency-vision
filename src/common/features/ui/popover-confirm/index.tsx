@@ -64,6 +64,8 @@ export default class PopoverConfirm extends Component<Props> {
 
     const popover = (
       <Popover
+        show={this.state.show}
+        setShow={(value) => this.setState({ show: value })}
         id="popover-confirm"
         onClick={(e) => {
           // Prevent to trigger hide event on modal dialog

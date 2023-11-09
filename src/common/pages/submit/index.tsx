@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Entry } from "../../store/entries/types";
 import { Draft } from "../../api/private-api";
 import { MatchType, PostBase, VideoProps } from "./types";
@@ -30,8 +30,6 @@ import FullHeight from "../../components/full-height";
 import Theme from "../../components/theme";
 import Feedback, { error } from "../../components/feedback";
 import { _t } from "../../i18n";
-import MdHandler from "../../components/md-handler";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
@@ -71,7 +69,6 @@ export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
   const { body, setBody } = useBodyVersioningManager();
-  const previousBody = usePrevious(body);
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
@@ -100,6 +97,11 @@ export function Submit(props: PageProps & MatchProps) {
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
 
   let _updateTimer: any; // todo think about it
+
+  const pageTitle = useMemo(() => {
+    const notifications = props.notifications.unread ? `(${props.notifications.unread}) ` : "";
+    return notifications + _t("submit.page-title");
+  }, [props.notifications.unread]);
 
   const { setLocalDraft } = useLocalDraftManager(
     props.match,
@@ -143,6 +145,7 @@ export function Submit(props: PageProps & MatchProps) {
       setTags([...new Set(entry.json_metadata?.tags ?? [])]);
       setBody(entry.body);
       setDescription(entry.json_metadata?.description ?? postBodySummary(body, 200));
+      entry?.json_metadata?.image && setSelectedThumbnail(entry?.json_metadata?.image[0]);
       setEditingEntry(entry);
       threeSpeakManager.setIsEditing(true);
     } else if (editingEntry) {
@@ -248,7 +251,9 @@ export function Submit(props: PageProps & MatchProps) {
     _updateTimer = setTimeout(() => {
       const { thumbnails } = extractMetaData(body);
       setPreview({ title, tags, body, description });
-      setThumbnails(thumbnails ?? []);
+      const existingImages = editingEntry?.json_metadata.image ?? [];
+      const newThumbnails = thumbnails ? [...existingImages, ...thumbnails] : existingImages;
+      setThumbnails([...new Set(newThumbnails)]);
       if (editingEntry === null) {
         setLocalDraft({ title, tags, body, description });
       }
@@ -370,23 +375,13 @@ export function Submit(props: PageProps & MatchProps) {
 
   return (
     <>
-      <Meta
-        title={`(${props.notifications.unread || ""}) ` + _t("submit.page-title")}
-        description={_t("submit.page-description")}
-      />
+      <Meta title={pageTitle} description={_t("submit.page-description")} />
       <FullHeight />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       {clearModal && <ModalConfirm onConfirm={clear} onCancel={() => setClearModal(false)} />}
-      {props.global.isElectron && <MdHandler global={props.global} history={props.history} />}
-      {props.global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
-      <div
-        className={_c(
-          `app-content submit-page ${editingEntry !== null ? "editing" : ""} ${
-            props.global.isElectron ? " mt-0 pt-6" : ""
-          }`
-        )}
-      >
+      <NavBar history={props.history} />
+      <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
           {editingEntry === null && activeUser && (
             <div className="community-input">
@@ -665,7 +660,9 @@ export function Submit(props: PageProps & MatchProps) {
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
                             </FormControl>
-                            <small className="text-gray-600">{_t("submit.reward-hint")}</small>
+                            <small className="text-gray-600 dark:text-gray-400">
+                              {_t("submit.reward-hint")}
+                            </small>
                           </div>
                         </div>
                         <div className="grid grid-cols-12 mb-4">
@@ -692,7 +689,7 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <small className="text-gray-600">
+                            <small className="text-gray-600 dark:text-gray-400">
                               {_t("submit.beneficiaries-hint")}
                             </small>
                           </div>
@@ -713,7 +710,7 @@ export function Submit(props: PageProps & MatchProps) {
                           rows={3}
                           maxLength={200}
                         />
-                        <small className="text-gray-600">
+                        <small className="text-gray-600 dark:text-gray-400">
                           {description !== "" ? description : postBodySummary(body, 200)}
                         </small>
                       </div>
@@ -732,7 +729,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-gray-600 dark:text-gray-400">
                                 {_t("submit.schedule-hint")}
                               </div>
                             </div>
@@ -754,7 +751,9 @@ export function Submit(props: PageProps & MatchProps) {
                               setReblogSwitch(v);
                             }}
                           />
-                          <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
+                          <small className="text-gray-600 dark:text-gray-400">
+                            {_t("submit.reblog-hint")}
+                          </small>
                         </div>
                       </div>
                     )}
@@ -790,7 +789,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
+                                  <div className="text-green check absolute bg-white rounded-full p-1 flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}

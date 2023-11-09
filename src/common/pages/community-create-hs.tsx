@@ -8,7 +8,6 @@ import Feedback, { error } from "../components/feedback";
 import { formatError, setUserRole, updateCommunity } from "../api/operations";
 import Meta from "../components/meta";
 import Theme from "../components/theme";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import { connect } from "react-redux";
 import React from "react";
 import NavBar from "../components/navbar";
@@ -121,24 +120,15 @@ class CommunityCreateHSPage extends BaseComponent<PageProps, CreateHsState> {
 
     const { global, activeUser } = this.props;
     const { inProgress, progress, done } = this.state;
-    let containerClasses = global.isElectron
-      ? "app-content communities-page mt-0 pt-6"
-      : "app-content communities-page";
 
     return (
       <>
         <Meta {...metaProps} />
         <Theme global={global} />
         <Feedback activeUser={activeUser} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
+        <NavBar history={this.props.history} />
 
-        <div className={containerClasses}>
+        <div className="app-content communities-page">
           <div className="community-form">
             <h1 className="form-title">{_t("communities-create.page-title")}</h1>
             {(() => {

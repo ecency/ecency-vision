@@ -4,7 +4,6 @@ import { ActiveUser } from "../../store/active-user/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Notifications } from "../../store/notifications/types";
 import { NotificationsWebSocket } from "../../api/notifications-ws-api";
-import { isSupported } from "@firebase/messaging";
 import { NotifyTypes } from "../../enums";
 import { useMappedStore } from "../../store/use-mapped-store";
 
@@ -37,7 +36,6 @@ class NotificationHandler extends Component<Props> {
 
     this.nws
       .withActiveUser(activeUser)
-      .withElectron(global.isElectron)
       .withCallbackOnMessage(() => {
         fetchUnreadNotificationCount();
         fetchNotifications(null);

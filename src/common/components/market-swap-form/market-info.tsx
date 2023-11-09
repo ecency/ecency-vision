@@ -29,7 +29,7 @@ export const MarketInfo = ({
         {isError ? (
           <></>
         ) : (
-          <span className="text-secondary ml-1">
+          <span className="text-gray-600 ml-1">
             ({isFetching ? _t("market.calculating-in") : usdFromMarketRate}
             <span className="pl-1" />
             {global.currency.toUpperCase()})

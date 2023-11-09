@@ -121,16 +121,9 @@ class EntryIndexPage extends Component<Props, State> {
     const { entryList, promoted } = this.state;
     const { global } = this.props;
 
-    let containerClasses;
-    if (global.isElectron) {
-      containerClasses = "app-content entry-index-page mt-0 pt-6";
-    } else {
-      containerClasses = "app-content overflow-hidden entry-index-page";
-    }
-
     return (
       <>
-        <div className={containerClasses}>
+        <div className="app-content overflow-hidden entry-index-page">
           <div className="tags-side">
             {!global.isMobile && <>{TrendingTagsCard({ ...this.props })}</>}
           </div>

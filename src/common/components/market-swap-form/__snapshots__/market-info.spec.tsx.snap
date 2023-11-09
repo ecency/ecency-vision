@@ -12,7 +12,7 @@ exports[`should render market rate 1`] = `
      
     HIVE
     <span
-      className="text-secondary ml-1"
+      className="text-gray-600 ml-1"
     >
       (
       Calculating in

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const MessageNoData = ({ buttonText, buttonTo, title, description, img, global }: Props) => {
-  const writer = global.isElectron ? "./img/writer.png" : require("../../img/writer.png");
+  const writer = require("../../img/writer.png");
   return (
     <div className="flex justify-center items-center mt-5">
       <div className="w-[25%]">

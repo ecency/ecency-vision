@@ -203,7 +203,7 @@ exports[`(1) Default render 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker"
+      id="editor-tool-emoji-picker-c8231097-5f22-42ab-863c-724def2d870a"
       role="none"
       title="Emoji"
     >
@@ -295,7 +295,6 @@ exports[`(1) Default render 1`] = `
             "hasKeyChain": false,
             "hsClientId": "ecency.app",
             "intro": true,
-            "isElectron": false,
             "isMobile": false,
             "lang": "en-US",
             "lastIndexPath": null,
@@ -553,7 +552,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker"
+      id="editor-tool-emoji-picker-7955455d-222f-4212-b4a6-a73756b00589"
       role="none"
       title="Emoji"
     >
@@ -645,7 +644,6 @@ exports[`(2) Cancellable, in progress 1`] = `
             "hasKeyChain": false,
             "hsClientId": "ecency.app",
             "intro": true,
-            "isElectron": false,
             "isMobile": false,
             "lang": "en-US",
             "lastIndexPath": null,

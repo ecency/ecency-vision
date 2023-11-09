@@ -5,8 +5,6 @@ import { Entry } from "../store/entries/types";
 
 import accountReputation from "./account-reputation";
 
-import isElectron from "../util/is-electron";
-
 import { version } from "../../../package.json";
 
 export interface TempEntryProps {
@@ -44,7 +42,7 @@ export default (p: TempEntryProps): Entry => {
     depth: 0,
     is_paidout: false,
     json_metadata: {
-      app: `ecency/${version}-${isElectron() ? "surfer" : "vision"}`,
+      app: `ecency/${version}-vision`,
       format: "markdown+html",
       tags: p.tags,
       description: p.description

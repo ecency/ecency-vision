@@ -17,7 +17,6 @@ import PopoverConfirm from "@ui/popover-confirm";
 import OrDivider from "../or-divider";
 import { error } from "../feedback";
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
-import { hsLogin } from "../../../desktop/app/helper/hive-signer";
 import { generateKeys } from "../../helper/generate-private-keys";
 import { getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
@@ -157,11 +156,8 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
   render() {
     const { username, inProgress } = this.state;
-    const { global } = this.props;
 
-    const keyChainLogo = global.isElectron
-      ? "./img/keychain.png"
-      : require("../../img/keychain.png");
+    const keyChainLogo = require("../../img/keychain.png");
 
     const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
@@ -285,7 +281,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     username: "",
     key: "",
     inProgress: false,
-    isVerified: this.props.global.isElectron ? true : false
+    isVerified: false
   };
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
@@ -361,19 +357,8 @@ export class Login extends BaseComponent<LoginProps, State> {
   };
 
   hsLogin = () => {
-    const { global, history } = this.props;
+    const { global } = this.props;
     const { hsClientId } = global;
-    if (global.isElectron) {
-      hsLogin(hsClientId)
-        .then((r) => {
-          this.hide();
-          history.push(`/auth?code=${r.code}`);
-        })
-        .catch((e) => {
-          error(e);
-        });
-      return;
-    }
 
     window.location.href = getAuthUrl(hsClientId);
   };
@@ -557,13 +542,9 @@ export class Login extends BaseComponent<LoginProps, State> {
   render() {
     const { username, key, inProgress, isVerified } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
-    const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
-    const hsLogo = global.isElectron
-      ? "./img/hive-signer.svg"
-      : require("../../img/hive-signer.svg");
-    const keyChainLogo = global.isElectron
-      ? "./img/keychain.png"
-      : require("../../img/keychain.png");
+    const logo = require("../../img/logo-circle.svg");
+    const hsLogo = require("../../img/hive-signer.svg");
+    const keyChainLogo = require("../../img/keychain.png");
 
     const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
@@ -627,15 +608,13 @@ export class Login extends BaseComponent<LoginProps, State> {
               onKeyDown={this.inputKeyDown}
             />
           </div>
-          {!global.isElectron && (
-            <div className="google-recaptcha">
-              <ReCAPTCHA
-                sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                onChange={this.captchaCheck}
-                size="normal"
-              />
-            </div>
-          )}
+          <div className="google-recaptcha">
+            <ReCAPTCHA
+              sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+              onChange={this.captchaCheck}
+              size="normal"
+            />
+          </div>
           <p className="login-form-text my-3">
             {_t("login.login-info-1")}{" "}
             <a
@@ -670,13 +649,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             outline={true}
             onClick={this.hsLogin}
             disabled={inProgress}
-            icon={
-              <img
-                src={global.isElectron ? "./img/hive-signer.svg" : hsLogo}
-                className="hs-logo"
-                alt="hivesigner"
-              />
-            }
+            icon={<img src={hsLogo} className="hs-logo" alt="hivesigner" />}
             iconPlacement="left"
           >
             {_t("login.with-hive-signer")}

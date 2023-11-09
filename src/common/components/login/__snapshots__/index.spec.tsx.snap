@@ -90,7 +90,7 @@ Array [
     className="hs-login"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -104,7 +104,7 @@ Array [
         Login with hivesigner
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <img
           alt="hivesigner"
@@ -304,7 +304,7 @@ Array [
     className="hs-login"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -318,7 +318,7 @@ Array [
         Login with hivesigner
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <img
           alt="hivesigner"
@@ -521,7 +521,7 @@ Array [
     className="hs-login"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -535,7 +535,7 @@ Array [
         Login with hivesigner
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <img
           alt="hivesigner"
@@ -638,7 +638,7 @@ Array [
     className="hs-login"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -652,7 +652,7 @@ Array [
         Login with hivesigner
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <img
           alt="hivesigner"
@@ -666,7 +666,7 @@ Array [
     className="kc-login"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -680,7 +680,7 @@ Array [
         Login with keychain
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 undefined"
       >
         <img
           alt="keychain"

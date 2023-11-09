@@ -16,7 +16,7 @@ export function DropdownMenu(props: HTMLProps<HTMLDivElement> & Props) {
     <div
       {...nativeProps}
       className={classNameObject({
-        "z-[1000] absolute flex flex-col items-start border min-w-[200px] py-2 gap-2 pr-3 rounded-xl bg-white":
+        "z-[1000] absolute flex flex-col items-start border border-[--border-color] min-w-[200px] py-2 gap-2 pr-3 rounded-xl bg-white":
           true,
         "right-0": props.align === "right",
         "top-[100%]": (props.align ?? "bottom") === "bottom",

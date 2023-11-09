@@ -6,7 +6,6 @@ import BaseComponent from "../components/base";
 import Meta from "../components/meta";
 import Theme from "../components/theme/index";
 import NavBar from "../components/navbar/index";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import CommunityListItem from "../components/community-list-item";
 import SearchBox from "../components/search-box";
@@ -104,26 +103,14 @@ class CommunitiesPage extends BaseComponent<PageProps, State> {
       canonical: `${defaults.base}/communities`,
       description: _t("communities.description")
     };
-    let containerClasses = global.isElectron
-      ? "app-content communities-page mt-0 pt-6"
-      : "app-content communities-page";
 
     return (
       <>
         <Meta {...metaProps} />
         <ScrollToTop />
         <Theme global={this.props.global} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props,
-            reloadFn: this.fetch,
-            reloading: loading
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
-
-        <div className={containerClasses}>
+        <NavBar history={this.props.history} />
+        <div className="app-content communities-page">
           <div className="community-list">
             <div className="list-header">
               <h1 className="list-title">{_t("communities.title")}</h1>

@@ -11,7 +11,8 @@ export function buildMetadata({
   description,
   selectedThumbnail,
   selectionTouched,
-  videoMetadata
+  videoMetadata,
+  images
 }: {
   tags: string[];
   title: string;
@@ -20,9 +21,14 @@ export function buildMetadata({
   selectedThumbnail?: string;
   selectionTouched: boolean;
   videoMetadata?: ThreeSpeakVideo;
+  images?: string[];
 }) {
   const { thumbnails, ...meta } = extractMetaData(body);
   let localThumbnail = ls.get("draft_selected_image");
+
+  if (images?.length) {
+    meta.image = [...images, ...(meta.image || [])];
+  }
 
   if (meta.image) {
     if (selectionTouched && selectedThumbnail) {

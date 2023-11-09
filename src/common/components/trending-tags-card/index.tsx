@@ -75,7 +75,7 @@ export class TrendingTagsCard extends Component<Props> {
                       {t}
                       {global.tag === t && (
                         <div
-                          className="text-secondary ml-4 pointer"
+                          className="text-gray-600 ml-4 pointer"
                           onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
