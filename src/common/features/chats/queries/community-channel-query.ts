@@ -9,12 +9,18 @@ import { Channel } from "../managers/message-manager-types";
  * @see {@link ../mutations/create-community-chat.ts}
  */
 export function useCommunityChannelQuery(community?: Community) {
-  return useQuery<Channel>([ChatQueries.COMMUNITY_CHANNEL, community?.name], async () => {
-    if (!community) {
-      return undefined;
-    }
+  return useQuery<Channel>(
+    [ChatQueries.COMMUNITY_CHANNEL, community?.name],
+    async () => {
+      if (!community) {
+        return undefined;
+      }
 
-    const communityProfile = await getProfileMetaData(community.name);
-    return communityProfile.channel;
-  });
+      const communityProfile = await getProfileMetaData(community.name);
+      return communityProfile.channel;
+    },
+    {
+      enabled: !!community
+    }
+  );
 }
