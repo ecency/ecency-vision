@@ -1,7 +1,6 @@
 import { Channel } from "../managers/message-manager-types";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useUpdateCommunityChannel } from "./update-community-channel";
-import { ChatQueries, useChannelsQuery } from "../queries";
 
 interface Payload {
   hide: boolean;
@@ -9,9 +8,6 @@ interface Payload {
 }
 
 export function useHideMessageInChannel(channel?: Channel) {
-  const queryClient = useQueryClient();
-
-  const { data: channels } = useChannelsQuery();
   const { mutateAsync: updateChannel } = useUpdateCommunityChannel(channel);
 
   return useMutation(
@@ -35,19 +31,7 @@ export function useHideMessageInChannel(channel?: Channel) {
         );
       }
 
-      await updateChannel(newUpdatedChannel);
-      return newUpdatedChannel;
-    },
-    {
-      onSuccess: (channel) => {
-        const channelsTemp = [...(channels ?? [])];
-        const index = channelsTemp.findIndex((c) => c.id === channel?.id);
-        if (index > -1 && channel) {
-          channelsTemp[index] = channel;
-          queryClient.setQueryData([ChatQueries.MESSAGES, channel?.communityName], []);
-          queryClient.invalidateQueries([ChatQueries.MESSAGES, channel?.communityName]);
-        }
-      }
+      return updateChannel(newUpdatedChannel);
     }
   );
 }

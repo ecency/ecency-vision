@@ -1883,7 +1883,8 @@
     "invalid-private-key": "Invalid private key",
     "enter-username": "Enter temporary username",
     "hide-message": "Hide message",
-    "block-author": "Block author"
+    "block-author": "Block author",
+    "unblock-author": "Unblock author"
   },
   "add-image": {
     "title": "Add Image",

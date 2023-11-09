@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import mediumZoom, { Zoom } from "medium-zoom";
+import { Zoom } from "medium-zoom";
 import { Channel, PublicMessage } from "../managers/message-manager-types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
-import ChatsConfirmationModal from "./chats-confirmation-modal";
-import { error } from "../../../components/feedback";
 import { Theme } from "../../../store/global/types";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../utils";
 import { ChatContext } from "../chat-context-provider";
@@ -13,7 +11,7 @@ import { ChatMessageItem } from "./chat-message-item";
 import { useKeysQuery } from "../queries/keys-query";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
 import { hideSvg, removeUserSvg } from "../../../img/svg";
-import { useHideMessageInChannel } from "../mutations";
+import { useHideMessageInChannel, useUpdateChannelBlockedUsers } from "../mutations";
 import { Spinner } from "@ui/spinner";
 
 interface Props {
@@ -35,7 +33,7 @@ export function ChatsChannelMessages({
 }: Props) {
   const { global, activeUser } = useMappedStore();
 
-  const { messageServiceInstance, isActiveUserRemoved } = useContext(ChatContext);
+  const { isActiveUserRemoved } = useContext(ChatContext);
   let prevGlobal = usePrevious(global);
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
@@ -43,21 +41,22 @@ export function ChatsChannelMessages({
   // Message where users interacted with context menu
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
 
-  const [step, setStep] = useState(0);
-  const [removedUserId, setRemovedUserID] = useState("");
-  const [hiddenMsgId, setHiddenMsgId] = useState("");
-  const [resendMessage, setResendMessage] = useState<PublicMessage>();
-
   const { publicKey } = useKeysQuery();
 
+  const { mutateAsync: updateBlockedUsers, isLoading: isUsersBlockingLoading } =
+    useUpdateChannelBlockedUsers(currentChannel);
   const { mutateAsync: hideMessage, isLoading: isHideMessageLoading } =
     useHideMessageInChannel(currentChannel);
 
   const messages = useMemo(
     () =>
-      publicMessages.filter((m) =>
-        currentChannel.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
-      ),
+      publicMessages
+        .filter((m) =>
+          currentChannel.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
+        )
+        .filter((m) =>
+          currentChannel.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
+        ),
     [publicMessages, currentChannel]
   );
 
@@ -69,93 +68,16 @@ export function ChatsChannelMessages({
   }, [global.theme, activeUser]);
 
   useEffect(() => {
-    if (messages.length !== 0) {
-      zoomInitializer();
-    }
     if (!isScrollToBottom && messages.length !== 0 && !isScrolled) {
       scrollToBottom && scrollToBottom();
     }
   }, [messages, isScrollToBottom, channelMessagesRef]);
-
-  useEffect(() => {
-    if (currentChannel) {
-      zoomInitializer();
-    }
-  }, [currentChannel]);
-
-  const zoomInitializer = () => {
-    const elements: HTMLElement[] = [...document.querySelectorAll<HTMLElement>(".chat-image img")];
-    zoom = mediumZoom(elements);
-    setBackground();
-  };
 
   const setBackground = () => {
     if (global.theme === Theme.day) {
       zoom?.update({ background: "#ffffff" });
     } else {
       zoom?.update({ background: "#131111" });
-    }
-  };
-
-  const handleConfirm = () => {
-    let updatedMetaData = {
-      name: currentChannel?.name!,
-      about: currentChannel?.about!,
-      picture: "",
-      communityName: currentChannel?.communityName!,
-      communityModerators: currentChannel?.communityModerators,
-      hiddenMessageIds: currentChannel?.hiddenMessageIds,
-      removedUserIds: currentChannel?.removedUserIds
-    };
-
-    switch (step) {
-      case 1:
-        const updatedHiddenMessages = [...(currentChannel?.hiddenMessageIds || []), hiddenMsgId!];
-        updatedMetaData.hiddenMessageIds = updatedHiddenMessages;
-        break;
-      case 2:
-        const updatedRemovedUsers = [...(currentChannel?.removedUserIds || []), removedUserId!];
-        updatedMetaData.removedUserIds = updatedRemovedUsers;
-
-        const isRemovedUserModerator = currentChannel?.communityModerators?.find(
-          (x) => x.pubkey === removedUserId
-        );
-        const isModerator = !!isRemovedUserModerator;
-        if (isModerator) {
-          const NewUpdatedRoles = currentChannel?.communityModerators?.filter(
-            (item) => item.pubkey !== removedUserId
-          );
-          updatedMetaData.communityModerators = NewUpdatedRoles;
-        }
-        break;
-      case 3:
-        const newUpdatedRemovedUsers =
-          currentChannel &&
-          currentChannel?.removedUserIds!.filter((item) => item !== removedUserId);
-
-        updatedMetaData.removedUserIds = newUpdatedRemovedUsers;
-        break;
-      case 4:
-        if (resendMessage) {
-          // // deletePublicMessage(currentChannel.id, resendMessage?.id);
-          // messageServiceInstance?.sendPublicMessage(
-          //   currentChannel!,
-          //   resendMessage?.content,
-          //   [],
-          //   ""
-          // );
-        }
-        break;
-      default:
-        break;
-    }
-
-    try {
-      messageServiceInstance?.updateChannel(currentChannel!, updatedMetaData);
-      // currentChannelSetter({ ...currentChannel!, ...updatedMetaData });
-      setStep(0);
-    } catch (err) {
-      error(_t("chat.error-updating-community"));
     }
   };
 
@@ -205,7 +127,15 @@ export function ChatsChannelMessages({
                     })
                   }
                 />
-                <DropdownItemWithIcon icon={removeUserSvg} label={_t("chat.block-author")} />
+                <DropdownItemWithIcon
+                  icon={
+                    isUsersBlockingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
+                  }
+                  label={_t("chat.block-author")}
+                  onClick={() =>
+                    updateBlockedUsers([...(currentChannel.removedUserIds ?? []), message.creator])
+                  }
+                />
               </DropdownMenu>
             </Dropdown>
           </React.Fragment>
@@ -217,16 +147,6 @@ export function ChatsChannelMessages({
           </span>
         )}
       </div>
-      {step !== 0 && (
-        <ChatsConfirmationModal
-          actionType={"Confirmation"}
-          content={"Are you sure?"}
-          onClose={() => {
-            setStep(0);
-          }}
-          onConfirm={handleConfirm}
-        />
-      )}
     </>
   );
 }
