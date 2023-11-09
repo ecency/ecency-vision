@@ -74,9 +74,9 @@
     "username": "Usuário",
     "past-few-days": "nos últimos dias",
     "you": "Tu",
-    "copy-clipboard": "Copy to clipboard",
-    "first": "First",
-    "last": "Last"
+    "copy-clipboard": "Copiar para a área de transferência",
+    "first": "Primeiro",
+    "last": "Último"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -538,9 +538,9 @@
       "no-currency-data": "Não há dados",
       "hide-replies": "Ocultar respostas",
       "filters": "Filtros",
-      "market-swap-form": "Market swap form",
+      "market-swap-form": "Troca de Mercado de",
       "market": "Mercado",
-      "swap-form": "Swapping form",
+      "swap-form": "Trocando de",
       "msf-description": "Troque seus fundos mais rapidamente com zero latência.",
       "faq": "Centro de ajuda",
       "faq-subtitle": "Perguntas Frequentes",
@@ -922,9 +922,9 @@
     "extra-details-upvote": "Votos",
     "boost": "Impulso",
     "you-have-claimed-rc": "Already claimed account credits",
-    "claim": "Claim",
+    "claim": "Reivindicar",
     "you-claiming": "You are claiming {{n}}",
-    "successfully-claimed": "Successfully claimed!"
+    "successfully-claimed": "Reivindicado com sucesso!"
   },
   "profile-edit": {
     "title": "Perfil",
@@ -1354,7 +1354,7 @@
     "followers": "Seguidores ({{n}})",
     "following": "Seguindo ({{n}})",
     "search-placeholder": "Procurar",
-    "active": "Active:"
+    "active": "Ativo:"
   },
   "friends-filter": {
     "all": "All",
@@ -2064,7 +2064,7 @@
       "what-delegating-RC-body": "<p>If you have extra RC that you don't use you can delegate your RC. It recharges during the time so you don't loose anyting. You can't delegate all your RC (and end up with 0 RC). RC give extra recoursec to perform more operations to the account you delegate. They can make more post or comments....</p>",
       "how-to-delegate-header": "How to delegate RC on Ecency?",
       "how-to-delegate-body": "<p>Clicking on your RC information under your username you can see Delegate RC operation. Enter username and amount RC you want to delegate then click Next and Confirm it.</p>",
-      "who-are-curators-header": "Who are curators?",
+      "who-are-curators-header": "Quem são os curadores?",
       "who-are-curators-body": "<p>Curators discover and vote for posts created by authors. They play an important role in Hive. The consensus in the community is that good content should be upvoted and should be rewarding for authors. The spam, plagiarized content should be downvoted.</p>",
       "what-curation-reward-header": "What is curation reward?",
       "what-curation-reward-body": "<p>Curators will have reward (Hive Power) from the post payout.  As a result of the vote given by the curators, the post will have a certain amount of payout. The author and the curator(s) share the post payout in the ratio of 50:50. The post payout happens in 7 days. So at the end of the 7 days, the author's and curator's rewards are available for claim.</p>",
