@@ -38,7 +38,9 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     });
 
     const icon = props.icon ? (
-      <div className={"flex justify-center items-center w-5 h-5 " + props.iconClassName}>
+      <div
+        className={"flex justify-center items-center w-5 h-5 [&>svg]:w-full " + props.iconClassName}
+      >
         {props.icon}
       </div>
     ) : (
