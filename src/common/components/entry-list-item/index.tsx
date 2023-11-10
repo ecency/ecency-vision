@@ -24,7 +24,6 @@ import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
 import "./_index.scss";
-import useMountedState from "react-use/lib/useMountedState";
 import { useMappedStore } from "../../store/use-mapped-store";
 import useMount from "react-use/lib/useMount";
 import { useUnmount } from "react-use";
@@ -67,8 +66,6 @@ export function EntryListItem({
   const [showModMuted, setShowModMuted] = useState(false);
 
   const { global, activeUser, addAccount, updateEntry } = useMappedStore();
-
-  const isMounted = useMountedState();
 
   useMount(() => {
     document.getElementsByTagName("html")[0].style.position = "relative";
@@ -206,12 +203,11 @@ export function EntryListItem({
           </span>
         </div>
         <div className="item-header-features">
-          {(community && !!entry.stats?.is_pinned) ||
-            (entry.permlink === pinned && (
-              <Tooltip content={_t("entry-list-item.pinned")}>
-                <span className="pinned">{pinSvg}</span>
-              </Tooltip>
-            ))}
+          {((community && !!entry.stats?.is_pinned) || entry.permlink === pinned) && (
+            <Tooltip content={_t("entry-list-item.pinned")}>
+              <span className="pinned">{pinSvg}</span>
+            </Tooltip>
+          )}
           {reBlogged && (
             <span className="reblogged">
               {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}

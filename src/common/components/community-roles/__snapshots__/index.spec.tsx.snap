@@ -11,14 +11,14 @@ exports[`(1) Default render 1`] = `
     className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
     <table
-      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+      className="table-auto border-collapse text-xs sm:text-sm md:text-base w-full"
     >
       <thead>
         <tr
           className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "200px",
@@ -28,7 +28,7 @@ exports[`(1) Default render 1`] = `
             Account
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "74px",
@@ -38,7 +38,7 @@ exports[`(1) Default render 1`] = `
             Role
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-3"
           >
             Title
           </th>
@@ -146,14 +146,14 @@ exports[`(2) Should not show add user button 1`] = `
     className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
     <table
-      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+      className="table-auto border-collapse text-xs sm:text-sm md:text-base w-full"
     >
       <thead>
         <tr
           className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "200px",
@@ -163,7 +163,7 @@ exports[`(2) Should not show add user button 1`] = `
             Account
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "74px",
@@ -173,7 +173,7 @@ exports[`(2) Should not show add user button 1`] = `
             Role
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-3"
           >
             Title
           </th>
@@ -281,14 +281,14 @@ exports[`(3) Should show add user button 1`] = `
     className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
     <table
-      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+      className="table-auto border-collapse text-xs sm:text-sm md:text-base w-full"
     >
       <thead>
         <tr
           className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "200px",
@@ -298,7 +298,7 @@ exports[`(3) Should show add user button 1`] = `
             Account
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
             style={
               Object {
                 "width": "74px",
@@ -308,7 +308,7 @@ exports[`(3) Should show add user button 1`] = `
             Role
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-3"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-3"
           >
             Title
           </th>
