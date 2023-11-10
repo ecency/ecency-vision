@@ -62,7 +62,10 @@ export function convertEvent<KIND extends keyof EventConverterResult>(
           );
         }
 
-        const decryptedMessageContent = await decrypt(privateKey, peer, event.content);
+        let decryptedMessageContent = event.content;
+        try {
+          decryptedMessageContent = await decrypt(privateKey, peer, event.content);
+        } catch (e) {}
         resolve({
           ...encryptedMessage,
           content: decryptedMessageContent,

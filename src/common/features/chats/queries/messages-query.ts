@@ -1,28 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useDirectContactsQuery } from "./direct-contacts-query";
 import { useMemo } from "react";
-import { useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
+import { NostrQueries, useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
 import { ChatQueries } from "./queries";
 import { Message } from "../managers/message-manager-types";
 import { useChannelsQuery } from "./channels-query";
-import { queryClient } from "../../../core";
 import { useKeysQuery } from "./keys-query";
 
 export function useMessagesQuery(username?: string) {
+  const queryClient = useQueryClient();
+
   const { privateKey, publicKey, hasKeys } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
 
-  const { data: initialDirectMessages } = useDirectMessagesQuery(
-    directContacts ?? [],
-    publicKey!!,
-    privateKey!!
-  );
-  const { data: initialPublicMessages } = usePublicMessagesQuery(channels ?? []);
+  useDirectMessagesQuery(directContacts ?? [], publicKey!!, privateKey!!);
+  usePublicMessagesQuery(channels ?? []);
 
   const currentChannel = useMemo(
     () => channels?.find((channel) => channel.communityName === username),
     [channels, username]
+  );
+  const currentContact = useMemo(
+    () => directContacts?.find((c) => c.name === username),
+    [directContacts, username]
   );
 
   return useQuery<Message[]>(
@@ -32,24 +33,25 @@ export function useMessagesQuery(username?: string) {
         return [];
       }
 
-      const existingMessages =
-        queryClient.getQueryData<Message[]>([ChatQueries.MESSAGES, username]) ?? [];
-
-      await queryClient.invalidateQueries([ChatQueries.LAST_MESSAGES]);
-
-      if (existingMessages.length > 0) {
-        return existingMessages;
-      }
-
       if (!!currentChannel) {
-        return [...(initialPublicMessages ?? [])];
+        return (
+          queryClient
+            .getQueryData<Message[]>([NostrQueries.PUBLIC_MESSAGES])
+            ?.filter((i) => i.root === currentChannel.id) ?? []
+        );
       }
 
-      return [...(initialDirectMessages ?? [])];
+      return (
+        queryClient
+          .getQueryData<Message[]>([NostrQueries.DIRECT_MESSAGES])
+          ?.filter((i) =>
+            "peer" in i ? i.peer === currentContact?.pubkey : i.root === currentContact?.pubkey
+          ) ?? []
+      );
     },
     {
       initialData: [],
-      enabled: hasKeys,
+      enabled: hasKeys && !!username,
       select: (messages) => {
         if (currentChannel) {
           return messages

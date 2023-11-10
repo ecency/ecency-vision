@@ -1,4 +1,4 @@
-import { QueryKey, useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryKey, useQuery } from "@tanstack/react-query";
 import { Event, Kind } from "../../../../../lib/nostr-tools/event";
 import { useContext } from "react";
 import { NostrContext } from "../nostr-context";
@@ -13,19 +13,12 @@ export function useNostrFetchQuery<DATA>(
   dataResolver: (events: Event[]) => DATA | Promise<DATA>,
   queryOptions?: UseQueryOptions<DATA>
 ) {
-  const queryClient = useQueryClient();
-
   const { pool, readRelays } = useContext(NostrContext);
   const { publicKey } = useKeysQuery();
 
   return useQuery(
     key,
     async () => {
-      const queryData = queryClient.getQueryData<DATA>(key);
-      if (queryData && (Array.isArray(queryData) ? queryData.length > 0 : true)) {
-        return queryData;
-      }
-
       const kinds = kindsOrFilters.every((item) => typeof item === "number")
         ? (kindsOrFilters as Kind[])
         : [];

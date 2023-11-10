@@ -1,13 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Message } from "../managers/message-manager-types";
 import { ChatQueries } from "./queries";
 import { getDirectLastMessage } from "../utils";
 import { useDirectContactsQuery } from "./direct-contacts-query";
 import { useChannelsQuery } from "./channels-query";
-import { useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
+import { NostrQueries, useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
 import { useKeysQuery } from "./keys-query";
 
 export function useLastMessagesQuery() {
+  const queryClient = useQueryClient();
+
   const { publicKey, privateKey } = useKeysQuery();
   const { data: contacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
@@ -20,15 +22,17 @@ export function useLastMessagesQuery() {
 
   const getContactsLastMessages = () =>
     (contacts ?? []).reduce<Record<string, Message | undefined>>((acc, current) => {
-      const currentMessages = initialDirectMessages?.filter((i) =>
-        "peer" in i ? i.peer === current?.pubkey : i.root === current?.pubkey
-      );
+      const currentMessages = queryClient
+        .getQueryData<Message[]>([NostrQueries.DIRECT_MESSAGES])
+        ?.filter((i) => ("peer" in i ? i.peer === current?.pubkey : i.root === current?.pubkey));
       return { ...acc, [current.name]: getDirectLastMessage(currentMessages ?? []) };
     }, {});
 
   const getChannelsLastMessages = () =>
     (channels ?? []).reduce<Record<string, Message | undefined>>((acc, current) => {
-      const currentMessages = initialPublicMessages?.filter((i) => i.root === current.id);
+      const currentMessages = queryClient
+        .getQueryData<Message[]>([NostrQueries.PUBLIC_MESSAGES])
+        ?.filter((i) => i.root === current.id);
       return { ...acc, [current.name]: getDirectLastMessage(currentMessages ?? []) };
     }, {});
 
@@ -37,7 +41,7 @@ export function useLastMessagesQuery() {
     async () => ({ ...getContactsLastMessages(), ...getChannelsLastMessages() }),
     {
       initialData: {},
-      enabled: !!initialDirectMessages?.length && !!initialPublicMessages?.length
+      enabled: !!initialDirectMessages?.length || !!initialPublicMessages?.length
     }
   );
 }

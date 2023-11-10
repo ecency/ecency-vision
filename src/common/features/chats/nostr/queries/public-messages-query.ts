@@ -22,7 +22,8 @@ export function usePublicMessagesQuery(channels: Channel[]) {
     (events) =>
       events.map((event) => convertEvent(event)).filter((message) => !!message) as Message[],
     {
-      enabled: channels.length > 0
+      enabled: channels.length > 0,
+      initialData: []
     }
   );
 }

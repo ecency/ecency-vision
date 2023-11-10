@@ -66,10 +66,6 @@ export function useSendMessage(
           [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
           [...messages, message]
         );
-        queryClient.invalidateQueries([
-          ChatQueries.MESSAGES,
-          currentChannel?.communityName ?? currentUser
-        ]);
 
         onSuccess?.();
       }

@@ -6,6 +6,7 @@ import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
 import { useJoinChat } from "./mutations";
 import { NostrListenerQueriesProvider, NostrProvider } from "./nostr";
+import { useListenMessagesQuery } from "./queries/listen-messages-query";
 
 interface Context {
   showSpinner: boolean;
@@ -61,6 +62,7 @@ export const ChatContextProvider = (props: Props) => {
   useJoinChat(() => {
     setHasUserJoinedChat(true);
   });
+  useListenMessagesQuery();
 
   useDebounce(() => setShowSpinner(false), 5000, [showSpinner]);
 

@@ -35,7 +35,8 @@ export function useDirectMessagesQuery(
         )
       ),
     {
-      enabled: directContacts.length > 0
+      enabled: directContacts.length > 0,
+      initialData: []
     }
   );
 }

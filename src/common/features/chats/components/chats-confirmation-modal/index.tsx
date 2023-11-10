@@ -50,7 +50,6 @@ const ChatsConfirmationModal = (props: Props) => {
       <ModalFooter className="flex justify-end gap-4 items-center">
         <Button
           outline={true}
-          className="close-btn"
           onClick={() => {
             onClose();
           }}
@@ -58,7 +57,6 @@ const ChatsConfirmationModal = (props: Props) => {
           {_t("chat.close")}
         </Button>
         <Button
-          className="confirm-btn"
           onClick={() => {
             setInProgress(true);
             onConfirm();
