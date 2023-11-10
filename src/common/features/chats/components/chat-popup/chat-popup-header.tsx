@@ -114,11 +114,7 @@ export function ChatPopupHeader({
             />
           </Tooltip>
         )}
-        {isCommunity && (
-          <div className="community-menu">
-            <ChatsCommunityDropdownMenu history={history!} username={communityName} />
-          </div>
-        )}
+        {isCommunity && <ChatsCommunityDropdownMenu history={history!} username={communityName} />}
         {!isCommunity && !isCurrentUser && privateKey && (
           <div className="simple-menu" onClick={() => setExpanded(true)}>
             <ChatsDropdownMenu

@@ -80,7 +80,8 @@
     "ok": "OK",
     "join": "Join",
     "resend": "Resend",
-    "failed": "Failed"
+    "failed": "Failed",
+    "status": "Status"
   },
   "confirm": {
     "title": "Are you sure?",

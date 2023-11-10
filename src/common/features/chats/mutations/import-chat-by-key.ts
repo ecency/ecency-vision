@@ -29,8 +29,8 @@ export function useImportChatByKey(onSuccess?: () => void) {
       }
 
       localStorage.setItem(PREFIX + "_nostr_pr_" + activeUser?.username, key);
-      queryClient.invalidateQueries([ChatQueries.PUBLIC_KEY]);
-      queryClient.invalidateQueries([ChatQueries.PRIVATE_KEY]);
+      await queryClient.invalidateQueries([ChatQueries.PUBLIC_KEY]);
+      await queryClient.invalidateQueries([ChatQueries.PRIVATE_KEY]);
     },
     {
       onSuccess

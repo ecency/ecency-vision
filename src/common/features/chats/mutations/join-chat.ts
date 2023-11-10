@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNoStrAccount, uploadChatPublicKey } from "../utils";
-import * as ls from "../../../util/local-storage";
-import { setNostrkeys } from "../managers/message-manager";
+import { PREFIX } from "../../../util/local-storage";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatQueries } from "../queries";
 import { useNostrPublishMutation } from "../nostr";
@@ -32,10 +31,9 @@ export function useJoinChat(onSuccess?: () => void) {
 
   return useMutation(["chat-join-chat"], async () => createNoStrAccount(), {
     onSuccess: async (keys: ReturnType<typeof createNoStrAccount>) => {
-      ls.set(`${activeUser?.username}_nsPrivKey`, keys.priv);
+      localStorage.setItem(PREFIX + "_nostr_pr_" + activeUser?.username, keys.priv);
       await uploadPublicKey(keys.pub);
 
-      setNostrkeys(keys);
       queryClient.setQueryData([ChatQueries.PUBLIC_KEY], keys.pub);
       queryClient.setQueryData([ChatQueries.PRIVATE_KEY], keys.priv);
 

@@ -26,7 +26,7 @@ export function DropdownItemWithIcon(
 ) {
   return (
     <DropdownItem {...props}>
-      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-dark-sky">
+      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-dark-sky [&>div>svg]:w-4">
         <div>{props.icon}</div>
         <div className="text-sm font-semibold">{props.label}</div>
       </div>

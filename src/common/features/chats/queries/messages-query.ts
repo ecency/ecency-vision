@@ -35,6 +35,8 @@ export function useMessagesQuery(username?: string) {
       const existingMessages =
         queryClient.getQueryData<Message[]>([ChatQueries.MESSAGES, username]) ?? [];
 
+      await queryClient.invalidateQueries([ChatQueries.LAST_MESSAGES]);
+
       if (existingMessages.length > 0) {
         return existingMessages;
       }

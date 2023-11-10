@@ -20,13 +20,8 @@ export function useAddCommunityChannel(name: string | undefined) {
         ids: name ? [name] : undefined
       },
       {
-        kinds: [Kind.ChannelMetadata],
+        kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
         "#e": name ? [name] : undefined
-      },
-      {
-        kinds: [Kind.ChannelMessage],
-        "#e": name ? [name] : undefined,
-        limit: 30
       }
     ],
     {
@@ -38,7 +33,6 @@ export function useAddCommunityChannel(name: string | undefined) {
               const hasChannelAlready = channels?.some(({ id }) => id === channel?.id);
               if (!hasChannelAlready && channel) {
                 queryClient.setQueryData([ChatQueries.CHANNELS], [...(channels ?? []), channel]);
-                queryClient.invalidateQueries([ChatQueries.CHANNELS]);
               }
 
               // Remove the community from left list

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Channel, Keys } from "./managers/message-manager-types";
+import { Keys } from "./managers/message-manager-types";
 import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
-import { NostrKeysType } from "./types";
 import { useMount } from "react-use";
 import { useKeysQuery } from "./queries/keys-query";
 import { useJoinChat } from "./mutations";
@@ -16,8 +15,8 @@ interface Context {
   messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
   windowWidth: number;
+  // TODO: it means is active usre removed from channe;
   isActiveUserRemoved: boolean;
-  setCurrentChannel: (channel: Channel) => void;
   setRevealPrivKey: (d: boolean) => void;
   setShowSpinner: (d: boolean) => void;
   setChatPrivKey: (key: string) => void;
@@ -39,7 +38,6 @@ export const ChatContext = React.createContext<Context>({
   hasUserJoinedChat: false,
   windowWidth: 0,
   isActiveUserRemoved: false,
-  setCurrentChannel: () => {},
   setRevealPrivKey: () => {},
   setShowSpinner: () => {},
   setChatPrivKey: () => {},
@@ -49,19 +47,16 @@ export const ChatContext = React.createContext<Context>({
 });
 
 export const ChatContextProvider = (props: Props) => {
-  // TODO: USE QUERY INTEAD
-  const [activeUserKeys, setActiveUserKeys] = useState<NostrKeysType>({ pub: "", priv: "" });
   const [showSpinner, setShowSpinner] = useState(true);
   const [chatPrivKey, setChatPrivKey] = useState("");
   const [revealPrivKey, setRevealPrivKey] = useState(false);
   const [receiverPubKey, setReceiverPubKey] = useState("");
   const [messageServiceInstance, setMessageServiceInstance] = useState<MessageService | null>(null);
   const [hasUserJoinedChat, setHasUserJoinedChat] = useState(false);
-  const [currentChannel, setCurrentChannel] = useState<Channel | null>(null);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isActiveUserRemoved, setIsActiveUserRemoved] = useState(false);
 
-  const { privateKey, publicKey, refetch } = useKeysQuery();
+  const { privateKey, publicKey } = useKeysQuery();
 
   useJoinChat(() => {
     setHasUserJoinedChat(true);
@@ -82,12 +77,6 @@ export const ChatContextProvider = (props: Props) => {
       setChatPrivKey(privateKey);
     }
   }, [privateKey]);
-
-  useEffect(() => {
-    if (currentChannel && currentChannel.removedUserIds) {
-      setIsActiveUserRemoved(currentChannel.removedUserIds?.includes(activeUserKeys?.pub!));
-    }
-  }, [currentChannel]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -127,7 +116,6 @@ export const ChatContextProvider = (props: Props) => {
           hasUserJoinedChat,
           windowWidth,
           isActiveUserRemoved,
-          setCurrentChannel,
           setRevealPrivKey,
           setShowSpinner,
           setChatPrivKey,

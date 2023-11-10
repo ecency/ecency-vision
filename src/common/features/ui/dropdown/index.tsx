@@ -21,6 +21,7 @@ export function Dropdown(props: HTMLProps<HTMLDivElement> & Props) {
   useClickAway(ref, () => {
     if (props.closeOnClickOutside ?? true) {
       setShow(false);
+      // props.setShow?.(false);
     }
   });
   const nativeProps = useFilteredProps(props, ["show", "setShow", "closeOnClickOutside"]);

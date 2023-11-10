@@ -15,14 +15,17 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useUpdateChannelModerator } from "../../mutations";
 import { Table, Td, Th, Tr } from "@ui/table";
 import { Spinner } from "@ui/spinner";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 
 interface Props {
   username: string;
+  show: boolean;
+  setShow: (v: boolean) => void;
 }
 
 const roles = [ROLES.ADMIN, ROLES.MOD, ROLES.GUEST];
 
-export function EditRolesModal({ username }: Props) {
+export function EditRolesModal({ username, setShow, show }: Props) {
   const { activeUser } = useMappedStore();
   const { data: channels } = useChannelsQuery();
 
@@ -94,10 +97,10 @@ export function EditRolesModal({ username }: Props) {
   );
 
   return (
-    <>
-      <h4 className="pb-6">{_t("chat.edit-community-roles")}</h4>
+    <Modal centered={true} show={show} onHide={() => setShow(false)}>
+      <ModalHeader closeButton={true}>{_t("chat.edit-community-roles")}</ModalHeader>
       {inProgress && <LinearProgress />}
-      <div>
+      <ModalBody>
         <div className={`flex flex-col mb-6 gap-6 ${inProgress ? "in-progress" : ""}`}>
           <div className="grid grid-cols-12">
             <div className="col-span-12 sm:col-span-2">{_t("community-role-edit.username")}</div>
@@ -205,7 +208,7 @@ export function EditRolesModal({ username }: Props) {
             <p>{_t("chat.no-admin")}</p>
           </div>
         )}
-      </div>
-    </>
+      </ModalBody>
+    </Modal>
   );
 }

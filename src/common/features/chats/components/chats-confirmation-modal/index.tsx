@@ -5,7 +5,7 @@ import { ChatContext } from "../../chat-context-provider";
 
 import "./index.scss";
 import { Button } from "@ui/button";
-import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
 
 interface Props {
   actionType: string;
@@ -33,27 +33,6 @@ const ChatsConfirmationModal = (props: Props) => {
       </div>
       {inProgress && <LinearProgress />}
       <div className="join-community-dialog-body">{content}</div>
-      <p className="join-community-confirm-buttons">
-        <Button
-          outline={true}
-          className="close-btn"
-          onClick={() => {
-            onClose();
-          }}
-        >
-          {_t("chat.close")}
-        </Button>
-        <Button
-          outline={true}
-          className="confirm-btn"
-          onClick={() => {
-            setInProgress(true);
-            onConfirm();
-          }}
-        >
-          {_t("chat.confirm")}
-        </Button>
-      </p>
     </>
   );
 
@@ -68,6 +47,26 @@ const ChatsConfirmationModal = (props: Props) => {
     >
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody className="chat-modals-body">{confirmationModalContent}</ModalBody>
+      <ModalFooter className="flex justify-end gap-4 items-center">
+        <Button
+          outline={true}
+          className="close-btn"
+          onClick={() => {
+            onClose();
+          }}
+        >
+          {_t("chat.close")}
+        </Button>
+        <Button
+          className="confirm-btn"
+          onClick={() => {
+            setInProgress(true);
+            onConfirm();
+          }}
+        >
+          {_t("chat.confirm")}
+        </Button>
+      </ModalFooter>
     </Modal>
   );
 };

@@ -99,7 +99,6 @@ export function ChatsChannelMessages({
               setShow={(v) =>
                 setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
               }
-              closeOnClickOutside={false}
             >
               <ChatMessageItem
                 currentChannel={currentChannel}

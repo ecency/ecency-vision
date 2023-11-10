@@ -7,7 +7,7 @@ import ChatInput from "./chat-input";
 import { Channel } from "../managers/message-manager-types";
 import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { COMMUNITYADMINROLES, PRIVILEGEDROLES } from "./chat-popup/chat-constants";
+import { COMMUNITYADMINROLES } from "./chat-popup/chat-constants";
 import { useUpdateChannelBlockedUsers } from "../mutations";
 import { useNostrGetUserProfileQuery } from "../nostr/queries";
 
@@ -39,13 +39,6 @@ export function ChatMessageChannelItemExtension({
         .map((user) => user.name) ?? [],
     [currentChannel]
   );
-  const privilegedUsers = useMemo(
-    () =>
-      currentChannel?.communityModerators
-        ?.filter((user) => PRIVILEGEDROLES.includes(user.role))
-        .map((user) => user.name) ?? [],
-    [currentChannel]
-  );
 
   const { mutateAsync: updateBlockedUsers } = useUpdateChannelBlockedUsers(currentChannel);
 
@@ -58,7 +51,7 @@ export function ChatMessageChannelItemExtension({
     );
 
   return (
-    <Popover id={`profile-popover`} className="profile-popover">
+    <Popover id="profile-popover" className="profile-popover">
       <UserAvatar username={profile?.name ?? ""} />
       {children}
       <PopoverContent>

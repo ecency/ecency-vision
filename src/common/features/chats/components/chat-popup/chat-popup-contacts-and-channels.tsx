@@ -69,9 +69,8 @@ export function ChatPopupContactsAndChannels({
       ) : !privateKey ? (
         <ChatsImport />
       ) : showSpinner ? (
-        <div className="no-chat">
-          <Spinner />
-          <p className="mt-3 ml-2">Loading...</p>
+        <div className="flex items-center justify-center h-full">
+          <Spinner className="w-4 h-4" />
         </div>
       ) : (
         <>
