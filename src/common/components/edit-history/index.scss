@@ -39,10 +39,12 @@
         .diff-select {
           width: 55%;
           flex-shrink: 0;
+
           label {
             font-size: 0.9rem;
           }
         }
+
         select {
           font-size: 0.9rem;
         }
@@ -54,6 +56,10 @@
 
         @include themify(day) {
           @apply bg-light-300;
+        }
+
+        @include themify(night) {
+          @apply bg-gray-800;
         }
 
         .diff-select {
@@ -68,6 +74,7 @@
           grid-template-rows: 24px 24px;
           cursor: pointer;
           padding: 10px 0;
+          border: 0;
 
           &.selected {
             .item-title {
@@ -79,7 +86,7 @@
             }
 
             @include themify(night) {
-              @apply bg-blue-dusky-2;
+              @apply bg-blue-dusky;
             }
           }
 

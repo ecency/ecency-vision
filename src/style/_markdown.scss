@@ -109,57 +109,24 @@
   }
 
   table {
-    border-collapse: separate;
-    border-spacing: 1px;
-    margin-bottom: 1rem;
     word-break: normal !important;
     overflow-x: auto;
     display: block;
     width: fit-content;
     max-width: 100%;
 
-    td,
+    @apply border dark:border-gray-700 overflow-hidden table-auto border-collapse text-xs sm:text-sm md:text-base;
+
+    tr {
+      @apply [&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300;
+    }
+
+    td {
+      @apply border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2;
+    }
+
     th {
-      padding: .5rem;
-    }
-
-    thead {
-      td,
-      th {
-        @include themify(day) {
-          @apply bg-light-400;
-        }
-
-        @include themify(night) {
-          @apply bg-blue-metallic;
-        }
-      }
-    }
-
-    tbody {
-      td,
-      th {
-        @include themify(day) {
-          @apply bg-light-400;
-        }
-
-        @include themify(night) {
-          @apply bg-blue-metallic-10-light;
-        }
-
-        // background-color: $boxBg;
-      }
-    }
-  }
-
-  @include themify(night) {
-    table {
-      td,
-      th {
-        a {
-          @apply text-blue-metallic-20;
-        }
-      }
+      @apply border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 sm:text-sm md:text-base p-1 sm:p-2;
     }
   }
 
@@ -178,7 +145,7 @@
   }
 
   ul {
-    list-style: decimal;
+    list-style: inherit;
     padding-left: 40px;
   }
 

@@ -230,7 +230,7 @@ export function Submit(props: PageProps & MatchProps) {
   }, [tags, title, body]);
 
   useEffect(() => {
-    handleFloatingContainer(showHelp, "submit");
+    handleFloatingContainer(showHelp);
   }, [showHelp]);
 
   useEffect(() => {
@@ -264,7 +264,7 @@ export function Submit(props: PageProps & MatchProps) {
   const handleResize = () => {
     if (typeof window !== "undefined" && window.innerWidth < 992) {
       setShowHelp(false);
-      handleFloatingContainer(false, "submit");
+      handleFloatingContainer(false);
     }
   };
 

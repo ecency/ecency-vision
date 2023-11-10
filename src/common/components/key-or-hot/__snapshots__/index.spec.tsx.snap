@@ -79,7 +79,7 @@ exports[`(1) Default render 1`] = `
         Sign with hivesigner
       </div>
       <div
-        className="flex justify-center items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 "
       >
         <img
           alt="hivesigner"

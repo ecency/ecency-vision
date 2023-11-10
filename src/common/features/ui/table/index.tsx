@@ -45,11 +45,11 @@ export function Th(
       {...props}
       className={classNameObject({
         //Basic
-        "border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2":
+        "border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0":
           true,
 
         // Responsive
-        "text-xs sm:text-sm md:text-md p-1 sm:p-2": true,
+        "text-xs sm:text-sm md:text-base p-1 sm:p-2": true,
 
         // Misc
         [props.className ?? ""]: true
@@ -81,7 +81,7 @@ export function Table(
           "table-auto border-collapse": true,
 
           // Responsive
-          "text-xs sm:text-sm md:text-md": true,
+          "text-xs sm:text-sm md:text-base": true,
 
           // Misc
           "w-full": props.full,
