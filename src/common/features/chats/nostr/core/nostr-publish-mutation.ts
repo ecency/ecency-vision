@@ -1,9 +1,9 @@
 import { MutationKey, useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { useContext } from "react";
-import { Metadata } from "../../managers/message-manager-types";
 import { Event, getEventHash, Kind, signEvent } from "../../../../../lib/nostr-tools/event";
 import { NostrContext } from "../nostr-context";
 import { useKeysQuery } from "../../queries/keys-query";
+import { Metadata } from "../types";
 
 type Payload = { eventMetadata: Metadata | string; tags: string[][] };
 

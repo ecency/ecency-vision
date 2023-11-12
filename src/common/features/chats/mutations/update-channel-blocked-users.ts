@@ -1,6 +1,6 @@
 import { useUpdateCommunityChannel } from "./update-community-channel";
 import { useMutation } from "@tanstack/react-query";
-import { Channel } from "../managers/message-manager-types";
+import { Channel } from "../nostr";
 
 export function useUpdateChannelBlockedUsers(channel: Channel) {
   const { mutateAsync: updateChannel } = useUpdateCommunityChannel(channel);

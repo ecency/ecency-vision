@@ -1,9 +1,9 @@
 import { useNostrFetchQuery } from "../core";
-import { Channel, Message } from "../../managers/message-manager-types";
 import { Filter } from "../../../../../lib/nostr-tools/filter";
 import { Kind } from "../../../../../lib/nostr-tools/event";
 import { convertEvent } from "../utils/event-converter";
 import { NostrQueries } from "./queries";
+import { Channel, Message } from "../types";
 
 export function usePublicMessagesQuery(channels: Channel[]) {
   return useNostrFetchQuery<Message[]>(

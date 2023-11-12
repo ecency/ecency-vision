@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Keys } from "./managers/message-manager-types";
 import useDebounce from "react-use/lib/useDebounce";
 import MessageService from "../../helper/message-service";
 import { useMount } from "react-use";
@@ -13,7 +12,6 @@ interface Context {
   revealPrivKey: boolean;
   chatPrivKey: string;
   receiverPubKey: string;
-  messageServiceInstance: MessageService | null;
   hasUserJoinedChat: boolean;
   windowWidth: number;
   // TODO: it means is active usre removed from channe;
@@ -23,7 +21,6 @@ interface Context {
   setChatPrivKey: (key: string) => void;
   setReceiverPubKey: (key: string) => void;
   setMessageServiceInstance: (instance: MessageService | null) => void;
-  initMessageServiceInstance: (keys: Keys) => MessageService | null;
 }
 
 interface Props {
@@ -35,7 +32,6 @@ export const ChatContext = React.createContext<Context>({
   revealPrivKey: false,
   chatPrivKey: "",
   receiverPubKey: "",
-  messageServiceInstance: null,
   hasUserJoinedChat: false,
   windowWidth: 0,
   isActiveUserRemoved: false,
@@ -43,8 +39,7 @@ export const ChatContext = React.createContext<Context>({
   setShowSpinner: () => {},
   setChatPrivKey: () => {},
   setReceiverPubKey: () => {},
-  setMessageServiceInstance: () => {},
-  initMessageServiceInstance: () => (({} as MessageService) || null)
+  setMessageServiceInstance: () => {}
 });
 
 export const ChatContextProvider = (props: Props) => {
@@ -92,20 +87,6 @@ export const ChatContextProvider = (props: Props) => {
     };
   }, []);
 
-  const initMessageServiceInstance = (keys: Keys) => {
-    if (messageServiceInstance) {
-      messageServiceInstance.close();
-      setMessageServiceInstance(null);
-    }
-
-    let newMessageService: MessageService | null = null;
-    if (keys) {
-      newMessageService = new MessageService(keys.priv, keys.pub);
-      setMessageServiceInstance(newMessageService);
-    }
-    return newMessageService;
-  };
-
   return (
     <NostrListenerQueriesProvider>
       <ChatContext.Provider
@@ -114,7 +95,6 @@ export const ChatContextProvider = (props: Props) => {
           revealPrivKey,
           receiverPubKey,
           chatPrivKey,
-          messageServiceInstance,
           hasUserJoinedChat,
           windowWidth,
           isActiveUserRemoved,
@@ -122,8 +102,7 @@ export const ChatContextProvider = (props: Props) => {
           setShowSpinner,
           setChatPrivKey,
           setReceiverPubKey,
-          setMessageServiceInstance,
-          initMessageServiceInstance
+          setMessageServiceInstance
         }}
       >
         <NostrProvider>{props.children}</NostrProvider>

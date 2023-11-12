@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Channel } from "../managers/message-manager-types";
 import { ChatQueries, useChannelsQuery } from "../queries";
-import { useNostrPublishMutation } from "../nostr";
+import { Channel, useNostrPublishMutation } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 import { useFindHealthyRelayQuery } from "../nostr/mutations/find-healthy-relay";
 

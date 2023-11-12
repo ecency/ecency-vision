@@ -1,4 +1,3 @@
-import { Channel, Message } from "../managers/message-manager-types";
 import Tooltip from "../../../components/tooltip";
 import { failedMessageSvg, resendMessageSvg } from "../../../img/svg";
 import { formatMessageTime, isMessageGif, isMessageImage } from "../utils";
@@ -9,6 +8,7 @@ import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-extension";
+import { Channel, Message } from "../nostr";
 
 interface Props {
   type: "sender" | "receiver";

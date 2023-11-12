@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { ChatQueries } from "./queries";
-import { CommunityModerator } from "../managers/message-manager-types";
 import { getProfileMetaData } from "../utils";
 import { Community, ROLES } from "../../../store/communities";
 import { NOSTRKEY } from "../components/chat-popup/chat-constants";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useKeysQuery } from "./keys-query";
+import { CommunityModerator } from "../nostr";
 
 /**
  * Get a community team members which joined to Nostr and available to create a chat

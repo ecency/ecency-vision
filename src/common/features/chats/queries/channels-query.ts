@@ -1,6 +1,5 @@
 import { ChatQueries } from "./queries";
-import { Channel } from "../managers/message-manager-types";
-import { useNostrFetchQuery } from "../nostr";
+import { Channel, useNostrFetchQuery } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 import { useKeysQuery } from "./keys-query";
 import { convertEvent } from "../nostr/utils/event-converter";

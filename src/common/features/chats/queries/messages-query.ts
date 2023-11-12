@@ -3,9 +3,9 @@ import { useDirectContactsQuery } from "./direct-contacts-query";
 import { useMemo } from "react";
 import { NostrQueries, useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
 import { ChatQueries } from "./queries";
-import { Message } from "../managers/message-manager-types";
 import { useChannelsQuery } from "./channels-query";
 import { useKeysQuery } from "./keys-query";
+import { Message } from "../nostr";
 
 export function useMessagesQuery(username?: string) {
   const queryClient = useQueryClient();

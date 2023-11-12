@@ -7,9 +7,9 @@ import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { _t } from "../../../../i18n";
 import "./index.scss";
-import { DirectMessage } from "../../managers/message-manager-types";
 import { ChatMessageItem } from "../chat-message-item";
 import { useKeysQuery } from "../../queries/keys-query";
+import { DirectMessage } from "../../nostr";
 
 interface Props {
   directMessages: DirectMessage[];

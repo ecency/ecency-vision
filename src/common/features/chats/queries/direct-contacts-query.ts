@@ -1,7 +1,6 @@
 import { ChatQueries } from "./queries";
-import { DirectContact } from "../managers/message-manager-types";
 import { useKeysQuery } from "./keys-query";
-import { useNostrFetchQuery } from "../nostr";
+import { DirectContact, useNostrFetchQuery } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 
 export function useDirectContactsQuery() {

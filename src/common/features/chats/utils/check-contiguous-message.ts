@@ -1,4 +1,4 @@
-import { DirectMessage, PublicMessage } from "../managers/message-manager-types";
+import { DirectMessage, PublicMessage } from "../nostr";
 
 export const checkContiguousMessage = (
   msg: PublicMessage | DirectMessage,

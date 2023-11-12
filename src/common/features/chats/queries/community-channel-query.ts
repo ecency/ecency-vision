@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ChatQueries } from "./queries";
 import { Community } from "../../../store/communities";
 import { getProfileMetaData } from "../utils";
-import { Channel } from "../managers/message-manager-types";
+import { Channel } from "../nostr";
 
 /**
  * Get the community's channel information

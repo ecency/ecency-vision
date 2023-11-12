@@ -1,13 +1,7 @@
 import Tooltip from "../../../../components/tooltip";
 import { _t } from "../../../../i18n";
 import { Button } from "@ui/button";
-import {
-  addMessageSvg,
-  arrowBackSvg,
-  duotoneRefreshSvg,
-  expandArrow,
-  extendedView
-} from "../../../../img/svg";
+import { addMessageSvg, arrowBackSvg, expandArrow, extendedView } from "../../../../img/svg";
 import ChatsCommunityDropdownMenu from "../chats-community-actions";
 import { history } from "../../../../store";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
@@ -27,7 +21,6 @@ interface Props {
   isCurrentUser: boolean;
   handleBackArrowSvg: () => void;
   handleMessageSvgClick: () => void;
-  handleRefreshSvgClick: () => void;
   handleExtendedView: () => void;
   setExpanded: (v: boolean) => void;
 }
@@ -42,11 +35,10 @@ export function ChatPopupHeader({
   isCurrentUser,
   handleBackArrowSvg,
   handleMessageSvgClick,
-  handleRefreshSvgClick,
   handleExtendedView,
   setExpanded
 }: Props) {
-  const { revealPrivKey, hasUserJoinedChat, setRevealPrivKey } = useContext(ChatContext);
+  const { revealPrivKey, setRevealPrivKey } = useContext(ChatContext);
 
   const { privateKey } = useKeysQuery();
 
@@ -100,17 +92,6 @@ export function ChatPopupHeader({
               appearance="link"
               icon={addMessageSvg}
               onClick={handleMessageSvgClick}
-            />
-          </Tooltip>
-        )}
-        {hasUserJoinedChat && privateKey && !revealPrivKey && (
-          <Tooltip content={_t("chat.refresh")}>
-            <Button
-              noPadding={true}
-              size="sm"
-              appearance="link"
-              icon={duotoneRefreshSvg}
-              onClick={handleRefreshSvgClick}
             />
           </Tooltip>
         )}

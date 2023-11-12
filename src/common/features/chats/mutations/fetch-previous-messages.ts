@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNostrFetchMutation } from "../nostr";
+import { Channel, useNostrFetchMutation } from "../nostr";
 import { Event, Kind } from "../../../../lib/nostr-tools/event";
-import { Channel } from "../managers/message-manager-types";
 import { ChatQueries, useMessagesQuery } from "../queries";
 import { convertEvent } from "../nostr/utils/event-converter";
 

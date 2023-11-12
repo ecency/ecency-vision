@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useDirectContactsQuery } from "../queries";
-import { DirectContact } from "../managers/message-manager-types";
-import { useNostrPublishMutation } from "../nostr";
+import { DirectContact, useNostrPublishMutation } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 
 export function useAddDirectContact() {

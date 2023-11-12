@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Zoom } from "medium-zoom";
-import { Channel, PublicMessage } from "../managers/message-manager-types";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
@@ -13,6 +12,7 @@ import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
 import { hideSvg, removeUserSvg } from "../../../img/svg";
 import { useHideMessageInChannel, useUpdateChannelBlockedUsers } from "../mutations";
 import { Spinner } from "@ui/spinner";
+import { Channel, PublicMessage } from "../nostr";
 
 interface Props {
   publicMessages: PublicMessage[];

@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Message } from "../managers/message-manager-types";
 import { ChatQueries } from "./queries";
 import { getDirectLastMessage } from "../utils";
 import { useDirectContactsQuery } from "./direct-contacts-query";
 import { useChannelsQuery } from "./channels-query";
 import { NostrQueries, useDirectMessagesQuery, usePublicMessagesQuery } from "../nostr/queries";
 import { useKeysQuery } from "./keys-query";
+import { Message } from "../nostr";
 
 export function useLastMessagesQuery() {
   const queryClient = useQueryClient();

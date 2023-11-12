@@ -7,7 +7,6 @@ import { NOSTRKEY } from "../chat-popup/chat-constants";
 import { useChannelsQuery } from "../../queries";
 import UserAvatar from "../../../../components/user-avatar";
 import { ROLES } from "../../../../store/communities";
-import { CommunityModerator } from "../../managers/message-manager-types";
 import { error } from "../../../../components/feedback";
 import useDebounce from "react-use/lib/useDebounce";
 import { getAccountFull } from "../../../../api/hive";
@@ -16,6 +15,7 @@ import { useUpdateChannelModerator } from "../../mutations";
 import { Table, Td, Th, Tr } from "@ui/table";
 import { Spinner } from "@ui/spinner";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import { CommunityModerator } from "../../nostr";
 
 interface Props {
   username: string;

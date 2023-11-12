@@ -1,6 +1,6 @@
-import { Channel } from "../managers/message-manager-types";
 import { useMutation } from "@tanstack/react-query";
 import { useUpdateCommunityChannel } from "./update-community-channel";
+import { Channel } from "../nostr";
 
 interface Payload {
   hide: boolean;

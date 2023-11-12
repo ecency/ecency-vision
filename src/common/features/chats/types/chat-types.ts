@@ -1,14 +1,3 @@
-export interface NostrKeysType {
-  pub: string;
-  priv: string;
-}
-
-export interface profileData {
-  joiningData: string;
-  about: string | undefined;
-  followers: number | undefined;
-}
-
 export interface AccountWithReputation {
   account: string;
   reputation: number;

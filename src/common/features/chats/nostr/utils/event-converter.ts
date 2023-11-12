@@ -1,8 +1,8 @@
 import { Event, Kind } from "../../../../../lib/nostr-tools/event";
-import { Channel, Message, Profile } from "../../managers/message-manager-types";
 import { findTagValue } from "./find-tag-value";
 import { filterTagValue } from "./filter-tag-value";
 import { decrypt } from "../../../../../lib/nostr-tools/nip04";
+import { Channel, Message, Profile } from "../types";
 
 export interface EventConverterResult {
   [Kind.ChannelCreation]: Channel;

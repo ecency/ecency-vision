@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
-import { Channel } from "../../managers/message-manager-types";
 import UserAvatar from "../../../../components/user-avatar";
 import { useLastMessagesQuery } from "../../queries";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { getRelativeDate } from "../../utils";
 import { ChatContext } from "../../chat-context-provider";
+import { Channel } from "../../nostr";
 
 interface Props {
   username: string;

@@ -1,5 +1,5 @@
 import { Button } from "@ui/button";
-import { arrowBackSvg, syncSvg } from "../../../../img/svg";
+import { arrowBackSvg } from "../../../../img/svg";
 import Tooltip from "../../../../components/tooltip";
 import { _t } from "../../../../i18n";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
@@ -13,8 +13,6 @@ interface Props {
 
 export function ChatSidebarHeader({ history }: Props) {
   const { revealPrivKey, chatPrivKey, setRevealPrivKey } = useContext(ChatContext);
-
-  const handleRefreshChat = () => {};
 
   return (
     <div className="sticky top-0 z-10 bg-white flex items-center justify-between border-b border-[--border-color] pl-4 pr-2 py-3 gap-4">
@@ -35,9 +33,6 @@ export function ChatSidebarHeader({ history }: Props) {
         </div>
       </div>
       <div className="flex items-center">
-        <Tooltip content={_t("chat.refresh")}>
-          <Button icon={syncSvg} appearance="link" onClick={handleRefreshChat} />
-        </Tooltip>
         {chatPrivKey && (
           <div className="chat-menu">
             <ChatsDropdownMenu

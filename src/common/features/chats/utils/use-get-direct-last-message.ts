@@ -1,4 +1,4 @@
-import { Message } from "../managers/message-manager-types";
+import { Message } from "../nostr";
 
 export const getDirectLastMessage = (directMessages: Message[]) => {
   if (!directMessages.length) {

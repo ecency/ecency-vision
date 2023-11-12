@@ -4,8 +4,8 @@ import React, { useContext, useMemo } from "react";
 import { ChatContext } from "../../chat-context-provider";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { DirectContact } from "../../managers/message-manager-types";
 import { useLastMessagesQuery } from "../../queries";
+import { DirectContact } from "../../nostr";
 
 interface Props {
   contact: DirectContact;

@@ -5,11 +5,11 @@ import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
 import ChatsScroller from "./chats-scroller";
 import { classNameObject } from "../../../helper/class-name-object";
-import { Channel, DirectMessage, PublicMessage } from "../managers/message-manager-types";
 import { useMessagesQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
 import { useFetchPreviousMessages } from "../mutations";
 import { ChatsChannelMessages } from "./chat-channel-messages";
+import { Channel, DirectMessage, PublicMessage } from "../nostr";
 
 interface Props {
   username: string;

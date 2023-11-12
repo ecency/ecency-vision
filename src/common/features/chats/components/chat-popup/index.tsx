@@ -9,7 +9,6 @@ import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import "./index.scss";
-import { getPrivateKey } from "../../utils";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
@@ -154,18 +153,6 @@ export const ChatPopUp = () => {
     setExpanded(true);
   };
 
-  const handleRefreshSvgClick = () => {
-    setExpanded(true);
-    handleBackArrowSvg();
-    if (getPrivateKey(activeUser?.username!)) {
-      setShowSpinner(true);
-      const keys = {
-        pub: publicKey!,
-        priv: privateKey
-      };
-    }
-  };
-
   const handleBackArrowSvg = () => {
     setCurrentUser("");
     setCommunityName("");
@@ -205,7 +192,6 @@ export const ChatPopUp = () => {
             handleBackArrowSvg={handleBackArrowSvg}
             handleExtendedView={handleExtendedView}
             handleMessageSvgClick={handleMessageSvgClick}
-            handleRefreshSvgClick={handleRefreshSvgClick}
             showSearchUser={showSearchUser}
           />
           {(isJoinChatLoading || isChannelsLoading || isFetchingMore) && <LinearProgress />}

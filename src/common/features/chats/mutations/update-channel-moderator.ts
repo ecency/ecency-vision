@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { Channel, CommunityModerator } from "../managers/message-manager-types";
 import { useUpdateCommunityChannel } from "./update-community-channel";
+import { Channel, CommunityModerator } from "../nostr";
 
 export function useUpdateChannelModerator(channel?: Channel) {
   const { mutateAsync: updateChannel } = useUpdateCommunityChannel(channel);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
-import MessageManager from "./features/chats/managers/message-manager";
 import { EntryScreen } from "./pages/entry";
 import { SearchMorePageContainer, SearchPageContainer } from "./pages/search";
 import { ProposalDetailContainer, ProposalsIndexContainer } from "./pages/proposals";
@@ -27,7 +26,6 @@ import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
-
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 import { ChatContextProvider } from "./features/chats/chat-context-provider";
 import { ChatPopUp } from "./features/chats/components/chat-popup";
@@ -198,7 +196,6 @@ const App = (props: any) => {
         <Announcement activeUser={props.activeUser} />
         <FloatingFAQ />
 
-        <MessageManager />
         <ChatPopUp {...props} />
       </ChatContextProvider>
       <div id="modal-overlay-container" />

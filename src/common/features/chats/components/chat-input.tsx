@@ -17,9 +17,9 @@ import { useChatFileUpload, useSendMessage } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
-import { Channel } from "../managers/message-manager-types";
 import { Spinner } from "@ui/spinner";
 import { useChannelsQuery } from "../queries";
+import { Channel } from "../nostr";
 
 interface Props {
   currentChannel?: Channel;

@@ -4,12 +4,12 @@ import FollowControls from "../../../components/follow-controls";
 import { Button } from "@ui/button";
 import { _t } from "../../../i18n";
 import ChatInput from "./chat-input";
-import { Channel } from "../managers/message-manager-types";
 import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { COMMUNITYADMINROLES } from "./chat-popup/chat-constants";
 import { useUpdateChannelBlockedUsers } from "../mutations";
 import { useNostrGetUserProfileQuery } from "../nostr/queries";
+import { Channel } from "../nostr";
 
 interface Props {
   currentChannel: Channel;

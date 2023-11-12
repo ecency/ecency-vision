@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
 import React, { useMemo } from "react";
-import { DirectMessage, PublicMessage } from "../../managers/message-manager-types";
 import { useChannelsQuery, useMessagesQuery } from "../../queries";
 import { useCommunityCache } from "../../../../core";
 import { ChatsChannelMessages } from "../chat-channel-messages";
+import { DirectMessage, PublicMessage } from "../../nostr";
 
 interface Props {
   username: string;
