@@ -75,7 +75,7 @@ export function ChatMessageItem({
           className={classNameObject({
             "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage,
             "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender",
-            "bg-gray-200 rounded-tr-2xl": type === "receiver",
+            "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver",
             "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage,
             "same-user-message": isSameUser
           })}

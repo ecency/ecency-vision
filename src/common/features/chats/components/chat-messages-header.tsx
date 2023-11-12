@@ -43,7 +43,7 @@ export default function ChatsMessagesHeader(props: Props) {
           onClick={() => setReceiverPubKey("")}
         />
         <Link
-          className="flex items-center gap-3 decoration-0 after:!hidden font-semibold text-gray-800"
+          className="flex items-center gap-3 decoration-0 after:!hidden font-semibold text-gray-800 dark:text-white"
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
           target="_blank"
         >

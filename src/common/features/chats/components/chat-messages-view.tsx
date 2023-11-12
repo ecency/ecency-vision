@@ -145,7 +145,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
         )}
       </div>
 
-      <div className="sticky bottom-0 border-t border-[--border-color] bg-white">
+      <div className="sticky bottom-0 border-t border-[--border-color] bg-white pl-3">
         <ChatInput currentUser={directUser} currentChannel={currentChannel} />
       </div>
     </>

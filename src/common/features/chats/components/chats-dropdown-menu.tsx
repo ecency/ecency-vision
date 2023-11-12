@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { History } from "history";
-import DropDown, { MenuItem } from "../../../components/dropdown";
 import { chatKeySvg, kebabMenuSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
+import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History | null;
@@ -10,37 +11,21 @@ interface Props {
 }
 
 const ChatsDropdownMenu = (props: Props) => {
-  const onManageChatKey = () => {
-    const { onManageChatKey } = props;
-    if (onManageChatKey) {
-      onManageChatKey();
-    }
-  };
-
-  const menuItems: MenuItem[] = useMemo(
-    () => [
-      {
-        label: _t("chat.manage-chat-key"),
-        onClick: onManageChatKey,
-        icon: chatKeySvg
-      }
-    ],
-    []
-  );
   return (
-    <DropDown
-      history={props.history}
-      label=""
-      icon={kebabMenuSvg}
-      items={menuItems}
-      style={{
-        width: "35px",
-        height: "35px"
-      }}
-      float="right"
-      alignBottom={false}
-      noMarginTop={true}
-    />
+    <Dropdown>
+      <DropdownToggle>
+        <Button size="sm" appearance="gray-link" noPadding={true}>
+          {kebabMenuSvg}
+        </Button>
+        <DropdownMenu align="right">
+          <DropdownItemWithIcon
+            label={_t("chat.manage-chat-key")}
+            icon={chatKeySvg}
+            onClick={() => props.onManageChatKey?.()}
+          />
+        </DropdownMenu>
+      </DropdownToggle>
+    </Dropdown>
   );
 };
 

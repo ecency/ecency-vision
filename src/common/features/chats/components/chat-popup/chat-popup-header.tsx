@@ -79,7 +79,7 @@ export function ChatPopupHeader({
           <Button
             noPadding={true}
             size="sm"
-            appearance="link"
+            appearance="gray-link"
             icon={extendedView}
             onClick={handleExtendedView}
           />
@@ -89,7 +89,7 @@ export function ChatPopupHeader({
             <Button
               noPadding={true}
               size="sm"
-              appearance="link"
+              appearance="gray-link"
               icon={addMessageSvg}
               onClick={handleMessageSvgClick}
             />
@@ -97,7 +97,7 @@ export function ChatPopupHeader({
         )}
         {isCommunity && <ChatsCommunityDropdownMenu history={history!} username={communityName} />}
         {!isCommunity && !isCurrentUser && privateKey && (
-          <div className="simple-menu" onClick={() => setExpanded(true)}>
+          <div className="flex items-center" onClick={() => setExpanded(true)}>
             <ChatsDropdownMenu
               history={history!}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
@@ -108,7 +108,7 @@ export function ChatPopupHeader({
           <Button
             noPadding={true}
             size="sm"
-            appearance="link"
+            appearance="gray-link"
             className={classNameObject({
               "duration-300": true,
               "rotate-180": !expanded
