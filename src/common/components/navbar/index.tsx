@@ -124,8 +124,6 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
       id="sticky-container"
     >
       <NavbarMobile
-        transparentVerify={transparentVerify}
-        themeText={themeText}
         expanded={expanded}
         setExpanded={setExpanded}
         step={step}

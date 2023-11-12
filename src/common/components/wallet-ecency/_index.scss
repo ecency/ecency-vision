@@ -263,7 +263,7 @@
       @include themify(day) {
         &:nth-child(even) {
           .transaction-icon {
-            @apply bg-light-300;
+            @apply bg-light-300 dark:bg-dark-600;
           }
         }
       }

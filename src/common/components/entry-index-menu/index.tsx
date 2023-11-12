@@ -470,12 +470,12 @@ export class EntryIndexMenu extends Component<Props, States> {
                           filter === "feed" &&
                           (introduction === IntroductionType.NONE ||
                             introduction === IntroductionType.FRIENDS)
-                            ? "active"
+                            ? "bg-blue-dark-sky text-white hover:text-white"
                             : ""
                         }   ${
                           introduction !== IntroductionType.NONE &&
                           introduction === IntroductionType.FRIENDS
-                            ? "active"
+                            ? "bg-blue-dark-sky text-white hover:text-white"
                             : ""
                         }`
                       )}

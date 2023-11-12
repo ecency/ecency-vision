@@ -15,8 +15,6 @@ interface Props {
   setStepOne?: () => void;
   expanded: boolean;
   setExpanded: (v: boolean) => void;
-  transparentVerify: boolean;
-  themeText: string;
 }
 
 export function NavbarMobile({
@@ -26,9 +24,7 @@ export function NavbarMobile({
   history,
   setStepOne,
   expanded,
-  setExpanded,
-  transparentVerify,
-  themeText
+  setExpanded
 }: Props) {
   const { activeUser } = useMappedStore();
 

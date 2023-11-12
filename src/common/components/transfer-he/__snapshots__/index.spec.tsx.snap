@@ -490,7 +490,7 @@ exports[`(1) Hive Engine - Transfer (3) Step 3 1`] = `
               Sign with hivesigner
             </div>
             <div
-              className="flex justify-center items-center w-5 h-5 undefined"
+              className="flex justify-center items-center w-5 h-5 "
             >
               <img
                 alt="hivesigner"

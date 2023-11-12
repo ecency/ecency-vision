@@ -56,7 +56,7 @@ exports[`(1) Default render - With data. 1`] = `
             Copy link
           </div>
           <div
-            className="flex justify-center items-center w-5 h-5 undefined"
+            className="flex justify-center items-center w-5 h-5 "
           >
             <svg
               viewBox="0 0 24 24"

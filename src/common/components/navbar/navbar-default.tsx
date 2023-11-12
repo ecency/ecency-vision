@@ -8,6 +8,7 @@ import {
   magnifyResponsibleSvg,
   moonSvg,
   notificationSvg,
+  pencilOutlineSvg,
   rocketSvg,
   sunSvg,
   upArrowSvg,
@@ -239,11 +240,28 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                 <div className="navbar-icon text-dark">{rocketSvg}</div>
                 <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
               </div>
-              <Link to={`/@${activeUser?.username}/wallet`} onClick={() => setSmVisible(false)}>
+              <Link
+                className="text-dark-default dark:text-white"
+                to={`/@${activeUser?.username}/wallet`}
+                onClick={() => setSmVisible(false)}
+              >
                 <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark">
                   <div className="icon-stroke text-dark">{walletSvg}</div>
                   <div className="ml-3 text-15 flex">
                     {_t("user-nav.wallet")}
+                    <div className="dot align-self-start ml-1" />
+                  </div>
+                </div>
+              </Link>
+              <Link
+                className="text-dark-default dark:text-white"
+                to="/submit"
+                onClick={() => setSmVisible(false)}
+              >
+                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark">
+                  <div className="icon-stroke text-dark [&>svg]:w-[20px]">{pencilOutlineSvg}</div>
+                  <div className="ml-3 text-15 flex">
+                    {_t("user-nav.submit")}
                     <div className="dot align-self-start ml-1" />
                   </div>
                 </div>

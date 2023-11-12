@@ -353,7 +353,7 @@ exports[`(3) Active user. Trending filter 1`] = `
         >
           <li>
             <a
-              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 active"
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
               href="/@foo/feed"
               id="feed"
               onClick={[Function]}
@@ -768,7 +768,7 @@ exports[`(4) Active user. Friends 1`] = `
         >
           <li>
             <a
-              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 active"
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
               href="/@foo/feed"
               id="feed"
               onClick={[Function]}
