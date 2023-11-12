@@ -15,7 +15,7 @@ export function useSendMessage(
 ) {
   const queryClient = useQueryClient();
 
-  const { isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { receiverPubKey } = useContext(ChatContext);
   const { privateKey } = useKeysQuery();
   const { data: messages } = useMessagesQuery(currentChannel?.communityName ?? currentUser);
 
@@ -35,10 +35,6 @@ export function useSendMessage(
     async (message: string) => {
       if (!message || message.includes(UPLOADING)) {
         throw new Error("[Chat][SendMessage] – empty message or has uploading file");
-      }
-
-      if (isActiveUserRemoved) {
-        throw new Error("[Chat][SendMessage] – no active user");
       }
 
       if (!currentChannel && isCommunity(currentUser)) {

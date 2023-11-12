@@ -2,7 +2,6 @@ import React, { useContext, useMemo } from "react";
 import { _t } from "../../../../i18n";
 import { getJoinedCommunities } from "../../utils";
 import { ChatsImport } from "../chats-import";
-import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectMessage } from "./chat-direct-message";
@@ -21,7 +20,7 @@ export function ChatPopupContactsAndChannels({
   userClicked,
   setShowSearchUser
 }: Props) {
-  const { showSpinner, setReceiverPubKey } = useContext(ChatContext);
+  const { setReceiverPubKey } = useContext(ChatContext);
 
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
@@ -37,7 +36,6 @@ export function ChatPopupContactsAndChannels({
   return (
     <>
       {(directContacts?.length !== 0 || (channels?.length !== 0 && joinedChannels.length !== 0)) &&
-      !showSpinner &&
       privateKey ? (
         <>
           {joinedChannels.length !== 0 && (
@@ -68,10 +66,6 @@ export function ChatPopupContactsAndChannels({
         </>
       ) : !privateKey ? (
         <ChatsImport />
-      ) : showSpinner ? (
-        <div className="flex items-center justify-center h-full">
-          <Spinner className="w-4 h-4" />
-        </div>
       ) : (
         <>
           <p className="no-chat">{_t("chat.no-chat")}</p>

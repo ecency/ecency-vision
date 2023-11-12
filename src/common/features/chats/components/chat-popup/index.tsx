@@ -26,7 +26,7 @@ import { useKeysQuery } from "../../queries/keys-query";
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
 
-  const { receiverPubKey, revealPrivKey, hasUserJoinedChat, setRevealPrivKey, setShowSpinner } =
+  const { receiverPubKey, revealPrivateKey, hasUserJoinedChat, setRevealPrivateKey } =
     useContext(ChatContext);
   const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
 
@@ -61,8 +61,8 @@ export const ChatPopUp = () => {
   );
   const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
   const canSendMessage = useMemo(
-    () => !currentUser && hasUserJoinedChat && !!privateKey && !isCommunity && !revealPrivKey,
-    [currentUser, hasUserJoinedChat, privateKey, isCommunity, revealPrivKey]
+    () => !currentUser && hasUserJoinedChat && !!privateKey && !isCommunity && !revealPrivateKey,
+    [currentUser, hasUserJoinedChat, privateKey, isCommunity, revealPrivateKey]
   );
 
   const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingMore } =
@@ -159,7 +159,7 @@ export const ChatPopUp = () => {
     setIsCommunity(false);
     setShowSearchUser(false);
     setHasMore(true);
-    setRevealPrivKey(false);
+    setRevealPrivateKey(false);
   };
 
   const handleExtendedView = () => {
@@ -202,7 +202,7 @@ export const ChatPopUp = () => {
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >
-            {hasUserJoinedChat && !revealPrivKey ? (
+            {hasUserJoinedChat && !revealPrivateKey ? (
               <>
                 {currentUser.length !== 0 || communityName.length !== 0 ? (
                   <ChatPopupMessagesList username={currentUser ? currentUser : communityName} />
@@ -219,7 +219,7 @@ export const ChatPopUp = () => {
                   />
                 )}
               </>
-            ) : revealPrivKey ? (
+            ) : revealPrivateKey ? (
               <div className="p-4">
                 <ManageChatKey />
               </div>

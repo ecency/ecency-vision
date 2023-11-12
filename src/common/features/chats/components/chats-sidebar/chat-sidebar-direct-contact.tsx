@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function ChatSidebarDirectContact({ contact, username }: Props) {
-  const { setReceiverPubKey, revealPrivKey, setRevealPrivKey } = useContext(ChatContext);
+  const { setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
   const { data: lastMessages } = useLastMessagesQuery();
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
@@ -32,8 +32,8 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
       to={`/chats/@${contact.name}`}
       onClick={() => {
         setReceiverPubKey(contact.pubkey);
-        if (revealPrivKey) {
-          setRevealPrivKey(false);
+        if (revealPrivateKey) {
+          setRevealPrivateKey(false);
         }
       }}
     >

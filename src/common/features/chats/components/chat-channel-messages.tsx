@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Zoom } from "medium-zoom";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
 import { Theme } from "../../../store/global/types";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../utils";
-import { ChatContext } from "../chat-context-provider";
 import { ChatMessageItem } from "./chat-message-item";
 import { useKeysQuery } from "../queries/keys-query";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
@@ -33,7 +32,6 @@ export function ChatsChannelMessages({
 }: Props) {
   const { global, activeUser } = useMappedStore();
 
-  const { isActiveUserRemoved } = useContext(ChatContext);
   let prevGlobal = usePrevious(global);
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
@@ -140,7 +138,7 @@ export function ChatsChannelMessages({
           </React.Fragment>
         ))}
         {/*TODO: CHeck it in messages query*/}
-        {isActiveUserRemoved && (
+        {false && (
           <span className="flex justify-center items-center mt-3">
             You have been blocked from this community
           </span>

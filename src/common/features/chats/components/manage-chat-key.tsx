@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { _t } from "../../../i18n";
-import { ChatContext } from "../chat-context-provider";
 import { InputGroupCopyClipboard } from "@ui/input";
 import qrcode from "qrcode";
 import { classNameObject } from "../../../helper/class-name-object";
+import { useKeysQuery } from "../queries/keys-query";
 
 export default function ManageChatKey() {
-  const { chatPrivKey } = useContext(ChatContext);
+  const { privateKey } = useKeysQuery();
 
   const qrImgRef = useRef<HTMLImageElement | null>(null);
   const [isQrShow, setIsQrShow] = useState(false);
 
   useEffect(() => {
-    compileQR(chatPrivKey);
-  }, [chatPrivKey]);
+    if (privateKey) {
+      compileQR(privateKey);
+    }
+  }, [privateKey]);
 
   const compileQR = async (key: string) => {
     if (qrImgRef.current) {
@@ -25,7 +27,7 @@ export default function ManageChatKey() {
   return (
     <div className="flex gap-4 flex-col w-full">
       <div className="text-sm text-gray-600">{_t("chat.chat-priv-key")}</div>
-      <InputGroupCopyClipboard value={chatPrivKey} />
+      <InputGroupCopyClipboard value={privateKey ?? ""} />
       <img
         ref={qrImgRef}
         className={classNameObject({

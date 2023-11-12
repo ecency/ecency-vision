@@ -33,7 +33,7 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
 
-  const { isActiveUserRemoved, receiverPubKey } = useContext(ChatContext);
+  const { receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
   const [showGifPicker, setShowGifPicker] = useState(false);
@@ -51,8 +51,8 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
   const isCommunity = useMemo(() => !!currentChannel, [currentChannel]);
 
   const isDisabled = useMemo(
-    () => (isCurrentUser && !receiverPubKey) || isActiveUserRemoved,
-    [isCurrentUser, receiverPubKey, isActiveUserRemoved]
+    () => isCurrentUser && !receiverPubKey,
+    [isCurrentUser, receiverPubKey]
   );
 
   useClickAway(gifPickerRef, () => setShowGifPicker(false));

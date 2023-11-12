@@ -38,14 +38,14 @@ export function ChatPopupHeader({
   handleExtendedView,
   setExpanded
 }: Props) {
-  const { revealPrivKey, setRevealPrivKey } = useContext(ChatContext);
+  const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
   const { privateKey } = useKeysQuery();
 
   return (
     <div className="flex items-center justify-between border-b border-[--border-color] px-4 py-2 gap-2">
       <div className="flex items-center gap-2">
-        {(currentUser || communityName || showSearchUser || revealPrivKey) && expanded && (
+        {(currentUser || communityName || showSearchUser || revealPrivateKey) && expanded && (
           <Tooltip content={_t("chat.back")}>
             <Button
               size="sm"
@@ -68,7 +68,7 @@ export function ChatPopupHeader({
               ? communityName
               : showSearchUser
               ? _t("chat.new-message")
-              : revealPrivKey
+              : revealPrivateKey
               ? _t("chat.manage-chat-key")
               : _t("chat.messages")}
           </div>
@@ -100,7 +100,7 @@ export function ChatPopupHeader({
           <div className="simple-menu" onClick={() => setExpanded(true)}>
             <ChatsDropdownMenu
               history={history!}
-              onManageChatKey={() => setRevealPrivKey(!revealPrivKey)}
+              onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
             />
           </div>
         )}

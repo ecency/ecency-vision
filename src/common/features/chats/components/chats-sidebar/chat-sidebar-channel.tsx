@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function ChatSidebarChannel({ channel, username }: Props) {
-  const { revealPrivKey, setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
+  const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
   const { data: lastMessages } = useLastMessagesQuery();
 
@@ -32,8 +32,8 @@ export function ChatSidebarChannel({ channel, username }: Props) {
       })}
       to={`/chats/${channel.communityName}`}
       onClick={() => {
-        if (revealPrivKey) {
-          setRevealPrivKey(false);
+        if (revealPrivateKey) {
+          setRevealPrivateKey(false);
         }
       }}
     >

@@ -20,7 +20,7 @@ interface Props {
 
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
-  const { setRevealPrivKey, setReceiverPubKey } = useContext(ChatContext);
+  const { setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
@@ -90,7 +90,7 @@ export default function ChatsSideBar(props: Props) {
               user={user}
               onClick={() => {
                 setSearchQuery("");
-                setRevealPrivKey(false);
+                setRevealPrivateKey(false);
                 getReceiverPubKey(user.account);
               }}
               key={user.account}

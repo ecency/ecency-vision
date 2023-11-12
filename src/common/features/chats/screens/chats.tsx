@@ -8,7 +8,6 @@ import ManageChatKey from "../components/manage-chat-key";
 import Feedback from "../../../components/feedback";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { ChatContext } from "../chat-context-provider";
-import { Spinner } from "@ui/spinner";
 import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
 import { classNameObject } from "../../../helper/class-name-object";
@@ -30,7 +29,7 @@ interface Props extends PageProps {
 
 export const Chats = (props: Props) => {
   const { activeUser, global } = useMappedStore();
-  const { receiverPubKey, showSpinner, revealPrivKey } = useContext(ChatContext);
+  const { receiverPubKey, revealPrivateKey } = useContext(ChatContext);
 
   const { publicKey, privateKey } = useKeysQuery();
   const { data: channels } = useChannelsQuery();
@@ -50,16 +49,16 @@ export const Chats = (props: Props) => {
     () => !!(activeUser && publicKey && privateKey),
     [publicKey, privateKey, activeUser]
   );
-  const isShowManageKey = useMemo(() => isReady && revealPrivKey, [isReady, revealPrivKey]);
+  const isShowManageKey = useMemo(() => isReady && revealPrivateKey, [isReady, revealPrivateKey]);
   const isShowChatRoom = useMemo(
-    () => isReady && !showSpinner && (!!receiverPubKey || isChannel) && !revealPrivKey,
-    [isReady, showSpinner, receiverPubKey, revealPrivKey, isChannel]
+    () => isReady && (!!receiverPubKey || isChannel) && !revealPrivateKey,
+    [isReady, receiverPubKey, revealPrivateKey, isChannel]
   );
   const isShowDefaultScreen = useMemo(
-    () => isReady && !receiverPubKey && !isChannel && !revealPrivKey && !showSpinner,
-    [isReady, receiverPubKey, revealPrivKey, showSpinner, isChannel]
+    () => isReady && !receiverPubKey && !isChannel && !revealPrivateKey,
+    [isReady, receiverPubKey, revealPrivateKey, isChannel]
   );
-  const isShowImportChats = useMemo(() => !isReady && !showSpinner, [isReady, showSpinner]);
+  const isShowImportChats = useMemo(() => !isReady, [isReady]);
 
   const { match, history } = props;
 
@@ -96,11 +95,6 @@ export const Chats = (props: Props) => {
                 </div>
               </div>
             )}
-            {showSpinner && (
-              <div className="flex justify-center items-center h-full w-full">
-                <Spinner className="w-6 h-6" />
-              </div>
-            )}
             {isShowImportChats && activeUser && (
               <div className="h-full w-full flex items-center justify-center">
                 <ChatsImport />
@@ -115,7 +109,7 @@ export const Chats = (props: Props) => {
                 <div>Search a person or community and start messaging</div>
               </div>
             )}
-            {!isReady && !isShowImportChats && !showSpinner && (
+            {!isReady && !isShowImportChats && (
               <div className="flex justify-center items-center full-page">
                 <JoinChat />
               </div>

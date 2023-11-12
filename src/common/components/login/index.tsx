@@ -23,7 +23,6 @@ import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission } from "../../api/operations";
 import { getRefreshToken } from "../../helper/user-token";
-import { getPrivateKey, getProfileMetaData } from "../../features/chats/utils";
 
 import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, signBuffer } from "../../helper/keychain";
@@ -38,7 +37,6 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
-import { setNostrkeys } from "../../features/chats/managers/message-manager";
 
 declare var window: AppWindow;
 
@@ -721,8 +719,6 @@ class LoginDialog extends Component<Props> {
   }
 
   doLogin = async (hsCode: string, postingKey: null | undefined | string, account: Account) => {
-    const profile = await getProfileMetaData(account.name);
-
     const { global, setActiveUser, updateActiveUser, addUser } = this.props;
 
     // get access token from code
@@ -738,14 +734,6 @@ class LoginDialog extends Component<Props> {
       // add / update user data
       addUser(user);
 
-      //create new message service instance for newly logged in user
-      if (profile && profile.nsKey && getPrivateKey(account.name)) {
-        const keys = {
-          pub: profile.nsKey,
-          priv: getPrivateKey(account.name)!!
-        };
-        setNostrkeys(keys);
-      }
       // activate user
       setActiveUser(user.username);
 
