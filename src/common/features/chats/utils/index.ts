@@ -1,5 +1,4 @@
 export * from "./fetch-profile-metadata";
-export * from "./delete-chat-public-key";
 export * from "./upload-chat-public-key";
 export * from "./create-nostr-account";
 export * from "./format-message-time";
@@ -8,7 +7,6 @@ export * from "./get-user-chat-public-key";
 export * from "./use-get-direct-last-message";
 export * from "./formatted-user-name";
 export * from "./is-message-image";
-export * from "./get-chat-private-key";
 export * from "./get-joined-communities";
 export * from "./copy-to-clipboard";
 export * from "./check-contiguous-message";

@@ -10,6 +10,7 @@ import { useChannelsQuery, useCommunityChannelQuery } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 import { useCommunityCache } from "../../../core";
 import { useAddCommunityChannel } from "../mutations";
+import ChatsProfileBox from "./chat-profile-box";
 
 interface MatchParams {
   filter: string;
@@ -33,7 +34,7 @@ export default function ChatsMessagesBox(props: Props) {
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
-    useAddCommunityChannel(props.match.params.name);
+    useAddCommunityChannel(communityChannel?.id);
 
   const { match } = props;
   const username = match.params.username;
@@ -41,10 +42,13 @@ export default function ChatsMessagesBox(props: Props) {
   const [inProgress, setInProgress] = useState(false);
 
   const currentChannel = useMemo(
-    () => channels?.find((c) => c.communityName === community?.name),
+    () =>
+      [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])]?.find(
+        (c) => c.communityName === community?.name
+      ),
     [channels, community]
   );
-  const hasCommunityChat = useMemo(() => !!communityChannel, [communityChannel]);
+  const hasCommunityChat = useMemo(() => !!currentChannel, [currentChannel]);
   const hasLeftCommunity = useMemo(
     () => leftCommunityChannelsIds?.includes(currentChannel?.id ?? ""),
     [currentChannel]
@@ -85,8 +89,9 @@ export default function ChatsMessagesBox(props: Props) {
           ) : hasCommunityChat && !isCommunityJoined ? (
             <>
               <div />
-              <div className="flex flex-col justify-center items-center">
-                <p className="info-message">
+              <div className="flex flex-col justify-center items-center mb-4">
+                <ChatsProfileBox communityName={community?.name} />
+                <p className="mb-4 text-gray-600">
                   {hasLeftCommunity
                     ? "You have left this community chat. Rejoin the chat now!"
                     : " You are not part of this community. Join the community chat now!"}

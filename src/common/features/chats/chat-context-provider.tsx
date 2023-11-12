@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useKeysQuery } from "./queries/keys-query";
 import { NostrListenerQueriesProvider, NostrProvider } from "./nostr";
 import { useListenMessagesQuery } from "./queries/listen-messages-query";
+import { useActiveUserSwitching } from "./hooks";
 
 interface Context {
   revealPrivateKey: boolean;
@@ -30,6 +31,7 @@ export const ChatContextProvider = (props: Props) => {
   const { hasKeys } = useKeysQuery();
 
   useListenMessagesQuery();
+  useActiveUserSwitching();
 
   return (
     <NostrListenerQueriesProvider>

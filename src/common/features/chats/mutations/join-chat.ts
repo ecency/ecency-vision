@@ -34,8 +34,8 @@ export function useJoinChat(onSuccess?: () => void) {
       localStorage.setItem(PREFIX + "_nostr_pr_" + activeUser?.username, keys.priv);
       await uploadPublicKey(keys.pub);
 
-      queryClient.setQueryData([ChatQueries.PUBLIC_KEY], keys.pub);
-      queryClient.setQueryData([ChatQueries.PRIVATE_KEY], keys.priv);
+      queryClient.setQueryData([ChatQueries.PUBLIC_KEY, activeUser?.username], keys.pub);
+      queryClient.setQueryData([ChatQueries.PRIVATE_KEY, activeUser?.username], keys.priv);
 
       await updateProfile({
         tags: [],

@@ -3,10 +3,12 @@ import { ChatQueries, useChannelsQuery } from "../queries";
 import { Channel, useNostrPublishMutation } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 import { useFindHealthyRelayQuery } from "../nostr/mutations/find-healthy-relay";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
 export function useUpdateCommunityChannel(channel?: Channel) {
   const queryClient = useQueryClient();
   const { data: channels } = useChannelsQuery();
+  const { activeUser } = useMappedStore();
 
   const { mutateAsync: updateChannel } = useNostrPublishMutation(
     ["chats/nostr-update-channel", channel?.communityName],
@@ -41,8 +43,7 @@ export function useUpdateCommunityChannel(channel?: Channel) {
         const index = tempChannels.findIndex((ch) => ch.id === updatedChannel?.id);
         tempChannels[index] = updatedChannel;
 
-        queryClient.setQueryData([ChatQueries.CHANNELS], tempChannels);
-        queryClient.invalidateQueries([ChatQueries.CHANNELS]);
+        queryClient.setQueryData([ChatQueries.CHANNELS, activeUser?.username], tempChannels);
       }
     }
   );

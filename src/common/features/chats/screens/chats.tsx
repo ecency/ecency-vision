@@ -12,10 +12,11 @@ import ChatsMessagesBox from "../components/chat-message-box";
 import JoinChat from "../components/join-chat";
 import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
-import { useChannelsQuery } from "../queries";
+import { useChannelsQuery, useCommunityChannelQuery } from "../queries";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 import { useKeysQuery } from "../queries/keys-query";
 import { ChatsImport } from "../components/chats-import";
+import { useCommunityCache } from "../../../core";
 
 interface Props extends PageProps {
   match: match<{
@@ -30,19 +31,21 @@ interface Props extends PageProps {
 export const Chats = (props: Props) => {
   const { activeUser, global } = useMappedStore();
   const { receiverPubKey, revealPrivateKey } = useContext(ChatContext);
+  const { data: community } = useCommunityCache(props.match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
+  const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
 
   const isChannel = useMemo(
     () =>
-      channels?.some(
+      [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])].some(
         (channel) =>
           channel.communityName === props.match.params.username &&
           !leftCommunityChannelsIds?.includes(channel.name)
       ),
-    [channels, leftCommunityChannelsIds, props.match.params.username]
+    [channels, leftCommunityChannelsIds, props.match.params.username, communityChannel]
   );
 
   const isReady = useMemo(

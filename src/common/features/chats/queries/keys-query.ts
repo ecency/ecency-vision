@@ -14,11 +14,11 @@ export function useKeysQuery() {
   ] = useQueries({
     queries: [
       {
-        queryKey: [ChatQueries.PUBLIC_KEY],
+        queryKey: [ChatQueries.PUBLIC_KEY, activeUser?.username],
         queryFn: async () => getUserChatPublicKey(activeUser?.username!)
       },
       {
-        queryKey: [ChatQueries.PRIVATE_KEY],
+        queryKey: [ChatQueries.PRIVATE_KEY, activeUser?.username],
         queryFn: () => localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username)
       }
     ]

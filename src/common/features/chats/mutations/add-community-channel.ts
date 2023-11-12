@@ -4,9 +4,11 @@ import { convertEvent } from "../nostr/utils/event-converter";
 import { ChatQueries, useChannelsQuery } from "../queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
-export function useAddCommunityChannel(name: string | undefined) {
+export function useAddCommunityChannel(id: string | undefined) {
   const { data: channels } = useChannelsQuery();
+  const { activeUser } = useMappedStore();
   const queryClient = useQueryClient();
 
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
@@ -17,11 +19,11 @@ export function useAddCommunityChannel(name: string | undefined) {
     [
       {
         kinds: [Kind.ChannelCreation],
-        ids: name ? [name] : undefined
+        ids: id ? [id] : undefined
       },
       {
         kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
-        "#e": name ? [name] : undefined
+        "#e": id ? [id] : undefined
       }
     ],
     {
@@ -32,14 +34,17 @@ export function useAddCommunityChannel(name: string | undefined) {
               const channel = convertEvent<Kind.ChannelCreation>(event);
               const hasChannelAlready = channels?.some(({ id }) => id === channel?.id);
               if (!hasChannelAlready && channel) {
-                queryClient.setQueryData([ChatQueries.CHANNELS], [...(channels ?? []), channel]);
+                queryClient.setQueryData(
+                  [ChatQueries.CHANNELS, activeUser?.username],
+                  [...(channels ?? []), channel]
+                );
               }
 
               // Remove the community from left list
               updateLeftChannels({
                 tags: [["d", "left-channel-list"]],
                 eventMetadata: JSON.stringify(
-                  leftCommunityChannelsIds?.filter((id) => name !== id) ?? []
+                  leftCommunityChannelsIds?.filter((id) => id !== id) ?? []
                 )
               });
           }
