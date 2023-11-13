@@ -52,11 +52,13 @@ export function ScheduledListItem({ post, deleteFn, moveFn }: Props) {
           <UserAvatar username={author} size="medium" />
           <div className="flex items-center text-sm">
             <div className="font-bold">{author}</div>
-            <div className="text-gray-600 pl-1">({accountReputation(reputation)})</div>
+            <div className="text-gray-600 dark:text-gray-400 pl-1">
+              ({accountReputation(reputation)})
+            </div>
           </div>
         </div>
         <Badge>{tag}</Badge>
-        <div className="text-sm text-gray-600" title={dateFormatted}>
+        <div className="text-sm text-gray-600 dark:text-gray-400" title={dateFormatted}>
           {dateRelative}
         </div>
       </div>
@@ -86,17 +88,21 @@ export function ScheduledListItem({ post, deleteFn, moveFn }: Props) {
           </div>
           <div className="text-gray-steel dark:text-white-075">{summary}</div>
         </div>
+      </div>
+      <div className="flex justify-between items-center px-3 py-2">
         {post.status === 1 && (
           <Tooltip content={dateRelative}>
-            <div className="w-[1.5rem] ml-4 text-gray-steel-light-005 dark:text-blue-metallic">
-              {timeSvg} {dateFormatted}
+            <div className="flex items-center gap-3 text-gray-steel-light-005 dark:text-blue-metallic">
+              <div className="w-[1.5rem]">{timeSvg}</div>
+              <span className="text-xs">{dateFormatted}</span>
             </div>
           </Tooltip>
         )}
         {post.status === 2 && (
           <Tooltip content={dateRelative}>
-            <div className="w-[1.5rem] ml-4 text-orange">
-              {timeSvg} {dateFormatted}
+            <div className="flex items-center gap-3 text-orange">
+              <div className="w-[1.5rem]">{timeSvg}</div>
+              <span className="text-xs">{dateFormatted}</span>
             </div>
           </Tooltip>
         )}

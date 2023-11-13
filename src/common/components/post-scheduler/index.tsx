@@ -50,7 +50,7 @@ export const DialogBody = (props: DialogBodyProps) => {
             <small className="error-info">{_t("post-scheduler.error-message")}</small>
           </div>
         )}
-        <div className="text-center">
+        <div className="text-center mt-4">
           <Button
             disabled={error}
             onClick={() => {
