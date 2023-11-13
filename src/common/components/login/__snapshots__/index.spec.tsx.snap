@@ -3,7 +3,7 @@
 exports[`(1) Default render 1`] = `
 Array [
   <div
-    className="dialog-header"
+    className="dialog-header flex flex-col items-center justify-center"
   >
     <img
       alt="Logo"
@@ -551,7 +551,7 @@ Array [
 exports[`(4) Show keychain option 1`] = `
 Array [
   <div
-    className="dialog-header"
+    className="dialog-header flex flex-col items-center justify-center"
   >
     <img
       alt="Logo"
