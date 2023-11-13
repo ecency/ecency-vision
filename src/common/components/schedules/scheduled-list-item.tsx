@@ -52,11 +52,13 @@ export function ScheduledListItem({ post, deleteFn, moveFn }: Props) {
           <UserAvatar username={author} size="medium" />
           <div className="flex items-center text-sm">
             <div className="font-bold">{author}</div>
-            <div className="text-gray-600 pl-1">({accountReputation(reputation)})</div>
+            <div className="text-gray-600 dark:text-gray-400 pl-1">
+              ({accountReputation(reputation)})
+            </div>
           </div>
         </div>
         <Badge>{tag}</Badge>
-        <div className="text-sm text-gray-600" title={dateFormatted}>
+        <div className="text-sm text-gray-600 dark:text-gray-400" title={dateFormatted}>
           {dateRelative}
         </div>
       </div>
