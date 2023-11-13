@@ -1,9 +1,15 @@
-import { MutationKey, useMutation, UseMutationOptions } from "@tanstack/react-query";
+import {
+  MutationKey,
+  useMutation,
+  UseMutationOptions,
+  useQueryClient
+} from "@tanstack/react-query";
 import { useContext } from "react";
 import { Event, getEventHash, Kind, signEvent } from "../../../../../lib/nostr-tools/event";
 import { NostrContext } from "../nostr-context";
-import { useKeysQuery } from "../../queries/keys-query";
 import { Metadata } from "../types";
+import { ChatQueries } from "../../queries";
+import { useMappedStore } from "../../../../store/use-mapped-store";
 
 type Payload = { eventMetadata: Metadata | string; tags: string[][] };
 
@@ -13,13 +19,17 @@ export function useNostrPublishMutation(
   onBeforeSend: (event: Event) => void,
   options?: UseMutationOptions<Event, Error, Payload>
 ) {
+  const { activeUser } = useMappedStore();
   const { pool, writeRelays } = useContext(NostrContext);
-  const { publicKey, privateKey } = useKeysQuery();
+  const queryClient = useQueryClient();
 
   const sign = async (event: Event) => ({
     ...event,
     id: getEventHash(event),
-    sig: await signEvent(event, privateKey!!)
+    sig: await signEvent(
+      event,
+      queryClient.getQueryData<string>([ChatQueries.PRIVATE_KEY, activeUser?.username])!!
+    )
   });
 
   return useMutation(
@@ -34,7 +44,10 @@ export function useNostrPublishMutation(
             sig: "",
             content:
               typeof eventMetadata === "object" ? JSON.stringify(eventMetadata) : eventMetadata,
-            pubkey: publicKey!!,
+            pubkey: queryClient.getQueryData<string>([
+              ChatQueries.PUBLIC_KEY,
+              activeUser?.username
+            ])!!,
             created_at: Math.floor(Date.now() / 1000),
             tags
           });
