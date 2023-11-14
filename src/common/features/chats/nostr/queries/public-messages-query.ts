@@ -23,7 +23,8 @@ export function usePublicMessagesQuery(channels: Channel[]) {
       events.map((event) => convertEvent(event)).filter((message) => !!message) as Message[],
     {
       enabled: channels.length > 0,
-      initialData: []
+      initialData: [],
+      refetchInterval: 10000
     }
   );
 }

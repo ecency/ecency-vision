@@ -18,7 +18,8 @@ export function useChannelsQuery() {
         .filter((channel) => !!channel) as Channel[],
     {
       initialData: [],
-      enabled: hasKeys
+      enabled: hasKeys,
+      refetchOnMount: false
     }
   );
 }

@@ -36,7 +36,8 @@ export function useDirectMessagesQuery(
       ),
     {
       enabled: directContacts.length > 0,
-      initialData: []
+      initialData: [],
+      refetchInterval: 10000
     }
   );
 }
