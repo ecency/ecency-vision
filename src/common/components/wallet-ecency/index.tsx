@@ -29,7 +29,7 @@ import {error, success} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
+import {claimPoints, getCurrencyTokenRate, processLogin} from "../../api/private-api";
 
 import {
     accountGroupSvg,
@@ -47,6 +47,11 @@ import {
     ticketSvg
 } from "../../img/svg";
 import FormattedCurrency from "../formatted-currency";
+
+import axios, { AxiosResponse } from 'axios';
+import { Button } from "react-bootstrap"
+import { signBuffer } from "../../helper/keychain";
+import { getAccount } from "../../api/hive"
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -143,11 +148,12 @@ export class TransactionRow extends Component<TransactionRowProps> {
                 <div className="transaction-icon">{icon}</div>
                 <div className="transaction-title">
                     <div className="transaction-name">
-                        {lKey && _t(`points.${lKey}-list-desc`, {...lArgs})}
-                        {!lKey && <span>&nbsp;</span>}
+                        {/* {tr.operationType} */}
+                        {/* {lKey && _t(`points.${lKey}-list-desc`, {...lArgs})} */}Point
+                        {/* {!lKey && <span>&nbsp;</span>} */}300
                     </div>
                     <div className="transaction-date">
-                        {dateRelative}
+                        {dateRelative}30000
                     </div>
                 </div>
                 {tr.memo && (
@@ -188,7 +194,6 @@ interface State {
 }
 export const WalletEcency = (props: Props) => {
 
-    const [claiming, setClaiming] = useState(false);
     const [purchase, setPurchase] = useState(false);
     const [promote, setPromote] = useState(false);
     const [boost, setBoost] = useState(false);
@@ -196,6 +201,14 @@ export const WalletEcency = (props: Props) => {
     const [estimatedPointsValue, setEstimatedPointsValue] = useState(0);
     const [estimatedPointsValueLoading, setEstimatedPointsValueLoading] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    
+    const [pointsHistory, setPointsHistory] = useState<any>([]);
+    const [claiming, setClaiming] = useState(false);
+    const [isVerified, setIsVerified] = useState(false);
+    const [userPoints, setUserPoints] = useState<any>(null);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+    const [claimed, setClaimed] = useState(false)
 
     const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
 
@@ -205,11 +218,14 @@ export const WalletEcency = (props: Props) => {
             user = user.replace('@','')
         global.isElectron && initiateOnElectron(user);
         getEstimatedPointsValue();
+        getPointsHistory(user, "Splinterlands");
+        getUserPoints(user, "Splinterlands")
+        console.log(props.global.hive_id)
 
         return () => {
           setIsMounted(false);
         }
-    }, []);
+    }, [claimed]);
 
     const getEstimatedPointsValue = () => {
         const {global: {currency}} = props;
@@ -234,22 +250,6 @@ export const WalletEcency = (props: Props) => {
         }
     }
 
-    const claim = (e?: React.MouseEvent<HTMLAnchorElement>) => {
-        if (e) e.preventDefault();
-
-        setClaiming(true);
-        const username = activeUser?.username!;
-        claimPoints(username).then(() => {
-            success(_t('points.claim-ok'));
-            fetchPoints(username);
-            updateActiveUser();
-        }).catch(() => {
-            error(_t('g.server-error'));
-        }).finally(() => {
-            setClaiming(false);
-        });
-    }
-
     const togglePurchase = (e?: React.MouseEvent<HTMLAnchorElement>) => {
         if (e) e.preventDefault();
         setPurchase(!purchase);
@@ -272,11 +272,116 @@ export const WalletEcency = (props: Props) => {
         const {fetchPoints, account} = props;
         fetchPoints(account.name, filter);
     }
-    
-    // if (!global.usePrivate) {
-    //     return null;
-    // }
 
+    //BREAKAWAY COMMUNITY LOGICS
+
+    const loginKc = async () => {
+        setIsLoading(true);
+      
+        try {
+          if (!activeUser!.username) {
+            setError("Some parameters are missing");
+            setTimeout(() => {
+            //   setMessage("");
+              setError("");
+            }, 3000);
+            setIsLoading(false);
+            return;
+          }
+      
+          const ts: any = Date.now();
+      
+          const result = await signBuffer(activeUser!.username, `${activeUser!.username}${ts}`, "Active");
+      
+          if (result && result.success) {
+            const sig = result.result;
+      
+            console.log(sig)
+           const login = await processLogin(activeUser!.username, ts, sig, "Splinterlands");
+            setIsVerified(true)
+            setIsLoading(false);
+          } else {
+            console.log('Login Failed, try again', 'error');
+            setIsLoading(false);
+          }
+        } catch (err) {
+          console.log(err);
+          setIsLoading(false);
+        }
+      };
+    
+    const getUserPoints = async (username: string, community: string): Promise<any[] | undefined> => {
+       
+        try {
+          const response: AxiosResponse = await axios.get(`http://localhost:4000/points?username=${username}&community=${community}`);
+          if (response.status === 200) {
+              const userPoints = response.data.userPoints;
+              console.log(userPoints[0])
+              setUserPoints(userPoints[0])
+            return userPoints;
+          } else if (response.status === 404) {
+            if (response.data.error === 'User not found') {
+            } else if (response.data.error === 'Community not found for this user') {
+            }
+          }
+      
+          return undefined;
+        } catch (error) {
+          console.error('Error fetching user points:', error);
+          throw error;
+        }
+      };
+
+      const claimPoints = async (username: string, community: string) => {
+        setClaimed(false)
+        setClaiming(true)
+        try {
+          const response = await axios.post('http://localhost:4000/points/claim', {
+            username: username,
+            community: community,
+          });
+          console.log(response)
+      
+          if (response.status === 200) {
+            console.log('Unclaimed points claimed successfully:', response.data);
+            success(_t('points.claim-ok'));
+            setClaimed(true)
+            setClaiming(false)
+            return response.data;
+          } else {
+            console.error('Claiming points failed:', response.data.message);
+            throw new Error('Claiming points failed');
+        }
+    } catch (error) {
+            success(_t('g.server-error'));
+          console.error('Error claiming points:', error);
+          throw error;
+        }
+      };
+
+      const getPointsHistory = async (username: string, community: string) => {
+        try {
+          const response = await axios.get(`http://localhost:4000/points-history/${username}/${community}`);
+      
+          console.log('Points fetched successfully:', response.data.pointsHistory);
+          if (response.status === 200) {
+            setPointsHistory(response.data.pointsHistory)
+            return response.data;
+          } else {
+            console.error('Error fetching points hisory:', response.data.message);
+            throw new Error('Fetching points failed');
+        }
+    } catch (error) {
+          console.error('Error fetching points:', error);
+          throw error;
+        }
+      };
+      
+      const getCommunity = async () => {
+        const communityInfo = await getAccount(props.global.hive_id)
+        console.log(communityInfo)
+      }
+      
     const isMyPage = activeUser && activeUser.username === account.name;
 
     // const dropDownConfig = {
@@ -304,20 +409,28 @@ export const WalletEcency = (props: Props) => {
         <>
             <div className="wallet-ecency">
                 <div className="wallet-main">
+                    {/* { !isVerified ? <div className="login-points">
+                        <h3>You need to be verified</h3>
+                        <span>Click the button below to verify</span>
+                    </div> : */}
+                    {/* <Button className="p-3 w-50" onClick={()=>loginKc()} >Test Verify</Button> */}
                     <div className="wallet-info">
-                        {points.uPoints !== '0.000' && (
+                        {userPoints?.unclaimedPoints > 0 && (
                             <>
                                 <div className="unclaimed-rewards">
                                     <div className="title">
                                         {_t('points.unclaimed-points')}
                                     </div>
                                     <div className="rewards">
-                                        <span className="reward-type">{`${points.uPoints}`}</span>
+                                        <span className="reward-type">{`${userPoints?.unclaimedPoints}.000`}</span>
                                         {isMyPage && (
                                             <Tooltip content={_t('points.claim-reward-points')}>
                                                 <a
                                                     className={`claim-btn ${claiming ? 'in-progress' : ''}`}
-                                                    onClick={claim}>
+                                                    onClick={()=>{
+                                                        claimPoints(activeUser.username, "Splinterlands")
+                                                        // getUserPoints(activeUser.username, "Splinterlands")
+                                                        }}>
                                                     {plusCircle}
                                                 </a>
                                             </Tooltip>
@@ -334,14 +447,14 @@ export const WalletEcency = (props: Props) => {
                             </div>
                             <div className="balance-values">
                                 <div className="amount amount-bold">
-                                    {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(points.points)} fixAt={3} />}
+                                    {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(userPoints?.pointsBalance)} fixAt={3} />}
                                 </div>
                             </div>
                         </div>
 
                         <div className="balance-row alternative">
                             <div className="balance-info">
-                                <div className="title">{"Ecency Points"}</div>
+                                <div className="title">Rally Points</div>
                                 <div className="description">{_t("points.main-description")}</div>
                             </div>
                             <div className="balance-values">
@@ -390,7 +503,7 @@ export const WalletEcency = (props: Props) => {
                                         </div>
                                     )} */}
 
-                                    <>{points.points} {"POINTS"}</>
+                                    <>{userPoints?.pointsBalance}.000 {"POINTS"}</>
                                 </div>
                             </div>
                         </div>
@@ -477,12 +590,14 @@ export const WalletEcency = (props: Props) => {
                                 }
 
                                 return <div className="transaction-list-body">
-                                    {points.transactions.map(tr => <TransactionRow history={history} tr={tr} key={tr.id}/>)}
-                                    {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>}
+                                    {pointsHistory?.map((tr: any) => <TransactionRow history={history} tr={tr} key={tr.id}/>)}
+                                    {/* <TransactionRow history={history} /> */}
+                                    {/* {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>} */}
                                 </div>
                             })()}
                         </div>
                     </div>
+                    {/* // } */}
 
                     <WalletMenu global={global} username={account.name} active="ecency"/>
                 </div>
