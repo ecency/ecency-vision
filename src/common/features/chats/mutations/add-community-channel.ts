@@ -20,10 +20,6 @@ export function useAddCommunityChannel(id: string | undefined) {
       {
         kinds: [Kind.ChannelCreation],
         ids: id ? [id] : undefined
-      },
-      {
-        kinds: [Kind.ChannelMetadata, Kind.EventDeletion],
-        "#e": id ? [id] : undefined
       }
     ],
     {

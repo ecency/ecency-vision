@@ -198,7 +198,13 @@ export const ChatPopUp = () => {
           <div
             className={`chat-body ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
-            } ${!hasUserJoinedChat ? "join-chat" : isTop && hasMore ? "no-scroll" : ""}`}
+            } ${
+              !hasUserJoinedChat
+                ? "flex items-center justify-center"
+                : isTop && hasMore
+                ? "no-scroll"
+                : ""
+            }`}
             ref={chatBodyDivRef}
             onScroll={handleScroll}
           >

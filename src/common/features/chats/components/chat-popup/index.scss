@@ -14,13 +14,11 @@
   transition: height 0.5s ease;
 
   @include themify(day) {
-    box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
-    @apply bg-white;
+    @apply bg-white border-[--border-color] border shadow-2xl;
   }
 
   @include themify(night) {
-    @apply bg-dark-default;
-    box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+    @apply bg-dark-200 border-[--border-color] border shadow-2xl;
   }
 
   &.expanded {
@@ -30,17 +28,8 @@
   .chat-body {
     position: relative;
     height: 470px;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-
-    .community-header,
-    .dm-header {
-      padding: 10px;
-      border-bottom: 1px solid #e7e7e7;
-      padding-left: 14px;
-      font-family: Faktum, sans-serif;
-      font-weight: 700;
-    }
 
     &.current-user {
       padding-bottom: 10px;
@@ -67,29 +56,6 @@
       @include themify(night) {
         border-bottom: 1px solid #172b44;
       }
-    }
-
-    &.no-scroll {
-      overflow: hidden;
-    }
-
-    &.join-chat {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .no-chat {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20%;
-    }
-
-    .start-chat-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .user-search-suggestion-list {

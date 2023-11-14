@@ -4,7 +4,7 @@ import { getJoinedCommunities } from "../../utils";
 import { ChatsImport } from "../chats-import";
 import { Button } from "@ui/button";
 import { ChatContext } from "../../chat-context-provider";
-import { ChatDirectMessage } from "./chat-direct-message";
+import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
 import { useChannelsQuery, useDirectContactsQuery, useLastMessagesQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { useKeysQuery } from "../../queries/keys-query";
@@ -40,20 +40,26 @@ export function ChatPopupContactsAndChannels({
         <>
           {joinedChannels.length !== 0 && (
             <>
-              <div className="community-header">{_t("chat.communities")}</div>
+              <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
+                {_t("chat.communities")}
+              </div>
               {joinedChannels.map((channel) => (
-                <ChatDirectMessage
+                <ChatDirectContactOrChannelItem
                   key={channel.id}
                   username={channel.communityName!!}
                   lastMessage={directContactsLastMessages[channel.name]?.content}
                   userClicked={() => communityClicked(channel.communityName!)}
                 />
               ))}
-              {directContacts?.length !== 0 && <div className="dm-header">{_t("chat.dms")}</div>}
+              {directContacts?.length !== 0 && (
+                <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
+                  {_t("chat.dms")}
+                </div>
+              )}
             </>
           )}
           {directContacts?.map((user) => (
-            <ChatDirectMessage
+            <ChatDirectContactOrChannelItem
               username={user.name}
               userClicked={(v) => {
                 setReceiverPubKey(user.pubkey);
@@ -67,12 +73,10 @@ export function ChatPopupContactsAndChannels({
       ) : !privateKey ? (
         <ChatsImport />
       ) : (
-        <>
-          <p className="no-chat">{_t("chat.no-chat")}</p>
-          <div className="start-chat-btn">
-            <Button onClick={() => setShowSearchUser(true)}>{_t("chat.start-chat")}</Button>
-          </div>
-        </>
+        <div className="flex items-center justify-center h-full flex-col">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">{_t("chat.no-chat")}</p>
+          <Button onClick={() => setShowSearchUser(true)}>{_t("chat.start-chat")}</Button>
+        </div>
       )}
     </>
   );
