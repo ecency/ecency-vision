@@ -200,7 +200,7 @@ a[target="_blank"] {
 // Date picker
 @import "~react-datetime/css/react-datetime.css";
 // dark theme
-.theme-night {
+.dark {
   .rdtPicker {
     @apply bg-blue-metallic;
     border: 1px solid;
@@ -290,10 +290,10 @@ a[target="_blank"] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   @apply bg-blue-dark-sky;

@@ -549,7 +549,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     return (
       <>
         {users.length === 0 && (
-          <div className="dialog-header">
+          <div className="dialog-header flex flex-col items-center justify-center">
             <img src={logo} alt="Logo" />
             <h2>{_t("login.title")}</h2>
           </div>

@@ -49,7 +49,7 @@
       .user-list-body {
         overflow-y: auto;
         max-height: 300px;
-        
+
         .user-list-item {
           align-items: center;
           border-radius: 25px;
@@ -172,6 +172,7 @@
 
       .hs-logo, .kc-logo {
         height: 14px;
+        width: 14px;
         margin-right: 6px;
       }
     }
@@ -182,7 +183,8 @@
       }
     }
   }
-}          
-.google-recaptcha{
+}
+
+.google-recaptcha {
   margin: 16px 0px;
 }
