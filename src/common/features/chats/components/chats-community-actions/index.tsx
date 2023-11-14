@@ -43,7 +43,7 @@ const ChatsCommunityDropdownMenu = ({ history, username }: Props) => {
         <DropdownToggle>
           <Button icon={kebabMenuSvg} appearance="gray-link" noPadding={true} />
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu align="right">
           <DropdownItemWithIcon
             icon={linkSvg}
             label={_t("chat.invite")}

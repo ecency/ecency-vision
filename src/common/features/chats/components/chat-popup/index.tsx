@@ -124,8 +124,8 @@ export const ChatPopUp = () => {
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
-    let srollHeight: number = (element.scrollHeight / 100) * 25;
-    const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= srollHeight;
+    let scrollHeight = (element.scrollHeight / 100) * 25;
+    const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= scrollHeight;
     const isScrollToBottom =
       (isCurrentUser || isCommunity) &&
       element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight - 200;

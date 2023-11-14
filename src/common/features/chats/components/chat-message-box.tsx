@@ -11,6 +11,7 @@ import { useLeftCommunityChannelsQuery } from "../queries/left-community-channel
 import { useCommunityCache } from "../../../core";
 import { useAddCommunityChannel } from "../mutations";
 import ChatsProfileBox from "./chat-profile-box";
+import { useAutoScrollInChatBox } from "../hooks";
 
 interface MatchParams {
   filter: string;
@@ -26,6 +27,8 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
+  useAutoScrollInChatBox(props.match.params.username);
+
   const { data: community } = useCommunityCache(props.match.params.username);
 
   const { data: channels } = useChannelsQuery();
@@ -35,9 +38,6 @@ export default function ChatsMessagesBox(props: Props) {
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
     useAddCommunityChannel(communityChannel?.id);
-
-  const { match } = props;
-  const username = match.params.username;
 
   const [inProgress, setInProgress] = useState(false);
 
@@ -68,7 +68,7 @@ export default function ChatsMessagesBox(props: Props) {
         gridTemplateRows: "min-content 1fr min-content"
       }}
     >
-      {match.url === "/chats" ? (
+      {props.match.url === "/chats" ? (
         <div className="no-chat-select">
           <div className="start-chat-wrapper text-center ">
             <p className="start-chat ">Select a chat or start a new conversation</p>
@@ -76,12 +76,13 @@ export default function ChatsMessagesBox(props: Props) {
         </div>
       ) : (
         <>
-          {username.startsWith("@") || (hasCommunityChat && isCommunityJoined) ? (
+          {props.match.params.username.startsWith("@") ||
+          (hasCommunityChat && isCommunityJoined) ? (
             <>
-              <ChatsMessagesHeader username={username} history={props.history} />
+              <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
               {inProgress && <LinearProgress />}
               <ChatsMessagesView
-                username={username}
+                username={props.match.params.username}
                 currentChannel={currentChannel!}
                 setInProgress={setInProgress}
               />

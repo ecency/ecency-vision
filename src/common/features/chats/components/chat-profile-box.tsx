@@ -61,7 +61,7 @@ export default function ChatsProfileBox({ communityName, currentUser }: Props) {
 
   return profileData?.joiningData ? (
     <div className="flex items-center justify-center p-4">
-      <div className="flex flex-col items-center p-4 border border-[--border-color] rounded-2xl bg-gray-100 dark:bg-gray-800">
+      <div className="flex flex-col items-center p-4 border border-[--border-color] rounded-2xl bg-gray-100 dark:bg-gray-900">
         <UserAvatar username={profileData.username} size="large" />
         <div className="text-gray-800 dark:text-white mt-2 font-semibold">{profileData.name}</div>
         {profileData.about?.length !== 0 && <div>{profileData.about}</div>}

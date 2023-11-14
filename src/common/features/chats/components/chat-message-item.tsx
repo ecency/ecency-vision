@@ -41,7 +41,7 @@ export function ChatMessageItem({
   );
 
   return (
-    <div key={message.id}>
+    <div key={message.id} data-message-id={message.id}>
       <div
         className={classNameObject({
           "flex flex-col px-4 mb-4": true,
