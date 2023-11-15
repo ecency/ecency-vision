@@ -17,7 +17,7 @@ import { transformMarkedContent } from "../../../../util/transform-marked-conten
 import { EntryLink } from "../../../entry-link";
 import { useInViewport } from "react-in-viewport";
 import { commentSvg, voteSvg } from "../../icons";
-import { EntriesCacheContext } from "../../../../core";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 
 export interface SearchItemProps {
   avatar: string;
@@ -50,7 +50,7 @@ export const SearchListItem = ({
   index,
   url,
   category,
-  entry,
+  entry: initialEntry,
   onMounted,
   onEntryView,
   marked,
@@ -60,6 +60,7 @@ export const SearchListItem = ({
   const ref = useRef<HTMLDivElement | null>(null);
   const { inViewport } = useInViewport(ref);
   const { updateVotes } = useContext(EntriesCacheContext);
+  const { data: entry } = useEntryCache(initialEntry);
 
   const [title, setTitle] = useState(entry.title);
   const [body, setBody] = useState(entry.b);
