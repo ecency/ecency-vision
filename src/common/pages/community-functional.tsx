@@ -1,6 +1,6 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { match } from "react-router";
-import React, { Fragment, useContext, useEffect, useMemo, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
@@ -38,12 +38,10 @@ import "./community.scss";
 import LoginRequired from "../components/login-required";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
-import { ChatContext } from "../features/chats/chat-context-provider";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { useChannelsQuery } from "../features/chats/queries";
 import { useLeftCommunityChannelsQuery } from "../features/chats/queries/left-community-channels-query";
-import { useAddCommunityChannel, useJoinChat } from "../features/chats/mutations";
 
 interface MatchParams {
   filter: string;
@@ -82,10 +80,6 @@ export const CommunityPage = (props: Props) => {
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
-
-  const { hasUserJoinedChat } = useContext(ChatContext);
-  const { mutateAsync: joinChat } = useJoinChat();
-  const { mutateAsync: addCommunityChannel } = useAddCommunityChannel(community?.name);
 
   const isCommunityAlreadyJoined = useMemo(
     () =>
@@ -218,14 +212,6 @@ export const CommunityPage = (props: Props) => {
     return { title, description, url, rss, image, canonical };
   };
 
-  const joinCommunityChat = async () => {
-    if (!hasUserJoinedChat) {
-      setInProgress(true);
-      await joinChat();
-    }
-    await addCommunityChannel();
-  };
-
   const joinCommunityModal = () => {
     if (isCommunityAlreadyJoined) {
       return (
@@ -259,7 +245,7 @@ export const CommunityPage = (props: Props) => {
             <Button outline={true} className="mr-4" onClick={() => setIsJoinCommunity(false)}>
               {_t("g.close")}
             </Button>
-            <Button outline={true} className="confirm-btn" onClick={() => joinCommunityChat()}>
+            <Button outline={true} className="confirm-btn" to={`/chats/${community?.name}`}>
               {_t("g.join")}
             </Button>
           </p>

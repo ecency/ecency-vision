@@ -12,8 +12,6 @@ import "./index.scss";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
-import { Spinner } from "@ui/spinner";
-import { Button } from "@ui/button";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { ChatPopupHeader } from "./chat-popup-header";
 import { ChatPopupMessagesList } from "./chat-popup-messages-list";
@@ -22,16 +20,17 @@ import { ChatPopupContactsAndChannels } from "./chat-popup-contacts-and-channels
 import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
 import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
 import { useKeysQuery } from "../../queries/keys-query";
+import { ChatsWelcome } from "../chats-welcome";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
 
   const { receiverPubKey, revealPrivateKey, hasUserJoinedChat, setRevealPrivateKey } =
     useContext(ChatContext);
-  const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
+  const { isLoading: isJoinChatLoading } = useJoinChat();
 
   const { privateKey, publicKey } = useKeysQuery();
-  const { data: directContacts, isLoading: isDirectContactsLoading } = useDirectContactsQuery();
+  const { data: directContacts } = useDirectContactsQuery();
   const directContact = useMemo(
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
     [directContacts, receiverPubKey]
@@ -230,14 +229,7 @@ export const ChatPopUp = () => {
                 <ManageChatKey />
               </div>
             ) : (
-              <Button
-                className="join-chat-btn"
-                onClick={() => joinChat()}
-                icon={isJoinChatLoading && <Spinner className="w-3.5 h-3.5" />}
-                iconPlacement="left"
-              >
-                {_t("chat.join-chat")}
-              </Button>
+              <ChatsWelcome />
             )}
 
             {((isScrollToTop && !isCurrentUser) ||

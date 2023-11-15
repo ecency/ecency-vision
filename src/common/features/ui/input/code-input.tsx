@@ -5,9 +5,10 @@ interface Props {
   codeSize?: number;
   value: string;
   setValue: (v: string) => void;
+  disabled?: boolean;
 }
 
-export function CodeInput({ value, setValue, codeSize = 6 }: Props) {
+export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
   const [code, setCode] = useState(new Array(codeSize).fill(""));
 
   useEffect(() => {
@@ -27,9 +28,10 @@ export function CodeInput({ value, setValue, codeSize = 6 }: Props) {
   }, [value]);
 
   return (
-    <div className="flex py-6 [&>input]:w-[44px] gap-2 justify-center [&>input]:text-center">
+    <div className="flex py-6 [&>input]:w-[36px] [&>input]:h-[36px] gap-2 justify-center [&>input]:text-center">
       {code.map((item, i) => (
         <FormControl
+          disabled={disabled}
           id={`code-input-${i}`}
           key={i}
           type="text"

@@ -56,7 +56,7 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const join = async () => {
     if (!hasUserJoinedChat) {
-      await joinChat();
+      return;
     }
     await addCommunityChannel();
   };
@@ -70,7 +70,7 @@ export default function JoinCommunityChatBtn(props: Props) {
           <Button
             onClick={async () => {
               if (!hasUserJoinedChat) {
-                await joinChat();
+                return;
               }
 
               if (communityTeam.some((role) => role.pubkey === publicKey)) {
@@ -87,7 +87,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         ) : !isCommunityChatJoined && isChatEnabled && hasUserJoinedChat ? (
           <Button
             disabled={isJoinChatLoading || isAddCommunityChannelLoading}
-            onClick={join}
+            to={`/chats/${props.community.name}`}
             icon={
               (isJoinChatLoading || isAddCommunityChannelLoading) && (
                 <Spinner className="w-3.5 h-3.5" />
@@ -103,7 +103,7 @@ export default function JoinCommunityChatBtn(props: Props) {
       ) : isChatEnabled && !isCommunityChatJoined ? (
         <Button
           disabled={isJoinChatLoading || isAddCommunityChannelLoading}
-          onClick={join}
+          to={`/chats/${props.community.name}`}
           icon={
             (isJoinChatLoading || isAddCommunityChannelLoading) && (
               <Spinner className="w-3.5 h-3.5" />

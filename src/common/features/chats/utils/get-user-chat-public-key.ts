@@ -1,9 +1,8 @@
-import { getAccountFull } from "../../../api/hive";
+import { FullAccount } from "../../../store/accounts/types";
 
-export const getUserChatPublicKey = async (username: string): Promise<string | undefined> => {
-  const response = await getAccountFull(username);
-  if (response && response.posting_json_metadata) {
-    const { posting_json_metadata } = response;
+export const getUserChatPublicKey = (account: FullAccount): string | undefined => {
+  if (account.posting_json_metadata) {
+    const { posting_json_metadata } = account;
     const profile = JSON.parse(posting_json_metadata).profile;
     if (profile) {
       const { nsPubKey } = profile || {};

@@ -24,7 +24,8 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLink
       // Outline basics
       "border-[1.25px] border-solid": props.outline ?? false,
       // With icon
-      "flex items-center justify-center gap-2": !!props.icon,
+      "flex items-center justify-center gap-2":
+        !!props.icon || ("to" in props ? !!props.to : false),
       "flex-row-reverse": props.iconPlacement === "left",
 
       // Styles

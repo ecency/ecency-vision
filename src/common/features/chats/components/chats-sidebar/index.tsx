@@ -12,6 +12,7 @@ import { _t } from "../../../../i18n";
 import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { ChatSidebarChannel } from "./chat-sidebar-channel";
+import { useGetAccountFullQuery } from "../../../../api/queries";
 
 interface Props {
   username: string;
@@ -22,6 +23,7 @@ export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
+  const { data: fullAccount } = useGetAccountFullQuery(username);
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
@@ -64,8 +66,8 @@ export default function ChatsSideBar(props: Props) {
     const peer = directContacts?.find((x) => x.name === username)?.pubkey ?? "";
     if (peer) {
       setReceiverPubKey(peer);
-    } else {
-      const pubkey = await getUserChatPublicKey(username);
+    } else if (fullAccount) {
+      const pubkey = getUserChatPublicKey(fullAccount);
       if (pubkey) {
         setReceiverPubKey(pubkey);
       } else {

@@ -1878,7 +1878,9 @@
     "start-community-chat": "Start Community Chat",
     "join-community-chat": "Join Community Chat",
     "submit": "Submit",
-    "chat-priv-key": "Please, copy this key or save QR code to your device for joining to same account in another devices",
+    "chat-priv-key": "Please, copy thess key or save QR code to your device for joining to same account in another devices",
+    "public-key": "Public key",
+    "private-key": "Private key",
     "copy-priv-key": "Copy Private key",
     "extended-view": "Extended View",
     "you-haven-t-joined": "You haven't joined the chat yet. Please join the chat to start chatting.",
@@ -1889,7 +1891,20 @@
     "unblock-author": "Unblock author",
     "create-an-account": "Create chat account",
     "create-description": "Welcome aboard! Your account is almost ready. Dive into conversations and enjoy connecting with others. Need help? We're here for you. Happy chatting!",
-    "create-pin-description": "Please, set PIN for getting access to your chats from any device"
+    "create-pin-description": "Please, set PIN for getting access to your chats from any device",
+    "welcome": {
+      "title": "Welcome to chats",
+      "description": "Create an account or import chats with private key to start using chats",
+      "already-joined-title": "We found We've joined to chats already",
+      "already-joined-hint": "Please, verify your account and get access by entering PIN",
+      "pin-failed": "Invalid PIN. Failed to verify."
+    },
+    "import": {
+      "title": "Importing account",
+      "description": "Please, enter public and private key pair to import your existing account",
+      "button": "Import",
+      "iv": "Initial vector value"
+    }
   },
   "add-image": {
     "title": "Add Image",

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { _t } from "../../../../i18n";
 import { getJoinedCommunities } from "../../utils";
-import { ChatsImport } from "../chats-import";
+import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
@@ -71,7 +71,7 @@ export function ChatPopupContactsAndChannels({
           ))}
         </>
       ) : !privateKey ? (
-        <ChatsImport />
+        <ChatsWelcome />
       ) : (
         <div className="flex items-center justify-center h-full flex-col">
           <p className="text-gray-600 dark:text-gray-400 mb-4">{_t("chat.no-chat")}</p>

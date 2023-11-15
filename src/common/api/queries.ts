@@ -5,6 +5,7 @@ import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
+import { getAccountFull } from "./hive";
 
 const DEFAULT = {
   points: "0.000",
@@ -87,4 +88,10 @@ export function useImageDownloader(
       retryDelay: 3000
     }
   );
+}
+
+export function useGetAccountFullQuery(username?: string) {
+  return useQuery([QueryIdentifiers.GET_ACCOUNT_FULL, username], () => getAccountFull(username!), {
+    enabled: !!username
+  });
 }
