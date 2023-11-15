@@ -1,6 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
 import { ChatQueries } from "./queries";
-import { getUserChatPublicKey } from "../utils";
+import { EncryptionTools, getUserChatPrivateKey, getUserChatPublicKey } from "../utils";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useMemo } from "react";
 import { PREFIX } from "../../../util/local-storage";
@@ -19,7 +19,15 @@ export function useKeysQuery() {
       },
       {
         queryKey: [ChatQueries.PRIVATE_KEY, activeUser?.username],
-        queryFn: () => localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username)
+        queryFn: async () => {
+          const pin = localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username);
+          const { key, iv } = await getUserChatPrivateKey(activeUser?.username!);
+          if (key && pin && iv) {
+            return EncryptionTools.decrypt(key, pin, Buffer.from(iv, "base64"));
+          }
+
+          return undefined;
+        }
       }
     ]
   });

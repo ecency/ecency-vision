@@ -1,5 +1,5 @@
 export * from "./fetch-profile-metadata";
-export * from "./upload-chat-public-key";
+export * from "./upload-chat-keys";
 export * from "./create-nostr-account";
 export * from "./format-message-time";
 export * from "./is-message-gif";
@@ -12,3 +12,5 @@ export * from "./copy-to-clipboard";
 export * from "./check-contiguous-message";
 export * from "./format-message-date-and-day";
 export * from "./get-relative-date";
+export * from "./encryption-tools";
+export * from "./get-user-chat-private-key";

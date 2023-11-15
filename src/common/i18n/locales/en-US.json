@@ -1886,7 +1886,10 @@
     "enter-username": "Enter temporary username",
     "hide-message": "Hide message",
     "block-author": "Block author",
-    "unblock-author": "Unblock author"
+    "unblock-author": "Unblock author",
+    "create-an-account": "Create chat account",
+    "create-description": "Welcome aboard! Your account is almost ready. Dive into conversations and enjoy connecting with others. Need help? We're here for you. Happy chatting!",
+    "create-pin-description": "Please, set PIN for getting access to your chats from any device"
   },
   "add-image": {
     "title": "Add Image",

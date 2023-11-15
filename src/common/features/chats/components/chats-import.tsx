@@ -3,18 +3,20 @@ import { _t } from "../../../i18n";
 import { keySvg } from "../../../img/svg";
 import { ChatContext } from "../chat-context-provider";
 import LinearProgress from "../../../components/linear-progress";
-import ChatsConfirmationModal from "./chats-confirmation-modal";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
-import { FormControl, InputGroup } from "@ui/input";
+import { CodeInput, FormControl, InputGroup } from "@ui/input";
 import { useImportChatByKey, useJoinChat } from "../mutations";
 import OrDivider from "../../../components/or-divider";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
+import { Alert } from "@ui/alert";
 
 export function ChatsImport() {
   const [showImportChats, setShowImportChats] = useState(false);
   const [privateKeyInput, setPrivateKeyInput] = useState("");
   const [step, setStep] = useState(0);
   const [error, setError] = useState("");
+  const [pin, setPin] = useState("");
 
   const { hasUserJoinedChat } = useContext(ChatContext);
   const { mutateAsync: joinChat } = useJoinChat();
@@ -74,14 +76,22 @@ export function ChatsImport() {
         </div>
       </div>
       {step !== 0 && (
-        <ChatsConfirmationModal
-          actionType={"Warning"}
-          content={"creating new account will reset your chats"}
-          onClose={() => {
-            setStep(0);
-          }}
-          onConfirm={() => joinChat()}
-        />
+        <Modal centered={true} show={[1, 2].includes(step)} onHide={() => setStep(0)}>
+          <ModalHeader closeButton={true}>{_t("chat.create-an-account")}</ModalHeader>
+          <ModalBody>
+            <div className="text-gray-600 mb-4">{_t("chat.create-description")}</div>
+            <Alert appearance="primary">{_t("chat.create-pin-description")}</Alert>
+            <CodeInput codeSize={8} value={pin} setValue={setPin} />
+          </ModalBody>
+          <ModalFooter className="flex justify-end items-center gap-3">
+            <Button appearance="secondary" onClick={() => setStep(0)}>
+              {_t("g.cancel")}
+            </Button>
+            <Button disabled={pin.length < 6} onClick={() => joinChat(pin)}>
+              {_t("chat.create-an-account")}
+            </Button>
+          </ModalFooter>
+        </Modal>
       )}
     </>
   );
