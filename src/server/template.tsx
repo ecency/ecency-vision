@@ -57,7 +57,7 @@ export const render = (req: express.Request, state: AppState) => {
                 ${linkTags}
                 ${styleTags}
             </head>
-            <body class={state.global.theme === 'night' ? 'dark' : ''} style="display: none;">
+            <body class="${state.global.theme === "night" ? "dark" : ""}">
                 <div id="root">${markup}</div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
