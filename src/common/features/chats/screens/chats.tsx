@@ -17,6 +17,8 @@ import { useKeysQuery } from "../queries/keys-query";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
 import SSRSuspense from "../../../components/ssr-suspense";
+import { useGetAccountFullQuery } from "../../../api/queries";
+import { getUserChatPublicKey } from "../utils";
 
 interface Props extends PageProps {
   match: match<{
@@ -28,12 +30,13 @@ interface Props extends PageProps {
   }>;
 }
 
-export const Chats = (props: Props) => {
+export const Chats = ({ match, history }: Props) => {
   const { activeUser, global } = useMappedStore();
-  const { receiverPubKey, revealPrivateKey } = useContext(ChatContext);
-  const { data: community } = useCommunityCache(props.match.params.username);
+  const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
+  const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
+  const { data: userAccount } = useGetAccountFullQuery(match.params.username.replace("@", ""));
   const { data: channels } = useChannelsQuery();
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
@@ -42,10 +45,10 @@ export const Chats = (props: Props) => {
     () =>
       [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])].some(
         (channel) =>
-          channel.communityName === props.match.params.username &&
+          channel.communityName === match.params.username &&
           !leftCommunityChannelsIds?.includes(channel.name)
       ),
-    [channels, leftCommunityChannelsIds, props.match.params.username, communityChannel]
+    [channels, leftCommunityChannelsIds, match.params.username, communityChannel]
   );
 
   const isReady = useMemo(
@@ -63,21 +66,20 @@ export const Chats = (props: Props) => {
   );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
 
-  const { match, history } = props;
-
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+    if (userAccount) {
+      const key = getUserChatPublicKey(userAccount);
+      if (key) {
+        setReceiverPubKey(key);
+      }
+    }
+  }, [userAccount]);
 
   return (
     <SSRSuspense fallback={<></>}>
       <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] min-h-[100vh]">
         <Feedback activeUser={activeUser} />
-        <NavBar history={props.history} />
+        <NavBar history={history} />
 
         <div className="container mx-auto md:py-6">
           <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">
