@@ -191,7 +191,7 @@
           @apply bg-blue-duck-egg;
 
           .click-to-change {
-            color: $primary;
+            @apply text-blue-dark-sky;
           }
         }
 
@@ -211,7 +211,7 @@
         @include padding(1rem);
         @include border-radius(1rem);
 
-        @apply bg-blue-duck-egg;
+        @apply bg-blue-duck-egg dark:bg-gray-800;
       }
 
       @include themify(night) {

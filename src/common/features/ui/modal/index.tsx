@@ -2,6 +2,8 @@ import { createPortal } from "react-dom";
 import React, { createContext, HTMLProps, useEffect, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { useFilteredProps } from "../../../util/props-filter";
+import useMount from "react-use/lib/useMount";
+import useUnmount from "react-use/lib/useUnmount";
 
 interface Props {
   show: boolean;
@@ -32,6 +34,9 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     "dialogClassName"
   ]);
 
+  useMount(() => document.addEventListener("keyup", onKeyUp));
+  useUnmount(() => document.removeEventListener("keyup", onKeyUp));
+
   useEffect(() => {
     setShow(props.show);
   }, [props.show]);
@@ -43,6 +48,12 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
       }
     }
   }, [show]);
+
+  const onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setShow(false);
+    }
+  };
 
   return (
     <ModalContext.Provider value={{ show, setShow }}>

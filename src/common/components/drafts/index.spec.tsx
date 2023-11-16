@@ -1,18 +1,19 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
 
 import { createBrowserHistory, createLocation } from "history";
 
 import { Drafts } from "./index";
 
 import {
-  globalInstance,
   activeUserInstance,
-  fullAccountInstance,
+  allOver,
   communityInstance1,
-  allOver
+  fullAccountInstance,
+  globalInstance
 } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
+import { queryClient } from "../../core";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 let TEST_MODE = 0;
 
@@ -81,7 +82,11 @@ it("(1) Default render.", async () => {
     onPick: () => {}
   };
 
-  const component = await withStore(<Drafts {...props} />);
+  const component = await withStore(
+    <QueryClientProvider client={queryClient}>
+      <Drafts {...props} />
+    </QueryClientProvider>
+  );
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -98,7 +103,11 @@ it("(2) Test with data.", async () => {
     onPick: () => {}
   };
 
-  const component = withStore(<Drafts {...props} />);
+  const component = withStore(
+    <QueryClientProvider client={queryClient}>
+      <Drafts {...props} />
+    </QueryClientProvider>
+  );
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

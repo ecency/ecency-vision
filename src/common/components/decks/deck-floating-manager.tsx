@@ -40,7 +40,7 @@ export const DeckFloatingManager = () => {
           setMobileOffset(resultInPercentage);
         }}
         icon={upArrowSvg}
-        iconClassName="ml-2"
+        iconClassName="mx-3"
       />
       <div
         ref={columnsRef}
