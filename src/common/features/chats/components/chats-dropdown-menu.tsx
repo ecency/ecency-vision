@@ -1,9 +1,10 @@
 import React from "react";
 import { History } from "history";
-import { chatKeySvg, kebabMenuSvg } from "../../../img/svg";
+import { chatKeySvg, kebabMenuSvg, keySvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { Button } from "@ui/button";
+import { useLogoutFromChats } from "../mutations";
 
 interface Props {
   history: History | null;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const ChatsDropdownMenu = (props: Props) => {
+  const { mutateAsync: logout } = useLogoutFromChats();
+
   return (
     <Dropdown>
       <DropdownToggle>
@@ -23,6 +26,7 @@ const ChatsDropdownMenu = (props: Props) => {
             icon={chatKeySvg}
             onClick={() => props.onManageChatKey?.()}
           />
+          <DropdownItemWithIcon icon={keySvg} label={_t("chat.logout")} onClick={() => logout()} />
         </DropdownMenu>
       </DropdownToggle>
     </Dropdown>

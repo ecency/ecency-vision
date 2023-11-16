@@ -11,3 +11,4 @@ export * from "./fetch-previous-messages";
 export * from "./update-channel-blocked-users";
 export * from "./import-chat-by-keys";
 export * from "./hide-message-in-channel";
+export * from "./logout-from-chats";

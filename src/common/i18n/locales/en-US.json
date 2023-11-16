@@ -1892,10 +1892,11 @@
     "create-an-account": "Create chat account",
     "create-description": "Welcome aboard! Your account is almost ready. Dive into conversations and enjoy connecting with others. Need help? We're here for you. Happy chatting!",
     "create-pin-description": "Please, set PIN for getting access to your chats from any device",
+    "logout": "Logout",
     "welcome": {
       "title": "Welcome to chats",
       "description": "Create an account or import chats with private key to start using chats",
-      "already-joined-title": "We found We've joined to chats already",
+      "already-joined-title": "We found You've joined to chats already",
       "already-joined-hint": "Please, verify your account and get access by entering PIN",
       "pin-failed": "Invalid PIN. Failed to verify."
     },

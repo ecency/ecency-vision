@@ -39,13 +39,12 @@ export function useKeysQuery() {
 
   const hasKeys = useMemo(() => !!publicKey && !!privateKey, [publicKey, privateKey]);
 
-  return {
-    publicKey,
-    privateKey,
-    hasKeys,
-    refetch: () => {
-      refetchPublicKey();
-      refetchPrivateKey();
-    }
-  };
+  return useMemo(
+    () => ({
+      publicKey,
+      privateKey,
+      hasKeys
+    }),
+    [publicKey, privateKey, hasKeys]
+  );
 }
