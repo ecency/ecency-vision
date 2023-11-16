@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { History } from "history";
-import { formattedUserName, getJoinedCommunities, getUserChatPublicKey } from "../../utils";
+import { getJoinedCommunities } from "../../utils";
 import ChatsScroller from "../chats-scroller";
 import { AccountWithReputation } from "../../types";
 import { ChatContext } from "../../chat-context-provider";
@@ -12,7 +12,6 @@ import { _t } from "../../../../i18n";
 import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { ChatSidebarChannel } from "./chat-sidebar-channel";
-import { useGetAccountFullQuery } from "../../../../api/queries";
 
 interface Props {
   username: string;
@@ -23,7 +22,6 @@ export default function ChatsSideBar(props: Props) {
   const { username } = props;
   const { setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
-  const { data: fullAccount } = useGetAccountFullQuery(username);
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
@@ -40,14 +38,6 @@ export default function ChatsSideBar(props: Props) {
     [channels, leftChannelsIds]
   );
 
-  useEffect(() => {
-    if (username) {
-      if (username.startsWith("@")) {
-        getReceiverPubKey(formattedUserName(username));
-      }
-    }
-  }, [username]);
-
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     var element = event.currentTarget;
     if (element.scrollTop > 2) {
@@ -60,20 +50,6 @@ export default function ChatsSideBar(props: Props) {
     let srollHeight: number = (element.scrollHeight / 100) * 25;
     const isScrollToTop = element.scrollTop >= srollHeight;
     setIsScrollToTop(isScrollToTop);
-  };
-
-  const getReceiverPubKey = async (username: string) => {
-    const peer = directContacts?.find((x) => x.name === username)?.pubkey ?? "";
-    if (peer) {
-      setReceiverPubKey(peer);
-    } else if (fullAccount) {
-      const pubkey = getUserChatPublicKey(fullAccount);
-      if (pubkey) {
-        setReceiverPubKey(pubkey);
-      } else {
-        setReceiverPubKey("");
-      }
-    }
   };
 
   return (
@@ -93,7 +69,7 @@ export default function ChatsSideBar(props: Props) {
               onClick={() => {
                 setSearchQuery("");
                 setRevealPrivateKey(false);
-                getReceiverPubKey(user.account);
+                props.history.push(`/chats/@${user.account}`);
               }}
               key={user.account}
             />

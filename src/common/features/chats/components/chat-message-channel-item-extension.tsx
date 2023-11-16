@@ -51,61 +51,63 @@ export function ChatMessageChannelItemExtension({
     );
 
   return (
-    <Popover id="profile-popover" className="profile-popover">
-      <UserAvatar username={profile?.name ?? ""} />
-      {children}
-      <PopoverContent>
-        <div className="profile-box" ref={popoverRef as RefObject<HTMLDivElement>}>
-          <div className="profile-box-content">
-            <div className="profile-box-logo flex justify-center">
-              <UserAvatar username={profile?.name ?? ""} size="large" />
+    <>
+      <UserAvatar username={profile?.name ?? ""} size="w-[2rem] h-[2rem]" />
+      <Popover id="profile-popover" className="profile-popover">
+        {children}
+        <PopoverContent>
+          <div className="profile-box" ref={popoverRef as RefObject<HTMLDivElement>}>
+            <div className="profile-box-content">
+              <div className="profile-box-logo flex justify-center">
+                <UserAvatar username={profile?.name ?? ""} size="large" />
+              </div>
+
+              <p className="flex justify-center profile-name">{`@${profile?.name}`}</p>
+              <div
+                className={`flex mb-3 ${
+                  communityAdmins.includes(activeUser?.username!) &&
+                  profile?.name !== currentChannel.communityName
+                    ? "justify-between"
+                    : "justify-center"
+                }  profile-box-buttons`}
+              >
+                <FollowControls
+                  setActiveUser={setActiveUser}
+                  updateActiveUser={updateActiveUser}
+                  deleteUser={deleteUser}
+                  toggleUIProp={toggleUIProp}
+                  activeUser={activeUser}
+                  targetUsername={profile?.name ?? ""}
+                  where={"chat-box"}
+                  ui={ui}
+                  users={users}
+                />
+
+                {communityAdmins.includes(activeUser?.username!) &&
+                  profile?.name !== currentChannel.communityName && (
+                    <>
+                      {currentChannel?.removedUserIds?.includes(profile?.creator ?? "") ? (
+                        <>
+                          <Button onClick={() => unBlock(profile?.creator ?? "")}>
+                            {_t("chat.unblock")}
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <Button onClick={() => block(profile?.creator ?? "")}>
+                            {_t("chat.block")}
+                          </Button>
+                        </>
+                      )}
+                    </>
+                  )}
+              </div>
+
+              <ChatInput currentChannel={currentChannel} currentUser="" />
             </div>
-
-            <p className="flex justify-center profile-name">{`@${profile?.name}`}</p>
-            <div
-              className={`flex mb-3 ${
-                communityAdmins.includes(activeUser?.username!) &&
-                profile?.name !== currentChannel.communityName
-                  ? "justify-between"
-                  : "justify-center"
-              }  profile-box-buttons`}
-            >
-              <FollowControls
-                setActiveUser={setActiveUser}
-                updateActiveUser={updateActiveUser}
-                deleteUser={deleteUser}
-                toggleUIProp={toggleUIProp}
-                activeUser={activeUser}
-                targetUsername={profile?.name ?? ""}
-                where={"chat-box"}
-                ui={ui}
-                users={users}
-              />
-
-              {communityAdmins.includes(activeUser?.username!) &&
-                profile?.name !== currentChannel.communityName && (
-                  <>
-                    {currentChannel?.removedUserIds?.includes(profile?.creator ?? "") ? (
-                      <>
-                        <Button onClick={() => unBlock(profile?.creator ?? "")}>
-                          {_t("chat.unblock")}
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button onClick={() => block(profile?.creator ?? "")}>
-                          {_t("chat.block")}
-                        </Button>
-                      </>
-                    )}
-                  </>
-                )}
-            </div>
-
-            <ChatInput currentChannel={currentChannel} currentUser="" />
           </div>
-        </div>
-      </PopoverContent>
-    </Popover>
+        </PopoverContent>
+      </Popover>
+    </>
   );
 }

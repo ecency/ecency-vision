@@ -68,48 +68,34 @@ export default function ChatsMessagesBox(props: Props) {
         gridTemplateRows: "min-content 1fr min-content"
       }}
     >
-      {props.match.url === "/chats" ? (
-        <div className="no-chat-select">
-          <div className="start-chat-wrapper text-center ">
-            <p className="start-chat ">Select a chat or start a new conversation</p>
-          </div>
-        </div>
-      ) : (
+      {props.match.params.username.startsWith("@") || (hasCommunityChat && isCommunityJoined) ? (
         <>
-          {props.match.params.username.startsWith("@") ||
-          (hasCommunityChat && isCommunityJoined) ? (
-            <>
-              <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
-              {inProgress && <LinearProgress />}
-              <ChatsMessagesView
-                username={props.match.params.username}
-                currentChannel={currentChannel!}
-                setInProgress={setInProgress}
-              />
-            </>
-          ) : hasCommunityChat && !isCommunityJoined ? (
-            <>
-              <div />
-              <div className="flex flex-col justify-center items-center mb-4">
-                <ChatsProfileBox communityName={community?.name} />
-                <p className="mb-4 text-gray-600">
-                  {hasLeftCommunity
-                    ? "You have left this community chat. Rejoin the chat now!"
-                    : " You are not part of this community. Join the community chat now!"}
-                </p>
-                <Button
-                  onClick={() => addCommunityChannel()}
-                  disabled={isAddCommunityChannelLoading}
-                >
-                  {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
-                </Button>
-              </div>
-              <div />
-            </>
-          ) : (
-            <p className="no-chat-select">Community chat not started yet</p>
-          )}
+          <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
+          {inProgress && <LinearProgress />}
+          <ChatsMessagesView
+            username={props.match.params.username}
+            currentChannel={currentChannel!}
+            setInProgress={setInProgress}
+          />
         </>
+      ) : hasCommunityChat && !isCommunityJoined ? (
+        <>
+          <div />
+          <div className="flex flex-col justify-center items-center mb-4">
+            <ChatsProfileBox communityName={community?.name} />
+            <p className="mb-4 text-gray-600">
+              {hasLeftCommunity
+                ? "You have left this community chat. Rejoin the chat now!"
+                : " You are not part of this community. Join the community chat now!"}
+            </p>
+            <Button onClick={() => addCommunityChannel()} disabled={isAddCommunityChannelLoading}>
+              {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
+            </Button>
+          </div>
+          <div />
+        </>
+      ) : (
+        <p className="flex h-full justify-center items-center">Community chat not started yet</p>
       )}
     </div>
   );

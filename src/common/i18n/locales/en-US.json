@@ -1898,7 +1898,11 @@
       "description": "Create an account or import chats with private key to start using chats",
       "already-joined-title": "We found You've joined to chats already",
       "already-joined-hint": "Please, verify your account and get access by entering PIN",
-      "pin-failed": "Invalid PIN. Failed to verify."
+      "pin-failed": "Invalid PIN. Failed to verify.",
+      "oops": "Oops!",
+      "user-not-joined-yet": "You can't send a message. This user or channel isn't joined to chats yet.",
+      "hello": "Hello",
+      "start-description": "Search a person or community and start messaging"
     },
     "import": {
       "title": "Importing account",
