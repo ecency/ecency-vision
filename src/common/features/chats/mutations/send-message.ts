@@ -57,6 +57,7 @@ export function useSendMessage(
     },
     {
       onSuccess: (message) => {
+        message.sent = 0;
         queryClient.setQueryData(
           [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
           [...messages, message]

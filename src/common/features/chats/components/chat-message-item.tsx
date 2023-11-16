@@ -79,7 +79,13 @@ export function ChatMessageItem({
             </span>
           </Tooltip>
         )}
-        <div>
+        <div
+          className={classNameObject({
+            "flex gap-1 flex-col": true,
+            "items-start": type === "receiver",
+            "items-end": type === "sender"
+          })}
+        >
           <div
             className={classNameObject({
               "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage,
@@ -94,14 +100,12 @@ export function ChatMessageItem({
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
             />
           </div>
-          <div className="text-gray-600 dark:text-gray-400 text-xs px-2 pt-1">
-            {formatMessageTime(message.created)}
-          </div>
-          {message.sent === 0 && (
-            <span style={{ margin: "10px 0 0 5px" }}>
-              <Spinner />
-            </span>
+          {message.sent == 1 && (
+            <div className="text-gray-600 dark:text-gray-400 text-xs px-2">
+              {formatMessageTime(message.created)}
+            </div>
           )}
+          {message.sent === 0 && <Spinner className="w-3 h-3 mx-2" />}
           {message.sent === 2 && (
             <Tooltip content={"Failed"}>
               <span className="failed-svg">{failedMessageSvg}</span>
