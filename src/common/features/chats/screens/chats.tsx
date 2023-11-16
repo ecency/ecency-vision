@@ -12,7 +12,6 @@ import ChatsMessagesBox from "../components/chat-message-box";
 import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
 import { useChannelsQuery, useCommunityChannelQuery } from "../queries";
-import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 import { useKeysQuery } from "../queries/keys-query";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
@@ -40,17 +39,14 @@ export const Chats = ({ match, history }: Props) => {
   const { publicKey, privateKey } = useKeysQuery();
   const { data: userAccount } = useGetAccountFullQuery(match.params.username?.replace("@", ""));
   const { data: channels } = useChannelsQuery();
-  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
 
   const isChannel = useMemo(
     () =>
       [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])].some(
-        (channel) =>
-          channel.communityName === match.params.username &&
-          !leftCommunityChannelsIds?.includes(channel.name)
+        (channel) => channel.communityName === match.params.username
       ),
-    [channels, leftCommunityChannelsIds, match.params.username, communityChannel]
+    [channels, match.params.username, communityChannel]
   );
 
   const isReady = useMemo(
@@ -115,7 +111,9 @@ export const Chats = ({ match, history }: Props) => {
                 <ChatsWelcome />
               </div>
             )}
-            {isShowChatRoom && <ChatsMessagesBox match={match} history={history} />}
+            {isShowChatRoom && (
+              <ChatsMessagesBox match={match} history={history} channel={communityChannel!!} />
+            )}
             {!isShowChatRoom && isReady && match.params.username && (
               <div className="flex flex-col justify-center h-full items-center">
                 <div className="font-bold">{_t("chat.welcome.oops")}</div>

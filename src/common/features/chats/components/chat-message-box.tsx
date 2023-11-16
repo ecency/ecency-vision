@@ -12,6 +12,8 @@ import { useCommunityCache } from "../../../core";
 import { useAddCommunityChannel } from "../mutations";
 import ChatsProfileBox from "./chat-profile-box";
 import { useAutoScrollInChatBox } from "../hooks";
+import { Channel } from "../nostr";
+import { _t } from "../../../i18n";
 
 interface MatchParams {
   filter: string;
@@ -24,6 +26,7 @@ interface MatchParams {
 interface Props {
   match: match<MatchParams>;
   history: History;
+  channel: Channel;
 }
 
 export default function ChatsMessagesBox(props: Props) {
@@ -41,24 +44,16 @@ export default function ChatsMessagesBox(props: Props) {
 
   const [inProgress, setInProgress] = useState(false);
 
-  const currentChannel = useMemo(
-    () =>
-      [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])]?.find(
-        (c) => c.communityName === community?.name
-      ),
-    [channels, community]
-  );
-  const hasCommunityChat = useMemo(() => !!currentChannel, [currentChannel]);
   const hasLeftCommunity = useMemo(
-    () => leftCommunityChannelsIds?.includes(currentChannel?.id ?? ""),
-    [currentChannel]
+    () => leftCommunityChannelsIds?.includes(props.channel?.id ?? ""),
+    [props.channel]
   );
   const isCommunityJoined = useMemo(
     () =>
       getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
-        (channel) => channel.id === currentChannel?.id
+        (channel) => channel.id === props.channel?.id
       ),
-    [channels, currentChannel, leftChannelsIds]
+    [channels, props.channel, leftChannelsIds]
   );
 
   return (
@@ -68,25 +63,25 @@ export default function ChatsMessagesBox(props: Props) {
         gridTemplateRows: "min-content 1fr min-content"
       }}
     >
-      {props.match.params.username.startsWith("@") || (hasCommunityChat && isCommunityJoined) ? (
+      {props.match.params.username.startsWith("@") || isCommunityJoined ? (
         <>
           <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
           {inProgress && <LinearProgress />}
           <ChatsMessagesView
             username={props.match.params.username}
-            currentChannel={currentChannel!}
+            currentChannel={props.channel}
             setInProgress={setInProgress}
           />
         </>
-      ) : hasCommunityChat && !isCommunityJoined ? (
+      ) : (
         <>
           <div />
           <div className="flex flex-col justify-center items-center mb-4">
             <ChatsProfileBox communityName={community?.name} />
             <p className="mb-4 text-gray-600">
               {hasLeftCommunity
-                ? "You have left this community chat. Rejoin the chat now!"
-                : " You are not part of this community. Join the community chat now!"}
+                ? _t("chat.welcome.rejoin-description")
+                : _t("chat.welcome.join-description")}
             </p>
             <Button onClick={() => addCommunityChannel()} disabled={isAddCommunityChannelLoading}>
               {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
@@ -94,8 +89,6 @@ export default function ChatsMessagesBox(props: Props) {
           </div>
           <div />
         </>
-      ) : (
-        <p className="flex h-full justify-center items-center">Community chat not started yet</p>
       )}
     </div>
   );

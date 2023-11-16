@@ -69,7 +69,6 @@ export default function ChatsSideBar(props: Props) {
               onClick={() => {
                 setSearchQuery("");
                 setRevealPrivateKey(false);
-                props.history.push(`/chats/@${user.account}`);
               }}
               key={user.account}
             />

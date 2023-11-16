@@ -1902,7 +1902,9 @@
       "oops": "Oops!",
       "user-not-joined-yet": "You can't send a message. This user or channel isn't joined to chats yet.",
       "hello": "Hello",
-      "start-description": "Search a person or community and start messaging"
+      "start-description": "Search a person or community and start messaging",
+      "join-description": "You are not part of this community. Join the community chat now!",
+      "rejoin-description": "You have left this community chat. Rejoin the chat now!"
     },
     "import": {
       "title": "Importing account",
