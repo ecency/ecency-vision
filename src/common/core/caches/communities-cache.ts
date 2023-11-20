@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../react-query";
 import * as bridgeApi from "../../api/bridge";
-import { Community } from "../../store/communities/types";
+import { Community } from "../../store/communities";
 import isCommunity from "../../helper/is-community";
 import { useEffect } from "react";
 
