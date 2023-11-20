@@ -265,7 +265,7 @@ export const ChatPopUp = () => {
             )}
           </div>
           <div className="pl-2">
-            {(isCurrentUser || isCommunity) && (
+            {((isCurrentUser && receiverPubKey) || isCommunity) && (
               <ChatInput currentUser={currentUser} currentChannel={currentChannel ?? undefined} />
             )}
           </div>

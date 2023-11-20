@@ -86,7 +86,12 @@ export default function ChatsDirectMessages(props: Props) {
             })}
           </>
         ) : (
-          <p className="not-joined">{_t("chat.not-joined")}</p>
+          <div className="flex flex-col justify-center text-center items-center p-4">
+            <div className="font-bold">{_t("chat.welcome.oops")}</div>
+            <div className="text-gray-600 dark:text-gray-400 mb-4">
+              {_t("chat.welcome.user-not-joined-yet")}
+            </div>
+          </div>
         )}
       </div>
     </>
