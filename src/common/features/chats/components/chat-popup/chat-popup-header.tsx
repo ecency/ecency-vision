@@ -58,7 +58,7 @@ export function ChatPopupHeader({
       return _t("chat.new-message");
     }
 
-    return _t("chat.messages");
+    return _t("chat.page-title");
   }, [currentUser, isCommunity, communityName, showSearchUser, revealPrivateKey]);
 
   return (

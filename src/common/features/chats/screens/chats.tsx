@@ -20,6 +20,7 @@ import { getUserChatPublicKey } from "../utils";
 import useMountedState from "react-use/lib/useMountedState";
 import ChatsProfileBox from "../components/chat-profile-box";
 import { _t } from "../../../i18n";
+import Meta from "../../../components/meta";
 
 interface Props extends PageProps {
   match: match<{
@@ -66,6 +67,18 @@ export const Chats = ({ match, history }: Props) => {
 
   const isMounted = useMountedState();
 
+  const title = useMemo(() => {
+    let title = _t("chat.page-title");
+
+    if (community) {
+      title = `${community.title} | ${title}`;
+    } else if (userAccount) {
+      title = `${userAccount.name} | ${title}`;
+    }
+
+    return title;
+  }, [community, userAccount]);
+
   useEffect(() => {
     if (userAccount) {
       const key = getUserChatPublicKey(userAccount);
@@ -85,6 +98,7 @@ export const Chats = ({ match, history }: Props) => {
     <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] min-h-[100vh]">
       <Feedback activeUser={activeUser} />
       <NavBar history={history} />
+      <Meta title={title || _t("chat.page-title")} />
 
       <div className="container mx-auto md:py-6">
         <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">

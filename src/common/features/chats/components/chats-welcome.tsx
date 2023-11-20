@@ -8,7 +8,6 @@ import { useGetAccountFullQuery } from "../../../api/queries";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { getUserChatPrivateKey, getUserChatPublicKey } from "../utils";
 import { CreateAnAccount } from "./create-an-account";
-import { ChatsImport } from "./chats-import";
 
 export function ChatsWelcome() {
   const { activeUser } = useMappedStore();
@@ -55,22 +54,28 @@ export function ChatsWelcome() {
         </div>
 
         {isAlreadyRegisteredInChats ? (
-          <div className="flex flex-col items-center text-gray-600 dark:text-gray-400 text-center">
-            <div>{_t("chat.welcome.already-joined-title")}</div>
-            <div>{_t("chat.welcome.already-joined-hint")}</div>
-            <CodeInput value={pin} setValue={setPin} codeSize={8} disabled={isRestoreLoading} />
-            {isRestoreFailed && <div className="text-red">{_t("chat.welcome.pin-failed")}</div>}
-          </div>
+          <>
+            <div className="flex flex-col items-center text-gray-600 dark:text-gray-400 text-center">
+              <div>{_t("chat.welcome.already-joined-title")}</div>
+              <div>{_t("chat.welcome.already-joined-hint")}</div>
+              <CodeInput value={pin} setValue={setPin} codeSize={8} disabled={isRestoreLoading} />
+              {isRestoreFailed && <div className="text-red">{_t("chat.welcome.pin-failed")}</div>}
+            </div>
+            <OrDivider />
+            <div className="flex justify-center gap-4">
+              <CreateAnAccount />
+            </div>
+          </>
         ) : (
-          <div className="flex flex-col items-center text-gray-600 dark:text-gray-400 text-center">
-            <div>{_t("chat.welcome.description")}</div>
-          </div>
+          <>
+            <div className="flex flex-col items-center text-gray-600 dark:text-gray-400 text-center">
+              <div>{_t("chat.welcome.description")}</div>
+            </div>
+            <div className="flex justify-center gap-4">
+              <CreateAnAccount />
+            </div>
+          </>
         )}
-        <OrDivider />
-        <div className="flex justify-center gap-4">
-          <CreateAnAccount />
-          <ChatsImport />
-        </div>
       </div>
     </>
   );

@@ -1831,6 +1831,7 @@
     "update-success-message": "Your Recovery email has been updated successfully"
   },
   "chat": {
+    "page-title": "Conversations",
     "title": "Chats",
     "messages": "Messages",
     "new-message": "New Message",
@@ -1894,7 +1895,7 @@
     "create-pin-description": "Please, set PIN for getting access to your chats from any device",
     "logout": "Logout",
     "welcome": {
-      "title": "Welcome to chats",
+      "title": "Welcome to conversations",
       "description": "Create an account or import chats with private key to start using chats",
       "already-joined-title": "We found You've joined to chats already",
       "already-joined-hint": "Please, verify your account and get access by entering PIN",
