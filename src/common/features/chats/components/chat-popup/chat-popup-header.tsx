@@ -6,7 +6,7 @@ import ChatsCommunityDropdownMenu from "../chats-community-actions";
 import { history } from "../../../../store";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { ChatContext } from "../../chat-context-provider";
 import { useKeysQuery } from "../../queries/keys-query";
@@ -41,9 +41,31 @@ export function ChatPopupHeader({
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
   const { privateKey } = useKeysQuery();
+  const title = useMemo(() => {
+    if (revealPrivateKey) {
+      return _t("chat.manage-chat-key");
+    }
+
+    if (currentUser) {
+      return currentUser;
+    }
+
+    if (isCommunity) {
+      return communityName;
+    }
+
+    if (showSearchUser) {
+      return _t("chat.new-message");
+    }
+
+    return _t("chat.messages");
+  }, [currentUser, isCommunity, communityName, showSearchUser, revealPrivateKey]);
 
   return (
-    <div className="flex items-center justify-between border-b border-[--border-color] px-4 py-2 gap-2">
+    <div
+      className="flex items-center justify-between border-b border-[--border-color] px-4 py-2 gap-2 cursor-pointer"
+      onClick={() => setExpanded(!expanded)}
+    >
       <div className="flex items-center gap-2">
         {(currentUser || communityName || showSearchUser || revealPrivateKey) && expanded && (
           <Tooltip content={_t("chat.back")}>
@@ -51,7 +73,10 @@ export function ChatPopupHeader({
               size="sm"
               noPadding={true}
               appearance="link"
-              onClick={handleBackArrowSvg}
+              onClick={(e: { stopPropagation: () => void }) => {
+                e.stopPropagation();
+                handleBackArrowSvg();
+              }}
               icon={arrowBackSvg}
             />
           </Tooltip>
@@ -61,17 +86,7 @@ export function ChatPopupHeader({
             <UserAvatar username={isCurrentUser ? currentUser : communityName || ""} size="small" />
           )}
 
-          <div className="text-lg truncate max-w-[180px] font-semibold">
-            {currentUser
-              ? currentUser
-              : isCommunity
-              ? communityName
-              : showSearchUser
-              ? _t("chat.new-message")
-              : revealPrivateKey
-              ? _t("chat.manage-chat-key")
-              : _t("chat.messages")}
-          </div>
+          <div className="text-lg truncate max-w-[180px] font-semibold">{title}</div>
         </div>
       </div>
       <div className="flex items-center gap-4">
@@ -81,7 +96,10 @@ export function ChatPopupHeader({
             size="sm"
             appearance="gray-link"
             icon={extendedView}
-            onClick={handleExtendedView}
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation();
+              handleExtendedView();
+            }}
           />
         </Tooltip>
         {canSendMessage && (
@@ -91,13 +109,22 @@ export function ChatPopupHeader({
               size="sm"
               appearance="gray-link"
               icon={addMessageSvg}
-              onClick={handleMessageSvgClick}
+              onClick={(e: { stopPropagation: () => void }) => {
+                e.stopPropagation();
+                handleMessageSvgClick();
+              }}
             />
           </Tooltip>
         )}
         {isCommunity && <ChatsCommunityDropdownMenu history={history!} username={communityName} />}
         {!isCommunity && !isCurrentUser && privateKey && (
-          <div className="flex items-center" onClick={() => setExpanded(true)}>
+          <div
+            className="flex items-center"
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded(true);
+            }}
+          >
             <ChatsDropdownMenu
               history={history!}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
@@ -113,7 +140,10 @@ export function ChatPopupHeader({
               "duration-300": true,
               "rotate-180": !expanded
             })}
-            onClick={() => setExpanded(!expanded)}
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation();
+              setExpanded(!expanded);
+            }}
             icon={expandArrow}
           />
         </Tooltip>

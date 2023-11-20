@@ -147,6 +147,7 @@
         font-size: 90%;
         @apply text-gray-steel;
         max-width: 95%;
+
         p {
           word-break: break-all;
         }
@@ -156,7 +157,10 @@
 
   .community-controls {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     justify-content: center;
+    padding-bottom: 1rem;
 
     @media (min-width: $md-break) {
       justify-content: flex-start;
@@ -182,6 +186,7 @@
   .community-rewards {
     display: flex;
     justify-content: center;
+    padding-bottom: 1rem;
 
     @media (min-width: $md-break) {
       justify-content: flex-start;
@@ -199,6 +204,7 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 95%;
+
     .username {
       margin-right: 6px;
     }
@@ -216,11 +222,12 @@
       word-break: break-all;
     }
   }
+
   .description-wrapper {
     height: auto;
     max-height: 350px;
     overflow-y: auto;
     border-radius: 10px;
-    padding: 0.5rem ;
+    padding: 0.5rem;
   }
 }

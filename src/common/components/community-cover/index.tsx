@@ -13,7 +13,6 @@ import { setProxyBase } from "@ecency/render-helper";
 import BaseComponent from "../base";
 import SubscriptionBtn from "../subscription-btn";
 import CommunityPostBtn from "../community-post-btn";
-import JoinCommunityChatBtn from "../../features/chats/components/join-community-chat-btn";
 import Tooltip from "../tooltip";
 import ImageUploadDialog from "../image-upload";
 
@@ -198,8 +197,6 @@ export class CommunityCover extends Component<Props> {
         <div className="controls-holder flex gap-3 px-3">
           <SubscriptionBtn {...this.props} />
           {CommunityPostBtn({ ...this.props })}
-
-          <JoinCommunityChatBtn community={this.props.community} history={this.props.history} />
         </div>
         {canUpdateCoverImage && (
           <EditCoverImage

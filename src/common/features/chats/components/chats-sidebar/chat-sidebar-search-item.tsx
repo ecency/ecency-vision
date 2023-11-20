@@ -14,7 +14,7 @@ export function ChatSidebarSearchItem({ user, onClick }: Props) {
   return (
     <Link
       to={`/chats/${isCommunity(user.account) ? user.account : "@" + user.account}`}
-      className="flex items-center gap-3 p-3 border-b border[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="flex items-center gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800"
       onClick={onClick}
     >
       <UserAvatar username={user.account} size="medium" />

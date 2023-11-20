@@ -29,6 +29,7 @@ import { renderPostBody } from "@ecency/render-helper";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Button } from "@ui/button";
+import JoinCommunityChatBtn from "../../features/chats/components/join-community-chat-btn";
 
 interface EditPicProps {
   activeUser: ActiveUser;
@@ -317,17 +318,20 @@ export class CommunityCard extends Component<Props, State> {
         )}
         {global.usePrivate && roleInTeam === ROLES.OWNER.toString() && (
           <p className="community-rewards">
-            <a
-              href="#"
-              onClick={(e) => {
+            <Button
+              size="sm"
+              outline={true}
+              type="button"
+              onClick={(e: { preventDefault: () => void }) => {
                 e.preventDefault();
                 this.toggleRewards();
               }}
             >
               {_t("community-card.community-rewards")}
-            </a>
+            </Button>
           </p>
         )}
+        <JoinCommunityChatBtn community={this.props.community} history={this.props.history} />
         {info && (
           <Modal
             show={true}

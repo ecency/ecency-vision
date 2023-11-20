@@ -9,7 +9,6 @@ import { Button } from "@ui/button";
 import {
   useAddCommunityChannel,
   useCreateCommunityChat,
-  useJoinChat,
   useLeaveCommunityChannel
 } from "../mutations";
 import {
@@ -37,7 +36,6 @@ export default function JoinCommunityChatBtn(props: Props) {
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
     useAddCommunityChannel(currentChannel?.id);
-  const { mutateAsync: joinChat, isLoading: isJoinChatLoading } = useJoinChat();
   const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
     useCreateCommunityChat(props.community);
   const { mutateAsync: leaveCommunityChannel, isLoading: isLeavingCommunityChannelLoading } =
@@ -61,38 +59,34 @@ export default function JoinCommunityChatBtn(props: Props) {
     await addCommunityChannel();
   };
 
-  return (
+  return hasUserJoinedChat ? (
     <>
       {props.community.name === activeUser?.username ? (
         isCommunityChatJoined ? (
-          <Button appearance="secondary">{_t("chat.chat-joined")}</Button>
+          <Button size="sm" appearance="secondary">
+            {_t("chat.chat-joined")}
+          </Button>
         ) : !isChatEnabled ? (
           <Button
+            size="sm"
             onClick={async () => {
-              if (!hasUserJoinedChat) {
-                return;
-              }
-
               if (communityTeam.some((role) => role.pubkey === publicKey)) {
                 await createCommunityChat();
                 await join();
               }
             }}
-            disabled={isCreateCommunityChatLoading || isJoinChatLoading}
-            icon={isCreateCommunityChatLoading || isJoinChatLoading ? <Spinner /> : <></>}
+            disabled={isCreateCommunityChatLoading}
+            icon={isCreateCommunityChatLoading && <Spinner />}
             iconPlacement="left"
           >
             {_t("chat.start-community-chat")}
           </Button>
-        ) : !isCommunityChatJoined && isChatEnabled && hasUserJoinedChat ? (
+        ) : !isCommunityChatJoined && isChatEnabled ? (
           <Button
-            disabled={isJoinChatLoading || isAddCommunityChannelLoading}
+            size="sm"
+            disabled={isAddCommunityChannelLoading}
             to={`/chats/${props.community.name}`}
-            icon={
-              (isJoinChatLoading || isAddCommunityChannelLoading) && (
-                <Spinner className="w-3.5 h-3.5" />
-              )
-            }
+            icon={isAddCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
             iconPlacement="left"
           >
             {_t("chat.join-community-chat")}
@@ -102,19 +96,17 @@ export default function JoinCommunityChatBtn(props: Props) {
         )
       ) : isChatEnabled && !isCommunityChatJoined ? (
         <Button
-          disabled={isJoinChatLoading || isAddCommunityChannelLoading}
+          size="sm"
+          disabled={isAddCommunityChannelLoading}
           to={`/chats/${props.community.name}`}
-          icon={
-            (isJoinChatLoading || isAddCommunityChannelLoading) && (
-              <Spinner className="w-3.5 h-3.5" />
-            )
-          }
+          icon={isAddCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
           iconPlacement="left"
         >
           {_t("community.join-community-chat")}
         </Button>
       ) : isCommunityChatJoined ? (
         <Button
+          size="sm"
           appearance="secondary"
           disabled={isLeavingCommunityChannelLoading}
           icon={isLeavingCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
@@ -126,5 +118,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         <></>
       )}
     </>
+  ) : (
+    <></>
   );
 }
