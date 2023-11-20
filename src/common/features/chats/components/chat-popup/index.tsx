@@ -21,15 +21,24 @@ import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../.
 import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
 import { useKeysQuery } from "../../queries/keys-query";
 import { ChatsWelcome } from "../chats-welcome";
+import { useGetAccountFullQuery } from "../../../../api/queries";
+import { getUserChatPublicKey } from "../../utils";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
 
-  const { receiverPubKey, revealPrivateKey, hasUserJoinedChat, setRevealPrivateKey } =
-    useContext(ChatContext);
+  const {
+    receiverPubKey,
+    revealPrivateKey,
+    hasUserJoinedChat,
+    setRevealPrivateKey,
+    setReceiverPubKey
+  } = useContext(ChatContext);
   const { isLoading: isJoinChatLoading } = useJoinChat();
 
-  const { privateKey, publicKey } = useKeysQuery();
+  const [currentUser, setCurrentUser] = useState("");
+
+  const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const directContact = useMemo(
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
@@ -37,13 +46,13 @@ export const ChatPopUp = () => {
   );
   const { data: messages } = useMessagesQuery(directContact?.name);
   const { data: channels, isLoading: isChannelsLoading } = useChannelsQuery();
+  const { data: currentUserAccount } = useGetAccountFullQuery(currentUser);
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
   const chatBodyDivRef = useRef<HTMLDivElement | null>(null);
 
   const [expanded, setExpanded] = useState(false);
-  const [currentUser, setCurrentUser] = useState("");
   const [isScrollToTop, setIsScrollToTop] = useState(false);
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
@@ -70,6 +79,12 @@ export const ChatPopUp = () => {
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
+
+  useEffect(() => {
+    if (currentUserAccount) {
+      setReceiverPubKey(getUserChatPublicKey(currentUserAccount) ?? "");
+    }
+  }, [currentUserAccount]);
 
   // Show or hide the popup if current pathname was changed or user changed
   useEffect(() => {
