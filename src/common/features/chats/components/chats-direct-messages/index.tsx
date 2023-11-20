@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import mediumZoom, { Zoom } from "medium-zoom";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
@@ -10,6 +10,10 @@ import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
 import { useKeysQuery } from "../../queries/keys-query";
 import { DirectMessage } from "../../nostr";
+import { Button } from "@ui/button";
+import { useInviteViaPostComment } from "../../mutations";
+import { FormControl } from "@ui/input";
+import { Alert } from "@ui/alert";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -26,9 +30,19 @@ export default function ChatsDirectMessages(props: Props) {
   const { global, activeUser } = useMappedStore();
   const { receiverPubKey } = useContext(ChatContext);
 
+  const [initiatedInviting, setInitiatedInviting] = useState(false);
+  const [invitationText, setInvitationText] = useState(
+    "Hi! Let's start messaging. Follow to [Conversations](https://ecency.com/chats) and register an account."
+  );
   let prevGlobal = usePrevious(global);
 
   const { publicKey } = useKeysQuery();
+
+  const {
+    mutateAsync: invite,
+    isLoading: isInviting,
+    isSuccess: isInvited
+  } = useInviteViaPostComment(props.currentUser);
 
   useEffect(() => {
     if (prevGlobal?.theme !== global.theme) {
@@ -91,6 +105,39 @@ export default function ChatsDirectMessages(props: Props) {
             <div className="text-gray-600 dark:text-gray-400 mb-4">
               {_t("chat.welcome.user-not-joined-yet")}
             </div>
+            {!isInvited &&
+              (initiatedInviting ? (
+                <div className="flex flex-col gap-4 items-center">
+                  <Alert>{_t("chat.specify-invitation-message")}</Alert>
+                  <FormControl
+                    type="textarea"
+                    value={invitationText}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      setInvitationText(e.target.value)
+                    }
+                  />
+                  <Button
+                    outline={true}
+                    size="sm"
+                    disabled={isInviting}
+                    onClick={async () => {
+                      await invite(invitationText);
+                      setInitiatedInviting(false);
+                    }}
+                  >
+                    {_t("chat.send-invite")}
+                  </Button>
+                </div>
+              ) : (
+                <Button outline={true} size="sm" onClick={() => setInitiatedInviting(true)}>
+                  {_t("chat.invite")}
+                </Button>
+              ))}
+            {isInvited && (
+              <Alert className="my-4" appearance="success">
+                {_t("chat.successfully-invited")}
+              </Alert>
+            )}
           </div>
         )}
       </div>

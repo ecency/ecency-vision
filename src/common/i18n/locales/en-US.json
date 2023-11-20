@@ -1850,6 +1850,7 @@
     "not-joined": "This user hasn't joined the chat yet",
     "subscribers": "Subscribers",
     "invite": "Invite",
+    "send-invite": "Send invitation",
     "leave:": "Leave",
     "refresh": "Refresh",
     "message-warning": "You cannot send messages in this group.",
@@ -1894,6 +1895,9 @@
     "create-description": "Welcome aboard! Your account is almost ready. Dive into conversations and enjoy connecting with others. Need help? We're here for you. Happy chatting!",
     "create-pin-description": "Please, set PIN for getting access to your chats from any device",
     "logout": "Logout",
+    "specify-invitation-message": "This invitation message will be sent as comment to latest user post",
+    "successfully-invited": "Successfully invited!",
+    "no-posts-for-invite": "Unfortunately, User hasn't posts.",
     "welcome": {
       "title": "Welcome to conversations",
       "description": "Create an account or import chats with private key to start using chats",
