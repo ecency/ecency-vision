@@ -589,20 +589,3 @@ export const getPromotedEntries = (): Promise<Entry[]> => {
 
   return new Promise((resolve) => resolve([]));
 };
-
-// BREAKAWAY APIs SHOULD BE TRANSFERED TO breakaway.ts WHEN DEVELOPMENT IS UPDATED WITH ONBOARD
-
-export const processLogin = async (username: string, ts: string, sig: string, community: string) => {
-  try {
-    const response: any = await axios.get('https://breakaway-points-system-api.onrender.com/auth/login', {
-      params: { username, ts, sig, community },
-    });
-
-    const { token, ...user } = response.data.response;
-
-    console.log('Login Successful', response);
-
-  } catch (error) {
-    console.error('Login Failed: ', error);
-  }
-};

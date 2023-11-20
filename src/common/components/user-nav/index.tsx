@@ -28,6 +28,7 @@ import HiveWallet from "../../helper/hive-wallet";
 import {creditCardSvg, gifCardSvg, bellSvg, bellOffSvg, chevronUpSvg} from "../../img/svg";
 
 import {votingPower, downVotingPower} from "../../api/hive";
+import * as ls from "../../util/local-storage";
 
 class WalletBadge extends Component<{
     activeUser: ActiveUser;
@@ -205,6 +206,7 @@ export default class UserNav extends Component<Props, State> {
                 onClick: () => {
                     const {setActiveUser} = this.props;
                     setActiveUser(null);
+                    ls.remove("ba_access_token")
                 },
             }
         ];

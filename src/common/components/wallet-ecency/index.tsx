@@ -29,7 +29,8 @@ import {error, success} from "../feedback";
 
 import {_t} from "../../i18n";
 
-import {claimPoints, getCurrencyTokenRate, processLogin} from "../../api/private-api";
+import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
+import { claimBaPoints} from "../../api/breakaway";
 
 import {
     accountGroupSvg,
@@ -50,8 +51,8 @@ import FormattedCurrency from "../formatted-currency";
 
 import axios, { AxiosResponse } from 'axios';
 import { Button } from "react-bootstrap"
-import { signBuffer } from "../../helper/keychain";
 import { getAccount } from "../../api/hive"
+import { getBaUserPoints } from "../../api/breakaway";
 
 
 export const formatMemo = (memo: string, history: History) => {
@@ -209,23 +210,28 @@ export const WalletEcency = (props: Props) => {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false)
     const [claimed, setClaimed] = useState(false)
+    const [communityInfo, setCommunityInfo] = useState<any>()
 
     const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
 
     useEffect(() => {
         setIsMounted(true);
-         let user = history.location.pathname.split("/")[1];
-            user = user.replace('@','')
+        let user = history.location.pathname.split("/")[1];
+        user = user.replace('@','')
         global.isElectron && initiateOnElectron(user);
         getEstimatedPointsValue();
-        getPointsHistory(user, "Splinterlands");
-        getUserPoints(user, "Splinterlands")
-        console.log(props.global.hive_id)
-
+        getCommunity(); 
+      
+        if (communityInfo?.profile && isMounted ) {
+            // console.log(communityInfo)
+          getPointsHistory(user, communityInfo?.profile?.name);
+          getUserPoints();
+        }
+      
         return () => {
           setIsMounted(false);
         }
-    }, [claimed]);
+      }, [claimed, communityInfo?.profile?.name]);      
 
     const getEstimatedPointsValue = () => {
         const {global: {currency}} = props;
@@ -274,46 +280,12 @@ export const WalletEcency = (props: Props) => {
     }
 
     //BREAKAWAY COMMUNITY LOGICS
-
-    const loginKc = async () => {
-        setIsLoading(true);
-      
-        try {
-          if (!activeUser!.username) {
-            setError("Some parameters are missing");
-            setTimeout(() => {
-            //   setMessage("");
-              setError("");
-            }, 3000);
-            setIsLoading(false);
-            return;
-          }
-      
-          const ts: any = Date.now();
-      
-          const result = await signBuffer(activeUser!.username, `${activeUser!.username}${ts}`, "Active");
-      
-          if (result && result.success) {
-            const sig = result.result;
-      
-            console.log(sig)
-           const login = await processLogin(activeUser!.username, ts, sig, "Splinterlands");
-            setIsVerified(true)
-            setIsLoading(false);
-          } else {
-            console.log('Login Failed, try again', 'error');
-            setIsLoading(false);
-          }
-        } catch (err) {
-          console.log(err);
-          setIsLoading(false);
-        }
-      };
     
-    const getUserPoints = async (username: string, community: string): Promise<any[] | undefined> => {
+    const getUserPoints = async (): Promise<any[] | undefined> => {
        
         try {
-          const response: AxiosResponse = await axios.get(`http://localhost:4000/points?username=${username}&community=${community}`);
+          const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.profile?.name);
+          console.log(response)
           if (response.status === 200) {
               const userPoints = response.data.userPoints;
               console.log(userPoints[0])
@@ -332,14 +304,11 @@ export const WalletEcency = (props: Props) => {
         }
       };
 
-      const claimPoints = async (username: string, community: string) => {
+      const claimPoints = async () => {
         setClaimed(false)
         setClaiming(true)
         try {
-          const response = await axios.post('http://localhost:4000/points/claim', {
-            username: username,
-            community: community,
-          });
+          const response = await claimBaPoints(activeUser!.username, communityInfo?.profile?.name)
           console.log(response)
       
           if (response.status === 200) {
@@ -376,10 +345,10 @@ export const WalletEcency = (props: Props) => {
           throw error;
         }
       };
-      
+
       const getCommunity = async () => {
-        const communityInfo = await getAccount(props.global.hive_id)
-        console.log(communityInfo)
+        const communityData = await getAccount(props.global.hive_id)
+        setCommunityInfo(communityData)
       }
       
     const isMyPage = activeUser && activeUser.username === account.name;
@@ -409,11 +378,7 @@ export const WalletEcency = (props: Props) => {
         <>
             <div className="wallet-ecency">
                 <div className="wallet-main">
-                    {/* { !isVerified ? <div className="login-points">
-                        <h3>You need to be verified</h3>
-                        <span>Click the button below to verify</span>
-                    </div> : */}
-                    {/* <Button className="p-3 w-50" onClick={()=>loginKc()} >Test Verify</Button> */}
+                    {/* <Button className="" onClick={()=>ls.remove("ba_access_token")} >Test Verify</Button> */}
                     <div className="wallet-info">
                         {userPoints?.unclaimedPoints > 0 && (
                             <>
@@ -428,8 +393,7 @@ export const WalletEcency = (props: Props) => {
                                                 <a
                                                     className={`claim-btn ${claiming ? 'in-progress' : ''}`}
                                                     onClick={()=>{
-                                                        claimPoints(activeUser.username, "Splinterlands")
-                                                        // getUserPoints(activeUser.username, "Splinterlands")
+                                                        claimPoints()
                                                         }}>
                                                     {plusCircle}
                                                 </a>
@@ -438,7 +402,7 @@ export const WalletEcency = (props: Props) => {
                                     </div>
                                 </div>
                             </>
-                        )}
+                         )}
 
                             <div className="balance-row estimated alternative">
                             <div className="balance-info">
@@ -454,7 +418,7 @@ export const WalletEcency = (props: Props) => {
 
                         <div className="balance-row alternative">
                             <div className="balance-info">
-                                <div className="title">Rally Points</div>
+                                <div className="title">{communityInfo?.profile?.name}</div>
                                 <div className="description">{_t("points.main-description")}</div>
                             </div>
                             <div className="balance-values">
@@ -503,7 +467,7 @@ export const WalletEcency = (props: Props) => {
                                         </div>
                                     )} */}
 
-                                    <>{userPoints?.pointsBalance}.000 {"POINTS"}</>
+                                    <>{userPoints?.pointsBalance}.000 {"RALLY POINTS"}</>
                                 </div>
                             </div>
                         </div>
@@ -568,11 +532,11 @@ export const WalletEcency = (props: Props) => {
                                     </Tooltip>
                                 </div>
                             </div>
-                            {isMyPage && (
+                            {/* {isMyPage && (
                                 <div className="buy-points">
                                     <a href="#" onClick={togglePurchase}> {_t('points.get')}</a>
                                 </div>
-                            )}
+                            )} */}
                         </div>
 
                         <div className="p-transaction-list">
@@ -599,7 +563,7 @@ export const WalletEcency = (props: Props) => {
                     </div>
                     {/* // } */}
 
-                    <WalletMenu global={global} username={account.name} active="ecency"/>
+                    <WalletMenu global={global} username={account.name} active="ecency" communityInfo={communityInfo}/>
                 </div>
 
                 {transfer && (<Transfer

@@ -13,11 +13,12 @@ interface Props {
   global: Global;
   username: string;
   active: string;
+  communityInfo: any;
 }
 
 export default class WalletMenu extends Component<Props> {
   render() {
-    const { global, username, active } = this.props;
+    const { global, username, active, communityInfo } = this.props;
     const logo = global.isElectron
       ? "./img/logo-small-transparent.png"
       : require("../../img/logo-small-transparent.png");
@@ -25,7 +26,7 @@ export default class WalletMenu extends Component<Props> {
             //REMOVE USE PRIVATE FOR POINTS
             <div className="wallet-menu">
                 <Link className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
-                    <span className="title">Community</span>
+                    <span className="title">{communityInfo?.profile?.name}</span>
                     <span className="sub-title">Points</span>
                     <span className="platform-logo"><img alt="ecency" src={logo}/></span>
                 </Link>
