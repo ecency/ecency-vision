@@ -159,7 +159,9 @@ export class EntryVotesDetail extends BaseComponent<DetailProps, DetailState> {
     return (
       <>
         {totalVotes !== votes.length && (
-          <Alert appearance="warning">{_t("entry-votes.pending-message")}</Alert>
+          <Alert className="mb-4" appearance="warning">
+            {_t("entry-votes.pending-message")}
+          </Alert>
         )}
         <div className="voters-list">
           <div className="list-body">
