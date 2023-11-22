@@ -20,6 +20,7 @@ import {_t} from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import {repeatSvg} from "../../img/svg";
+import { updateUserPoints } from "../../api/breakaway";
 
 interface Props {
     entry: Entry;
@@ -67,8 +68,11 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
         this.stateSet({inProgress: true});
         reblog(activeUser?.username!, entry.author, entry.permlink)
-            .then(() => {
+            .then(async () => {
                 addReblog(entry.author, entry.permlink);
+                const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "reblog")
+                console.log("Reblogged")
+                console.log(baResponse);
                 success(_t("entry-reblog.success"));
             })
             .catch((e) => {

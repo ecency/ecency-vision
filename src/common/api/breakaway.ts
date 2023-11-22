@@ -87,3 +87,29 @@ export  const getBaUserPoints = async (username: string, community: string): Pro
     throw error;
   } 
 };
+
+export const updateUserPoints = async (username: string, community: string, pointType: string) => {
+  console.log(username)
+  try {
+    const requestData = {
+      username,
+      community,
+      pointType,
+    };
+
+    const response = await axios.post(`${baUrl}/points`, 
+      requestData,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}` ,
+        },
+      }
+    );
+
+    console.log(response.data);
+    return response;
+  } catch (error) {
+    console.log('Error updating user points:', error);
+    throw error;
+  }
+};

@@ -20,6 +20,7 @@ setProxyBase(defaults.imageServer);
 import {_t} from "../../i18n";
 import {Global} from '../../store/global/types';
 import * as ls from "../../util/local-storage";
+import { updateUserPoints } from "../../api/breakaway";
 
 interface PreviewProps {
     text: string;
@@ -127,10 +128,17 @@ export class Comment extends Component<Props, State> {
         }, 500);
     };
 
-    submit = () => {
+    submit = async () => {
         const {text} = this.state;
-        const {onSubmit} = this.props;
-        onSubmit(text);
+        const {onSubmit, activeUser} = this.props;
+        try {            
+            onSubmit(text);
+            const res = await updateUserPoints(activeUser!.username, "Hive Rally", "comments")
+            console.log("commented")
+            console.log(res);
+        } catch (error) {
+            
+        }
     }
 
     cancel = () => {
@@ -164,7 +172,12 @@ export class Comment extends Component<Props, State> {
                         )}
                         {LoginRequired({
                             ...this.props,
-                            children: <Button className="btn-submit" size="sm" disabled={inProgress} onClick={this.submit}>
+                            children: <Button 
+                                className="btn-submit" 
+                                size="sm" 
+                                disabled={inProgress} 
+                                onClick={this.submit}
+                            >
                                 {inProgress && (<Spinner animation="grow" variant="light" size="sm" style={{marginRight: "6px"}}/>)} {submitText}
                             </Button>
                         })}
