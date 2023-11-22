@@ -360,14 +360,14 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card border bg-white rounded mb-3 mt-5">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border border-[--border-color] bg-white rounded mb-3 mt-5">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
                   <div className="p-3">
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
                     <Button className="w-full" onClick={regularRegister}>
                       {_t("sign-up.register-free")}
                     </Button>
@@ -378,8 +378,8 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card border bg-white rounded mb-3">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border bg-white border-[--border-color] rounded mb-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
                   <div className="p-3">
@@ -390,15 +390,15 @@ export const SignUp = (props: PageProps) => {
                       <li>{_t("sign-up.buy-account-li-3")}</li>
                     </ul>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
                     <Button className="w-full" onClick={() => setStage(Stage.BUY_ACCOUNT)}>
                       {_t("sign-up.buy-account")} – $2.99
                     </Button>
                   </div>
                 </div>
 
-                <div className="card border bg-white rounded mb-3">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border bg-white border-[--border-color] rounded mb-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>
                       {props.activeUser
                         ? _t("onboard.title-active-user")
@@ -416,7 +416,7 @@ export const SignUp = (props: PageProps) => {
                       {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
                     </ul>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
                     <Link to={`/onboard-friend/asking/${urlHash}`}>
                       <Button className="w-full">
                         {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
