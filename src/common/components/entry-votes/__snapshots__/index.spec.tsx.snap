@@ -63,7 +63,7 @@ exports[`(2) No votes 1`] = `
 exports[`(3) Render of detail with votes 1`] = `
 Array [
   <div
-    className="text-sm p-3 rounded-[1rem] bg-warning-040 border border-warning-030 text-warning-default"
+    className="text-sm p-3 rounded-[1rem] bg-warning-040 border border-warning-030 text-orange dark:bg-opacity-[20%] dark:border-opacity-[20%] dark:text-warning-default mb-4"
   >
     Content has pending votes. Please, wait a minute and refresh this dialog to see new votes.
   </div>,
