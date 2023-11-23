@@ -50,7 +50,7 @@ export const Introduction = ({
               <img width="100%" src={media} className="media-intro" id="media" />
             </div>
             <div className="col-span-12 md:col-span-5 p-0 md:px-3">
-              <div className="text-4xl mb-2 md:mb-4 text-dark font-bold">{title}</div>
+              <div className="text-4xl mb-2 md:mb-4 text-dark-default font-bold">{title}</div>
               <p className="text-gray-600 paragraph mt-2 md:mt-0" id="description">
                 {description}
               </p>
