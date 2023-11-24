@@ -25,7 +25,7 @@ import loadable from "@loadable/component";
 import Announcement from "./components/announcement";
 import FloatingFAQ from "./components/floating-faq";
 import { useMappedStore } from "./store/use-mapped-store";
-import { EntriesCacheManager } from "./core";
+import { CoreProvider, EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 
@@ -92,91 +92,103 @@ const App = (props: any) => {
   }, []);
 
   return (
-    <EntriesCacheManager>
-      {/*Excluded from production*/}
-      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
-      <Tracker />
-      <UserActivityRecorder />
-      <Switch>
-        <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
-        <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />
-        <Route exact={true} strict={true} path={routes.USER_FEED} component={EntryIndexContainer} />
-        <Route exact={true} strict={true} path={routes.PURCHASE} component={PurchasePage} />
-        <Route exact={true} strict={true} path={routes.USER} component={ProfilePage} />
-        <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage} />
-        <Route exact={true} strict={true} path={routes.ENTRY} component={EntryPage} />
-        <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesPage} />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.COMMUNITIES_CREATE}
-          component={CommunityCreatePage}
-        />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.COMMUNITIES_CREATE_HS}
-          component={CommunityCreateHSPage}
-        />
-        <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityPage} />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.FILTER_TAG}
-          component={EntryIndexContainer}
-        />
-        <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverPage} />
-        <Route exact={true} path={routes.SEARCH} component={SearchPageContainer} />
-        <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer} />
-        <Route exact={true} strict={true} path={routes.AUTH} component={AuthPage} />
-        <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitPage} />
-        <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
-        <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
-        <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
-        <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
-        <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
-        <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.PROPOSALS}
-          component={ProposalsIndexContainer}
-        />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.PROPOSAL_DETAIL}
-          component={ProposalDetailContainer}
-        />
-        <Route
-          exact={true}
-          strict={true}
-          path={`/me${routes.PROPOSAL_DETAIL}`}
-          component={ProposalDetailContainer}
-        />
-        <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
-        <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage} />
-        <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePage} />
-        <Route exact={true} strict={true} path={routes.PRIVACY} component={PrivacyPage} />
-        <Route exact={true} strict={true} path={routes.WHITE_PAPER} component={WhitePaperPage} />
-        <Route exact={true} strict={true} path={routes.TOS} component={TosPage} />
-        <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage} />
-        <Route exact={true} strict={true} path={routes.CONTRIBUTORS} component={ContributorsPage} />
-        <Route
-          exact={true}
-          strict={true}
-          path={routes.DECKS}
-          component={global.usePrivate ? DecksPage : NotFound}
-        />
-        <Route component={NotFound} />
-      </Switch>
+    <CoreProvider>
+      <EntriesCacheManager>
+        {/*Excluded from production*/}
+        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+        <Tracker />
+        <UserActivityRecorder />
+        <Switch>
+          <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
+          <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.USER_FEED}
+            component={EntryIndexContainer}
+          />
+          <Route exact={true} strict={true} path={routes.PURCHASE} component={PurchasePage} />
+          <Route exact={true} strict={true} path={routes.USER} component={ProfilePage} />
+          <Route exact={true} strict={true} path={routes.USER_SECTION} component={ProfilePage} />
+          <Route exact={true} strict={true} path={routes.ENTRY} component={EntryPage} />
+          <Route exact={true} strict={true} path={routes.COMMUNITIES} component={CommunitiesPage} />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.COMMUNITIES_CREATE}
+            component={CommunityCreatePage}
+          />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.COMMUNITIES_CREATE_HS}
+            component={CommunityCreateHSPage}
+          />
+          <Route exact={true} strict={true} path={routes.COMMUNITY} component={CommunityPage} />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.FILTER_TAG}
+            component={EntryIndexContainer}
+          />
+          <Route exact={true} strict={true} path={routes.DISCOVER} component={DiscoverPage} />
+          <Route exact={true} path={routes.SEARCH} component={SearchPageContainer} />
+          <Route exact={true} path={routes.SEARCH_MORE} component={SearchMorePageContainer} />
+          <Route exact={true} strict={true} path={routes.AUTH} component={AuthPage} />
+          <Route exact={true} strict={true} path={routes.SUBMIT} component={SubmitPage} />
+          <Route exact={true} strict={true} path={routes.MARKET} component={MarketPage} />
+          <Route exact={true} strict={true} path={routes.EDIT} component={SubmitPage} />
+          <Route exact={true} strict={true} path={routes.SIGN_UP} component={SignUpPage} />
+          <Route exact={true} strict={true} path={routes.ONBOARD} component={OnboardPage} />
+          <Route exact={true} strict={true} path={routes.EDIT_DRAFT} component={SubmitPage} />
+          <Route exact={true} strict={true} path={routes.WITNESSES} component={WitnessesPage} />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.PROPOSALS}
+            component={ProposalsIndexContainer}
+          />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.PROPOSAL_DETAIL}
+            component={ProposalDetailContainer}
+          />
+          <Route
+            exact={true}
+            strict={true}
+            path={`/me${routes.PROPOSAL_DETAIL}`}
+            component={ProposalDetailContainer}
+          />
+          <Route exact={true} strict={true} path={routes.ABOUT} component={AboutPage} />
+          <Route exact={true} strict={true} path={routes.GUESTS} component={GuestPostPage} />
+          <Route exact={true} strict={true} path={routes.CONTRIBUTE} component={ContributePage} />
+          <Route exact={true} strict={true} path={routes.PRIVACY} component={PrivacyPage} />
+          <Route exact={true} strict={true} path={routes.WHITE_PAPER} component={WhitePaperPage} />
+          <Route exact={true} strict={true} path={routes.TOS} component={TosPage} />
+          <Route exact={true} strict={true} path={routes.FAQ} component={FaqPage} />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.CONTRIBUTORS}
+            component={ContributorsPage}
+          />
+          <Route
+            exact={true}
+            strict={true}
+            path={routes.DECKS}
+            component={global.usePrivate ? DecksPage : NotFound}
+          />
+          <Route component={NotFound} />
+        </Switch>
 
-      <Announcement activeUser={props.activeUser} />
-      <FloatingFAQ />
-      <div id="popper-container" />
-      <div id="modal-overlay-container" />
-      <div id="modal-dialog-container" />
-    </EntriesCacheManager>
+        <Announcement activeUser={props.activeUser} />
+        <FloatingFAQ />
+        <div id="popper-container" />
+        <div id="modal-overlay-container" />
+        <div id="modal-dialog-container" />
+      </EntriesCacheManager>
+    </CoreProvider>
   );
 };
 
