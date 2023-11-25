@@ -21,6 +21,8 @@ import useMountedState from "react-use/lib/useMountedState";
 import ChatsProfileBox from "../components/chat-profile-box";
 import { _t } from "../../../i18n";
 import Meta from "../../../components/meta";
+import { Button } from "@ui/button";
+import { arrowBackSvg } from "../../../img/svg";
 
 interface Props extends PageProps {
   match: match<{
@@ -34,7 +36,8 @@ interface Props extends PageProps {
 
 export const Chats = ({ match, history }: Props) => {
   const { activeUser, global } = useMappedStore();
-  const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
+  const { receiverPubKey, revealPrivateKey, setReceiverPubKey, setRevealPrivateKey } =
+    useContext(ChatContext);
   const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
@@ -114,10 +117,21 @@ export const Chats = ({ match, history }: Props) => {
             })}
           >
             {isShowManageKey && (
-              <div className="flex h-full items-start justify-center my-6">
-                <div className="max-w-[400px] bg-gray-100 dark:bg-gray-900 w-full rounded-2xl border border-[--border-color] p-4">
+              <div className="h-full">
+                <div className="flex gap-4 items-center sticky z-[10] top-0 bg-white border-b border-[--border-color] px-4 h-[57px]">
+                  <Button
+                    className="hidden md:flex"
+                    noPadding={true}
+                    appearance="gray-link"
+                    icon={arrowBackSvg}
+                    onClick={() => setRevealPrivateKey(false)}
+                  />
+                  {_t("chat.manage-chat-key")}
+                </div>
+                <div className="max-w-[400px] mx-auto my-6 bg-gray-100 dark:bg-gray-900 w-full rounded-2xl border border-[--border-color] p-4">
                   <ManageChatKey />
                 </div>
+                <div className="h-[1rem]" />
               </div>
             )}
             {isShowImportChats && activeUser && (

@@ -11,10 +11,7 @@ export function useKeysQuery() {
 
   const { data } = useGetAccountFullQuery(activeUser?.username);
 
-  const [
-    { data: publicKey, refetch: refetchPublicKey },
-    { data: privateKey, refetch: refetchPrivateKey }
-  ] = useQueries({
+  const [{ data: publicKey }, { data: privateKey }, { data: iv }] = useQueries({
     queries: [
       {
         queryKey: [ChatQueries.PUBLIC_KEY, activeUser?.username],
@@ -25,13 +22,18 @@ export function useKeysQuery() {
         queryKey: [ChatQueries.PRIVATE_KEY, activeUser?.username],
         queryFn: async () => {
           const pin = localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username);
-          const { key, iv } = await getUserChatPrivateKey(data!!);
+          const { key, iv } = getUserChatPrivateKey(data!!);
           if (key && pin && iv) {
             return EncryptionTools.decrypt(key, pin, Buffer.from(iv, "base64"));
           }
 
           return undefined;
         },
+        enabled: !!data
+      },
+      {
+        queryKey: [ChatQueries.ACCOUNT_IV, activeUser?.username],
+        queryFn: async () => getUserChatPrivateKey(data!!).iv,
         enabled: !!data
       }
     ]
@@ -43,7 +45,8 @@ export function useKeysQuery() {
     () => ({
       publicKey,
       privateKey,
-      hasKeys
+      hasKeys,
+      iv
     }),
     [publicKey, privateKey, hasKeys]
   );

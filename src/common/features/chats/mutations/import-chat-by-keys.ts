@@ -7,10 +7,8 @@ import { useNostrPublishMutation } from "../nostr";
 import { Kind } from "../../../../lib/nostr-tools/event";
 
 interface Payload {
-  publicKey: string;
-  privateKey: string;
+  ecencyChatKey: string;
   pin: string;
-  iv: string;
 }
 
 export function useImportChatByKeys(onSuccess?: () => void) {
@@ -29,9 +27,29 @@ export function useImportChatByKeys(onSuccess?: () => void) {
 
   return useMutation(
     ["chats/import-chat-by-key"],
-    async ({ publicKey, privateKey, pin, iv }: Payload) => {
+    async ({ ecencyChatKey, pin }: Payload) => {
       if (!activeUser) {
         return;
+      }
+      let publicKey;
+      let privateKey;
+      let iv;
+
+      try {
+        const parsedObject = JSON.parse(Buffer.from(ecencyChatKey, "base64").toString());
+        publicKey = parsedObject.pub;
+        privateKey = parsedObject.priv;
+        iv = parsedObject.iv;
+      } catch (e) {
+        throw new Error(
+          "[Chat][Nostr] – no private, public keys or initial vector value in importing"
+        );
+      }
+
+      if (!privateKey || !publicKey || !iv) {
+        throw new Error(
+          "[Chat][Nostr] – no private, public keys or initial vector value in importing"
+        );
       }
 
       const initialVector = Buffer.from(iv, "base64");

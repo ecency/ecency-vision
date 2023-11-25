@@ -8,9 +8,7 @@ import { Alert } from "@ui/alert";
 
 export function ChatsImport() {
   const [step, setStep] = useState(0);
-  const [publicKey, setPublicKey] = useState("");
-  const [privateKey, setPrivateKey] = useState("");
-  const [iv, setIv] = useState("");
+  const [ecencyChatKey, setEcencyChatKey] = useState("");
   const [pin, setPin] = useState("");
 
   const { mutateAsync: importChatByKey } = useImportChatByKeys();
@@ -25,24 +23,12 @@ export function ChatsImport() {
           <ModalHeader closeButton={true}>{_t("chat.import.title")}</ModalHeader>
           <ModalBody>
             <div className="text-gray-600 mb-4">{_t("chat.import.description")}</div>
-            <div className="text-sm p-3">{_t("chat.public-key")}</div>
+            <div className="text-sm p-3">{_t("chat.key")}</div>
             <FormControl
+              className="mb-4"
               type="text"
-              value={publicKey}
-              onChange={(e) => setPublicKey(e.target.value)}
-            />
-            <div className="text-sm p-3">{_t("chat.private-key")}</div>
-            <FormControl
-              type="text"
-              value={privateKey}
-              onChange={(e) => setPrivateKey(e.target.value)}
-            />
-            <div className="text-sm p-3">{_t("chat.import.iv")}</div>
-            <FormControl
-              className="mb-6"
-              type="text"
-              value={iv}
-              onChange={(e) => setIv(e.target.value)}
+              value={ecencyChatKey}
+              onChange={(e) => setEcencyChatKey(e.target.value)}
             />
             <Alert appearance="primary">{_t("chat.create-pin-description")}</Alert>
             <CodeInput value={pin} setValue={setPin} codeSize={8} />
@@ -52,8 +38,8 @@ export function ChatsImport() {
               {_t("g.cancel")}
             </Button>
             <Button
-              disabled={!publicKey || !privateKey || !pin || !iv}
-              onClick={() => importChatByKey({ publicKey, privateKey, pin, iv })}
+              disabled={!ecencyChatKey || pin.length < 7}
+              onClick={() => importChatByKey({ ecencyChatKey, pin })}
             >
               {_t("chat.import.button")}
             </Button>

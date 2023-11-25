@@ -8,6 +8,7 @@ import { useGetAccountFullQuery } from "../../../api/queries";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { getUserChatPrivateKey, getUserChatPublicKey } from "../utils";
 import { CreateAnAccount } from "./create-an-account";
+import { ChatsImport } from "./chats-import";
 
 export function ChatsWelcome() {
   const { activeUser } = useMappedStore();
@@ -63,15 +64,17 @@ export function ChatsWelcome() {
             </div>
             <OrDivider />
             <div className="flex justify-center gap-4">
+              <ChatsImport />
               <CreateAnAccount />
             </div>
           </>
         ) : (
           <>
-            <div className="flex flex-col items-center text-gray-600 dark:text-gray-400 text-center">
+            <div className="flex flex-col items-center mb-4 text-gray-600 dark:text-gray-400 text-center">
               <div>{_t("chat.welcome.description")}</div>
             </div>
             <div className="flex justify-center gap-4">
+              <ChatsImport />
               <CreateAnAccount />
             </div>
           </>

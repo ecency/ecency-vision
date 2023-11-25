@@ -11,8 +11,10 @@ export const uploadChatKeys = async (
 
   return await updateProfile(response, {
     ...JSON.parse(response?.posting_json_metadata ? response.posting_json_metadata : "{}").profile,
-    nsPubKey: pub,
-    nsKey: priv,
-    nsIv: iv.toString("base64")
+    echat: {
+      pubKey: pub,
+      iv: iv.toString("base64"),
+      key: priv
+    }
   });
 };

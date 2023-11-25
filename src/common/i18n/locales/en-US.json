@@ -81,7 +81,8 @@
     "join": "Join",
     "resend": "Resend",
     "failed": "Failed",
-    "status": "Status"
+    "status": "Status",
+    "download": "Download"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -1834,6 +1835,7 @@
     "page-title": "Conversations",
     "title": "Chats",
     "messages": "Messages",
+    "key": "Ecency chat key",
     "new-message": "New Message",
     "direct-messages": "Direct messages",
     "collapse": "Collapse",
@@ -1880,7 +1882,7 @@
     "start-community-chat": "Start Community Chat",
     "join-community-chat": "Join Community Chat",
     "submit": "Submit",
-    "chat-priv-key": "Please, copy this PIN or save QR code to your device for joining to same account in another devices",
+    "chat-priv-key": "Please, save Ecency key by clicking on download button or scanning QR code to restore your conversation if there will disappeared.",
     "public-key": "Public key",
     "private-key": "Private key",
     "copy-priv-key": "Copy Private key",
