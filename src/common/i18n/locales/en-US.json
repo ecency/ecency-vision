@@ -1900,6 +1900,8 @@
     "specify-invitation-message": "This invitation message will be sent as comment to latest user post",
     "successfully-invited": "Successfully invited!",
     "no-posts-for-invite": "Unfortunately, User hasn't posts.",
+    "warn-key-saving": "Save the Ecency key to access your messages. Keep it secure for uninterrupted service. Thank you!",
+    "view-and-save": "Show keys and save",
     "welcome": {
       "title": "Welcome to conversations",
       "description": "Create an account or import chats with private key to start using chats",

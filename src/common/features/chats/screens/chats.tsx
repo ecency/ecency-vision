@@ -23,6 +23,10 @@ import { _t } from "../../../i18n";
 import Meta from "../../../components/meta";
 import { Button } from "@ui/button";
 import { arrowBackSvg } from "../../../img/svg";
+import moment from "moment/moment";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../util/local-storage";
+import { Alert } from "@ui/alert";
 
 interface Props extends PageProps {
   match: match<{
@@ -44,6 +48,8 @@ export const Chats = ({ match, history }: Props) => {
   const { data: userAccount } = useGetAccountFullQuery(match.params.username?.replace("@", ""));
   const { data: channels } = useChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
+
+  const [lastKeysSavingTime, setLastKeysSaving] = useLocalStorage<string>(PREFIX + "_chats_lkst");
 
   const isChannel = useMemo(
     () =>
@@ -67,6 +73,15 @@ export const Chats = ({ match, history }: Props) => {
     [isReady, receiverPubKey, revealPrivateKey, isChannel]
   );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
+
+  // We offer user to save account credentials each month
+  const isLastKeysSavingTimeExpired = useMemo(
+    () =>
+      lastKeysSavingTime
+        ? moment(new Date(lastKeysSavingTime)).isBefore(moment().subtract(30, "days"))
+        : true,
+    [lastKeysSavingTime]
+  );
 
   const isMounted = useMountedState();
 
@@ -157,6 +172,23 @@ export const Chats = ({ match, history }: Props) => {
                   {_t("chat.welcome.hello")}, @{activeUser?.username}
                 </div>
                 <div>{_t("chat.welcome.start-description")}</div>
+                {isLastKeysSavingTimeExpired && (
+                  <Alert
+                    appearance="primary"
+                    className="max-w-[550px] flex items-center mt-4 gap-4"
+                  >
+                    <span>{_t("chat.warn-key-saving")}</span>
+                    <Button
+                      className="whitespace-nowrap"
+                      onClick={() => {
+                        setRevealPrivateKey(true);
+                        setLastKeysSaving(moment().toDate().toISOString());
+                      }}
+                    >
+                      {_t("chat.view-and-save")}
+                    </Button>
+                  </Alert>
+                )}
               </div>
             )}
           </div>
