@@ -18,6 +18,7 @@
   right: 20px;
   bottom: 60px;
   width: 260px;
+
   &.visible ~ .announcement-container {
     bottom: 10rem !important;
   }
@@ -34,6 +35,7 @@
     align-items: center;
     margin-bottom: 6px;
     animation: feedback-anim 0.5s;
+    overflow: hidden;
 
     @include themify(day) {
       @apply bg-light-300;
@@ -48,12 +50,14 @@
     svg {
       height: 20px;
     }
+
     .feedback-body {
       padding: 30px 6px 0px 6px;
     }
 
     .feedback-content {
       display: flex;
+
       .feedback-img {
         @media (max-width: $md-break) {
           margin-right: 0.8rem;
@@ -61,11 +65,13 @@
         margin-right: 2.3rem;
         margin-left: 0.5rem;
         border-radius: 50%;
+
         &.success-img {
           @apply bg-green;
         }
       }
     }
+
     .feedback-close-btn {
       position: absolute;
       right: 8px;
@@ -109,12 +115,15 @@
       .filler {
         height: 100%;
         transition: width 0.125s linear;
+
         &.success {
           @apply bg-green;
         }
+
         &.error {
           @apply bg-red-020;
         }
+
         &.info {
           @apply bg-blue-dark-sky;
         }
