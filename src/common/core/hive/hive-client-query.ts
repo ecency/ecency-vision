@@ -1,42 +1,51 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CoreContext } from "../core-provider";
-import { MutationOptions, QueryOptions, useMutation, useQuery } from "@tanstack/react-query";
+import { QueryOptions, useQuery } from "@tanstack/react-query";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Client } from "@hiveio/dhive";
+import { NoHiveClientError } from "./errors";
+import { HiveResponseWithLatency } from "./types";
+import axios from "axios";
 
-export function useHiveClientMutation<DATA>(
+export function useHiveClientQuery<DATA>(
   api: string,
   method: string,
-  options: MutationOptions<DATA>
+  options: QueryOptions<HiveResponseWithLatency<DATA>>
 ) {
   const { activeUser } = useMappedStore();
-  const { hiveClient } = useContext(CoreContext);
+  const { hiveClient, setLastLatency } = useContext(CoreContext);
 
-  return useMutation<DATA>(
+  const query = useQuery<HiveResponseWithLatency<DATA>>(
     ["hive", activeUser?.username, api, method],
-    async (params?: any) => {
+    async (params?: Parameters<typeof Client.call>[2]) => {
       if (!hiveClient) {
-        return undefined;
+        throw new NoHiveClientError();
       }
 
-      return hiveClient.call(api, method, params);
+      const startDate = new Date();
+      const response = await hiveClient.call(api, method, params);
+      const endDate = new Date();
+
+      return {
+        response,
+        latency: endDate.getTime() - startDate.getTime() // in ms
+      };
     },
-    options
+    {
+      ...options,
+      enabled: !!hiveClient
+    }
   );
-}
 
-export function useHiveClientQuery<DATA>(api: string, method: string, options: QueryOptions<DATA>) {
-  const { activeUser } = useMappedStore();
-  const { hiveClient } = useContext(CoreContext);
-
-  return useQuery<DATA>(
-    ["hive", activeUser?.username, api, method],
-    async (params?: any) => {
-      if (!hiveClient) {
-        return undefined;
+  useEffect(() => {
+    if (query.status === "success") {
+      setLastLatency(query.data.latency);
+    } else if (query.status === "error" && axios.isAxiosError(query.error)) {
+      if (query.error.code === "ECONNABORTED") {
+        setLastLatency(Infinity);
       }
+    }
+  }, [query.status, query.data, query.error]);
 
-      return hiveClient.call(api, method, params);
-    },
-    { ...options, enabled: !!hiveClient }
-  );
+  return query;
 }

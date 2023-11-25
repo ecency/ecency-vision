@@ -6,8 +6,10 @@ import SERVERS from "../constants/servers.json";
 
 export const CoreContext = createContext<{
   hiveClient: Client | undefined;
+  setLastLatency: (v: number) => void;
 }>({
-  hiveClient: undefined
+  hiveClient: undefined,
+  setLastLatency: () => {}
 });
 
 export function CoreProvider(props: PropsWithChildren<unknown>) {
@@ -23,7 +25,6 @@ export function CoreProvider(props: PropsWithChildren<unknown>) {
     for (const server of SERVERS) {
       try {
         const { latency } = await getRequestLatency(server);
-        console.log(server, latency);
         if (latency < minLatencyServer[1]) {
           minLatencyServer = [server, latency];
         }
@@ -38,5 +39,9 @@ export function CoreProvider(props: PropsWithChildren<unknown>) {
     });
   });
 
-  return <CoreContext.Provider value={{ hiveClient }}>{props.children}</CoreContext.Provider>;
+  return (
+    <CoreContext.Provider value={{ hiveClient, setLastLatency }}>
+      {props.children}
+    </CoreContext.Provider>
+  );
 }
