@@ -84,7 +84,8 @@ const App = (props: any) => {
   const { hide } = useGlobalLoader();
 
   useMount(() => {
-    setTimeout(() => hide(), 500);
+    // Drop hiding from main queue to give React time to render
+    setTimeout(() => hide(), 1);
 
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
