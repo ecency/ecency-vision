@@ -8,19 +8,22 @@ export const CoreContext = createContext<{
   lastLatency: number;
   server: string;
   setLastLatency: (v: number) => void;
+  setFindNearHiveServer: (v: boolean) => void;
 }>({
   lastLatency: 0,
   server: "",
   hiveClient: undefined,
-  setLastLatency: () => {}
+  setLastLatency: () => {},
+  setFindNearHiveServer: () => {}
 });
 
 export function CoreProvider(props: PropsWithChildren<unknown>) {
   const [hiveClient, setHiveClient] = useState<Client | undefined>(undefined);
   const [lastLatency, setLastLatency] = useState(0);
   const [server, setServer] = useState("");
+  const [findNearHiveServer, setFindNearHiveServer] = useState(true);
 
-  useFindNearHiveServer((server, latency) => {
+  useFindNearHiveServer(findNearHiveServer, (server, latency) => {
     if (server) {
       setServer(server);
     }
@@ -32,10 +35,13 @@ export function CoreProvider(props: PropsWithChildren<unknown>) {
         consoleOnFailover: true
       })
     );
+    setFindNearHiveServer(false);
   });
 
   return (
-    <CoreContext.Provider value={{ hiveClient, lastLatency, setLastLatency, server }}>
+    <CoreContext.Provider
+      value={{ hiveClient, lastLatency, setFindNearHiveServer, setLastLatency, server }}
+    >
       {props.children}
     </CoreContext.Provider>
   );

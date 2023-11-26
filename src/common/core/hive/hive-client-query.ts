@@ -14,7 +14,7 @@ export function useHiveClientQuery<DATA>(
   options?: UseQueryOptions<HiveResponseWithLatency<DATA>>
 ) {
   const { activeUser } = useMappedStore();
-  const { hiveClient, setLastLatency } = useContext(CoreContext);
+  const { hiveClient, setLastLatency, setFindNearHiveServer } = useContext(CoreContext);
 
   const query = useQuery<HiveResponseWithLatency<DATA>>(
     ["hive", activeUser?.username, api, method, initialParams],
@@ -34,6 +34,18 @@ export function useHiveClientQuery<DATA>(
     },
     {
       ...options,
+      retry: (failureCount, error) => {
+        if (failureCount <= 3) {
+          return true;
+        }
+
+        // Find new nearest server if request failed a lot of time
+        if (axios.isAxiosError(error) && error.code === "ECONNABORTED") {
+          setFindNearHiveServer(true);
+        }
+
+        return false;
+      },
       enabled: !!hiveClient && (options?.enabled ?? true)
     }
   );
