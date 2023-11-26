@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import { EntryScreen } from "./pages/entry";
@@ -28,6 +28,8 @@ import { useMappedStore } from "./store/use-mapped-store";
 import { EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
+import { useGlobalLoader } from "./util/use-global-loader";
+import useMount from "react-use/lib/useMount";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -79,8 +81,12 @@ const DecksPage = loadable(() => import("./pages/decks"));
 
 const App = (props: any) => {
   const { global } = useMappedStore();
+  const { hide } = useGlobalLoader();
 
-  useEffect(() => {
+  useMount(() => {
+    // Drop hiding from main queue to give React time to render
+    setTimeout(() => hide(), 1);
+
     let pathname = window.location.pathname;
     if (pathname !== "/faq") {
       const currentLang = ls.get("current-language");
@@ -89,7 +95,7 @@ const App = (props: any) => {
         i18n.changeLanguage(currentLang);
       }
     }
-  }, []);
+  });
 
   return (
     <EntriesCacheManager>

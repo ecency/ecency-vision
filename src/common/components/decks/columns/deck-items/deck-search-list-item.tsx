@@ -177,7 +177,7 @@ export const SearchListItem = ({
   return (
     <div ref={ref} className="flex flex-col border-b border-[--border-color] p-3">
       <div className="deck-body flex flex-col w-full">
-        <div className="text-dark flex flex-col">
+        <div className="text-dark-default flex flex-col">
           <div className="flex items-center grow hot-item-link">
             {author && (
               <img
