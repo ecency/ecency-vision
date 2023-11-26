@@ -1,10 +1,10 @@
-import { Client, RCAPI, utils } from "@hiveio/dhive";
+import { Client, RCAPI } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
-import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { AccountFollowStats, AccountProfile, FullAccount } from "../store/accounts/types";
 import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
@@ -14,6 +14,7 @@ import isCommunity from "../helper/is-community";
 import SERVERS from "../constants/servers.json";
 import { dataLimit } from "./bridge";
 import moment, { Moment } from "moment";
+import { useHiveClientQuery } from "../core/hive";
 
 export const client = new Client(SERVERS, {
   timeout: 3000,
@@ -147,6 +148,7 @@ export interface Reputations {
   account: string;
   reputation: number;
 }
+
 interface ApiError {
   error: string;
   data: any;
@@ -663,3 +665,17 @@ export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "ge
 
 export const getContentReplies = (author: string, permlink: string): Promise<Entry[] | null> =>
   client.call("condenser_api", "get_content_replies", { author, permlink });
+
+export const getPostQuery = (username?: string, permlink?: string) =>
+  useHiveClientQuery<Entry>("condenser_api", "get_content", [username, permlink], {
+    enabled: !!username && !!permlink
+  });
+
+export const getProposalsQuery = () =>
+  useHiveClientQuery<{ proposals: Proposal[] }>("database_api", "list_proposals", {
+    start: [-1],
+    limit: 500,
+    order: "by_total_votes",
+    order_direction: "descending",
+    status: "all"
+  });

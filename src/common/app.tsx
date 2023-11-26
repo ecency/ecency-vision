@@ -29,6 +29,7 @@ import { CoreProvider, EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 import { BottomStatusBar } from "./components/bottom-status-bar";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -96,7 +97,7 @@ const App = (props: any) => {
     <CoreProvider>
       <EntriesCacheManager>
         {/*Excluded from production*/}
-        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+        <ReactQueryDevtools initialIsOpen={false} />
         <Tracker />
         <UserActivityRecorder />
         <Switch>

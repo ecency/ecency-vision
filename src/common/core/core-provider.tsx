@@ -1,7 +1,6 @@
 import React, { createContext, PropsWithChildren, useMemo, useRef, useState } from "react";
 import { Client } from "@hiveio/dhive";
-import useMount from "react-use/lib/useMount";
-import { useGetRequestLatency } from "./hive";
+import { useFindNearHiveServer } from "./hive";
 import SERVERS from "../constants/servers.json";
 
 export const CoreContext = createContext<{
@@ -22,26 +21,14 @@ export function CoreProvider(props: PropsWithChildren<unknown>) {
   const [lastLatency, setLastLatency] = useState(0);
   const [server, setServer] = useState("");
 
-  const { mutateAsync: getRequestLatency } = useGetRequestLatency();
+  const hiveClient = useMemo(() => hiveClientRef.current, [hiveClientRef.current]);
 
-  const hiveClient = useMemo(() => hiveClientRef.current, [hiveClientRef]);
-
-  useMount(async () => {
-    let minLatencyServer: [string | undefined, number] = [undefined, Infinity];
-    for (const server of SERVERS) {
-      try {
-        const { latency } = await getRequestLatency(server);
-        if (latency < minLatencyServer[1]) {
-          minLatencyServer = [server, latency];
-        }
-      } catch (e) {}
+  useFindNearHiveServer((server, latency) => {
+    if (server) {
+      setServer(server);
     }
-
-    if (minLatencyServer[0]) {
-      setServer(minLatencyServer[0]);
-    }
-    setLastLatency(minLatencyServer[1]);
-    hiveClientRef.current = new Client(minLatencyServer[0] ? [minLatencyServer[0]] : SERVERS, {
+    setLastLatency(latency);
+    hiveClientRef.current = new Client(server ?? SERVERS, {
       timeout: 3000,
       failoverThreshold: 3,
       consoleOnFailover: true
