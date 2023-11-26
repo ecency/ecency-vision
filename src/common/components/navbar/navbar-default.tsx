@@ -89,21 +89,21 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
             </Link>
           )}
           <div onClick={() => !showMobileSearch && setShowMobileSearch(true)}>
-            <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default">
+            <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white">
               {showMobileSearch ? (
                 <>
                   <Search containerClassName="w-full" history={history} />
                   <div
                     onClick={() => setShowMobileSearch(false)}
-                    className="w-6 h-6 text-gray-600 ml-2"
+                    className="w-6 h-6 flex text-gray-600 ml-2"
                   >
                     {closeSvg}
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="w-6 h-6">{magnifyResponsibleSvg}</div>
-                  <div className="ml-3 text-15">{_t("g.search")}</div>
+                  <div className="w-6 h-6 flex">{magnifyResponsibleSvg}</div>
+                  <div className="ml-3 leading-1">{_t("g.search")}</div>
                 </>
               )}
             </div>
@@ -112,18 +112,18 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           {!activeUser && (
             <>
               <div
-                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default"
+                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white"
                 onClick={() => {
                   toggleUIProp("login");
                   setSmVisible(false);
                 }}
               >
-                <div className="navbar-icon">{userOutlineSvg}</div>
+                <div className="flex">{userOutlineSvg}</div>
                 <div className="ml-3 text-15">{_t("g.login")}</div>
               </div>
               <Link to="/signup" onClick={() => !showMobileSearch && setSmVisible(false)}>
-                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default">
-                  <div className="navbar-icon">{keySvg}</div>
+                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white">
+                  <div className="flex">{keySvg}</div>
                   <div className="ml-3 text-15">{_t("g.signup")}</div>
                 </div>
               </Link>
@@ -133,12 +133,12 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           <div>
             {activeUser && (
               <div
-                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default"
+                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
               >
-                <div className="navbar-icon">{userOutlineSvg}</div>
+                <div className="flex">{userOutlineSvg}</div>
                 <div className="ml-3 text-15">{_t("user-nav.profile-menu")}</div>
-                <div className="ml-3 text-15 icon-stroke">
+                <div className="ml-3 text-15 flex">
                   {showProfileMenu ? upArrowSvg : downArrowSvg}
                 </div>
               </div>
@@ -227,17 +227,17 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           {activeUser && (
             <>
               <div
-                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default"
+                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white"
                 onClick={() => toggleUIProp("notifications")}
               >
-                <div className="navbar-icon text-dark-default">{notificationSvg}</div>
+                <div className="flex text-dark-default dark:text-white">{notificationSvg}</div>
                 <div className="ml-3 text-15">{_t("user-nav.notifications")}</div>
               </div>
               <div
                 onClick={() => setShowPurchaseDialog(true)}
-                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default"
+                className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white"
               >
-                <div className="navbar-icon text-dark-default">{rocketSvg}</div>
+                <div className="flex text-dark-default dark:text-white">{rocketSvg}</div>
                 <div className="ml-3 text-15">{_t("user-nav.boost")}</div>
               </div>
               <Link
@@ -245,8 +245,8 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                 to={`/@${activeUser?.username}/wallet`}
                 onClick={() => setSmVisible(false)}
               >
-                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default">
-                  <div className="icon-stroke text-dark-default">{walletSvg}</div>
+                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white">
+                  <div className="flex text-dark-default dark:text-white">{walletSvg}</div>
                   <div className="ml-3 text-15 flex">
                     {_t("user-nav.wallet")}
                     <div className="dot align-self-start ml-1" />
@@ -258,8 +258,8 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
                 to="/submit"
                 onClick={() => setSmVisible(false)}
               >
-                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default">
-                  <div className="icon-stroke text-dark-default [&>svg]:w-[20px]">
+                <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white">
+                  <div className="flex text-dark-default dark:text-white [&>svg]:w-[20px]">
                     {pencilOutlineSvg}
                   </div>
                   <div className="ml-3 text-15 flex">
@@ -271,16 +271,16 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
             </>
           )}
 
-          <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default relative">
-            <div className="navbar-icon">{globeSvg}</div>
+          <div className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white relative">
+            <div className="flex">{globeSvg}</div>
             <SwitchLang label={_t("community-settings.lang")} history={history} />
           </div>
 
           <div
-            className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default"
+            className="p-2 pl-3 w-full mb-2 flex items-center text-dark-default dark:text-white"
             onClick={changeTheme}
           >
-            <div className="navbar-icon">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
+            <div className="flex">{global.theme == Theme.day ? moonSvg : sunSvg}</div>
             <div className="ml-3 text-15">
               {_t("user-nav.switch-to")}{" "}
               {global.theme == Theme.day ? _t("user-nav.dark") : _t("user-nav.light")}

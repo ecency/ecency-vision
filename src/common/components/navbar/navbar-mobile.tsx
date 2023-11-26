@@ -43,7 +43,7 @@ export function NavbarMobile({
   return (
     <div
       className={classNameObject({
-        "flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3":
+        "flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3":
           true,
         transparent: step === 1
       })}

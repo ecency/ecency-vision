@@ -6,7 +6,7 @@ exports[`(1) Default render 1`] = `
   id="sticky-container"
 >
   <div
-    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
@@ -315,7 +315,7 @@ exports[`(2) Night Theme 1`] = `
   id="sticky-container"
 >
   <div
-    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
@@ -624,7 +624,7 @@ exports[`(3) With active user 1`] = `
   id="sticky-container"
 >
   <div
-    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
@@ -933,7 +933,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
   id="sticky-container"
 >
   <div
-    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b px-3"
+    className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"

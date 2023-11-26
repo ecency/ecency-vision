@@ -33,7 +33,7 @@
 .navbar-default {
   .switch-language {
     .dropdown-btn {
-      @apply ml-3 text-dark-default;
+      @apply ml-3 text-dark-default dark:text-white;
 
       .label {
         font-size: 1rem;
