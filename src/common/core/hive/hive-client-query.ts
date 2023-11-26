@@ -34,7 +34,7 @@ export function useHiveClientQuery<DATA>(
     },
     {
       ...options,
-      enabled: !!hiveClient
+      enabled: !!hiveClient && (options?.enabled ?? true)
     }
   );
 

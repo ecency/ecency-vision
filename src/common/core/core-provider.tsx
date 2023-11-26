@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useMemo, useRef, useState } from "react";
+import React, { createContext, PropsWithChildren, useState } from "react";
 import { Client } from "@hiveio/dhive";
 import { useFindNearHiveServer } from "./hive";
 import SERVERS from "../constants/servers.json";
@@ -16,23 +16,22 @@ export const CoreContext = createContext<{
 });
 
 export function CoreProvider(props: PropsWithChildren<unknown>) {
-  const hiveClientRef = useRef<Client>();
-
+  const [hiveClient, setHiveClient] = useState<Client | undefined>(undefined);
   const [lastLatency, setLastLatency] = useState(0);
   const [server, setServer] = useState("");
-
-  const hiveClient = useMemo(() => hiveClientRef.current, [hiveClientRef.current]);
 
   useFindNearHiveServer((server, latency) => {
     if (server) {
       setServer(server);
     }
     setLastLatency(latency);
-    hiveClientRef.current = new Client(server ?? SERVERS, {
-      timeout: 3000,
-      failoverThreshold: 3,
-      consoleOnFailover: true
-    });
+    setHiveClient(
+      new Client(server ?? SERVERS, {
+        timeout: 3000,
+        failoverThreshold: 3,
+        consoleOnFailover: true
+      })
+    );
   });
 
   return (
