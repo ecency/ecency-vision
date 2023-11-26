@@ -28,6 +28,7 @@ import { useMappedStore } from "./store/use-mapped-store";
 import { CoreProvider, EntriesCacheManager } from "./core";
 
 import { UserActivityRecorder } from "./components/user-activity-recorder";
+import { BottomStatusBar } from "./components/bottom-status-bar";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -184,6 +185,7 @@ const App = (props: any) => {
 
         <Announcement activeUser={props.activeUser} />
         <FloatingFAQ />
+        <BottomStatusBar />
         <div id="popper-container" />
         <div id="modal-overlay-container" />
         <div id="modal-dialog-container" />

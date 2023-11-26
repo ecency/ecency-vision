@@ -247,6 +247,7 @@ module.exports = {
         dark: "#081c36"
       },
       green: "#69bb85",
+      "green-dark": "#2f7948",
       "green-030": "#bcf3cf",
       "green-040": "#e3fceb",
       warning: {
