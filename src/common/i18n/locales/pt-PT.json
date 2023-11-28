@@ -1058,7 +1058,7 @@
       },
       "larynx-locked-benefits": {
         "title": "Benefícios do LARYNX Bloqueados",
-        "1": "Proof of Stake Consensus",
+        "1": "Prova de Consenso de Participação",
         "2": "Colateral para transações na DEX",
         "3": "Bloqueio Instantâneo | Desbloqueio em 4 Semanas",
         "4": "Requer um nó LARYNX operacional",
@@ -1067,7 +1067,7 @@
       "account-value": "Valor de Conta Aproximado",
       "account-value-description": "O valor aproximado em dólares de todos os ativos SPK na sua conta",
       "larynx-locked": "LARYNX Guardado",
-      "larynx-locked-description": "Locked tokens provide liquidity to the network, aid in determining consensus, and earn rewards for node runners"
+      "larynx-locked-description": "Tokens bloqueados fornecem liquidez à rede, ajudam na determinação do consenso e recebem recompensas para rodar servidores de nó"
     }
   },
   "wallet-engine": {
@@ -1230,7 +1230,7 @@
     "memo-help": "Este memo é público",
     "memo-error": "Nunca coloque chaves privadas em um campo de nota. Ele é publicamente visível para todos.",
     "memo-required": "A transferência para exchanges deve conter o memo.",
-    "invalid-asset": "You can only send HIVE to an exchange account.",
+    "invalid-asset": "Só é possível enviar HIVE para uma conta de exchange.",
     "available-hp-hint": "* poder de hive disponível",
     "override-warning-1": "O novo valor sobrepõe o anterior.",
     "override-warning-2": "A conta ({{account}}) contém {{previousAmount}} em delegações.",
@@ -1445,7 +1445,7 @@
     "empty-tags-alert": "Insira as etiquetas da postagem",
     "empty-body-alert": "Insira o corpo da postagem",
     "description": "Breve descrição",
-    "should-be-only-one-unpublished": "Post should contain only one unpublished video. Please, remove other ones."
+    "should-be-only-one-unpublished": "A publicação deve conter apenas um vídeo novo. Por favor, remova os demais."
   },
   "video-upload": {
     "choose-video": "Selecionar um vídeo",
@@ -1487,11 +1487,11 @@
     "insert-video": "Inserir",
     "insert-nsfw": "Inserir como NSFW",
     "refresh": "Atualize para obter o estado de carregamento",
-    "video-info": "Videos are stored and powered by SPK network, might have some storage and encoding fees."
+    "video-info": "Os vídeos são armazenados e mantidos pela rede SPK, podendo ter alguns custos de armazenamento e codificação."
   },
   "nsfw-content": {
     "title": "Conteúdo NSFW",
-    "warning": "Please check this if your content is NSFW",
+    "warning": "Por favor, verifique se o seu conteúdo é NSFW (inadequado)",
     "continue": "Continuar"
   },
   "tag-selector": {
@@ -1533,7 +1533,7 @@
   "post-scheduler": {
     "title": "Agendar",
     "btn-label": "Agendar",
-    "error-message": "Please select a valid future date and time."
+    "error-message": "Por favor, selecione data e hora válida para o futuro."
   },
   "notification": {
     "popup-title": "Você tem uma nova notificação",
@@ -1561,7 +1561,7 @@
     "type-nfavorites": "Favoritos",
     "type-nbookmarks": "Favoritos",
     "group-title-recent": "Recente",
-    "vote-str": "{{p}}% voted post",
+    "vote-str": "{{p}}% votado no post",
     "reply-str": "respondeu à publicação",
     "mention-str": "mencionado em",
     "favorite-str": "criou uma publicação",
@@ -1574,7 +1574,7 @@
     "delegations-str": "delegado",
     "spin-str": "Hora de ganhar mais pontos, jogue o Giro no Aplicativo Móvel da Ecency",
     "inactive-str": "Seja ativo! Escreva uma publicação, continue a ganhar",
-    "referral-str": "joined with referral, welcome them",
+    "referral-str": "entrou com o convite. Dê boas-vindas",
     "refresh": "Atualizar",
     "mark-all-read": "Marcar todas como lidas",
     "mark-read": "Marcar como Lido",
