@@ -192,7 +192,6 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
     const { onClick, activeUser, entry : { post_id } } = this.props;
     const { upSliderVal, initialVoteValues } = this.state;
     const { upVoted } = this.isVoted();
-    console.log("upvoted....")
     
     if (!upVoted || (upVoted && initialVoteValues.up !== upSliderVal)) {
       const estimated = Number(this.estimate(upSliderVal).toFixed(3));
@@ -392,8 +391,8 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
         afterVote(votes, estimated);
         updateActiveUser(); // refresh voting power
 
-        const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "comments")
-        console.log("commented")
+        const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "upvote")
+        console.log("Voted")
         console.log(baResponse);
       })
       .catch((e) => {

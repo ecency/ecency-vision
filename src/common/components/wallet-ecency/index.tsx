@@ -31,6 +31,7 @@ import {_t} from "../../i18n";
 
 import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
 import { claimBaPoints} from "../../api/breakaway";
+import { dateToFullRelative } from "../../helper/parse-date";
 
 import {
     accountGroupSvg,
@@ -73,7 +74,8 @@ export const formatMemo = (memo: string, history: History) => {
 
 interface TransactionRowProps {
     history: History;
-    tr: PointTransaction;
+    tr: PointTransaction | any;
+    pointsHistory: any
 }
 
 export class TransactionRow extends Component<TransactionRowProps> {
@@ -148,13 +150,13 @@ export class TransactionRow extends Component<TransactionRowProps> {
             <div className="transaction-list-item">
                 <div className="transaction-icon">{icon}</div>
                 <div className="transaction-title">
-                    <div className="transaction-name">
+                    <div className="transaction-name" onClick={()=> console.log(this.props.pointsHistory)}>
                         {/* {tr.operationType} */}
-                        {/* {lKey && _t(`points.${lKey}-list-desc`, {...lArgs})} */}Point
-                        {/* {!lKey && <span>&nbsp;</span>} */}300
+                        {/* {lKey && _t(`points.${lKey}-list-desc`, {...lArgs})} */}
+                        {`Point for ${tr.operationType}`}
                     </div>
                     <div className="transaction-date">
-                        {dateRelative}30000
+                        {dateToFullRelative(tr.timestamp)}
                     </div>
                 </div>
                 {tr.memo && (
@@ -162,7 +164,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
                         {formatMemo(tr.memo, history)}
                     </div>
                 )}
-                <div className="transaction-numbers">{tr.amount}</div>
+                <div className="transaction-numbers">{tr.pointsEarned}.000</div>
             </div>
         );
     }
@@ -211,6 +213,10 @@ export const WalletEcency = (props: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [claimed, setClaimed] = useState(false)
     const [communityInfo, setCommunityInfo] = useState<any>()
+
+    const [point, setPoint] = useState({
+        filter: 'All', 
+      });
 
     const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
 
@@ -273,15 +279,16 @@ export const WalletEcency = (props: Props) => {
         setBoost(!boost);
     }
 
-    const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
-        const filter = Number(e.target.value);
-        const {fetchPoints, account} = props;
-        fetchPoints(account.name, filter);
-    }
+    // const filterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
+    //     const filter = Number(e.target.value);
+    //     const {fetchPoints, account} = props;
+    //     fetchPoints(account.name, filter);
+    // }
 
     //BREAKAWAY COMMUNITY LOGICS
-    
+
     const getUserPoints = async (): Promise<any[] | undefined> => {
+        console.log("Points")
        
         try {
           const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.profile?.name);
@@ -332,9 +339,9 @@ export const WalletEcency = (props: Props) => {
         try {
           const response = await axios.get(`http://localhost:4000/points-history/${username}/${community}`);
       
-          console.log('Points fetched successfully:', response.data.pointsHistory);
+          console.log('Points fetched successfully:', response.data.data.pointsHistory);
           if (response.status === 200) {
-            setPointsHistory(response.data.pointsHistory)
+            setPointsHistory(response.data.data.pointsHistory)
             return response.data;
           } else {
             console.error('Error fetching points hisory:', response.data.message);
@@ -368,11 +375,25 @@ export const WalletEcency = (props: Props) => {
     //     }]
     // };
 
-    const txFilters = [
-        TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
-        TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
-        TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
-        TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
+    
+    
+    const filterChanged = (event: { target: { value: any; }; }) => {
+        setPoint({
+            ...points,
+            filter: event.target.value,
+        });
+       const filtered = pointsHistory.filter((item: any) => item.operationType === event.target.value.toLowerCase());
+       console.log(filtered)
+       return filtered;
+    };
+
+    
+    const txFilters = [ "All", "Login", "Comments", "Posts", "Reblog", "Upvote"];
+    // const txFilters = [
+    //     TransactionType.CHECKIN, TransactionType.LOGIN, TransactionType.CHECKIN_EXTRA,
+    //     TransactionType.POST, TransactionType.COMMENT, TransactionType.VOTE,
+    //     TransactionType.REBLOG, TransactionType.DELEGATION, TransactionType.REFERRAL,
+    //     TransactionType.COMMUNITY, TransactionType.TRANSFER_SENT, TransactionType.TRANSFER_INCOMING];
         
     return (
         <>
@@ -542,9 +563,10 @@ export const WalletEcency = (props: Props) => {
                         <div className="p-transaction-list">
                             <div className="transaction-list-header">
                                 <h2>{_t('points.history')}</h2>
-                                <FormControl as="select" value={points.filter} onChange={filterChanged}>
-                                    <option value="0">{_t("points.filter-all")}</option>
-                                    {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)}
+                                <FormControl as="select" value={point.filter} onChange={filterChanged}>
+                                    {/* <option value="0">All</option> */}
+                                    {txFilters.map(x => <option key={x} value={x}>{x}</option>)}
+                                    {/* {txFilters.map(x => <option key={x} value={x}>{_t(`points.filter-${x}`)}</option>)} */}
                                 </FormControl>
                             </div>
 
@@ -554,7 +576,7 @@ export const WalletEcency = (props: Props) => {
                                 }
 
                                 return <div className="transaction-list-body">
-                                    {pointsHistory?.map((tr: any) => <TransactionRow history={history} tr={tr} key={tr.id}/>)}
+                                    {pointsHistory?.map((tr: any) => <TransactionRow history={history} tr={tr} pointsHistory={pointsHistory} key={tr.id}/>)}
                                     {/* <TransactionRow history={history} /> */}
                                     {/* {(!points.loading && points.transactions.length === 0) && <p className="text-muted empty-list">{_t('g.empty-list')}</p>} */}
                                 </div>
