@@ -29,7 +29,7 @@ export function BlockedUsersModal({ username, setShow, show }: Props) {
 
   return (
     <Modal centered={true} show={show} onHide={() => setShow(false)}>
-      <ModalHeader closeButton={true}>{_t("chat.edit-community-roles")}</ModalHeader>
+      <ModalHeader closeButton={true}>{_t("chat.blocked-users-management")}</ModalHeader>
       <ModalBody>
         <div className="flex flex-col mb-6 gap-6">
           {currentChannel?.communityModerators?.length !== 0 ? (

@@ -32,7 +32,7 @@ export default function ChatsDirectMessages(props: Props) {
 
   const [initiatedInviting, setInitiatedInviting] = useState(false);
   const [invitationText, setInvitationText] = useState(
-    "Hi! Let's start messaging. Follow to [Conversations](https://ecency.com/chats) and register an account."
+    "Hi! Let's start messaging privately. Register an account on [https://ecency.com/chats](https://ecency.com/chats)"
   );
   let prevGlobal = usePrevious(global);
 

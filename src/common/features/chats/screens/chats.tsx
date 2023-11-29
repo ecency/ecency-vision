@@ -59,8 +59,9 @@ export const Chats = ({ match, history }: Props) => {
   );
   const isShowManageKey = useMemo(() => isReady && revealPrivateKey, [isReady, revealPrivateKey]);
   const isShowChatRoom = useMemo(
-    () => isReady && (!!receiverPubKey || isChannel) && !revealPrivateKey,
-    [isReady, receiverPubKey, revealPrivateKey, isChannel]
+    () =>
+      isReady && (!!receiverPubKey || isChannel) && !revealPrivateKey && !!match.params.username,
+    [isReady, receiverPubKey, revealPrivateKey, isChannel, match]
   );
   const isShowDefaultScreen = useMemo(
     () => isReady && !receiverPubKey && !isChannel && !revealPrivateKey && !match.params.username,

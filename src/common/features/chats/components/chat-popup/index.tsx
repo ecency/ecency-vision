@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
-import { history } from "../../../../store";
 import Tooltip from "../../../../components/tooltip";
 import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
@@ -176,16 +175,6 @@ export const ChatPopUp = () => {
     setRevealPrivateKey(false);
   };
 
-  const handleExtendedView = () => {
-    if (!isCurrentUser && !isCommunity) {
-      history?.push("/chats");
-    } else if (isCurrentUser) {
-      history?.push(`/chats/@${currentUser}`);
-    } else {
-      history?.push(`/chats/${communityName}`);
-    }
-  };
-
   return (
     <>
       {show && (
@@ -204,7 +193,6 @@ export const ChatPopUp = () => {
             communityName={communityName}
             isCommunity={isCommunity}
             handleBackArrowSvg={handleBackArrowSvg}
-            handleExtendedView={handleExtendedView}
             handleMessageSvgClick={handleMessageSvgClick}
             showSearchUser={showSearchUser}
           />

@@ -1,7 +1,7 @@
 import Tooltip from "../../../../components/tooltip";
 import { _t } from "../../../../i18n";
 import { Button } from "@ui/button";
-import { addMessageSvg, arrowBackSvg, expandArrow, extendedView } from "../../../../img/svg";
+import { addMessageSvg, arrowBackSvg, expandArrow } from "../../../../img/svg";
 import ChatsCommunityDropdownMenu from "../chats-community-actions";
 import { history } from "../../../../store";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
@@ -21,7 +21,6 @@ interface Props {
   isCurrentUser: boolean;
   handleBackArrowSvg: () => void;
   handleMessageSvgClick: () => void;
-  handleExtendedView: () => void;
   setExpanded: (v: boolean) => void;
 }
 
@@ -35,7 +34,6 @@ export function ChatPopupHeader({
   isCurrentUser,
   handleBackArrowSvg,
   handleMessageSvgClick,
-  handleExtendedView,
   setExpanded
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
@@ -81,27 +79,32 @@ export function ChatPopupHeader({
             />
           </Tooltip>
         )}
-        <div className="flex items-center gap-3" onClick={() => setExpanded(!expanded)}>
+        <div className="flex items-center gap-2" onClick={() => setExpanded(!expanded)}>
           {(currentUser || isCommunity) && (
             <UserAvatar username={isCurrentUser ? currentUser : communityName || ""} size="small" />
           )}
 
           <div className="text-lg truncate max-w-[180px] font-semibold">{title}</div>
+
+          <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
+            <Button
+              noPadding={true}
+              size="sm"
+              appearance="gray-link"
+              className={classNameObject({
+                "duration-300": true,
+                "rotate-180": !expanded
+              })}
+              onClick={(e: { stopPropagation: () => void }) => {
+                e.stopPropagation();
+                setExpanded(!expanded);
+              }}
+              icon={expandArrow}
+            />
+          </Tooltip>
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <Tooltip content={_t("chat.extended-view")}>
-          <Button
-            noPadding={true}
-            size="sm"
-            appearance="gray-link"
-            icon={extendedView}
-            onClick={(e: { stopPropagation: () => void }) => {
-              e.stopPropagation();
-              handleExtendedView();
-            }}
-          />
-        </Tooltip>
         {canSendMessage && (
           <Tooltip content={_t("chat.new-message")}>
             <Button
@@ -127,26 +130,12 @@ export function ChatPopupHeader({
           >
             <ChatsDropdownMenu
               history={history!}
+              communityName={communityName}
+              currentUser={currentUser}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
             />
           </div>
         )}
-        <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
-          <Button
-            noPadding={true}
-            size="sm"
-            appearance="gray-link"
-            className={classNameObject({
-              "duration-300": true,
-              "rotate-180": !expanded
-            })}
-            onClick={(e: { stopPropagation: () => void }) => {
-              e.stopPropagation();
-              setExpanded(!expanded);
-            }}
-            icon={expandArrow}
-          />
-        </Tooltip>
       </div>
     </div>
   );

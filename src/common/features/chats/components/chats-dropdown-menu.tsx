@@ -1,18 +1,33 @@
 import React from "react";
 import { History } from "history";
-import { chatKeySvg, kebabMenuSvg, keySvg } from "../../../img/svg";
+import { chatKeySvg, extendedView, kebabMenuSvg, keySvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { Button } from "@ui/button";
 import { useLogoutFromChats } from "../mutations";
+import { history } from "../../../store";
+import { useLocation } from "react-router";
 
 interface Props {
   history: History | null;
   onManageChatKey?: () => void;
+  currentUser?: string;
+  communityName?: string;
 }
 
 const ChatsDropdownMenu = (props: Props) => {
   const { mutateAsync: logout } = useLogoutFromChats();
+  const location = useLocation();
+
+  const handleExtendedView = () => {
+    if (props.currentUser) {
+      history?.push(`/chats/@${props.currentUser}`);
+    } else if (props.communityName) {
+      history?.push(`/chats/${props.communityName}`);
+    } else {
+      history?.push("/chats");
+    }
+  };
 
   return (
     <Dropdown>
@@ -21,6 +36,16 @@ const ChatsDropdownMenu = (props: Props) => {
           {kebabMenuSvg}
         </Button>
         <DropdownMenu align="right">
+          {!location.pathname.startsWith("/chats") && (
+            <DropdownItemWithIcon
+              icon={extendedView}
+              label={_t("chat.extended-view")}
+              onClick={(e: { stopPropagation: () => void }) => {
+                e.stopPropagation();
+                handleExtendedView();
+              }}
+            />
+          )}
           <DropdownItemWithIcon
             label={_t("chat.manage-chat-key")}
             icon={chatKeySvg}
