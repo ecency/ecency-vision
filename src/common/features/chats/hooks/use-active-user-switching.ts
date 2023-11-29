@@ -13,10 +13,16 @@ export function useActiveUserSwitching() {
 
   useEffect(() => {
     if (activeUser?.username !== previousActiveUser?.username) {
+      queryClient.setQueryData([NostrQueries.PUBLIC_MESSAGES], []);
+      queryClient.setQueryData([NostrQueries.DIRECT_MESSAGES], []);
+      queryClient.setQueryData([ChatQueries.LAST_MESSAGES], []);
+      queryClient.setQueryData([ChatQueries.LEFT_CHANNELS], []);
+
       queryClient.invalidateQueries([NostrQueries.PUBLIC_MESSAGES]);
       queryClient.invalidateQueries([NostrQueries.DIRECT_MESSAGES]);
       queryClient.invalidateQueries([ChatQueries.LAST_MESSAGES]);
       queryClient.invalidateQueries([ChatQueries.LEFT_CHANNELS]);
+      queryClient.invalidateQueries([ChatQueries.MESSAGES]);
     }
   }, [activeUser, previousActiveUser]);
 }
