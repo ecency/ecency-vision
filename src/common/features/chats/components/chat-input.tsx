@@ -29,6 +29,7 @@ interface Props {
 export default function ChatInput({ currentChannel, currentUser }: Props) {
   useChannelsQuery();
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const emojiButtonRef = useRef<HTMLButtonElement | null>(null);
   const gifPickerRef = useRef<HTMLDivElement | null>(null);
@@ -104,10 +105,14 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
       />
 
       <Form
-        onSubmit={(e: React.FormEvent) => {
+        onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          sendMessage(message);
+          sendMessage(message).then(() => {
+            // Re-focus to input because when DOM changes and input position changes then
+            //  focus is lost
+            setTimeout(() => inputRef.current?.focus(), 1);
+          });
         }}
         className="w-full flex items-center gap-2 p-2"
       >
@@ -129,6 +134,7 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
           </DropdownMenu>
         </Dropdown>
         <FormControl
+          ref={inputRef}
           value={message}
           autoFocus={true}
           onChange={(e) => {
