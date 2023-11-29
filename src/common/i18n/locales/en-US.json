@@ -1870,7 +1870,7 @@
     "error-updating-community": "Error occurred while updating community",
     "leave": "Leave",
     "edit-roles": "Edit Roles",
-    "manage-chat-key": "Manage chat key",
+    "manage-chat-key": "Credentials info",
     "block": "Block",
     "communities": "Communities",
     "dms": "DMs",
@@ -1903,6 +1903,7 @@
     "warn-key-saving": "Save the Ecency key to access your messages. Keep it secure for uninterrupted service. Thank you!",
     "view-and-save": "Show keys and save",
     "blocked-users-management": "Blocked users management",
+    "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
