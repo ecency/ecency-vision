@@ -1,6 +1,6 @@
 import { FullAccount } from "../../../store/accounts/types";
 
-export const getUserChatPublicKey = (account: FullAccount): string | undefined => {
+export const getUserChatPublicKey = (account: FullAccount): string | null => {
   if (account.posting_json_metadata) {
     const { posting_json_metadata } = account;
     const profile = JSON.parse(posting_json_metadata).profile;
@@ -11,5 +11,5 @@ export const getUserChatPublicKey = (account: FullAccount): string | undefined =
       return pubKey;
     }
   }
-  return undefined;
+  return null;
 };

@@ -16,25 +16,37 @@ export function useKeysQuery() {
       {
         queryKey: [ChatQueries.PUBLIC_KEY, activeUser?.username],
         queryFn: async () => getUserChatPublicKey(data!!),
-        enabled: !!data
+        enabled: !!data,
+        initialData: null
       },
       {
         queryKey: [ChatQueries.PRIVATE_KEY, activeUser?.username],
         queryFn: async () => {
           const pin = localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username);
-          const { key, iv } = getUserChatPrivateKey(data!!);
-          if (key && pin && iv) {
-            return EncryptionTools.decrypt(key, pin, Buffer.from(iv, "base64"));
+
+          if (!pin) {
+            return null;
           }
 
-          return undefined;
+          const { key, iv } = getUserChatPrivateKey(data!!);
+          if (key && pin && iv) {
+            try {
+              return EncryptionTools.decrypt(key, pin, Buffer.from(iv, "base64"));
+            } catch (e) {
+              return null;
+            }
+          }
+
+          return null;
         },
-        enabled: !!data
+        enabled: !!data,
+        initialData: null
       },
       {
         queryKey: [ChatQueries.ACCOUNT_IV, activeUser?.username],
         queryFn: async () => getUserChatPrivateKey(data!!).iv,
-        enabled: !!data
+        enabled: !!data,
+        initialData: null
       }
     ]
   });

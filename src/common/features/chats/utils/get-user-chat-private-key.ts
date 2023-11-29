@@ -1,6 +1,6 @@
 import { FullAccount } from "../../../store/accounts/types";
 
-export const getUserChatPrivateKey = (account: FullAccount): Record<string, string | undefined> => {
+export const getUserChatPrivateKey = (account: FullAccount) => {
   if (account.posting_json_metadata) {
     const { posting_json_metadata } = account;
     const profile = JSON.parse(posting_json_metadata).profile;
@@ -8,8 +8,8 @@ export const getUserChatPrivateKey = (account: FullAccount): Record<string, stri
       const {
         echat: { key, iv }
       } = profile || { echat: {} };
-      return { key, iv };
+      return { key: key ?? null, iv: iv ?? null };
     }
   }
-  return {};
+  return { key: null, iv: null };
 };
