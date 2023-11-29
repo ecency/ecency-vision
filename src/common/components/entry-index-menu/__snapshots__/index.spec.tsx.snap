@@ -405,7 +405,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                   className="col-span-12 md:col-span-5 p-0 md:px-3"
                 >
                   <div
-                    className="text-4xl mb-2 md:mb-4 text-dark font-bold"
+                    className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
                   >
                     Friends
                   </div>
@@ -588,7 +588,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     className="col-span-12 md:col-span-5 p-0 md:px-3"
                   >
                     <div
-                      className="text-4xl mb-2 md:mb-4 text-dark font-bold"
+                      className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
                     >
                       Friends
                     </div>
