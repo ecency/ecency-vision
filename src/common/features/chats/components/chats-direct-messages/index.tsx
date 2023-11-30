@@ -1,9 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import usePrevious from "react-use/lib/usePrevious";
-import mediumZoom, { Zoom } from "medium-zoom";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
-import { Theme } from "../../../../store/global/types";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ChatContext } from "../../chat-context-provider";
 import { _t } from "../../../../i18n";
 import "./index.scss";
@@ -23,18 +19,15 @@ interface Props {
   scrollToBottom?: () => void;
 }
 
-let zoom: Zoom | null = null;
 export default function ChatsDirectMessages(props: Props) {
   const { directMessages, isScrolled, isScrollToBottom, scrollToBottom } = props;
 
-  const { global, activeUser } = useMappedStore();
   const { receiverPubKey } = useContext(ChatContext);
 
   const [initiatedInviting, setInitiatedInviting] = useState(false);
   const [invitationText, setInvitationText] = useState(
     "Hi! Let's start messaging privately. Register an account on [https://ecency.com/chats](https://ecency.com/chats)"
   );
-  let prevGlobal = usePrevious(global);
 
   const { publicKey } = useKeysQuery();
 
@@ -45,34 +38,10 @@ export default function ChatsDirectMessages(props: Props) {
   } = useInviteViaPostComment(props.currentUser);
 
   useEffect(() => {
-    if (prevGlobal?.theme !== global.theme) {
-      setBackground();
-    }
-    prevGlobal = global;
-  }, [global.theme, activeUser]);
-
-  useEffect(() => {
-    if (directMessages && directMessages.length !== 0) {
-      zoomInitializer();
-    }
     if (!isScrollToBottom && directMessages && directMessages.length !== 0 && !isScrolled) {
-      scrollToBottom && scrollToBottom();
+      scrollToBottom?.();
     }
   }, [directMessages, isScrollToBottom, scrollToBottom, receiverPubKey]);
-
-  const zoomInitializer = () => {
-    const elements: HTMLElement[] = [...document.querySelectorAll<HTMLElement>(".chat-image img")];
-    zoom = mediumZoom(elements);
-    setBackground();
-  };
-
-  const setBackground = () => {
-    if (global.theme === Theme.day) {
-      zoom?.update({ background: "#ffffff" });
-    } else {
-      zoom?.update({ background: "#131111" });
-    }
-  };
 
   return (
     <>
@@ -94,6 +63,17 @@ export default function ChatsDirectMessages(props: Props) {
                     type={msg.creator !== publicKey ? "receiver" : "sender"}
                     message={msg}
                     isSameUser={checkContiguousMessage(msg, i, directMessages)}
+                    onAppear={() =>
+                      setTimeout(
+                        () =>
+                          directMessages?.length - 1 === i
+                            ? document
+                                .querySelector(`[data-message-id="${msg.id}"]`)
+                                ?.scrollIntoView({ behavior: "smooth" })
+                            : {},
+                        100
+                      )
+                    }
                   />
                 </React.Fragment>
               );

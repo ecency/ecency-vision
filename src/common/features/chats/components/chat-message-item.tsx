@@ -10,6 +10,7 @@ import { _t } from "../../../i18n";
 import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-extension";
 import { Channel, Message } from "../nostr";
 import { useKeysQuery } from "../queries/keys-query";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   type: "sender" | "receiver";
@@ -17,6 +18,7 @@ interface Props {
   isSameUser: boolean;
   currentChannel?: Channel;
   onContextMenu?: () => void;
+  onAppear?: () => void;
 }
 
 // TODO: Add resend
@@ -25,7 +27,8 @@ export function ChatMessageItem({
   message,
   isSameUser,
   currentChannel,
-  onContextMenu
+  onContextMenu,
+  onAppear
 }: Props) {
   const { global } = useMappedStore();
   const { publicKey } = useKeysQuery();
@@ -41,6 +44,8 @@ export function ChatMessageItem({
         .replace(/<\/p>/g, ""),
     [message]
   );
+
+  useMount(() => onAppear?.());
 
   return (
     <div key={message.id} data-message-id={message.id}>

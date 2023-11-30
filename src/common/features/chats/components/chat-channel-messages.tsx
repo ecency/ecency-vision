@@ -1,9 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Zoom } from "medium-zoom";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import usePrevious from "react-use/lib/usePrevious";
 import { _t } from "../../../i18n";
-import { Theme } from "../../../store/global/types";
 import { checkContiguousMessage, formatMessageDateAndDay } from "../utils";
 import { ChatMessageItem } from "./chat-message-item";
 import { useKeysQuery } from "../queries/keys-query";
@@ -21,8 +18,6 @@ interface Props {
   scrollToBottom?: () => void;
 }
 
-let zoom: Zoom | null = null;
-
 export function ChatsChannelMessages({
   publicMessages,
   isScrollToBottom,
@@ -30,9 +25,7 @@ export function ChatsChannelMessages({
   currentChannel,
   scrollToBottom
 }: Props) {
-  const { global, activeUser } = useMappedStore();
-
-  let prevGlobal = usePrevious(global);
+  const { activeUser } = useMappedStore();
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
 
@@ -59,25 +52,10 @@ export function ChatsChannelMessages({
   );
 
   useEffect(() => {
-    if (prevGlobal?.theme !== global.theme) {
-      setBackground();
-    }
-    prevGlobal = global;
-  }, [global.theme, activeUser]);
-
-  useEffect(() => {
     if (!isScrollToBottom && messages.length !== 0 && !isScrolled) {
       scrollToBottom && scrollToBottom();
     }
   }, [messages, isScrollToBottom, channelMessagesRef]);
-
-  const setBackground = () => {
-    if (global.theme === Theme.day) {
-      zoom?.update({ background: "#ffffff" });
-    } else {
-      zoom?.update({ background: "#131111" });
-    }
-  };
 
   return (
     <>
@@ -108,6 +86,17 @@ export function ChatsChannelMessages({
                     setCurrentInteractingMessageId(message.id);
                   }
                 }}
+                onAppear={() =>
+                  setTimeout(
+                    () =>
+                      publicMessages?.length - 1 === i
+                        ? document
+                            .querySelector(`[data-message-id="${message.id}"]`)
+                            ?.scrollIntoView({ behavior: "smooth" })
+                        : {},
+                    100
+                  )
+                }
               />
               <DropdownMenu
                 className="top-[70%]"
