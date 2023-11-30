@@ -1,6 +1,6 @@
 import { formatMessageTime, isMessageGif, isMessageImage, isSingleEmoji } from "../utils";
 import { Spinner } from "@ui/spinner";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -12,6 +12,7 @@ import useMount from "react-use/lib/useMount";
 import { Button } from "@ui/button";
 import { failedMessageSvg } from "../../../img/svg";
 import { useResendMessage } from "../mutations";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Props {
   type: "sender" | "receiver";
@@ -35,6 +36,8 @@ export function ChatMessageItem({
   const { global } = useMappedStore();
   const { publicKey } = useKeysQuery();
 
+  const [holdStarted, setHoldStarted] = useState(false);
+
   const isFailed = useMemo(() => message.sent === 2, [message]);
   const isSending = useMemo(() => message.sent === 0, [message]);
   const isGif = useMemo(() => isMessageGif(message.content), [message]);
@@ -52,6 +55,15 @@ export function ChatMessageItem({
 
   useMount(() => onAppear?.());
 
+  useDebounce(
+    () => {
+      setHoldStarted(false);
+      onContextMenu?.();
+    },
+    1000,
+    [holdStarted]
+  );
+
   return (
     <div key={message.id} data-message-id={message.id}>
       <div
@@ -62,6 +74,10 @@ export function ChatMessageItem({
           failed: isFailed,
           sending: isSending
         })}
+        onMouseDown={() => setHoldStarted(true)}
+        onMouseUp={() => setHoldStarted(false)}
+        onTouchStart={() => setHoldStarted(true)}
+        onTouchEnd={() => setHoldStarted(false)}
         onContextMenu={(e) => {
           if (onContextMenu) {
             e.stopPropagation();
@@ -85,12 +101,13 @@ export function ChatMessageItem({
         >
           <div
             className={classNameObject({
-              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage && !isEmoji,
+              "text-sm p-2.5 rounded-b-2xl duration-300": !isGif && !isImage && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
               "same-user-message": isSameUser,
-              "text-[4rem]": isEmoji
+              "text-[4rem]": isEmoji,
+              "scale-90": holdStarted && !!onContextMenu
             })}
           >
             <div
