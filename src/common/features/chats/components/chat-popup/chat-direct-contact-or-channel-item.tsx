@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
+import { useMessagesQuery } from "../../queries";
 
 interface Props {
   username: string;
-  lastMessage?: string;
   userClicked: (username: string) => void;
 }
 
-export function ChatDirectContactOrChannelItem({ username, userClicked, lastMessage }: Props) {
+export function ChatDirectContactOrChannelItem({ username, userClicked }: Props) {
+  const { data: messages } = useMessagesQuery(username);
+  const lastMessage = useMemo(
+    () => (messages.length > 0 ? messages[messages.length - 1].content : undefined),
+    [messages]
+  );
+
   return (
     <div
       className="flex items-center gap-3 px-3 border-b border-[--border-color] py-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-300"

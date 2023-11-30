@@ -62,7 +62,6 @@ export function useSendMessage(
           [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
           [...messages, message]
         );
-
         onSuccess?.();
       }
     }

@@ -33,9 +33,12 @@
 
     &.current-user {
       padding-bottom: 10px;
-      height: 412px;
       margin-bottom: 8px;
       @apply border-b;
+
+      @include media-breakpoint-up(md) {
+        height: 412px;
+      }
 
       @include themify(day) {
         @apply border-light-300;
@@ -167,7 +170,7 @@
     right: 0;
     width: 100vw;
     display: grid;
-    grid-template-rows: repeat(100, 1fr);
+    grid-template-rows: min-content 1fr min-content;
     grid-template-columns: repeat(1, 1fr);
 
     .chat-header {

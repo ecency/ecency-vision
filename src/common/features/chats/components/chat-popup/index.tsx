@@ -198,7 +198,7 @@ export const ChatPopUp = () => {
           />
           {(isJoinChatLoading || isChannelsLoading || isFetchingMore) && <LinearProgress />}
           <div
-            className={`chat-body ${
+            className={`chat-body h-full ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
             } ${
               !hasUserJoinedChat

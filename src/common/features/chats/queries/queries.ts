@@ -4,7 +4,6 @@ export enum ChatQueries {
   PRIVATE_KEY = "chats/private-key",
   ACCOUNT_IV = "chats/account-iv",
   DIRECT_CONTACTS = "chats/direct-contacts",
-  LAST_MESSAGES = "chats/last-messages",
   MESSAGES = "chats/messages",
   CHANNELS = "chats/channels",
   LEFT_CHANNELS = "chats/left-channels",

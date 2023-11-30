@@ -4,7 +4,7 @@ import React, { useContext, useMemo } from "react";
 import { ChatContext } from "../../chat-context-provider";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { useLastMessagesQuery } from "../../queries";
+import { useMessagesQuery } from "../../queries";
 import { DirectContact } from "../../nostr";
 
 interface Props {
@@ -15,12 +15,13 @@ interface Props {
 export function ChatSidebarDirectContact({ contact, username }: Props) {
   const { setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
-  const { data: lastMessages } = useLastMessagesQuery();
-  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
-  const lastMessageDate = useMemo(
-    () => getRelativeDate(lastMessages[contact.name]?.created),
-    [lastMessages]
+  const { data: messages } = useMessagesQuery(contact.name);
+  const lastMessage = useMemo(
+    () => (messages.length > 0 ? messages[messages.length - 1] : undefined),
+    [messages]
   );
+  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
+  const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 
   return (
     <Link
@@ -43,7 +44,7 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
           <div className="font-semibold truncate dark:text-white">{contact.name}</div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
-        <div className="text-sm text-gray-600 truncate">{lastMessages[contact.name]?.content}</div>
+        <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
       </div>
     </Link>
   );

@@ -21,7 +21,7 @@ export function ChatPopupMessagesList({ username }: Props) {
   );
 
   return (
-    <div className="chats">
+    <div className="chats h-full">
       {" "}
       <Link to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${username}`}>
         <ChatsProfileBox communityName={username} currentUser={username} />

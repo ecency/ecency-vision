@@ -22,7 +22,6 @@ export function useListenMessagesQuery() {
   useInterval(async () => {
     await queryClient.invalidateQueries([NostrQueries.PUBLIC_MESSAGES]);
     await queryClient.invalidateQueries([NostrQueries.DIRECT_MESSAGES]);
-    await queryClient.invalidateQueries([ChatQueries.LAST_MESSAGES]);
 
     setTimeout(
       () => peers.forEach((peer) => queryClient.invalidateQueries([ChatQueries.MESSAGES, peer])),

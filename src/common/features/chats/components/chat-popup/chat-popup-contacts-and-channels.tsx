@@ -5,7 +5,7 @@ import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
 import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
-import { useChannelsQuery, useDirectContactsQuery, useLastMessagesQuery } from "../../queries";
+import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
 import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { useKeysQuery } from "../../queries/keys-query";
 
@@ -24,7 +24,6 @@ export function ChatPopupContactsAndChannels({
 
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
-  const { data: directContactsLastMessages } = useLastMessagesQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
@@ -47,7 +46,6 @@ export function ChatPopupContactsAndChannels({
                 <ChatDirectContactOrChannelItem
                   key={channel.id}
                   username={channel.communityName!!}
-                  lastMessage={directContactsLastMessages[channel.name]?.content}
                   userClicked={() => communityClicked(channel.communityName!)}
                 />
               ))}
@@ -66,7 +64,6 @@ export function ChatPopupContactsAndChannels({
                 userClicked(v);
               }}
               key={user.pubkey}
-              lastMessage={directContactsLastMessages[user.name]?.content}
             />
           ))}
         </>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { useLastMessagesQuery } from "../../queries";
+import { useMessagesQuery } from "../../queries";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { getRelativeDate } from "../../utils";
 import { ChatContext } from "../../chat-context-provider";
@@ -13,15 +13,16 @@ interface Props {
 }
 
 export function ChatSidebarChannel({ channel, username }: Props) {
-  const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
+  const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
-  const { data: lastMessages } = useLastMessagesQuery();
+  const { data: messages } = useMessagesQuery(channel.communityName);
 
-  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
-  const lastMessageDate = useMemo(
-    () => getRelativeDate(lastMessages[channel.name]?.created),
-    [lastMessages]
+  const lastMessage = useMemo(
+    () => (messages.length > 0 ? messages[messages.length - 1] : undefined),
+    [messages]
   );
+  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
+  const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 
   return (
     <Link
@@ -43,7 +44,7 @@ export function ChatSidebarChannel({ channel, username }: Props) {
           <div className="font-semibold truncate dark:text-white">{channel.name}</div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
-        <div className="text-sm text-gray-600 truncate">{lastMessages[channel.name]?.content}</div>
+        <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
       </div>
     </Link>
   );

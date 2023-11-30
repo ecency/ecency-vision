@@ -60,7 +60,7 @@ export function useMessagesQuery(username?: string) {
         }
         return messages.sort((a, b) => a.created - b.created);
       },
-      refetchInterval: 10000
+      refetchInterval: 3000
     }
   );
 }
