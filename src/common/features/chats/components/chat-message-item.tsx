@@ -1,6 +1,6 @@
 import Tooltip from "../../../components/tooltip";
 import { failedMessageSvg, resendMessageSvg } from "../../../img/svg";
-import { formatMessageTime, isMessageGif, isMessageImage } from "../utils";
+import { formatMessageTime, isMessageGif, isMessageImage, isSingleEmoji } from "../utils";
 import { Spinner } from "@ui/spinner";
 import React, { useMemo } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
@@ -37,6 +37,7 @@ export function ChatMessageItem({
   const isSending = useMemo(() => message.sent === 0, [message]);
   const isGif = useMemo(() => isMessageGif(message.content), [message]);
   const isImage = useMemo(() => isMessageImage(message.content), [message]);
+  const isEmoji = useMemo(() => isSingleEmoji(message.content), [message]);
   const renderedPreview = useMemo(
     () =>
       renderPostBody(message.content, false, global.canUseWebp)
@@ -93,11 +94,12 @@ export function ChatMessageItem({
         >
           <div
             className={classNameObject({
-              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage,
-              "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender",
-              "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver",
-              "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage,
-              "same-user-message": isSameUser
+              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage && !isEmoji,
+              "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
+              "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
+              "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
+              "same-user-message": isSameUser,
+              "text-[4rem]": isEmoji
             })}
           >
             <div

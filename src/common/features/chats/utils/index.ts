@@ -14,3 +14,4 @@ export * from "./format-message-date-and-day";
 export * from "./get-relative-date";
 export * from "./encryption-tools";
 export * from "./get-user-chat-private-key";
+export * from "./is-single-emoji";
