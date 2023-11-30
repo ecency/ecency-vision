@@ -118,7 +118,13 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
       >
         <Dropdown>
           <DropdownToggle>
-            <Button className="mr-2" noPadding={true} icon={attachFileSvg} appearance="gray-link" />
+            <Button
+              disabled={isDisabled || isSendMessageLoading}
+              className="mr-2"
+              noPadding={true}
+              icon={attachFileSvg}
+              appearance="gray-link"
+            />
           </DropdownToggle>
           <DropdownMenu align="top">
             <DropdownItemWithIcon
@@ -156,6 +162,7 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
               icon={emoticonHappyOutlineSvg}
             />
             <EmojiPicker
+              isDisabled={isDisabled || isSendMessageLoading}
               position="top"
               anchor={emojiButtonRef.current}
               onSelect={(e: string) => setMessage((prevMessage) => prevMessage + e)}

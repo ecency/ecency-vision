@@ -60,6 +60,7 @@ export default function ChatsDirectMessages(props: Props) {
                     </div>
                   )}
                   <ChatMessageItem
+                    currentUser={props.currentUser}
                     type={msg.creator !== publicKey ? "receiver" : "sender"}
                     message={msg}
                     isSameUser={checkContiguousMessage(msg, i, directMessages)}
@@ -69,7 +70,7 @@ export default function ChatsDirectMessages(props: Props) {
                           directMessages?.length - 1 === i
                             ? document
                                 .querySelector(`[data-message-id="${msg.id}"]`)
-                                ?.scrollIntoView({ behavior: "smooth" })
+                                ?.scrollIntoView()
                             : {},
                         100
                       )

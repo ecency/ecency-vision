@@ -1,17 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UPLOADING } from "../components/chat-popup/chat-constants";
 import { useContext } from "react";
 import { ChatContext } from "../chat-context-provider";
 import isCommunity from "../../../helper/is-community";
-import { Channel, useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
-import { useAddDirectContact } from "./add-direct-contact";
+import { Channel, Message, useNostrSendDirectMessage, useNostrSendPublicMessage } from "../nostr";
 import { ChatQueries, useMessagesQuery } from "../queries";
 import { useKeysQuery } from "../queries/keys-query";
 import { PublishNostrError } from "../nostr/errors";
 import { convertEvent } from "../nostr/utils/event-converter";
 import { Kind } from "../../../../lib/nostr-tools/event";
 
-export function useSendMessage(
+export function useResendMessage(
   currentChannel?: Channel,
   currentUser?: string,
   onSuccess?: () => void
@@ -31,29 +29,18 @@ export function useSendMessage(
     currentChannel?.id,
     undefined
   );
-  const { mutateAsync: addDirectContact } = useAddDirectContact();
 
   return useMutation(
     ["chats/send-message"],
-    async (message: string) => {
-      if (!message || message.includes(UPLOADING)) {
-        throw new Error("[Chat][SendMessage] – empty message or has uploading file");
-      }
-
+    async (message: Message) => {
       if (!currentChannel && isCommunity(currentUser)) {
         throw new Error("[Chat][SendMessage] – provided user is community but channel not found");
       }
 
-      // Add user to direct contacts if it's not there yet
-      // E.g. if user opened chat room directly from the address bar
-      if (currentUser) {
-        addDirectContact({ pubkey: receiverPubKey, name: currentUser });
-      }
-
       if (currentChannel) {
-        return sendPublicMessage({ message });
+        return sendPublicMessage({ message: message.content });
       } else if (currentUser) {
-        return sendDirectMessage(message);
+        return sendDirectMessage(message.content);
       } else {
         throw new Error("[Chat][SendMessage] – no receiver");
       }
@@ -63,7 +50,7 @@ export function useSendMessage(
         message.sent = 0;
         queryClient.setQueryData(
           [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
-          [...messages, message]
+          [...messages.filter((m) => m.content !== message.content && m.sent !== 2), message]
         );
         onSuccess?.();
       },
@@ -77,7 +64,7 @@ export function useSendMessage(
           message.sent = 2;
           queryClient.setQueryData(
             [ChatQueries.MESSAGES, currentChannel?.communityName ?? currentUser],
-            [...messages, message]
+            [...messages.filter((m) => m.content !== message.content && m.sent !== 2), message]
           );
         }
       }

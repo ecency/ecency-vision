@@ -92,7 +92,7 @@ export function ChatsChannelMessages({
                       publicMessages?.length - 1 === i
                         ? document
                             .querySelector(`[data-message-id="${message.id}"]`)
-                            ?.scrollIntoView({ behavior: "smooth" })
+                            ?.scrollIntoView()
                         : {},
                     100
                   )

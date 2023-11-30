@@ -2,7 +2,7 @@
   .gif-picker {
     max-height: 300px;
     overflow-y: auto;
-    @apply bg-white border-b border-[--border-color] w-full flex flex-col gap-3 mb-4;
+    @apply bg-white dark:bg-dark-200 border-b border-[--border-color] w-[calc(100%+0.75rem)] flex flex-col gap-3 mb-4 -mx-3;
 
     &::-webkit-scrollbar {
       display: none;
@@ -18,7 +18,7 @@
     .search-box {
       position: sticky;
       top: 0;
-      @apply bg-white border-b border-[--border-color] p-3;
+      @apply bg-white dark:bg-dark-200 border-b border-[--border-color] p-3;
     }
   }
 }

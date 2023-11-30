@@ -11,6 +11,7 @@ interface Props {
   anchor: Element | null;
   onSelect: (e: string) => void;
   position?: "top" | "bottom";
+  isDisabled?: boolean;
 }
 
 /**
@@ -21,7 +22,7 @@ interface Props {
  * @param position
  * @return The rendered emoji picker dialog.
  */
-export function EmojiPicker({ anchor, onSelect, position }: Props) {
+export function EmojiPicker({ anchor, onSelect, position, isDisabled }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const { global } = useMappedStore();
@@ -62,7 +63,12 @@ export function EmojiPicker({ anchor, onSelect, position }: Props) {
     >
       <Picker
         dynamicWidth={true}
-        onEmojiSelect={(e: { native: string }) => onSelect(e.native)}
+        onEmojiSelect={(e: { native: string }) => {
+          if (isDisabled) {
+            return;
+          }
+          onSelect(e.native);
+        }}
         previewPosition="none"
         set="apple"
         theme={global.theme === "day" ? "light" : "dark"}

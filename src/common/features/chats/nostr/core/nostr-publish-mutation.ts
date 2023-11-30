@@ -10,6 +10,7 @@ import { NostrContext } from "../nostr-context";
 import { Metadata } from "../types";
 import { ChatQueries } from "../../queries";
 import { useMappedStore } from "../../../../store/use-mapped-store";
+import { PublishNostrError } from "../errors";
 
 type Payload = { eventMetadata: Metadata | string; tags: string[][] };
 
@@ -17,7 +18,7 @@ export function useNostrPublishMutation(
   key: MutationKey,
   kind: Kind,
   onBeforeSend: (event: Event) => void,
-  options?: UseMutationOptions<Event, Error, Payload>
+  options?: UseMutationOptions<Event, PublishNostrError | Error, Payload>
 ) {
   const { activeUser } = useMappedStore();
   const { pool, writeRelays } = useContext(NostrContext);
@@ -64,7 +65,12 @@ export function useNostrPublishMutation(
         const publishInfo = pool?.publish(writeRelays, signedEvent);
         publishInfo?.on("ok", () => resolve(signedEvent!!));
         publishInfo?.on("failed", () =>
-          reject(new Error("[Chat][Nostr] – failed to publish event (kind: " + signedEvent!!.kind))
+          reject(
+            new PublishNostrError(
+              "[Chat][Nostr] – failed to publish event (kind: " + signedEvent!!.kind,
+              signedEvent!!
+            )
+          )
         );
       }),
     options

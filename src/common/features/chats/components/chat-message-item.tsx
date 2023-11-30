@@ -1,5 +1,3 @@
-import Tooltip from "../../../components/tooltip";
-import { failedMessageSvg, resendMessageSvg } from "../../../img/svg";
 import { formatMessageTime, isMessageGif, isMessageImage, isSingleEmoji } from "../utils";
 import { Spinner } from "@ui/spinner";
 import React, { useMemo } from "react";
@@ -11,21 +9,25 @@ import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-ext
 import { Channel, Message } from "../nostr";
 import { useKeysQuery } from "../queries/keys-query";
 import useMount from "react-use/lib/useMount";
+import { Button } from "@ui/button";
+import { failedMessageSvg } from "../../../img/svg";
+import { useResendMessage } from "../mutations";
 
 interface Props {
   type: "sender" | "receiver";
   message: Message;
   isSameUser: boolean;
+  currentUser?: string;
   currentChannel?: Channel;
   onContextMenu?: () => void;
   onAppear?: () => void;
 }
 
-// TODO: Add resend
 export function ChatMessageItem({
   type,
   message,
   isSameUser,
+  currentUser,
   currentChannel,
   onContextMenu,
   onAppear
@@ -45,6 +47,8 @@ export function ChatMessageItem({
         .replace(/<\/p>/g, ""),
     [message]
   );
+
+  const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentUser);
 
   useMount(() => onAppear?.());
 
@@ -71,19 +75,6 @@ export function ChatMessageItem({
             creator={message.creator}
             currentChannel={currentChannel}
           />
-        )}
-        {message.sent === 2 && (
-          <Tooltip content={_t("g.resend")}>
-            <span
-              className="resend-svg"
-              onClick={() => {
-                // setStep(1);
-                // setResendMessage(message);
-              }}
-            >
-              {resendMessageSvg}
-            </span>
-          </Tooltip>
         )}
         <div
           className={classNameObject({
@@ -114,9 +105,18 @@ export function ChatMessageItem({
           )}
           {message.sent === 0 && <Spinner className="w-3 h-3 mx-2" />}
           {message.sent === 2 && (
-            <Tooltip content={"Failed"}>
-              <span className="failed-svg">{failedMessageSvg}</span>
-            </Tooltip>
+            <div className="flex items-center gap-1">
+              {failedMessageSvg}
+              <Button
+                size="xs"
+                className="text-xs"
+                appearance="link"
+                noPadding={true}
+                onClick={() => resendMessage(message)}
+              >
+                {_t("g.resend")}
+              </Button>
+            </div>
           )}
         </div>
       </div>

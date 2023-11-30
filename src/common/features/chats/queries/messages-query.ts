@@ -33,21 +33,28 @@ export function useMessagesQuery(username?: string) {
         return [];
       }
 
+      let initialMessages: Message[];
       if (!!currentChannel) {
-        return (
+        initialMessages =
           queryClient
             .getQueryData<Message[]>([NostrQueries.PUBLIC_MESSAGES])
-            ?.filter((i) => i.root === currentChannel.id) ?? []
-        );
+            ?.filter((i) => i.root === currentChannel.id) ?? [];
+      } else {
+        initialMessages =
+          queryClient
+            .getQueryData<Message[]>([NostrQueries.DIRECT_MESSAGES])
+            ?.filter((i) =>
+              "peer" in i ? i.peer === currentContact?.pubkey : i.root === currentContact?.pubkey
+            ) ?? [];
       }
+      const pendingMessages = (
+        queryClient.getQueryData<Message[]>([ChatQueries.MESSAGES, username]) ?? []
+      ).filter((m) => m.sent === 0 && !initialMessages.some((im) => im.id === m.id));
+      const failedMessages = (
+        queryClient.getQueryData<Message[]>([ChatQueries.MESSAGES, username]) ?? []
+      ).filter((m) => m.sent === 2 && !initialMessages.some((im) => im.id === m.id));
 
-      return (
-        queryClient
-          .getQueryData<Message[]>([NostrQueries.DIRECT_MESSAGES])
-          ?.filter((i) =>
-            "peer" in i ? i.peer === currentContact?.pubkey : i.root === currentContact?.pubkey
-          ) ?? []
-      );
+      return [...initialMessages, ...failedMessages, ...pendingMessages];
     },
     {
       initialData: [],
