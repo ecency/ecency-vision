@@ -118,7 +118,7 @@ export const OffchainUser = (props: any) => {
                         <Form.Group>
                           <Form.Control
                             type="text"
-                            placeholder={"Choose a paswword"}
+                            placeholder={"Choose a password"}
                             value={password}
                             onChange={passwordChanged}
                             required={true}
@@ -131,7 +131,7 @@ export const OffchainUser = (props: any) => {
                         <Form.Group>
                           <Form.Control
                             type="text"
-                            placeholder={"Confirm paswword"}
+                            placeholder={"Confirm password"}
                             value={confirmPassword}
                             onChange={(e)=> setConfirmPassword(e.target.value)}
                             required={true}

@@ -236,3 +236,11 @@
     flex: 1;
   }
 }
+
+.link-wrap{
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+}
