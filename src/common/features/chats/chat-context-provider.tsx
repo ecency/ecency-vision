@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useKeysQuery } from "./queries/keys-query";
 import { NostrListenerQueriesProvider, NostrProvider } from "./nostr";
 import { useActiveUserSwitching } from "./hooks";
@@ -38,7 +38,7 @@ export const ChatContextProvider = (props: Props) => {
         value={{
           revealPrivateKey,
           receiverPubKey,
-          hasUserJoinedChat: useMemo(() => hasKeys, [hasKeys]),
+          hasUserJoinedChat: hasKeys,
           setRevealPrivateKey,
           setReceiverPubKey
         }}

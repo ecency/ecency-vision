@@ -41,8 +41,8 @@ export default function JoinCommunityChatBtn(props: Props) {
   const { mutateAsync: leaveCommunityChannel, isLoading: isLeavingCommunityChannelLoading } =
     useLeaveCommunityChannel();
 
-  const isChatEnabled = useMemo(() => !!currentChannel, [currentChannel]);
-  const isCommunityChatJoined = useMemo(
+  const isCommunityChannelCreated = useMemo(() => !!currentChannel, [currentChannel]);
+  const isCommunityChannelJoined = useMemo(
     () =>
       channels?.some(
         (item) =>
@@ -50,6 +50,11 @@ export default function JoinCommunityChatBtn(props: Props) {
           !leftChannelsIds?.includes(currentChannel?.id!)
       ),
     [channels, leftChannelsIds]
+  );
+  // Todo: all admin team should be able to create a channel
+  const isAbleToCreateChannel = useMemo(
+    () => props.community.name === activeUser?.username,
+    [activeUser, props.community]
   );
 
   const join = async () => {
@@ -59,52 +64,9 @@ export default function JoinCommunityChatBtn(props: Props) {
     await addCommunityChannel();
   };
 
-  return hasUserJoinedChat ? (
+  return (
     <>
-      {props.community.name === activeUser?.username ? (
-        isCommunityChatJoined ? (
-          <Button size="sm" appearance="secondary">
-            {_t("chat.chat-joined")}
-          </Button>
-        ) : !isChatEnabled ? (
-          <Button
-            size="sm"
-            onClick={async () => {
-              if (communityTeam.some((role) => role.pubkey === publicKey)) {
-                await createCommunityChat();
-                await join();
-              }
-            }}
-            disabled={isCreateCommunityChatLoading}
-            icon={isCreateCommunityChatLoading && <Spinner />}
-            iconPlacement="left"
-          >
-            {_t("chat.start-community-chat")}
-          </Button>
-        ) : !isCommunityChatJoined && isChatEnabled ? (
-          <Button
-            size="sm"
-            disabled={isAddCommunityChannelLoading}
-            to={`/chats/${props.community.name}`}
-            icon={isAddCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
-            iconPlacement="left"
-          >
-            {_t("chat.join-community-chat")}
-          </Button>
-        ) : (
-          <></>
-        )
-      ) : isChatEnabled && !isCommunityChatJoined ? (
-        <Button
-          size="sm"
-          disabled={isAddCommunityChannelLoading}
-          to={`/chats/${props.community.name}`}
-          icon={isAddCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
-          iconPlacement="left"
-        >
-          {_t("community.join-community-chat")}
-        </Button>
-      ) : isCommunityChatJoined ? (
+      {isCommunityChannelJoined && (
         <Button
           size="sm"
           appearance="secondary"
@@ -114,11 +76,33 @@ export default function JoinCommunityChatBtn(props: Props) {
         >
           {_t("chat.chat-joined")}
         </Button>
-      ) : (
-        <></>
+      )}
+      {!isCommunityChannelCreated && isAbleToCreateChannel && (
+        <Button
+          size="sm"
+          onClick={async () => {
+            if (communityTeam.some((role) => role.pubkey === publicKey)) {
+              await createCommunityChat();
+              await join();
+            }
+          }}
+          disabled={isCreateCommunityChatLoading}
+          icon={isCreateCommunityChatLoading && <Spinner />}
+          iconPlacement="left"
+        >
+          {_t("chat.start-community-chat")}
+        </Button>
+      )}
+      {!isCommunityChannelJoined && (
+        <Button
+          size="sm"
+          disabled={isAddCommunityChannelLoading}
+          to={`/chats/${props.community.name}`}
+          iconPlacement="left"
+        >
+          {_t("chat.join-community-chat")}
+        </Button>
       )}
     </>
-  ) : (
-    <></>
   );
 }

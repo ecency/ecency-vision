@@ -41,7 +41,7 @@ export function BlockedUsersModal({ username, setShow, show }: Props) {
                 </Tr>
               </thead>
               <tbody>
-                {currentChannel?.removedUserIds!.map((user, i) => {
+                {currentChannel?.removedUserIds?.map((user, i) => {
                   return (
                     <Tr key={i}>
                       <Td>

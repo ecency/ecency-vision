@@ -57,18 +57,20 @@ export function ChatMessageItem({
 
   useDebounce(
     () => {
-      setHoldStarted(false);
-      onContextMenu?.();
+      if (holdStarted) {
+        setHoldStarted(false);
+        onContextMenu?.();
+      }
     },
-    1000,
+    500,
     [holdStarted]
   );
 
   return (
-    <div key={message.id} data-message-id={message.id}>
+    <div key={message.id} data-message-id={message.id} className="inline-flex">
       <div
         className={classNameObject({
-          "flex gap-1 mb-4 px-4": true,
+          "inline-flex gap-1 mb-4 px-4": true,
           "justify-start": type === "receiver",
           "justify-end": type === "sender",
           failed: isFailed,
@@ -101,7 +103,8 @@ export function ChatMessageItem({
         >
           <div
             className={classNameObject({
-              "text-sm p-2.5 rounded-b-2xl duration-300": !isGif && !isImage && !isEmoji,
+              "duration-300": true,
+              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
