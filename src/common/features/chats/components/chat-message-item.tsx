@@ -67,10 +67,10 @@ export function ChatMessageItem({
   );
 
   return (
-    <div key={message.id} data-message-id={message.id} className="inline-flex">
+    <div key={message.id} data-message-id={message.id}>
       <div
         className={classNameObject({
-          "inline-flex gap-1 mb-4 px-4": true,
+          "flex gap-1 mb-4 px-4": true,
           "justify-start": type === "receiver",
           "justify-end": type === "sender",
           failed: isFailed,

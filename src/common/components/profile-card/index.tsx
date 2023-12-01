@@ -34,6 +34,8 @@ import { Subscription } from "../../store/subscriptions/types";
 import { ResourceCreditsInfo } from "../rc-info";
 import "./_index.scss";
 import { Button } from "@ui/button";
+import JoinCommunityChatBtn from "../../features/chats/components/join-community-chat-btn";
+import { useCommunityCache } from "../../core";
 
 interface Props {
   global: Global;
@@ -56,6 +58,8 @@ export const ProfileCard = (props: Props) => {
 
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({} as any), []);
+
+  const { data: community } = useCommunityCache(props.account.name);
 
   const { activeUser, account, section, global } = props;
 
@@ -258,9 +262,12 @@ export const ProfileCard = (props: Props) => {
       )}
       <div className="btn-controls flex gap-3">
         {isCommunity(account?.name) && (
-          <Link to={`/created/${account?.name}`}>
-            <Button size="sm">{_t("profile.go-community")}</Button>
-          </Link>
+          <>
+            <Link to={`/created/${account?.name}`}>
+              <Button size="sm">{_t("profile.go-community")}</Button>
+            </Link>
+            {!!community && <JoinCommunityChatBtn history={props.history} community={community} />}
+          </>
         )}
         {isMyProfile && (
           <>
