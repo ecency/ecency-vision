@@ -6,8 +6,8 @@ import React, { HTMLProps, useContext, useMemo } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
-import { ChatContext } from "../chat-context-provider";
 import { classNameObject } from "../../../helper/class-name-object";
+import { ChatContext } from "@ecency/ns-query";
 
 export function ChatsDefaultScreen(props: HTMLProps<HTMLDivElement>) {
   const { activeUser } = useMappedStore();

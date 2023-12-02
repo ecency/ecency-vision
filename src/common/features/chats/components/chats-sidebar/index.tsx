@@ -1,17 +1,20 @@
 import React, { useContext, useMemo, useState } from "react";
 import { History } from "history";
-import { getJoinedCommunities } from "../../utils";
 import ChatsScroller from "../chats-scroller";
-import { AccountWithReputation } from "../../types";
-import { ChatContext } from "../../chat-context-provider";
 import { ChatSidebarHeader } from "./chat-sidebar-header";
 import { ChatSidebarSearch } from "./chat-sidebar-search";
 import { ChatSidebarSearchItem } from "./chat-sidebar-search-item";
 import { ChatSidebarDirectContact } from "./chat-sidebar-direct-contact";
 import { _t } from "../../../../i18n";
-import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
-import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
 import { ChatSidebarChannel } from "./chat-sidebar-channel";
+import {
+  AccountWithReputation,
+  ChatContext,
+  getJoinedCommunities,
+  useChannelsQuery,
+  useDirectContactsQuery,
+  useLeftCommunityChannelsQuery
+} from "@ecency/ns-query";
 
 interface Props {
   username: string;

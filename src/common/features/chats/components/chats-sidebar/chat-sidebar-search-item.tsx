@@ -1,9 +1,9 @@
 import accountReputation from "../../../../helper/account-reputation";
 import { Link } from "react-router-dom";
 import React from "react";
-import { AccountWithReputation } from "../../types";
 import UserAvatar from "../../../../components/user-avatar";
 import isCommunity from "../../../../helper/is-community";
+import { AccountWithReputation } from "@ecency/ns-query";
 
 interface Props {
   user: AccountWithReputation;

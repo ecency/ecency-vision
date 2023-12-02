@@ -5,8 +5,8 @@ import qrcode from "qrcode";
 import { classNameObject } from "../../../helper/class-name-object";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { PREFIX } from "../../../util/local-storage";
-import { useKeysQuery } from "../queries/keys-query";
 import { Button } from "@ui/button";
+import { useKeysQuery } from "@ecency/ns-query";
 
 export default function ManageChatKey() {
   const { activeUser } = useMappedStore();

@@ -3,7 +3,7 @@ import { arrowBackSvg } from "../../../img/svg";
 import { _t } from "../../../i18n";
 import ManageChatKey from "../components/manage-chat-key";
 import React, { useContext } from "react";
-import { ChatContext } from "../chat-context-provider";
+import { ChatContext } from "@ecency/ns-query";
 
 export function ChatsManageKeySection() {
   const { setRevealPrivateKey } = useContext(ChatContext);

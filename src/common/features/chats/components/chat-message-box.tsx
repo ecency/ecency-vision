@@ -4,16 +4,20 @@ import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
 import LinearProgress from "../../../components/linear-progress";
-import { getJoinedCommunities } from "../utils";
 import { Button } from "@ui/button";
-import { useChannelsQuery, useCommunityChannelQuery } from "../queries";
-import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
 import { useCommunityCache } from "../../../core";
-import { useAddCommunityChannel } from "../mutations";
 import ChatsProfileBox from "./chat-profile-box";
-import { useAutoScrollInChatBox } from "../hooks";
-import { Channel } from "../nostr";
 import { _t } from "../../../i18n";
+import {
+  Channel,
+  getJoinedCommunities,
+  useAddCommunityChannel,
+  useAutoScrollInChatBox,
+  useChannelsQuery,
+  useCommunityChannelQuery,
+  useLeftCommunityChannelsQuery
+} from "@ecency/ns-query";
+import { useGetAccountFullQuery } from "../../../api/queries";
 
 interface MatchParams {
   filter: string;
@@ -32,11 +36,15 @@ interface Props {
 export default function ChatsMessagesBox(props: Props) {
   useAutoScrollInChatBox(props.match.params.username);
 
+  const { data: communityAccount } = useGetAccountFullQuery(props.match.params.username);
   const { data: community } = useCommunityCache(props.match.params.username);
 
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
-  const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
+  const { data: communityChannel } = useCommunityChannelQuery(
+    community ?? undefined,
+    communityAccount
+  );
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =

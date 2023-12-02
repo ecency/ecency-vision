@@ -29,9 +29,10 @@ import { EntriesCacheManager } from "./core";
 import { UserActivityRecorder } from "./components/user-activity-recorder";
 import { useGlobalLoader } from "./util/use-global-loader";
 import useMount from "react-use/lib/useMount";
-import { ChatContextProvider } from "./features/chats/chat-context-provider";
 import { ChatPopUp } from "./features/chats/components/chat-popup";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ChatContextProvider } from "@ecency/ns-query";
+import { useGetAccountFullQuery } from "./api/queries";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -85,8 +86,10 @@ const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 const DecksPage = loadable(() => import("./pages/decks"));
 
 const App = (props: any) => {
-  const { global } = useMappedStore();
+  const { global, activeUser } = useMappedStore();
   const { hide } = useGlobalLoader();
+
+  const { data: activeUserAccount } = useGetAccountFullQuery(activeUser?.username);
 
   useMount(() => {
     // Drop hiding from main queue to give React time to render
@@ -108,7 +111,7 @@ const App = (props: any) => {
       <ReactQueryDevtools initialIsOpen={false} />
       <Tracker />
       <UserActivityRecorder />
-      <ChatContextProvider>
+      <ChatContextProvider activeUsername={activeUser?.username} activeUserData={activeUserAccount}>
         <Switch>
           <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
           <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />

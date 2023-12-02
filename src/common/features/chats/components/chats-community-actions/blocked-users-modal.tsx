@@ -1,12 +1,14 @@
 import { _t } from "../../../../i18n";
 import React, { useMemo } from "react";
-import { useChannelsQuery } from "../../queries";
 import UserAvatar from "../../../../components/user-avatar";
-import { useUpdateChannelBlockedUsers } from "../../mutations";
 import { Table, Td, Th, Tr } from "@ui/table";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { Button } from "@ui/button";
-import { useNostrGetUserProfilesQuery } from "../../nostr/queries";
+import {
+  useChannelsQuery,
+  useNostrGetUserProfilesQuery,
+  useUpdateChannelBlockedUsers
+} from "@ecency/ns-query";
 
 interface Props {
   username: string;

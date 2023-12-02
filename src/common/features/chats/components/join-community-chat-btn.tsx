@@ -3,21 +3,21 @@ import { History } from "history";
 import { Community } from "../../../store/communities";
 import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-context-provider";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import {
+  ChatContext,
   useAddCommunityChannel,
-  useCreateCommunityChat,
-  useLeaveCommunityChannel
-} from "../mutations";
-import {
   useChannelsQuery,
   useCommunityChannelQuery,
+  useCreateCommunityChat,
+  useKeysQuery,
+  useLeaveCommunityChannel,
+  useLeftCommunityChannelsQuery,
   useNostrJoinedCommunityTeamQuery
-} from "../queries";
-import { useLeftCommunityChannelsQuery } from "../queries/left-community-channels-query";
-import { useKeysQuery } from "../queries/keys-query";
+} from "@ecency/ns-query";
+import { useGetAccountFullQuery, useGetAccountsFullQuery } from "../../../api/queries";
+import { updateProfile } from "../../../api/operations";
 
 interface Props {
   history: History;
@@ -29,15 +29,23 @@ export default function JoinCommunityChatBtn(props: Props) {
   const { hasUserJoinedChat } = useContext(ChatContext);
   const { activeUser } = useMappedStore();
 
+  const { data: communityAccount } = useGetAccountFullQuery(props.community.name);
+  const communityTeamQueries = useGetAccountsFullQuery(
+    props.community.team.map(([name, role]) => name)
+  );
   const { data: currentChannel } = useCommunityChannelQuery(props.community);
   const { data: channels } = useChannelsQuery();
-  const { data: communityTeam } = useNostrJoinedCommunityTeamQuery(props.community);
+  const { data: communityTeam } = useNostrJoinedCommunityTeamQuery(
+    props.community,
+    communityAccount!!,
+    communityTeamQueries.map((query) => query.data!!)
+  );
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
     useAddCommunityChannel(currentChannel?.id);
   const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
-    useCreateCommunityChat(props.community);
+    useCreateCommunityChat(props.community, communityAccount!!, updateProfile);
   const { mutateAsync: leaveCommunityChannel, isLoading: isLeavingCommunityChannelLoading } =
     useLeaveCommunityChannel();
 

@@ -1,13 +1,12 @@
 import { getAccountFull } from "../../../api/hive";
 import { updateProfile } from "../../../api/operations";
-import { ActiveUser } from "../../../store/active-user/types";
-import { createNoStrAccount } from "./create-nostr-account";
+import { AccountData, createNoStrAccount } from "@ecency/ns-query";
 
 export const uploadChatKeys = async (
-  activeUser: ActiveUser | null,
+  activeUser: AccountData,
   { pub, priv, iv }: ReturnType<typeof createNoStrAccount> & { iv: Buffer }
 ) => {
-  const response = await getAccountFull(activeUser?.username!);
+  const response = await getAccountFull(activeUser?.name!);
 
   return await updateProfile(response, {
     ...JSON.parse(response?.posting_json_metadata ? response.posting_json_metadata : "{}").profile,

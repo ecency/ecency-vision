@@ -6,7 +6,6 @@ import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
 import { usePrevious } from "../util/use-previous";
 
-import { getJoinedCommunities } from "../features/chats/utils";
 import { makeGroupKey } from "../store/entries";
 import _ from "lodash";
 import Meta from "../components/meta";
@@ -40,8 +39,11 @@ import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { useChannelsQuery } from "../features/chats/queries";
-import { useLeftCommunityChannelsQuery } from "../features/chats/queries/left-community-channels-query";
+import {
+  getJoinedCommunities,
+  useChannelsQuery,
+  useLeftCommunityChannelsQuery
+} from "@ecency/ns-query";
 
 interface MatchParams {
   filter: string;

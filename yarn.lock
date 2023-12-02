@@ -1369,6 +1369,18 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@ecency/ns-query@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-0.0.1.tgz#dd931d793adce3705ad7f5f0695256c8e1d34def"
+  integrity sha512-fSSyV4/y1+TrVwHf7cyNBy1X5Z11RPE4CBqamLUPbcBwBRLHigf73ci3XcHKgpG3SrjC7s8AOapWUAKJM772Yg==
+  dependencies:
+    "@tanstack/react-query" "^4.29.7"
+    date-fns "^2.30.0"
+    nostr-tools "^1.17.0"
+    react "^16.8.6"
+    react-dom "^16.8.6"
+    react-use "^17.4.1"
+
 "@ecency/render-helper-amp@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ecency/render-helper-amp/-/render-helper-amp-1.1.0.tgz#8ccb12163786227510a2cc5ce7b09797ac680577"
@@ -1784,7 +1796,7 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.13.tgz#b6461fb0c2964356c469e115f504c95ad97ab88c"
   integrity sha512-GryiOJmNcWbovBxTfZSF71V/mXbgcV3MewDe3kIMCLyIh5e7SKAeUZs+rMnJ8jkMolZ/4/VsdBmMrw3l+VdZ3w==
 
-"@jridgewell/sourcemap-codec@^1.4.14":
+"@jridgewell/sourcemap-codec@^1.4.14", "@jridgewell/sourcemap-codec@^1.4.15":
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
@@ -3268,10 +3280,10 @@ babel-preset-jest@^26.6.2:
     babel-plugin-jest-hoist "^26.6.2"
     babel-preset-current-node-syntax "^1.0.0"
 
-babel-preset-razzle@^4.0.5:
-  version "4.2.16"
-  resolved "https://registry.yarnpkg.com/babel-preset-razzle/-/babel-preset-razzle-4.2.16.tgz#c6336ee6f5239462983a49401254e49afdb46a06"
-  integrity sha512-ilCj8YjiWuRgzoaHOtW+B63RZ/yySlV8km7yh+Y0vQt2kSQCKxSnouUhADQXzr31K0DEMw5uIjRCr3h3MGsUcw==
+babel-preset-razzle@^4.2.18:
+  version "4.2.18"
+  resolved "https://registry.yarnpkg.com/babel-preset-razzle/-/babel-preset-razzle-4.2.18.tgz#257cf684337cbbff54ce0e74695a6f2f6977d585"
+  integrity sha512-UmoGdxuobZJ2ut/7JQPEZaDMH4aJMEWj1E8aeX2uV+C1I7FULo/kkrD8I43hnfcZVX3cAdZYATZ6LiNe01plNg==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
@@ -4821,6 +4833,11 @@ csstype@^3.0.6:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
+
+csstype@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
+  integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
 currency-symbol-map@^4.0.4:
   version "4.0.4"
@@ -6908,6 +6925,14 @@ inline-style-prefixer@^6.0.0:
     css-in-js-utils "^3.1.0"
     fast-loops "^1.1.3"
 
+inline-style-prefixer@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-7.0.0.tgz#991d550735d42069f528ac1bcdacd378d1305442"
+  integrity sha512-I7GEdScunP1dQ6IM2mQWh6v0mOYdYmH3Bp31UecKdrcUgcURTcctSe1IECdUznSHKSmsHtjrT3CwCPI1pyxfUQ==
+  dependencies:
+    css-in-js-utils "^3.1.0"
+    fast-loops "^1.1.3"
+
 inquirer@7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
@@ -8709,6 +8734,20 @@ nano-css@^5.3.1:
     stacktrace-js "^2.0.2"
     stylis "^4.0.6"
 
+nano-css@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/nano-css/-/nano-css-5.6.1.tgz#964120cb1af6cccaa6d0717a473ccd876b34c197"
+  integrity sha512-T2Mhc//CepkTa3X4pUhKgbEheJHYAxD0VptuqFhDbGMUWVV2m+lkNiW/Ieuj35wrfC8Zm0l7HvssQh7zcEttSw==
+  dependencies:
+    "@jridgewell/sourcemap-codec" "^1.4.15"
+    css-tree "^1.1.2"
+    csstype "^3.1.2"
+    fastest-stable-stringify "^2.0.2"
+    inline-style-prefixer "^7.0.0"
+    rtl-css-js "^1.16.1"
+    stacktrace-js "^2.0.2"
+    stylis "^4.3.0"
+
 nanoid@^3.1.22, nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
@@ -8935,7 +8974,7 @@ nostr-relaypool@^0.6.28:
     nostr-tools "^1.10.0"
     safe-stable-stringify "^2.4.2"
 
-nostr-tools@^1.10.0:
+nostr-tools@^1.10.0, nostr-tools@^1.17.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/nostr-tools/-/nostr-tools-1.17.0.tgz#b6f62e32fedfd9e68ec0a7ce57f74c44fc768e8c"
   integrity sha512-LZmR8GEWKZeElbFV5Xte75dOeE9EFUW/QLI1Ncn3JKn0kFddDKEfBbFN8Mu4TMs+L4HR/WTPha2l+PPuRnJcMw==
@@ -10319,10 +10358,10 @@ razzle-dev-utils@3.4.5:
     strip-ansi "6.0.0"
     webpack-dev-server "~3.10.3"
 
-razzle-dev-utils@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/razzle-dev-utils/-/razzle-dev-utils-4.0.5.tgz#51d236a21c590a9dd017b0107c261643e36d497f"
-  integrity sha512-ki1PxtBCugmpTyYdQ4/Ls3uToBimxNxJsxoZzNx/C8NaxBbbDAVKvysX1oqFRVT9KyMOLaQXFG/qdSFXDxcvlg==
+razzle-dev-utils@^4.2.18:
+  version "4.2.18"
+  resolved "https://registry.yarnpkg.com/razzle-dev-utils/-/razzle-dev-utils-4.2.18.tgz#ba55ca6a19931eb4c7540fcedbe57d1f31838f45"
+  integrity sha512-WOXpAUAJaR3JJYhhb6iQKa+i25Ab2lAGiJXdbkDAXWDFRikpnojoUaZ2VuoNluSo0Xd7OKeaX8Ge29LW4mjEEg==
   dependencies:
     "@babel/code-frame" "^7.8.3"
     chalk "^4.1.0"
@@ -10336,10 +10375,10 @@ razzle-dev-utils@^4.0.5:
     sockjs-client "~1.4.0"
     strip-ansi "^6.0.0"
 
-razzle-plugin-scss@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/razzle-plugin-scss/-/razzle-plugin-scss-4.0.5.tgz#bc36e021c14f88fbcbca32849abc7ee9d2d3a5db"
-  integrity sha512-uxLwIqLA/SvdhVtPEa4wHZX+wvseBRR1FHEN22u8kZKGIdr8HWwiU7vIVpxtt228yCFyqthminMkQAsCxJlwAA==
+razzle-plugin-scss@^4.2.18:
+  version "4.2.18"
+  resolved "https://registry.yarnpkg.com/razzle-plugin-scss/-/razzle-plugin-scss-4.2.18.tgz#829838946aff73b0d8ecc539b78951971833ae88"
+  integrity sha512-G3Vwunt3kWJk117fS9hue7+cDNVIUyJrGLY0qdHwJPgceRggZR9XlKT9U09lCZan0UoaASLVfQmZVITiLIGodA==
   dependencies:
     autoprefixer "^10.2.3"
     css-loader "^5.0.0"
@@ -10360,15 +10399,15 @@ razzle-plugin-typescript@^3.0.0:
     razzle-dev-utils "3.4.5"
     ts-loader "^5.2.1"
 
-razzle-start-server-webpack-plugin@4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/razzle-start-server-webpack-plugin/-/razzle-start-server-webpack-plugin-4.0.5.tgz#432719af814944ad15deeb9134ee5bfcfe9dc69b"
-  integrity sha512-IrsdXUsNdPYe4enEQseG/rFeggkVTvzopjICJxCxx/bco5pqcAZUdJ02ntuPPqa3f9KOr9mYFDKgBo6gh96UiQ==
+razzle-start-server-webpack-plugin@4.2.18:
+  version "4.2.18"
+  resolved "https://registry.yarnpkg.com/razzle-start-server-webpack-plugin/-/razzle-start-server-webpack-plugin-4.2.18.tgz#153e35647b78f0224becc2d586d43a9af0838cfe"
+  integrity sha512-yR86/T7hmfseBFOQYZDiDfLNxIvws7wBvRoQNz7aw4cT6cX8JFDPpMDHQQNdnESRDencDozMtFLX0jECJJi/CA==
 
-razzle@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/razzle/-/razzle-4.0.5.tgz#314da48f85b19022ea7f1ae21ee3c71b6b685f2a"
-  integrity sha512-35zdVelUH+7OifhDMsFeqopyz2I3u7JT2bKu+KcliR1AFOplDnPMEUSwWdQ4KFdJI7b+eFFuCAx0jJh3yi8Ahg==
+razzle@^4.2.18:
+  version "4.2.18"
+  resolved "https://registry.yarnpkg.com/razzle/-/razzle-4.2.18.tgz#6a7c7c692b7ce0224e3d99fd43da1db6d5f0cd68"
+  integrity sha512-lgumXubb/rs5oQVcmu3UDSObbWQ2H1FLf2/VLal25yusotEbyePVLAw9f9QGu+bbUohvEY0rfYyJtnQNE8J4Og==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.12.1"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.4.3"
@@ -10396,7 +10435,7 @@ razzle@^4.0.5:
     postcss-load-config "^3.0.0"
     postcss-loader "^4.2.0"
     process "^0.11.10"
-    razzle-start-server-webpack-plugin "4.0.5"
+    razzle-start-server-webpack-plugin "4.2.18"
     react-dev-utils "^11.0.4"
     react-refresh "^0.9.0"
     resolve "^1.17.0"
@@ -10725,6 +10764,26 @@ react-use@^17.4.0:
     fast-shallow-equal "^1.0.0"
     js-cookie "^2.2.1"
     nano-css "^5.3.1"
+    react-universal-interface "^0.6.2"
+    resize-observer-polyfill "^1.5.1"
+    screenfull "^5.1.0"
+    set-harmonic-interval "^1.0.1"
+    throttle-debounce "^3.0.1"
+    ts-easing "^0.2.0"
+    tslib "^2.1.0"
+
+react-use@^17.4.1:
+  version "17.4.2"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.4.2.tgz#26d43c774ccb733a17a87be62e12fbcbc5654173"
+  integrity sha512-1jPtmWLD8OJJNYCdYLJEH/HM+bPDfJuyGwCYeJFgPmWY8ttwpgZnW5QnzgM55CYUByUiTjHxsGOnEpLl6yQaoQ==
+  dependencies:
+    "@types/js-cookie" "^2.2.6"
+    "@xobotyi/scrollbar-width" "^1.9.5"
+    copy-to-clipboard "^3.3.1"
+    fast-deep-equal "^3.1.3"
+    fast-shallow-equal "^1.0.0"
+    js-cookie "^2.2.1"
+    nano-css "^5.6.1"
     react-universal-interface "^0.6.2"
     resize-observer-polyfill "^1.5.1"
     screenfull "^5.1.0"
@@ -11207,6 +11266,13 @@ rtl-css-js@^1.14.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.16.0.tgz#e8d682982441aadb63cabcb2f7385f3fb78ff26e"
   integrity sha512-Oc7PnzwIEU4M0K1J4h/7qUUaljXhQ0kCObRsZjxs2HjkpKsnoTMvSmvJ4sqgJZd0zBoEfAyTdnK/jMIYvrjySQ==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+
+rtl-css-js@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.16.1.tgz#4b48b4354b0ff917a30488d95100fbf7219a3e80"
+  integrity sha512-lRQgou1mu19e+Ya0LsTvKrVJ5TYUbqCVPAiImX3UfLTenarvPUl1QFdvu5Z3PYmHT9RCcwIfbjRQBntExyj3Zg==
   dependencies:
     "@babel/runtime" "^7.1.2"
 
@@ -12217,6 +12283,11 @@ stylis@^4.0.6:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.1.3.tgz#fd2fbe79f5fed17c55269e16ed8da14c84d069f7"
   integrity sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==
+
+stylis@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.3.0.tgz#abe305a669fc3d8777e10eefcfc73ad861c5588c"
+  integrity sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==
 
 sucrase@^3.32.0:
   version "3.34.0"

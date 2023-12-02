@@ -3,8 +3,8 @@ import { _t } from "../../../../i18n";
 import React, { useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { getAccountReputations } from "../../../../api/hive";
-import { AccountWithReputation } from "../../types";
 import LinearProgress from "../../../../components/linear-progress";
+import { AccountWithReputation } from "@ecency/ns-query";
 
 interface Props {
   searchQuery: string;

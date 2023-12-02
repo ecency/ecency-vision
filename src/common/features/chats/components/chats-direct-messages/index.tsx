@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { checkContiguousMessage, formatMessageDateAndDay } from "../../utils";
-import { ChatContext } from "../../chat-context-provider";
 import { _t } from "../../../../i18n";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
-import { useKeysQuery } from "../../queries/keys-query";
-import { DirectMessage } from "../../nostr";
 import { Button } from "@ui/button";
 import { useInviteViaPostComment } from "../../mutations";
 import { FormControl } from "@ui/input";
 import { Alert } from "@ui/alert";
+import {
+  ChatContext,
+  checkContiguousMessage,
+  DirectMessage,
+  formatMessageDateAndDay,
+  useKeysQuery
+} from "@ecency/ns-query";
 
 interface Props {
   directMessages: DirectMessage[];

@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
 import React, { useMemo } from "react";
-import { useChannelsQuery, useMessagesQuery } from "../../queries";
 import { useCommunityCache } from "../../../../core";
 import { ChatsChannelMessages } from "../chat-channel-messages";
-import { DirectMessage, PublicMessage } from "../../nostr";
+import { DirectMessage, PublicMessage, useChannelsQuery, useMessagesQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;

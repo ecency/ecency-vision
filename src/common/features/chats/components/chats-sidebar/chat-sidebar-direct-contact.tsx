@@ -1,11 +1,8 @@
-import { getRelativeDate } from "../../utils";
 import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
-import { ChatContext } from "../../chat-context-provider";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { useMessagesQuery } from "../../queries";
-import { DirectContact } from "../../nostr";
+import { ChatContext, DirectContact, getRelativeDate, useMessagesQuery } from "@ecency/ns-query";
 
 interface Props {
   contact: DirectContact;

@@ -3,13 +3,11 @@ import { History } from "history";
 import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
 import { CHATPAGE } from "./chat-popup/chat-constants";
-import { formattedUserName } from "../utils";
 import Link from "../../../components/alink";
 import { expandSideBar } from "../../../img/svg";
 import { Button } from "@ui/button";
-import { ChatContext } from "../chat-context-provider";
-import { useChannelsQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
+import { ChatContext, formattedUserName, useChannelsQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;

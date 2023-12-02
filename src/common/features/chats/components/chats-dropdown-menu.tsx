@@ -4,9 +4,9 @@ import { chatKeySvg, extendedView, kebabMenuSvg, keySvg } from "../../../img/svg
 import { _t } from "../../../i18n";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { Button } from "@ui/button";
-import { useLogoutFromChats } from "../mutations";
 import { history } from "../../../store";
 import { useLocation } from "react-router";
+import { useLogoutFromChats } from "@ecency/ns-query";
 
 interface Props {
   history: History | null;

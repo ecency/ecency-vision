@@ -1,9 +1,8 @@
 import { _t } from "../../../../i18n";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import React, { useContext } from "react";
-import { ChatContext } from "../../chat-context-provider";
 import { History } from "history";
-import { useKeysQuery } from "../../queries/keys-query";
+import { ChatContext, useKeysQuery } from "@ecency/ns-query";
 
 interface Props {
   history: History;

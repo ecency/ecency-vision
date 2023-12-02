@@ -1,4 +1,4 @@
-import { formatMessageTime, isMessageGif, isMessageImage, isSingleEmoji } from "../utils";
+import { isMessageGif } from "../utils";
 import { Spinner } from "@ui/spinner";
 import React, { useMemo, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
@@ -6,13 +6,19 @@ import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-extension";
-import { Channel, Message } from "../nostr";
-import { useKeysQuery } from "../queries/keys-query";
 import useMount from "react-use/lib/useMount";
 import { Button } from "@ui/button";
 import { failedMessageSvg } from "../../../img/svg";
-import { useResendMessage } from "../mutations";
 import useDebounce from "react-use/lib/useDebounce";
+import {
+  Channel,
+  formatMessageTime,
+  isMessageImage,
+  isSingleEmoji,
+  Message,
+  useKeysQuery,
+  useResendMessage
+} from "@ecency/ns-query";
 
 interface Props {
   type: "sender" | "receiver";

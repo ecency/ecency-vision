@@ -1,14 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
-import { checkContiguousMessage, formatMessageDateAndDay } from "../utils";
 import { ChatMessageItem } from "./chat-message-item";
-import { useKeysQuery } from "../queries/keys-query";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
 import { hideSvg, removeUserSvg } from "../../../img/svg";
-import { useHideMessageInChannel, useUpdateChannelBlockedUsers } from "../mutations";
 import { Spinner } from "@ui/spinner";
-import { Channel, PublicMessage } from "../nostr";
+import {
+  Channel,
+  checkContiguousMessage,
+  formatMessageDateAndDay,
+  PublicMessage,
+  useHideMessageInChannel,
+  useKeysQuery,
+  useUpdateChannelBlockedUsers
+} from "@ecency/ns-query";
 
 interface Props {
   publicMessages: PublicMessage[];

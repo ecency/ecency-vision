@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
 import { Alert } from "@ui/alert";
 import { CodeInput } from "@ui/input";
-import { useJoinChat } from "../mutations";
+import { useJoinChat } from "@ecency/ns-query";
+import { uploadChatKeys } from "../utils/upload-chat-keys";
 
 export function CreateAnAccount() {
   const [step, setStep] = useState(0);
   const [pin, setPin] = useState("");
 
-  const { mutateAsync: joinChat } = useJoinChat();
+  const { mutateAsync: joinChat } = useJoinChat(uploadChatKeys);
 
   return (
     <>

@@ -9,17 +9,15 @@ import {
 } from "../../../img/svg";
 import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle } from "./chat-popup/chat-constants";
 import { _t } from "../../../i18n";
-import { ChatContext } from "../chat-context-provider";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { useChatFileUpload, useSendMessage } from "../mutations";
+import { useChatFileUpload } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
 import { Spinner } from "@ui/spinner";
-import { useChannelsQuery } from "../queries";
-import { Channel } from "../nostr";
+import { Channel, ChatContext, useChannelsQuery, useSendMessage } from "@ecency/ns-query";
 
 interface Props {
   currentChannel?: Channel;

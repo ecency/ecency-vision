@@ -4,13 +4,11 @@ import { chatLeaveSvg, editSVG, kebabMenuSvg, linkSvg, removeUserSvg } from "../
 import { _t } from "../../../../i18n";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { success } from "../../../../components/feedback";
-import { copyToClipboard } from "../../utils";
-import { useLeaveCommunityChannel } from "../../mutations";
-import { useChannelsQuery } from "../../queries";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { EditRolesModal } from "./edit-roles-modal";
 import { Button } from "@ui/button";
 import { BlockedUsersModal } from "./blocked-users-modal";
+import { copyToClipboard, useChannelsQuery, useLeaveCommunityChannel } from "@ecency/ns-query";
 
 interface Props {
   history: History;

@@ -5,11 +5,15 @@ import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
 import ChatsScroller from "./chats-scroller";
 import { classNameObject } from "../../../helper/class-name-object";
-import { useMessagesQuery } from "../queries";
 import isCommunity from "../../../helper/is-community";
-import { useFetchPreviousMessages } from "../mutations";
 import { ChatsChannelMessages } from "./chat-channel-messages";
-import { Channel, DirectMessage, PublicMessage } from "../nostr";
+import {
+  Channel,
+  DirectMessage,
+  PublicMessage,
+  useFetchPreviousMessages,
+  useMessagesQuery
+} from "@ecency/ns-query";
 
 interface Props {
   username: string;

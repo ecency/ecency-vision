@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { useMessagesQuery } from "../../queries";
+import { useMessagesQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;

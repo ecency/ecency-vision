@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { useMessagesQuery } from "../../queries";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { getRelativeDate } from "../../utils";
-import { ChatContext } from "../../chat-context-provider";
-import { Channel } from "../../nostr";
+import { Channel, ChatContext, getRelativeDate, useMessagesQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;

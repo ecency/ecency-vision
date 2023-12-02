@@ -7,9 +7,12 @@ import ChatInput from "./chat-input";
 import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { COMMUNITYADMINROLES } from "./chat-popup/chat-constants";
-import { useUpdateChannelBlockedUsers } from "../mutations";
-import { useNostrGetUserProfileQuery } from "../nostr/queries";
-import { Channel } from "../nostr";
+import {
+  Channel,
+  CommunityModerator,
+  useNostrGetUserProfileQuery,
+  useUpdateChannelBlockedUsers
+} from "@ecency/ns-query";
 
 interface Props {
   currentChannel: Channel;
@@ -35,8 +38,8 @@ export function ChatMessageChannelItemExtension({
   const communityAdmins = useMemo(
     () =>
       currentChannel?.communityModerators
-        ?.filter((user) => COMMUNITYADMINROLES.includes(user.role))
-        .map((user) => user.name) ?? [],
+        ?.filter((user: CommunityModerator) => COMMUNITYADMINROLES.includes(user.role))
+        .map((user: CommunityModerator) => user.name) ?? [],
     [currentChannel]
   );
 

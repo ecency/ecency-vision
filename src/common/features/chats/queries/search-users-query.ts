@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { ChatQueries } from "./queries";
 import { getAccountReputations } from "../../../api/hive";
 
 export function useSearchUsersQuery(query: string) {
   return useQuery(
-    [ChatQueries.SEARCH_USER, query],
+    ["chats/search-user", query],
     async () => {
       if (!query) {
         return [];

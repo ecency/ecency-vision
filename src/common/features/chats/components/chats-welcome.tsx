@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { _t } from "../../../i18n";
-import { ChatContext } from "../chat-context-provider";
 import { CodeInput } from "@ui/input";
 import OrDivider from "../../../components/or-divider";
-import { useRestoreChatByPin } from "../mutations/restore-chat-by-pin";
 import { useGetAccountFullQuery } from "../../../api/queries";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { getUserChatPrivateKey, getUserChatPublicKey } from "../utils";
 import { CreateAnAccount } from "./create-an-account";
 import { ChatsImport } from "./chats-import";
+import {
+  ChatContext,
+  getUserChatPrivateKey,
+  getUserChatPublicKey,
+  useRestoreChatByPin
+} from "@ecency/ns-query";
 
 export function ChatsWelcome() {
   const { activeUser } = useMappedStore();

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { _t } from "../../../../i18n";
 import LinearProgress from "../../../../components/linear-progress";
-import { ChatContext } from "../../chat-context-provider";
 
 import "./index.scss";
 import { Button } from "@ui/button";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
+import { ChatContext } from "@ecency/ns-query";
 
 interface Props {
   actionType: string;

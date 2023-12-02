@@ -9,19 +9,25 @@ import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import "./index.scss";
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import { ChatContext } from "../../chat-context-provider";
 import { useMount } from "react-use";
 import { classNameObject } from "../../../../helper/class-name-object";
 import { ChatPopupHeader } from "./chat-popup-header";
 import { ChatPopupMessagesList } from "./chat-popup-messages-list";
 import { ChatPopupSearchUser } from "./chat-popup-search-user";
 import { ChatPopupContactsAndChannels } from "./chat-popup-contacts-and-channels";
-import { useChannelsQuery, useDirectContactsQuery, useMessagesQuery } from "../../queries";
-import { useFetchPreviousMessages, useJoinChat } from "../../mutations";
-import { useKeysQuery } from "../../queries/keys-query";
 import { ChatsWelcome } from "../chats-welcome";
 import { useGetAccountFullQuery } from "../../../../api/queries";
-import { getUserChatPublicKey } from "../../utils";
+import {
+  ChatContext,
+  getUserChatPublicKey,
+  useChannelsQuery,
+  useDirectContactsQuery,
+  useFetchPreviousMessages,
+  useJoinChat,
+  useKeysQuery,
+  useMessagesQuery
+} from "@ecency/ns-query";
+import { uploadChatKeys } from "../../utils/upload-chat-keys";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -33,7 +39,7 @@ export const ChatPopUp = () => {
     setRevealPrivateKey,
     setReceiverPubKey
   } = useContext(ChatContext);
-  const { isLoading: isJoinChatLoading } = useJoinChat();
+  const { isLoading: isJoinChatLoading } = useJoinChat(uploadChatKeys);
 
   const [currentUser, setCurrentUser] = useState("");
 

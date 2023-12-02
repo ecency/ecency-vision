@@ -3,15 +3,16 @@ import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@ui/modal";
 import { CodeInput, FormControl } from "@ui/input";
 import React, { useState } from "react";
-import { useImportChatByKeys } from "../mutations";
 import { Alert } from "@ui/alert";
+import { useImportChatByKeys } from "@ecency/ns-query";
+import { uploadChatKeys } from "../utils/upload-chat-keys";
 
 export function ChatsImport() {
   const [step, setStep] = useState(0);
   const [ecencyChatKey, setEcencyChatKey] = useState("");
   const [pin, setPin] = useState("");
 
-  const { mutateAsync: importChatByKey } = useImportChatByKeys();
+  const { mutateAsync: importChatByKey } = useImportChatByKeys(uploadChatKeys);
 
   return (
     <>

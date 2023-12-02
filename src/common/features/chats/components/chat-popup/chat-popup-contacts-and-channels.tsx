@@ -1,13 +1,16 @@
 import React, { useContext, useMemo } from "react";
 import { _t } from "../../../../i18n";
-import { getJoinedCommunities } from "../../utils";
 import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
-import { ChatContext } from "../../chat-context-provider";
 import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
-import { useChannelsQuery, useDirectContactsQuery } from "../../queries";
-import { useLeftCommunityChannelsQuery } from "../../queries/left-community-channels-query";
-import { useKeysQuery } from "../../queries/keys-query";
+import {
+  ChatContext,
+  getJoinedCommunities,
+  useChannelsQuery,
+  useDirectContactsQuery,
+  useKeysQuery,
+  useLeftCommunityChannelsQuery
+} from "@ecency/ns-query";
 
 interface Props {
   communityClicked: (v: string) => void;

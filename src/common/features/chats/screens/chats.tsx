@@ -6,22 +6,26 @@ import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "../../..
 import ChatsSideBar from "../components/chats-sidebar";
 import Feedback from "../../../components/feedback";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { ChatContext } from "../chat-context-provider";
 import ChatsMessagesBox from "../components/chat-message-box";
 import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
-import { useChannelsQuery, useCommunityChannelQuery, useDirectContactsQuery } from "../queries";
-import { useKeysQuery } from "../queries/keys-query";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
 import { useGetAccountFullQuery } from "../../../api/queries";
-import { getUserChatPublicKey } from "../utils";
 import useMountedState from "react-use/lib/useMountedState";
 import { _t } from "../../../i18n";
 import Meta from "../../../components/meta";
 import { ChatsDefaultScreen } from "../components/chats-default-screen";
 import { ChatsManageKeySection } from "./chats-manage-key-section";
 import { ChatsUserNotJoinedSection } from "./chats-user-not-joined-section";
+import {
+  ChatContext,
+  getUserChatPublicKey,
+  useChannelsQuery,
+  useCommunityChannelQuery,
+  useDirectContactsQuery,
+  useKeysQuery
+} from "@ecency/ns-query";
 
 interface Props extends PageProps {
   match: match<{

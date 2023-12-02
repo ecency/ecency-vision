@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
@@ -93,5 +93,15 @@ export function useImageDownloader(
 export function useGetAccountFullQuery(username?: string) {
   return useQuery([QueryIdentifiers.GET_ACCOUNT_FULL, username], () => getAccountFull(username!), {
     enabled: !!username
+  });
+}
+
+export function useGetAccountsFullQuery(usernames: string[]) {
+  return useQueries({
+    queries: usernames.map((username) => ({
+      queryKey: [QueryIdentifiers.GET_ACCOUNT_FULL, username],
+      queryFn: () => getAccountFull(username!),
+      enabled: !!username
+    }))
   });
 }

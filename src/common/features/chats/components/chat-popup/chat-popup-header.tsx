@@ -8,8 +8,7 @@ import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { ChatContext } from "../../chat-context-provider";
-import { useKeysQuery } from "../../queries/keys-query";
+import { ChatContext, useKeysQuery } from "@ecency/ns-query";
 
 interface Props {
   currentUser: string;
