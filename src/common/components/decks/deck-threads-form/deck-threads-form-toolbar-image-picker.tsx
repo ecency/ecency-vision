@@ -30,7 +30,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
 
   const checkFile = (filename: string) => {
     const filenameLow = filename.toLowerCase();
-    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
+    return ["jpg", "jpeg", "gif", "png", "webp"].some((el) => filenameLow.endsWith(el));
   };
 
   const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {

@@ -390,7 +390,7 @@ export class EditorToolbar extends Component<Props> {
 
   checkFile = (filename: string) => {
     const filenameLow = filename.toLowerCase();
-    return ["jpg", "jpeg", "gif", "png"].some((el) => filenameLow.endsWith(el));
+    return ["jpg", "jpeg", "gif", "png", "webp"].some((el) => filenameLow.endsWith(el));
   };
 
   render() {
