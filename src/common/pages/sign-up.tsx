@@ -335,12 +335,16 @@ const SignUpPage = (props: Props | any) => {
                     <h3>
                     {/* {_t("onboard.confirm-details")} */} Account creation steps
                     </h3>
-                    <span>Please make sure you have keychain installed as an extension on your browser (we recommend that you pin it to your browser)</span>
-                    <span>Don't have keychain? download 
-                      <a href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
+                    <p>Please make sure you have keychain installed as an extension on your browser 
+                      (If you are a using the web browser, we recommend that you pin it to your browser.)
+                    </p>
+                    <p>If you are on mobile, download the keychain mobile app</p>
+                    <div className="d-flex">
+                      <span className="">Don't have keychain? download</span>
+                      <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
                         here
                       </a>
-                    </span>
+                    </div>
                     <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
@@ -371,10 +375,12 @@ const SignUpPage = (props: Props | any) => {
                     </div>
                     {isDownloaded && <div className="account-link">
                           <h3>Step 2</h3>
+                            {!activeUser && <h5 className="text-danger">{_t("onboard.copy-info-message")}</h5>}
+                            {activeUser && <h5 className="text-danger">Click link below or scan QR code</h5>}
                       <div className="link-wrap">
                         <div>
                           {!activeUser ? <>
-                            <h4>{_t("onboard.copy-info-message")}</h4>
+                            {/* <h5>{_t("onboard.copy-info-message")}</h5> */}
                             <div className="link">
                               <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
                               <span className="icon" onClick={() => {
