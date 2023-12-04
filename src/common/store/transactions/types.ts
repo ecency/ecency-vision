@@ -39,6 +39,11 @@ export interface HECoarseBaseTransaction {
   // POB for Proof of Brain
   symbol: string;
 }
+
+export interface AccountUpdate extends BaseTransaction {
+  type: "account_update";
+}
+
 export interface HEMarketExpire extends HECoarseBaseTransaction {
   account: string;
   operation: "market_expire";
@@ -594,6 +599,7 @@ export type HECoarseTransaction =
   | HEMarketCancel;
 
 export type Transaction =
+  | AccountUpdate
   | MarketExpire
   | MarketCloseOrder
   | TokensUnstake
@@ -649,23 +655,31 @@ export interface Transactions {
   list: Transaction[];
   loading: boolean;
   group: OperationGroup | "";
+  newest: number | null;
+  oldest: number | null;
+  debug: string;
 }
 
 export enum ActionTypes {
   FETCH = "@transactions/FETCH",
   FETCHED = "@transactions/FETCHED",
   FETCH_ERROR = "@transactions/FETCH_ERROR",
-  RESET = "@transactions/RESET"
+  RESET = "@transactions/RESET",
+  SET_OLDEST = "@transactions/SET_OLDEST"
 }
 
 export interface FetchAction {
   type: ActionTypes.FETCH;
   group: OperationGroup | "";
+  clear: boolean;
 }
 
 export interface FetchedAction {
   type: ActionTypes.FETCHED;
   transactions: Transaction[];
+  begin: number;
+  end: number;
+  debug: string;
 }
 
 export interface FetchErrorAction {
@@ -676,4 +690,14 @@ export interface ResetAction {
   type: ActionTypes.RESET;
 }
 
-export type Actions = FetchAction | FetchedAction | FetchErrorAction | ResetAction;
+export interface setOldestAction {
+  type: ActionTypes.SET_OLDEST;
+  oldest: number;
+}
+
+export type Actions =
+  | FetchAction
+  | FetchedAction
+  | FetchErrorAction
+  | ResetAction
+  | setOldestAction;

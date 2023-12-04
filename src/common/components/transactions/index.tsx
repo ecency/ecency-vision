@@ -731,7 +731,8 @@ const List = (props: Props) => {
       const uniqueTxs = [...new Map(txs.map((item) => [item["num"], item])).values()];
       setTransactionsList(uniqueTxs);
     }
-  }, [props.transactions, props.tokenName]);
+    setLoadingLoadMore(false);
+  }, [props.transactions, props.transactions.newest, props.transactions.oldest, props.tokenName]);
 
   useEffect(() => {
     const { transactions, fetchTransactions, account } = props;
@@ -746,7 +747,6 @@ const List = (props: Props) => {
     const { account, fetchTransactions } = props;
     const group = e.target.value;
 
-    setLoadingLoadMore(loadingLoadMore);
     setTransactionsList(transactionsList);
 
     fetchTransactions(account.name, group as OperationGroup);
@@ -756,11 +756,11 @@ const List = (props: Props) => {
     const {
       account,
       fetchTransactions,
-      transactions: { list, group }
+      transactions: { list, group, oldest, newest }
     } = props;
-    if (list.length > 0) {
-      const last_num = list[list.length - 1].num - 1;
-      fetchTransactions(account.name, group as OperationGroup, last_num);
+    if (list.length > 0 && !!oldest) {
+      setLoadingLoadMore(true);
+      fetchTransactions(account.name, group as OperationGroup, (oldest as number) - 1);
     }
   };
 

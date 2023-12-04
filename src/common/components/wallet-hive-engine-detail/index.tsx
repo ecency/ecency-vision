@@ -112,7 +112,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     nextPowerDown: 0,
     delegatedList: false,
     receivedList: false,
-    transactions: { list: [], loading: false, group: "" },
+    transactions: { list: [], loading: false, group: "", newest: null, oldest: null, debug: "" },
     converting: 0
   };
   componentDidMount() {
@@ -162,7 +162,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
       .filter(this.keepTransaction.bind(this, transactions.group))
       .sort(this.compareTransactions);
     this.stateSet({
-      transactions: { list: ntxs, loading: false, group: transactions.group }
+      transactions: {
+        list: ntxs,
+        loading: false,
+        group: transactions.group,
+        newest: null,
+        oldest: null,
+        debug: `Range of data requested not recorded`
+      }
     });
   }
   handleCoarseTransactions(group: OperationGroup | "", cts: Array<HECoarseTransaction>) {
@@ -175,7 +182,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         .filter(this.keepTransaction.bind(this, transactions.group));
       const { list } = transactions;
       this.stateSet({
-        transactions: { list: txs, loading: false, group: transactions.group }
+        transactions: {
+          list: txs,
+          loading: false,
+          group: transactions.group,
+          newest: null,
+          oldest: null,
+          debug: `Range of data requested not recorded`
+        }
       });
     } catch (e) {
       error("Unknown transaction type error.");
@@ -184,7 +198,10 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         transactions: {
           list: transactions.list,
           loading: false,
-          group: transactions.group
+          group: transactions.group,
+          newest: null,
+          oldest: null,
+          debug: `Exception thrown: ` + e.message
         }
       });
     }
@@ -199,7 +216,14 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     const { transactions } = this.state;
     const { list } = transactions;
     this.stateSet({
-      transactions: { list: [], loading: true, group: group || "" }
+      transactions: {
+        list: [],
+        loading: true,
+        group: group || "",
+        newest: null,
+        oldest: null,
+        debug: `Range of data requested not recorded`
+      }
     });
     if (group === "rewards")
       getFineTransactions(symbol, name, group === "rewards" ? limit : limit, start)

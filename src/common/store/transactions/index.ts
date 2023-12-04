@@ -10,7 +10,8 @@ import {
   FetchAction,
   FetchedAction,
   FetchErrorAction,
-  ResetAction
+  ResetAction,
+  setOldestAction
 } from "./types";
 
 import { getAccountHistory } from "../../api/hive";
@@ -64,35 +65,113 @@ const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS)].redu
 export const initialState: Transactions = {
   list: [],
   loading: false,
-  group: ""
+  group: "",
+  newest: null,
+  oldest: null,
+  debug: ""
 };
 
 export default (state: Transactions = initialState, action: Actions): Transactions => {
   switch (action.type) {
     case ActionTypes.FETCH: {
-      return {
-        ...state,
-        group: action.group,
-        list: [],
-        loading: true
-      };
+      if (action.clear || action.group !== state.group) {
+        return {
+          ...state,
+          newest: null,
+          oldest: null,
+          group: action.group,
+          list: [],
+          loading: true
+        };
+      } else {
+        return {
+          ...state,
+          loading: true
+        };
+      }
     }
     case ActionTypes.FETCHED: {
-      return {
-        ...state,
-        list: action.transactions,
-        loading: false
-      };
+      let { begin, end } = action;
+      let { newest, oldest } = state;
+      let debug = `fetched ope  rations ${end}...${begin}`;
+      const measured_first_num =
+        (() => action.transactions[action.transactions.length - 1]?.num)() ?? null;
+      const measured_last_num = (() => state.list[0]?.num)() ?? null;
+      if (state.newest == null && state.oldest == null) {
+        newest = begin;
+        oldest = end;
+        return {
+          ...state,
+          newest,
+          oldest,
+          list: action.transactions,
+          loading: false,
+          debug: `replacing list : ${oldest}..${newest}`
+        };
+      } else if (newest === null || oldest === null) {
+        console.log("unaccounted for state");
+        return { ...initialState };
+      } else if (state.newest === action.begin && state.oldest == action.end) {
+        return {
+          ...state,
+          loading: false,
+          debug: action.debug + " but no change"
+        };
+      } else if (begin + 1 == oldest) {
+        // load more case.
+        oldest = end;
+        if (measured_first_num < end) {
+          end = measured_first_num;
+        }
+        return {
+          ...state,
+          oldest: end,
+          list: [...state.list, ...action.transactions],
+          loading: false,
+          debug: `updating list [${state.oldest}..${state.newest}]=>[${end}..${newest}] actual though is [${measured_first_num}..${measured_last_num}]`
+        };
+      } else if (begin == oldest) {
+        // off by one error
+        oldest = end;
+        if (measured_first_num < end) {
+          end = measured_first_num;
+        }
+        return {
+          ...state,
+          oldest: end,
+          list: [...state.list, ...action.transactions],
+          loading: false,
+          debug: `updating list [${state.oldest}..${state.newest}]=>[${end}..${newest}] actual though is [${measured_first_num}..${measured_last_num}]`
+        };
+      } else {
+        return {
+          ...state,
+          debug: `Cannot reconcile the data ranges incoming:${begin}..${end} and state:${state.oldest}..${state.newest}`,
+          loading: false
+        };
+      }
     }
     case ActionTypes.FETCH_ERROR: {
       return {
         ...state,
         list: [],
-        loading: false
+        loading: false,
+        newest: null,
+        oldest: null
       };
     }
     case ActionTypes.RESET: {
       return { ...initialState };
+    }
+    case ActionTypes.SET_OLDEST: {
+      const { newest, oldest } = state;
+      const measured_first_num = (() => state.list[state.list.length - 1]?.num)() ?? null;
+      const measured_last_num = (() => state.list[0]?.num)() ?? null;
+      return {
+        ...state,
+        oldest: action.oldest,
+        debug: `updating list [${state.oldest}..${state.newest}]=>[${action.oldest}..${newest}] actual though is [${measured_first_num}..${measured_last_num}]`
+      };
     }
     default:
       return state;
@@ -103,7 +182,7 @@ export default (state: Transactions = initialState, action: Actions): Transactio
 export const fetchTransactions =
   (username: string, group: OperationGroup | "" = "", start: number = -1, limit: number = 20) =>
   (dispatch: Dispatch) => {
-    dispatch(fetchAct(group));
+    dispatch(fetchAct(group, start === -1));
 
     const name = username.replace("@", "");
 
@@ -149,10 +228,29 @@ export const fetchTransactions =
           .filter((x) => x !== null)
           .sort((a: any, b: any) => b.num - a.num);
 
-        dispatch(fetchedAct(transactions));
+        dispatch(fetchedAct(transactions, start, limit));
       })
-      .catch(() => {
-        console.log("catch");
+      .catch((e) => {
+        console.log(
+          `caught exception ${e} from handler to a call of getAccountHistory(... start=${start}, limit=${limit}`,
+          e
+        );
+        try {
+          if (
+            e.jse_info.stack[0].format ===
+            "total_processed_items < 2000: Could not find filtered operation in ${total_processed_items} operations, to continue searching, set start=${sequence}."
+          ) {
+            if (start === 0 || start - 2000 < 0) {
+              return;
+            }
+            dispatch(setOldestAct(start - 1999));
+            fetchTransactions(username, group, start - 2000, limit)(dispatch);
+            return;
+          }
+        } catch (e2) {
+          console.log(e2);
+        }
+        console.error(e);
         dispatch(fetchErrorAct());
       });
   };
@@ -161,18 +259,43 @@ export const resetTransactions = () => (dispatch: Dispatch) => {
   dispatch(resetAct());
 };
 
+export const fetchSetOldest = (oldest: number) => (dispatch: Dispatch) => {
+  dispatch(setOldestAct(oldest));
+};
+
 /* Action Creators */
-export const fetchAct = (group: OperationGroup | ""): FetchAction => {
+export const fetchAct = (group: OperationGroup | "", clear: boolean): FetchAction => {
   return {
     type: ActionTypes.FETCH,
+    clear,
     group
   };
 };
 
-export const fetchedAct = (transactions: Transaction[]): FetchedAction => {
+export const fetchedAct = (
+  transactions: Transaction[],
+  start: number,
+  limit: number
+): FetchedAction => {
+  // note: begin > end.
+  let begin = start;
+  let end = start - limit + 1;
+
+  if (start < 0 && transactions.length > 0) {
+    begin = transactions[0].num;
+    end = transactions[0].num - limit + 1;
+  }
+
+  if (end < 0) {
+    end = 0;
+  }
+
   return {
     type: ActionTypes.FETCHED,
-    transactions
+    transactions,
+    begin,
+    end,
+    debug: `fetched txes from : ${begin} to ${end}`
   };
 };
 
@@ -185,5 +308,12 @@ export const fetchErrorAct = (): FetchErrorAction => {
 export const resetAct = (): ResetAction => {
   return {
     type: ActionTypes.RESET
+  };
+};
+
+export const setOldestAct = (oldest: number): setOldestAction => {
+  return {
+    type: ActionTypes.SET_OLDEST,
+    oldest
   };
 };

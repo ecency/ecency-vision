@@ -55,7 +55,10 @@ export class TippingDialog extends Component<DialogProps> {
     const transactions: Transactions = {
       list: [],
       loading: false,
-      group: ""
+      group: "",
+      oldest: null,
+      newest: null,
+      debug: ""
     };
 
     return (
