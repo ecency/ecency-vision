@@ -1,0 +1,44 @@
+@import "src/style/vars_mixins";
+
+.scroll-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  @apply bg-blue-dark-sky;
+  @apply text-white;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+
+  &.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & ~ .announcement-container {
+      bottom: 6rem;
+    }
+
+    & ~ .floating-faq-button {
+
+      & > button {
+        bottom: 1.25rem !important;
+        right: 4.5rem !important;
+      }
+
+      & > .floating-container {
+        bottom: 4.4rem;
+        right: 5rem;
+      }
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

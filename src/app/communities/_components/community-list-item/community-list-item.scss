@@ -1,0 +1,121 @@
+@import "src/style/vars_mixins";
+
+.community-list-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+  line-height: 1.7;
+  word-break: break-word;
+
+  @media (min-width: $md-break) {
+    flex-direction: row;
+  }
+
+  .item-content {
+    flex-grow: 1;
+    margin-bottom: 6px;
+
+    @media (min-width: $md-break) {
+      margin-right: 30px;
+      margin-bottom: 0;
+    }
+
+    .item-details {
+      display: flex;
+      align-items: center;
+    }
+
+    .item-title {
+      @apply text-blue-dark-sky;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+
+      .user-avatar{
+        margin-right: 6px;
+      }
+    }
+
+    .item-about {
+      margin-bottom: 1px;
+    }
+
+    .item-stats,
+    .item-admins {
+      flex-wrap: wrap;
+      font-size: 80%;
+      display: flex;
+      @apply text-gray-steel;
+    }
+
+    .item-stats {
+      .stat {
+        &:not(:last-child) {
+          margin-right: 2px;
+          @media (min-width: $md-break) {
+            margin-right: 6px;
+          }
+          &:after {
+            margin-left: 2px;
+            content: "•";
+
+            @media (min-width: $md-break) {
+              margin-right: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    .item-admins {
+      .admin {
+        margin-left: 4px;
+
+        &:not(:last-child) {
+          &:after {
+            @apply text-gray-steel;
+            content: ",";
+          }
+        }
+      }
+    }
+  }
+
+  .item-controls {
+    flex-shrink: 0;
+    display: flex;
+
+    @media (min-width: $md-break) {
+      width: 120px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.small {
+    @apply text-sm;
+
+    .item-controls {
+      @media (min-width: $md-break) {
+        width: 80px;
+      }
+    }
+
+    .item-title {
+      font-size: 16px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+
+      .user-avatar {
+        margin-right: 4px;
+      }
+    }
+
+    .item-about {
+      max-width: 260px;
+    }
+  }
+}

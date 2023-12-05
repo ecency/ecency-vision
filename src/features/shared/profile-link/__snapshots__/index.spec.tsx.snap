@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<a
+  href="/@username"
+  onClick={[Function]}
+>
+  <span>
+    username
+  </span>
+</a>
+`;

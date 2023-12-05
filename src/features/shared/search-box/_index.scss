@@ -1,0 +1,53 @@
+@import "src/style/vars_mixins";
+
+.search-box {
+  position: relative;
+
+  @media (min-width: $md-break) {
+    .input-with-copy {
+      width: 40% !important;
+      &:focus {
+            width: 100% !important;
+      }
+    }
+  }
+
+  .focus-input {
+    @media (min-width: $md-break) {
+      &:focus-within {
+        input {
+            width: 100% !important;
+        }
+      }
+    }
+
+  }
+
+  .prepend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    @apply text-gray-warm;
+
+    @include themify(day) {
+      @apply text-gray-warm;
+    }
+
+    @include themify(night) {
+      @apply text-dark-600;
+    }
+
+    svg {
+      width: 22px;
+    }
+  }
+
+  .form-control {
+    padding-left: 40px;
+  }
+}

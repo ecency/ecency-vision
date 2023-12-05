@@ -4,7 +4,103 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/global-store/global-module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/global-store/typings.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/accounts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/communities.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/subscriptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/users.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/filters.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/list-style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/theme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/linear-progress/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/linear-progress/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/scroll-to-top/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/scroll-to-top/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-collapse.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-context.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/badge/badge-styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/button-group/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/button/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/button/props.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/button/styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-context.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-menu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/form/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/icons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/checkbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input-styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/textarea.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/input-group-copy-clipboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/input-group.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/list/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal-confirm/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-body.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-footer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-title.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/spinner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/table/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/util/class-name-object.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/util/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/util/props-filter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/util/use-is-mobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +112,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -26,32 +125,111 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/communities",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/communities" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/src/features/ui" />
+      <recent name="$PROJECT_DIR$/src/features/ui/util" />
+      <recent name="$PROJECT_DIR$/src/features/util" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/communities/_components/community-list-item" />
+      <recent name="$PROJECT_DIR$/src/app/communities/_components" />
+      <recent name="$PROJECT_DIR$/src/app/communities" />
+      <recent name="$PROJECT_DIR$/src/features/ui/util" />
+      <recent name="$PROJECT_DIR$/src/features/ui/table" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.lint">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ecency-vision-next" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ecency-vision-next" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="run" type="js.build_tools.npm" nameIsGenerated="true">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.lint" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="" />
@@ -61,10 +239,20 @@
       <updated>1701696076039</updated>
       <workItem from="1701696077166" duration="973000" />
       <workItem from="1701697058088" duration="14000" />
+      <workItem from="1701697181866" duration="20000" />
+      <workItem from="1701697240734" duration="19000" />
+      <workItem from="1701697262787" duration="33000" />
+      <workItem from="1701697307280" duration="105000" />
+      <workItem from="1701697442619" duration="7225000" />
+      <workItem from="1701788911157" duration="5434000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
