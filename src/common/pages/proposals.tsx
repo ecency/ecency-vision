@@ -115,7 +115,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         (proposal) => proposal.status !== "expired" && proposal.status !== "inactive"
       );
       const eligible: Proposal[] = [];
-      for (const eligibleKey in teligible) {
+      for (const eKey in teligible) {
         if (teligible[eKey].id != 0) {
           eligible[eKey] = teligible[eKey];
         } else {
