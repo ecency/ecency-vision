@@ -58,7 +58,7 @@ export default function ManageChatKey() {
           <div className="text-sm text-gray-600">{_t("chat.chat-priv-key")}</div>
           <div className="text-sm">PIN</div>
           <InputGroupCopyClipboard value={pin ?? ""} />
-          <div className="text-sm mt-4">Ecency key</div>
+          <div className="text-sm mt-4">{_t("chat.ecency-key")}</div>
           <InputGroupCopyClipboard value={ecencyKey ?? ""} />
           <img
             ref={qrImgRef}
