@@ -4,11 +4,193 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated UI, some utils, added zustand">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved common styles">
+      <change afterPath="$PROJECT_DIR$/src/api/auth-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/firebase.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/helper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/hive-engine.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/hive.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/misc.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/mutations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/notifications-ws-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/operations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/private-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/search-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/spk-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/threespeak/api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/threespeak/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/threespeak/mutations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/threespeak/queries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/threespeak/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/caches/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/caches/pin-tracker-cache.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/defaults.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/dynamic-props.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/entries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive-engine/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive-engine/token-balance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive-engine/token-metadata.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive-engine/token-status.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive-engine/token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/api-error.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/blog-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/chain-props.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/conversion-request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/delegated-vesting-share.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/dynamic-global-properties.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/feed-history.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/follow.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/market-candlestick-data-item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/market-statistics.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/open-orders-data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/orders-data-item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/orders-data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/proposal-vote.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/proposal.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/rc-operation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/reputations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/reward-fund.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/savings-withdraw-request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/trade-data-item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/vote.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/withdraw-route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/hive/witness.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/operations/beneficiary-route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/operations/comment-options.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/operations/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/operations/metadata.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/operations/reward-type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/points.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/announcement.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/bookmark.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/comment-history.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/curation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/drafts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/favorite.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/fragment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/leader-board.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/promote-price.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/received-vesting-share.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/recoveries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/referrals.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/rewarded-community.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/private-api/schedule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/search-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/spk-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/trending-tags.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/ws-notifications.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/buy-sell-hive-transaction-type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/error-types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/filter-friends.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/notification-filter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/notify-types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/order-id-prefix.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/points-transaction-type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/servers.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/app-window.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/hive-signer-message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/keychain-impl.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/account-reputation.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/account-reputation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/amount-format-check.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/amount-format-check.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/app-name.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/app-name.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/b64.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/capitalize.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/capitalize.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/class-name-object.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/clean-string.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/clean-string.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/clipboard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/create-file.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/cross-post.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/cross-post.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/currency-symbol.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/currency-symbol.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/encoder.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/entry-canonical.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/entry-canonical.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/filter-tag-extract.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/filter-tag-extract.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/fix-class-names.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/fix-class-names.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/format-number.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/formatted-number.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/formatted-number.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/generate-private-keys.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/get-meta-props.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/hive-engine-wallet.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/hive-engine-wallet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/hive-signer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/hive-signer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/hive-wallet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/input-util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/is-community.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/is-community.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/is-empty-date.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/is-empty-date.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/is-mobile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/keychain.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/local-storage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/make-path.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/misc.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/misc.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/nl2list.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/nl2list.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/no-ssr.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/now.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/onBoard-helper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/parse-asset.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/parse-asset.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/parse-date.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/parse-date.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/platform.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/platform.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/posting.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/posting.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/props-filter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/replace-link-id-to-data-id.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/request-notification-permission.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/rnd.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/search-query.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/search-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/session-storage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/strip-tags.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/strip-tags.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/temp-entry.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/temp-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/transform-marked-content.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/truncate.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/truncate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/twitter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/url-share.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/use-global-loader.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/use-mounted.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/use-nav.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/use-previous.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/user-token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/vesting.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/vesting.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +223,7 @@
     "WebServerToolWindowFactoryState": "false",
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/communities",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/core",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -62,11 +244,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/communities" />
-      <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/features/ui" />
-      <recent name="$PROJECT_DIR$/src/features/ui/util" />
-      <recent name="$PROJECT_DIR$/src/features/util" />
+      <recent name="$PROJECT_DIR$/src/core" />
+      <recent name="$PROJECT_DIR$/src/enums" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/communities/_components/community-list-item" />
@@ -153,7 +335,7 @@
       <workItem from="1701697262787" duration="33000" />
       <workItem from="1701697307280" duration="105000" />
       <workItem from="1701697442619" duration="7225000" />
-      <workItem from="1701788911157" duration="6186000" />
+      <workItem from="1701788911157" duration="11846000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -163,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701797777990</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Moved common styles">
+      <option name="closed" value="true" />
+      <created>1701798616227</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701798616227</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +361,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrated UI, some utils, added zustand" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated UI, some utils, added zustand" />
+    <MESSAGE value="Moved common styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved common styles" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

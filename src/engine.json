@@ -1,0 +1,6 @@
+{
+  "API": "/private-api/engine-api",
+  "chartAPI": "/private-api/engine-chart-api",
+  "rewardAPI": "/private-api/engine-reward-api",
+  "historyAPI": "/private-api/engine-account-history"
+}

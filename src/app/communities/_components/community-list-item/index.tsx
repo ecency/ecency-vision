@@ -1,17 +1,14 @@
 import React, { useMemo } from "react";
-import { History } from "history";
-import { makePath } from "../tag";
-import defaults from "../../constants/defaults.json";
-import { _t } from "../../i18n";
-import formattedNumber from "../../util/formatted-number";
 import "./index.scss";
 import Link from "next/link";
 import { Community } from "@/entities";
 import { ProfileLink, UserAvatar } from "@/features/shared";
 import SubscriptionBtn from "../subscription-btn";
+import { AllFilter } from "@/enums";
+import { formattedNumber } from "@/utils";
+import i18next from "i18next";
 
 interface Props {
-  history: History;
   community: Community;
   small?: boolean;
 }
@@ -36,7 +33,7 @@ export function CommunityListItem({ community, small }: Props) {
         <h2 className="item-title">
           <div className="item-details">
             <UserAvatar username={community.name} size={small ? "small" : "medium"} />
-            <Link href={makePath(defaults.filter, community.name)}>{community.title}</Link>
+            <Link href={makePath(AllFilter.hot, community.name)}>{community.title}</Link>
           </div>
           {small && (
             <div className="item-controls">
@@ -48,20 +45,15 @@ export function CommunityListItem({ community, small }: Props) {
         </h2>
         <div className={"item-about " + (small ? "truncate" : "")}>{community.about}</div>
         <div className="item-stats">
-          <div className="stat">{_t("communities.n-subscribers", { n: subscribers })}</div>
-          <div className="stat">{_t("communities.n-authors", { n: authors })}</div>
-          <div className="stat">{_t("communities.n-posts", { n: posts })}</div>
+          <div className="stat">{i18next.t("communities.n-subscribers", { n: subscribers })}</div>
+          <div className="stat">{i18next.t("communities.n-authors", { n: authors })}</div>
+          <div className="stat">{i18next.t("communities.n-posts", { n: posts })}</div>
         </div>
         {community.admins && (
           <div className="item-admins">
-            {_t("communities.admins")}
+            {i18next.t("communities.admins")}
             {community.admins.map((x, i) => (
-              <ProfileLink
-                key={x}
-                history={this.props.history}
-                username={x}
-                addAccount={this.props.addAccount}
-              >
+              <ProfileLink key={x} username={x}>
                 <span className="admin">{x}</span>
               </ProfileLink>
             ))}
