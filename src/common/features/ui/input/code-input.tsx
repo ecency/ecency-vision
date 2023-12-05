@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormControl } from "@ui/input/form-controls";
+import { v4 } from "uuid";
 
 interface Props {
   codeSize?: number;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
+  const [id, setId] = useState("code_input_" + v4());
   const [code, setCode] = useState(new Array(codeSize).fill(""));
 
   useEffect(() => {
@@ -32,14 +34,14 @@ export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
       {code.map((item, i) => (
         <FormControl
           disabled={disabled}
-          id={`code-input-${i}`}
           key={i}
+          id={`${id}_${i}`}
           type="text"
           value={item}
           onKeyUp={(e) => {
             if (e.key === "Backspace") {
               const nextElement = document.querySelector(
-                `#code-input-${i - 1}`
+                `#${id}_${i - 1}`
               ) as HTMLInputElement | null;
               if (nextElement) {
                 nextElement.focus();
@@ -54,7 +56,7 @@ export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
             setCode(tempCode);
 
             const nextElement = document.querySelector(
-              `#code-input-${i + 1}`
+              `#${id}_${i + 1}`
             ) as HTMLInputElement | null;
             if (nextElement && lastCharacter) {
               nextElement.focus();
