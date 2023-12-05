@@ -72,7 +72,7 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
     inProgress: false,
     search: "",
     minVotes: 0,
-    isReturnProposalId: null,
+    isReturnProposalId: 0,
     thresholdProposalId: null
   };
 
@@ -111,18 +111,26 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
 
       // find eligible proposals and
       // const eligible = proposals.filter(x => this.eligibleFilter(x, minVotes));
-      const eligible = proposals.filter((proposal) => proposal.status !== "expired");
+      const teligible = proposals.filter(
+        (proposal) => proposal.status !== "expired" && proposal.status !== "inactive"
+      );
+      const eligible: Proposal[] = [];
+      for (const eligibleKey in teligible) {
+        if (teligible[eKey].id != 0) {
+          eligible[eKey] = teligible[eKey];
+        } else {
+          break;
+        }
+      }
       //  add up total votes
       let _thresholdProposalId: number | null = null;
       const dailyFunded = eligible.reduce((a, b) => {
-        const _sum_amount = a + Number(b.daily_pay.amount) / 1000;
+        const _sum_amount = a + Number(b.daily_pay.amount) / Math.pow(10, b.daily_pay.precision);
         if (_sum_amount >= dailyBudget && !_thresholdProposalId) {
           _thresholdProposalId = b.id;
         }
-        _sum_amount >= dailyBudget && this.stateSet({ isReturnProposalId: b.id });
         return _sum_amount <= dailyBudget ? _sum_amount : a;
       }, 0);
-
       this.stateSet({
         totalBudget,
         dailyBudget,
