@@ -32,13 +32,8 @@ import { uploadChatKeys } from "../../utils/upload-chat-keys";
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
 
-  const {
-    receiverPubKey,
-    revealPrivateKey,
-    hasUserJoinedChat,
-    setRevealPrivateKey,
-    setReceiverPubKey
-  } = useContext(ChatContext);
+  const { receiverPubKey, revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } =
+    useContext(ChatContext);
   const { isLoading: isJoinChatLoading } = useJoinChat(uploadChatKeys);
 
   const [currentUser, setCurrentUser] = useState("");
@@ -68,6 +63,7 @@ export const ChatPopUp = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const hasUserJoinedChat = useMemo(() => !!privateKey, [privateKey]);
   const currentChannel = useMemo(
     () => channels?.find((channel) => channel.communityName === communityName),
     [communityName, channels]
