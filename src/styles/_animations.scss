@@ -1,0 +1,209 @@
+//currently used for upvotes
+@keyframes anim-fadein-out {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes anim-fadein {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//start animations with rotation only
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-vert-center {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotate-hor-center {
+  0% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(-360deg);
+    transform: rotateX(-360deg);
+  }
+}
+
+@keyframes rotate-diagonal-1 {
+  0% {
+    -webkit-transform: rotate3d(1, 1, 0, 0deg);
+    transform: rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(1, 1, 0, -180deg);
+    transform: rotate3d(1, 1, 0, -180deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(1, 1, 0, -360deg);
+    transform: rotate3d(1, 1, 0, -360deg);
+  }
+}
+//end animations with rotation only
+
+//start animations with rotation and scaling
+
+@keyframes heartbeat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  66% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+}
+
+
+@keyframes rotate-scale-up {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+    transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateZ(180deg);
+    transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+    transform: scale(1) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-scale-up-diag-1 {
+  0% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: scale(2) rotate3d(1, 1, 0, -180deg);
+    transform: scale(2) rotate3d(1, 1, 0, -180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
+    transform: scale(1) rotate3d(1, 1, 0, -360deg);
+  }
+}
+
+@keyframes rotate-scale-down {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+    transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotateZ(180deg);
+    transform: scale(0.5) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+    transform: scale(1) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-scale-up-hor {
+  0% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateX(-180deg);
+    transform: scale(2) rotateX(-180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateX(-360deg);
+    transform: scale(1) rotateX(-360deg);
+  }
+}
+
+@keyframes rotate-scale-down-hor {
+  0% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotateX(-180deg);
+    transform: scale(0.5) rotateX(-180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateX(-360deg);
+    transform: scale(1) rotateX(-360deg);
+  }
+}
+
+@keyframes rotate-scale-up-ver {
+  0% {
+    -webkit-transform: scale(1) rotateY(0);
+    transform: scale(1) rotateY(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateY(180deg);
+    transform: scale(2) rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateY(360deg);
+    transform: scale(1) rotateY(360deg);
+  }
+}
+
+@keyframes rotate-scale-down-ver {
+  0% {
+    -webkit-transform: scale(1) rotateY(0);
+    transform: scale(1) rotateY(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotateY(180deg);
+    transform: scale(0.5) rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateY(360deg);
+    transform: scale(1) rotateY(360deg);
+  }
+}
+//end animations with rotation and scaling

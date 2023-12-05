@@ -1,0 +1,33 @@
+.dark {
+  --input-bg: theme('colors.blue.powder');
+  --input-border-color: theme('colors.blue.dusk');
+  --input-color: theme('colors.dark.200');
+  --input-placeholder-color: theme('colors.gray.steel');
+  --input-group-addon-color: theme('colors.silver-112');
+  --popover-border-color: theme('colors.dark.200');
+  --popover-bg: theme('colors.dark.500');
+  --popover-body-color: theme('colors.silver');
+  --popover-header-bg: theme('colors.dark.600');
+  --popover-arrow-color: theme('colors.dark.600');
+  --modal-content-bg: theme('colors.dark.600');
+  --modal-content-border-color: theme('colors.dark.200');
+  --list-group-bg: theme('colors.dark.600');
+  --list-group-border-color: theme('colors.dark.600');
+  --list-group-action-color: theme('colors.white');
+  --list-group-hover-bg: theme('colors.dark.500');
+  --list-group-action-active-bg: theme('colors.dark.500');
+  --table-accent-bg: theme('colors.dark.600');
+  --close-color: theme('colors.silver');
+  --table-color: theme('colors.silver');
+  --table-border-color: theme('colors.dark.400');
+  --pagination-bg: theme('colors.dark.400');
+  --pagination-border-color: theme('colors.dark.600');
+  --pagination-hover-bg: theme('colors.dark.600');
+  --pagination-hover-border-color: #{transparent};
+  --card-border-color: theme('colors.dark.200');
+  --card-cap-bg: theme('colors.dark.200');
+  --border-color: theme('colors.dark.600');
+
+  background: theme('colors.dark.700');
+  color: theme('colors.light.200');
+}

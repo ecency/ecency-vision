@@ -1,32 +1,26 @@
-import React from "react";
-import { History } from "history";
-import { history as historyFromStore } from "../../store";
-import { Account } from "@/entities";
+import React, { ReactElement } from "react";
+import { useRouter } from "next/router";
 
 export const makePath = (username: string) => `/@${username}`;
 
 interface Props {
-  history: History;
-  children: JSX.Element;
+  children: ReactElement;
   username: string;
-  addAccount: (data: Account) => void;
   afterClick?: () => void;
   target?: string;
   className?: string;
 }
 
-export function ProfileLink(p: Props) {
+export function ProfileLink({ afterClick, target, className, children, username }: Props) {
+  const { push } = useRouter();
+
   const clicked = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    const { username, history = historyFromStore, addAccount, afterClick } = p;
-
-    addAccount({ name: username });
-
-    if (p.target !== "_blank") {
-      history!.push(makePath(username));
+    if (target !== "_blank") {
+      await push(makePath(username));
     } else {
-      window.open(makePath(p.username), "_blank");
+      window.open(makePath(username), "_blank");
     }
 
     if (afterClick) afterClick();
@@ -34,11 +28,11 @@ export function ProfileLink(p: Props) {
 
   return (
     <a
-      href={p.target === "_blank" ? "#" : makePath(p.username)}
-      className={p.className}
+      href={target === "_blank" ? "#" : makePath(username)}
+      className={className}
       onClick={clicked}
     >
-      {p.children}
+      {children}
     </a>
   );
 }

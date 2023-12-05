@@ -4,102 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/global-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/typings.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/accounts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/communities.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/subscriptions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/users.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/filters.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/list-style.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/theme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/linear-progress/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/linear-progress/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/scroll-to-top/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/scroll-to-top/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-box/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-collapse.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-context.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/accordion-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/accordion/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/alert/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/badge/badge-styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/button-group/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/button/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/button/props.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/button/styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-context.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-menu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/form/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/icons.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/checkbox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input-styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/textarea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/input-group-copy-clipboard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/input-group.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/list/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal-confirm/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-body.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-title.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/pagination/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/spinner.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/table/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/util/class-name-object.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/util/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/util/props-filter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/util/use-is-mobile.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated UI, some utils, added zustand">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/community-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,12 +153,25 @@
       <workItem from="1701697262787" duration="33000" />
       <workItem from="1701697307280" duration="105000" />
       <workItem from="1701697442619" duration="7225000" />
-      <workItem from="1701788911157" duration="5434000" />
+      <workItem from="1701788911157" duration="6186000" />
     </task>
+    <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
+      <option name="closed" value="true" />
+      <created>1701797777990</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701797777990</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Migrated UI, some utils, added zustand" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated UI, some utils, added zustand" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

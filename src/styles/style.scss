@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+
+@import "./variables";
+@import "./mixins";
+
+@import "./bootstrap_vars";
+
+@import "./base";
+@import "./components";
+
+@import "./theme-day";
+@import "./theme-night";
+
+@tailwind utilities;

@@ -1,0 +1,48 @@
+// Bootstrap overrides
+$font-family-base: -apple-system, BlinkMacSystemFont, sans-serif;
+$link-hover-decoration: none;
+$line-height-base: 1.2;
+$input-border-radius: 25px;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$btn-border-radius: 25px;
+$btn-border-radius-sm: 25px;
+$modal-header-border-color: null default;
+$alert-padding-y: 0.6rem;
+$alert-padding-x: 0.6rem;
+$card-bg: transparent;
+$form-check-input-margin-y: 0.15rem;
+$tooltip-max-width: 380px;
+$primary: #357ce6;
+//$success: $green1;
+//$danger: $red2;
+
+// Themed variables
+$input-bg: var(--input-bg);
+$input-border-color: var(--input-border-color);
+$input-color: var(--input-color);
+$input-placeholder-color: var(--input-placeholder-color);
+$input-group-addon-color: var(--input-group-addon-color);
+$popover-border-color: var(--popover-border-color);
+$popover-bg: var(--popover-bg);
+$popover-body-color: var(--popover-body-color);
+$popover-header-bg: var(--popover-header-bg);
+$popover-arrow-color: var(--popover-arrow-color);
+$modal-content-bg: var(--modal-content-bg);
+$modal-content-border-color: var(--modal-content-border-color);
+$list-group-bg: var(--list-group-bg);
+$list-group-border-color: var(--list-group-border-color);
+$list-group-action-color: var(--list-group-action-color);
+$list-group-hover-bg: var(--list-group-hover-bg);
+$list-group-action-active-bg: (--list-group-action-active-bg);
+$table-accent-bg: var(--table-accent-bg);
+$close-color: var(--close-color);
+$table-color: var(--table-color);
+$table-border-color: var(--table-border-color);
+$pagination-bg: var(--pagination-color);
+$pagination-border-color: var(--pagination-border-color);
+$pagination-hover-bg: var(--pagination-hover-bg);
+$pagination-hover-border-color: var(--pagination-hover-border-color);
+$card-border-color: var(--card-border-color);
+$card-cap-bg: var(--card-cap-bg);
+$border-color: var(--border-color);

@@ -1,0 +1,378 @@
+html {
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  -webkit-text-size-adjust: 100%;
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-width: 280px;
+
+  &.full-height {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btn svg {
+  width: 20px;
+}
+
+/* custom select appearance */
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23777777' d='M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 20px 35px;
+  background-position: 96%;
+  padding-right: 30px !important;
+}
+
+/* common class for modal dialog loading indicator */
+.dialog-loading {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Utility classes */
+.flex-spacer {
+  flex-grow: 1;
+}
+
+.hr-6px-btn-spacer {
+  width: 6px;
+  flex-grow: 0;
+}
+
+.svg-icon {
+  margin-right: 4px;
+
+  svg {
+    height: 16px;
+  }
+}
+
+.svg-icon-sm {
+  margin-right: 4px;
+
+  svg {
+    height: 13px;
+  }
+}
+
+// Adds external link icon to _blank links
+a[target="_blank"] {
+  &:after {
+    display: inline-block;
+    opacity: 0.6;
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' viewBox='0 0 24 24'%3E%3Cpath fill='%23357ce6' d='M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z' /%3E%3C/svg%3E");
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+// main layout
+.app-content {
+  padding: 0 10px;
+  margin: 6rem auto 30px;
+  display: flex;
+  max-width: 1600px;
+
+  @media (min-width: $lg-break) {
+    padding: 0 20px;
+  }
+}
+
+// markdown styles
+@import "markdown";
+
+
+// common transaction form. used in transfer, promote, boost
+
+.transaction-form {
+  .transaction-form-header {
+    align-items: center;
+    display: flex;
+
+    @include themify(day) {
+      border-bottom: 1px solid;
+      @apply border-light-400;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid;
+      @apply border-blue-dusky-2;
+    }
+
+    .step-no {
+      @apply text-silver;
+      flex-grow: 0;
+      flex-shrink: 0;
+      font-size: 48px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .box-titles {
+      flex-grow: 1;
+
+      .main-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 4px;
+
+        @include themify(day) {
+          @apply text-gray-charcoal;
+        }
+
+        @include themify(night) {
+          @apply text-gray-pinkish;
+        }
+      }
+
+      .sub-title {
+        font-weight: 300;
+        width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include themify(day) {
+          @apply text-gray-steel;
+        }
+
+        @include themify(night) {
+          @apply text-blue-metallic;
+        }
+      }
+    }
+  }
+
+  .transaction-form-body {
+    @media (min-width: $sm-break) {
+      padding: 24px 32px;
+    }
+
+    margin: 1px 0 0 0;
+
+    .form-group {
+      margin: 6px 0 0 0;
+
+      @media (min-width: $sm-break) {
+        margin: 16px 0 0 0;
+      }
+    }
+  }
+
+  &.in-progress {
+    .transaction-form-header {
+      border-bottom: 1px solid transparent;
+    }
+
+    .transaction-form-body {
+      margin-top: 0;
+    }
+  }
+}
+
+
+// Additional libraries
+
+// Date picker
+@import "~react-datetime/css/react-datetime.css";
+// dark theme
+.dark {
+  .rdtPicker {
+    @apply bg-blue-metallic;
+    border: 1px solid;
+    @apply border-dark-default;
+  }
+
+  .rdtPicker td.rdtDay:hover,
+  .rdtPicker td.rdtHour:hover,
+  .rdtPicker td.rdtMinute:hover,
+  .rdtPicker td.rdtSecond:hover,
+  .rdtPicker .rdtTimeToggle:hover {
+    @apply bg-blue-dusky;
+  }
+
+  .rdtPicker td.rdtOld,
+  .rdtPicker td.rdtNew {
+    @apply text-silver;
+  }
+
+  .rdtPicker td.rdtToday:before {
+    border-bottom: 7px solid #428bca;
+  }
+
+  .rdtPicker td.rdtActive,
+  .rdtPicker td.rdtActive:hover {
+    @apply text-blue-metallic;
+  }
+
+  .rdtPicker td.rdtActive.rdtToday:before {
+    @apply border-b-blue-metallic;
+  }
+
+  .rdtPicker td.rdtDisabled,
+  .rdtPicker td.rdtDisabled:hover {
+    @apply text-gray-steel;
+  }
+
+  .rdtPicker th {
+    border-bottom: 1px solid;
+    @apply border-dark-default;
+  }
+
+  .rdtPicker thead tr:first-of-type th:hover {
+    @apply bg-blue-dusky;
+  }
+
+  .rdtPicker tfoot {
+    border-top: 1px solid;
+    @apply border-dark-default;
+  }
+
+  .rdtPicker button:hover {
+    @apply bg-blue-dusky;
+  }
+
+  td.rdtMonth:hover,
+  td.rdtYear:hover {
+    @apply bg-blue-dusky;
+  }
+
+  .rdtCounter .rdtBtn:hover {
+    @apply bg-blue-dusky;
+  }
+}
+
+.page-item {
+  &.disabled .page-link {
+    color: $pagination-disabled-color;
+    pointer-events: none;
+    // Opinionated: remove the "hand" cursor set previously for .page-link
+    cursor: auto;
+
+    @include themify(night) {
+      @apply bg-blue-dusky;
+      @apply border-blue-dusky;
+
+    }
+    border-color: $pagination-disabled-border-color;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-dark-sky;
+  @include themify(day) {
+    @apply bg-blue-dark-sky;
+  }
+
+  @include themify(night) {
+    @apply bg-blue-dark-sky;
+  }
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+
+  @include themify(day) {
+    @apply bg-blue-dusk;
+  }
+
+  @include themify(night) {
+    @apply bg-blue-dusk;
+  }
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+label.font-small {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.cursor-drag {
+  cursor: grab;
+}
+
+.react-draggable-dragging {
+  .cursor-drag {
+    cursor: grabbing;
+  }
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: $primary;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
+
+.show {
+  visibility: visible !important;
+}
+
+svg {
+  display: inline-block;
+}
+
+a {
+  @apply text-blue-dark-sky;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    @apply text-blue-dark-sky-active;
+  }
+}
+
+.list-item {
+  &::marker {
+    content: '';
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
