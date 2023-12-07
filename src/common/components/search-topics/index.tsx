@@ -72,8 +72,8 @@ export class SearchTopics extends BaseComponent<Props, State> {
     const { results, loading } = this.state;
 
     return (
-      <div className="border bg-white rounded  search-topics">
-        <div className="bg-gray-100 border-b p-3">
+      <div className="border border-[--border-color] bg-white rounded  search-topics">
+        <div className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3">
           <strong>{_t("search-topics.title")}</strong>
         </div>
         <div className="p-3">

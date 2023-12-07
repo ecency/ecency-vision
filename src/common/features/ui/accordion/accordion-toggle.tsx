@@ -5,6 +5,7 @@ import { useFilteredProps } from "../../../util/props-filter";
 interface Props extends PropsWithChildren<any> {
   as?: any;
   eventKey: string;
+  onClick?: () => void;
 }
 
 export function AccordionToggle(props: Props) {
@@ -15,11 +16,13 @@ export function AccordionToggle(props: Props) {
     props.as ?? "div",
     {
       ...nativeProps,
-      onClick: () =>
+      onClick: () => {
         setShow({
           ...show,
           [props.eventKey]: !show[props.eventKey] ?? false
-        })
+        });
+        props.onClick?.();
+      }
     },
     props.children
   );

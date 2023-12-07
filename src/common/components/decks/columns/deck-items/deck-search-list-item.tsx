@@ -178,7 +178,7 @@ export const SearchListItem = ({
     <div ref={ref} className="flex flex-col border-b border-[--border-color] p-3">
       <div className="deck-body flex flex-col w-full">
         <div className="text-dark-default flex flex-col">
-          <div className="flex items-center grow hot-item-link">
+          <div className="flex items-center grow hot-item-link dark:text-gray-400">
             {author && (
               <img
                 src={`https://images.ecency.com/${
@@ -225,7 +225,7 @@ export const SearchListItem = ({
           <div onClick={() => onEntryView()} className="pointer">
             {title && (
               <div className="flex">
-                <div className="hot-item-link font-bold mt-3">{title}</div>
+                <div className="hot-item-link dark:text-white font-bold mt-3">{title}</div>
               </div>
             )}
 
@@ -237,7 +237,9 @@ export const SearchListItem = ({
                 }}
               />
             )}
-            <div className="mt-3 hot-item-post-count deck-item-body text-gray-600">{body}</div>
+            <div className="mt-3 hot-item-post-count deck-item-body text-gray-600 dark:text-gray-400">
+              {body}
+            </div>
           </div>
         </div>
         <div className="item-controls mt-3 flex items-center">
@@ -251,7 +253,7 @@ export const SearchListItem = ({
           />
           <EntryPayout entry={entry} />
           <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-          <Link to={`${url}#discussion`} className="text-gray-600">
+          <Link to={`${url}#discussion`} className="text-gray-600 dark:text-gray-400">
             <div className="flex items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
               <div>{entry.children}</div>
