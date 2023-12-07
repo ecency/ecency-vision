@@ -75,8 +75,8 @@ export class SearchPeople extends BaseComponent<Props, State> {
     const { loading, results } = this.state;
 
     return (
-      <div className="border bg-white rounded  search-people">
-        <div className="bg-gray-100 border-b p-3">
+      <div className="border border-[--border-color] bg-white rounded  search-people">
+        <div className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3">
           <strong>{_t("search-people.title")}</strong>
         </div>
         <div className="p-3">

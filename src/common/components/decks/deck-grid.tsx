@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { DeckGridContext } from "./deck-manager";
 import { DeckAddColumn, DeckUserColumn } from "./columns";
@@ -26,6 +26,7 @@ import { DeckFaqColumn } from "./columns/deck-faq-column";
 import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
 import { DeckWhatsNewColumn } from "./columns/deck-whats-new-column";
 import { Button } from "@ui/button";
+import { arrowLeftSvg, arrowRightSvg } from "../../img/svg";
 
 interface Props {
   history: History;
@@ -35,8 +36,18 @@ export const DeckGrid = ({ history }: Props) => {
   const deckContext = useContext(DeckGridContext);
   const previousLayout = usePrevious(deckContext.layout);
 
+  const [scrollValue, setScrollValue] = useState(0);
   const [addColumnButtonVisible, setAddColumnButtonVisible] = useState(true);
   const [addColumnButtonKey, setAddColumnButtonKey] = useState(uuid.v4());
+
+  const isScrollStarted = useMemo(() => scrollValue > 0, [scrollValue]);
+  const isScrollEnded = useMemo(() => {
+    const el = document.querySelector("#draggable-container");
+    if (el) {
+      return Math.round(scrollValue) === Math.round(el.scrollWidth - el.clientWidth);
+    }
+    return false;
+  }, [scrollValue]);
 
   useOldDeckMigration();
 
@@ -66,8 +77,37 @@ export const DeckGrid = ({ history }: Props) => {
     }
   }, [deckContext.layout]);
 
+  const scrollTo = (direction: "left" | "right") => {
+    const el = document.querySelector("#draggable-container");
+    if (!el) {
+      return;
+    }
+
+    if (direction === "left") {
+      el.scrollTo(el.scrollLeft - 300, 0);
+    } else {
+      el.scrollTo(el.scrollLeft + 300, 0);
+    }
+  };
+
   return (
     <div className="deck-grid">
+      {isScrollStarted && (
+        <div
+          className="arrow-right hidden md:flex h-full items-center px-3 opacity-50 hover:opacity-100 cursor-pointer duration-300 bg-gradient-to-l from-transparent to-dark-200 fixed left-[72px] w-12 z-30"
+          onClick={() => scrollTo("left")}
+        >
+          {arrowLeftSvg}
+        </div>
+      )}
+      {!isScrollEnded && (
+        <div
+          className="arrow-right hidden md:flex h-full flex items-center px-3 opacity-50 hover:opacity-100 cursor-pointer duration-300 bg-gradient-to-r from-transparent to-dark-200 fixed right-0 w-12 z-30"
+          onClick={() => scrollTo("right")}
+        >
+          {arrowRightSvg}
+        </div>
+      )}
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -76,6 +116,7 @@ export const DeckGrid = ({ history }: Props) => {
               ref={provided.innerRef}
               {...provided.droppableProps}
               id="draggable-container"
+              onScroll={(e) => setScrollValue(e.currentTarget.scrollLeft)}
             >
               {deckContext.layout.columns.map(({ type, id, settings, key }, index) => (
                 <Draggable key={id} draggableId={id} index={index}>
