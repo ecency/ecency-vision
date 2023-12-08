@@ -1,4 +1,4 @@
-import { AppWindow } from "../../client/window";
+import { AppWindow } from "@/types";
 
 declare var window: AppWindow;
 

@@ -1,1 +1,3 @@
-export default (str: string) => str.replace(/<a id="/g, '<a data-id="');
+export function replaceLinkIdToData(str: string) {
+  return str.replace(/<a id="/g, '<a data-id="');
+}

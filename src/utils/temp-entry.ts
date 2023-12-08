@@ -1,11 +1,6 @@
 import moment from "moment";
-
-import { FullAccount } from "../store/accounts/types";
-import { Entry } from "../store/entries/types";
-
-import accountReputation from "./account-reputation";
-
-import { version } from "../../../package.json";
+import { Entry, FullAccount } from "@/entities";
+import * as pack from "../../package.json";
 
 export interface TempEntryProps {
   author: FullAccount;
@@ -42,7 +37,7 @@ export default (p: TempEntryProps): Entry => {
     depth: 0,
     is_paidout: false,
     json_metadata: {
-      app: `ecency/${version}-vision`,
+      app: `ecency/${pack.version}-vision`,
       format: "markdown+html",
       tags: p.tags,
       description: p.description

@@ -5,6 +5,7 @@ export function isMobile() {
     typeof window !== "undefined" && window.innerWidth
   );
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     function handleResize() {
       setScreenWidth(window.innerWidth);
@@ -13,5 +14,6 @@ export function isMobile() {
     window.addEventListener("resize", handleResize);
   });
 
+  // @ts-ignore
   return screenWidth < 570;
 }

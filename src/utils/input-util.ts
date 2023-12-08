@@ -1,4 +1,4 @@
-import { _t } from "../i18n";
+import i18next from "i18next";
 
 export const insertOrReplace = (txtEl: HTMLInputElement, before: string, after: string = "") => {
   const startPos = txtEl.selectionStart;
@@ -61,7 +61,7 @@ export const replace = (txtEl: HTMLInputElement, find: string, rep: string) => {
 };
 
 export const handleInvalid = (e: any, parentKey: string, childKey: string) => {
-  e.target.setCustomValidity(_t(parentKey + childKey));
+  e.target.setCustomValidity(i18next.t(parentKey + childKey));
 };
 
 export const handleOnInput = (e: any) => e.target.setCustomValidity("");

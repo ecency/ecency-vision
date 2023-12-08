@@ -9,7 +9,7 @@ export enum SearchType {
   COMMENT = "comment"
 }
 
-export default class SearchQuery {
+export class SearchQuery {
   public query: string = "";
   public search: string = "";
   public author: string = "";
@@ -29,6 +29,7 @@ export default class SearchQuery {
   }
 
   private grab = (re: RegExp): string => {
+    // @ts-ignore
     const matches = [...this.query.matchAll(re)];
     if (matches.length > 0) {
       return matches[0][1].trim();

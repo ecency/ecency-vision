@@ -1,4 +1,4 @@
-import defaults from "../constants/defaults.json";
+import defaults from "@/defaults.json";
 
 export const makeEcencyUrl = (cat: string, author: string, permlink: string): string =>
   `${defaults.base}/${cat}/@${author}/${permlink}`;

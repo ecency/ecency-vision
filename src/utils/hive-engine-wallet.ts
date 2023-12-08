@@ -1,4 +1,4 @@
-import formattedNumber from "../util/formatted-number";
+import { formattedNumber } from "./formatted-number";
 
 interface Props {
   symbol: string;

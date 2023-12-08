@@ -4,84 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated APIs">
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/active-user-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/subscriptions-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/ui-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/users-module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/lang-options.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-events.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login-required.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/login/user-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/consts/global-filters.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/consts/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/matchMedia.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-desktop.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-mobile.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-text-menu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/search/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/search/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/search/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/wallet-badge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/or-divider/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/suggestion-list/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/suggestion-list/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/suggestion-list/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/suggestion-list/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/tag/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/tag/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/theme.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated all dependencies for communities page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/threespeak/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/mutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/threespeak/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/queries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/global-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/global-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/typings.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/ws-notifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/ws-notifications.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/generate-private-keys.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/generate-private-keys.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/hive-wallet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hive-wallet.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/make-path.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/make-path.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/rnd.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/rnd.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/fix-class-names.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/fix-class-names.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/get-meta-props.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/get-meta-props.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/hive-engine-wallet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hive-engine-wallet.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/input-util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/input-util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/is-empty-date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-empty-date.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/is-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-mobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/nl2list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/nl2list.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/now.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/onBoard-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/onBoard-helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/parse-date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/parse-date.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/posting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/posting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/replace-link-id-to-data-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/replace-link-id-to-data-id.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/search-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/search-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/strip-tags.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/strip-tags.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/temp-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/temp-entry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/twitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/twitter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/url-share.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/url-share.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/use-previous.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +93,7 @@
       <recent name="$PROJECT_DIR$/src/features/ui/util" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.lint">
+  <component name="RunManager" selected="npm.start">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -228,7 +172,7 @@
       <workItem from="1701697442619" duration="7225000" />
       <workItem from="1701788911157" duration="12678000" />
       <workItem from="1701872398545" duration="11450000" />
-      <workItem from="1701948427772" duration="16473000" />
+      <workItem from="1701948427772" duration="16966000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -254,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701804200620</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Migrated all dependencies for communities page">
+      <option name="closed" value="true" />
+      <created>1702028569165</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702028569165</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +216,8 @@
     <MESSAGE value="Migrated UI, some utils, added zustand" />
     <MESSAGE value="Moved common styles" />
     <MESSAGE value="Migrated APIs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated APIs" />
+    <MESSAGE value="Migrated all dependencies for communities page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated all dependencies for communities page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

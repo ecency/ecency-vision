@@ -1,8 +1,6 @@
 import getSlug from "speakingurl";
-
 import { diff_match_patch } from "diff-match-patch";
-
-import { BeneficiaryRoute, CommentOptions, MetaData, RewardType } from "../api/operations";
+import { BeneficiaryRoute, CommentOptions, MetaData, RewardType } from "@/entities";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
 

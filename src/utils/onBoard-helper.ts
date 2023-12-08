@@ -1,5 +1,6 @@
 import { KeyRole, PrivateKey } from "@hiveio/dhive";
 import { randomBytes } from "crypto";
+
 export const getPrivateKeys = (username: any, password: any) => {
   const roles: Array<KeyRole> = ["owner", "active", "posting", "memo"];
   type keysType = {
@@ -32,6 +33,5 @@ export const getPrivateKeys = (username: any, password: any) => {
 };
 
 export const generatePassword = async (length: number) => {
-  const password = `P${PrivateKey.fromSeed(randomBytes(length).toString("hex")).toString()}`;
-  return password;
+  return `P${PrivateKey.fromSeed(randomBytes(length).toString("hex")).toString()}`;
 };

@@ -103,9 +103,7 @@ export const formatTimeDIfference = (timeString: string): number => {
     }
   }
 
-  const difference = currentTime.getTime() - milliseconds;
-
-  return difference;
+  return currentTime.getTime() - milliseconds;
 };
 
 export default parseDate;
