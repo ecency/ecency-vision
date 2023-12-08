@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Link 1`] = `
+<a
+  href="/hot/bitcoin"
+  onClick={[Function]}
+  title="Unmoderated topics"
+>
+  bitcoin
+</a>
+`;
+
+exports[`(2) Span 1`] = `
+<span
+  title="Unmoderated topics"
+>
+  bitcoin
+</span>
+`;
+
+exports[`(3) Community as Link 1`] = `
+<span
+  title="Unmoderated topics"
+>
+  hive-2321
+</span>
+`;
+
+exports[`(4) Should use default filter if the globl filter is 'feed' 1`] = `
+<a
+  href="/created/bitcoin"
+  onClick={[Function]}
+  title="Unmoderated topics"
+>
+  bitcoin
+</a>
+`;
+
+exports[`(5) Link with community tag 1`] = `
+<a
+  href="/created/hive-125125"
+  onClick={[Function]}
+  title="Moderated community"
+>
+  Ecency
+</a>
+`;

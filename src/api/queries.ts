@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { getPoints, getPointTransactions } from "./private-api";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { useGlobalStore } from "@/core/global-store";
 import { QueryIdentifiers } from "@/core/react-query";
-import { Entry } from "@/entities";
+import { DynamicProps, Entry } from "@/entities";
+import { getAccountFull, getDynamicProps, getTrendingTags } from "@/api/hive";
 
 const DEFAULT = {
   points: "0.000",
@@ -13,7 +14,7 @@ const DEFAULT = {
 };
 
 export function usePointsQuery(username: string, filter = 0) {
-  const global = useGlobalStore((state) => state.global);
+  const usePrivate = useGlobalStore((state) => state.usePrivate);
 
   return useQuery(
     [QueryIdentifiers.POINTS, username, filter],
@@ -21,7 +22,7 @@ export function usePointsQuery(username: string, filter = 0) {
       const name = username.replace("@", "");
 
       try {
-        const points = await getPoints(name, global.usePrivate);
+        const points = await getPoints(name, usePrivate);
         const transactions = await getPointTransactions(name, filter);
         return {
           points: points.points,
@@ -46,7 +47,7 @@ export function useImageDownloader(
   height: number,
   enabled: boolean
 ) {
-  const global = useGlobalStore((state) => state.global);
+  const canUseWebp = useGlobalStore((state) => state.canUseWebp);
 
   const blobToBase64 = (blob: Blob) => {
     const reader = new FileReader();
@@ -69,7 +70,7 @@ export function useImageDownloader(
     async () => {
       try {
         const response = await axios.get(
-          global.canUseWebp
+          canUseWebp
             ? catchPostImage(entry, width, height, "webp")
             : catchPostImage(entry, width, height) || noImage,
           {
@@ -87,4 +88,46 @@ export function useImageDownloader(
       retryDelay: 3000
     }
   );
+}
+
+export function useGetAccountFullQuery(username?: string) {
+  return useQuery([QueryIdentifiers.GET_ACCOUNT_FULL, username], () => getAccountFull(username!), {
+    enabled: !!username
+  });
+}
+
+export function useGetAccountsFullQuery(usernames: string[]) {
+  return useQueries({
+    queries: usernames.map((username) => ({
+      queryKey: [QueryIdentifiers.GET_ACCOUNT_FULL, username],
+      queryFn: () => getAccountFull(username!),
+      enabled: !!username
+    }))
+  });
+}
+
+export function useTrendingTagsQuery() {
+  return useQuery([QueryIdentifiers.TRENDING_TAGS], async () => getTrendingTags(), {
+    initialData: []
+  });
+}
+
+export function useDynamicPropsQuery() {
+  return useQuery<DynamicProps>([QueryIdentifiers.DYNAMIC_PROPS], async () => getDynamicProps(), {
+    initialData: {
+      hivePerMVests: 1,
+      base: 1,
+      quote: 1,
+      fundRecentClaims: 1,
+      fundRewardBalance: 1,
+      hbdPrintRate: 1,
+      hbdInterestRate: 1,
+      headBlock: 1,
+      totalVestingFund: 1,
+      totalVestingShares: 1,
+      virtualSupply: 1,
+      vestingRewardPercent: 1,
+      accountCreationFee: "3.000 HIVE"
+    }
+  });
 }

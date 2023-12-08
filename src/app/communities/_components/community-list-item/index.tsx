@@ -3,9 +3,9 @@ import "./index.scss";
 import Link from "next/link";
 import { Community } from "@/entities";
 import { ProfileLink, UserAvatar } from "@/features/shared";
-import SubscriptionBtn from "../subscription-btn";
+import { SubscriptionBtn } from "../subscription-btn";
 import { AllFilter } from "@/enums";
-import { formattedNumber } from "@/utils";
+import { formattedNumber, makePath } from "@/utils";
 import i18next from "i18next";
 
 interface Props {
@@ -38,7 +38,8 @@ export function CommunityListItem({ community, small }: Props) {
           {small && (
             <div className="item-controls">
               <SubscriptionBtn
-                buttonProps={{ full: true, size: this.props.small ? "sm" : undefined }}
+                community={community}
+                buttonProps={{ full: true, size: small ? "sm" : undefined }}
               />
             </div>
           )}
@@ -63,7 +64,8 @@ export function CommunityListItem({ community, small }: Props) {
       {!small && (
         <div className="item-controls">
           <SubscriptionBtn
-            buttonProps={{ full: true, size: this.props.small ? "sm" : undefined }}
+            community={community}
+            buttonProps={{ full: true, size: small ? "sm" : undefined }}
           />
         </div>
       )}

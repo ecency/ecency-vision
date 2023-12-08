@@ -1,0 +1,163 @@
+@import "src/styles/vars_mixins";
+
+.suggestion {
+  position: relative;
+
+  > :first-child {
+    position: relative;
+    z-index: 10;
+  }
+
+  .suggestion-list-parent {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 99;
+  }
+
+  .search-suggestion-list {
+    display: block;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    box-shadow: $box-shadow;
+    z-index: 100;
+    border-radius: $border-radius;
+    min-width: 200px;
+
+    @include themify(day) {
+      @apply bg-white;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-600-010-light;
+    }
+
+    .list-header {
+      padding: 8px 20px;
+      font-weight: 500;
+      @apply bg-blue-dark-sky;
+      @apply text-white;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    .list-body {
+      max-height: 200px;
+      overflow-x: auto;
+
+      .list-item {
+        padding: 8px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+
+        &:last-child {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+
+        @include themify(day) {
+          @apply text-gray-warm;
+
+          &:hover,
+          &:focus {
+            @apply bg-blue-dark-sky-010;
+            @apply text-white;
+          }
+        }
+
+        @include themify(night) {
+          @apply text-silver;
+
+          &:hover,
+          &:focus {
+            @apply text-white;
+          }
+        }
+      }
+    }
+  }
+
+  .more-result {
+    .list-item {
+      @include themify(day) {
+        @apply bg-light-400;
+
+        &:hover,
+        &:focus {
+          @apply text-dark-default;
+        }
+      }
+
+      @include themify(night) {
+        @apply text-white;
+        @apply bg-indigo-dark;
+      }
+    }
+
+    .list-item {
+      &:last-child {
+        border-radius: 0 !important;
+      }
+    }
+  }
+
+  .modal-suggestion-list {
+    width: 100%;
+    box-shadow: $box-shadow;
+    z-index: 9;
+    min-width: 200px;
+    overflow: hidden;
+
+    @include themify(day) {
+      @apply bg-white;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-600-010-light;
+    }
+
+    .list-body {
+      max-height: 200px;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .list-item {
+        padding: 8px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+
+        &:last-child {
+          border-bottom-left-radius: $border-radius;
+          border-bottom-right-radius: $border-radius;
+        }
+
+        @include themify(day) {
+          @apply text-gray-warm;
+
+          &:hover,
+          &:focus {
+            @apply bg-blue-dark-sky-040;
+            @apply text-blue-dark-sky;
+          }
+        }
+
+        @include themify(night) {
+          @apply text-silver;
+
+          &:hover,
+          &:focus {
+            @apply text-white;
+          }
+        }
+      }
+    }
+  }
+}

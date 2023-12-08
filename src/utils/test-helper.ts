@@ -1,22 +1,8 @@
-import { Global, EntryFilter, Theme, ListStyle } from "../store/global/types";
-import { TrendingTags } from "../store/trending-tags/types";
-import { Entry } from "../store/entries/types";
-import { Community } from "../store/communities/types";
-import { Reblogs } from "../store/reblogs/types";
-import { DynamicProps } from "../store/dynamic-props/types";
-import { UI } from "../store/ui/types";
-import { PointTransaction } from "../store/points/types";
+import { AssetSymbol } from "@hiveio/dhive";
+import { setImmediate as flushMicroTasks } from "timers";
 import {
-  Vote,
-  DelegatedVestingShare,
-  Proposal,
-  SavingsWithdrawRequest,
-  ConversionRequest,
-  OpenOrdersData,
-  CollateralizedConversionRequest
-} from "../api/hive";
-import { ReceivedVestingShare } from "../api/private-api";
-import {
+  AccountSearchResult,
+  ActiveUser,
   ApiFollowNotification,
   ApiMentionNotification,
   ApiNotification,
@@ -24,13 +10,24 @@ import {
   ApiReplyNotification,
   ApiTransferNotification,
   ApiVoteNotification,
-  Notifications
-} from "../store/notifications/types";
-import { ActiveUser } from "../store/active-user/types";
-import { FullAccount } from "../store/accounts/types";
-import { SearchResponse, AccountSearchResult } from "../api/search-api";
-import { AssetSymbol } from "@hiveio/dhive";
-import { setImmediate as flushMicroTasks } from "timers";
+  CollateralizedConversionRequest,
+  Community,
+  ConversionRequest,
+  DelegatedVestingShare,
+  DynamicProps,
+  Entry,
+  FullAccount,
+  OpenOrdersData,
+  PointTransaction,
+  Proposal,
+  ReceivedVestingShare,
+  SavingsWithdrawRequest,
+  SearchResponse,
+  TrendingTags,
+  Vote
+} from "@/entities";
+import { GlobalStore } from "@/core/global-store/initial-state";
+import { AllFilter, ListStyle, Theme } from "@/enums";
 
 export const allOver = () => new Promise((resolve) => resolve(1));
 
@@ -133,14 +130,14 @@ export const RcAccountInstance = {
 
 export const activeUserInstance: ActiveUser = activeUserMaker("foo");
 
-export const UiInstance: UI = {
+export const UiInstance: Partial<GlobalStore> = {
   login: false,
   loginKc: false,
   notifications: false
 };
 
-export const globalInstance: Global = {
-  filter: EntryFilter.hot,
+export const globalInstance: Partial<GlobalStore> = {
+  filter: AllFilter.hot,
   tag: "",
   theme: Theme.day,
   listStyle: ListStyle.row,
@@ -953,7 +950,7 @@ export const dynamicPropsIntance1: DynamicProps = {
   accountCreationFee: "3.000 HIVE"
 };
 
-export const notificationsInstance1: Notifications = {
+export const notificationsInstance1: GlobalStore = {
   filter: null,
   unread: 0,
   list: [],

@@ -1,0 +1,704 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+Array [
+  <div
+    className="dialog-header flex flex-col items-center justify-center"
+  >
+    <img
+      alt="Logo"
+      src="logo-circle.svg"
+    />
+    <h2>
+      Welcome back!
+    </h2>
+  </div>,
+  <form
+    className="block login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text mb-4"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="password / private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
+    <p
+      className="login-form-text my-3"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login
+      </div>
+    </button>
+  </form>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex justify-center items-center w-5 h-5 "
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;
+
+exports[`(2) With users 1`] = `
+Array [
+  <div
+    className="user-list"
+  >
+    <div
+      className="user-list-header"
+    >
+      Login As
+    </div>
+    <div
+      className="user-list-body"
+    >
+      <div
+        className="user-list-item"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user1
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="user-list-item"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user2
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <form
+    className="block login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text mb-4"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="password / private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
+    <p
+      className="login-form-text my-3"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login
+      </div>
+    </button>
+  </form>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex justify-center items-center w-5 h-5 "
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;
+
+exports[`(3) With users and active user 1`] = `
+Array [
+  <div
+    className="user-list"
+  >
+    <div
+      className="user-list-header"
+    >
+      Login As
+    </div>
+    <div
+      className="user-list-body"
+    >
+      <div
+        className="user-list-item"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user1
+        </span>
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="user-list-item active"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/medium)",
+            }
+          }
+        />
+        <span
+          className="username"
+        >
+          @
+          user2
+        </span>
+        <div
+          className="check-mark"
+        />
+        <div
+          className="flex-spacer"
+        />
+        <div
+          className="btn-delete"
+          onClick={[Function]}
+        >
+          <span
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <form
+    className="block login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text mb-4"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="password / private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
+    <p
+      className="login-form-text my-3"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login
+      </div>
+    </button>
+  </form>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex justify-center items-center w-5 h-5 "
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`(4) Show keychain option 1`] = `
+Array [
+  <div
+    className="dialog-header flex flex-col items-center justify-center"
+  >
+    <img
+      alt="Logo"
+      src="logo-circle.svg"
+    />
+    <h2>
+      Welcome back!
+    </h2>
+  </div>,
+  <form
+    className="block login-form"
+    onSubmit={[Function]}
+  >
+    <p
+      className="login-form-text mb-4"
+    >
+      Login with your username and private key.
+    </p>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="password / private key"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="google-recaptcha"
+    >
+      <div />
+    </div>
+    <p
+      className="login-form-text my-3"
+    >
+      We don't store your private keys.
+       
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        More info
+      </a>
+    </p>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 block w-full"
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login
+      </div>
+    </button>
+  </form>,
+  <div
+    className="or-divider"
+  >
+    OR
+  </div>,
+  <div
+    className="hs-login"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login with hivesigner
+      </div>
+      <div
+        className="flex justify-center items-center w-5 h-5 "
+      >
+        <img
+          alt="hivesigner"
+          className="hs-logo"
+          src="hive-signer.svg"
+        />
+      </div>
+    </button>
+  </div>,
+  <div
+    className="kc-login"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Login with keychain
+      </div>
+      <div
+        className="flex justify-center items-center w-5 h-5 "
+      >
+        <img
+          alt="keychain"
+          className="kc-logo"
+          src="keychain.png"
+        />
+      </div>
+    </button>
+  </div>,
+  <p>
+    Don't have an account?
+     
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Sign up now!
+    </a>
+  </p>,
+]
+`;

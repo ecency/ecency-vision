@@ -1,0 +1,171 @@
+@import "src/styles/vars_mixins";
+
+.user-nav {
+  align-items: center;
+  border-radius: 25px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 2px 3px 2px 12px;
+  margin-top: 10px;
+  position: relative;
+
+  .user-avatar {
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+  }
+
+  @media (min-width: $md-break) {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+
+  @media (min-width: $xl-break) {
+    margin-left: 16px;
+  }
+
+  @include themify(day) {
+    @apply bg-gradient-primary-day;
+  }
+
+  @include themify(night) {
+    @apply bg-gradient-primary-night;
+  }
+
+  .user-wallet,
+  .user-points,
+  .notifications,
+  .points {
+    @apply text-white;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+
+    svg {
+      height: 18px;
+    }
+  }
+
+  .user-wallet,
+  .user-points {
+    position: relative;
+
+    .reward-badge {
+      @apply bg-red-040;
+      border-radius: 50%;
+      height: 5px;
+      position: absolute;
+      width: 5px;
+      right: -1px;
+      top: 0;
+    }
+  }
+
+  .user-points {
+    svg {
+      margin-top: -2px;
+    }
+  }
+
+  .notifications {
+    cursor: pointer;
+    position: relative;
+
+    svg {
+      height: 19px;
+      width: 19px !important;
+      margin-top: -1px;
+    }
+
+    .notifications-badge {
+      @apply bg-red-040;
+      border-radius: 50%;
+      @apply text-white;
+      font-size: 10px;
+      height: 14px;
+      position: absolute;
+      right: -5px;
+      text-align: center;
+      top: -3px;
+      width: 14px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+  }
+
+  .drop-down-menu-power {
+    font-size: 13px;
+    padding: 8px 8px 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 300;
+
+    @include themify(day) {
+      @apply bg-light-300;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200;
+    }
+
+    .label {
+
+    }
+
+    .power {
+      display: flex;
+
+      svg {
+        height: 14px;
+        margin-right: 2px;
+      }
+
+      .voting, .downVoting {
+        display: flex;
+        align-items: center;
+
+      }
+
+      .voting {
+        margin-right: 6px;
+        @apply text-blue-dark-sky;
+      }
+
+      .downVoting {
+        @apply text-red-020;
+
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  // custom dropdown override
+  .custom-dropdown {
+
+    .menu-inner {
+      width: 220px;
+
+      .menu-header {
+        padding-left: 20px;
+      }
+    }
+
+    .menu-list {
+      padding-top: 6px;
+
+      .menu-item {
+        .item-inner {
+          margin-left: 20px;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

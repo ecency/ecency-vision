@@ -1,0 +1,190 @@
+@import "src/styles/vars_mixins";
+
+.login-modal {
+  .ecency-modal-body {
+    width: 100%;
+    max-width: 390px;
+    margin: auto;
+
+    .dialog-header {
+      text-align: center;
+      margin-bottom: 20px;
+
+      img {
+        height: 80px;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
+
+    p {
+      @apply text-gray-steel;
+      text-align: center;
+    }
+
+    .user-list {
+      position: relative;
+      min-height: 100px;
+
+      .user-list-header {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 14px;
+        text-align: center;
+
+        @include themify(day) {
+          @apply text-gray-steel;
+        }
+
+        @include themify(night) {
+          @apply text-blue-metallic;
+        }
+      }
+
+      .user-list-body {
+        overflow-y: auto;
+        max-height: 300px;
+
+        .user-list-item {
+          align-items: center;
+          border-radius: 25px;
+          cursor: pointer;
+          display: flex;
+          font-size: 16px;
+          line-height: 16px;
+          padding: 6px;
+          position: relative;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          @include themify(day) {
+            @apply text-blue-dark-sky;
+            @apply bg-blue-duck-egg;
+          }
+
+          @include themify(night) {
+            @apply bg-blue-metallic;
+            @apply text-blue-powder;
+          }
+
+          &:hover {
+            @include themify(day) {
+              @apply bg-blue-dark-sky-030;
+            }
+
+            @include themify(night) {
+              @apply bg-blue-metallic-20;
+            }
+          }
+
+          .user-avatar {
+            margin-right: 10px;
+          }
+
+          .username {
+            font-weight: 500;
+          }
+
+          .space {
+            flex-grow: 1;
+          }
+
+          .check-mark {
+            @apply bg-blue-dark-sky;
+            border-radius: 50%;
+            height: 5px;
+            left: -14px;
+            position: absolute;
+            top: calc(50% - 2.5px);
+            width: 5px;
+          }
+
+          .btn-delete {
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            height: 24px;
+            justify-content: center;
+            width: 24px;
+
+            svg {
+              @apply text-white;
+              height: 16px;
+            }
+
+            &:hover {
+              svg {
+                @apply text-red-light-020;
+              }
+            }
+
+            @include themify(day) {
+              @apply bg-blue-duck-egg-200;
+
+              &:hover {
+                @apply bg-blue-duck-egg;
+              }
+            }
+
+            @include themify(night) {
+              @apply bg-blue-metallic-10;
+
+              &:hover {
+                @apply bg-blue-metallic;
+              }
+            }
+          }
+
+          &:hover {
+            .btn-delete {
+              display: flex;
+            }
+          }
+
+          &.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    .login-form {
+      margin: auto;
+
+      .login-form-text {
+        font-size: 14px;
+      }
+    }
+
+    .hs-login, .kc-login {
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: center;
+
+      .hs-logo, .kc-logo {
+        height: 14px;
+        width: 14px;
+        margin-right: 6px;
+      }
+    }
+
+    .kc-login {
+      .kc-logo {
+        height: 16px;
+      }
+    }
+  }
+}
+
+.google-recaptcha {
+  margin: 16px 0px;
+}

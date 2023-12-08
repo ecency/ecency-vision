@@ -1,0 +1,30 @@
+@import "src/styles/vars_mixins";
+
+.or-divider {
+  position: relative;
+  margin: 10px auto;
+  width: 300px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  @apply text-silver;
+}
+
+.or-divider::before,
+.or-divider::after {
+  position: absolute;
+  width: 130px;
+  height: 1px;
+  top: 24px;
+  @apply bg-light-400;
+
+  content: "";
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}

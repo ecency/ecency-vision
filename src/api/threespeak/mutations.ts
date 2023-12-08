@@ -3,6 +3,7 @@ import { useState } from "react";
 import { uploadFile, uploadVideoInfo } from "./api";
 import { useThreeSpeakVideo } from "./queries";
 import { QueryIdentifiers } from "@/core/react-query";
+import { useGlobalStore } from "@/core/global-store";
 
 export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
   const [completed, setCompleted] = useState<number>(0);
@@ -26,7 +27,7 @@ export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
 
 export function useUploadVideoInfo() {
   const queryClient = useQueryClient();
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((state) => state.activeUser);
   const { data, refetch } = useThreeSpeakVideo("all");
 
   return useMutation(

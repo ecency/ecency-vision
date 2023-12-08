@@ -3,12 +3,13 @@ import { getAllVideoStatuses } from "./api";
 import { ThreeSpeakVideo } from "./types";
 import { useAsyncFn, usePrevious } from "react-use";
 import { QueryIdentifiers } from "@/core/react-query";
+import { useGlobalStore } from "@/core/global-store";
 
 export function useThreeSpeakVideo(
   filterStatus: ThreeSpeakVideo["status"] | "all",
   enabled = true
 ) {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((state) => state.activeUser);
   const prevActiveUser = usePrevious(activeUser);
 
   const queryClient = useQueryClient();

@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="suggestion relative"
+>
+  <span>
+    children
+  </span>
+  <div />
+</div>
+`;
+
+exports[`(2) Show list 1`] = `
+<div
+  className="suggestion relative"
+>
+  <span>
+    children
+  </span>
+  <div>
+    <div
+      className="suggestion-list-parent"
+    >
+      <div
+        className="search-suggestion-list"
+      >
+        <div
+          className="list-header"
+        >
+          My List
+        </div>
+        <div
+          className="list-body"
+        >
+          <a
+            className="list-item"
+            href="#"
+            onClick={[Function]}
+          >
+             
+            # foo
+          </a>
+          <a
+            className="list-item"
+            href="#"
+            onClick={[Function]}
+          >
+             
+            # bar
+          </a>
+          <a
+            className="list-item"
+            href="#"
+            onClick={[Function]}
+          >
+             
+            # baz
+          </a>
+        </div>
+      </div>
+      <div
+        className="search-suggestion-list more-result"
+      >
+        <div
+          className="list-body"
+        >
+          <a
+            className="list-item"
+            href="#"
+            onClick={[Function]}
+          >
+            More results
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

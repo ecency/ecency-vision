@@ -1,0 +1,49 @@
+@import "src/style/vars_mixins";
+
+.text-menu {
+  > .menu-item:not(:first-child)::before {
+    content: "/";
+
+    @apply px-3;
+  }
+}
+
+.navbar-toggle {
+  > span {
+    height: 0.125rem;
+    width: 1.5rem;
+    transition: .3s;
+  }
+
+  &.expanded {
+    > span:nth-child(1) {
+      transform: rotate(45deg) translateY(0.5rem);
+    }
+
+    > span:nth-child(2) {
+      transform: scale(0);
+    }
+
+    > span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-0.5rem);
+    }
+  }
+}
+
+.navbar-default {
+  .switch-language {
+    .dropdown-btn {
+      @apply ml-3 text-dark-default dark:text-white;
+
+      .label {
+        font-size: 1rem;
+
+        @apply font-normal;
+      }
+    }
+
+    .menu-down {
+      display: none;
+    }
+  }
+}

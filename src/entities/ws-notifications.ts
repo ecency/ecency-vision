@@ -1,4 +1,6 @@
 // Web socket notification types
+import { NotificationFilter } from "@/enums";
+
 interface BaseWsNotification {
   source: string;
   target: string;
@@ -240,3 +242,14 @@ export type ApiNotification =
   | ApiInactiveNotification
   | ApiReferralNotification
   | ApiDelegationsNotification;
+
+export interface Notifications {
+  filter: NotificationFilter | null;
+  unread: number;
+  list: ApiNotification[];
+  loading: boolean;
+  hasMore: boolean;
+  unreadFetchFlag: boolean;
+  settings?: ApiNotificationSetting;
+  fbSupport: "pending" | "granted" | "denied";
+}

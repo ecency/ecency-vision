@@ -1,8 +1,8 @@
 import { KeyRole, PrivateKey } from "@hiveio/dhive";
-import { formatError } from "../api/operations";
-import { error } from "../components/feedback";
 import { ActiveUser, UserKeys } from "@/entities";
 import i18next from "i18next";
+import { formatError } from "@/api/operations";
+import { error } from "@/features/shared";
 
 export function generateKeys(activeUser: ActiveUser, password: string): UserKeys {
   if (!activeUser.data.__loaded) {

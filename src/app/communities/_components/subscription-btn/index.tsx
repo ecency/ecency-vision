@@ -1,113 +1,81 @@
-import React from "react";
-import { Subscription } from "../../store/subscriptions/types";
-import { Community } from "../../store/communities";
-import { User } from "../../store/users/types";
-import { ActiveUser } from "../../store/active-user/types";
-import { ToggleType, UI } from "../../store/ui/types";
-import { Account } from "../../store/accounts/types";
-import BaseComponent from "../base";
-import LoginRequired from "../login-required";
-import { error } from "../feedback";
-import { formatError, subscribe, unSubscribe } from "../../api/operations";
-import { _t } from "../../i18n";
+import React, { useMemo, useState } from "react";
 import { Spinner } from "@ui/spinner";
 import { Button, ButtonProps } from "@ui/button";
+import { Community, Subscription } from "@/entities";
+import { useGlobalStore } from "@/core/global-store";
+import i18next from "i18next";
+import { formatError, subscribe, unSubscribe } from "@/api/operations";
+import { LoginRequired } from "@/features/shared";
 
 interface Props {
-  users: User[];
-  activeUser: ActiveUser | null;
   community: Community;
-  ui: UI;
-  subscriptions: Subscription[];
   buttonProps?: ButtonProps;
-  setActiveUser: (username: string | null) => void;
-  updateActiveUser: (data?: Account) => void;
-  deleteUser: (username: string) => void;
-  toggleUIProp: (what: ToggleType) => void;
-  updateSubscriptions: (list: Subscription[]) => void;
 }
+export function SubscriptionBtn({ buttonProps, community }: Props) {
+  const activeUser = useGlobalStore((state) => state.activeUser);
+  const subscriptions = useGlobalStore((state) => state.subscriptions);
+  const updateSubscriptions = useGlobalStore((state) => state.updateSubscriptions);
 
-interface State {
-  hover: boolean;
-  inProgress: boolean;
-}
+  const [hover, setHover] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
-export default class SubscriptionBtn extends BaseComponent<Props, State> {
-  state: State = {
-    hover: false,
-    inProgress: false
+  const subscribed = useMemo(
+    () => subscriptions.find((x) => x[0] === community.name) !== undefined,
+    [subscriptions, community]
+  );
+
+  const subscribeAction = async () => {
+    setInProgress(true);
+    try {
+      await subscribe(activeUser!!.username, community.name);
+      const s: Subscription = [community.name, community.title, "guest", ""];
+      updateSubscriptions([...subscriptions, s]);
+    } catch (e) {
+      error(...formatError(e));
+    } finally {
+      setInProgress(false);
+    }
   };
 
-  subscribe = () => {
-    const { community, activeUser, subscriptions, updateSubscriptions } = this.props;
-    this.stateSet({ inProgress: true });
-    subscribe(activeUser?.username!, community.name)
-      .then(() => {
-        const s: Subscription = [community.name, community.title, "guest", ""];
-        updateSubscriptions([...subscriptions, s]);
-        this.stateSet({ inProgress: false });
-      })
-      .catch((e) => {
-        error(...formatError(e));
-        this.stateSet({ inProgress: false });
-      });
+  const unsubscribeAction = async () => {
+    setInProgress(true);
+    try {
+      await unSubscribe(activeUser?.username!, community.name);
+      const s: Subscription[] = subscriptions.filter((x) => x[0] !== community.name);
+      updateSubscriptions([...s]);
+    } catch (e) {
+      error(...formatError(e));
+    } finally {
+      setInProgress(false);
+    }
   };
 
-  unSubscribe = () => {
-    const { community, activeUser, subscriptions, updateSubscriptions } = this.props;
-    this.stateSet({ inProgress: true });
-    unSubscribe(activeUser?.username!, community.name)
-      .then(() => {
-        const s: Subscription[] = subscriptions.filter((x) => x[0] !== community.name);
-        updateSubscriptions([...s]);
-        this.stateSet({ inProgress: false });
-      })
-      .catch((e) => {
-        error(...formatError(e));
-        this.stateSet({ inProgress: false });
-      });
-  };
-
-  toggleHover = () => {
-    const { hover } = this.state;
-    this.stateSet({ hover: !hover });
-  };
-
-  render() {
-    const { hover, inProgress } = this.state;
-    const { subscriptions, community, buttonProps } = this.props;
-    const subscribed = subscriptions.find((x) => x[0] === community.name) !== undefined;
-
-    if (inProgress) {
-      return (
+  return (
+    <>
+      {inProgress && (
         <Button disabled={true} {...buttonProps}>
           <Spinner className="w-3.5 h-3.5" />
         </Button>
-      );
-    }
-
-    if (subscribed) {
-      return (
+      )}
+      {subscribed && (
         <Button
-          onMouseEnter={this.toggleHover}
-          onMouseLeave={this.toggleHover}
-          onClick={this.unSubscribe}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          onClick={unsubscribeAction}
           outline={true}
           appearance={hover ? "danger" : "primary"}
           {...buttonProps}
         >
-          {hover ? _t("community.unsubscribe") : _t("community.subscribed")}
+          {hover ? i18next.t("community.unsubscribe") : i18next.t("community.subscribed")}
         </Button>
-      );
-    }
-
-    return LoginRequired({
-      ...this.props,
-      children: (
-        <Button onClick={this.subscribe} {...buttonProps}>
-          {_t("community.subscribe")}
-        </Button>
-      )
-    });
-  }
+      )}
+      {!activeUser && (
+        <LoginRequired>
+          <Button onClick={subscribeAction} {...buttonProps}>
+            {i18next.t("community.subscribe")}
+          </Button>
+        </LoginRequired>
+      )}
+    </>
+  );
 }
