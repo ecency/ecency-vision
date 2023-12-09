@@ -4,7 +4,7 @@ import { NavbarTextMenu } from "./navbar-text-menu";
 import { useGlobalStore } from "@/core/global-store";
 import * as ls from "@/utils/local-storage";
 import { classNameObject } from "@ui/util";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Tooltip } from "@ui/tooltip";
 import { brightnessSvg, pencilOutlineSvg } from "@ui/svg";
@@ -18,7 +18,6 @@ interface Props {
   transparentVerify: boolean;
   logoHref: string;
   logo: string;
-  history: History;
   setStepOne?: () => void;
   setSmVisible: (v: boolean) => void;
   themeText: string;
@@ -29,7 +28,6 @@ export function NavbarDesktop({
   transparentVerify,
   logo,
   logoHref,
-  history,
   setSmVisible,
   setStepOne,
   themeText
@@ -121,7 +119,7 @@ export function NavbarDesktop({
               </Link>
             </div>
           )}
-          {activeUser && <UserNav history={history} />}
+          {activeUser && <UserNav />}
         </div>
       </div>
     </div>

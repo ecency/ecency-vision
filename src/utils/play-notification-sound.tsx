@@ -9,7 +9,7 @@ function detachNotificationAudioElement() {
 }
 
 export function playNotificationSound() {
-  const notificationSound = require("../img/notification.mp3");
+  const notificationSound = require("../assets/img/notification.mp3");
   const element = (
     <audio
       id="notification-audio"
@@ -28,7 +28,7 @@ export function playNotificationSound() {
 
   document.body.appendChild(container);
 
-  setTimeout(() =>
-    (document.querySelector("#notification-audio") as HTMLAudioElement | null)?.play()
+  setTimeout(
+    () => (document.querySelector("#notification-audio") as HTMLAudioElement | null)?.play()
   );
 }

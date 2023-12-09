@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import numeral from "numeral";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { usePrevious } from "react-use";
-import { SearchSuggester } from "../search-suggester";
-import { SearchBox } from "../search-box";
+import { SearchSuggester } from "../../search-suggester";
+import { SearchBox } from "../../search-box";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 
@@ -13,7 +13,8 @@ interface Props {
 
 export function Search({ containerClassName }: Props) {
   const router = useRouter();
-  const previousPathname = usePrevious(router.pathname);
+  const pathname = usePathname();
+  const previousPathname = usePrevious(pathname);
 
   const searchIndexCount = useGlobalStore((state) => state.searchIndexCount);
   const [query, setQuery] = useState("");

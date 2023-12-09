@@ -5,13 +5,12 @@ import {
   useQuery,
   useQueryClient
 } from "@tanstack/react-query";
-import { Entry, EntryVote } from "../../store/entries/types";
 import { queryClient, QueryIdentifiers } from "../react-query";
-import { makePath } from "../../components/entry-link";
 import * as bridgeApi from "../../api/bridge";
-import { useMappedStore } from "../../store/use-mapped-store";
-import dmca from "../../constants/dmca.json";
-import { commentHistory } from "../../api/private-api";
+import dmca from "@/dmca.json";
+import { commentHistory } from "@/api/private-api";
+import { Entry, EntryVote } from "@/entities";
+import { makeEntryPath } from "@/utils";
 
 export const EntriesCacheContext = createContext<{
   getByLink: (link: string) => Entry | undefined;
@@ -20,7 +19,7 @@ export const EntriesCacheContext = createContext<{
   updateRepliesCount: (entry: Entry, count: number) => void;
   updateVotes: (entry: Entry, votes: EntryVote[], estimated: number) => void;
 }>({
-  getByLink: () => ({} as Entry),
+  getByLink: () => ({}) as Entry,
   updateCache: () => [],
   addReply: () => {},
   updateRepliesCount: () => {},
@@ -38,7 +37,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
         e.body = "This post is not available due to a copyright/fraudulent claim.";
         e.title = "";
       }
-      cache.set(makePath("", e.author, e.permlink), e);
+      cache.set(makeEntryPath("", e.author, e.permlink), e);
     });
 
     if (!skipInvalidation) {
@@ -46,7 +45,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
       entries.forEach((entry) =>
         queryClient.invalidateQueries([
           QueryIdentifiers.ENTRY,
-          makePath("", entry.author, entry.permlink)
+          makeEntryPath("", entry.author, entry.permlink)
         ])
       );
     }
@@ -54,7 +53,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   };
 
   const addReply = (entry: Entry, reply: Entry) => {
-    const cached = cache.get(makePath("", entry.author, entry.permlink))!!;
+    const cached = cache.get(makeEntryPath("", entry.author, entry.permlink))!!;
 
     updateCache([
       {
@@ -68,7 +67,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateRepliesCount = (entry: Entry, count: number) => {
     updateCache([
       {
-        ...cache.get(makePath("", entry.author, entry.permlink))!!,
+        ...cache.get(makeEntryPath("", entry.author, entry.permlink))!!,
         children: count
       }
     ]);
@@ -81,7 +80,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   const updateVotes = (entry: Entry, votes: EntryVote[], payout: number) => {
     updateCache([
       {
-        ...cache.get(makePath("", entry.author, entry.permlink))!!,
+        ...cache.get(makeEntryPath("", entry.author, entry.permlink))!!,
         active_votes: votes,
         stats: { ...entry.stats, total_votes: votes.length, flag_weight: entry.stats.flag_weight },
         total_votes: votes.length,
@@ -105,7 +104,7 @@ export function useEntryReFetch(entry: Entry | null) {
 
   useEffect(() => {
     if (entry) {
-      setKey(makePath("", entry.author, entry.permlink));
+      setKey(makeEntryPath("", entry.author, entry.permlink));
     }
   }, [entry]);
 
@@ -120,7 +119,7 @@ export function useEntryReFetch(entry: Entry | null) {
 
 export function useDeletedEntryCache(author: string, permlink: string) {
   return useQuery(
-    [QueryIdentifiers.DELETED_ENTRY, makePath("", author, permlink)],
+    [QueryIdentifiers.DELETED_ENTRY, makeEntryPath("", author, permlink)],
     async () => {
       const history = await commentHistory(author, permlink);
       const { body, title, tags } = history.list[0];
@@ -149,24 +148,16 @@ export function useEntryCache<T extends Entry>(
   permlink?: string
 ) {
   const { getByLink, updateCache } = useContext(EntriesCacheContext);
-  const { addEntry, updateEntry, entries } = useMappedStore();
 
   const queryKey =
     typeof initialOrPath === "string"
-      ? makePath("", author!!, permlink!!)
-      : makePath("", initialOrPath.author, initialOrPath.permlink);
+      ? makeEntryPath("", author!!, permlink!!)
+      : makeEntryPath("", initialOrPath.author, initialOrPath.permlink);
 
-  const query = useQuery(
+  return useQuery(
     [QueryIdentifiers.ENTRY, queryKey],
     async () => {
       let entry = getByLink(queryKey) as T;
-
-      if (!entry) {
-        entry = getExistingEntryFromStore() as T;
-        if (entry) {
-          updateCache([entry]);
-        }
-      }
 
       if (!entry && typeof initialOrPath === "string") {
         const response = await bridgeApi.getPost(author, permlink);
@@ -186,35 +177,4 @@ export function useEntryCache<T extends Entry>(
       initialData: typeof initialOrPath === "string" ? null : initialOrPath
     }
   );
-
-  useEffect(() => {
-    if (query.data) {
-      if (getExistingEntryFromStore()) {
-        updateEntry(query.data);
-      } else {
-        addEntry(query.data);
-      }
-    }
-  }, [query.data]);
-
-  const getExistingEntryFromStore = () => {
-    const groupKeys = Object.keys(entries);
-    let entry: Entry | undefined;
-
-    for (const k of groupKeys) {
-      entry = entries[k].entries.find((x) => {
-        if (dmca.some((rx: string) => new RegExp(rx).test(`@${x.author}/${x.permlink}`))) {
-          x.body = "This post is not available due to a copyright/fraudulent claim.";
-          x.title = "";
-        }
-        return x.author === author && x.permlink === permlink;
-      });
-      if (entry) {
-        break;
-      }
-    }
-    return entry;
-  };
-
-  return query;
 }

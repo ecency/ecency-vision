@@ -3,7 +3,7 @@ import "./_index.scss";
 import { classNameObject } from "@ui/util";
 import useClickAway from "react-use/lib/useClickAway";
 import i18next from "i18next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import useMount from "react-use/lib/useMount";
 import { usePrevious } from "react-use";
 import useUnmount from "react-use/lib/useUnmount";

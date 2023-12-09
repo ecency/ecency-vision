@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import "./_index.scss";
 import { WalletBadge } from "./wallet-badge";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { UserAvatar } from "@/features/shared";
@@ -13,11 +13,10 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdo
 export * from "./wallet-badge";
 
 interface Props {
-  history: History;
   icon?: ReactElement;
 }
 
-export const UserNav = ({ history, icon }: Props) => {
+export const UserNav = ({ icon }: Props) => {
   const router = useRouter();
 
   const activeUser = useGlobalStore((state) => state.activeUser);

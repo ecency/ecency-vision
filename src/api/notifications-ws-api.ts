@@ -154,7 +154,7 @@ export class NotificationsWebSocket {
   }
 
   private async onMessageReceive(evt: MessageEvent) {
-    const logo = require("../img/logo-circle.svg");
+    const logo = require("../assets/img/logo-circle.svg");
 
     const data = JSON.parse(evt.data);
     const msg = NotificationsWebSocket.getBody(data);

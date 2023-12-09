@@ -8,12 +8,13 @@ import { Login } from "./login";
 import { Account, User } from "@/entities";
 import { hsTokenRenew } from "@/api/auth-api";
 import { usrActivity } from "@/api/private-api";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 export function LoginDialog() {
   const userListRef = useRef();
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const usePrivate = useGlobalStore((state) => state.usePrivate);
   const loginKc = useGlobalStore((state) => state.loginKc);
@@ -58,7 +59,7 @@ export function LoginDialog() {
       }
 
       // redirection based on path name
-      if (router.pathname.startsWith("/signup")) {
+      if (pathname.startsWith("/signup")) {
         const u = `/@${x.username}/feed`;
         router.push(u);
       }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const makePath = (username: string) => `/@${username}`;
 

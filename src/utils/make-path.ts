@@ -14,3 +14,12 @@ export function makePath(filter: string, tag: string): string {
 
   return `/${filter}/${tag}`;
 }
+
+export function makeEntryPath(
+  category: string,
+  author: string,
+  permlink: string,
+  toReplies: boolean = false
+) {
+  return `/${category}/@${author}/${permlink}${toReplies ? "#replies" : ""}`;
+}

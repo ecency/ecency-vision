@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import * as ls from "@/utils/local-storage";
 import { GLOBAL_FILTERS } from "./consts";
@@ -6,7 +6,7 @@ import useMount from "react-use/lib/useMount";
 import "./_index.scss";
 import { NavbarMobile } from "./navbar-mobile";
 import { NavbarDesktop } from "./navbar-desktop";
-import { useRouter } from "next/router";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { isCommunity } from "@/utils";
 import { Theme } from "@/enums";
 import i18next from "i18next";
@@ -30,6 +30,9 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
   const usePrivate = useGlobalStore((state) => state.usePrivate);
 
   const router = useRouter();
+  const query = useSearchParams();
+  const pathname = usePathname();
+  const previousPathname = usePrevious(pathname);
 
   const [logoHref, setLogoHref] = useState("/");
   const [transparentVerify, setTransparentVerify] = useState(false);
@@ -37,17 +40,14 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
   const [smVisible, setSmVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const previousLocation = usePrevious(location);
   const previousActiveUser = usePrevious(activeUser);
 
-  const navRef = useRef<any>();
-
-  const logo = require("../../img/logo-circle.svg");
+  const logo = require("../../../assets/img/logo-circle.svg");
 
   useMount(() => {
     // referral check / redirect
-    if (location.pathname.startsWith("/signup") && router.query.referral) {
-      router.push(`/signup?referral=${router.query.referral}`);
+    if (location.pathname.startsWith("/signup") && query.has("referral")) {
+      router.push(`/signup?referral=${query.get("referral")}`);
     }
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handleSetTheme);
 
@@ -68,22 +68,22 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
   }, [smVisible]);
 
   useEffect(() => {
-    if (previousLocation?.pathname !== location.pathname || previousActiveUser !== activeUser) {
-      if (location.pathname === "/" && !activeUser) {
+    if (previousPathname !== pathname || previousActiveUser !== activeUser) {
+      if (pathname === "/" && !activeUser) {
         setStepOne && setStepOne();
       } else {
         setStepTwo && setStepTwo();
       }
     }
-  }, [location, activeUser]);
+  }, [pathname, previousPathname, activeUser, previousActiveUser]);
 
   useEffect(() => {
     setTransparentVerify(
-      location.pathname?.startsWith("/hot") ||
-        location.pathname?.startsWith("/created") ||
-        location.pathname?.startsWith("/trending")
+      pathname.startsWith("/hot") ||
+        pathname.startsWith("/created") ||
+        pathname.startsWith("/trending")
     );
-  }, [location]);
+  }, [pathname]);
 
   useEffect(() => {
     const isCommunityPage = match?.params.name && isCommunity(match.params.name);
@@ -133,7 +133,6 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
         step={step}
         logoHref={logoHref}
         logo={logo}
-        history={history}
       />
       <NavbarDesktop
         themeText={themeText}
@@ -142,7 +141,6 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
         logo={logo}
         step={step}
         setStepOne={setStepOne}
-        history={history}
         setSmVisible={setSmVisible}
       />
       {login && <LoginDialog />}

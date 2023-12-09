@@ -1,11 +1,10 @@
-import { Entry } from "../../store/entries/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../react-query";
-import { dataLimit, getPostsRanked } from "../../api/bridge";
-import { pinPost } from "../../api/operations";
-import { useMappedStore } from "../../store/use-mapped-store";
-import { Community } from "../../store/communities/types";
-import isCommunity from "../../helper/is-community";
+import { dataLimit, getPostsRanked } from "@/api/bridge";
+import { pinPost } from "@/api/operations";
+import { Community, Entry } from "@/entities";
+import { isCommunity } from "@/utils";
+import { useGlobalStore } from "@/core/global-store";
 
 export function useCommunityPinCache(entry: Entry) {
   const { data: rankedPosts } = useQuery(
@@ -33,7 +32,7 @@ export function useCommunityPinCache(entry: Entry) {
 }
 
 export function useCommunityPin(entry: Entry, community: Community | null) {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((state) => state.activeUser);
   const queryClient = useQueryClient();
 
   return useMutation(

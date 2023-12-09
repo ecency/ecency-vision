@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 
 import { makePath as makePathTag } from "../tag";
 import { makePath as makePathProfile } from "../profile-link";
 import defaults from "@/defaults.json";
 import { Community, Reputations } from "@/entities";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useDebounce, usePrevious } from "react-use";
 import { useTrendingTagsQuery } from "@/api/queries";
 import i18next from "i18next";
@@ -22,9 +22,9 @@ interface Props {
 }
 
 export function SearchSuggester({ changed, value, children, containerClassName }: Props) {
-  const timerRef = useRef();
   const router = useRouter();
-  const previousPathname = usePrevious(router.pathname);
+  const pathname = usePathname();
+  const previousPathname = usePrevious(pathname);
   const previousValue = usePrevious(value);
 
   const [suggestions, setSuggestions] = useState<string[] | Community[]>([]);
@@ -35,12 +35,12 @@ export function SearchSuggester({ changed, value, children, containerClassName }
   const { data: trendingTags } = useTrendingTagsQuery();
 
   useEffect(() => {
-    if (previousPathname !== router.pathname) {
+    if (previousPathname !== pathname) {
       setSuggestions([]);
       setLoading(false);
       setMode("");
     }
-  }, [router.pathname, previousPathname]);
+  }, [pathname, previousPathname]);
 
   useDebounce(
     () => {

@@ -3,7 +3,7 @@ import React from "react";
 import { NavbarToggle } from "./navbar-toggle";
 import { NavbarDefault } from "./navbar-default";
 import { useGlobalStore } from "@/core/global-store";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { classNameObject } from "@ui/util";
 import Link from "next/link";
 
@@ -11,21 +11,12 @@ interface Props {
   step?: number;
   logoHref: string;
   logo: string;
-  history: History;
   setStepOne?: () => void;
   expanded: boolean;
   setExpanded: (v: boolean) => void;
 }
 
-export function NavbarMobile({
-  step,
-  logoHref,
-  logo,
-  history,
-  setStepOne,
-  expanded,
-  setExpanded
-}: Props) {
+export function NavbarMobile({ step, logoHref, logo, setStepOne, expanded, setExpanded }: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
 
   const router = useRouter();

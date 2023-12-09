@@ -4,7 +4,7 @@ import { EntryFilter } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
 import { useCommunityCache } from "@/core/caches";
 import i18next from "i18next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const makePath = (filter: string, tag: string): string => {
   // created is default filter for community pages

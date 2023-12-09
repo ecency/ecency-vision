@@ -1,4 +1,4 @@
-@import "src/style/vars_mixins";
+@import "../../../styles/vars_mixins";
 
 .text-menu {
   > .menu-item:not(:first-child)::before {

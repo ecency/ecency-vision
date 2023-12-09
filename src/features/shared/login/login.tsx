@@ -15,7 +15,7 @@ import i18next from "i18next";
 import { error } from "@/features/shared";
 import { grantPostingPermission } from "@/api/operations";
 import { UserItem } from "@/features/shared/login/user-item";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Props {
   doLogin: (
@@ -275,9 +275,9 @@ export function Login({ doLogin, userListRef }: Props) {
       });
   };
 
-  const logo = require("../../img/logo-circle.svg");
-  const hsLogo = require("../../img/hive-signer.svg");
-  const keyChainLogo = require("../../img/keychain.png");
+  const logo = require("../../../assets/img/logo-circle.svg");
+  const hsLogo = require("../../../assets/img/hive-signer.svg");
+  const keyChainLogo = require("../../../assets/img/keychain.png");
 
   const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
