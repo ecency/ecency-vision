@@ -1,5 +1,6 @@
-import React, { ReactElement, useEffect, useState } from "react";
+"use client";
 
+import React, { ReactElement, useEffect, useState } from "react";
 import { makePath as makePathTag } from "../tag";
 import { makePath as makePathProfile } from "../profile-link";
 import defaults from "@/defaults.json";

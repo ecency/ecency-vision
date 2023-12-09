@@ -1,3 +1,5 @@
+"use client";
+
 import React, { HTMLProps, useRef, useState } from "react";
 import useClickAway from "react-use/lib/useClickAway";
 import { DropdownContext } from "./dropdown-context";

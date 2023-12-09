@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import * as ls from "@/utils/local-storage";

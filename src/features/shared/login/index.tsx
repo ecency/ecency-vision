@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from "react";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";

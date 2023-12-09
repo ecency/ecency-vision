@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { NotificationsWebSocket } from "@/api/notifications-ws-api";
 import useMount from "react-use/lib/useMount";

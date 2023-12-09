@@ -4,79 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed CSS imports and ts imports">
-      <change afterPath="$PROJECT_DIR$/src/app/communities/page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/__snapshots__/helper.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/helper.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/helper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ac-ace.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ar-SA.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/az-AZ.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/bg-BG.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/bn-BD.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/da-DK.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/de-DE.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/el-GR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/es-ES.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/et-EE.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/fa-IR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/fi-FI.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/fil-PH.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/fr-FR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/he-IL.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/hi-IN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/hr-HR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/hu-HU.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/id-ID.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/it-IT.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ja-JP.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ka-GE.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/kk-KZ.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ko-KR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ku-TR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ky-KG.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/lt-LT.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/lv-LV.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ms-MY.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ne-NP.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/nl-NL.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/no-NO.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/pa-IN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/pcm-NG.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/pl-PL.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/pt-PT.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ro-RO.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ru-RU.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/sk-SK.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/sl-SI.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/sr-CS.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/sv-SE.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ta-IN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/th-TH.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/tr-TR.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/uk-UA.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ur-IN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/ur-PK.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/uz-UZ.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/vi-VN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/yo-NG.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-CN.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-HK.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-MO.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-SG.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-TW.json" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Completed communities migration">
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/bridge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/lang-options.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/_components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/linear-progress/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/linear-progress/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/suggestion-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/suggestion-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +175,7 @@
       <workItem from="1701697442619" duration="7225000" />
       <workItem from="1701788911157" duration="12678000" />
       <workItem from="1701872398545" duration="11450000" />
-      <workItem from="1701948427772" duration="22349000" />
+      <workItem from="1701948427772" duration="23541000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -279,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702126284584</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completed communities migration">
+      <option name="closed" value="true" />
+      <created>1702131863158</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702131863158</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +246,8 @@
     <MESSAGE value="Migrated all dependencies for communities page" />
     <MESSAGE value="Fixed utils imports" />
     <MESSAGE value="Fixed CSS imports and ts imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed CSS imports and ts imports" />
+    <MESSAGE value="Completed communities migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed communities migration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 import { Spinner } from "@ui/spinner";
 import { Button, ButtonProps } from "@ui/button";
@@ -5,7 +7,7 @@ import { Community, Subscription } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { formatError, subscribe, unSubscribe } from "@/api/operations";
-import { LoginRequired } from "@/features/shared";
+import { error, LoginRequired } from "@/features/shared";
 
 interface Props {
   community: Community;

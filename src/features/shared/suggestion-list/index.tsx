@@ -1,3 +1,5 @@
+"use client";
+
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import "./_index.scss";
 import { classNameObject } from "@ui/util";

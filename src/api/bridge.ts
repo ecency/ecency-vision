@@ -175,14 +175,14 @@ export const getCommunities = (
   query?: string | null,
   sort: string = "rank",
   observer: string = ""
-): Promise<Community[] | null> =>
+): Promise<Community[]> =>
   bridgeApiCall<Community[] | null>("list_communities", {
     last,
     limit,
     query,
     sort,
     observer
-  });
+  }).then((r) => r ?? []);
 
 export const normalizePost = (post: any): Promise<Entry | null> =>
   bridgeApiCall<Entry | null>("normalize_post", {

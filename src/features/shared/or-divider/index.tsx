@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Component } from "react";
 import "./_index.scss";
 import i18next from "i18next";

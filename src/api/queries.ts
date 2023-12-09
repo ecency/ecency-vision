@@ -4,8 +4,9 @@ import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { useGlobalStore } from "@/core/global-store";
 import { QueryIdentifiers } from "@/core/react-query";
-import { DynamicProps, Entry } from "@/entities";
+import { Community, DynamicProps, Entry } from "@/entities";
 import { getAccountFull, getDynamicProps, getTrendingTags } from "@/api/hive";
+import { getCommunities } from "@/api/bridge";
 
 const DEFAULT = {
   points: "0.000",
@@ -130,4 +131,14 @@ export function useDynamicPropsQuery() {
       accountCreationFee: "3.000 HIVE"
     }
   });
+}
+
+export function useCommunitiesQuery(sort: string, query?: string, initialData: Community[] = []) {
+  return useQuery<Community[]>(
+    [QueryIdentifiers.COMMUNITIES, sort, query],
+    async () => getCommunities("", 100, query ? query : null, sort === "hot" ? "rank" : sort),
+    {
+      initialData
+    }
+  );
 }
