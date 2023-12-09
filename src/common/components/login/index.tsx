@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, MouseEvent } from "react";
 
 import { Modal, Form, Button, FormControl, Spinner } from "react-bootstrap";
 
@@ -28,14 +28,12 @@ import { error } from "../feedback";
 import { getAuthUrl, makeHsCode } from "../../helper/hive-signer";
 import { hsLogin } from "../../../desktop/app/helper/hive-signer";
 
-import { getAccount } from "../../api/hive";
+import { client, getAccount } from "../../api/hive";
 import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission, revokePostingPermission } from "../../api/operations";
 
 import { getRefreshToken } from "../../helper/user-token";
-
-import ReCAPTCHA from "react-google-recaptcha";
 
 import { addAccountAuthority, removeAccountAuthority, signBuffer } from "../../helper/keychain";
 import { logUser } from "../../helper/log-user";
@@ -44,6 +42,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 
 import { deleteForeverSvg } from "../../img/svg";
+import { Html5QrcodeScanner, Html5QrcodeResult } from "html5-qrcode";
 
 declare var window: AppWindow;
 
@@ -410,14 +409,20 @@ interface State {
   username: string;
   key: string;
   inProgress: boolean;
+  quickReliablePreviewVisible: boolean;
+  quickReliablePreviewSetup: boolean;
 }
 
 export class Login extends BaseComponent<LoginProps, State> {
   state: State = {
     username: "",
     key: "",
-    inProgress: false
+    inProgress: false,
+    quickReliablePreviewVisible: false,
+    quickReliablePreviewSetup: false
   };
+
+  html5QrcodeScanner: undefined | Html5QrcodeScanner = undefined;
 
   shouldComponentUpdate(nextProps: Readonly<LoginProps>, nextState: Readonly<State>): boolean {
     return (
@@ -429,6 +434,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   hide = () => {
     const { toggleUIProp } = this.props;
+    this.stateSet({ quickReliablePreviewVisible: false });
     toggleUIProp("login");
   };
 
@@ -516,7 +522,7 @@ export class Login extends BaseComponent<LoginProps, State> {
 
   login = async () => {
     const { hsClientId } = this.props.global;
-    const { username, key } = this.state;
+    const { username, key, quickReliablePreviewVisible } = this.state;
 
     if (username === "" || key === "") {
       error(_t("login.error-fields-required"));
@@ -613,25 +619,7 @@ export class Login extends BaseComponent<LoginProps, State> {
     const { doLogin } = this.props;
 
     doLogin(code, withPostingKey ? key : null, account)
-      .then(() => {
-        if (
-          !ls.get(`${username}HadTutorial`) ||
-          (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== "true")
-        ) {
-          ls.set(`${username}HadTutorial`, "false");
-        }
-
-        let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
-
-        if (
-          !shouldShowTutorialJourney &&
-          shouldShowTutorialJourney &&
-          shouldShowTutorialJourney === "false"
-        ) {
-          ls.set(`${username}HadTutorial`, "false");
-        }
-        this.hide();
-      })
+      .then(this.handleDoLogin.bind(this, username))
       .catch(() => {
         error(_t("g.server-error"));
       })
@@ -640,8 +628,174 @@ export class Login extends BaseComponent<LoginProps, State> {
       });
   };
 
+  handleDoLogin = (username: string) => {
+    if (
+      !ls.get(`${username}HadTutorial`) ||
+      (ls.get(`${username}HadTutorial`) && ls.get(`${username}HadTutorial`) !== "true")
+    ) {
+      ls.set(`${username}HadTutorial`, "false");
+    }
+
+    let shouldShowTutorialJourney = ls.get(`${username}HadTutorial`);
+
+    if (
+      !shouldShowTutorialJourney &&
+      shouldShowTutorialJourney &&
+      shouldShowTutorialJourney === "false"
+    ) {
+      ls.set(`${username}HadTutorial`, "false");
+    }
+
+    if (this.html5QrcodeScanner) {
+      this.html5QrcodeScanner.clear();
+    }
+
+    this.hide();
+  };
+
+  hideQRPreview = (e: MouseEvent<typeof FormControl & HTMLInputElement>): void => {
+    if (this.state.quickReliablePreviewSetup === false) return;
+    const scanner = this.html5QrcodeScanner;
+    if (this.state.quickReliablePreviewVisible === true && scanner) {
+      this.setState((old_state: State) => {
+        if (!old_state.quickReliablePreviewVisible) return old_state;
+        try {
+          scanner.pause();
+        } catch (emessage: string) {
+          console.error(emessage);
+        } finally {
+          return { ...old_state, quickReliablePreviewVisible: false };
+        }
+      });
+    } // if
+  };
+
+  showQRPreview = (e: MouseEvent<typeof FormControl & HTMLInputElement>): void => {
+    const { hsClientId } = this.props.global;
+    const { quickReliablePreviewSetup, quickReliablePreviewVisible } = this.state;
+    if (quickReliablePreviewVisible) {
+      return;
+    } else if (quickReliablePreviewSetup) {
+      const scanner = this.html5QrcodeScanner;
+      if (scanner) {
+        this.stateSet((old_state: State) => {
+          if (old_state.quickReliablePreviewVisible) return old_state;
+          try {
+            scanner.resume();
+          } catch (emessage: string) {
+            console.error(emessage);
+          } finally {
+            return { ...old_state, quickReliablePreviewVisible: true };
+          }
+        });
+      }
+    } else {
+      this.stateSet({ quickReliablePreviewVisible: true, quickReliablePreviewSetup: true });
+
+      if (!navigator.mediaDevices.getUserMedia) {
+        console.log("media devices not supported");
+        return;
+      }
+
+      const onScanSuccess = (decodedText: string, decodedResult: Html5QrcodeResult) => {
+        // handle the scanned code as you like, for example:
+        const privateKeyString = decodedText.trim();
+        const handleFailure = () =>
+          this.setState({ key: privateKeyString, quickReliablePreviewVisible: false });
+        // setting the username leaves the login button disabled (why?).
+        try {
+          const privateKeyObject = PrivateKey.fromString(privateKeyString);
+          const publicKeyObject = privateKeyObject.createPublic();
+          const publicKeyString = publicKeyObject.toString();
+          console.log("line 671:", { publicKeyString });
+          // still in development:          //getKeyReferences({"keys": [publicKey]})
+          client
+            .call("account_by_key_api", "get_key_references", { keys: [publicKeyString] })
+            .then(async (result: { accounts: string[][] }) => {
+              console.log("line 675:", result);
+              if (result.accounts.length == 0) {
+                handleFailure();
+                error("Invalid return value from server.");
+              } else {
+                const usernamesForFirstKey: string[] = result.accounts[0];
+                if (usernamesForFirstKey.length === 0) {
+                  handleFailure();
+                  error("No user for this key");
+                } else if (usernamesForFirstKey.length > 1) {
+                  handleFailure();
+                  error("More than one user for this key");
+                } else {
+                  const firstUsername: string = usernamesForFirstKey[0];
+
+                  let account: Account;
+
+                  this.stateSet({
+                    key: privateKeyString,
+                    quickReliablePreviewVisible: false,
+                    inProgress: true,
+                    username: firstUsername
+                  });
+
+                  try {
+                    console.log({ username: firstUsername });
+                    account = await getAccount(firstUsername);
+                  } catch (err) {
+                    this.stateSet({ inProgress: false });
+                    error(_t("login.error-user-fetch"));
+                    return;
+                  }
+
+                  // Prepare hivesigner code
+                  const signer = (message: string): Promise<string> => {
+                    const hash = cryptoUtils.sha256(message);
+                    return new Promise<string>((resolve) =>
+                      resolve(privateKeyObject.sign(hash).toString())
+                    );
+                  };
+                  const code = await makeHsCode(hsClientId, firstUsername, signer);
+
+                  const { doLogin } = this.props;
+
+                  doLogin(code, privateKeyString, account)
+                    .then(this.handleDoLogin.bind(this, firstUsername))
+                    .catch(() => {
+                      error(_t("g.server-error"));
+                    })
+                    .finally(() => {
+                      this.stateSet({ inProgress: false });
+                    });
+                }
+              }
+            })
+            .catch((e) => {
+              console.log(685, e);
+              handleFailure();
+            });
+        } catch (e) {
+          console.log("689", e);
+          if (typeof e.message == "string") {
+            error(e.message);
+          }
+        }
+      };
+
+      function onScanFailure(error: string) {
+        // handle scan failure, usually better to ignore and keep scanning.
+        // for example:
+        // doing nothing
+      }
+
+      this.html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader",
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        /* verbose= */ false
+      );
+      this.html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    }
+  };
+
   render() {
-    const { username, key, inProgress } = this.state;
+    const { username, key, inProgress, quickReliablePreviewVisible } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
     const isEcency = false;
     const logo = global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg");
@@ -707,14 +861,24 @@ export class Login extends BaseComponent<LoginProps, State> {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control
-              type="password"
-              value={key}
-              autoComplete="off"
-              onChange={this.keyChanged}
-              placeholder={_t("login.key-placeholder")}
-              onKeyDown={this.inputKeyDown}
-            />
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <Form.Control
+                type="password"
+                value={key}
+                autoComplete="off"
+                onChange={this.keyChanged}
+                placeholder={_t("login.key-placeholder")}
+                onKeyDown={this.inputKeyDown}
+                style={{ display: quickReliablePreviewVisible ? "none" : "inherit" }}
+              />
+              {navigator.mediaDevices.getUserMedia && !quickReliablePreviewVisible && (
+                <Button onClick={this.showQRPreview}>QR</Button>
+              )}
+            </div>
+            <div style={{ display: quickReliablePreviewVisible ? "inherit" : "none" }}>
+              <div id="reader" />
+              <Button onClick={this.hideQRPreview}>Type password</Button>
+            </div>
           </Form.Group>
           <p className="login-form-text">
             {_t("login.login-info-1")}{" "}
