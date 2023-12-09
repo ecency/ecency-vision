@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function UserAvatar({ username, size, src, onClick }: Props) {
-  const canUseWebp = useGlobalStore((state) => state.global.canUseWebp);
+  const canUseWebp = useGlobalStore((state) => state.canUseWebp);
 
   const imgSize = useMemo(
     () =>

@@ -9,12 +9,13 @@ import { CommunityListItem } from "./_components";
 import { Communities } from "@/entities";
 import { useDebounce } from "react-use";
 import { getCommunities } from "@/api/bridge";
+import "./page.scss";
 
 export default function Communities() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState<Communities>([]);
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState("rank");
 
   const noResults = useMemo(() => !loading && list.length === 0, [loading, list]);
 

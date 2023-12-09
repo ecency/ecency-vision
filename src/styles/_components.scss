@@ -3,4 +3,20 @@
 @import "react-grid-layout/css/styles.css";
 @import "react-resizable/css/styles.css";
 
-@import "../common/img/index";
+.vote-svg {
+  width: 8px !important;
+  max-height: 6px !important;
+}
+
+.slider-svg-up {
+  width: 12px !important;
+  max-height: 7px !important;
+  margin-bottom: 1px;
+}
+
+.slider-svg-down {
+  width: 12px !important;
+  max-height: 7px !important;
+  margin-top: 1px;
+}
+
