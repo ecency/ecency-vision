@@ -77,6 +77,7 @@ export interface Global {
   lowRewardThreshold: number;
   showFrontEnd: boolean;
   menuOrder: Array<string>;
+  footer: undefined | string;
 }
 
 export enum ActionTypes {
@@ -94,7 +95,8 @@ export enum ActionTypes {
   SET_SHOW_SELF_VOTE = "@global/SET_SHOW_SELF_VOTE",
   SET_SHOW_REWARD_SPLIT = "@global/SET_SHOW_REWARD_SPLIT",
   SET_LOW_REWARD_THRESHOLD = "@global/SET_LOW_REWARD_THRESHOLD",
-  SET_SHOW_FRONT_END = "@global/SET_SHOW_FRONT_END"
+  SET_SHOW_FRONT_END = "@global/SET_SHOW_FRONT_END",
+  SET_FOOTER = "@global/SET_FOOTER"
 }
 
 export interface ThemeChangeAction {
@@ -170,6 +172,11 @@ export interface SetShowFrontEndAction {
   showFrontEnd: boolean;
 }
 
+export interface SetFooterAction {
+  type: ActionTypes.SET_FOOTER;
+  footer: string;
+}
+
 export type Actions =
   | LocationChangeAction
   | ThemeChangeAction
@@ -186,4 +193,5 @@ export type Actions =
   | SetShowSelfVoteAction
   | SetShowRewardSplitAction
   | SetLowRewardThresholdAction
-  | SetShowFrontEndAction;
+  | SetShowFrontEndAction
+  | SetFooterAction;

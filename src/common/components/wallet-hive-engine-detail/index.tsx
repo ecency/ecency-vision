@@ -193,8 +193,8 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     symbol: string,
     name: string,
     group?: OperationGroup | "",
-    start?: number = 0,
-    limit?: number = 200
+    start: number = 0,
+    limit: number = 200
   ) => {
     const { transactions } = this.state;
     const { list } = transactions;

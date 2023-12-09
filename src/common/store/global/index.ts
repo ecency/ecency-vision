@@ -25,7 +25,8 @@ import {
   SetShowSelfVoteAction,
   SetShowRewardSplitAction,
   SetLowRewardThresholdAction,
-  SetShowFrontEndAction
+  SetShowFrontEndAction,
+  SetFooterAction
 } from "./types";
 import { CommonActionTypes } from "../common";
 import * as ls from "../../util/local-storage";
@@ -58,7 +59,8 @@ export const initialState: Global = {
   showRewardSplit: defaults.showRewardSplit,
   lowRewardThreshold: defaults.lowRewardThreshold,
   showFrontEnd: defaults.showFrontEnd,
-  menuOrder: (defaults && defaults.menuOrder) || ["hive"]
+  menuOrder: (defaults && defaults.menuOrder) || ["hive"],
+  footer: ls.get("footer") || ((defaults && defaults.footer) ?? "")
 };
 
 export default (state: Global = initialState, action: Actions): Global => {
@@ -129,6 +131,10 @@ export default (state: Global = initialState, action: Actions): Global => {
     case ActionTypes.SET_SHOW_FRONT_END: {
       const { showFrontEnd } = action;
       return { ...state, showFrontEnd };
+    }
+    case ActionTypes.SET_FOOTER: {
+      const { footer } = action;
+      return { ...state, footer };
     }
     default:
       return state;
@@ -264,6 +270,11 @@ export const setShowFrontEnd = (value: boolean) => (dispatch: Dispatch) => {
   dispatch(setShowFrontEndAct(value));
 };
 
+export const setFooter = (value: string) => (dispatch: Dispatch) => {
+  ls.set("footer", value);
+  dispatch(setFooterAct(value));
+};
+
 /* Action Creators */
 export const themeChangeAct = (theme: Theme): ThemeChangeAction => {
   return {
@@ -367,5 +378,12 @@ export const setShowFrontEndAct = (value: boolean): SetShowFrontEndAction => {
   return {
     type: ActionTypes.SET_SHOW_FRONT_END,
     showFrontEnd: value
+  };
+};
+
+export const setFooterAct = (value: string): SetFooterAction => {
+  return {
+    type: ActionTypes.SET_FOOTER,
+    footer: value
   };
 };

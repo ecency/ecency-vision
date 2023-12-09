@@ -50,7 +50,7 @@ exports[`(1) Default render 1`] = `
               className="date"
               title="Saturday, September 17, 2022 1:42 AM"
             >
-              6 months ago
+              8 months ago
             </div>
           </td>
         </tr>
