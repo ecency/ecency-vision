@@ -21,6 +21,7 @@ import {
   CurrencySetAction,
   LangSetAction,
   NsfwSetAction,
+  SetLastIndexPathAction,
   Theme,
   ThemeChangeAction,
 } from "./types";
@@ -33,10 +34,10 @@ import filterTagExtract from "../../helper/filter-tag-extract";
 import { setupConfig } from "../../../setup";
 
 export const initialState: Global = {
-  filter: AllFilter[defaults.filter],
+  // filter: AllFilter[defaults.filter],
   tag: "",
-  theme: Theme[setupConfig.selectedTheme],
-  listStyle: ListStyle[defaults.listStyle],
+  // theme: Theme[setupConfig.selectedTheme],
+  // listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
   currencyRate: defaults && defaults.currency && defaults.currency.rate,
@@ -277,3 +278,12 @@ export const hasKeyChainAct = (): HasKeyChainAction => {
     type: ActionTypes.HAS_KEYCHAIN,
   };
 };
+
+export const setLastIndexPath = (path: string | null) => (dispatch: Dispatch) => {
+  dispatch(setLastIndexPathAct(path));
+};
+
+export const setLastIndexPathAct = (path: string | null): SetLastIndexPathAction => ({
+  type: ActionTypes.SET_LAST_INDEX_PATH,
+  path
+});

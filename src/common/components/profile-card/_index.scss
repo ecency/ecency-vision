@@ -63,11 +63,13 @@
   }
 
   .vpower-line {
-    background: $duck-egg-blue;
-    height: 2px;
+    // background: $duck-egg-blue;
+    // height: 15px;
     width: 300px;
+    // border-radius: 20px;
     margin: 0 auto 8px auto;
-
+    cursor: pointer;
+    
     @include themify(dusk) {
       backgorund: $dusk-background;
     }
@@ -77,8 +79,10 @@
     }
 
     .vpower-line-inner {
-      background: $dark-sky-blue;
-      height: 2px;
+      // background: $dark-sky-blue;
+      // height: 100%;
+      width: 100%;
+      border-radius: 20px;
 
       @include themify(dusk) {
         backgorund: $dusk-primary;

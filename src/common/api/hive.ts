@@ -485,3 +485,24 @@ export const getBlogEntries = (username: string, limit: number = dataLimit): Pro
         0,
         limit
     ]);
+
+    export const getRcOperationStats = (): Promise<any> => client.call("rc_api", "get_rc_stats", {});
+
+    export const getOutgoingRc = async (
+        from: string,
+        to: string = "",
+        limit: number = 50
+      ): Promise<any[]> => {
+        const data = await client.call("rc_api", "list_rc_direct_delegations", {
+          start: [from, to],
+          limit: limit
+        });
+        return data;
+      };
+
+      export const getIncomingRc = async (user: string): Promise<any[]> => {
+        const data = await fetch(`https://ecency.com/private-api/received-rc/${user}`)
+          .then((res: any) => res.json())
+          .then((r: any) => r);
+        return data;
+      };
