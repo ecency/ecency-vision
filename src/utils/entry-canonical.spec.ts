@@ -1,6 +1,6 @@
 import { entryCanonical } from "./entry-canonical";
 
-import { entryInstance1 } from "../helper/test-helper";
+import { entryInstance1 } from "./test-helper";
 
 it("(1) No app definition in json", () => {
   const entry = { ...entryInstance1, ...{ json_metadata: {} } };

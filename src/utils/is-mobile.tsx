@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function isMobile() {
-  const [screenWidth, setScreenWidth] = React.useState(
+export function useIsMobile() {
+  const [screenWidth, setScreenWidth] = useState(
     typeof window !== "undefined" && window.innerWidth
   );
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     function handleResize() {
       setScreenWidth(window.innerWidth);

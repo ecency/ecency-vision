@@ -1,4 +1,4 @@
-import stripTags from "./strip-tags";
+import { stripTags } from "./strip-tags";
 
 it("strip", () => {
   expect(stripTags("<script>javascript</script> lorem ipsum dolor sit")).toBe(

@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLProps } from "react";
 import { classNameObject } from "@/features/ui/util";
 
-export const Form = forwardRef<HTMLFormElement, HTMLProps<HTMLFormElement>>((props, ref) => {
+const ForwardedForm = forwardRef<HTMLFormElement, HTMLProps<HTMLFormElement>>((props, ref) => {
   return (
     <form
       {...props}
@@ -13,3 +13,7 @@ export const Form = forwardRef<HTMLFormElement, HTMLProps<HTMLFormElement>>((pro
     />
   );
 });
+
+ForwardedForm.displayName = "Form";
+
+export const Form = ForwardedForm;

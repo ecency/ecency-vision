@@ -1,4 +1,4 @@
-import stripTags from "./strip-tags";
+import { stripTags } from "./strip-tags";
 
 interface ObjInput {
   name?: string;

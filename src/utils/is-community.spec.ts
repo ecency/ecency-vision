@@ -1,4 +1,4 @@
-import isCommunity from "./is-community";
+import { isCommunity } from "./is-community";
 
 describe("isCommunity", () => {
   it("should be true", () => {

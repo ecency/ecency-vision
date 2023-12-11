@@ -1,4 +1,4 @@
-import HiveEngineToken from "./hive-engine-wallet";
+import { HiveEngineToken } from "./hive-engine-wallet";
 
 describe("HiveEngineToken", () => {
   const subject: HiveEngineToken = new HiveEngineToken({

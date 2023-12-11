@@ -56,7 +56,7 @@ export const secondDiff = (d: string) => {
   return Math.abs(Math.round(diff));
 };
 
-const parseDate = (d: string): Date => {
+export const parseDate = (d: string): Date => {
   if (!d) return new Date();
   try {
     const date = moment(d).isValid() ? moment(d).toDate() : new Date();
@@ -106,4 +106,3 @@ export const formatTimeDIfference = (timeString: string): number => {
   return currentTime.getTime() - milliseconds;
 };
 
-export default parseDate;

@@ -1,4 +1,4 @@
-import isEmptyDate from "./is-empty-date";
+import { isEmptyDate } from "./is-empty-date";
 
 describe("isEmptyDate", () => {
   it("should be true", () => {

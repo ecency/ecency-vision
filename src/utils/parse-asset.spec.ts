@@ -1,4 +1,4 @@
-import parseAsset from "./parse-asset";
+import { parseAsset } from "./parse-asset";
 
 describe("Parse token", () => {
   it("(1) should parse", () => {

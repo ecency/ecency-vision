@@ -1,4 +1,4 @@
-import SearchQuery, { SearchType } from "./search-query";
+import { SearchQuery } from "./search-query";
 
 describe("author", () => {
   it("1", () => {

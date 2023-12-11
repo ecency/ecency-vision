@@ -10,7 +10,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const ForwardedInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const nativeProps = useFilteredProps(props, ["noStyles", "plaintext"]);
 
   return (
@@ -26,3 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     />
   );
 });
+
+ForwardedInput.displayName = "Input";
+
+export const Input = ForwardedInput;

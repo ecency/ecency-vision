@@ -1,6 +1,6 @@
 import { vestsToHp } from "./vesting";
 import { isEmptyDate } from "./is-empty-date";
-import parseDate from "./parse-date";
+import { parseDate } from "./parse-date";
 import { parseAsset } from "./parse-asset";
 import { Account, DynamicProps } from "@/entities";
 

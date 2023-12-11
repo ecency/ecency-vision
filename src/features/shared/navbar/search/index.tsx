@@ -30,10 +30,10 @@ export function Search({ containerClassName }: Props) {
   );
 
   useEffect(() => {
-    if (router.pathname !== previousPathname) {
+    if (pathname !== previousPathname) {
       setQuery("");
     }
-  }, [router.pathname, previousPathname]);
+  }, [pathname, previousPathname]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) {

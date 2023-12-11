@@ -5,7 +5,7 @@ import { BUTTON_OUTLINE_STYLES, BUTTON_SIZES, BUTTON_STYLES } from "@/features/u
 
 export * from "./props";
 
-export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+const ForwardedButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   (props, ref) => {
     const nativeProps = useFilteredProps<typeof props, Required<ButtonProps>>(props, [
       "appearance",
@@ -72,3 +72,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
   }
 );
+
+ForwardedButton.displayName = "Button";
+
+export const Button = ForwardedButton;

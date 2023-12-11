@@ -133,7 +133,7 @@ export const activeUserInstance: ActiveUser = activeUserMaker("foo");
 export const UiInstance: Partial<GlobalStore> = {
   login: false,
   loginKc: false,
-  notifications: false
+  uiNotifications: false
 };
 
 export const globalInstance: Partial<GlobalStore> = {
@@ -150,7 +150,7 @@ export const globalInstance: Partial<GlobalStore> = {
   canUseWebp: false,
   hasKeyChain: false,
   isMobile: false,
-  notifications: true,
+  globalNotifications: true,
   nsfw: false,
   newVersion: null,
   usePrivate: true,
@@ -950,14 +950,16 @@ export const dynamicPropsIntance1: DynamicProps = {
   accountCreationFee: "3.000 HIVE"
 };
 
-export const notificationsInstance1: GlobalStore = {
-  filter: null,
-  unread: 0,
-  list: [],
-  loading: false,
-  hasMore: true,
-  unreadFetchFlag: true,
-  fbSupport: "pending"
+export const notificationsInstance1: Partial<GlobalStore> = {
+  notifications: {
+    filter: null,
+    unread: 0,
+    list: [],
+    loading: false,
+    hasMore: true,
+    unreadFetchFlag: true,
+    fbSupport: "pending"
+  }
 };
 
 export const apiVoteNotification: ApiVoteNotification = {
@@ -1341,4 +1343,4 @@ export const accountSearchResultInstance: AccountSearchResult[] = [
 
 export const assetSymbolInstance: AssetSymbol = "HBD";
 
-export const emptyReblogs: Reblogs = { list: [], canFetch: true };
+export const emptyReblogs = { list: [], canFetch: true };
