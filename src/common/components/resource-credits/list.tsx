@@ -106,7 +106,8 @@ export const RcDelegationsList = (props: any) => {
                           username: list.to,
                           children: <UserAvatar username={list.to} size="small"/>
                         })} */}
-                        <div className="item-info">
+                        <UserAvatar username={list.to} size="small"/>
+                        <div className="item-info ml-2">
                           {ProfileLink({
                             ...props,
                             username: list.to,
@@ -175,12 +176,15 @@ export const RcDelegationsList = (props: any) => {
                           username: list.sender,
                           children: <UserAvatar username={list.sender} size="small" />
                         })} */}
-                        <div className="item-info">
-                          {ProfileLink({
-                            ...props,
-                            username: list.sender,
-                            children: <span className="item-name notranslate">{list.sender}</span>
-                          })}
+                        <div className="d-flex mb-2">
+                          <UserAvatar username={list.sender} size="small" />
+                          <div className="item-info ml-2">
+                            {ProfileLink({
+                              ...props,
+                              username: list.sender,
+                              children: <span className="item-name notranslate">{list.sender}</span>
+                            })}
+                          </div>
                         </div>
                         <div className="item-extra">
                           <Tooltip content={list.amount}>

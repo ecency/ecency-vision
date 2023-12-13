@@ -8,9 +8,6 @@ import { delegateRC, formatError } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
-// import { FormControl, InputGroup } from "@ui/input";
-// import { Button } from "@ui/button";
-// import { Form } from "@ui/form";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 export const ResourceCreditsDelegation = (props: any) => {
@@ -25,6 +22,22 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [toError, setToError] = useState<string>("");
   const [toWarning, setToWarning] = useState<string>("");
   const [toData, setToData] = useState<any>(delegateeData || "");
+  const [convertedValue, setConvertedValue] = useState<any>(null);
+
+  const [convertedVal, setConvertedVal] = useState<any>(null);
+
+  const convertToBillions = (input: string) => {
+    const inputNumber = parseFloat(input);
+    let  resultDivided;
+
+    if (!isNaN(inputNumber)) {
+       resultDivided = inputNumber / 1e9;
+      console.log("resultDivided", resultDivided!.toFixed(2) + "B")
+    } else {
+      setConvertedValue("null");
+    }
+    return resultDivided!?.toFixed(2) + "B";
+  };
 
   const toChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -34,17 +47,23 @@ export const ResourceCreditsDelegation = (props: any) => {
   };
 
   const amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value: amount } = e.target;
-    setAmount(amount);
+    const value = e.target.value;
+    console.log(Number(value))
+
+    const sonvertedAmount = (parseFloat(value) * 1e9).toFixed(2)
+    setConvertedVal(sonvertedAmount)
+    
+    setAmount(Number(value));
+    console.log(amount)
     if (
-      amount === "" ||
-      (Number(amount) >= 5000000000 && Number(amount) < Number(resourceCredit)) ||
-      amount === "0"
+      sonvertedAmount === "" ||
+      (Number(sonvertedAmount) >= 5000000000 && Number(sonvertedAmount) < Number(resourceCredit)) ||
+      sonvertedAmount === "0"
     ) {
       setAmountError("");
-    } else if (Number(amount) < 5000000000) {
+    } else if (Number(sonvertedAmount) < 5000000000) {
       setAmountError(_t("rc-info.minimum-rc-error"));
-    } else if (Number(amount) > Number(resourceCredit)) {
+    } else if (Number(sonvertedAmount) > Number(resourceCredit)) {
       setAmountError(_t("rc-info.insufficient-rc-error"));
       return;
     }
@@ -63,7 +82,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     const { activeUser } = props;
     console.log(activeUser)
     const username = activeUser?.username!;
-    const max_rc = `${amount}`;
+    const max_rc = `${parseFloat(amount) * 1e9}` ;
     delegateRC(username, to, max_rc)
       .then((res: any) => {
         return res;
@@ -81,8 +100,8 @@ export const ResourceCreditsDelegation = (props: any) => {
     !toError &&
     !inProgress &&
     !amountError &&
-    !!amount &&
-    (Number(amount) === 0 || Number(amount) >= 5000000000) &&
+    !!convertedVal &&
+    (Number(convertedVal) === 0 || Number(convertedVal) >= 5000000000) &&
     Number(amount) < Number(resourceCredit);
 
   const handleTo = async (value: string) => {
@@ -219,7 +238,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <div className="balance space-3">
                   <span className="balance-label">{_t("transfer.balance")}</span>
-                  <span>{`: ${resourceCredit}`}</span>
+                  <span>{`: ${convertToBillions(resourceCredit)}`}</span>
                 </div>
               </div>
             </div>
@@ -243,15 +262,13 @@ export const ResourceCreditsDelegation = (props: any) => {
               <div className="confirm-title">Delegate</div>
               <div className="users">
                 <div className="from-user">
-                  {/* <UserAvatar username={activeUser?.username} size="large" /> */}
-                  user avata(from)
+                  <UserAvatar username={activeUser?.username} size="large" />
                 </div>
                 {
                   <>
                     <div className="arrow">{arrowRightSvg}</div>
                     <div className="to-user">
-                      {/* <UserAvatar username={to} size="large" /> */}
-                      user avatar (to)
+                      <UserAvatar username={to} size="large" />
                     </div>
                   </>
                 }
