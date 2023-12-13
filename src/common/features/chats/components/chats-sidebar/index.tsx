@@ -8,13 +8,14 @@ import { ChatSidebarDirectContact } from "./chat-sidebar-direct-contact";
 import { _t } from "../../../../i18n";
 import { ChatSidebarChannel } from "./chat-sidebar-channel";
 import {
-  AccountWithReputation,
   ChatContext,
   getJoinedCommunities,
   useChannelsQuery,
   useDirectContactsQuery,
   useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
+import { useSearchUsersQuery } from "../../queries";
+import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
 
 interface Props {
   username: string;
@@ -28,13 +29,14 @@ export default function ChatsSideBar(props: Props) {
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
-
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [showDivider, setShowDivider] = useState(false);
-  const [userList, setUserList] = useState<AccountWithReputation[]>([]);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
+
+  const { data: searchUsers } = useSearchUsersQuery(searchQuery);
+  const { data: searchCommunities } = useSearchCommunitiesQuery(searchQuery);
 
   const communities = useMemo(
     () => getJoinedCommunities(channels ?? [], leftChannelsIds ?? []),
@@ -58,22 +60,18 @@ export default function ChatsSideBar(props: Props) {
   return (
     <div className="flex flex-col">
       <ChatSidebarHeader history={props.history} />
-      <ChatSidebarSearch
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        setUserList={setUserList}
-      />
+      <ChatSidebarSearch setSearch={setSearchQuery} />
       {showDivider && <div className="divider" />}
       <div className="flex flex-col" onScroll={handleScroll} ref={chatsSideBarRef}>
         {searchQuery ? (
-          userList.map((user) => (
+          [...searchUsers, ...searchCommunities].map((item) => (
             <ChatSidebarSearchItem
-              user={user}
+              item={item}
               onClick={() => {
                 setSearchQuery("");
                 setRevealPrivateKey(false);
               }}
-              key={user.account}
+              key={"account" in item ? item.account : item.id}
             />
           ))
         ) : (

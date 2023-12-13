@@ -2,30 +2,27 @@ import { FormControl } from "@ui/input";
 import { _t } from "../../../../i18n";
 import React, { useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
-import { getAccountReputations } from "../../../../api/hive";
 import LinearProgress from "../../../../components/linear-progress";
-import { AccountWithReputation } from "@ecency/ns-query";
+import { useSearchUsersQuery } from "../../queries";
+import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
 
 interface Props {
-  searchQuery: string;
-  setSearchQuery: (v: string) => void;
-  setUserList: (v: AccountWithReputation[]) => void;
+  setSearch: (v: string) => void;
 }
 
-export function ChatSidebarSearch({ setUserList, searchQuery, setSearchQuery }: Props) {
-  const [searchInProgress, setSearchInProgress] = useState(false);
+export function ChatSidebarSearch({ setSearch: emitSearch }: Props) {
+  const [search, setSearch] = useState("");
+  const { isLoading, refetch } = useSearchUsersQuery(search);
+  const { isLoading: isCommunitiesLoading, refetch: refetchCommunities } =
+    useSearchCommunitiesQuery(search);
 
   useDebounce(
     async () => {
-      if (searchQuery.length !== 0) {
-        const resp = await getAccountReputations(searchQuery, 30);
-        const sortedByReputation = resp.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
-        setUserList(sortedByReputation);
-        setSearchInProgress(false);
-      }
+      await Promise.all([refetch(), refetchCommunities()]);
+      emitSearch(search);
     },
     500,
-    [searchQuery]
+    [search]
   );
 
   return (
@@ -34,18 +31,11 @@ export function ChatSidebarSearch({ setUserList, searchQuery, setSearchQuery }: 
         <FormControl
           type="text"
           placeholder={_t("chat.search")}
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-            setSearchInProgress(true);
-            if (e.target.value.length === 0) {
-              setSearchInProgress(false);
-              setUserList([]);
-            }
-          }}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      {searchInProgress && <LinearProgress />}
+      {(isLoading || isCommunitiesLoading) && <LinearProgress />}
     </>
   );
 }

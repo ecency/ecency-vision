@@ -8,7 +8,7 @@ export function useSearchUsersQuery(query: string) {
       if (!query) {
         return [];
       }
-      const response = await getAccountReputations(query);
+      const response = await getAccountReputations(query, 10);
       response.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
       return response;
     },
