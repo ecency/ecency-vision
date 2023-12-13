@@ -16,3 +16,5 @@ public/static
 dev.sh
 *~
 *.marks
+defaults-proofofbrain.json
+defaults-localhost.json
