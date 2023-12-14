@@ -1,6 +1,6 @@
 import { isMessageGif } from "../utils";
 import { Spinner } from "@ui/spinner";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -12,22 +12,26 @@ import { failedMessageSvg } from "../../../img/svg";
 import useDebounce from "react-use/lib/useDebounce";
 import {
   Channel,
-  formatMessageTime,
   isMessageImage,
   isSingleEmoji,
   Message,
   useKeysQuery,
   useResendMessage
 } from "@ecency/ns-query";
+import { format } from "date-fns";
+import { useInViewport } from "react-in-viewport";
 
 interface Props {
   type: "sender" | "receiver";
   message: Message;
   isSameUser: boolean;
+  showDate?: boolean;
   currentUser?: string;
   currentChannel?: Channel;
   onContextMenu?: () => void;
   onAppear?: () => void;
+  onInViewport?: (inViewport: boolean) => void;
+  className?: string;
 }
 
 export function ChatMessageItem({
@@ -37,8 +41,12 @@ export function ChatMessageItem({
   currentUser,
   currentChannel,
   onContextMenu,
-  onAppear
+  onInViewport,
+  onAppear,
+  showDate = true,
+  className = ""
 }: Props) {
+  const ref = useRef<HTMLDivElement | null>(null);
   const { global } = useMappedStore();
   const { publicKey } = useKeysQuery();
 
@@ -58,6 +66,7 @@ export function ChatMessageItem({
   );
 
   const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentUser);
+  const { inViewport } = useInViewport(ref);
 
   useMount(() => onAppear?.());
 
@@ -72,15 +81,22 @@ export function ChatMessageItem({
     [holdStarted]
   );
 
+  useEffect(() => {
+    onInViewport?.(inViewport);
+  }, [inViewport]);
+
   return (
-    <div key={message.id} data-message-id={message.id}>
+    <div key={message.id} data-message-id={message.id} ref={ref}>
       <div
         className={classNameObject({
-          "flex gap-1 mb-4 px-4": true,
+          "flex gap-1 px-4": true,
           "justify-start": type === "receiver",
           "justify-end": type === "sender",
           failed: isFailed,
-          sending: isSending
+          sending: isSending,
+          "mb-4": showDate,
+          "mb-1": !showDate,
+          [className]: !!className
         })}
         onMouseDown={() => setHoldStarted(true)}
         onMouseUp={() => setHoldStarted(false)}
@@ -124,9 +140,9 @@ export function ChatMessageItem({
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
             />
           </div>
-          {message.sent == 1 && (
+          {message.sent == 1 && showDate && (
             <div className="text-gray-600 dark:text-gray-400 text-xs px-2">
-              {formatMessageTime(message.created)}
+              {format(new Date(message.created * 1000), "HH:mm")}
             </div>
           )}
           {message.sent === 0 && <Spinner className="w-3 h-3 mx-2" />}

@@ -8,12 +8,14 @@ import { Spinner } from "@ui/spinner";
 import {
   Channel,
   checkContiguousMessage,
-  formatMessageDateAndDay,
   PublicMessage,
   useHideMessageInChannel,
   useKeysQuery,
   useUpdateChannelBlockedUsers
 } from "@ecency/ns-query";
+import { groupMessages } from "../utils";
+import { ChatFloatingDate } from "./chat-floating-date";
+import { differenceInCalendarDays } from "date-fns";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -21,6 +23,7 @@ interface Props {
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   scrollToBottom?: () => void;
+  isPage?: boolean;
 }
 
 export function ChatsChannelMessages({
@@ -28,7 +31,8 @@ export function ChatsChannelMessages({
   isScrollToBottom,
   isScrolled,
   currentChannel,
-  scrollToBottom
+  scrollToBottom,
+  isPage
 }: Props) {
   const { activeUser } = useMappedStore();
 
@@ -55,6 +59,7 @@ export function ChatsChannelMessages({
         ),
     [publicMessages, currentChannel]
   );
+  const groupedMessages = useMemo(() => groupMessages(messages), [messages]);
 
   useEffect(() => {
     if (!isScrollToBottom && messages.length !== 0 && !isScrolled) {
@@ -65,74 +70,78 @@ export function ChatsChannelMessages({
   return (
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
-        {messages.map((message, i) => (
-          <React.Fragment key={message.id}>
-            {formatMessageDateAndDay(message, i, messages) && (
-              <div className="custom-divider">
-                <span className="flex justify-center items-center mt-3 text-gray-600 dark:text-gray-400 my-4 text-sm">
-                  {formatMessageDateAndDay(message, i, messages)}
-                </span>
-              </div>
+        {groupedMessages.map(([date, group], i) => (
+          <React.Fragment key={date.getTime()}>
+            {(i > 0 ? differenceInCalendarDays(date, groupedMessages[i - 1][0]) : 1) ? (
+              <ChatFloatingDate currentDate={date} isPage={isPage} />
+            ) : (
+              <></>
             )}
-
-            <Dropdown
-              show={currentInteractingMessageId === message.id}
-              setShow={(v) =>
-                setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
-              }
-            >
-              <ChatMessageItem
-                currentChannel={currentChannel}
-                type={message.creator !== publicKey ? "receiver" : "sender"}
-                message={message}
-                isSameUser={checkContiguousMessage(message, i, messages)}
-                onContextMenu={() => {
-                  if (currentChannel.communityName === activeUser?.username) {
-                    setCurrentInteractingMessageId(message.id);
+            {group.map((message) => (
+              <>
+                <Dropdown
+                  show={currentInteractingMessageId === message.id}
+                  setShow={(v) =>
+                    setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
                   }
-                }}
-                onAppear={() =>
-                  setTimeout(
-                    () =>
-                      publicMessages?.length - 1 === i
-                        ? document
-                            .querySelector(`[data-message-id="${message.id}"]`)
-                            ?.scrollIntoView()
-                        : {},
-                    100
-                  )
-                }
-              />
-              <DropdownMenu
-                className="top-[70%]"
-                align={message.creator === publicKey ? "right" : "left"}
-              >
-                <DropdownItemWithIcon
-                  icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
-                  label={_t("chat.hide-message")}
-                  onClick={() =>
-                    hideMessage({
-                      hide:
-                        currentChannel.hiddenMessageIds?.some((id) => id === message.id) === false,
-                      messageId: message.id
-                    })
-                  }
-                />
-                <DropdownItemWithIcon
-                  icon={
-                    isUsersBlockingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
-                  }
-                  label={_t("chat.block-author")}
-                  onClick={() =>
-                    updateBlockedUsers([...(currentChannel.removedUserIds ?? []), message.creator])
-                  }
-                />
-              </DropdownMenu>
-            </Dropdown>
+                >
+                  <ChatMessageItem
+                    currentChannel={currentChannel}
+                    type={message.creator !== publicKey ? "receiver" : "sender"}
+                    message={message}
+                    isSameUser={checkContiguousMessage(message, i, messages)}
+                    onContextMenu={() => {
+                      if (currentChannel.communityName === activeUser?.username) {
+                        setCurrentInteractingMessageId(message.id);
+                      }
+                    }}
+                    onAppear={() =>
+                      setTimeout(
+                        () =>
+                          publicMessages?.length - 1 === i
+                            ? document
+                                .querySelector(`[data-message-id="${message.id}"]`)
+                                ?.scrollIntoView()
+                            : {},
+                        100
+                      )
+                    }
+                  />
+                  <DropdownMenu
+                    className="top-[70%]"
+                    align={message.creator === publicKey ? "right" : "left"}
+                  >
+                    <DropdownItemWithIcon
+                      icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
+                      label={_t("chat.hide-message")}
+                      onClick={() =>
+                        hideMessage({
+                          hide:
+                            currentChannel.hiddenMessageIds?.some((id) => id === message.id) ===
+                            false,
+                          messageId: message.id
+                        })
+                      }
+                    />
+                    <DropdownItemWithIcon
+                      icon={
+                        isUsersBlockingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
+                      }
+                      label={_t("chat.block-author")}
+                      onClick={() =>
+                        updateBlockedUsers([
+                          ...(currentChannel.removedUserIds ?? []),
+                          message.creator
+                        ])
+                      }
+                    />
+                  </DropdownMenu>
+                </Dropdown>
+              </>
+            ))}
           </React.Fragment>
         ))}
-        {/*TODO: CHeck it in messages query*/}
-        {false && (
+        {currentChannel.removedUserIds?.includes(activeUser?.username!!) && (
           <span className="flex justify-center items-center mt-3">
             You have been blocked from this community
           </span>

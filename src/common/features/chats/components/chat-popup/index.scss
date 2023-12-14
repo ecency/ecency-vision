@@ -111,39 +111,6 @@
       }
     }
 
-    .scroller {
-      position: sticky;
-      margin-left: 89%;
-      width: 33px;
-      height: 33px;
-      border-radius: 50%;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      @apply border-b;
-      @include themify(day) {
-        background: #e4e6eb;
-        @apply border-light-400;
-      }
-      @include themify(night) {
-        background: #0f223a;
-      }
-
-      svg {
-        @include themify(day) {
-          @apply text-blue-dark-sky;
-        }
-        @include themify(night) {
-          @apply text-white;
-        }
-
-        width: 20px;
-        height: 20px;
-      }
-    }
-
     .chats {
       .not-joined {
         display: flex;

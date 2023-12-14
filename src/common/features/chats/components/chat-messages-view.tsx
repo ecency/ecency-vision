@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ChatsProfileBox from "./chat-profile-box";
 import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
-import ChatsScroller from "./chats-scroller";
 import { classNameObject } from "../../../helper/class-name-object";
 import isCommunity from "../../../helper/is-community";
 import { ChatsChannelMessages } from "./chat-channel-messages";
@@ -128,6 +127,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
               isScrollToBottom={isScrollToBottom}
               isScrolled={isScrolled}
               scrollToBottom={scrollToBottom}
+              isPage={true}
             />
           </>
         ) : (
@@ -137,19 +137,12 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
             isScrolled={isScrolled}
             isScrollToBottom={isScrollToBottom}
             scrollToBottom={scrollToBottom}
-          />
-        )}
-        {isScrollToBottom && (
-          <ChatsScroller
-            bodyRef={messagesBoxRef}
-            isScrollToTop={false}
-            isScrollToBottom={true}
-            marginRight={"5%"}
+            isPage={true}
           />
         )}
       </div>
 
-      <div className="sticky bottom-0 border-t border-[--border-color] bg-white pl-3">
+      <div className="sticky z-10 bottom-0 border-t border-[--border-color] bg-white pl-3">
         <ChatInput currentUser={directUser} currentChannel={currentChannel} />
       </div>
     </>

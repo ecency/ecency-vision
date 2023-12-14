@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
-import Tooltip from "../../../../components/tooltip";
 import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
 import ChatInput from "../chat-input";
-import { chevronDownSvgForSlider, chevronUpSvg } from "../../../../img/svg";
-import { _t } from "../../../../i18n";
 import { usePrevious } from "../../../../util/use-previous";
 import "./index.scss";
 import { useMappedStore } from "../../../../store/use-mapped-store";
@@ -235,23 +232,6 @@ export const ChatPopUp = () => {
               </div>
             ) : (
               <ChatsWelcome />
-            )}
-
-            {((isScrollToTop && !isCurrentUser) ||
-              ((isCurrentUser || isCommunity) && isScrollToBottom)) && (
-              <Tooltip
-                content={isScrollToTop ? _t("scroll-to-top.title") : _t("chat.scroll-to-bottom")}
-              >
-                <div
-                  className="scroller"
-                  style={{
-                    bottom: (isCurrentUser || isCommunity) && isScrollToBottom ? "0" : "55px"
-                  }}
-                  onClick={scrollerClicked}
-                >
-                  {isCurrentUser || isCommunity ? chevronDownSvgForSlider : chevronUpSvg}
-                </div>
-              </Tooltip>
             )}
           </div>
           <div className="pl-2">

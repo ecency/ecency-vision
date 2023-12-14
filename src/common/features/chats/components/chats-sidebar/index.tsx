@@ -1,6 +1,5 @@
 import React, { useContext, useMemo, useState } from "react";
 import { History } from "history";
-import ChatsScroller from "../chats-scroller";
 import { ChatSidebarHeader } from "./chat-sidebar-header";
 import { ChatSidebarSearch } from "./chat-sidebar-search";
 import { ChatSidebarSearchItem } from "./chat-sidebar-search-item";
@@ -99,14 +98,6 @@ export default function ChatsSideBar(props: Props) {
           </>
         )}
       </div>
-      {isScrollToTop && (
-        <ChatsScroller
-          bodyRef={chatsSideBarRef}
-          isScrollToTop={isScrollToTop}
-          isScrollToBottom={false}
-          marginRight={"5%"}
-        />
-      )}
     </div>
   );
 }

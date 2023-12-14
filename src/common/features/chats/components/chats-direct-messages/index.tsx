@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { _t } from "../../../../i18n";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
@@ -6,13 +6,10 @@ import { Button } from "@ui/button";
 import { useInviteViaPostComment } from "../../mutations";
 import { FormControl } from "@ui/input";
 import { Alert } from "@ui/alert";
-import {
-  ChatContext,
-  checkContiguousMessage,
-  DirectMessage,
-  formatMessageDateAndDay,
-  useKeysQuery
-} from "@ecency/ns-query";
+import { ChatContext, checkContiguousMessage, DirectMessage, useKeysQuery } from "@ecency/ns-query";
+import { ChatFloatingDate } from "../chat-floating-date";
+import { differenceInCalendarDays } from "date-fns";
+import { groupMessages } from "../../utils";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -20,6 +17,7 @@ interface Props {
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   scrollToBottom?: () => void;
+  isPage?: boolean;
 }
 
 export default function ChatsDirectMessages(props: Props) {
@@ -31,7 +29,6 @@ export default function ChatsDirectMessages(props: Props) {
   const [invitationText, setInvitationText] = useState(
     "Hi! Let's start messaging privately. Register an account on [https://ecency.com/chats](https://ecency.com/chats)"
   );
-
   const { publicKey } = useKeysQuery();
 
   const {
@@ -39,6 +36,8 @@ export default function ChatsDirectMessages(props: Props) {
     isLoading: isInviting,
     isSuccess: isInvited
   } = useInviteViaPostComment(props.currentUser);
+
+  const groupedDirectMessages = useMemo(() => groupMessages(directMessages), [directMessages]);
 
   useEffect(() => {
     if (!isScrollToBottom && directMessages && directMessages.length !== 0 && !isScrolled) {
@@ -51,34 +50,33 @@ export default function ChatsDirectMessages(props: Props) {
       <div className="direct-messages">
         {receiverPubKey ? (
           <>
-            {directMessages?.map((msg, i) => {
-              const dayAndMonth = formatMessageDateAndDay(msg, i, directMessages);
+            {groupedDirectMessages?.map(([date, messages], i) => {
+              const diff =
+                i > 0 ? differenceInCalendarDays(date, groupedDirectMessages[i - 1][0]) : 1;
               return (
-                <React.Fragment key={msg.id}>
-                  {dayAndMonth && (
-                    <div className="custom-divider">
-                      <span className="flex justify-center items-center mt-3 custom-divider-text">
-                        {dayAndMonth}
-                      </span>
-                    </div>
-                  )}
-                  <ChatMessageItem
-                    currentUser={props.currentUser}
-                    type={msg.creator !== publicKey ? "receiver" : "sender"}
-                    message={msg}
-                    isSameUser={checkContiguousMessage(msg, i, directMessages)}
-                    onAppear={() =>
-                      setTimeout(
-                        () =>
-                          directMessages?.length - 1 === i
-                            ? document
-                                .querySelector(`[data-message-id="${msg.id}"]`)
-                                ?.scrollIntoView()
-                            : {},
-                        100
-                      )
-                    }
-                  />
+                <React.Fragment key={date.getTime()}>
+                  {diff > 0 && <ChatFloatingDate currentDate={date} isPage={props.isPage} />}
+                  {messages.map((message, i) => (
+                    <ChatMessageItem
+                      showDate={i === messages.length - 1}
+                      key={message.id}
+                      currentUser={props.currentUser}
+                      type={message.creator !== publicKey ? "receiver" : "sender"}
+                      message={message}
+                      isSameUser={checkContiguousMessage(message, i, directMessages)}
+                      onAppear={() =>
+                        setTimeout(
+                          () =>
+                            directMessages?.length - 1 === i
+                              ? document
+                                  .querySelector(`[data-message-id="${message.id}"]`)
+                                  ?.scrollIntoView()
+                              : {},
+                          100
+                        )
+                      }
+                    />
+                  ))}
                 </React.Fragment>
               );
             })}

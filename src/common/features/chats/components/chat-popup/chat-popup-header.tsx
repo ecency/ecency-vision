@@ -9,6 +9,7 @@ import { classNameObject } from "../../../../helper/class-name-object";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { ChatContext, useKeysQuery } from "@ecency/ns-query";
+import { useCommunityCache } from "../../../../core";
 
 interface Props {
   currentUser: string;
@@ -37,6 +38,7 @@ export function ChatPopupHeader({
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
+  const { data: community } = useCommunityCache(communityName);
   const { privateKey } = useKeysQuery();
   const title = useMemo(() => {
     if (revealPrivateKey) {
@@ -47,8 +49,8 @@ export function ChatPopupHeader({
       return currentUser;
     }
 
-    if (isCommunity) {
-      return communityName;
+    if (isCommunity && community) {
+      return community.title;
     }
 
     if (showSearchUser) {
@@ -57,18 +59,21 @@ export function ChatPopupHeader({
 
     return _t("chat.page-title");
   }, [currentUser, isCommunity, communityName, showSearchUser, revealPrivateKey]);
+  const isExpanded = useMemo(
+    () => (currentUser || communityName || showSearchUser || revealPrivateKey) && expanded,
+    [currentUser, communityName, showSearchUser, revealPrivateKey, expanded]
+  );
 
   return (
     <div
-      className="flex items-center justify-between border-b border-[--border-color] px-4 py-2 gap-2 cursor-pointer"
+      className="flex items-center justify-between border-b border-[--border-color] px-2 py-2 gap-2 cursor-pointer"
       onClick={() => setExpanded(!expanded)}
     >
-      <div className="flex items-center gap-2">
-        {(currentUser || communityName || showSearchUser || revealPrivateKey) && expanded && (
+      <div className="flex items-center">
+        {isExpanded && (
           <Tooltip content={_t("chat.back")}>
             <Button
               size="sm"
-              noPadding={true}
               appearance="link"
               onClick={(e: { stopPropagation: () => void }) => {
                 e.stopPropagation();
@@ -78,16 +83,21 @@ export function ChatPopupHeader({
             />
           </Tooltip>
         )}
-        <div className="flex items-center gap-2" onClick={() => setExpanded(!expanded)}>
+        <div className="flex items-center" onClick={() => setExpanded(!expanded)}>
           {(currentUser || isCommunity) && (
             <UserAvatar username={isCurrentUser ? currentUser : communityName || ""} size="small" />
           )}
 
-          <div className="text-lg truncate max-w-[180px] font-semibold">{title}</div>
+          <div
+            className={classNameObject({
+              "truncate max-w-[180px] font-semibold pl-4": true
+            })}
+          >
+            {title}
+          </div>
 
           <Tooltip content={expanded ? _t("chat.collapse") : _t("chat.expand")}>
             <Button
-              noPadding={true}
               size="sm"
               appearance="gray-link"
               className={classNameObject({

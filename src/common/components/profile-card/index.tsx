@@ -59,7 +59,7 @@ export const ProfileCard = (props: Props) => {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({} as any), []);
 
-  const { data: community } = useCommunityCache(props.account.name);
+  const { data: community } = useCommunityCache(props.account?.name);
 
   const { activeUser, account, section, global } = props;
 

@@ -32,7 +32,7 @@ const ChatsDropdownMenu = (props: Props) => {
   return (
     <Dropdown>
       <DropdownToggle>
-        <Button size="sm" appearance="gray-link" noPadding={true}>
+        <Button size="sm" appearance="gray-link">
           {kebabMenuSvg}
         </Button>
         <DropdownMenu align="right">
