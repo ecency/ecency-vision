@@ -64,7 +64,9 @@ export default function ChatsProfileBox({ communityName, currentUser }: Props) {
       <div className="flex flex-col items-center p-4 border border-[--border-color] rounded-2xl bg-gray-100 dark:bg-gray-900">
         <UserAvatar username={profileData.username} size="large" />
         <div className="text-gray-800 dark:text-white mt-2 font-semibold">{profileData.name}</div>
-        {profileData.about?.length !== 0 && <div>{profileData.about}</div>}
+        {profileData.about?.length !== 0 && (
+          <div className="text-center text-xs">{profileData.about}</div>
+        )}
 
         <div className="grid grid-cols-2 text-center justify-center pt-4 gap-3 text-gray-600">
           <div className="flex flex-col gap-2">

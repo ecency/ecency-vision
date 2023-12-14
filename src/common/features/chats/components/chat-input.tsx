@@ -112,7 +112,7 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
             setTimeout(() => inputRef.current?.focus(), 1);
           });
         }}
-        className="w-full flex items-center gap-2 p-2"
+        className="w-full flex items-center gap-2 p-1.5"
       >
         <Dropdown>
           <DropdownToggle>

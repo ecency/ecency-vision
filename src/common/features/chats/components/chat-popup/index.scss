@@ -33,11 +33,10 @@
 
     &.current-user {
       padding-bottom: 10px;
-      margin-bottom: 8px;
       @apply border-b;
 
       @include media-breakpoint-up(md) {
-        height: 412px;
+        height: 422px;
       }
 
       @include themify(day) {
@@ -49,8 +48,7 @@
     }
 
     &.community {
-      height: 412px;
-      margin-bottom: 8px;
+      height: 422px;
       @apply border-b;
 
       @include themify(day) {
@@ -186,6 +184,17 @@
 
     .chat {
       grid-row: span 5;
+    }
+  }
+
+  .chat-input {
+    @apply relative;
+
+    .gif-picker {
+      bottom: calc(100% - 1rem);
+      width: calc(100% - -3px);
+      left: 0.25rem;
+      @apply absolute border-t border-[--border-color];
     }
   }
 }
