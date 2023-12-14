@@ -315,3 +315,67 @@ export const getMarketData = async (symbol: any) => {
   });
   return history;
 };
+
+export interface ScotVoteShare {
+  authorperm: "";
+  block_num: number;
+  percent: number;
+  revoted: any;
+  rshares: number;
+  timestamp: string;
+  token: string;
+  voter: string;
+  weight: number;
+}
+
+// See https://github.com/hive-engine/scotbot-docs/blob/master/docs/api/README.md for an example using
+// https://scot-api.hive-engine.com/@${author}/${permlink}?hive=1.
+export interface ScotRewardsInformation {
+  [coin_id: string]: {
+    active_votes: Array<{
+      authorperm: string;
+      block_num: number;
+      percent: number;
+      rshares: number;
+      timestamp: string;
+      token: string;
+      voter: string;
+      weight: number;
+    }>;
+    app: string;
+    author: string;
+    author_curve_exponent: number;
+    authorperm: string;
+    beneficiaries_payout_value: number;
+    block: number;
+    cashout_time: string;
+    children: number;
+    created: string;
+    curator_payout_value: number;
+    decline_payout: boolean;
+    desc: string;
+    json_metadata: string;
+    last_payout: string;
+    last_update: string;
+    main_post: boolean;
+    pending_token: number;
+    precision: number;
+    promoted: number;
+    score_hot: number;
+    score_trend: number;
+    tags: string;
+    title: string;
+    token: string;
+    total_payout_value: number;
+    total_vote_weight: number;
+    vote_rshares: number;
+  };
+}
+
+export const getScotRewardsInformation = async (author: string, permlink: string) => {
+  const info: any = await axios(`https://scot-api.hive-engine.com/@${author}/${permlink}?hive=1`, {
+    method: "GET",
+    params: {}
+  });
+  return info.data as ScotRewardsInformation;
+};

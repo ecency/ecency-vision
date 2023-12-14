@@ -82,6 +82,8 @@ import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
 import formattedNumber from "../util/formatted-number";
+
+import { ScotRewardsInformation, getScotRewardsInformation } from "../api/hive-engine";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -111,6 +113,9 @@ interface State {
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
+  loadingScotRewardsInformation: boolean;
+  scotRewardsInformationBytes: number;
+  scotRewards: string[];
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -128,7 +133,10 @@ class EntryPage extends BaseComponent<Props, State> {
     isMounted: false,
     selection: "",
     postIsDeleted: false,
-    deletedEntry: null
+    deletedEntry: null,
+    loadingScotRewardsInformation: true,
+    scotRewardsInformationBytes: 0,
+    scotRewards: []
   };
 
   commentInput: Ref<HTMLInputElement>;
@@ -140,6 +148,8 @@ class EntryPage extends BaseComponent<Props, State> {
   viewElement: HTMLDivElement | undefined;
 
   componentDidMount() {
+    const { username, permlink } = this.props.match.params;
+
     this.ensureEntry();
     const { history } = this.props;
     if (history?.location.search.includes("?referral")) {
@@ -333,6 +343,29 @@ class EntryPage extends BaseComponent<Props, State> {
       }
     }
 
+    getScotRewardsInformation(author, permlink).then((x) => {
+      const rewardsHash: { [tokenName: string]: number } = {};
+      for (const tokenName in x) {
+        const ti = x[tokenName];
+        const { total_payout_value, pending_token, precision } = ti;
+        rewardsHash[tokenName] = (total_payout_value + pending_token) * Math.pow(10, -precision);
+      }
+
+      const rewardsArray = Object.keys(rewardsHash).map(
+        (tokenName) => rewardsHash[tokenName] + " " + tokenName
+      );
+      try {
+        this.setState({
+          loadingScotRewardsInformation: false,
+          scotRewardsInformationBytes: JSON.stringify(x).length,
+          scotRewards: rewardsArray
+        });
+      } catch (e) {
+        console.log(e);
+        this.setState({ loadingScotRewardsInformation: false });
+      }
+    });
+
     bridgeApi
       .getPost(author, permlink)
       .then((entry) => {
@@ -516,7 +549,10 @@ class EntryPage extends BaseComponent<Props, State> {
       postIsDeleted,
       deletedEntry,
       showProfileBox,
-      showWordCount
+      showWordCount,
+      scotRewardsInformationBytes,
+      loadingScotRewardsInformation,
+      scotRewards
     } = this.state;
     const { global, history, match, location } = this.props;
     const { showSelfVote, showRewardSplit, lowRewardThreshold } = global;
@@ -1223,6 +1259,8 @@ class EntryPage extends BaseComponent<Props, State> {
                           ...this.props,
                           entry
                         })}
+                        {<span>{scotRewards.join(", ")}</span>}
+                        <span>&nbsp;</span>
                         {!ownEntry && (
                           <>
                             {EntryReblogBtn({
