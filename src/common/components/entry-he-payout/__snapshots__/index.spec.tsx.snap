@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="entry-payout notranslate"
+>
+  <span>
+    
+  </span>
+</div>
+`;
+
+exports[`(2) Detail render 1`] = `
+<div
+  className="entry-payout notranslate"
+>
+  <span>
+    2.4 mPESOS, 38.7 kPIMP, 42 LEO
+  </span>
+</div>
+`;
+
+exports[`(3) Detail render with full power 1`] = `
+<div
+  className="entry-payout notranslate"
+>
+  <span>
+    2.4 mPESOS, 38.7 kPIMP, 42 LEO
+  </span>
+</div>
+`;
+
+exports[`(4) Detail render with max payout 1`] = `
+<div
+  className="entry-payout notranslate"
+>
+  <span>
+    1.19 LEO, 1.94 POB
+  </span>
+</div>
+`;
+
+exports[`(5) Default with max payout 1`] = `
+<div
+  className="entry-payout notranslate"
+>
+  <span>
+    1.6 ARCHON, 4.69 CTP, 358.27 kPIMP, 1.08 POB
+  </span>
+</div>
+`;

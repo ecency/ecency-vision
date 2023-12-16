@@ -52,6 +52,7 @@ import { getPost } from "../../api/bridge";
 import { SearchResult } from "../../api/search-api";
 import appName from "./../../helper/app-name";
 import formattedNumber from "../../util/formatted-number";
+import EntryHEPayout from "../entry-he-payout";
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -209,9 +210,7 @@ export default class EntryListItem extends Component<Props, State> {
     const pageAccount = account as FullAccount;
     const pinned = account && pageAccount.profile?.pinned;
     const { showSelfVote, showRewardSplit, lowRewardThreshold, showFrontEnd } = global;
-    const fallbackImage = global.isElectron
-      ? "./img/fallback.png"
-      : require("../../img/fallback.png");
+    const fallbackImage = "./img/fallback.png";
     const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
     const nsfwImage = global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png");
     const crossPost = !!theEntry.original_entry;
@@ -547,6 +546,10 @@ export default class EntryListItem extends Component<Props, State> {
               afterVote: this.afterVote
             })}
             {EntryPayout({
+              ...this.props,
+              entry
+            })}
+            {EntryHEPayout({
               ...this.props,
               entry
             })}
