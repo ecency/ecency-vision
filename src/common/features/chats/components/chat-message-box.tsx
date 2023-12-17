@@ -16,7 +16,6 @@ import {
   useAutoScrollInChatBox,
   useChannelsQuery,
   useCommunityChannelQuery,
-  useDirectContactsQuery,
   useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
 import { useGetAccountFullQuery } from "../../../api/queries";
@@ -40,7 +39,6 @@ export default function ChatsMessagesBox(props: Props) {
   const { data: communityAccount } = useGetAccountFullQuery(props.match.params.username);
   const { data: community } = useCommunityCache(props.match.params.username);
 
-  const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(
@@ -65,14 +63,10 @@ export default function ChatsMessagesBox(props: Props) {
       ),
     [channels, props.channel, leftChannelsIds]
   );
-  const currentContact = useMemo(
-    () => directContacts?.find((dc) => dc.name === props.match.params.username),
-    [directContacts, props.match.params]
-  );
 
   useAutoScrollInChatBox(
-    communityChannel?.name ?? currentContact?.name ?? "",
-    communityChannel?.id ?? currentContact?.pubkey ?? ""
+    communityChannel?.name ?? props.currentContact?.name ?? "",
+    communityChannel?.id ?? props.currentContact?.pubkey ?? ""
   );
 
   return (
