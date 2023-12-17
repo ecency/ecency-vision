@@ -52,10 +52,10 @@ export function ChatsChannelMessages({
     () =>
       publicMessages
         .filter((m) =>
-          currentChannel.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
+          currentChannel?.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
         )
         .filter((m) =>
-          currentChannel.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
+          currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
         ),
     [publicMessages, currentChannel]
   );
@@ -91,7 +91,7 @@ export function ChatsChannelMessages({
                     message={message}
                     isSameUser={checkContiguousMessage(message, i, messages)}
                     onContextMenu={() => {
-                      if (currentChannel.communityName === activeUser?.username) {
+                      if (currentChannel?.communityName === activeUser?.username) {
                         setCurrentInteractingMessageId(message.id);
                       }
                     }}
@@ -117,7 +117,7 @@ export function ChatsChannelMessages({
                       onClick={() =>
                         hideMessage({
                           hide:
-                            currentChannel.hiddenMessageIds?.some((id) => id === message.id) ===
+                            currentChannel?.hiddenMessageIds?.some((id) => id === message.id) ===
                             false,
                           messageId: message.id
                         })
@@ -130,7 +130,7 @@ export function ChatsChannelMessages({
                       label={_t("chat.block-author")}
                       onClick={() =>
                         updateBlockedUsers([
-                          ...(currentChannel.removedUserIds ?? []),
+                          ...(currentChannel?.removedUserIds ?? []),
                           message.creator
                         ])
                       }
@@ -141,7 +141,7 @@ export function ChatsChannelMessages({
             ))}
           </React.Fragment>
         ))}
-        {currentChannel.removedUserIds?.includes(activeUser?.username!!) && (
+        {currentChannel?.removedUserIds?.includes(activeUser?.username!!) && (
           <span className="flex justify-center items-center mt-3">
             You have been blocked from this community
           </span>

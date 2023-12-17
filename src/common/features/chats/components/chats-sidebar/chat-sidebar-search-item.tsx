@@ -20,7 +20,7 @@ export function ChatSidebarSearchItem({ item, onClick }: Props) {
   }, [item]);
 
   return createElement(
-    !!onClick ? "div" : Link,
+    Link,
     {
       to: `/chats/${username}`,
       className:

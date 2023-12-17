@@ -106,7 +106,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
     <>
       <div
         className={classNameObject({
-          "h-full": true,
+          "h-[100vh] md:h-full": true,
           "no-scroll": isTop && hasMore
         })}
         ref={messagesBoxRef}
@@ -119,7 +119,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
         >
           <ChatsProfileBox communityName={username} currentUser={username} />
         </Link>
-        {communityName.length !== 0 ? (
+        {currentChannel ? (
           <>
             <ChatsChannelMessages
               publicMessages={messages as PublicMessage[]}

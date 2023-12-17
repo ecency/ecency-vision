@@ -91,7 +91,7 @@ export default function ChatsMessagesBox(props: Props) {
                 ? _t("chat.welcome.rejoin-description")
                 : _t("chat.welcome.join-description")}
             </p>
-            <Button onClick={() => addCommunityChannel()} disabled={isAddCommunityChannelLoading}>
+            <Button onClick={() => addCommunityChannel([])} disabled={isAddCommunityChannelLoading}>
               {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
             </Button>
           </div>
