@@ -10,11 +10,13 @@ import ChatsProfileBox from "./chat-profile-box";
 import { _t } from "../../../i18n";
 import {
   Channel,
+  DirectContact,
   getJoinedCommunities,
   useAddCommunityChannel,
   useAutoScrollInChatBox,
   useChannelsQuery,
   useCommunityChannelQuery,
+  useDirectContactsQuery,
   useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
 import { useGetAccountFullQuery } from "../../../api/queries";
@@ -30,15 +32,15 @@ interface MatchParams {
 interface Props {
   match: match<MatchParams>;
   history: History;
-  channel: Channel;
+  channel?: Channel;
+  currentContact?: DirectContact;
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  useAutoScrollInChatBox(props.match.params.username);
-
   const { data: communityAccount } = useGetAccountFullQuery(props.match.params.username);
   const { data: community } = useCommunityCache(props.match.params.username);
 
+  const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
   const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(
@@ -63,6 +65,15 @@ export default function ChatsMessagesBox(props: Props) {
       ),
     [channels, props.channel, leftChannelsIds]
   );
+  const currentContact = useMemo(
+    () => directContacts?.find((dc) => dc.name === props.match.params.username),
+    [directContacts, props.match.params]
+  );
+
+  useAutoScrollInChatBox(
+    communityChannel?.name ?? currentContact?.name ?? "",
+    communityChannel?.id ?? currentContact?.pubkey ?? ""
+  );
 
   return (
     <div
@@ -76,8 +87,8 @@ export default function ChatsMessagesBox(props: Props) {
           <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
           {inProgress && <LinearProgress />}
           <ChatsMessagesView
-            username={props.match.params.username}
-            currentChannel={props.channel}
+            currentContact={props.currentContact!!}
+            currentChannel={props.channel!!}
             setInProgress={setInProgress}
           />
         </>

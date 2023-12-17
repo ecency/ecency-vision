@@ -12,6 +12,7 @@ import { failedMessageSvg } from "../../../img/svg";
 import useDebounce from "react-use/lib/useDebounce";
 import {
   Channel,
+  DirectContact,
   isMessageImage,
   isSingleEmoji,
   Message,
@@ -26,7 +27,7 @@ interface Props {
   message: Message;
   isSameUser: boolean;
   showDate?: boolean;
-  currentUser?: string;
+  currentContact?: DirectContact;
   currentChannel?: Channel;
   onContextMenu?: () => void;
   onAppear?: () => void;
@@ -38,7 +39,7 @@ export function ChatMessageItem({
   type,
   message,
   isSameUser,
-  currentUser,
+  currentContact,
   currentChannel,
   onContextMenu,
   onInViewport,
@@ -65,7 +66,7 @@ export function ChatMessageItem({
     [message]
   );
 
-  const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentUser);
+  const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentContact);
   const { inViewport } = useInViewport(ref);
 
   useMount(() => onAppear?.());

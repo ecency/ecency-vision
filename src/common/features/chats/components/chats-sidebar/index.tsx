@@ -57,7 +57,7 @@ export default function ChatsSideBar(props: Props) {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       <ChatSidebarHeader history={props.history} />
       <ChatSidebarSearch setSearch={setSearchQuery} />
       {showDivider && <div className="divider" />}
@@ -98,6 +98,11 @@ export default function ChatsSideBar(props: Props) {
           </>
         )}
       </div>
+      {directContacts?.length === 0 && communities.length === 0 && (
+        <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-600">
+          {_t("chat.no-contacts-or-channels")}
+        </div>
+      )}
     </div>
   );
 }

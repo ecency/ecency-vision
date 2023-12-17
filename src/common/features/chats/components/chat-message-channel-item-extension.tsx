@@ -3,7 +3,6 @@ import React, { PropsWithChildren, RefObject, useMemo, useRef } from "react";
 import FollowControls from "../../../components/follow-controls";
 import { Button } from "@ui/button";
 import { _t } from "../../../i18n";
-import ChatInput from "./chat-input";
 import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { COMMUNITYADMINROLES } from "./chat-popup/chat-constants";
@@ -105,8 +104,6 @@ export function ChatMessageChannelItemExtension({
                     </>
                   )}
               </div>
-
-              <ChatInput currentChannel={currentChannel} currentUser="" />
             </div>
           </div>
         </PopoverContent>

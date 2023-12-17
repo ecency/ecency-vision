@@ -48,6 +48,7 @@ export function ChatPopupContactsAndChannels({
               {joinedChannels.map((channel) => (
                 <ChatDirectContactOrChannelItem
                   key={channel.id}
+                  channel={channel}
                   username={channel.communityName!!}
                   userClicked={() => communityClicked(channel.communityName!)}
                 />
@@ -62,6 +63,7 @@ export function ChatPopupContactsAndChannels({
           {directContacts?.map((user) => (
             <ChatDirectContactOrChannelItem
               username={user.name}
+              contact={user}
               userClicked={(v) => {
                 setReceiverPubKey(user.pubkey);
                 userClicked(v);

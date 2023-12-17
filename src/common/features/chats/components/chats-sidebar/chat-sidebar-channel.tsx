@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { Channel, ChatContext, getRelativeDate, useMessagesQuery } from "@ecency/ns-query";
+import { Channel, ChatContext, getRelativeDate, useLastMessageQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;
@@ -12,12 +12,8 @@ interface Props {
 export function ChatSidebarChannel({ channel, username }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
-  const { data: messages } = useMessagesQuery(channel.communityName);
+  const lastMessage = useLastMessageQuery(undefined, channel);
 
-  const lastMessage = useMemo(
-    () => (messages.length > 0 ? messages[messages.length - 1] : undefined),
-    [messages]
-  );
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 

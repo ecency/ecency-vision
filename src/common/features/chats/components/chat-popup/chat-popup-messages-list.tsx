@@ -1,29 +1,36 @@
 import { Link } from "react-router-dom";
 import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
-import React, { useMemo } from "react";
+import React from "react";
 import { useCommunityCache } from "../../../../core";
 import { ChatsChannelMessages } from "../chat-channel-messages";
-import { DirectMessage, PublicMessage, useChannelsQuery, useMessagesQuery } from "@ecency/ns-query";
+import {
+  Channel,
+  DirectContact,
+  DirectMessage,
+  PublicMessage,
+  useMessagesQuery
+} from "@ecency/ns-query";
 
 interface Props {
-  username: string;
+  currentContact?: DirectContact;
+  currentChannel?: Channel;
 }
 
-export function ChatPopupMessagesList({ username }: Props) {
-  const { data: currentCommunity } = useCommunityCache(username);
-  const { data: messages } = useMessagesQuery(username);
-  const { data: channels } = useChannelsQuery();
-  const currentChannel = useMemo(
-    () => channels?.find((channel) => channel.communityName === currentCommunity?.name),
-    [channels, currentCommunity]
+export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
+  const { data: currentCommunity } = useCommunityCache(currentChannel?.name);
+  const { data: messages } = useMessagesQuery(
+    currentChannel?.name ?? currentContact?.name,
+    currentChannel?.id ?? currentContact?.pubkey
   );
 
   return (
     <div className="chats h-full">
       {" "}
-      <Link to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${username}`}>
-        <ChatsProfileBox communityName={username} currentUser={username} />
+      <Link
+        to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${currentContact?.name}`}
+      >
+        <ChatsProfileBox communityName={currentChannel?.name} currentUser={currentContact?.name} />
       </Link>
       {!!currentChannel ? (
         <ChatsChannelMessages
@@ -34,7 +41,7 @@ export function ChatPopupMessagesList({ username }: Props) {
       ) : (
         <ChatsDirectMessages
           directMessages={messages as DirectMessage[]}
-          currentUser={username}
+          currentContact={currentContact!!}
           isScrollToBottom={false}
         />
       )}

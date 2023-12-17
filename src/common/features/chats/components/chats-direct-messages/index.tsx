@@ -6,14 +6,20 @@ import { Button } from "@ui/button";
 import { useInviteViaPostComment } from "../../mutations";
 import { FormControl } from "@ui/input";
 import { Alert } from "@ui/alert";
-import { ChatContext, checkContiguousMessage, DirectMessage, useKeysQuery } from "@ecency/ns-query";
+import {
+  ChatContext,
+  checkContiguousMessage,
+  DirectContact,
+  DirectMessage,
+  useKeysQuery
+} from "@ecency/ns-query";
 import { ChatFloatingDate } from "../chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
 import { groupMessages } from "../../utils";
 
 interface Props {
   directMessages: DirectMessage[];
-  currentUser: string;
+  currentContact: DirectContact;
   isScrollToBottom: boolean;
   isScrolled?: boolean;
   scrollToBottom?: () => void;
@@ -35,7 +41,7 @@ export default function ChatsDirectMessages(props: Props) {
     mutateAsync: invite,
     isLoading: isInviting,
     isSuccess: isInvited
-  } = useInviteViaPostComment(props.currentUser);
+  } = useInviteViaPostComment(props.currentContact?.name);
 
   const groupedDirectMessages = useMemo(() => groupMessages(directMessages), [directMessages]);
 
@@ -60,7 +66,7 @@ export default function ChatsDirectMessages(props: Props) {
                     <ChatMessageItem
                       showDate={i === messages.length - 1}
                       key={message.id}
-                      currentUser={props.currentUser}
+                      currentContact={props.currentContact}
                       type={message.creator !== publicKey ? "receiver" : "sender"}
                       message={message}
                       isSameUser={checkContiguousMessage(message, i, directMessages)}

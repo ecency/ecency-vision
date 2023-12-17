@@ -17,14 +17,20 @@ import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@u
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
 import { Spinner } from "@ui/spinner";
-import { Channel, ChatContext, useChannelsQuery, useSendMessage } from "@ecency/ns-query";
+import {
+  Channel,
+  ChatContext,
+  DirectContact,
+  useChannelsQuery,
+  useSendMessage
+} from "@ecency/ns-query";
 
 interface Props {
   currentChannel?: Channel;
-  currentUser?: string;
+  currentContact?: DirectContact;
 }
 
-export default function ChatInput({ currentChannel, currentUser }: Props) {
+export default function ChatInput({ currentChannel, currentContact }: Props) {
   useChannelsQuery();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -40,13 +46,13 @@ export default function ChatInput({ currentChannel, currentUser }: Props) {
   const { mutateAsync: upload } = useChatFileUpload(setMessage);
   const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
     currentChannel,
-    currentUser,
+    currentContact,
     () => {
       setMessage("");
     }
   );
 
-  const isCurrentUser = useMemo(() => !!currentUser, [currentUser]);
+  const isCurrentUser = useMemo(() => !!currentContact, [currentContact]);
   const isCommunity = useMemo(() => !!currentChannel, [currentChannel]);
 
   const isDisabled = useMemo(

@@ -1906,6 +1906,7 @@
     "view-and-save": "Show keys and save",
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
+    "no-contacts-or-channels": "No conversations yet",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",

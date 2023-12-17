@@ -4,10 +4,10 @@ import ChatsProfileBox from "./chat-profile-box";
 import ChatsDirectMessages from "./chats-direct-messages";
 import ChatInput from "./chat-input";
 import { classNameObject } from "../../../helper/class-name-object";
-import isCommunity from "../../../helper/is-community";
 import { ChatsChannelMessages } from "./chat-channel-messages";
 import {
   Channel,
+  DirectContact,
   DirectMessage,
   PublicMessage,
   useFetchPreviousMessages,
@@ -15,18 +15,23 @@ import {
 } from "@ecency/ns-query";
 
 interface Props {
-  username: string;
+  currentContact: DirectContact;
   currentChannel: Channel;
   setInProgress: (d: boolean) => void;
 }
 
-export default function ChatsMessagesView({ username, currentChannel, setInProgress }: Props) {
-  const { data: messages } = useMessagesQuery(username.replace("@", ""));
+export default function ChatsMessagesView({
+  currentContact,
+  currentChannel,
+  setInProgress
+}: Props) {
+  const { data: messages } = useMessagesQuery(
+    currentChannel?.name ?? currentContact?.name,
+    currentChannel?.id ?? currentContact?.pubkey
+  );
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
-  const [directUser, setDirectUser] = useState("");
-  const [communityName, setCommunityName] = useState("");
   const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -34,10 +39,6 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
 
   const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingPreviousMessages } =
     useFetchPreviousMessages(currentChannel, () => {});
-
-  useEffect(() => {
-    isDirectUserOrCommunity();
-  }, []);
 
   useEffect(() => {
     setInProgress(isFetchingPreviousMessages);
@@ -51,10 +52,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
 
   useEffect(() => {
     setIsScrollToBottom(false);
-    setDirectUser("");
-    setCommunityName("");
-    isDirectUserOrCommunity();
-  }, [username]);
+  }, [currentContact]);
 
   useEffect(() => {
     if (isTop) {
@@ -75,31 +73,12 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
       .finally(() => setIsTop(false));
   };
 
-  const isDirectUserOrCommunity = () => {
-    if (isCommunity(username)) {
-      setCommunityName(username.replace("@", ""));
-    } else {
-      setDirectUser(username.replace("@", ""));
-    }
-  };
-
   const scrollToBottom = () => {
     messagesBoxRef &&
       messagesBoxRef?.current?.scroll({
         top: messagesBoxRef.current?.scrollHeight,
         behavior: "auto"
       });
-  };
-
-  const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-    const element = event.currentTarget;
-    const isScrollToBottom =
-      element.scrollTop + messagesBoxRef?.current?.clientHeight! < element.scrollHeight - 200;
-    setIsScrollToBottom(isScrollToBottom);
-    const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
-    setIsScrolled(isScrolled);
-    const scrollerTop = element.scrollTop <= 600 && messages.length > 25;
-    setIsTop(!!communityName && scrollerTop);
   };
 
   return (
@@ -110,14 +89,16 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
           "no-scroll": isTop && hasMore
         })}
         ref={messagesBoxRef}
-        onScroll={handleScroll}
       >
         <Link
           className="after:!hidden"
-          to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
+          to={!!currentChannel ? `/created/${currentChannel?.name}` : `/@${currentContact?.name}`}
           target="_blank"
         >
-          <ChatsProfileBox communityName={username} currentUser={username} />
+          <ChatsProfileBox
+            communityName={currentChannel?.name}
+            currentUser={currentContact?.name}
+          />
         </Link>
         {currentChannel ? (
           <>
@@ -133,7 +114,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
         ) : (
           <ChatsDirectMessages
             directMessages={messages as DirectMessage[]}
-            currentUser={directUser!}
+            currentContact={currentContact}
             isScrolled={isScrolled}
             isScrollToBottom={isScrollToBottom}
             scrollToBottom={scrollToBottom}
@@ -143,7 +124,7 @@ export default function ChatsMessagesView({ username, currentChannel, setInProgr
       </div>
 
       <div className="sticky z-10 bottom-0 border-t border-[--border-color] bg-white pl-3">
-        <ChatInput currentUser={directUser} currentChannel={currentChannel} />
+        <ChatInput currentContact={currentContact} currentChannel={currentChannel} />
       </div>
     </>
   );

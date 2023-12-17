@@ -49,12 +49,16 @@ export const Chats = ({ match, history }: Props) => {
   const { data: channels } = useChannelsQuery();
   const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
 
-  const isChannel = useMemo(
+  // Generate temporary contact from username and its public key
+  const directContact = useMemo(
     () =>
-      [...(channels ?? []), ...(communityChannel ? [communityChannel] : [])].some(
-        (channel) => channel.communityName === match.params.username
-      ),
-    [channels, match.params.username, communityChannel]
+      match.params.username
+        ? {
+            name: match.params.username.replace("@", ""),
+            pubkey: receiverPubKey
+          }
+        : undefined,
+    [receiverPubKey, match.params]
   );
 
   const isReady = useMemo(
@@ -63,13 +67,13 @@ export const Chats = ({ match, history }: Props) => {
   );
   const isShowManageKey = useMemo(() => isReady && revealPrivateKey, [isReady, revealPrivateKey]);
   const isShowChatRoom = useMemo(
-    () =>
-      isReady && (!!receiverPubKey || isChannel) && !revealPrivateKey && !!match.params.username,
-    [isReady, receiverPubKey, revealPrivateKey, isChannel, match]
+    () => isReady && (!!directContact || !!communityChannel) && !revealPrivateKey,
+    [isReady, receiverPubKey, revealPrivateKey, communityChannel, directContact]
   );
   const isShowDefaultScreen = useMemo(
-    () => isReady && !receiverPubKey && !isChannel && !revealPrivateKey && !match.params.username,
-    [isReady, receiverPubKey, revealPrivateKey, isChannel, match]
+    () =>
+      isReady && !directContact && !communityChannel && !revealPrivateKey && !match.params.username,
+    [isReady, receiverPubKey, directContact, communityChannel, match]
   );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
 
@@ -139,7 +143,12 @@ export const Chats = ({ match, history }: Props) => {
               </div>
             )}
             {isShowChatRoom && (
-              <ChatsMessagesBox match={match} history={history} channel={communityChannel!!} />
+              <ChatsMessagesBox
+                match={match}
+                history={history}
+                channel={communityChannel!!}
+                currentContact={directContact}
+              />
             )}
             {!isShowChatRoom && isReady && match.params.username && (
               <ChatsUserNotJoinedSection match={match} />

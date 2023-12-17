@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { ChatContext, DirectContact, getRelativeDate, useMessagesQuery } from "@ecency/ns-query";
+import { ChatContext, DirectContact, getRelativeDate, useLastMessageQuery } from "@ecency/ns-query";
 
 interface Props {
   contact: DirectContact;
@@ -10,13 +10,10 @@ interface Props {
 }
 
 export function ChatSidebarDirectContact({ contact, username }: Props) {
-  const { setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
+  const { receiverPubKey, setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } =
+    useContext(ChatContext);
 
-  const { data: messages } = useMessagesQuery(contact.name);
-  const lastMessage = useMemo(
-    () => (messages.length > 0 ? messages[messages.length - 1] : undefined),
-    [messages]
-  );
+  const lastMessage = useLastMessageQuery(contact);
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 
@@ -25,7 +22,8 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
       className={classNameObject({
         "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
           true,
-        "bg-gray-100 dark:bg-gray-800": rawUsername === contact.name
+        "bg-gray-100 dark:bg-gray-800":
+          rawUsername === contact.name && receiverPubKey === contact.pubkey
       })}
       to={`/chats/@${contact.name}`}
       onClick={() => {

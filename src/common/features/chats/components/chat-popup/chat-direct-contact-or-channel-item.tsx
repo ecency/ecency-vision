@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
-import React, { useMemo } from "react";
+import React from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { isCommunity, useMessagesQuery } from "@ecency/ns-query";
+import { Channel, DirectContact, isCommunity, useLastMessageQuery } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../../core";
 
 interface Props {
   username: string;
+  contact?: DirectContact;
+  channel?: Channel;
   userClicked: (username: string) => void;
 }
 
-export function ChatDirectContactOrChannelItem({ username, userClicked }: Props) {
-  const { data: messages } = useMessagesQuery(username);
-  const lastMessage = useMemo(
-    () => (messages.length > 0 ? messages[messages.length - 1].content : undefined),
-    [messages]
-  );
+export function ChatDirectContactOrChannelItem({ contact, channel, username, userClicked }: Props) {
+  const lastMessage = useLastMessageQuery(contact, channel);
   const { data: community } = useCommunityCache(username);
 
   return (

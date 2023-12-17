@@ -50,8 +50,6 @@ export const ChatPopUp = () => {
   const chatBodyDivRef = useRef<HTMLDivElement | null>(null);
 
   const [expanded, setExpanded] = useState(false);
-  const [isScrollToTop, setIsScrollToTop] = useState(false);
-  const [isScrollToBottom, setIsScrollToBottom] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
   const [show, setShow] = useState(false);
   const [isCommunity, setIsCommunity] = useState(false);
@@ -61,6 +59,10 @@ export const ChatPopUp = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const hasUserJoinedChat = useMemo(() => !!privateKey, [privateKey]);
+  const currentContact = useMemo(
+    () => directContacts?.find((dc) => dc.pubkey === receiverPubKey),
+    [receiverPubKey]
+  );
   const currentChannel = useMemo(
     () => channels?.find((channel) => channel.communityName === communityName),
     [communityName, channels]
@@ -133,26 +135,6 @@ export const ChatPopUp = () => {
       })
       .finally(() => setIsTop(false));
   };
-
-  const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-    var element = event.currentTarget;
-    let scrollHeight = (element.scrollHeight / 100) * 25;
-    const isScrollToTop = !isCurrentUser && !isCommunity && element.scrollTop >= scrollHeight;
-    const isScrollToBottom =
-      (isCurrentUser || isCommunity) &&
-      element.scrollTop + chatBodyDivRef?.current?.clientHeight! < element.scrollHeight - 200;
-    const isScrolled = element.scrollTop + element.clientHeight <= element.scrollHeight - 20;
-    setIsScrolled(isScrolled);
-    setIsScrollToTop(isScrollToTop);
-    setIsScrollToBottom(isScrollToBottom);
-    const scrollerTop = element.scrollTop <= 600 && messages.length > 25;
-    if (isCommunity && scrollerTop) {
-      setIsTop(true);
-    } else {
-      setIsTop(false);
-    }
-  };
-
   const scrollerClicked = () => {
     chatBodyDivRef?.current?.scroll({
       top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
@@ -207,12 +189,14 @@ export const ChatPopUp = () => {
                 : ""
             }`}
             ref={chatBodyDivRef}
-            onScroll={handleScroll}
           >
             {hasUserJoinedChat && !revealPrivateKey ? (
               <>
                 {currentUser.length !== 0 || communityName.length !== 0 ? (
-                  <ChatPopupMessagesList username={currentUser ? currentUser : communityName} />
+                  <ChatPopupMessagesList
+                    currentContact={currentContact}
+                    currentChannel={currentChannel}
+                  />
                 ) : showSearchUser ? (
                   <ChatPopupSearchUser setCurrentUser={setCurrentUser} />
                 ) : (
@@ -236,7 +220,10 @@ export const ChatPopUp = () => {
           </div>
           <div className="pl-2">
             {((isCurrentUser && receiverPubKey) || isCommunity) && (
-              <ChatInput currentUser={currentUser} currentChannel={currentChannel ?? undefined} />
+              <ChatInput
+                currentContact={currentContact}
+                currentChannel={currentChannel ?? undefined}
+              />
             )}
           </div>
         </div>
