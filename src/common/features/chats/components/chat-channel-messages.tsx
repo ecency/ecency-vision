@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { ChatMessageItem } from "./chat-message-item";
@@ -11,6 +11,7 @@ import {
   PublicMessage,
   useHideMessageInChannel,
   useKeysQuery,
+  usePublicMessagesQuery,
   useUpdateChannelBlockedUsers
 } from "@ecency/ns-query";
 import { groupMessages } from "../utils";
@@ -20,20 +21,10 @@ import { differenceInCalendarDays } from "date-fns";
 interface Props {
   publicMessages: PublicMessage[];
   currentChannel: Channel;
-  isScrollToBottom: boolean;
-  isScrolled?: boolean;
-  scrollToBottom?: () => void;
   isPage?: boolean;
 }
 
-export function ChatsChannelMessages({
-  publicMessages,
-  isScrollToBottom,
-  isScrolled,
-  currentChannel,
-  scrollToBottom,
-  isPage
-}: Props) {
+export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }: Props) {
   const { activeUser } = useMappedStore();
 
   const channelMessagesRef = React.createRef<HTMLDivElement>();
@@ -42,6 +33,7 @@ export function ChatsChannelMessages({
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
 
   const { publicKey } = useKeysQuery();
+  const { fetchNextPage } = usePublicMessagesQuery(currentChannel);
 
   const { mutateAsync: updateBlockedUsers, isLoading: isUsersBlockingLoading } =
     useUpdateChannelBlockedUsers(currentChannel);
@@ -50,22 +42,12 @@ export function ChatsChannelMessages({
 
   const messages = useMemo(
     () =>
-      publicMessages
-        .filter((m) =>
-          currentChannel?.hiddenMessageIds ? !currentChannel.hiddenMessageIds.includes(m.id) : true
-        )
-        .filter((m) =>
-          currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
-        ),
+      publicMessages.filter((m) =>
+        currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
+      ),
     [publicMessages, currentChannel]
   );
   const groupedMessages = useMemo(() => groupMessages(messages), [messages]);
-
-  useEffect(() => {
-    if (!isScrollToBottom && messages.length !== 0 && !isScrolled) {
-      scrollToBottom && scrollToBottom();
-    }
-  }, [messages, isScrollToBottom, channelMessagesRef]);
 
   return (
     <>
@@ -77,7 +59,7 @@ export function ChatsChannelMessages({
             ) : (
               <></>
             )}
-            {group.map((message) => (
+            {group.map((message, j) => (
               <>
                 <Dropdown
                   show={currentInteractingMessageId === message.id}
@@ -105,6 +87,13 @@ export function ChatsChannelMessages({
                             : {},
                         100
                       )
+                    }
+                    onInViewport={() =>
+                      i === groupedMessages.length - 1 &&
+                      j === group.length - 1 &&
+                      fetchNextPage({
+                        pageParam: message.created * 1000
+                      })
                     }
                   />
                   <DropdownMenu

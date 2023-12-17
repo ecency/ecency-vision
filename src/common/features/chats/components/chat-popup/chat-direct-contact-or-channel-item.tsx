@@ -28,7 +28,7 @@ export function ChatDirectContactOrChannelItem({ contact, channel, username, use
         <p className="font-semibold">
           {isCommunity(username) && community ? community.title : username}
         </p>
-        <p className="text-gray-600 text-sm">{lastMessage}</p>
+        <p className="text-gray-600 text-sm">{lastMessage?.content}</p>
       </div>
     </div>
   );

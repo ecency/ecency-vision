@@ -89,7 +89,6 @@ export default function ChatsMessagesBox(props: Props) {
           <ChatsMessagesView
             currentContact={props.currentContact!!}
             currentChannel={props.channel!!}
-            setInProgress={setInProgress}
           />
         </>
       ) : (

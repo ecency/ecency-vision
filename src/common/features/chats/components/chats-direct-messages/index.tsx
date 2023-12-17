@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { _t } from "../../../../i18n";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
@@ -11,6 +11,7 @@ import {
   checkContiguousMessage,
   DirectContact,
   DirectMessage,
+  useDirectMessagesQuery,
   useKeysQuery
 } from "@ecency/ns-query";
 import { ChatFloatingDate } from "../chat-floating-date";
@@ -20,14 +21,11 @@ import { groupMessages } from "../../utils";
 interface Props {
   directMessages: DirectMessage[];
   currentContact: DirectContact;
-  isScrollToBottom: boolean;
-  isScrolled?: boolean;
-  scrollToBottom?: () => void;
   isPage?: boolean;
 }
 
 export default function ChatsDirectMessages(props: Props) {
-  const { directMessages, isScrolled, isScrollToBottom, scrollToBottom } = props;
+  const { directMessages } = props;
 
   const { receiverPubKey } = useContext(ChatContext);
 
@@ -36,6 +34,7 @@ export default function ChatsDirectMessages(props: Props) {
     "Hi! Let's start messaging privately. Register an account on [https://ecency.com/chats](https://ecency.com/chats)"
   );
   const { publicKey } = useKeysQuery();
+  const { fetchNextPage } = useDirectMessagesQuery(props.currentContact);
 
   const {
     mutateAsync: invite,
@@ -44,12 +43,6 @@ export default function ChatsDirectMessages(props: Props) {
   } = useInviteViaPostComment(props.currentContact?.name);
 
   const groupedDirectMessages = useMemo(() => groupMessages(directMessages), [directMessages]);
-
-  useEffect(() => {
-    if (!isScrollToBottom && directMessages && directMessages.length !== 0 && !isScrolled) {
-      scrollToBottom?.();
-    }
-  }, [directMessages, isScrollToBottom, scrollToBottom, receiverPubKey]);
 
   return (
     <>
@@ -62,9 +55,9 @@ export default function ChatsDirectMessages(props: Props) {
               return (
                 <React.Fragment key={date.getTime()}>
                   {diff > 0 && <ChatFloatingDate currentDate={date} isPage={props.isPage} />}
-                  {messages.map((message, i) => (
+                  {messages.map((message, j) => (
                     <ChatMessageItem
-                      showDate={i === messages.length - 1}
+                      showDate={j === messages.length - 1}
                       key={message.id}
                       currentContact={props.currentContact}
                       type={message.creator !== publicKey ? "receiver" : "sender"}
@@ -80,6 +73,13 @@ export default function ChatsDirectMessages(props: Props) {
                               : {},
                           100
                         )
+                      }
+                      onInViewport={() =>
+                        i === groupedDirectMessages.length - 1 &&
+                        j === messages.length - 1 &&
+                        fetchNextPage({
+                          pageParam: message.created * 1000
+                        })
                       }
                     />
                   ))}

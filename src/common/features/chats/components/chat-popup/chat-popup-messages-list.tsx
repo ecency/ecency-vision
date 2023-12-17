@@ -36,13 +36,11 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
         <ChatsChannelMessages
           publicMessages={messages as PublicMessage[]}
           currentChannel={currentChannel!}
-          isScrollToBottom={false}
         />
       ) : (
         <ChatsDirectMessages
           directMessages={messages as DirectMessage[]}
           currentContact={currentContact!!}
-          isScrollToBottom={false}
         />
       )}
     </div>

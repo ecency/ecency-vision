@@ -41,7 +41,6 @@ export const ChatPopUp = () => {
     () => directContacts?.find((contact) => contact.pubkey === receiverPubKey),
     [directContacts, receiverPubKey]
   );
-  const { data: messages } = useMessagesQuery(directContact?.name);
   const { data: channels, isLoading: isChannelsLoading } = useChannelsQuery();
   const { data: currentUserAccount } = useGetAccountFullQuery(currentUser);
 
@@ -71,6 +70,11 @@ export const ChatPopUp = () => {
   const canSendMessage = useMemo(
     () => !currentUser && hasUserJoinedChat && !!privateKey && !isCommunity && !revealPrivateKey,
     [currentUser, hasUserJoinedChat, privateKey, isCommunity, revealPrivateKey]
+  );
+
+  const { data: messages } = useMessagesQuery(
+    currentChannel?.name ?? directContact?.name,
+    currentChannel?.id ?? directContact?.pubkey
   );
 
   const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingMore } =
