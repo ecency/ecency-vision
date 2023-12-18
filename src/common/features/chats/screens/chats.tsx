@@ -34,11 +34,12 @@ interface Props extends PageProps {
     path: string;
     url: string;
     username: string;
+    channel?: string;
   }>;
 }
 
 export const Chats = ({ match, history }: Props) => {
-  const { activeUser, global } = useMappedStore();
+  const { activeUser } = useMappedStore();
   const { receiverPubKey, revealPrivateKey, setReceiverPubKey, setRevealPrivateKey } =
     useContext(ChatContext);
   const { data: community } = useCommunityCache(match.params.username);
@@ -47,18 +48,22 @@ export const Chats = ({ match, history }: Props) => {
   const { data: userAccount } = useGetAccountFullQuery(match.params.username?.replace("@", ""));
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
-  const { data: communityChannel } = useCommunityChannelQuery(community ?? undefined);
 
+  const isChannel = useMemo(() => match.params.channel === "channel", [match.params]);
   // Generate temporary contact from username and its public key
   const directContact = useMemo(
     () =>
-      match.params.username
+      match.params.username && !isChannel
         ? {
             name: match.params.username.replace("@", ""),
             pubkey: receiverPubKey
           }
         : undefined,
     [receiverPubKey, match.params]
+  );
+  const { data: communityChannel } = useCommunityChannelQuery(
+    isChannel && community ? community : undefined,
+    userAccount
   );
 
   const isReady = useMemo(
@@ -92,11 +97,13 @@ export const Chats = ({ match, history }: Props) => {
   }, [community, userAccount]);
 
   useEffect(() => {
-    if (userAccount) {
+    if (userAccount && !isChannel) {
       const key = getUserChatPublicKey(userAccount);
       setReceiverPubKey(key ?? "");
+    } else {
+      setReceiverPubKey("");
     }
-  }, [userAccount]);
+  }, [userAccount, isChannel]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -115,7 +122,15 @@ export const Chats = ({ match, history }: Props) => {
       <div className="container mx-auto md:py-6">
         <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">
           <div className="col-span-12 md:col-span-4 xl:col-span-3 border-r border-[--border-color] max-h-[calc(100vh-69px)] md:h-[calc(100vh-69px-3rem)] overflow-y-auto">
-            {isReady ? <ChatsSideBar history={history} username={match.params.username} /> : <></>}
+            {isReady ? (
+              <ChatsSideBar
+                isChannel={isChannel}
+                history={history}
+                username={match.params.username}
+              />
+            ) : (
+              <></>
+            )}
             {(!directContacts?.length || !channels?.length) && isShowDefaultScreen && (
               <ChatsDefaultScreen className="md:hidden" />
             )}

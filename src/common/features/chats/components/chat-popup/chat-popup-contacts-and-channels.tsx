@@ -1,15 +1,13 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import { _t } from "../../../../i18n";
 import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
 import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
 import {
   ChatContext,
-  getJoinedCommunities,
   useChannelsQuery,
   useDirectContactsQuery,
-  useKeysQuery,
-  useLeftCommunityChannelsQuery
+  useKeysQuery
 } from "@ecency/ns-query";
 
 interface Props {
@@ -28,24 +26,18 @@ export function ChatPopupContactsAndChannels({
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
-  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
-
-  const joinedChannels = useMemo(
-    () => getJoinedCommunities(channels ?? [], leftChannelsIds ?? []),
-    [channels, leftChannelsIds]
-  );
 
   return (
     <>
-      {(directContacts?.length !== 0 || (channels?.length !== 0 && joinedChannels.length !== 0)) &&
+      {(directContacts?.length !== 0 || (channels?.length !== 0 && channels?.length !== 0)) &&
       privateKey ? (
         <>
-          {joinedChannels.length !== 0 && (
+          {channels?.length !== 0 && (
             <>
               <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
                 {_t("chat.communities")}
               </div>
-              {joinedChannels.map((channel) => (
+              {channels?.map((channel) => (
                 <ChatDirectContactOrChannelItem
                   key={channel.id}
                   channel={channel}

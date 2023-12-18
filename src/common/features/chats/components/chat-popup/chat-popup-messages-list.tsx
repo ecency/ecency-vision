@@ -19,10 +19,7 @@ interface Props {
 
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
   const { data: currentCommunity } = useCommunityCache(currentChannel?.name);
-  const { data: messages } = useMessagesQuery(
-    currentChannel?.name ?? currentContact?.name,
-    currentChannel?.id ?? currentContact?.pubkey
-  );
+  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
 
   return (
     <div className="chats h-full">

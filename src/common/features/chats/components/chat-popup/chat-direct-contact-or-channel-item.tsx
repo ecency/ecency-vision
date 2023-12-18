@@ -13,7 +13,7 @@ interface Props {
 
 export function ChatDirectContactOrChannelItem({ contact, channel, username, userClicked }: Props) {
   const lastMessage = useLastMessageQuery(contact, channel);
-  const { data: community } = useCommunityCache(username);
+  const { data: community } = useCommunityCache(channel?.communityName);
 
   return (
     <div

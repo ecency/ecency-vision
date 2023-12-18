@@ -7,9 +7,10 @@ import { Channel, ChatContext, getRelativeDate, useLastMessageQuery } from "@ece
 interface Props {
   username: string;
   channel: Channel;
+  isChannel: boolean;
 }
 
-export function ChatSidebarChannel({ channel, username }: Props) {
+export function ChatSidebarChannel({ channel, username, isChannel }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
   const lastMessage = useLastMessageQuery(undefined, channel);
@@ -22,9 +23,9 @@ export function ChatSidebarChannel({ channel, username }: Props) {
       className={classNameObject({
         "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
           true,
-        "bg-gray-100 dark:bg-gray-800": rawUsername === channel.name
+        "bg-gray-100 dark:bg-gray-800": rawUsername === channel.communityName && isChannel
       })}
-      to={`/chats/${channel.communityName}`}
+      to={`/chats/${channel.communityName}/channel`}
       onClick={() => {
         if (revealPrivateKey) {
           setRevealPrivateKey(false);

@@ -19,10 +19,7 @@ interface Props {
 }
 
 export default function ChatsMessagesView({ currentContact, currentChannel }: Props) {
-  const { data: messages } = useMessagesQuery(
-    currentChannel?.name ?? currentContact?.name,
-    currentChannel?.id ?? currentContact?.pubkey
-  );
+  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
 
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 

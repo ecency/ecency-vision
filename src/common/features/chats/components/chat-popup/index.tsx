@@ -19,10 +19,8 @@ import {
   getUserChatPublicKey,
   useChannelsQuery,
   useDirectContactsQuery,
-  useFetchPreviousMessages,
   useJoinChat,
-  useKeysQuery,
-  useMessagesQuery
+  useKeysQuery
 } from "@ecency/ns-query";
 import { uploadChatKeys } from "../../utils/upload-chat-keys";
 
@@ -53,9 +51,7 @@ export const ChatPopUp = () => {
   const [show, setShow] = useState(false);
   const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
-  const [isTop, setIsTop] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const hasUserJoinedChat = useMemo(() => !!privateKey, [privateKey]);
   const currentContact = useMemo(
@@ -72,14 +68,6 @@ export const ChatPopUp = () => {
     [currentUser, hasUserJoinedChat, privateKey, isCommunity, revealPrivateKey]
   );
 
-  const { data: messages } = useMessagesQuery(
-    currentChannel?.name ?? directContact?.name,
-    currentChannel?.id ?? directContact?.pubkey
-  );
-
-  const { mutateAsync: fetchPreviousMessages, isLoading: isFetchingMore } =
-    useFetchPreviousMessages(currentChannel);
-
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
@@ -95,13 +83,6 @@ export const ChatPopUp = () => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   }, [routerLocation, activeUser]);
 
-  // Fetching previous messages when scrol achieved top
-  useEffect(() => {
-    if (isTop) {
-      fetchPrevMessages();
-    }
-  }, [isTop]);
-
   useEffect(() => {
     if (prevActiveUser?.username !== activeUser?.username) {
       setIsCommunity(false);
@@ -109,42 +90,6 @@ export const ChatPopUp = () => {
       setCommunityName("");
     }
   }, [global.theme, activeUser]);
-
-  useEffect(() => {
-    if (messages.length !== 0 && !isScrolled) {
-      scrollerClicked();
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    if ((isCurrentUser || isCommunity) && show) {
-      scrollerClicked();
-    }
-  }, [isCurrentUser, isCommunity, show]);
-
-  useEffect(() => {
-    if (isCommunity && show) {
-      scrollerClicked();
-    }
-  }, [isCommunity, communityName, show]);
-
-  const fetchPrevMessages = () => {
-    if (!hasMore) return;
-
-    fetchPreviousMessages()
-      .then((events) => {
-        if (events.length < 25) {
-          setHasMore(false);
-        }
-      })
-      .finally(() => setIsTop(false));
-  };
-  const scrollerClicked = () => {
-    chatBodyDivRef?.current?.scroll({
-      top: isCurrentUser || isCommunity ? chatBodyDivRef?.current?.scrollHeight : 0,
-      behavior: "auto"
-    });
-  };
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);
@@ -181,16 +126,12 @@ export const ChatPopUp = () => {
             handleMessageSvgClick={handleMessageSvgClick}
             showSearchUser={showSearchUser}
           />
-          {(isJoinChatLoading || isChannelsLoading || isFetchingMore) && <LinearProgress />}
+          {(isJoinChatLoading || isChannelsLoading) && <LinearProgress />}
           <div
             className={`chat-body h-full ${
               currentUser ? "current-user" : isCommunity ? "community" : ""
             } ${
-              !hasUserJoinedChat
-                ? "flex items-center justify-center"
-                : isTop && hasMore
-                ? "no-scroll"
-                : ""
+              !hasUserJoinedChat ? "flex items-center justify-center" : hasMore ? "no-scroll" : ""
             }`}
             ref={chatBodyDivRef}
           >
@@ -208,9 +149,14 @@ export const ChatPopUp = () => {
                     communityClicked={(community: string) => {
                       setIsCommunity(true);
                       setCommunityName(community);
+                      setCurrentUser("");
+                      setReceiverPubKey("");
                     }}
                     setShowSearchUser={setShowSearchUser}
-                    userClicked={(username) => setCurrentUser(username)}
+                    userClicked={(username) => {
+                      setCurrentUser(username);
+                      setCommunityName("");
+                    }}
                   />
                 )}
               </>

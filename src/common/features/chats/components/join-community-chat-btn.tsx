@@ -49,7 +49,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
-    useAddCommunityChannel(currentChannel?.id);
+    useAddCommunityChannel(currentChannel);
   const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
     useCreateCommunityChat(props.community, communityAccount!!, updateProfile);
   const { mutateAsync: leaveCommunityChannel, isLoading: isLeavingCommunityChannelLoading } =
@@ -84,7 +84,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     if (!hasUserJoinedChat) {
       return;
     }
-    await addCommunityChannel([]);
+    await addCommunityChannel();
   };
 
   return isGlobalLoading ? (
@@ -106,7 +106,7 @@ export default function JoinCommunityChatBtn(props: Props) {
         <Button
           size="sm"
           disabled={isAddCommunityChannelLoading}
-          to={`/chats/${props.community.name}`}
+          to={`/chats/${props.community.name}/channel`}
           iconPlacement="left"
         >
           {_t("chat.join-community-chat")}

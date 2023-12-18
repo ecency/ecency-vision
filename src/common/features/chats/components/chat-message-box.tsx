@@ -1,9 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { match } from "react-router";
 import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
-import LinearProgress from "../../../components/linear-progress";
 import { Button } from "@ui/button";
 import { useCommunityCache } from "../../../core";
 import ChatsProfileBox from "./chat-profile-box";
@@ -11,14 +10,10 @@ import { _t } from "../../../i18n";
 import {
   Channel,
   DirectContact,
-  getJoinedCommunities,
   useAddCommunityChannel,
   useAutoScrollInChatBox,
-  useChannelsQuery,
-  useCommunityChannelQuery,
   useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
-import { useGetAccountFullQuery } from "../../../api/queries";
 
 interface MatchParams {
   filter: string;
@@ -36,38 +31,19 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  const { data: communityAccount } = useGetAccountFullQuery(props.match.params.username);
   const { data: community } = useCommunityCache(props.match.params.username);
 
-  const { data: channels } = useChannelsQuery();
-  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
-  const { data: communityChannel } = useCommunityChannelQuery(
-    community ?? undefined,
-    communityAccount
-  );
   const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
-    useAddCommunityChannel(communityChannel?.id);
-
-  const [inProgress, setInProgress] = useState(false);
+    useAddCommunityChannel(props.channel);
 
   const hasLeftCommunity = useMemo(
     () => leftCommunityChannelsIds?.includes(props.channel?.id ?? ""),
     [props.channel]
   );
-  const isCommunityJoined = useMemo(
-    () =>
-      getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
-        (channel) => channel.id === props.channel?.id
-      ),
-    [channels, props.channel, leftChannelsIds]
-  );
 
-  useAutoScrollInChatBox(
-    communityChannel?.name ?? props.currentContact?.name ?? "",
-    communityChannel?.id ?? props.currentContact?.pubkey ?? ""
-  );
+  useAutoScrollInChatBox(props.currentContact, props.channel);
 
   return (
     <div
@@ -76,10 +52,9 @@ export default function ChatsMessagesBox(props: Props) {
         gridTemplateRows: "min-content 1fr min-content"
       }}
     >
-      {props.match.params.username.startsWith("@") || isCommunityJoined ? (
+      {(props.channel && !hasLeftCommunity) || props.currentContact ? (
         <>
           <ChatsMessagesHeader username={props.match.params.username} history={props.history} />
-          {inProgress && <LinearProgress />}
           <ChatsMessagesView
             currentContact={props.currentContact!!}
             currentChannel={props.channel!!}
@@ -90,13 +65,9 @@ export default function ChatsMessagesBox(props: Props) {
           <div />
           <div className="flex flex-col justify-center items-center mb-4">
             <ChatsProfileBox communityName={community?.name} />
-            <p className="mb-4 text-gray-600">
-              {hasLeftCommunity
-                ? _t("chat.welcome.rejoin-description")
-                : _t("chat.welcome.join-description")}
-            </p>
-            <Button onClick={() => addCommunityChannel([])} disabled={isAddCommunityChannelLoading}>
-              {hasLeftCommunity ? "Rejoin Community Chat" : "Join Community Chat"}
+            <p className="mb-4 text-gray-600">{_t("chat.welcome.join-description")}</p>
+            <Button onClick={() => addCommunityChannel()} disabled={isAddCommunityChannelLoading}>
+              Join Community Chat
             </Button>
           </div>
           <div />
