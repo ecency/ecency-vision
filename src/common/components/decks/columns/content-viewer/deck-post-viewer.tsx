@@ -6,7 +6,7 @@ import { arrowLeftSvg } from "../../../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
 import { EntryInfo } from "../../../entry-info";
 import { History } from "history";
-import Discussion from "../../../discussion";
+import { Discussion } from "../../../discussion";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DeckPostViewerCommentBox } from "./deck-post-viewer-comment-box";
@@ -122,7 +122,6 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
           community={null}
           hideControls={false}
           history={history}
-          location={location}
           isRawContent={false}
         />
       </div>

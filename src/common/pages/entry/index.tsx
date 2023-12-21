@@ -52,7 +52,7 @@ import appName from "../../helper/app-name";
 import EntryVoteBtn from "../../components/entry-vote-btn/index";
 import EntryPayout from "../../components/entry-payout/index";
 import EntryVotes from "../../components/entry-votes";
-import Discussion from "../../components/discussion";
+import { Discussion } from "../../components/discussion";
 import EntryReblogBtn from "../../components/entry-reblog-btn/index";
 import EntryTipBtn from "../../components/entry-tip-btn";
 import { BaseAccount, FullAccount } from "../../store/accounts/types";
