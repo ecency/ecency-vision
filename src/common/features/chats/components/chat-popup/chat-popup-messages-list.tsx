@@ -18,7 +18,7 @@ interface Props {
 }
 
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
-  const { data: currentCommunity } = useCommunityCache(currentChannel?.name);
+  const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
   const { data: messages } = useMessagesQuery(currentContact, currentChannel);
 
   return (
@@ -27,7 +27,10 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
       <Link
         to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${currentContact?.name}`}
       >
-        <ChatsProfileBox communityName={currentChannel?.name} currentUser={currentContact?.name} />
+        <ChatsProfileBox
+          communityName={currentChannel?.communityName}
+          currentUser={currentContact?.name}
+        />
       </Link>
       {!!currentChannel ? (
         <ChatsChannelMessages
