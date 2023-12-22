@@ -1,19 +1,14 @@
 import React from "react";
-
-import Discussion from "./index";
-
+import { Discussion } from "./index";
 import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
-
-import { create, act } from "react-test-renderer";
-
+import { create } from "react-test-renderer";
 import { createBrowserHistory, createLocation } from "history";
-
 import {
-  globalInstance,
-  discussionInstace1,
-  dynamicPropsIntance1,
   activeUserMaker,
   allOver,
+  discussionInstace1,
+  dynamicPropsIntance1,
+  globalInstance,
   UiInstance
 } from "../../helper/test-helper";
 

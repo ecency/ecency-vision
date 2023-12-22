@@ -1,51 +1,52 @@
 import { History } from "history";
-import { Discussion as DiscussionType } from "../../store/discussion/types";
 import { Entry } from "../../store/entries/types";
 import { Community } from "../../store/communities";
-import React, { useMemo, useState } from "react";
-import { getFollowing } from "../../api/hive";
+import React, { useEffect, useMemo, useState } from "react";
 import { _t } from "../../i18n";
-import { useMountedState, useUnmount } from "react-use";
+import { useUnmount } from "react-use";
 import useMount from "react-use/lib/useMount";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionItem } from "./discussion-item";
+import { useLocation } from "react-router";
+import { useFetchMutedUsersQuery } from "../../api/queries";
 
 interface Props {
   hideControls: boolean;
   parent: Entry;
-  discussion: DiscussionType;
   isRawContent: boolean;
   history: History;
   community: Community | null;
+  discussionList: Entry[];
 }
 
 export function DiscussionList({
-  discussion,
   parent,
   hideControls,
   isRawContent,
   history,
-  community
+  community,
+  discussionList
 }: Props) {
   const [isHiddenPermitted, setIsHiddenPermitted] = useState(false);
-  const [mutedData, setMutedData] = useState<string[]>([]);
 
-  const isMounted = useMountedState();
+  const location = useLocation();
   const { activeUser } = useMappedStore();
+
+  const { data: mutedUsers } = useFetchMutedUsersQuery();
 
   const filtered = useMemo(
     () =>
-      discussion.list.filter(
+      discussionList.filter(
         (x) => x.parent_author === parent.author && x.parent_permlink === parent.permlink
       ),
-    [discussion, parent]
+    [discussionList, parent]
   );
   const mutedContent = useMemo(
     () =>
       filtered.filter(
         (item) =>
           activeUser &&
-          mutedData.includes(item.author) &&
+          mutedUsers.includes(item.author) &&
           item.depth === 1 &&
           item.parent_author === parent.author
       ),
@@ -61,26 +62,30 @@ export function DiscussionList({
     );
 
     return isHiddenPermitted ? [...unMutedContent, ...mutedContent] : unMutedContent;
-  }, [filtered, activeUser, mutedData, isHiddenPermitted]);
+  }, [filtered, activeUser, mutedUsers, isHiddenPermitted]);
 
   useMount(() => (document.getElementsByTagName("html")[0].style.position = "relative"));
   useUnmount(() => (document.getElementsByTagName("html")[0].style.position = "unset"));
 
-  const fetchMutedUsers = async () => {
-    if (activeUser) {
-      const response = await getFollowing(activeUser.username, "", "ignore", 100);
-      if (response && isMounted()) {
-        setMutedData(response.map((user) => user.following));
+  useEffect(() => {
+    if (discussionList.length > 0) {
+      if (location.hash) {
+        const permlink = location.hash.replace("#", "");
+        const anchorId = `anchor-${permlink}`;
+        const anchorEl = document.getElementById(anchorId);
+        if (anchorEl) {
+          anchorEl.scrollIntoView();
+        }
       }
     }
-  };
+  }, [discussionList, location]);
 
   return filtered.length > 0 ? (
     <div className="discussion-list">
       {data.map((d) => (
         <DiscussionItem
+          discussionList={discussionList}
           community={community}
-          discussion={discussion}
           history={history}
           key={`${d.author}-${d.permlink}`}
           entry={d}

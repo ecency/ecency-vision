@@ -4,7 +4,7 @@ import defaults from "../../constants/defaults.json";
 import { setProxyBase } from "@ecency/render-helper";
 import { Entry } from "../../store/entries/types";
 import { Community } from "../../store/communities";
-import { Discussion as DiscussionType, SortOrder } from "../../store/discussion/types";
+import { SortOrder } from "../../store/discussion/types";
 import LinearProgress from "../linear-progress";
 import LoginRequired from "../login-required";
 import { _t } from "../../i18n";
@@ -16,7 +16,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionList } from "./discussion-list";
 import { useUnmount } from "react-use";
 import usePrevious from "react-use/lib/usePrevious";
-import { useLocation } from "react-router";
+import { useFetchDiscussionsQuery } from "../../api/queries";
 
 setProxyBase(defaults.imageServer);
 
@@ -27,18 +27,10 @@ interface Props {
   parent: Entry;
   community: Community | null;
   isRawContent: boolean;
-  discussion: DiscussionType;
   hideControls: boolean;
 }
 
-export function Discussion({
-  hideControls,
-  isRawContent,
-  parent,
-  community,
-  history,
-  discussion
-}: Props) {
+export function Discussion({ hideControls, isRawContent, parent, community, history }: Props) {
   const {
     activeUser,
     toggleUIProp,
@@ -47,17 +39,17 @@ export function Discussion({
     setActiveUser,
     users,
     ui,
-    fetchDiscussion,
-    sortDiscussion,
     resetDiscussion
   } = useMappedStore();
   const previousIsRawContent = usePrevious(isRawContent);
-  const previousParent = usePrevious(parent);
-  const previousDiscussion = usePrevious(discussion);
 
   const [visible, setVisible] = useState(false);
+  const [order, setOrder] = useState(SortOrder.trending);
 
-  const location = useLocation();
+  const { isLoading, data } = useFetchDiscussionsQuery(parent.author, parent.permlink, order, {
+    enabled: visible
+  });
+
   const count = useMemo(() => parent.children, [parent]);
   const strCount = useMemo(
     () => (count > 1 ? _t("discussion.n-replies", { n: count }) : _t("discussion.replies")),
@@ -69,40 +61,10 @@ export function Discussion({
       show();
     }
   }, [isRawContent, previousIsRawContent]);
-  useEffect(() => {
-    if (activeUser) {
-      fetch();
-    }
-  }, [activeUser]);
-  useEffect(() => {
-    if (parent.url !== previousParent?.url) {
-      fetch();
-    }
-  }, [parent, previousParent]);
-  useEffect(() => {
-    if (previousDiscussion?.list.length === 0 && discussion.list.length > 0) {
-      if (location.hash) {
-        const permlink = location.hash.replace("#", "");
-        const anchorId = `anchor-${permlink}`;
-        const anchorEl = document.getElementById(anchorId);
-        if (anchorEl) {
-          anchorEl.scrollIntoView();
-        }
-      }
-    }
-  }, []);
   useEffect(() => setVisible(!!activeUser), [activeUser]);
   useUnmount(() => resetDiscussion());
 
-  const fetch = () => fetchDiscussion(parent.author, parent.permlink);
-
-  const orderChanged = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    sortDiscussion(SortOrder[e.target.value as SortOrder]);
-
-  const show = () => {
-    setVisible(true);
-    fetch();
-  };
+  const show = () => setVisible(true);
 
   const join = (
     <div className="discussion-card">
@@ -122,7 +84,7 @@ export function Discussion({
     </div>
   );
 
-  if (discussion.loading) {
+  if (isLoading) {
     return (
       <div className="discussion">
         <LinearProgress />
@@ -166,9 +128,9 @@ export function Discussion({
             <span className="order-label">{_t("discussion.order")}</span>
             <FormControl
               type="select"
-              value={discussion.order}
-              onChange={orderChanged}
-              disabled={discussion.loading}
+              value={order}
+              onChange={(e: any) => setOrder(e.target.value)}
+              disabled={isLoading}
             >
               <option value="trending">{_t("discussion.order-trending")}</option>
               <option value="author_reputation">{_t("discussion.order-reputation")}</option>
@@ -179,9 +141,9 @@ export function Discussion({
         )}
       </div>
       <DiscussionList
+        discussionList={data}
         history={history}
         hideControls={hideControls}
-        discussion={discussion}
         parent={parent}
         isRawContent={isRawContent}
         community={community}

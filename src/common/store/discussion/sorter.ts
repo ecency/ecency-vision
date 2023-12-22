@@ -67,5 +67,5 @@ export default (discussion: Entry[], order: SortOrder) => {
     }
   };
 
-  discussion.sort(sortOrders[order]);
+  return discussion.sort(sortOrders[order]);
 };

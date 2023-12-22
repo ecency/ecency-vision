@@ -1,15 +1,13 @@
 import { History } from "history";
-import { Discussion as DiscussionType } from "../../store/discussion/types";
 import { Entry } from "../../store/entries/types";
 import { Community, ROLES } from "../../store/communities";
 import { FullAccount } from "../../store/accounts/types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import * as ss from "../../util/session-storage";
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
 import { comment, formatError } from "../../api/operations";
 import tempEntry from "../../helper/temp-entry";
 import { error } from "../feedback";
-import { getFollowing } from "../../api/hive";
 import _c from "../../util/fix-class-names";
 import ProfileLink from "../profile-link";
 import { ProfilePopover } from "../profile-popover";
@@ -32,31 +30,31 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
+import { useFetchMutedUsersQuery } from "../../api/queries";
 
 interface Props {
   history: History;
-  discussion: DiscussionType;
   entry: Entry;
   community: Community | null;
   isRawContent: boolean;
   hideControls: boolean;
+  discussionList: Entry[];
 }
 
 export function DiscussionItem({
   history,
-  discussion,
   hideControls,
   isRawContent,
   entry,
-  community
+  community,
+  discussionList
 }: Props) {
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
   const [inProgress, setInProgress] = useState(false);
-  const [mutedData, setMutedData] = useState([] as string[]);
-  const [isMounted, setIsMounted] = useState(false);
   const [lsDraft, setLsDraft] = useState("");
 
+  const { data: mutedUsers } = useFetchMutedUsersQuery();
   const {
     activeUser,
     addAccount,
@@ -74,14 +72,28 @@ export function DiscussionItem({
 
   const location = useLocation();
 
-  useEffect(() => {
-    setIsMounted(true);
-    isMounted && fetchMutedUsers();
-    checkLsDraft();
-    return () => {
-      setIsMounted(false);
-    };
-  }, []);
+  const readMore = useMemo(() => entry.children > 0 && entry.depth > 5, [entry]);
+  const showSubList = useMemo(() => !readMore && entry.children > 0, [entry]);
+  const canEdit = useMemo(
+    () => activeUser && activeUser.username === entry.author,
+    [activeUser, entry]
+  );
+  const anchorId = useMemo(() => `anchor-@${entry.author}/${entry.permlink}`, [entry]);
+  const canMute = useMemo(
+    () =>
+      !!activeUser &&
+      !!community &&
+      community.team.some(
+        (m) =>
+          m[0] === activeUser.username &&
+          [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+      ),
+    [activeUser, community]
+  );
+  const selected = useMemo(
+    () => location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`,
+    [location, entry]
+  );
 
   useEffect(() => {
     if (edit || reply) {
@@ -143,18 +155,13 @@ export function DiscussionItem({
         // close comment box
         toggleReply();
 
-        if (entry.children === 0 && isMounted) {
+        if (entry.children === 0) {
           // Update parent comment.
           updateRepliesCount(entry, 1);
         }
       })
-      .catch((e) => {
-        console.log(e);
-        error(...formatError(e));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
+      .catch((e) => error(...formatError(e)))
+      .finally(() => setInProgress(false));
   };
 
   const _updateReply = (text: string) => {
@@ -194,37 +201,7 @@ export function DiscussionItem({
     deleteReply(entry);
   };
 
-  const fetchMutedUsers = () => {
-    if (activeUser) {
-      getFollowing(activeUser.username, "", "ignore", 100).then((r) => {
-        if (r) {
-          let filterList = r.map((user) => user.following);
-          isMounted && setMutedData(filterList as string[]);
-        }
-      });
-    }
-  };
-
-  const readMore = entry.children > 0 && entry.depth > 5;
-  const showSubList = !readMore && entry.children > 0;
-  const canEdit = activeUser && activeUser.username === entry.author;
-
-  const canMute =
-    activeUser && community
-      ? !!community.team.find((m) => {
-          return (
-            m[0] === activeUser.username &&
-            [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-          );
-        })
-      : false;
-
-  const anchorId = `anchor-@${entry.author}/${entry.permlink}`;
-
-  const selected =
-    location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`;
-
-  let normalComponent = (
+  return (
     <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
       <div className="relative">
         <div className="item-anchor" id={anchorId} />
@@ -277,7 +254,7 @@ export function DiscussionItem({
               items: menuItems
             };
 
-            const entryIsMuted = mutedData.includes(entry.author);
+            const entryIsMuted = mutedUsers.includes(entry.author);
             const isComment = !!entry.parent_author;
             const ownEntry = activeUser && activeUser.username === entry.author;
             const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3; // 1000 HP
@@ -409,8 +386,8 @@ export function DiscussionItem({
 
       {showSubList && (
         <DiscussionList
+          discussionList={discussionList}
           community={community}
-          discussion={discussion}
           parent={entry}
           hideControls={hideControls}
           history={history}
@@ -419,6 +396,4 @@ export function DiscussionItem({
       )}
     </div>
   );
-
-  return normalComponent;
 }

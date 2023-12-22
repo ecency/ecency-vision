@@ -54,7 +54,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
   };
 
   const addReply = (entry: Entry, reply: Entry) => {
-    const cached = cache.get(makePath("", entry.author, entry.permlink))!!;
+    const cached = cache.get(makePath("", entry.author, entry.permlink)) ?? entry;
 
     updateCache([
       {

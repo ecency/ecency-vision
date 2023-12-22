@@ -1,10 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
+import { getDiscussion } from "./bridge";
+import sorter from "../store/discussion/sorter";
+import { SortOrder } from "../store/discussion/types";
+import { getFollowing } from "./hive";
 
 const DEFAULT = {
   points: "0.000",
@@ -85,6 +89,45 @@ export function useImageDownloader(
     {
       enabled,
       retryDelay: 3000
+    }
+  );
+}
+
+export function useFetchDiscussionsQuery(
+  author: string,
+  permlink: string,
+  order: SortOrder,
+  queryOptions?: UseQueryOptions<Entry[]>
+) {
+  return useQuery<Entry[]>(
+    [QueryIdentifiers.FETCH_DISCUSSIONS, author, permlink],
+    async () => {
+      const response = await getDiscussion(author, permlink);
+      if (response) {
+        return Array.from(Object.values(response));
+      }
+      return [];
+    },
+    {
+      ...queryOptions,
+      initialData: [],
+      select: (data) => sorter(data, order)
+    }
+  );
+}
+
+export function useFetchMutedUsersQuery(username?: string) {
+  const { activeUser } = useMappedStore();
+
+  return useQuery(
+    [QueryIdentifiers.FETCH_MUTED_USERS, username ?? activeUser?.username ?? "anon"],
+    async () => {
+      const response = await getFollowing(username ?? activeUser!!.username, "", "ignore", 100);
+      return response.map((user) => user.following);
+    },
+    {
+      initialData: [],
+      enabled: !!username || !!activeUser
     }
   );
 }
