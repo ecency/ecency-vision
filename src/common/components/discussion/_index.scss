@@ -4,6 +4,7 @@
   margin: 10px 0 30px 0;
   position: relative;
   min-height: 200px;
+  @apply font-sans;
 
   @include themify(day) {
     border-top: 1px solid;
@@ -216,6 +217,7 @@
 
           .item-body {
             margin: 10px 0 14px 0;
+            font-family: Lora, Georgia, serif;
 
             @include themify(day) {
               @apply text-tundora;

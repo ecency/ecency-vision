@@ -44,7 +44,7 @@
 }
 
 .entry-page {
-  font-family: Lora, Georgia, serif;
+  @apply font-sans;
 
   .the-entry {
     margin: 0 auto 90px auto;
@@ -211,6 +211,7 @@
         font-size: 42px;
         margin: 16px 0 22px 0;
         word-break: break-word;
+        font-family: Lora, Georgia, serif;
 
         @media (min-width: $md-break) {
           font-size: 38px;
@@ -347,6 +348,8 @@
     }
 
     .entry-body {
+      font-family: Lora, Georgia, serif;
+
       @include clearfix();
       padding: 0 0 2em 0;
       font-size: 21px;
