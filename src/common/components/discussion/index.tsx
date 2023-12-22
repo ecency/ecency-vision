@@ -14,7 +14,6 @@ import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionList } from "./discussion-list";
-import { useUnmount } from "react-use";
 import usePrevious from "react-use/lib/usePrevious";
 import { useFetchDiscussionsQuery } from "../../api/queries";
 
@@ -31,16 +30,8 @@ interface Props {
 }
 
 export function Discussion({ hideControls, isRawContent, parent, community, history }: Props) {
-  const {
-    activeUser,
-    toggleUIProp,
-    deleteUser,
-    updateActiveUser,
-    setActiveUser,
-    users,
-    ui,
-    resetDiscussion
-  } = useMappedStore();
+  const { activeUser, toggleUIProp, deleteUser, updateActiveUser, setActiveUser, users, ui } =
+    useMappedStore();
   const previousIsRawContent = usePrevious(isRawContent);
 
   const [visible, setVisible] = useState(false);
@@ -62,7 +53,6 @@ export function Discussion({ hideControls, isRawContent, parent, community, hist
     }
   }, [isRawContent, previousIsRawContent]);
   useEffect(() => setVisible(!!activeUser), [activeUser]);
-  useUnmount(() => resetDiscussion());
 
   const show = () => setVisible(true);
 
@@ -141,6 +131,7 @@ export function Discussion({ hideControls, isRawContent, parent, community, hist
         )}
       </div>
       <DiscussionList
+        root={parent}
         discussionList={data}
         history={history}
         hideControls={hideControls}

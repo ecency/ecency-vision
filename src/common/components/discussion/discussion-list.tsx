@@ -12,6 +12,7 @@ import { useFetchMutedUsersQuery } from "../../api/queries";
 
 interface Props {
   hideControls: boolean;
+  root: Entry;
   parent: Entry;
   isRawContent: boolean;
   history: History;
@@ -21,6 +22,7 @@ interface Props {
 
 export function DiscussionList({
   parent,
+  root,
   hideControls,
   isRawContent,
   history,
@@ -84,6 +86,7 @@ export function DiscussionList({
     <div className="discussion-list">
       {data.map((d) => (
         <DiscussionItem
+          root={root}
           discussionList={discussionList}
           community={community}
           history={history}

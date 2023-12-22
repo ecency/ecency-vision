@@ -1,13 +1,9 @@
 import { History } from "history";
 import { Entry } from "../../store/entries/types";
 import { Community, ROLES } from "../../store/communities";
-import { FullAccount } from "../../store/accounts/types";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import * as ss from "../../util/session-storage";
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
-import { comment, formatError } from "../../api/operations";
-import tempEntry from "../../helper/temp-entry";
-import { error } from "../feedback";
 import _c from "../../util/fix-class-names";
 import ProfileLink from "../profile-link";
 import { ProfilePopover } from "../profile-popover";
@@ -31,10 +27,12 @@ import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
 import { useFetchMutedUsersQuery } from "../../api/queries";
+import { useCreateReply, useUpdateReply } from "../../api/mutations";
 
 interface Props {
   history: History;
   entry: Entry;
+  root: Entry;
   community: Community | null;
   isRawContent: boolean;
   hideControls: boolean;
@@ -47,11 +45,11 @@ export function DiscussionItem({
   isRawContent,
   entry,
   community,
-  discussionList
+  discussionList,
+  root
 }: Props) {
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [inProgress, setInProgress] = useState(false);
   const [lsDraft, setLsDraft] = useState("");
 
   const { data: mutedUsers } = useFetchMutedUsersQuery();
@@ -67,8 +65,7 @@ export function DiscussionItem({
     toggleUIProp,
     deleteReply
   } = useMappedStore();
-  const { addReply, updateVotes, updateRepliesCount, updateCache } =
-    useContext(EntriesCacheContext);
+  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
 
   const location = useLocation();
 
@@ -93,6 +90,13 @@ export function DiscussionItem({
   const selected = useMemo(
     () => location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`,
     [location, entry]
+  );
+
+  const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
+    toggleReply()
+  );
+  const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(entry, () =>
+    toggleEdit()
   );
 
   useEffect(() => {
@@ -121,81 +125,20 @@ export function DiscussionItem({
     setLsDraft(replyDraft);
   };
 
-  const submitReply = (text: string) => {
-    if (!activeUser || !activeUser.data.__loaded) {
-      return;
-    }
-
-    const { author: parentAuthor, permlink: parentPermlink } = entry;
-    const author = activeUser.username;
-    const permlink = createReplyPermlink(entry.author);
-
-    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
-    setInProgress(true);
-
-    comment(author, parentAuthor, parentPermlink, permlink, "", text, jsonMeta, null, true)
-      .then(() => {
-        const nReply = tempEntry({
-          author: activeUser.data as FullAccount,
-          permlink,
-          parentAuthor,
-          parentPermlink,
-          title: "",
-          body: text,
-          tags: [],
-          description: null
-        });
-
-        // add new reply to store
-        addReply(entry, nReply);
-
-        // remove reply draft
-        ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-
-        // close comment box
-        toggleReply();
-
-        if (entry.children === 0) {
-          // Update parent comment.
-          updateRepliesCount(entry, 1);
-        }
-      })
-      .catch((e) => error(...formatError(e)))
-      .finally(() => setInProgress(false));
-  };
-
-  const _updateReply = (text: string) => {
-    const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
-    const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
-    setInProgress(true);
-
-    comment(
-      activeUser?.username!,
-      parentAuthor!,
-      parentPermlink!,
-      permlink,
-      "",
+  const submitReply = (text: string) =>
+    createReply({
       text,
-      jsonMeta,
-      null
-    )
-      .then(() => {
-        const nReply: Entry = {
-          ...entry,
-          body: text
-        };
-        ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
+      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version),
+      permlink: createReplyPermlink(entry.author),
+      point: true
+    });
 
-        updateCache([nReply]);
-        toggleEdit(); // close comment box
-      })
-      .catch((e) => {
-        error(...formatError(e));
-      })
-      .finally(() => {
-        setInProgress(false);
-      });
-  };
+  const _updateReply = (text: string) =>
+    updateReply({
+      text,
+      point: true,
+      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version)
+    });
 
   const deleted = () => {
     deleteReply(entry);
@@ -357,7 +300,7 @@ export function DiscussionItem({
           cancellable={true}
           onSubmit={submitReply}
           onCancel={toggleReply}
-          inProgress={inProgress}
+          inProgress={isCreateLoading || isUpdateReplyLoading}
           autoFocus={true}
         />
       )}
@@ -379,7 +322,7 @@ export function DiscussionItem({
           cancellable={true}
           onSubmit={_updateReply}
           onCancel={toggleEdit}
-          inProgress={inProgress}
+          inProgress={isCreateLoading || isUpdateReplyLoading}
           autoFocus={true}
         />
       )}
@@ -389,6 +332,7 @@ export function DiscussionItem({
           discussionList={discussionList}
           community={community}
           parent={entry}
+          root={root}
           hideControls={hideControls}
           history={history}
           isRawContent={isRawContent}

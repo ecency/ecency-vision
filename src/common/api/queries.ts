@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { QueryIdentifiers } from "../core";
+import { EntriesCacheContext, QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { getDiscussion } from "./bridge";
 import sorter from "../store/discussion/sorter";
 import { SortOrder } from "../store/discussion/types";
 import { getFollowing } from "./hive";
+import { useContext } from "react";
 
 const DEFAULT = {
   points: "0.000",
@@ -99,12 +100,16 @@ export function useFetchDiscussionsQuery(
   order: SortOrder,
   queryOptions?: UseQueryOptions<Entry[]>
 ) {
+  const { updateCache } = useContext(EntriesCacheContext);
+
   return useQuery<Entry[]>(
     [QueryIdentifiers.FETCH_DISCUSSIONS, author, permlink],
     async () => {
       const response = await getDiscussion(author, permlink);
       if (response) {
-        return Array.from(Object.values(response));
+        const entries = Array.from(Object.values(response));
+        updateCache([...entries], true);
+        return entries;
       }
       return [];
     },

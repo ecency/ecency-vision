@@ -9,7 +9,7 @@ import { Entry, EntryVote } from "../../store/entries/types";
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import Feedback, { error } from "../../components/feedback";
+import Feedback from "../../components/feedback";
 import MdHandler from "../../components/md-handler";
 import truncate from "../../util/truncate";
 import { catchPostImage, postBodySummary, renderPostBody } from "@ecency/render-helper";
@@ -45,7 +45,6 @@ import * as ls from "../../util/local-storage";
 import Comment from "../../components/comment";
 import SimilarEntries from "../../components/similar-entries";
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
-import { comment as commentApi, formatError } from "../../api/operations";
 import * as ss from "../../util/session-storage";
 import { version } from "../../../../package.json";
 import appName from "../../helper/app-name";
@@ -55,8 +54,7 @@ import EntryVotes from "../../components/entry-votes";
 import { Discussion } from "../../components/discussion";
 import EntryReblogBtn from "../../components/entry-reblog-btn/index";
 import EntryTipBtn from "../../components/entry-tip-btn";
-import { BaseAccount, FullAccount } from "../../store/accounts/types";
-import tempEntry from "../../helper/temp-entry";
+import { BaseAccount } from "../../store/accounts/types";
 import {
   EntriesCacheContext,
   useCommunityCache,
@@ -69,10 +67,10 @@ import { getFollowing } from "../../api/hive";
 import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
+import { useCreateReply, useUpdateReply } from "../../api/mutations";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
-  const [replying, setReplying] = useState(false);
   const [edit, setEdit] = useState(false);
   const [showIfNsfw, setShowIfNsfw] = useState(false);
   const [editHistory, setEditHistory] = useState(false);
@@ -108,12 +106,13 @@ const EntryComponent = (props: Props) => {
   const commentsInputRef = useRef(null);
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
-  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
+  const { updateVotes } = useContext(EntriesCacheContext);
   const { data: entry, error: entryError } = useEntryCache(
     "",
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
+
   const { mutateAsync: reFetch } = useEntryReFetch(entry);
   const { data: community } = useCommunityCache(props.match.params.category);
   const {
@@ -123,6 +122,20 @@ const EntryComponent = (props: Props) => {
   } = useDeletedEntryCache(
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
+  );
+  const { mutateAsync: createReply, isLoading: isCreateReplyLoading } = useCreateReply(
+    entry,
+    undefined,
+    () => {
+      setIsCommented(true);
+    }
+  );
+  const { mutateAsync: updateReplyApi, isLoading: isUpdateReplyLoading } = useUpdateReply(
+    entry,
+    () => {
+      setEdit(false);
+      reload();
+    }
   );
 
   useDistanceDetector(
@@ -255,42 +268,14 @@ const EntryComponent = (props: Props) => {
   };
 
   const updateReply = async (text: string) => {
-    const { activeUser, updateReply } = props;
-
     if (entry) {
-      const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
-      const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
-
-      setReplying(true);
-
-      try {
-        await commentApi(
-          activeUser?.username!,
-          parentAuthor!,
-          parentPermlink!,
-          permlink,
-          "",
-          text,
-          jsonMeta,
-          null
-        );
-
-        setComment(text);
-        setIsCommented(true);
-        ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-        updateReply({
-          ...entry,
-          body: text
-        }); // update store
-        setEdit(false);
-        reload();
-      } catch (e) {
-        error(...formatError(e));
-      } finally {
-        setReplying(false);
-        setIsCommented(false);
-      }
+      return updateReplyApi({
+        text,
+        point: true,
+        jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version)
+      });
     }
+    return;
   };
 
   const afterVote = async (votes: EntryVote[], estimated: number) => {
@@ -302,66 +287,15 @@ const EntryComponent = (props: Props) => {
   };
 
   const replySubmitted = async (text: string) => {
-    const { activeUser, addReply, updateEntry } = props;
-
-    if (!activeUser || !activeUser.data.__loaded) {
-      return;
-    }
-
-    const { author: parentAuthor, permlink: parentPermlink } = entry!!;
-    const author = activeUser.username;
     const permlink = createReplyPermlink(entry!.author);
     const tags = entry!.json_metadata.tags || ["ecency"];
 
-    const jsonMeta = makeJsonMetaDataReply(tags, version);
-
-    setReplying(true);
-    try {
-      await commentApi(
-        author,
-        parentAuthor,
-        parentPermlink,
-        permlink,
-        "",
-        text,
-        jsonMeta,
-        null,
-        true
-      );
-
-      const nReply = tempEntry({
-        author: activeUser.data as FullAccount,
-        permlink,
-        parentAuthor,
-        parentPermlink,
-        title: "",
-        body: text,
-        tags,
-        description: null
-      });
-
-      // add new reply to store
-      addReply(nReply);
-
-      // remove reply draft
-      ss.remove(`reply_draft_${entry!.author}_${entry!.permlink}`);
-      setIsCommented(true);
-
-      if (entry!.children === 0) {
-        // Activate discussion section with first comment.
-        updateCache([
-          {
-            ...entry!!,
-            children: 1
-          }
-        ]);
-      }
-    } catch (e) {
-      error(...formatError(e));
-    } finally {
-      setReplying(false);
-      setIsCommented(false);
-    }
+    return createReply({
+      jsonMeta: makeJsonMetaDataReply(tags, version),
+      text,
+      permlink,
+      point: true
+    });
   };
 
   const notificationsCount =
@@ -799,7 +733,7 @@ const EntryComponent = (props: Props) => {
                                 cancellable: true,
                                 onSubmit: updateReply,
                                 onCancel: () => setEdit(!edit),
-                                inProgress: replying,
+                                inProgress: isCreateReplyLoading || isUpdateReplyLoading,
                                 autoFocus: true,
                                 inputRef: commentsInputRef,
                                 entry
@@ -953,7 +887,7 @@ const EntryComponent = (props: Props) => {
                     submitText: _t("g.reply"),
                     resetSelection: () => setSelection(""),
                     onSubmit: replySubmitted,
-                    inProgress: replying,
+                    inProgress: isCreateReplyLoading || isUpdateReplyLoading,
                     isCommented: isCommented,
                     inputRef: commentsInputRef,
                     entry: entry
@@ -970,13 +904,11 @@ const EntryComponent = (props: Props) => {
                   {props.activeUser && entry.children === 0 && <CommentEngagement />}
 
                   <Discussion
-                    {...{
-                      ...props,
-                      parent: entry,
-                      community,
-                      hideControls: false,
-                      isRawContent: isRawContent
-                    }}
+                    parent={entry}
+                    community={community}
+                    hideControls={false}
+                    isRawContent={isRawContent}
+                    history={props.history}
                   />
                 </>
               );
