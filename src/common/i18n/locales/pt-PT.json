@@ -1870,7 +1870,7 @@
       "search": "Resultados relacionados para {{search}} filtrados abaixo",
       "search-not-found": "Nada foi encontrado. Para perguntar à comunidade, junte-se a nossa ",
       "search-placeholder": "Pesquisar em nossos artigos",
-      "what-is-ecency-body": "<p>Ecency is a <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">blockchain</a> based decentralized social network - powered by <a href=\"https://hive.io\" target=\"_blank\" rel=\"noopener noreferrer\">Hive</a>.</p><p>Ecency is home of free speech and rewarding communities for content creators with true/full ownership.</p><p>Project is founded by <a class=\"push-link\" href=\"/@good-karma\">Feruz Muradov</a> in August 2016 as an alternative social network that's uncensored, user controled, immutable and opensource. There are <a class=\"push-link\" href=\"/contributors\">many independent and voluntary contributors</a> who work together to bring the vision to masses.</p><p>Ecency is hub of communities powered by cutting edge technology where users are getting paid for their time, resources and learn while having complete control over their account, communities and content. Through ease of use, users not only learn but also become investors, innovators of the new internet.</p>",
+      "what-is-ecency-body": "<p>Ecency é uma <a href=\"https://en.wikipedia.org/wiki/Blockchain\" target=\"_blank\" rel=\"noopener noreferrer\">rede social</a>descentralizada baseada na blockchain da Hive</a></a>.</p><p>A Ecency é a casa da liberdade de expressão e de comunidades que recompensam criadores de conteúdo. Tenha total propriedade da sua conta.</p><p>O Projeto foi fundado por <a class=\"push-link\" href=\"/@good-karma\">Feruz Muradov</a>em agosto de 2016, com o intuito de ser inscensurável (por serem imutáveis as ações na blockchain), permitir propriedade total das contas por parte dos usuários, e de código aberto. Esses são <a class=\"push-link\" href=\"/contributors\">os colaboradores independentes e voluntários</a>que trabalharam juntos para trazer a visão às massas.</p><p>A Ecency é o centro de comunidades constituídas com tecnologia de ponta, onde usuários são pagos pelo seu tempo e recursos, enquanto também aprendem. Com controle absoluto sobre suas próprias contas, tambem administram suas comunidades e conteúdos próprios. Com facilidade os usuários aprendem não apenas a se tornarem investidores, mas também inovadores da nova internet.</p>",
       "what-is-hive-header": "O que é a Hive blockchain?",
       "what-is-hive-body": "<p>Hive é uma blockchain projetada para ser rápida, tranquila, descentralizada e não censurada para a Web3.0 aplicações, com recursos internos onde pessoas interessdas podem ganhar recompensas participando, curando, jogando, negociando - tudo sem qualquer intermediário (descentralizado). Tokens na blockchain da Hive chamado HIVE, HIVE DOLARS, HIVE POWER.</p>",
       "what-is-difference-header": "Qual a diferença das outras Redes Sociais?",
@@ -2050,7 +2050,7 @@
       "what-communities-header": "O que são comunidades?",
       "what-communities-body": "<p>Many accounts with a similar outlook unite around one Community to support each other and share their experiences. You can join various communities at the same time potentially connect and make more friends, get hundreds of followers and support on your new content. Joining communities is pretty simple and very easy.</p>",
       "how-post-community-header": "Como posso publicar minha postagem na Comunidade?",
-      "how-post-community-body": "<p>Choosing the right Community is just as important as choosing the right Title when you start writing your Post. After choosing a title, under title you have a button to choose whether to publish the post on your blog or in one of the Communities joined. The Community ID number you choose will be your first tag. Don't forget to introduce with the rules of the Community before publishing a post in any Community.</p>",
+      "how-post-community-body": "<p>Escolher a Comunidade certa é tão importante quanto decidir os títulos das suas publicações. Após escrever o título, escolha abaixo se a publicação deverá ser feita no seu blog ou em alguma de suas comunidades. O ID da comunidade escolhida será sua primeira tag. Não esqueça de seguir as regras internas de cada comunidade.</p>",
       "leave-community-header": "Como deixar a uma Comunidade no Ecency?",
       "leave-community-body": "<p>From your Feed, click Communities in the left menu and select your group. Go to the Joined button where you can see Leave option, select Leave.After leaving Community will be removed from your list of Communities and you will no longer see them in your Feed.</p>",
       "how-schedule-post": "Como agendar uma publicação?",
@@ -2089,7 +2089,7 @@
       "how-sort-feed-body": "<p>Your Friends Feed contains posts published by your friends and their reblogs. If you only want to see the posts of your friends, you can select Exclude Reblog through the sorting function.</p>",
       "what-trending-feed-header": "What does the Trending feed show?",
       "what-trending-feed-body": "<p>Trending feed shows widely mentioned or discussed posts of entire platform.</p>",
-      "how-sort-trending-header": "How to sort Trending feed?",
+      "how-sort-trending-header": "Como organizar o feed \"Destaque\"?",
       "how-sort-trending-body": "<p>Trending feed can be sorted depending on what information you want to see. For example, you can choose one depending on whether you want to see only posts from My Community or Global posts from the entire platform. If you wan to see Trending feed on specific tag or topic, you can do so here as well by selecting topics from left side.</p>",
       "how-search-tags-header": "Como pesquisar conteúdo por tags?",
       "how-search-tags-body": "<p>No lado esquerdo do seu feed estão as tags mais utilizadas, para agilizar sua busca. Clicando na tag desejada, você encontrará todas as publicações que a utilizaram.</p>",
@@ -2126,7 +2126,7 @@
       "can-comment-boost-header": "Os comentários podem ser impulsionados?",
       "can-comment-boost-body": "<p>Você pode impulsionar comentários, desde que se enquadrem nos critérios de impulsionamento.</p>",
       "what-information-available-header": "Quais informações estão disponíveis na página de Respostas?",
-      "what-information-available-body": "<p>On the Replies page you can see all replies other users have made to your posts and comments.</p>"
+      "what-information-available-body": "<p>Na página Respostas aparecem todos os comentários que outros fizeram nas suas publicações.</p>"
     }
   },
   "contributors": {
