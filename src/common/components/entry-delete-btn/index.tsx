@@ -6,12 +6,14 @@ import PopoverConfirm from "@ui/popover-confirm";
 import { error } from "../feedback";
 import { deleteComment, formatError } from "../../api/operations";
 import _c from "../../util/fix-class-names";
+import { queryClient, QueryIdentifiers } from "../../core";
 
 interface Props {
   children: ReactElement;
   entry: Entry;
+  parent?: Entry;
   activeUser: ActiveUser | null;
-  onSuccess: () => void;
+  onSuccess?: () => void;
   setDeleteInProgress?: (value: boolean) => void;
   isComment?: boolean;
 }
@@ -26,15 +28,33 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
   };
 
   delete = () => {
-    const { entry, activeUser, onSuccess, setDeleteInProgress } = this.props;
+    const { entry, activeUser, onSuccess, setDeleteInProgress, parent } = this.props;
     setDeleteInProgress && setDeleteInProgress(true);
 
     this.stateSet({ inProgress: true });
     deleteComment(activeUser?.username!, entry.author, entry.permlink)
       .then(() => {
-        onSuccess();
+        onSuccess?.();
         this.stateSet({ inProgress: false });
         setDeleteInProgress && setDeleteInProgress(false);
+
+        console.log(parent);
+        if (parent) {
+          const previousReplies =
+            queryClient.getQueryData<Entry[]>([
+              QueryIdentifiers.FETCH_DISCUSSIONS,
+              parent?.author,
+              parent?.permlink
+            ]) ?? [];
+          queryClient.setQueryData(
+            [QueryIdentifiers.FETCH_DISCUSSIONS, parent?.author, parent?.permlink],
+            [
+              ...previousReplies.filter(
+                (r) => r.author !== entry.author && r.permlink !== entry.permlink
+              )
+            ]
+          );
+        }
       })
       .catch((e) => {
         error(...formatError(e));

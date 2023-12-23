@@ -64,8 +64,7 @@ export function DiscussionItem({
     setActiveUser,
     updateActiveUser,
     deleteUser,
-    toggleUIProp,
-    deleteReply
+    toggleUIProp
   } = useMappedStore();
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
 
@@ -131,10 +130,6 @@ export function DiscussionItem({
     () => root.json_metadata.pinned_reply === `${entry.author}/${entry.permlink}`,
     [root, entry]
   );
-
-  useEffect(() => {
-    console.log(root);
-  }, [root]);
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
     toggleReply()
@@ -283,14 +278,10 @@ export function DiscussionItem({
                     )}
                     {isDeletable && (
                       <DropdownItemWithIcon>
-                        <EntryDeleteBtn
-                          activeUser={activeUser}
-                          entry={entry}
-                          onSuccess={() => deleteReply(entry)}
-                        >
-                          <>
+                        <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
+                          <div className="flex items-center [&>svg]:w-3.5 gap-3">
                             {deleteForeverSvg} {_t("g.delete")}
-                          </>
+                          </div>
                         </EntryDeleteBtn>
                       </DropdownItemWithIcon>
                     )}

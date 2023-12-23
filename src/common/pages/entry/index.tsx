@@ -261,8 +261,6 @@ const EntryComponent = (props: Props) => {
   };
 
   const deleted = async () => {
-    const { deleteReply } = props;
-    entry && deleteReply(entry);
     ls.set(`deletedComment`, entry?.post_id);
     props.history?.goBack();
   };
