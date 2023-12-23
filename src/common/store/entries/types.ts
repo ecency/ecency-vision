@@ -28,6 +28,7 @@ export interface JsonMetadata {
   original_author?: string;
   original_permlink?: string;
   image?: string[];
+  pinned_reply?: string; // author/permlink
 }
 
 export interface Entry {

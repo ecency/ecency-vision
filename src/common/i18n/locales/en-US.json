@@ -76,7 +76,9 @@
     "you": "You",
     "copy-clipboard": "Copy to clipboard",
     "first": "First",
-    "last": "Last"
+    "last": "Last",
+    "pin": "Pin",
+    "unpin": "Unpin"
   },
   "confirm": {
     "title": "Are you sure?",

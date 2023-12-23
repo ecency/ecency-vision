@@ -2,15 +2,14 @@ import { Entry } from "../../store/entries/types";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../core";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { comment, CommentOptions, formatError, MetaData } from "../operations";
 import * as ss from "../../util/session-storage";
 import { error } from "../../components/feedback";
 
-export function useUpdateReply(entry: Entry, parent?: Entry, onSuccess?: () => void) {
+export function useUpdateReply(entry: Entry, onSuccess?: () => void) {
   const { activeUser } = useMappedStore();
   const { updateCache } = useContext(EntriesCacheContext);
-  const queryClient = useQueryClient();
 
   return useMutation(
     ["reply-update", activeUser?.username, entry.author, entry.permlink],
@@ -31,8 +30,8 @@ export function useUpdateReply(entry: Entry, parent?: Entry, onSuccess?: () => v
 
       await comment(
         activeUser.username,
-        entry.parent_author!,
-        entry.parent_permlink!,
+        entry.parent_author ?? "",
+        entry.parent_permlink ?? entry.category,
         entry.permlink,
         "",
         text,
@@ -42,6 +41,7 @@ export function useUpdateReply(entry: Entry, parent?: Entry, onSuccess?: () => v
       );
       return {
         ...entry,
+        json_metadata: jsonMeta,
         body: text
       };
     },

@@ -9,13 +9,13 @@ import { FullAccount } from "../../store/accounts/types";
 import * as ss from "../../util/session-storage";
 import { error } from "../../components/feedback";
 
-export function useCreateReply(entry: Entry, parent?: Entry, onSuccess?: () => void) {
+export function useCreateReply(entry: Entry | null, parent?: Entry, onSuccess?: () => void) {
   const { activeUser } = useMappedStore();
   const { addReply, updateRepliesCount, updateCache } = useContext(EntriesCacheContext);
   const queryClient = useQueryClient();
 
   return useMutation(
-    ["reply-create", activeUser?.username, entry.author, entry.permlink],
+    ["reply-create", activeUser?.username, entry?.author, entry?.permlink],
     async ({
       permlink,
       text,
@@ -29,7 +29,7 @@ export function useCreateReply(entry: Entry, parent?: Entry, onSuccess?: () => v
       point: boolean;
       options?: CommentOptions;
     }) => {
-      if (!activeUser || !activeUser.data.__loaded) {
+      if (!activeUser || !activeUser.data.__loaded || !entry) {
         throw new Error("[Reply][Create] – no active user provided");
       }
 
@@ -57,6 +57,10 @@ export function useCreateReply(entry: Entry, parent?: Entry, onSuccess?: () => v
     },
     {
       onSuccess: (data) => {
+        if (!entry) {
+          return;
+        }
+
         addReply(entry, data);
         updateCache([data]);
 

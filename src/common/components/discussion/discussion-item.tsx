@@ -9,7 +9,7 @@ import ProfileLink from "../profile-link";
 import { ProfilePopover } from "../profile-popover";
 import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
-import { deleteForeverSvg, dotsHorizontal, pencilOutlineSvg } from "../../img/svg";
+import { deleteForeverSvg, dotsHorizontal, pencilOutlineSvg, pinSvg } from "../../img/svg";
 import { Tsx } from "../../i18n/helper";
 import { version } from "../../../../package.json";
 import UserAvatar from "../user-avatar";
@@ -25,7 +25,7 @@ import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
 import { useFetchMutedUsersQuery } from "../../api/queries";
-import { useCreateReply, useUpdateReply } from "../../api/mutations";
+import { useCreateReply, usePinReply, useUpdateReply } from "../../api/mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { EntryDeleteBtn } from "../entry-delete-btn";
 import { Button } from "@ui/button";
@@ -94,8 +94,16 @@ export function DiscussionItem({
     [location, entry]
   );
   const entryIsMuted = useMemo(() => mutedUsers.includes(entry.author), [entry, mutedUsers]);
+  const isTopComment = useMemo(
+    () => entry.parent_author === root.author && entry.parent_permlink === root.permlink,
+    [entry, root]
+  );
   const isComment = useMemo(() => !!entry.parent_author, [entry]);
-  const isOwnEntry = useMemo(
+  const isOwnRoot = useMemo(
+    () => !!activeUser && activeUser.username === root.author,
+    [activeUser, root]
+  );
+  const isOwnReply = useMemo(
     () => !!activeUser && activeUser.username === entry.author,
     [activeUser, entry]
   );
@@ -112,22 +120,29 @@ export function DiscussionItem({
     [entry]
   );
   const mightContainMutedComments = useMemo(
-    () => !!activeUser && entryIsMuted && !isComment && !isOwnEntry,
-    [activeUser, entryIsMuted, isComment, isOwnEntry]
+    () => !!activeUser && entryIsMuted && !isComment && !isOwnReply,
+    [activeUser, entryIsMuted, isComment, isOwnReply]
   );
   const isDeletable = useMemo(
     () => !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0),
     [entry]
   );
+  const isPinned = useMemo(
+    () => root.json_metadata.pinned_reply === `${entry.author}/${entry.permlink}`,
+    [root, entry]
+  );
+
+  useEffect(() => {
+    console.log(root);
+  }, [root]);
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
     toggleReply()
   );
-  const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(
-    entry,
-    root,
-    () => toggleEdit()
+  const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(entry, () =>
+    toggleEdit()
   );
+  const { mutateAsync: pinReply, isLoading: isPinReplyLoading } = usePinReply(entry, root);
 
   useEffect(() => {
     if (edit || reply) {
@@ -192,6 +207,7 @@ export function DiscussionItem({
                 {dateToFullRelative(entry.created)}
               </span>
             </EntryLink>
+            {isPinned && <div className="w-3.5 h-3.5 ml-3 flex">{pinSvg}</div>}
           </div>
           {isMuted && (
             <div className="hidden-warning mt-2">
@@ -246,34 +262,44 @@ export function DiscussionItem({
                   onSuccess={(entry) => updateCache([entry])}
                 />
               )}
-              {canEdit && (
-                <div className="ml-3 dropdown-container">
-                  <Dropdown>
-                    <DropdownToggle>
-                      <Button icon={dotsHorizontal} appearance="gray-link" />
-                    </DropdownToggle>
-                    <DropdownMenu>
+
+              <div className="ml-3 dropdown-container">
+                <Dropdown>
+                  <DropdownToggle>
+                    <Button icon={dotsHorizontal} appearance="gray-link" />
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    {canEdit && (
                       <DropdownItemWithIcon onClick={toggleEdit}>
                         {pencilOutlineSvg}
                         {_t("g.edit")}
                       </DropdownItemWithIcon>
-                      {isDeletable && (
-                        <DropdownItemWithIcon>
-                          <EntryDeleteBtn
-                            activeUser={activeUser}
-                            entry={entry}
-                            onSuccess={() => deleteReply(entry)}
-                          >
-                            <>
-                              {deleteForeverSvg} {_t("g.delete")}
-                            </>
-                          </EntryDeleteBtn>
-                        </DropdownItemWithIcon>
-                      )}
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-              )}
+                    )}
+                    {isOwnRoot && isTopComment && (
+                      <DropdownItemWithIcon onClick={() => pinReply({ pin: !isPinned })}>
+                        {pinSvg}
+                        {_t(isPinned ? "g.unpin" : "g.pin")}
+                      </DropdownItemWithIcon>
+                    )}
+                    {isDeletable && (
+                      <DropdownItemWithIcon>
+                        <EntryDeleteBtn
+                          activeUser={activeUser}
+                          entry={entry}
+                          onSuccess={() => deleteReply(entry)}
+                        >
+                          <>
+                            {deleteForeverSvg} {_t("g.delete")}
+                          </>
+                        </EntryDeleteBtn>
+                      </DropdownItemWithIcon>
+                    )}
+                    {!canEdit && !(isOwnRoot && isTopComment) && !isDeletable && (
+                      <>No actions to perform</>
+                    )}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             </div>
           )}
           {readMore && (
