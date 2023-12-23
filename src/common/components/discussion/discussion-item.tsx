@@ -21,7 +21,7 @@ import EntryPayout from "../entry-payout";
 import EntryVotes from "../entry-votes";
 import MuteBtn from "../mute-btn";
 import Comment from "../comment";
-import { EntriesCacheContext } from "../../core";
+import { EntriesCacheContext, useEntryCache } from "../../core";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
@@ -43,7 +43,7 @@ export function DiscussionItem({
   history,
   hideControls,
   isRawContent,
-  entry,
+  entry: initialEntry,
   community,
   discussionList,
   root
@@ -52,6 +52,7 @@ export function DiscussionItem({
   const [edit, setEdit] = useState(false);
   const [lsDraft, setLsDraft] = useState("");
 
+  const { data: entry } = useEntryCache(initialEntry);
   const { data: mutedUsers } = useFetchMutedUsersQuery();
   const {
     activeUser,
@@ -95,8 +96,10 @@ export function DiscussionItem({
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
     toggleReply()
   );
-  const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(entry, () =>
-    toggleEdit()
+  const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(
+    entry,
+    root,
+    () => toggleEdit()
   );
 
   useEffect(() => {
