@@ -13,7 +13,6 @@ import transactions from "./transactions";
 import users from "./users";
 import activeUser from "./active-user";
 import reblogs from "./reblogs";
-import discussion from "./discussion";
 import ui from "./ui";
 import subscriptions from "./subscriptions";
 import notifications from "./notifications";
@@ -32,7 +31,6 @@ let reducers = {
   users,
   activeUser,
   reblogs,
-  discussion,
   ui,
   subscriptions,
   notifications,

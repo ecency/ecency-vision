@@ -8,7 +8,6 @@ import { initialState as transactionsInitialState } from "./transactions";
 import { initialState as usersInitialState } from "./users";
 import { initialState as activeUserInitialState } from "./active-user";
 import { initialState as reblogsInitialState } from "./reblogs";
-import { initialState as discussionInitialState } from "./discussion";
 import { initialState as uiInitialState } from "./ui";
 import { initialState as subscriptionsInitialState } from "./subscriptions";
 import { initialState as notificationsInitialState } from "./notifications";
@@ -25,7 +24,6 @@ const initialState: AppState = {
   users: usersInitialState,
   activeUser: activeUserInitialState,
   reblogs: reblogsInitialState,
-  discussion: discussionInitialState,
   ui: uiInitialState,
   subscriptions: subscriptionsInitialState,
   notifications: notificationsInitialState,

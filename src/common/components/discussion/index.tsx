@@ -37,8 +37,8 @@ export function Discussion({ hideControls, isRawContent, parent, community, hist
   const [visible, setVisible] = useState(false);
   const [order, setOrder] = useState(SortOrder.trending);
 
-  const { isLoading, data } = useFetchDiscussionsQuery(parent.author, parent.permlink, order, {
-    enabled: visible
+  const { isLoading, data } = useFetchDiscussionsQuery(parent, order, {
+    enabled: visible && !!parent
   });
 
   const count = useMemo(() => parent.children, [parent]);

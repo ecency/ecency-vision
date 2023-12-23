@@ -6,10 +6,10 @@ import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
 import { getDiscussion } from "./bridge";
-import sorter from "../store/discussion/sorter";
 import { SortOrder } from "../store/discussion/types";
 import { getFollowing } from "./hive";
 import { useContext } from "react";
+import { sortDiscussions } from "../util/sort-discussions";
 
 const DEFAULT = {
   points: "0.000",
@@ -95,17 +95,16 @@ export function useImageDownloader(
 }
 
 export function useFetchDiscussionsQuery(
-  author: string,
-  permlink: string,
+  entry: Entry,
   order: SortOrder,
   queryOptions?: UseQueryOptions<Entry[]>
 ) {
   const { updateCache } = useContext(EntriesCacheContext);
 
   return useQuery<Entry[]>(
-    [QueryIdentifiers.FETCH_DISCUSSIONS, author, permlink],
+    [QueryIdentifiers.FETCH_DISCUSSIONS, entry?.author, entry?.permlink],
     async () => {
-      const response = await getDiscussion(author, permlink);
+      const response = await getDiscussion(entry.author, entry.permlink);
       if (response) {
         const entries = Array.from(Object.values(response));
         updateCache([...entries], true);
@@ -116,7 +115,7 @@ export function useFetchDiscussionsQuery(
     {
       ...queryOptions,
       initialData: [],
-      select: (data) => sorter(data, order)
+      select: (data) => sortDiscussions(entry, data, order)
     }
   );
 }

@@ -1,16 +1,15 @@
-import { Entry } from "../entries/types";
+import { Entry } from "../store/entries/types";
+import { SortOrder } from "../store/discussion/types";
+import parseAsset from "../helper/parse-asset";
 
-import { SortOrder } from "./types";
-
-import parseAsset from "../../helper/parse-asset";
-
-export default (discussion: Entry[], order: SortOrder) => {
+export function sortDiscussions(entry: Entry, discussion: Entry[], order: SortOrder) {
   const allPayout = (c: Entry) =>
     parseAsset(c.pending_payout_value).amount +
     parseAsset(c.author_payout_value).amount +
     parseAsset(c.curator_payout_value).amount;
 
   const absNegative = (a: Entry) => a.net_rshares < 0;
+  const isPinned = (a: Entry) => entry.json_metadata.pinned_reply === `${a.author}/${a.permlink}`;
 
   const sortOrders = {
     trending: (a: Entry, b: Entry) => {
@@ -67,5 +66,12 @@ export default (discussion: Entry[], order: SortOrder) => {
     }
   };
 
-  return discussion.sort(sortOrders[order]);
-};
+  const sorted = discussion.sort(sortOrders[order]);
+  const pinnedIndex = sorted.findIndex((i) => isPinned(i));
+  const pinned = sorted[pinnedIndex];
+  if (pinnedIndex >= 0) {
+    sorted.splice(pinnedIndex, 1);
+    sorted.unshift(pinned);
+  }
+  return sorted;
+}

@@ -7,12 +7,12 @@ import { comment, CommentOptions, formatError, MetaData } from "../operations";
 import * as ss from "../../util/session-storage";
 import { error } from "../../components/feedback";
 
-export function useUpdateReply(entry: Entry, onSuccess?: () => void) {
+export function useUpdateReply(entry: Entry | null, onSuccess?: () => void) {
   const { activeUser } = useMappedStore();
   const { updateCache } = useContext(EntriesCacheContext);
 
   return useMutation(
-    ["reply-update", activeUser?.username, entry.author, entry.permlink],
+    ["reply-update", activeUser?.username, entry?.author, entry?.permlink],
     async ({
       text,
       jsonMeta,
@@ -24,7 +24,7 @@ export function useUpdateReply(entry: Entry, onSuccess?: () => void) {
       point: boolean;
       options?: CommentOptions;
     }) => {
-      if (!activeUser || !activeUser.data.__loaded) {
+      if (!activeUser || !activeUser.data.__loaded || !entry) {
         throw new Error("[Reply][Create] – no active user provided");
       }
 
@@ -47,6 +47,10 @@ export function useUpdateReply(entry: Entry, onSuccess?: () => void) {
     },
     {
       onSuccess: (data) => {
+        if (!entry) {
+          return;
+        }
+
         updateCache([data]);
 
         // remove reply draft
