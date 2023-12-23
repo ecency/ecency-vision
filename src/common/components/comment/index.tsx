@@ -38,7 +38,7 @@ export class CommentPreview extends Component<PreviewProps> {
     }
 
     return (
-      <div className="mt-4 rounded-2xl bg-gray-100 dark:bg-dark-200 p-4">
+      <div className="comment-preview mt-4 rounded-2xl bg-gray-100 dark:bg-dark-200 p-4">
         <div className="uppercase tracking-wider text-xs font-bold opacity-50 mb-4">
           {_t("comment.preview")}
         </div>
