@@ -43,7 +43,7 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
       {isMounted() && show ? (
         createPortal(
           <div
-            className="z-[1060] bg-white border rounded-xl"
+            className="z-[1060] bg-white border border-[--border-color] rounded-xl"
             style={popper.styles.popper}
             {...popper.attributes.popper}
             ref={setPopperElement}
