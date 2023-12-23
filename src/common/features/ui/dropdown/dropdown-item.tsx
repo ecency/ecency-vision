@@ -20,3 +20,7 @@ export function DropdownItem(props: HTMLProps<HTMLDivElement>) {
     />
   );
 }
+
+export function DropdownItemWithIcon(props: HTMLProps<HTMLDivElement>) {
+  return <DropdownItem {...props} className="flex items-center gap-3 [&>svg]:w-3.5" />;
+}

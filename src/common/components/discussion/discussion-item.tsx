@@ -11,11 +11,9 @@ import { dateToFormatted, dateToFullRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
 import { deleteForeverSvg, dotsHorizontal, pencilOutlineSvg } from "../../img/svg";
 import { Tsx } from "../../i18n/helper";
-import MyDropDown from "../dropdown";
 import { version } from "../../../../package.json";
 import UserAvatar from "../user-avatar";
 import { EntryLink } from "../entry-link";
-import EntryDeleteBtn from "../entry-delete-btn";
 import EntryVoteBtn from "../entry-vote-btn";
 import EntryPayout from "../entry-payout";
 import EntryVotes from "../entry-votes";
@@ -28,6 +26,9 @@ import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
 import { useFetchMutedUsersQuery } from "../../api/queries";
 import { useCreateReply, useUpdateReply } from "../../api/mutations";
+import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { EntryDeleteBtn } from "../entry-delete-btn";
+import { Button } from "@ui/button";
 
 interface Props {
   history: History;
@@ -92,6 +93,32 @@ export function DiscussionItem({
     () => location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`,
     [location, entry]
   );
+  const entryIsMuted = useMemo(() => mutedUsers.includes(entry.author), [entry, mutedUsers]);
+  const isComment = useMemo(() => !!entry.parent_author, [entry]);
+  const isOwnEntry = useMemo(
+    () => !!activeUser && activeUser.username === entry.author,
+    [activeUser, entry]
+  );
+  const isHidden = useMemo(
+    () => entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3,
+    [entry]
+  ); // 1000 HP
+  const isMuted = useMemo(
+    () => entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0,
+    [entry]
+  );
+  const isLowReputation = useMemo(
+    () => entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0,
+    [entry]
+  );
+  const mightContainMutedComments = useMemo(
+    () => !!activeUser && entryIsMuted && !isComment && !isOwnEntry,
+    [activeUser, entryIsMuted, isComment, isOwnEntry]
+  );
+  const isDeletable = useMemo(
+    () => !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0),
+    [entry]
+  );
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
     toggleReply()
@@ -143,10 +170,6 @@ export function DiscussionItem({
       jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version)
     });
 
-  const deleted = () => {
-    deleteReply(entry);
-  };
-
   return (
     <div className={_c(`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`)}>
       <div className="relative">
@@ -170,112 +193,89 @@ export function DiscussionItem({
               </span>
             </EntryLink>
           </div>
-          {(() => {
-            let menuItems = [
-              {
-                label: _t("g.edit"),
-                onClick: toggleEdit,
-                icon: pencilOutlineSvg
-              }
-            ];
-            if (!(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0)) {
-              let deleteItem = {
-                label: "",
-                onClick: () => {},
-                icon: (
-                  <EntryDeleteBtn activeUser={activeUser} entry={entry} onSuccess={deleted}>
-                    <a title={_t("g.delete")} className="delete-btn ml-0 pr-3">
-                      {deleteForeverSvg} {_t("g.delete")}
-                    </a>
-                  </EntryDeleteBtn>
-                )
-              };
-              menuItems.push(deleteItem);
-            }
+          {isMuted && (
+            <div className="hidden-warning mt-2">
+              <span>
+                <Tsx k="entry.muted-warning" args={{ community: entry.community_title }}>
+                  <span />
+                </Tsx>
+              </span>
+            </div>
+          )}
 
-            const menuConfig = {
-              history: history,
-              label: "",
-              icon: dotsHorizontal,
-              items: menuItems
-            };
+          {isHidden && (
+            <div className="hidden-warning mt-2">
+              <span>{_t("entry.hidden-warning")}</span>
+            </div>
+          )}
 
-            const entryIsMuted = mutedUsers.includes(entry.author);
-            const isComment = !!entry.parent_author;
-            const ownEntry = activeUser && activeUser.username === entry.author;
-            const isHidden = entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3; // 1000 HP
-            const isMuted =
-              entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation >= 0;
-            const isLowReputation =
-              entry?.stats?.gray && entry?.net_rshares >= 0 && entry?.author_reputation < 0;
-            const mightContainMutedComments = activeUser && entryIsMuted && !isComment && !ownEntry;
+          {isLowReputation && (
+            <div className="hidden-warning mt-2">
+              <span>{_t("entry.lowrep-warning")}</span>
+            </div>
+          )}
 
-            return (
-              <>
-                {isMuted && (
-                  <div className="hidden-warning mt-2">
-                    <span>
-                      <Tsx k="entry.muted-warning" args={{ community: entry.community_title }}>
-                        <span />
-                      </Tsx>
-                    </span>
-                  </div>
-                )}
+          {mightContainMutedComments && (
+            <div className="hidden-warning mt-2">
+              <span>{_t("entry.comments-hidden")}</span>
+            </div>
+          )}
 
-                {isHidden && (
-                  <div className="hidden-warning mt-2">
-                    <span>{_t("entry.hidden-warning")}</span>
-                  </div>
-                )}
-
-                {isLowReputation && (
-                  <div className="hidden-warning mt-2">
-                    <span>{_t("entry.lowrep-warning")}</span>
-                  </div>
-                )}
-
-                {mightContainMutedComments && (
-                  <div className="hidden-warning mt-2">
-                    <span>{_t("entry.comments-hidden")}</span>
-                  </div>
-                )}
-
-                <DiscussionItemBody entry={entry} isRawContent={isRawContent} />
-                {hideControls ? (
-                  <></>
-                ) : (
-                  <div className="item-controls">
-                    <EntryVoteBtn
-                      entry={entry}
-                      afterVote={(votes, estimated) =>
-                        updateVotes(entry, votes, entry.payout + estimated)
-                      }
-                      isPostSlider={false}
-                    />
-                    <EntryPayout entry={entry} />
-                    <EntryVotes entry={entry} history={history} />
-                    <a className={_c(`reply-btn ${edit ? "disabled" : ""}`)} onClick={toggleReply}>
-                      {_t("g.reply")}
-                    </a>
-                    {community &&
-                      canMute &&
-                      MuteBtn({
-                        entry,
-                        community: community!,
-                        activeUser: activeUser!,
-                        onSuccess: (entry) => updateCache([entry])
-                      })}
-                    {canEdit && (
-                      <div className="ml-3 dropdown-container">
-                        <MyDropDown {...menuConfig} float="right" alignBottom={true} />
-                      </div>
-                    )}
-                  </div>
-                )}
-              </>
-            );
-          })()}
-
+          <DiscussionItemBody entry={entry} isRawContent={isRawContent} />
+          {hideControls ? (
+            <></>
+          ) : (
+            <div className="item-controls">
+              <EntryVoteBtn
+                entry={entry}
+                afterVote={(votes, estimated) =>
+                  updateVotes(entry, votes, entry.payout + estimated)
+                }
+                isPostSlider={false}
+              />
+              <EntryPayout entry={entry} />
+              <EntryVotes entry={entry} history={history} />
+              <a className={_c(`reply-btn ${edit ? "disabled" : ""}`)} onClick={toggleReply}>
+                {_t("g.reply")}
+              </a>
+              {community && canMute && (
+                <MuteBtn
+                  entry={entry}
+                  community={community}
+                  activeUser={activeUser!}
+                  onSuccess={(entry) => updateCache([entry])}
+                />
+              )}
+              {canEdit && (
+                <div className="ml-3 dropdown-container">
+                  <Dropdown>
+                    <DropdownToggle>
+                      <Button icon={dotsHorizontal} appearance="gray-link" />
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItemWithIcon onClick={toggleEdit}>
+                        {pencilOutlineSvg}
+                        {_t("g.edit")}
+                      </DropdownItemWithIcon>
+                      {isDeletable && (
+                        <DropdownItemWithIcon>
+                          <EntryDeleteBtn
+                            activeUser={activeUser}
+                            entry={entry}
+                            onSuccess={() => deleteReply(entry)}
+                          >
+                            <>
+                              {deleteForeverSvg} {_t("g.delete")}
+                            </>
+                          </EntryDeleteBtn>
+                        </DropdownItemWithIcon>
+                      )}
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              )}
+            </div>
+          )}
           {readMore && (
             <div className="read-more">
               <EntryLink entry={entry} history={history}>
