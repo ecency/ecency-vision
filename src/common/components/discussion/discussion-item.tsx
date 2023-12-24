@@ -278,7 +278,7 @@ export function DiscussionItem({
                         {_t(isPinned ? "g.unpin" : "g.pin")}
                       </DropdownItemWithIcon>
                     )}
-                    {isDeletable && (
+                    {isDeletable && !isPinned && (
                       <DropdownItemWithIcon>
                         <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
                           <div className="flex items-center [&>svg]:w-3.5 gap-3">
