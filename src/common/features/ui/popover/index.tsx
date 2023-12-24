@@ -1,8 +1,10 @@
-import React, { HTMLAttributes, ReactNode, useEffect, useState } from "react";
-import { useMountedState } from "react-use";
+import React, { HTMLAttributes, ReactNode, useContext, useEffect, useState } from "react";
+import { useMountedState, useUnmount } from "react-use";
 import { usePopper } from "react-popper";
 import { createPortal } from "react-dom";
 import { useFilteredProps } from "../../../util/props-filter";
+import { UIContext } from "@ui/core";
+import { v4 } from "uuid";
 
 interface ShowProps {
   show: boolean;
@@ -17,7 +19,9 @@ interface Props {
 
 export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivElement>) {
   const isMounted = useMountedState();
+  const { addOpenPopover, removeOpenPopover } = useContext(UIContext);
 
+  const [id, setId] = useState(`popover-${v4()}`);
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const popper = usePopper(host, popperElement, {
@@ -26,6 +30,16 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
   const [show, setShow] = useState((props as ShowProps).show ?? false);
 
   const nativeProps = useFilteredProps(props, ["anchorParent", "show", "setShow"]);
+
+  useEffect(() => {
+    if (show) {
+      addOpenPopover(id);
+    } else {
+      removeOpenPopover(id);
+    }
+  }, [show]);
+
+  useUnmount(() => removeOpenPopover(id));
 
   useEffect(() => {
     if ((props as Props).anchorParent && host) {
@@ -43,7 +57,8 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
       {isMounted() && show ? (
         createPortal(
           <div
-            className="z-[1060] bg-white border border-[--border-color] rounded-xl"
+            id={id}
+            className="ecency-popover z-[1060] bg-white border border-[--border-color] rounded-xl"
             style={popper.styles.popper}
             {...popper.attributes.popper}
             ref={setPopperElement}

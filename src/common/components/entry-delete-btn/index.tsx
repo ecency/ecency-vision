@@ -38,7 +38,6 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
         this.stateSet({ inProgress: false });
         setDeleteInProgress && setDeleteInProgress(false);
 
-        console.log(parent);
         if (parent) {
           const previousReplies =
             queryClient.getQueryData<Entry[]>([
@@ -50,7 +49,7 @@ export class EntryDeleteBtn extends BaseComponent<Props> {
             [QueryIdentifiers.FETCH_DISCUSSIONS, parent?.author, parent?.permlink],
             [
               ...previousReplies.filter(
-                (r) => r.author !== entry.author && r.permlink !== entry.permlink
+                (r) => r.author !== entry.author || r.permlink !== entry.permlink
               )
             ]
           );

@@ -197,12 +197,14 @@ export function DiscussionItem({
               <ProfilePopover entry={entry} />
             </div>
             <span className="separator circle-separator" />
-            <EntryLink entry={entry} history={history}>
-              <span className="date" title={dateToFormatted(entry.created)}>
-                {dateToFullRelative(entry.created)}
-              </span>
-            </EntryLink>
-            {isPinned && <div className="w-3.5 h-3.5 ml-3 flex">{pinSvg}</div>}
+            <div className="flex items-center">
+              <EntryLink entry={entry} history={history}>
+                <span className="date" title={dateToFormatted(entry.created)}>
+                  {dateToFullRelative(entry.created)}
+                </span>
+              </EntryLink>
+              {isPinned && <div className="w-3.5 h-3.5 ml-3 flex">{pinSvg}</div>}
+            </div>
           </div>
           {isMuted && (
             <div className="hidden-warning mt-2">
