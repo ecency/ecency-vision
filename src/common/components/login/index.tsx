@@ -43,6 +43,7 @@ import _c from "../../util/fix-class-names";
 
 import {deleteForeverSvg} from "../../img/svg";
 import { setupConfig } from "../../../setup";
+import { processLogin } from "../../api/breakaway";
 
 declare var window: AppWindow;
 
@@ -129,9 +130,20 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     this.stateSet({ inProgress: true });
 
-    const signer = (message: string): Promise<string> =>
-      signBuffer(username, message, "Active").then((r) => r.result);
-
+    const signer = async (message: string): Promise<string> =>  {
+      console.log("message", JSON.parse(message))
+      const ts: any = Date.now();
+      const sign = await signBuffer(username, message, "Active").then((r) => r.result);
+      const signBa = await signBuffer(username, `${username}${ts}`, "Active").then((r) => r.result);
+      console.log("signBa", signBa)
+      if (sign) {
+        const login = await processLogin(username, ts, signBa, "Hive Rally");
+        const baToken = login?.data?.response?.token
+        ls.set("ba_access_token", baToken)
+        console.log(username, login?.data?.response?.token)
+      }
+      return sign;
+    }
     let code: string;
     try {
       code = await makeHsCode(username, signer);
@@ -320,6 +332,18 @@ export class Login extends BaseComponent<LoginProps, State> {
     toggleUIProp("login");
   };
 
+  signer = async (username: string): Promise<string> =>  {
+    const ts: any = Date.now();
+    const signBa = await signBuffer(username, `${username}${ts}`, "Active").then((r) => r.result);
+    console.log("signBa", signBa)
+    if (signBa) {
+      const login = await processLogin(username, ts, signBa, "Hive Rally");
+      const baToken = login?.data?.response?.token
+      ls.set("ba_access_token", baToken)
+    }
+    return signBa;
+  }
+
   userSelect = (user: User) => {
     const { doLogin } = this.props;
 
@@ -331,6 +355,7 @@ export class Login extends BaseComponent<LoginProps, State> {
         if (!token) {
           error(`${_t("login.error-user-not-found-cache")}`);
         }
+        this.signer(user.username)
         return token
           ? doLogin(token, user.postingKey, account)
           : this.userDelete(user);

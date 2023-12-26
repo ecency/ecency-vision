@@ -70,6 +70,7 @@ import ModalConfirm from "../components/modal-confirm";
 import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import { ThreeSpeakManager } from "../util/ThreeSpeakProvider";
+import { updateUserPoints } from "../api/breakaway";
 
 interface PostBase {
     title: string;
@@ -559,7 +560,7 @@ class SubmitPage extends BaseComponent<Props, State> {
         const options = makeCommentOptions(author, permlink, reward, beneficiaries);
         this.stateSet({posting: true});
         comment(author, "", parentPermlink, permlink, title, body, jsonMeta, options, true)
-            .then(() => {
+            .then(async () => {
 
                 this.clearAdvanced();
 
@@ -578,6 +579,9 @@ class SubmitPage extends BaseComponent<Props, State> {
                     percent_hbd: options.percent_hbd
                 };
                 addEntry(entry);
+                const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "posts")
+                console.log("Posted")
+                console.log(baResponse);
 
                 success(_t("submit.published"));
                 this.clear();

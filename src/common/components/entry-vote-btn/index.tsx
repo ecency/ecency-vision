@@ -27,6 +27,7 @@ import _c from "../../util/fix-class-names";
 import { chevronDownSvgForSlider, chevronUpSvgForSlider, chevronUpSvgForVote } from "../../img/svg";
 import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
+import { updateUserPoints } from "../../api/breakaway";
 
 const setVoteValue = (type: "up" | "down" | "downPrevious" | "upPrevious", username: string, value: number) => {
   ls.set(`vote-value-${type}-${username}`, value);
@@ -381,7 +382,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
     const username = activeUser?.username!;
 
     vote(username, entry.author, entry.permlink, weight)
-      .then(() => {
+      .then(async () => {
         const votes: EntryVote[] = [
           ...entry.active_votes.filter((x) => x.voter !== username),
           { rshares: weight, voter: username },
@@ -389,6 +390,10 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
 
         afterVote(votes, estimated);
         updateActiveUser(); // refresh voting power
+
+        const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "upvote")
+        console.log("Voted")
+        console.log(baResponse);
       })
       .catch((e) => {
         error(formatError(e));
