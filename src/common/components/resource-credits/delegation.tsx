@@ -4,6 +4,7 @@ import badActors from "@hiveio/hivescript/bad-actors.json";
 import LinearProgress from "../linear-progress";
 import UserAvatar from "../user-avatar";
 import { error } from "../feedback";
+import "./delegation.scss";
 import { delegateRC, formatError } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 import { arrowRightSvg } from "../../img/svg";
@@ -23,6 +24,10 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [toWarning, setToWarning] = useState<string>("");
   const [toData, setToData] = useState<any>(delegateeData || "");
   const [convertedValue, setConvertedValue] = useState<any>(null);
+
+  const pointValues = [0, 25, 50, 75, 100];
+
+  const [fillWidth, setFillWidth] = useState(0);
 
   const [convertedVal, setConvertedVal] = useState<any>(null);
 
@@ -167,10 +172,27 @@ export const ResourceCreditsDelegation = (props: any) => {
     </div>
   );
 
+  const handlePointClick = (index: number) => {
+    const fillPercentage = (index) * (100 / 4);
+    setFillWidth(fillPercentage);
+    const formartInput = (((fillPercentage / 100) * resourceCredit) / 1e9).toFixed(0)
+    console.log(fillPercentage)
+    setAmount(formartInput)
+  };
+
+  const handleProgressLineClick = (event: any) => {
+    const clickedPosition = (event.nativeEvent.offsetX / event.currentTarget.clientWidth) * 100;
+    console.log(clickedPosition)
+
+    const formmattedInput = ((clickedPosition / 100) * resourceCredit / 1e9).toFixed(0);
+    setFillWidth(clickedPosition);
+    setAmount(formmattedInput);
+  };
+
   return (
     <div className="transfer-dialog-content">
       {step === 1 && (
-        <div className={`transaction-form ${inProgress ? "in-progress" : ""}`}>
+        <div className={`transaction-form ${inProgress ? "in-progress" : ""} d-flex flex-column`}>
           {formHeader1}
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
@@ -212,7 +234,7 @@ export const ResourceCreditsDelegation = (props: any) => {
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 sm:col-span-2 mt-3">
-                <label>{_t("transfer.amount")}</label>
+                <label>{_t("transfer.amount")} (Bn)</label>
               </div>
               <div className="col-span-12 sm:col-span-10">
                 <InputGroup>
@@ -233,6 +255,26 @@ export const ResourceCreditsDelegation = (props: any) => {
             {amount > Number(resourceCredit) && (
               <small className="text-red tr-form-text">{amountError}</small>
             )}
+
+            <div className="d-flex rc-progress-line" onClick={handleProgressLineClick}>
+              <div className="rc-fill" style={{ width: `${fillWidth}%` }}></div>
+
+              <div className="rc-points" 
+              onClick={() => handlePointClick(0)}
+              ></div>
+              <div className="rc-points"
+              onClick={() => handlePointClick(1)}
+              ></div>
+              <div className="rc-points" 
+              onClick={() => handlePointClick(2)}
+              ></div>
+              <div className="rc-points"  
+              onClick={() => handlePointClick(3)}
+              ></div>
+              <div className="rc-points"  
+              onClick={() => handlePointClick(4)}
+              ></div>
+            </div>
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">

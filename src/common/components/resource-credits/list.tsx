@@ -127,7 +127,7 @@ export const RcDelegationsList = (props: any) => {
                               onClick={async () => {
                                 showDelegation();
                                 setShowDelegationsList(false);
-                                setAmountFromList(list.delegated_rc);
+                                setAmountFromList(list.delegated_rc / 1e9);
                                 setToFromList(list.to);
                                 const data = await getToData(list.to);
                                 setDelegateeData(data);
