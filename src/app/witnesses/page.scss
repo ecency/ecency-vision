@@ -1,0 +1,207 @@
+@import "../../style/vars_mixins";
+
+.witnesses-page {
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto 80px auto;
+
+  .mt-5 {
+    margin-top: 5rem !important;
+  }
+
+  .page-header {
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+
+    .header-title {
+      @apply text-blue-dark-sky;
+      font-size: 26px;
+      font-weight: 500;
+      text-align: center;
+      margin: 0;
+    }
+
+    .header-description {
+      margin: 16px 0 0 0;
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    .remaining {
+      margin-top: 20px;
+      text-align: center;
+
+      span {
+        @apply text-blue-dark-sky;
+        font-weight: 500;
+      }
+
+      @media (min-width: $md-break) {
+        margin-bottom: 0;
+      }
+
+      @include themify(day) {
+        @apply text-gray-steel;
+      }
+
+      @include themify(night) {
+        @apply text-blue-powder;
+      }
+    }
+  }
+
+  .voted-by-voter {
+    @include themify(day) {
+      @apply bg-blue-faded;
+    }
+
+    @include themify(night) {
+      @apply bg-tundora;
+    }
+  }
+
+  .witnesses-table {
+    margin-bottom: 20px;
+    
+    table {
+      min-width: 840px;
+
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
+
+    .witness-rank,
+    .witness-card,
+    .witness-miss,
+    .witness-link,
+    .witness-fee,
+    .witness-feed,
+    .witness-version {
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .witness-rank {
+      display: flex;
+      align-items: center;
+
+      .rank-number {
+        margin-right: 20px;
+        width: 22px;
+
+        @include themify(day) {
+          @apply text-gray-warm;
+        }
+      }
+    }
+
+    .witness-card {
+      .user-avatar {
+        margin-right: 10px;
+      }
+    }
+
+    .witness-ctn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .witness-link {
+      svg {
+        height: 16px;
+      }
+    }
+
+    .witness-feed,
+    .witness-version {
+      .inner {
+        border-radius: 25px;
+        @apply text-white;
+        font-weight: 500;
+        padding: 2px 10px;
+      }
+    }
+
+    .witness-feed {
+      .inner {
+        background: #a1c982;
+      }
+    }
+
+    .witness-version {
+      .inner {
+        @apply bg-blue-dark-sky;
+      }
+    }
+
+    .col-rank {
+      width: 100px;
+    }
+
+    .col-miss {
+      width: 100px;
+    }
+
+    .col-url {
+      width: 100px;
+    }
+
+    .col-fee {
+      width: 180px;
+    }
+
+    .col-feed {
+      width: 180px !important;
+    }
+
+    .col-version {
+      width: 180px;
+    }
+  }
+
+  .witnesses-controls {
+    margin: 30px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $lg-break) {
+      flex-direction: row;
+    }
+  }
+
+  .user-info {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .table-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+
+    @media (max-width: $md-break - 1px) {
+      display: none;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: row;
+    }
+
+    .sorter {
+      display: flex;
+      align-items: center;
+
+      @include media-breakpoint-only(md) {
+        margin-bottom: 10px;
+      }
+
+      .label {
+        margin-right: 4px;
+      }
+    }
+  }
+}

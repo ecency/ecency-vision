@@ -14,3 +14,4 @@ export * from "./trending-tags";
 export * from "./dynamic-props";
 export * from "./ws-notifications";
 export * from "./points";
+export * from "./witness-transformed";

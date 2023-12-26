@@ -14,9 +14,9 @@ export function useThreeSpeakVideo(
 
   const queryClient = useQueryClient();
 
-  const apiQuery = useQuery(
-    [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
-    async () => {
+  const apiQuery = useQuery({
+    queryKey: [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
+    queryFn: async () => {
       if (!activeUser) {
         return [];
       }
@@ -28,33 +28,30 @@ export function useThreeSpeakVideo(
       }
       return [];
     },
-    {
-      initialData: [],
-      enabled
-    }
-  );
+    initialData: [],
+    enabled
+  });
 
-  const filteredQuery = useQuery(
-    [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, filterStatus],
-    () => {
+  const filteredQuery = useQuery({
+    queryKey: [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST_FILTERED, filterStatus],
+    queryFn: () => {
       if (filterStatus === "all") {
         return apiQuery.data!!;
       }
       return apiQuery.data!!.filter((video: ThreeSpeakVideo) => video.status === filterStatus);
     },
-    {
-      initialData: [],
-      enabled: apiQuery.data?.length > 0
-    }
-  );
+    initialData: [],
+    enabled: apiQuery.data?.length > 0
+  });
 
   useAsyncFn(async () => {
     if (activeUser?.username !== prevActiveUser?.username) {
-      await queryClient.invalidateQueries([
-        QueryIdentifiers.THREE_SPEAK_VIDEO_LIST,
-        activeUser?.username ?? ""
-      ]);
-      await queryClient.invalidateQueries([QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, "all"]);
+      await queryClient.invalidateQueries({
+        queryKey: [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""]
+      });
+      await queryClient.invalidateQueries({
+        queryKey: [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, "all"]
+      });
     }
   }, [activeUser]);
 
@@ -66,10 +63,9 @@ export function useThreeSpeakVideo(
         [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
         []
       );
-      queryClient.invalidateQueries([
-        QueryIdentifiers.THREE_SPEAK_VIDEO_LIST,
-        activeUser?.username ?? ""
-      ]);
+      queryClient.invalidateQueries({
+        queryKey: [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""]
+      });
     }
   };
 }

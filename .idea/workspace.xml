@@ -4,135 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added working SSR example">
-      <change afterPath="$PROJECT_DIR$/jest.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/arrow1-about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/arrow2-about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/arrow3-about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-mob-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-mob-dark.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-mob-light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-mob-light.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-tiny-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bg-download-tiny.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-center.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-center.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-left-bottom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-left-bottom.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-left-top.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-left-top.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-right-bottom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-right-bottom.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-right-top.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/bubble-right-top.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-algae-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-algae-dark.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-algae.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-algae.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-dark-fishes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/download-dark-fishes.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/dunsky.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/dunsky.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/ecency-faq.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/ecency-faq.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-1.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-2.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-3.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-4.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-5.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-junior.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-junior.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-senior.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fish-senior.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-discord.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-main-fish.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-main-fish.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-telegram.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-twitter.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer-youtube.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/github-cover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/good-karma.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/good-karma.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/hero-algae-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/hero-algae-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/hero-fishes-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/hero-fishes.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-android-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-android.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-android.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-apple-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-apple.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-windows-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icon-windows.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-decentralization.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-decentralization.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-earn-money.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-earn-money.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-hero-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-hero-day.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-hero.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-open-source.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-open-source.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-true-ownership.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/illustration-true-ownership.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/left-fishes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/left-fishes.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-192x192.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-384x384.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-512x512.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-history.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-history.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-team.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-team.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-vision.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/our-vision.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-dark-pc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-dark-pc.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-dark-tablet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-dark-tablet.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-download-tiny.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-download-tiny.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-download.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-light-pc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-light-pc.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-light-tablet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/phone-light-tablet.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/rewarding-and-freespeech.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/rewarding-and-freespeech.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/talhasch.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/talhasch.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/thumbnail-play.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.spec.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/search/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/button/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/button/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/app-name.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/app-name.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/b64.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/b64.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/entry-canonical.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/entry-canonical.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/hive-engine-wallet.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hive-engine-wallet.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/hive-wallet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/hive-wallet.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/is-community.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-community.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/is-empty-date.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-empty-date.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/is-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-mobile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/nl2list.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/nl2list.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/parse-asset.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/parse-asset.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/parse-date.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/parse-date.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/parse-date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/parse-date.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/search-query.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/search-query.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/strip-tags.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/strip-tags.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated to react query 5">
+      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +39,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/public/assets",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -176,24 +49,25 @@
     "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/api" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/app/witnesses" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/src/app/communities" />
-      <recent name="$PROJECT_DIR$/src/features" />
-      <recent name="$PROJECT_DIR$/src/i18n" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
@@ -203,7 +77,7 @@
       <recent name="$PROJECT_DIR$/src/app/communities/_components" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -273,9 +147,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
@@ -302,7 +176,8 @@
       <workItem from="1701872398545" duration="11450000" />
       <workItem from="1701948427772" duration="23697000" />
       <workItem from="1702186557562" duration="75000" />
-      <workItem from="1702303054733" duration="4446000" />
+      <workItem from="1702303054733" duration="4626000" />
+      <workItem from="1703584954368" duration="4165000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -368,7 +243,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702133038725</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added PWA and fix build">
+      <option name="closed" value="true" />
+      <created>1702312972386</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702312972386</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated to react query 5">
+      <option name="closed" value="true" />
+      <created>1703589294968</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1703589294968</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +274,9 @@
     <MESSAGE value="Fixed CSS imports and ts imports" />
     <MESSAGE value="Completed communities migration" />
     <MESSAGE value="Added working SSR example" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added working SSR example" />
+    <MESSAGE value="Added PWA and fix build" />
+    <MESSAGE value="Updated to react query 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to react query 5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,4 +9,5 @@ export interface MetaData {
   description?: string;
   video?: any;
   type?: string;
+  pinned_reply?: string; // author/permlink
 }

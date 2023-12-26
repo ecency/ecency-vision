@@ -16,7 +16,7 @@ export interface TempEntryProps {
 
 export const correctIsoDate = (d: string): string => d.split(".")[0];
 
-export default (p: TempEntryProps): Entry => {
+export function tempEntry(p: TempEntryProps): Entry {
   const now = moment(Date.now());
   const payout = moment(Date.now()).add(7, "days");
 
@@ -59,4 +59,4 @@ export default (p: TempEntryProps): Entry => {
     parent_author: p.parentAuthor,
     parent_permlink: p.parentPermlink
   };
-};
+}

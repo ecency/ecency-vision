@@ -7,18 +7,13 @@ import { FormControl } from "@ui/input";
 import { CommunityListItem } from "@/app/communities/_components/community-list-item";
 import { useCommunitiesQuery } from "@/api/queries";
 import { useDebounce } from "react-use";
-import { Community } from "@/entities";
 
-interface Props {
-  initialData: Community[];
-}
-
-export function CommunitiesList({ initialData }: Props) {
+export function CommunitiesList() {
   const [query, setQuery] = useState("");
   const [fetchingQuery, setFetchingQuery] = useState("");
   const [sort, setSort] = useState("rank");
 
-  const { data: list, isLoading } = useCommunitiesQuery(fetchingQuery, sort, initialData);
+  const { data: list, isLoading } = useCommunitiesQuery(fetchingQuery, sort);
 
   const noResults = useMemo(() => !isLoading && list.length === 0, [isLoading, list]);
 

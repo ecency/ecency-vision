@@ -8,7 +8,8 @@ import { isCommunity } from "@/utils";
 export function useCommunityCache(category: string, invalidate?: boolean, enabled = true) {
   const client = useQueryClient();
 
-  const query = useQuery<Community | null>([QueryIdentifiers.COMMUNITY, category], {
+  const query = useQuery<Community | null>({
+    queryKey: [QueryIdentifiers.COMMUNITY, category],
     queryFn: () => (isCommunity(category) ? bridgeApi.getCommunity(category) : null),
     initialData: null,
     enabled
@@ -16,7 +17,7 @@ export function useCommunityCache(category: string, invalidate?: boolean, enable
 
   useEffect(() => {
     if (invalidate) {
-      client.invalidateQueries([QueryIdentifiers.COMMUNITY, category]);
+      client.invalidateQueries({ queryKey: [QueryIdentifiers.COMMUNITY, category] });
     }
   }, []);
 

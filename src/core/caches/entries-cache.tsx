@@ -5,7 +5,7 @@ import {
   useQuery,
   useQueryClient
 } from "@tanstack/react-query";
-import { queryClient, QueryIdentifiers } from "../react-query";
+import { QueryIdentifiers } from "../react-query";
 import * as bridgeApi from "../../api/bridge";
 import dmca from "@/dmca.json";
 import { commentHistory } from "@/api/private-api";
@@ -43,10 +43,9 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
     if (!skipInvalidation) {
       // Invalidate queries which fetches entry details(only after cache updating)
       entries.forEach((entry) =>
-        queryClient.invalidateQueries([
-          QueryIdentifiers.ENTRY,
-          makeEntryPath("", entry.author, entry.permlink)
-        ])
+        queryClient.invalidateQueries({
+          queryKey: [QueryIdentifiers.ENTRY, makeEntryPath("", entry.author, entry.permlink)]
+        })
       );
     }
     return entries;
@@ -101,6 +100,7 @@ export const EntriesCacheManager = ({ children }: { children: any }) => {
 
 export function useEntryReFetch(entry: Entry | null) {
   const [key, setKey] = useState("");
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (entry) {
@@ -108,19 +108,17 @@ export function useEntryReFetch(entry: Entry | null) {
     }
   }, [entry]);
 
-  return useMutation(
-    ["FETCH_ENTRY", key],
-    () => bridgeApi.getPost(entry?.author, entry?.permlink),
-    {
-      onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
-    }
-  );
+  return useMutation({
+    mutationKey: ["FETCH_ENTRY", key],
+    mutationFn: () => bridgeApi.getPost(entry?.author, entry?.permlink),
+    onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
+  });
 }
 
 export function useDeletedEntryCache(author: string, permlink: string) {
-  return useQuery(
-    [QueryIdentifiers.DELETED_ENTRY, makeEntryPath("", author, permlink)],
-    async () => {
+  return useQuery({
+    queryKey: [QueryIdentifiers.DELETED_ENTRY, makeEntryPath("", author, permlink)],
+    queryFn: async () => {
       const history = await commentHistory(author, permlink);
       const { body, title, tags } = history.list[0];
       return {
@@ -129,11 +127,9 @@ export function useDeletedEntryCache(author: string, permlink: string) {
         tags
       };
     },
-    {
-      initialData: null,
-      refetchOnMount: false
-    }
-  );
+    initialData: null,
+    refetchOnMount: false
+  });
 }
 
 export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<T>;
@@ -154,9 +150,9 @@ export function useEntryCache<T extends Entry>(
       ? makeEntryPath("", author!!, permlink!!)
       : makeEntryPath("", initialOrPath.author, initialOrPath.permlink);
 
-  return useQuery(
-    [QueryIdentifiers.ENTRY, queryKey],
-    async () => {
+  return useQuery({
+    queryKey: [QueryIdentifiers.ENTRY, queryKey],
+    queryFn: async () => {
       let entry = getByLink(queryKey) as T;
 
       if (!entry && typeof initialOrPath === "string") {
@@ -173,8 +169,6 @@ export function useEntryCache<T extends Entry>(
 
       return entry;
     },
-    {
-      initialData: typeof initialOrPath === "string" ? null : initialOrPath
-    }
-  );
+    initialData: typeof initialOrPath === "string" ? null : initialOrPath
+  });
 }

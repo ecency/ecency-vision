@@ -4,12 +4,19 @@ import Link from "next/link";
 import "./page.scss";
 import { CommunitiesList } from "./_components";
 import { getCommunities } from "@/api/bridge";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { QueryIdentifiers } from "@/core/react-query";
 
 export default async function Communities() {
-  const initialData = await getCommunities("", 100, null, "rank");
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [QueryIdentifiers.COMMUNITIES],
+    queryFn: () => getCommunities("", 100, null, "rank")
+  });
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <ScrollToTop />
       <Theme />
       <Navbar />
@@ -21,9 +28,9 @@ export default async function Communities() {
               {i18next.t("communities.create")}
             </Link>
           </div>
-          <CommunitiesList initialData={initialData} />
+          <CommunitiesList />
         </div>
       </div>
-    </>
+    </HydrationBoundary>
   );
 }

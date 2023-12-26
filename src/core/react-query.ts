@@ -1,13 +1,3 @@
-import { QueryClient } from "@tanstack/react-query";
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false
-    }
-  }
-});
-
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
   THREADS = "threads",
@@ -17,7 +7,6 @@ export enum QueryIdentifiers {
   DELETED_ENTRY = "deleted-entry",
   ENTRY_PIN_TRACK = "entry-pin-track",
   COMMUNITY = "community",
-  COMMUNITIES = "communities",
   COMMUNITY_RANKED_POSTS = "community-ranked-posts",
   DECK_USER = "deck-user",
   DECK_COMMUNITY = "deck-community",
@@ -28,8 +17,7 @@ export enum QueryIdentifiers {
   THREE_SPEAK_VIDEO_LIST_FILTERED = "three-speak-video-list-filtered",
   DRAFTS = "drafts",
   BY_DRAFT_ID = "by-draft-id",
-
-  GET_ACCOUNT_FULL = "get-account-full",
-  TRENDING_TAGS = "trending-tags",
-  DYNAMIC_PROPS = "dynamic-props"
+  FETCH_DISCUSSIONS = "fetch-discussions",
+  FETCH_MUTED_USERS = "fetch-muted-users",
+  COMMUNITIES = "communities"
 }
