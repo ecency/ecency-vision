@@ -56,8 +56,11 @@ const OnboardFriend = (props: Props | any) => {
       console.log(error);
     }
     seturlInfo(decodedObj);
-    getAccountTokens();
   }, []);
+  
+  useEffect(() => {
+    getAccountTokens();
+  }, [token])
   
   const getAccountTokens = async ()=>{
     const acc = await getAccounts([activeUser?.username!]);
@@ -73,12 +76,12 @@ const OnboardFriend = (props: Props | any) => {
       activeUser?.username
       )
       if (response.success === true) {
-        setStep("success");
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
-        setMsg(response.message)
+        setStep("success");
+        setMsg("Account created successfully")
       } else {
         setStep("fail")
-        setMsg(response.message)
+        setMsg("Unable to create account")
       }
     } catch (error) {
       
@@ -94,12 +97,12 @@ const OnboardFriend = (props: Props | any) => {
       activeUser?.username
       );
       if (response.success === true) {
-        setStep("success");
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
-        setMsg(response.message)
+        setStep("success");
+        setMsg("Account created successfully")
       } else {
         setStep("fail")
-        setMsg(response.message)
+        setMsg("Unable to create acount")
       }
     } catch (error) {
       console.log(error)
@@ -125,7 +128,7 @@ const OnboardFriend = (props: Props | any) => {
             ...props,
           })
         : NavBar({ ...props })}
-      <div className={containerClasses}>
+      <div className={`${containerClasses} mt-5`}>
         { !activeUser ? <h3>{_t("onboard.login-warning")}</h3> : 
         <div className="onboard">
           {step=== "confirm" && <>

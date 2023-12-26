@@ -27,6 +27,7 @@ import clipboard from "../util/clipboard";
 import { ActiveUser } from "../store/active-user/types";
 import { getAccount } from "../api/hive";
 import { OffchainUser } from "../components/offchain-users";
+import QRCode from "react-qr-code";
 
 const HiveLogo = require("../img/hive-logo.jpeg");
 const solanaLogo = require("../img/solanaLogo.png");
@@ -332,19 +333,29 @@ const SignUpPage = (props: Props | any) => {
                 {newUserKeys && step == 2 && <div className="success-wrapper">
                   <div className="success-info">
                     <h3>
-                    {_t("onboard.confirm-details")}
+                    {/* {_t("onboard.confirm-details")} */} Account creation steps
                     </h3>
+                    <p>Please make sure you have keychain installed as an extension on your browser 
+                      (If you are a using the web browser, we recommend that you pin it to your browser.)
+                    </p>
+                    <p>If you are on mobile, download the keychain mobile app</p>
+                    <div className="d-flex">
+                      <span className="">Don't have keychain? download</span>
+                      <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
+                        here
+                      </a>
+                    </div>
                     <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
                         </span>
-                        <span style={{ lineHeight: 2 }}>
+                        {/* <span style={{ lineHeight: 2 }}>
                           {_t("onboard.email")} <strong>{email}</strong>
                         </span>
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.referral")} <strong>{referral}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
+                        </span> */}
+                        {/* <span style={{ lineHeight: 2 }}>
                           {_t("onboard.public-active")} <strong>{newUserKeys?.activePubkey}</strong>
                         </span>
                         <span style={{ lineHeight: 2 }}>
@@ -355,10 +366,44 @@ const SignUpPage = (props: Props | any) => {
                         </span>
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.public-memo")} <strong>{newUserKeys?.memoPubkey}</strong>
-                        </span>
+                        </span> */}
                     </div>
-                    <div className="account-password">
+                    <div className="account-link">
+                      <h3>Step 1</h3>
+                      <span>Download your keys to continue</span>
+                      <Button className="mt-3" onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
+                    </div>
+                    {isDownloaded && <div className="account-link">
+                          <h3>Step 2</h3>
+                            {!activeUser && <h5 className="text-danger">{_t("onboard.copy-info-message")}</h5>}
+                            {activeUser && <h5 className="text-danger">Click link below or scan QR code</h5>}
+                      <div className="link-wrap">
+                        <div>
+                          {!activeUser ? <>
+                            {/* <h5>{_t("onboard.copy-info-message")}</h5> */}
+                            <div className="link">
+                              <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
+                              <span className="icon" onClick={() => {
+                                clipboard(`${window.origin}/onboard-friend/${urlHash}`);
+                                success(_t("onboard.copy-link"))
+                              }}>{copyContent}</span>
+                            </div>
+                          </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>{_t("onboard.click-link")}</a>}
+                        </div>
+                        <div style={{ background: 'white', padding: '16px' }}>
+                          <QRCode
+                            size={256}
+                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                            value={`${window.origin}/onboard-friend/${urlHash}`}
+                            viewBox={`0 0 256 256`}
+                          />
+                        </div>
+                      </div>
+                      <div className="account-password">
+                      <h3>Step 3</h3>
+                      {/* <span>Make sure you copy your password</span> */}
                       <span className="text-danger">{_t("onboard.copy-key")}</span>
+                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account</span>
                       <div className="password">
                         <strong>{accountPassword}...</strong>
                         <span className="icon" onClick={()=> {
@@ -366,19 +411,7 @@ const SignUpPage = (props: Props | any) => {
                           success(_t("onboard.key-copied"))
                           }}>{copyContent}</span>
                       </div>
-                    </div>
-                    <Button onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
-                    {isDownloaded && <div className="account-link">
-                      {!activeUser ? <>
-                        <h3>{_t("onboard.copy-info-message")}</h3>
-                        <div className="link">
-                          <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
-                          <span className="icon" onClick={() => {
-                            clipboard(`${window.origin}/onboard-friend/${urlHash}`);
-                            success(_t("onboard.copy-link"))
-                          }}>{copyContent}</span>
-                        </div>
-                      </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>{_t("onboard.click-link")}</a>}
+                      </div>
                     </div>}
                   </div>
                 </div>
