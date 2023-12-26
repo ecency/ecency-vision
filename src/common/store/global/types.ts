@@ -42,7 +42,7 @@ export enum AllFilter {
     comments = "comments",
     replies = "replies",
     communities = "communities",
-    feed = "feed"
+    feed = "feed",
 }
 
 export interface Global {
@@ -81,6 +81,7 @@ export enum ActionTypes {
     LANG_SET = "@global/LANG_SET",
     NEW_VERSION_CHANGE = "@global/NEW_VERSION_CHANGE",
     NSFW_SET = "@global/NSFW_SET",
+    SET_LAST_INDEX_PATH = "@global/SET_LAST_INDEX_PATH",
 }
 
 export interface ThemeChangeAction {
@@ -131,6 +132,11 @@ export interface HasKeyChainAction {
     type: ActionTypes.HAS_KEYCHAIN;
 }
 
+export interface SetLastIndexPathAction {
+    type: ActionTypes.SET_LAST_INDEX_PATH;
+    path: string | null;
+  }
+
 export type Actions =
     LocationChangeAction
     | ThemeChangeAction
@@ -142,4 +148,5 @@ export type Actions =
     | CurrencySetAction
     | LangSetAction
     | NsfwSetAction
-    | HasKeyChainAction;
+    | HasKeyChainAction
+    | SetLastIndexPathAction;

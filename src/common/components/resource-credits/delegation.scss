@@ -1,0 +1,32 @@
+.rc-progress-line {
+    cursor: pointer;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 3px;
+    background-color: #ccc;
+    margin-bottom: 3px;
+    position: relative; 
+  }
+  
+  .rc-fill {
+    height: 100%;
+    background-color: #357ce6; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.5s ease;
+  }
+  
+  .rc-points {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #357ce6;
+    cursor: pointer;
+    z-index: 999;
+  }
+  

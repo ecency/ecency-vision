@@ -1,0 +1,67 @@
+.delgations-list {
+    // @include user-grid-list(1, 2, 2);
+    min-height: 361px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    .delegation-loading {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 1px;
+    }
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 80vh;
+  
+      .search-box {
+        max-width: 300px;
+        align-self: center;
+      }
+    //   @include user-grid-list(1, 2, 3);
+    }
+    .item-main{
+      width: max-content;
+      .actionable{
+        gap: 10px;
+        .actions{
+          display: flex;
+          gap: 10px;
+        }
+        span{
+          height: 20px;
+        }
+      }
+    }
+    .item-extra {
+      display: flex;
+      justify-content: space-between;
+    }
+    .load-more-btn {
+      padding: 20px;
+      text-align: center;
+    }
+  }
+
+  .parent-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+  .wrap-lists{
+    width: max-content;
+    padding: 10px;
+    background-color: #212529;
+    border-radius: 10px;
+
+    &:hover{
+        background-color: none;
+        background: none;
+    }
+  }
