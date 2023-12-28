@@ -1,9 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Navbar, ScrollToTop, Theme } from "@/features/shared";
 import "./page.scss";
-import { WitnessesHeader } from "@/app/witnesses/_components/witnesses-header";
 import { prefetchWitnessesQuery } from "@/api/queries";
-import { WitnessesList } from "@/app/witnesses/_components";
+import { WitnessesHeader, WitnessesList } from "@/app/witnesses/_components";
 
 export default async function Witnesses() {
   const queryClient = new QueryClient();

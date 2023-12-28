@@ -1,0 +1,36 @@
+@import "src/styles/vars_mixins";
+
+.witnesses-proxy {
+
+  @media (min-width: $lg-break) {
+    width: 600px;
+  }
+
+  .description {
+    margin-bottom: 6px;
+
+    @include themify(day) {
+      @apply text-gray-steel;
+    }
+
+    @include themify(night) {
+      @apply text-blue-powder;
+    }
+  }
+
+  .proxy-form {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    max-width: 320px;
+    padding: 10px 10px 10px 0;
+
+    .txt-username {
+      width: 160px;
+
+      @media (min-width: $sm-break) {
+        width: 180px;
+      }
+    }
+  }
+}

@@ -13,9 +13,10 @@ import { convertToOriginalWitnesses, makeUnique, transform } from "@/app/witness
 import Pagination from "@ui/pagination";
 import { FormControl } from "@ui/input";
 import { usePrevious } from "react-use";
-import { useWitnessVotesQuery } from "@/app/witnesses/_queries";
+import { useProxyVotesQuery, useWitnessVotesQuery } from "@/app/witnesses/_queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
+import { WitnessesControls } from "@/app/witnesses/_components/witnesses-controls";
 
 type SortOption = "rank" | "name" | "fee";
 
@@ -26,12 +27,12 @@ export function WitnessesList() {
   const [rank, setRank] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [sort, setSort] = useState<SortOption>("rank");
-  const [proxyVotes, setProxyVotes] = useState<string[]>([]);
   const [page, setPage] = useState(1);
   const previousPage = usePrevious(page);
 
   const { data, isPending, fetchNextPage } = useWitnessesQuery(limit);
   const { data: witnessVotes } = useWitnessVotesQuery();
+  const { data: proxyVotes } = useProxyVotesQuery();
 
   const currentPageData = useMemo(() => data?.pages[page - 1] ?? [], [data, page]);
   const transformedWitnesses = useMemo(
@@ -224,6 +225,7 @@ export function WitnessesList() {
           </FormControl>
         </div>
       </div>
+      <WitnessesControls witnesses={witnesses} />
     </>
   );
 }
