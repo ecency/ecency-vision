@@ -5,7 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated to react query 5">
-      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/vote-witness.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-post-header-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/witnesses-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-vote-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-vote-btn/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-vote-btn/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-vote-btn/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-extra/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-extra/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-extra/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-extra/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/witness-votes-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_utils/convert-to-original-witnesses.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/_utils/make-unique.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/witnesses/page-old.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/global-store/signing-key-module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-link/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/bridge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +80,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/api",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/witnesses/_components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -56,25 +97,25 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/api" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/app/witnesses" />
-      <recent name="$PROJECT_DIR$/public/assets" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/features/i18n" />
       <recent name="$PROJECT_DIR$/src/features/shared/navbar" />
-      <recent name="$PROJECT_DIR$/src/app/communities/_components/community-list-item" />
-      <recent name="$PROJECT_DIR$/src/app/communities/_components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -177,7 +218,9 @@
       <workItem from="1701948427772" duration="23697000" />
       <workItem from="1702186557562" duration="75000" />
       <workItem from="1702303054733" duration="4626000" />
-      <workItem from="1703584954368" duration="4165000" />
+      <workItem from="1703584954368" duration="9297000" />
+      <workItem from="1703665270148" duration="4000" />
+      <workItem from="1703767597447" duration="5472000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -259,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703589294968</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated to react query 5">
+      <option name="closed" value="true" />
+      <created>1703589325077</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1703589325077</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

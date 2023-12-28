@@ -1,0 +1,24 @@
+.key-or-hot {
+  max-width: 500px;
+  margin: 20px auto 0 auto;
+  padding-bottom: 26px;
+  width: 100%;
+
+  .hs-sign, .kc-sign {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+    .hs-logo, .kc-logo {
+      height: 14px;
+      margin-right: 6px;
+    }
+  }
+
+  .kc-sign {
+    margin-top: 10px;
+    .kc-logo {
+      height: 16px;
+    }
+  }
+}

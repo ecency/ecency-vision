@@ -13,3 +13,5 @@ export * from "./notification-handler";
 export * from "./switch-lang";
 export * from "./search-suggester";
 export * from "./suggestion-list";
+export * from "./key-or-hot-dialog";
+export * from "./entry-link";

@@ -19,5 +19,10 @@ export enum QueryIdentifiers {
   BY_DRAFT_ID = "by-draft-id",
   FETCH_DISCUSSIONS = "fetch-discussions",
   FETCH_MUTED_USERS = "fetch-muted-users",
-  COMMUNITIES = "communities"
+  COMMUNITIES = "communities",
+  WITNESSES = "witnesses",
+  POST_HEADER = "post-header",
+  GET_ACCOUNTS = "get-accounts",
+  GET_ACCOUNT_FULL = "get-account-full",
+  TRENDING_TAGS = "trending-tags"
 }

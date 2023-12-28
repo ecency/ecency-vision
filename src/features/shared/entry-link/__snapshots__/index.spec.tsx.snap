@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default Render 1`] = `
+<a
+  href="/photography/@foo/foo-bar-baz"
+  onClick={[Function]}
+>
+  click here
+</a>
+`;

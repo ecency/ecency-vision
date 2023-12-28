@@ -13,7 +13,7 @@ export function CommunitiesList() {
   const [fetchingQuery, setFetchingQuery] = useState("");
   const [sort, setSort] = useState("rank");
 
-  const { data: list, isLoading } = useCommunitiesQuery(fetchingQuery, sort);
+  const { data: list, isLoading } = useCommunitiesQuery(sort, fetchingQuery);
 
   const noResults = useMemo(() => !isLoading && list.length === 0, [isLoading, list]);
 

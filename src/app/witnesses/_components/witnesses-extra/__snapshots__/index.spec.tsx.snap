@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="extra-witnesses"
+>
+  <p
+    className="description"
+  >
+    Enter account name below to vote for a witness outside of Top 50
+  </p>
+  <div
+    className="vote-form"
+  >
+    <div
+      className="txt-username"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        disabled={false}
+        maxLength={20}
+        onChange={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <div
+        className="witness-vote-btn"
+        onClick={[Function]}
+      >
+        <div
+          className="btn-witness-vote btn-up-vote disabled"
+        >
+          <span
+            className="btn-inner"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Render with list 1`] = `
+<div
+  className="extra-witnesses"
+>
+  <p
+    className="description"
+  >
+    Enter account name below to vote for a witness outside of Top 50
+  </p>
+  <div
+    className="vote-form"
+  >
+    <div
+      className="txt-username"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        disabled={false}
+        maxLength={20}
+        onChange={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <div
+        className="witness-vote-btn"
+        onClick={[Function]}
+      >
+        <div
+          className="btn-witness-vote btn-up-vote disabled"
+        >
+          <span
+            className="btn-inner"
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="witnesses-list"
+  >
+    <div
+      className="item"
+    >
+      <span
+        className="username"
+      >
+        foo
+      </span>
+      <div>
+        <div
+          className="witness-vote-btn"
+          onClick={[Function]}
+        >
+          <div
+            className="btn-witness-vote btn-up-vote voted"
+          >
+            <span
+              className="btn-inner"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item"
+    >
+      <span
+        className="username"
+      >
+        bar
+      </span>
+      <div>
+        <div
+          className="witness-vote-btn"
+          onClick={[Function]}
+        >
+          <div
+            className="btn-witness-vote btn-up-vote voted"
+          >
+            <span
+              className="btn-inner"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item"
+    >
+      <span
+        className="username"
+      >
+        baz
+      </span>
+      <div>
+        <div
+          className="witness-vote-btn"
+          onClick={[Function]}
+        >
+          <div
+            className="btn-witness-vote btn-up-vote voted"
+          >
+            <span
+              className="btn-inner"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

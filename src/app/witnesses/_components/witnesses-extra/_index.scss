@@ -1,0 +1,69 @@
+@import "src/styles/vars_mixins";
+
+.extra-witnesses {
+  margin-bottom: 30px;
+
+  @media (min-width: $lg-break) {
+    width: 400px;
+    margin-bottom: 0;
+  }
+
+  .description {
+    margin-bottom: 6px;
+
+    @include themify(day) {
+      @apply text-gray-steel;
+    }
+
+    @include themify(night) {
+     @apply text-blue-powder;
+    }
+  }
+
+  .vote-form {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 10px 10px 10px 0;
+
+    .txt-username {
+      width: 260px;
+    }
+  }
+
+  .witnesses-list {
+    margin-top: 20px;
+    width: 300px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+      padding: 10px;
+      border-radius: 8px;
+
+      @include themify(day) {
+        @apply bg-light-300;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-200;
+      }
+
+      .username {
+        font-size: 16px;
+        font-weight: 500;
+        width: 220px;
+
+        @include themify(day) {
+          @apply text-gray-charcoal;
+        }
+
+        @include themify(night) {
+          @apply text-blue-powder;
+        }
+      }
+    }
+  }
+}

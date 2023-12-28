@@ -4,6 +4,7 @@ import { createSubscriptionsState } from "@/core/global-store/subscriptions-modu
 import { createUiState } from "@/core/global-store/ui-module";
 import { createUsersState } from "@/core/global-store/users-module";
 import { createNotificationsState } from "@/core/global-store/notifications-module";
+import { createSigningKeyState } from "@/core/global-store/signing-key-module";
 
 export const INITIAL_STATE = {
   ...createGlobalState(),
@@ -11,7 +12,8 @@ export const INITIAL_STATE = {
   ...createSubscriptionsState(),
   ...createUiState(),
   ...createUsersState(),
-  ...createNotificationsState()
+  ...createNotificationsState(),
+  ...createSigningKeyState()
 };
 
 export type GlobalStore = typeof INITIAL_STATE;

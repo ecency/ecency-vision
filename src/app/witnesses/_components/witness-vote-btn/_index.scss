@@ -1,0 +1,7 @@
+@import "src/styles/vars_mixins";
+
+.witness-vote-btn {
+  .btn-witness-vote {
+    @include btn-vote;
+  }
+}

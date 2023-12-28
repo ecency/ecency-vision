@@ -116,17 +116,11 @@ export const getPost = (
   });
 };
 
-export const getPostHeader = (
-  author: string = "",
-  permlink: string = ""
-): Promise<Entry | null> => {
-  return bridgeApiCall<Entry | null>("get_post_header", {
+export const getPostHeader = (author: string = "", permlink: string = ""): Promise<Entry | null> =>
+  bridgeApiCall<Entry | null>("get_post_header", {
     author,
     permlink
-  }).then((resp) => {
-    return resp;
   });
-};
 
 export interface AccountNotification {
   date: string;
