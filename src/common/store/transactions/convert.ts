@@ -298,7 +298,7 @@ export function HEToHTransaction(t: HECoarseTransaction): Transaction | null {
         ...HEB2B(t),
         account: t.account,
         from: t.from,
-        base: FormattedNumber(t.quantityHive, { suffix: HIVE_HUMAN_NAME }),
+        base: FormattedNumber(t.quantityHive ?? "0", { suffix: HIVE_HUMAN_NAME }),
         quote: FormattedNumber(t.quantityTokens, { suffix: t.symbol })
       };
     case "market_expire":

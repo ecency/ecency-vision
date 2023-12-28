@@ -342,7 +342,7 @@ export interface HEMarketBuy extends HECoarseBaseTransaction {
   operation: "market_buy";
   account: string;
   from: string;
-  quantityHive: nAACRS;
+  quantityHive: nAACRS | null;
   quantityTokens: nAACRS;
 }
 export interface MarketBuy extends BaseTransaction {
