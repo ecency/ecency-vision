@@ -29,7 +29,7 @@ export function WitnessesList() {
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
 
-  const [limit, setLimit] = useState(30);
+  const [limit, setLimit] = useState(50);
   const [rank, setRank] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [sort, setSort] = useState<SortOption>("rank");

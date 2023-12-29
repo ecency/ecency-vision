@@ -14,9 +14,9 @@ export function useWitnessesQuery(limit: number) {
 }
 
 export async function prefetchWitnessesQuery(queryClient: QueryClient) {
-  const page = await getWitnessesByVote("", 30);
+  const page = await getWitnessesByVote("", 50);
 
-  return queryClient.setQueryData([QueryIdentifiers.WITNESSES, 30], {
+  return queryClient.setQueryData([QueryIdentifiers.WITNESSES, 50], {
     pageParams: [""],
     pages: [page]
   } as InfiniteData<Witness[]>);

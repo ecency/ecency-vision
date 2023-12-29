@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added witnesses active proxy section">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_queries/proxy-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/proxy-votes-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/active-user-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/active-user-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/witnesses-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/witnesses-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +186,7 @@
       <workItem from="1703767597447" duration="7006000" />
       <workItem from="1703784681996" duration="1410000" />
       <workItem from="1703843700965" duration="662000" />
-      <workItem from="1703844694855" duration="1961000" />
+      <workItem from="1703844694855" duration="2314000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -299,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703850847161</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added witnesses active proxy section">
+      <option name="closed" value="true" />
+      <created>1703851684421</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703851684421</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

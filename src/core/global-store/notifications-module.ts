@@ -181,8 +181,7 @@ const fetchNotificationsSettings = async (
 
     if (permission === "granted") {
       if (oldToken !== token) {
-        // @ts-ignore
-        dispatch(updateNotificationsSettings(username, token));
+        updateNotificationsSettings(username, token, set, getState);
         ls.set("fb-notifications-token", token);
       }
 
