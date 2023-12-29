@@ -50,7 +50,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -84,7 +84,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -122,7 +122,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -230,7 +230,7 @@ exports[`(1) Transfer HIVE (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
             style={
@@ -365,7 +365,7 @@ exports[`(1) Transfer HIVE (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -429,7 +429,7 @@ exports[`(1) Transfer HIVE (3) Step 3 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               <svg
@@ -453,11 +453,11 @@ exports[`(1) Transfer HIVE (3) Step 3 1`] = `
               value=""
             />
             <div
-              className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600"
+              className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full dark:border-gray-600 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               <button
-                className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+                className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
                 disabled={false}
                 onClick={[Function]}
                 style={
@@ -584,7 +584,7 @@ exports[`(1) Transfer HIVE (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -653,7 +653,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -687,7 +687,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -725,7 +725,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -833,7 +833,7 @@ exports[`(2) Transfer HBD (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
             style={
@@ -972,7 +972,7 @@ exports[`(2) Transfer HBD (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1054,7 +1054,7 @@ exports[`(2) Transfer HBD (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1123,7 +1123,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -1157,7 +1157,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -1195,7 +1195,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -1303,7 +1303,7 @@ exports[`(3) Transfer POINT (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
             style={
@@ -1438,7 +1438,7 @@ exports[`(3) Transfer POINT (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1520,7 +1520,7 @@ exports[`(3) Transfer POINT (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1589,7 +1589,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -1623,7 +1623,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -1661,7 +1661,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -1763,7 +1763,7 @@ exports[`(4) Transfer to Savings - HBD (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
             style={
@@ -1898,7 +1898,7 @@ exports[`(4) Transfer to Savings - HBD (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1980,7 +1980,7 @@ exports[`(4) Transfer to Savings - HBD (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -2049,7 +2049,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -2083,7 +2083,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -2121,7 +2121,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -2223,7 +2223,7 @@ exports[`(5) Withdraw Savings - HIVE (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
             style={
@@ -2358,7 +2358,7 @@ exports[`(5) Withdraw Savings - HIVE (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -2440,7 +2440,7 @@ exports[`(5) Withdraw Savings - HIVE (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -2509,7 +2509,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -2540,7 +2540,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -2590,7 +2590,7 @@ exports[`(6) Convert (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
             style={
@@ -2700,7 +2700,7 @@ exports[`(6) Convert (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -2782,7 +2782,7 @@ exports[`(6) Convert (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -2851,7 +2851,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -2885,7 +2885,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -2923,7 +2923,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -2973,7 +2973,7 @@ exports[`(7) Power up (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
             style={
@@ -3108,7 +3108,7 @@ exports[`(7) Power up (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -3190,7 +3190,7 @@ exports[`(7) Power up (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -3259,7 +3259,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -3293,7 +3293,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
             >
               <div
-                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+                className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
                 onClick={[Function]}
               >
                 @
@@ -3331,7 +3331,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -3386,7 +3386,7 @@ exports[`(8) Delegate (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={true}
             onClick={[Function]}
             style={
@@ -3526,7 +3526,7 @@ exports[`(8) Delegate (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -3608,7 +3608,7 @@ exports[`(8) Delegate (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -3677,7 +3677,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               @
@@ -3708,7 +3708,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
             className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
           >
             <div
-              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+              className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
               onClick={[Function]}
             >
               #
@@ -3768,7 +3768,7 @@ exports[`(9) Power down (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10 sm:col-start-3"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
             disabled={false}
             onClick={[Function]}
             style={
@@ -3883,7 +3883,7 @@ exports[`(9) Power down (2) Step 2 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -3965,7 +3965,7 @@ exports[`(9) Power down (4) Step 4 1`] = `
           className="hr-6px-btn-spacer"
         />
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {

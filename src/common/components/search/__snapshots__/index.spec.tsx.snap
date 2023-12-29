@@ -11,7 +11,7 @@ exports[`(1) Default render 1`] = `
       className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
     >
       <div
-        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
         onClick={[Function]}
       >
         <svg
@@ -78,7 +78,7 @@ exports[`(2) With query 1`] = `
       className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
     >
       <div
-        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
         onClick={[Function]}
       >
         <svg

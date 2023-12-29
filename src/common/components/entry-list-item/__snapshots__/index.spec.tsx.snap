@@ -266,6 +266,7 @@ exports[`(1) Default render 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -550,6 +551,7 @@ exports[`(2) Grid view 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -877,6 +879,7 @@ exports[`(3) Nsfw 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1204,6 +1207,7 @@ exports[`(4) Nsfw with active user 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1531,6 +1535,7 @@ exports[`(5) Nsfw but allowed 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -1850,6 +1855,7 @@ exports[`(6) Cross post. Bottom menu 1`] = `
             
             <div
               className="menu-down"
+              style={Object {}}
             >
               <svg
                 viewBox="0 0 24 24"

@@ -203,7 +203,7 @@ exports[`(1) Default render 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-43d6de46-315c-41df-bf3a-2009e0004867"
+      id="editor-tool-emoji-picker-34bcd95e-b3ac-461d-846d-51464da99999"
       role="none"
       title="Emoji"
     >
@@ -330,7 +330,7 @@ exports[`(1) Default render 1`] = `
     className="comment-buttons flex items-center mt-3"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
       disabled={false}
       onClick={[Function]}
       size="sm"
@@ -552,7 +552,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-3cad035b-5713-4675-968a-367eeb616cc5"
+      id="editor-tool-emoji-picker-c0db08ed-8c14-4a10-b027-5464b52778d8"
       role="none"
       title="Emoji"
     >
@@ -679,7 +679,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     className="comment-buttons flex items-center mt-3"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
       disabled={false}
       onClick={[Function]}
       size="sm"

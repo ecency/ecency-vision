@@ -6,7 +6,7 @@ exports[`(1) No active user 1`] = `
   onClick={[Function]}
 >
   <button
-    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
     disabled={false}
     onClick={[Function]}
     style={
@@ -40,7 +40,7 @@ exports[`(2) Not Favorited 1`] = `
   className="favorite-btn"
 >
   <button
-    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
     disabled={true}
     onClick={[Function]}
     style={
@@ -74,7 +74,7 @@ exports[`(3) Favorited 1`] = `
   className="favorite-btn"
 >
   <button
-    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+    className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
     disabled={true}
     onClick={[Function]}
     style={
