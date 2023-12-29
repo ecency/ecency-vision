@@ -15,3 +15,4 @@ export * from "./search-suggester";
 export * from "./suggestion-list";
 export * from "./key-or-hot-dialog";
 export * from "./entry-link";
+export * from "./purchase-qr";

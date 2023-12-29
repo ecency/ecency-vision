@@ -4,7 +4,7 @@ import { WalletBadge } from "./wallet-badge";
 import { useRouter } from "next/navigation";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
-import { UserAvatar } from "@/features/shared";
+import { PurchaseQrDialog, UserAvatar } from "@/features/shared";
 import { bellOffSvg, bellSvg, chevronUpSvg, rocketSvg } from "@ui/svg";
 import { downVotingPower, votingPower } from "@/api/hive";
 import { Tooltip } from "@/features/ui";
@@ -149,12 +149,7 @@ export const UserNav = ({ icon }: Props) => {
       {/*{bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}*/}
       {/*{schedules && <Schedules history={history} onHide={() => setSchedules(false)} />}*/}
       {/*{fragments && <Fragments onHide={() => setFragments(false)} />}*/}
-      {/*<PurchaseQrDialog*/}
-      {/*  show={showPurchaseDialog}*/}
-      {/*  setShow={setShowPurchaseDialog}*/}
-      {/*  activeUser={activeUser}*/}
-      {/*  location={location}*/}
-      {/*/>*/}
+      <PurchaseQrDialog show={showPurchaseDialog} setShow={setShowPurchaseDialog} />
     </>
   );
 };

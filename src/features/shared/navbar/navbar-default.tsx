@@ -1,7 +1,7 @@
 import * as ls from "@/utils/local-storage";
 import { classNameObject } from "@ui/util";
 import Link from "next/link";
-import { SwitchLang, UserAvatar } from "@/features/shared";
+import { PurchaseQrDialog, SwitchLang, UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import {
   closeSvg,
@@ -290,12 +290,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
       {/*  <Schedules history={history} onHide={() => setSchedules(!schedules)} />*/}
       {/*)}*/}
       {/*{fragments && activeUser && <Fragments onHide={() => setFragments(!fragments)} />}*/}
-      {/*<PurchaseQrDialog*/}
-      {/*  show={showPurchaseDialog}*/}
-      {/*  setShow={(v) => setShowPurchaseDialog(v)}*/}
-      {/*  activeUser={activeUser}*/}
-      {/*  location={location}*/}
-      {/*/>*/}
+      <PurchaseQrDialog show={showPurchaseDialog} setShow={(v) => setShowPurchaseDialog(v)} />
     </>
   );
 }
