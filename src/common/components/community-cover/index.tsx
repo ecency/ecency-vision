@@ -194,7 +194,7 @@ export class CommunityCover extends Component<Props> {
           )}
         </div>
 
-        <div className="controls-holder">
+        <div className="controls-holder flex gap-3 px-3">
           <SubscriptionBtn {...this.props} />
           {CommunityPostBtn({ ...this.props })}
         </div>

@@ -24,19 +24,18 @@
     }
 
     & ~ .floating-faq-button {
-
-      & > button {
-        bottom: 1.25rem !important;
-        right: 4.5rem !important;
+      & > .help-btn {
+        right: 5rem;
       }
 
       & > .floating-container {
-        bottom: 4.4rem;
         right: 5rem;
       }
     }
   }
-
+  &.small-screen {
+    bottom: 65px;
+  }
   svg {
     width: 20px;
     height: 20px;

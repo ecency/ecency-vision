@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
+import { getAccountFull } from "./hive";
 
 const DEFAULT = {
   points: "0.000",
@@ -87,4 +88,20 @@ export function useImageDownloader(
       retryDelay: 3000
     }
   );
+}
+
+export function useGetAccountFullQuery(username?: string) {
+  return useQuery([QueryIdentifiers.GET_ACCOUNT_FULL, username], () => getAccountFull(username!), {
+    enabled: !!username
+  });
+}
+
+export function useGetAccountsFullQuery(usernames: string[]) {
+  return useQueries({
+    queries: usernames.map((username) => ({
+      queryKey: [QueryIdentifiers.GET_ACCOUNT_FULL, username],
+      queryFn: () => getAccountFull(username!),
+      enabled: !!username
+    }))
+  });
 }

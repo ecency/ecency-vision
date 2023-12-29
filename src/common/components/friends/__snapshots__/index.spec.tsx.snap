@@ -31,6 +31,7 @@ exports[`(1) Render list 1`] = `
                 </div>
                 <div
                   className="menu-down"
+                  style={Object {}}
                 >
                   <svg
                     viewBox="0 0 24 24"

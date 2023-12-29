@@ -1,4 +1,4 @@
-import React, { HTMLProps, useContext } from "react";
+import React, { HTMLProps, ReactNode, useContext } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { DropdownContext } from "@ui/dropdown/dropdown-context";
 
@@ -18,5 +18,18 @@ export function DropdownItem(props: HTMLProps<HTMLDivElement>) {
         props.onClick?.(e);
       }}
     />
+  );
+}
+
+export function DropdownItemWithIcon(
+  props: HTMLProps<HTMLDivElement> & { icon: ReactNode; label: ReactNode }
+) {
+  return (
+    <DropdownItem {...props}>
+      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-dark-sky [&>div>svg]:w-4">
+        <div>{props.icon}</div>
+        <div className="text-sm font-semibold">{props.label}</div>
+      </div>
+    </DropdownItem>
   );
 }

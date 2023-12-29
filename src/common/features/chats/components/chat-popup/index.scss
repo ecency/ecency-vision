@@ -1,0 +1,200 @@
+@import "src/style/vars_mixins";
+
+.chatbox-container {
+  position: fixed;
+  z-index: 99;
+  right: 13rem;
+  bottom: 0rem;
+  height: 50px;
+  width: 410px;
+
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+
+  transition: height 0.5s ease;
+
+  @include themify(day) {
+    @apply bg-white border-[--border-color] border shadow-2xl;
+  }
+
+  @include themify(night) {
+    @apply bg-dark-200 border-[--border-color] border shadow-2xl;
+  }
+
+  &.expanded {
+    height: 530px;
+  }
+
+  .chat-body {
+    position: relative;
+    height: 470px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &.current-user {
+      padding-bottom: 10px;
+      @apply border-b;
+
+      @include media-breakpoint-up(md) {
+        height: 422px;
+      }
+
+      @include themify(day) {
+        @apply border-light-300;
+      }
+      @include themify(night) {
+        border-bottom: 1px solid #172b44;
+      }
+    }
+
+    &.community {
+      height: 422px;
+      @apply border-b;
+
+      @include themify(day) {
+        @apply border-light-300;
+      }
+      @include themify(night) {
+        border-bottom: 1px solid #172b44;
+      }
+    }
+
+    .user-search-suggestion-list {
+      .search-content {
+        padding: 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        margin-bottom: 1rem;
+
+        .search-user-img {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          margin-left: 10px;
+        }
+
+        .search-user-title {
+          display: flex;
+          margin-left: 1rem;
+
+          .search-username {
+            margin: 7px 0 0 0;
+            font-size: 20px;
+            font-weight: 700;
+          }
+
+          .search-reputation {
+            margin: 9px 0 0 6px;
+          }
+        }
+
+        &:hover {
+          @include themify(day) {
+            @apply bg-light-400;
+          }
+          @include themify(night) {
+            @apply bg-gray-charcoal;
+          }
+        }
+      }
+    }
+
+    .chat-content:hover {
+      @include themify(day) {
+        background: #eeeeee;
+      }
+      @include themify(night) {
+        @apply bg-gunmetal;
+      }
+    }
+
+    .chats {
+      .not-joined {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14%;
+      }
+    }
+
+    .import-chats {
+      margin-top: 20px;
+    }
+
+    .manage-chat-key {
+      @apply p-4;
+
+      .private-key {
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    right: 0;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-columns: repeat(1, 1fr);
+
+    .chat-header {
+      width: 100vw;
+      grid-row: span 5;
+    }
+
+    .back-arrow-svg {
+      padding: 0;
+    }
+
+    .message-header-content {
+      max-width: 40vw !important;
+    }
+
+    .sender-message-content,
+    .receiver-message-content {
+      max-width: 75vw !important;
+    }
+
+    &.expanded {
+      height: 100vh;
+    }
+
+    .message-header-title {
+      width: 100vw;
+      margin: 0;
+      margin-right: 0.3rem;
+    }
+
+    .chat-body {
+      grid-row: span 95;
+      height: 100%;
+
+      &.current-user,
+      .community {
+        grid-row: span 90;
+      }
+
+      .chat-content {
+        .last-message {
+          max-width: 75vw;
+        }
+      }
+    }
+
+    .chat {
+      grid-row: span 5;
+    }
+  }
+
+  .chat-input {
+    @apply relative;
+
+    .gif-picker {
+      bottom: calc(100% - 1rem);
+      width: calc(100% - -3px);
+      left: 0.25rem;
+      @apply absolute border-t border-[--border-color];
+    }
+  }
+}

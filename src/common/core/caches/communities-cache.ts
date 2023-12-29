@@ -5,12 +5,13 @@ import { Community } from "../../store/communities";
 import isCommunity from "../../helper/is-community";
 import { useEffect } from "react";
 
-export function useCommunityCache(category: string, invalidate?: boolean) {
+export function useCommunityCache(category?: string, invalidate?: boolean) {
   const client = useQueryClient();
 
   const query = useQuery<Community | null>([QueryIdentifiers.COMMUNITY, category], {
-    queryFn: () => (isCommunity(category) ? bridgeApi.getCommunity(category) : null),
-    initialData: null
+    queryFn: () => (isCommunity(category) ? bridgeApi.getCommunity(category!!) : null),
+    initialData: null,
+    enabled: !!category
   });
 
   useEffect(() => {

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { _t } from "../../i18n";
+import { Link } from "react-router-dom";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
-import { bellOffSvg, bellSvg, chevronUpSvg, rocketSvg } from "../../img/svg";
+import { bellOffSvg, bellSvg, chevronUpSvg, messangerSvg, rocketSvg } from "../../img/svg";
 import { downVotingPower, votingPower } from "../../api/hive";
 import { WalletBadge } from "./wallet-badge";
 import ToolTip from "../tooltip";
@@ -115,16 +116,23 @@ export const UserNav = ({ history, icon }: Props) => {
         <WalletBadge icon={icon} />
 
         {global.usePrivate ? (
-          <ToolTip content={_t("user-nav.notifications")}>
-            <span className="notifications" onClick={() => toggleUIProp("notifications")}>
-              {notifications.unread > 0 && (
-                <span className="notifications-badge notranslate">
-                  {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
-                </span>
-              )}
-              {global.notifications ? bellSvg : bellOffSvg}
-            </span>
-          </ToolTip>
+          <>
+            <ToolTip content={_t("user-nav.notifications")}>
+              <span className="notifications" onClick={() => toggleUIProp("notifications")}>
+                {notifications.unread > 0 && (
+                  <span className="notifications-badge notranslate">
+                    {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
+                  </span>
+                )}
+                {global.notifications ? bellSvg : bellOffSvg}
+              </span>
+            </ToolTip>
+            <ToolTip content={_t("user-nav.chats")}>
+              <Link to={`/chats`}>
+                <span className="chats">{messangerSvg}</span>
+              </Link>
+            </ToolTip>
+          </>
         ) : (
           <></>
         )}

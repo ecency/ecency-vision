@@ -280,7 +280,7 @@ export function EntryListItem({
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
-                <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                <span className="nsfw-badge text-capitalize d-inline-flex items-center">
                   <div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div>
                 </span>
               </div>

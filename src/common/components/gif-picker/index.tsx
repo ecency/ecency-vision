@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MutableRefObject } from "react";
 import BaseComponent from "../base";
 import SearchBox from "../search-box";
 import { _t } from "../../i18n";
@@ -6,10 +6,26 @@ import { insertOrReplace } from "../../util/input-util";
 import _ from "lodash";
 import { fetchGif } from "../../api/misc";
 import "./_index.scss";
+import { classNameObject } from "../../helper/class-name-object";
+
 interface Props {
   fallback?: (e: string) => void;
   shGif: boolean;
   changeState: (gifState?: boolean) => void;
+  pureStyle?: boolean;
+  style?: {
+    width: string;
+    bottom: string;
+    left: string | number;
+    marginLeft: string;
+    borderTopLeftRadius: string;
+    borderTopRightRadius: string;
+    borderBottomLeftRadius: string;
+  };
+  gifImagesStyle?: {
+    width: string;
+  };
+  rootRef?: MutableRefObject<HTMLDivElement | null>;
 }
 
 interface State {
@@ -19,6 +35,10 @@ interface State {
   limit: string;
   offset: string;
   total_count: number;
+}
+
+interface GifImageStyle {
+  width: string;
 }
 
 export default class GifPicker extends BaseComponent<Props> {
@@ -44,6 +64,7 @@ export default class GifPicker extends BaseComponent<Props> {
       this.delayedSearchOnScroll(filter, limit, offset + 50);
     }
   };
+
   componentDidMount() {
     const gifWrapper = document.querySelector(".emoji-picker");
     gifWrapper?.addEventListener("scroll", this.handleScroll);
@@ -95,6 +116,9 @@ export default class GifPicker extends BaseComponent<Props> {
     };
     this.stateSet(_data);
   };
+
+  delayedSearch = _.debounce(this.getSearchedData, 2000);
+
   getSearchedDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     if (_filter?.length) {
@@ -110,6 +134,8 @@ export default class GifPicker extends BaseComponent<Props> {
     }
   };
 
+  delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
+
   getGifsData = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
@@ -122,6 +148,7 @@ export default class GifPicker extends BaseComponent<Props> {
     };
     this.stateSet(_data);
   };
+
   getGifsDataOnScroll = async (_filter: string | null, limit: string, offset: string) => {
     const { data } = await fetchGif(_filter, limit, offset);
     let _data: State = {
@@ -158,9 +185,6 @@ export default class GifPicker extends BaseComponent<Props> {
     this.props.changeState(!this.props.shGif);
   };
 
-  delayedSearch = _.debounce(this.getSearchedData, 2000);
-  delayedSearchOnScroll = _.debounce(this.getSearchedDataOnScroll, 2000);
-
   filterChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ filter: e.target.value });
     if (e.target.value === "") {
@@ -171,10 +195,15 @@ export default class GifPicker extends BaseComponent<Props> {
   };
 
   renderEmoji = (gifData: any[] | null) => {
+    const gifImageStyle: GifImageStyle = {
+      width: "200px",
+      ...(this.props.gifImagesStyle && this.props.gifImagesStyle)
+    };
     return gifData?.map((_gif, i) => {
       return (
         <div className="emoji gifs" key={_gif?.id || i}>
           <img
+            style={gifImageStyle}
             loading="lazy"
             src={_gif?.images?.fixed_height?.url}
             alt="can't fetch :("
@@ -193,8 +222,20 @@ export default class GifPicker extends BaseComponent<Props> {
       return null;
     }
 
+    const gifPickerStyle = {
+      ...(this.props.style && this.props.style)
+    };
+
     return (
-      <div className="emoji-picker gif" onScroll={this.handleScroll}>
+      <div
+        ref={this.props.rootRef}
+        className={classNameObject({
+          "gif-picker": true,
+          "emoji-picker gif": !this.props.pureStyle
+        })}
+        style={gifPickerStyle}
+        onScroll={this.handleScroll}
+      >
         <SearchBox
           autoComplete="off"
           autoCorrect="off"
@@ -223,7 +264,7 @@ export default class GifPicker extends BaseComponent<Props> {
             );
           }
         })()}
-        <span className="flex justify-content-end">{_t("gif-picker.credits")}</span>
+        <span className="flex justify-end">{_t("gif-picker.credits")}</span>
       </div>
     );
   }

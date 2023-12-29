@@ -530,7 +530,7 @@ const Onboard = (props: Props) => {
                 </span>
               </div>
               <span className="mt-3">{_t("onboard.copy-key")}</span>
-              <div className="mt-3 flex flex-col align-center">
+              <div className="mt-3 flex flex-col items-center">
                 <div className="flex">
                   <span className="mr-3 mt-1">
                     {innerWidth <= 768 ? shortPassword + "..." : masterPassword}

@@ -28,7 +28,9 @@ export default {
   COMMUNITIES: `/communities`,
   COMMUNITIES_CREATE: `/communities/create`,
   COMMUNITIES_CREATE_HS: `/communities/create-hs`,
-  COMMUNITY: `/:filter(${entryFilters.join("|")}|subscribers|activities|roles)/:name(hive-[\\d]+)`,
+  COMMUNITY: `/:filter(${entryFilters.join(
+    "|"
+  )}|subscribers|activities|roles)/:name(hive-[\\d]+)(/:communityid)?`,
   SUBMIT: `/submit`,
   EDIT: `/:username(@[\\w\\.\\d-]+)/:permlink/edit`,
   EDIT_DRAFT: `/draft/:draftId`,
@@ -39,5 +41,6 @@ export default {
   PROPOSALS: `/proposals`,
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
   PURCHASE: "/purchase",
-  DECKS: "/decks"
+  DECKS: "/decks",
+  CHATS: `/chats/:username?/:channel?`
 };

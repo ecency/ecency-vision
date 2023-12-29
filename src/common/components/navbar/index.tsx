@@ -120,7 +120,7 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
 
   return (
     <div
-      className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
+      className="fixed z-20 top-0 left-0 right-0 flex flex-col justify-start"
       id="sticky-container"
     >
       <NavbarMobile

@@ -1,26 +1,31 @@
-import React, { MutableRefObject } from "react";
+import React, { forwardRef } from "react";
 import { Textarea, TextareaProps } from "./textarea";
 import { Select, SelectProps } from "./select";
 import { Input, InputProps } from "./input";
 import { Checkbox, CheckboxProps } from "./checkbox";
 import { Toggle } from "@ui/input/form-controls/toggle";
 
-type Props = (InputProps | TextareaProps | SelectProps | CheckboxProps) & {
-  ref?: MutableRefObject<any>;
-};
+type Props = InputProps | TextareaProps | SelectProps | CheckboxProps;
 
-export function FormControl(props: Props) {
+export const FormControl = forwardRef<any, Props>((props, ref) => {
   switch (props.type) {
     case "textarea":
-      return <Textarea {...props} />;
+      return <Textarea {...props} ref={ref} />;
     case "select":
-      return <Select {...props}>{props.children}</Select>;
+      return (
+        <Select {...props} ref={ref}>
+          {props.children}
+        </Select>
+      );
     case "checkbox":
       if (props.isToggle) {
-        return <Toggle {...props} />;
+        return <Toggle {...props} ref={ref} />;
       }
-      return <Checkbox {...props} />;
+      return <Checkbox {...props} ref={ref} />;
     default:
-      return <Input {...props} />;
+      return <Input {...props} ref={ref} />;
   }
-}
+}) as React.FC<Props>;
+
+// https://github.com/storybookjs/storybook/issues/21898
+// This actually relates of our version of React. Need to upgrade the package
