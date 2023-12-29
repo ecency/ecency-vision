@@ -1,13 +1,12 @@
 import React from "react";
-
-import renderer from "react-test-renderer";
 import { createBrowserHistory } from "history";
 import { StaticRouter } from "react-router-dom";
 
 import { CommunityCard } from "./index";
 
-import { communityInstance1, globalInstance, activeUserMaker } from "../../helper/test-helper";
+import { activeUserMaker, communityInstance1, globalInstance } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 it("(1) Default render", () => {
   const props = {
@@ -25,7 +24,11 @@ it("(1) Default render", () => {
     addCommunity: () => {}
   };
 
-  const component = withStore(<CommunityCard {...props} />);
+  const component = withStore(
+    <QueryClientProvider client={new QueryClient()}>
+      <CommunityCard {...props} />
+    </QueryClientProvider>
+  );
   expect(component.toJSON()).toMatchSnapshot();
 });
 
@@ -46,9 +49,11 @@ it("(2) Should show edit buttons with nsfw label", () => {
   };
 
   const component = withStore(
-    <StaticRouter location="/hive-148441" context={{}}>
-      <CommunityCard {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location="/hive-148441" context={{}}>
+        <CommunityCard {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   expect(component.toJSON()).toMatchSnapshot();
 });
@@ -73,9 +78,11 @@ it("(3) usePrivate = false", () => {
   };
 
   const component = withStore(
-    <StaticRouter location="/hive-148441" context={{}}>
-      <CommunityCard {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location="/hive-148441" context={{}}>
+        <CommunityCard {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   expect(component.toJSON()).toMatchSnapshot();
 });
