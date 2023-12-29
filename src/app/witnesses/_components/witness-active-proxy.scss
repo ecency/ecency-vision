@@ -1,0 +1,36 @@
+@import "src/styles/vars_mixins";
+
+.witnesses-active-proxy {
+  @include themify(day) {
+    @apply text-gray-charcoal;
+  }
+
+  @include themify(night) {
+   @apply text-blue-powder;
+  }
+
+  text-align: center;
+
+  .description {
+    margin: 20px 0;
+  }
+
+  .proxy-form {
+    .current-proxy {
+      margin-bottom: 20px;
+    }
+  }
+
+  .proxy-votes {
+    margin: 20px 0;
+
+    .proxy-votes-title {
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .proxy-votes-item {
+      margin-bottom: 6px;
+    }
+  }
+}

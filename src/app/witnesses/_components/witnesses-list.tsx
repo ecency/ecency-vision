@@ -10,18 +10,24 @@ import { WitnessVoteBtn } from "@/app/witnesses/_components/witness-vote-btn";
 import { WitnessCard } from "@/app/witnesses/_components/witness-card";
 import { useGetAccountsQuery, useWitnessesQuery } from "@/api/queries";
 import { convertToOriginalWitnesses, makeUnique, transform } from "@/app/witnesses/_utils";
-import Pagination from "@ui/pagination";
 import { FormControl } from "@ui/input";
 import { usePrevious } from "react-use";
-import { useProxyVotesQuery, useWitnessVotesQuery } from "@/app/witnesses/_queries";
+import {
+  useProxyVotesQuery,
+  useWitnessProxyQuery,
+  useWitnessVotesQuery
+} from "@/app/witnesses/_queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
 import { WitnessesControls } from "@/app/witnesses/_components/witnesses-controls";
+import WitnessesActiveProxy from "./witnesses-active-proxy";
+import { useSearchParams } from "next/navigation";
 
 type SortOption = "rank" | "name" | "fee";
 
 export function WitnessesList() {
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
 
   const [limit, setLimit] = useState(30);
   const [rank, setRank] = useState(1);
@@ -33,6 +39,7 @@ export function WitnessesList() {
   const { data, isPending, fetchNextPage } = useWitnessesQuery(limit);
   const { data: witnessVotes } = useWitnessVotesQuery();
   const { data: proxyVotes } = useProxyVotesQuery();
+  const { data: proxy } = useWitnessProxyQuery();
 
   const currentPageData = useMemo(() => data?.pages[page - 1] ?? [], [data, page]);
   const transformedWitnesses = useMemo(
@@ -83,6 +90,13 @@ export function WitnessesList() {
     <LinearProgress />
   ) : (
     <>
+      {(proxy || searchParams.get("username") || searchParams.get("account")) && (
+        <WitnessesActiveProxy
+          isProxy={!proxy}
+          username={searchParams.get("username") ?? searchParams.get("account") ?? proxy}
+          onDone={() => queryClient.setQueryData<string>([QueryIdentifiers.WITNESSES, "proxy"], "")}
+        />
+      )}
       <div className="mb-3 w-full">
         <div className="search-bar">
           <FormControl
@@ -208,13 +222,13 @@ export function WitnessesList() {
         })}
       </div>
       <div className="table-tools">
-        <Pagination
-          dataLength={witnesses.length}
-          pageSize={limit}
-          maxItems={4}
-          page={page}
-          onPageChange={(page) => setPage(page)}
-        />
+        {/*<Pagination*/}
+        {/*  dataLength={witnesses.length}*/}
+        {/*  pageSize={limit}*/}
+        {/*  maxItems={4}*/}
+        {/*  page={page}*/}
+        {/*  onPageChange={(page) => setPage(page)}*/}
+        {/*/>*/}
 
         <div className="sorter">
           <span className="label">{i18next.t("witnesses.sort")}</span>

@@ -17,11 +17,12 @@ export function useWitnessProxyQuery() {
 
   useEffect(() => {
     queryClient.refetchQueries({ queryKey: [QueryIdentifiers.WITNESSES, "proxy"] });
-  }, [urlParamAccount, activeUserAccount, queryClient]);
+  }, [urlParamAccount, activeUserAccount]);
 
   return useQuery<string>({
     queryKey: [QueryIdentifiers.WITNESSES, "proxy"],
     queryFn: () => urlParamAccount?.proxy ?? activeUserAccount?.proxy ?? "",
-    initialData: ""
+    initialData: "",
+    enabled: !!activeUserAccount || !!urlParamAccount
   });
 }

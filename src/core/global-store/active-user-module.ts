@@ -33,7 +33,7 @@ export function createActiveUserActions(
         return;
       }
 
-      let uData: Account | undefined = data;
+      let uData = data;
       if (!uData) {
         try {
           uData = await getAccount(activeUser.username);
@@ -57,17 +57,17 @@ export function createActiveUserActions(
           uPoints: "0.000"
         };
       }
-      set(Object.assign({}, getState(), { uData, points }));
+      set({ activeUser: { data: uData, points, username: activeUser.username } });
     },
     setActiveUser: (name: string | null) => {
       if (name) {
         ls.set("active_user", name);
         Cookies.set("active_user", name, { expires: 365 });
-        load();
+        set({ activeUser: load() });
       } else {
         ls.remove("active_user");
         Cookies.remove("active_user");
-        load();
+        set({ activeUser: load() });
       }
     }
   };

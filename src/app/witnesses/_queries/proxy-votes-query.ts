@@ -16,11 +16,11 @@ export function useProxyVotesQuery() {
   );
 
   useEffect(() => {
-    queryClient.refetchQueries({ queryKey: [QueryIdentifiers.WITNESSES, "proxy"] });
+    queryClient.refetchQueries({ queryKey: [QueryIdentifiers.WITNESSES, "proxyVotes"] });
   }, [urlParamAccount, activeUserAccount, queryClient]);
 
   return useQuery<string[]>({
-    queryKey: [QueryIdentifiers.WITNESSES, "proxy"],
+    queryKey: [QueryIdentifiers.WITNESSES, "proxyVotes"],
     queryFn: () => urlParamAccount?.proxyVotes ?? activeUserAccount?.proxyVotes ?? [],
     initialData: []
   });
