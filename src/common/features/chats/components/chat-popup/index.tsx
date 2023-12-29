@@ -4,7 +4,7 @@ import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
 import ChatInput from "../chat-input";
 import { usePrevious } from "../../../../util/use-previous";
-import "./index.scss";
+import "./_index.scss";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useMount } from "react-use";
 import { classNameObject } from "../../../../helper/class-name-object";

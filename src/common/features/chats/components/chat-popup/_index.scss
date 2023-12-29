@@ -4,7 +4,7 @@
   position: fixed;
   z-index: 99;
   right: 13rem;
-  bottom: 0rem;
+  bottom: 0;
   height: 50px;
   width: 410px;
 
@@ -188,13 +188,14 @@
   }
 
   .chat-input {
-    @apply relative;
+    position: relative;
 
     .gif-picker {
       bottom: calc(100% - 1rem);
       width: calc(100% - -3px);
       left: 0.25rem;
-      @apply absolute border-t border-[--border-color];
+      border-color: var(--border-color);
+      @apply absolute border-t;
     }
   }
 }
