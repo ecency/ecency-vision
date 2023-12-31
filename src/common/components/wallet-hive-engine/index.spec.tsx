@@ -224,6 +224,6 @@ it("(5) usePrivate = false", async () => {
       <WalletHiveEngine {...props} />
     </StaticRouter>
   );
-  await allOver();
+  //await allOver();
   expect(renderer.toJSON()).toMatchSnapshot();
 });

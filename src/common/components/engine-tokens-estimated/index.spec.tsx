@@ -1,7 +1,7 @@
 import React from "react";
 import { EngineTokensEstimated } from "./index";
 import renderer from "react-test-renderer";
-import { dynamicPropsIntance1 } from "../../helper/test-helper";
+import { dynamicPropsIntance1, allOver } from "../../helper/test-helper";
 
 const props = {
   dynamicProps: dynamicPropsIntance1,
@@ -10,6 +10,7 @@ const props = {
 
 const component = renderer.create(<EngineTokensEstimated {...props} />);
 
-it("(1) Default render", () => {
+it("(1) Default render", async () => {
+  await allOver();
   expect(component.toJSON()).toMatchSnapshot();
 });

@@ -158,6 +158,12 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
   handleFineTransactions(fts: Array<HEFineTransaction>) {
     const { transactions } = this.state;
     const { list } = transactions;
+    let newest = null;
+    let oldest = null;
+    if (fts.length) {
+      console.log(fts[0].id, fts[fts.length - 1].id);
+    }
+
     const ntxs = [...HEFineTransactionToHiveTransactions(fts), ...list]
       .filter(this.keepTransaction.bind(this, transactions.group))
       .sort(this.compareTransactions);
@@ -167,27 +173,78 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
         loading: false,
         group: transactions.group,
         newest: null,
-        oldest: null,
+        oldest: ntxs.length - 3,
         debug: `Range of data requested not recorded`
       }
     });
   }
-  handleCoarseTransactions(group: OperationGroup | "", cts: Array<HECoarseTransaction>) {
+  handleCoarseTransactions(
+    group: OperationGroup | "",
+    offset: number,
+    limit: number,
+    cts: Array<HECoarseTransaction>
+  ) {
     const { transactions } = this.state;
+    console.log("handleCoarseTransactions called", { group, offset, limit, cts });
     try {
+      const { list } = transactions;
+      let listLen = list.length;
+
+      // make sure we work with sorted data.
+      cts.sort((a, b) => b.timestamp - a.timestamp);
+
+      if (listLen) {
+        // filter out data that might be already in the list.
+        const newestOldDataTimestamp = new Date(list[0].timestamp).getTime() / 1000;
+        const oldestOldDateTimestamp = new Date(list[listLen - 1].timestamp).getTime() / 1000;
+        console.log(cts.length);
+        cts = cts.filter(
+          (ct) => ct.timestamp > newestOldDataTimestamp || ct.timestamp < oldestOldDateTimestamp
+        );
+        console.log(cts.length);
+        if (cts.length === 0) {
+          // nothing to do.  Bail out.
+          return;
+        }
+        if (cts.length < 20) {
+          console.log({ newestOldDataTimestamp, oldestOldDateTimestamp, cts });
+        }
+      } // if
+
       const txs: Array<Transaction> = cts
         .map((t) => HEToHTransaction(t))
         .filter((x) => x != null)
         // @ts-ignore
         .filter(this.keepTransaction.bind(this, transactions.group));
-      const { list } = transactions;
+
+      console.log({
+        offset,
+        limit,
+        oldest: transactions.oldest,
+        returnedCtsLength: cts.length,
+        filteredLength: txs.length
+      });
+
+      if (transactions.list.length > 1 && cts.length > 1) {
+        console.log([
+          new Date(transactions.list[0].timestamp).toISOString().slice(0, 19),
+          transactions.list[1].timestamp,
+          "...",
+          transactions.list[transactions.list.length - 2].timestamp,
+          transactions.list[transactions.list.length - 1].timestamp,
+          null,
+          new Date(cts[0].timestamp * 1000).toISOString().slice(0, 19),
+          new Date(cts[1].timestamp * 1000).toISOString().slice(0, 19)
+        ]);
+      }
+
       this.stateSet({
         transactions: {
-          list: txs,
+          list: [...list, ...txs],
           loading: false,
           group: transactions.group,
           newest: null,
-          oldest: null,
+          oldest: offset + limit,
           debug: `Range of data requested not recorded`
         }
       });
@@ -210,31 +267,59 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     symbol: string,
     name: string,
     group?: OperationGroup | "",
-    start?: number = 0,
-    limit?: number = 200
+    start: number = -1,
+    limit: number = 10
   ) => {
     const { transactions } = this.state;
-    const { list } = transactions;
-    this.stateSet({
-      transactions: {
-        list: [],
-        loading: true,
-        group: group || "",
-        newest: null,
-        oldest: null,
-        debug: `Range of data requested not recorded`
-      }
-    });
-    if (group === "rewards")
-      getFineTransactions(symbol, name, group === "rewards" ? limit : limit, start)
+    const { list, oldest, newest } = transactions;
+
+    if (start === -1) {
+      this.stateSet({
+        transactions: {
+          list: [],
+          loading: true,
+          group: group || "",
+          newest: null,
+          oldest: null,
+          debug: `Range of data requested not recorded`
+        }
+      });
+    } else {
+      this.stateSet({
+        transactions: {
+          loading: true,
+          list,
+          newest,
+          oldest,
+          group: transactions.group,
+          debug: "Loading more..."
+        }
+      });
+    }
+
+    if (group === "rewards") {
+      getFineTransactions(
+        symbol,
+        name,
+        group === "rewards" ? limit : limit,
+        start === -1 ? 0 : start
+      )
         .then(this.handleFineTransactions.bind(this))
-        .catch((e) => {
-          console.log(e);
-        });
-    else
-      getCoarseTransactions(name, limit, symbol, start)
-        .then(this.handleCoarseTransactions.bind(this, group ? group : ""))
         .catch(console.log);
+    } else {
+      getCoarseTransactions(name, limit, symbol, start === -1 || start === null ? 0 : start + 1)
+        .then((cts: Array<HECoarseTransaction>) =>
+          this.handleCoarseTransactions(group, (start ?? -1) + 1, limit, cts)
+        )
+        .catch(console.log);
+      const checkForNew = () => {
+        getCoarseTransactions(name, 5, symbol, 0).then((cts: Array<HECoarseTransaction>) => {
+          this.handleCoarseTransactions(group ? group : "", 0, 5, cts);
+        });
+      };
+      const { transactions } = this.state;
+      const { group } = transactions;
+    }
   };
   fetchConvertingAmount = () => {
     //    const {account} = this.props;
