@@ -866,7 +866,7 @@ export class WalletHive extends BaseComponent<Props, State> {
               </div>
             )}
 
-            {TransactionList({ ...this.props })}
+            {TransactionList({ ...this.props, tokenName: "HBD" })}
           </div>
           <WalletMenu global={global} username={account.name} active="hive" />
         </div>

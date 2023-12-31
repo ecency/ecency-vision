@@ -704,7 +704,7 @@ interface Props {
   dynamicProps: DynamicProps;
   transactions: Transactions;
   account: Account;
-  tokenName?: string;
+  tokenName: string;
   fetchTransactions: (
     username: string,
     group?: OperationGroup | "",
@@ -764,13 +764,19 @@ const List = (props: Props) => {
     }
   };
 
+  const possibleOps = (tokenName: string) => {
+    if (tokenName === "HBD")
+      return ["transfers", "market-orders", "interests", "stake-operations", "rewards"];
+    else return ["transfers", "market-orders", "stake-operations", "rewards"];
+  };
+
   return (
     <div className="transaction-list">
       <div className="transaction-list-header">
         <h2>{_t("transactions.title")} </h2>
         <FormControl as="select" value={props.transactions.group} onChange={typeChanged}>
           <option value="">{_t("transactions.group-all")}</option>
-          {["transfers", "market-orders", "interests", "stake-operations", "rewards"].map((x) => (
+          {possibleOps(props.tokenName).map((x) => (
             <option key={x} value={x}>
               {_t(`transactions.group-${x}`)}
             </option>
@@ -803,6 +809,7 @@ export default (p: Props) => {
     dynamicProps: p.dynamicProps,
     transactions: p.transactions,
     account: p.account,
+    tokenName: p.tokenName,
     fetchTransactions: p.fetchTransactions
   };
 
