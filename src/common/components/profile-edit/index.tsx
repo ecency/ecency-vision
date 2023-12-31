@@ -14,7 +14,11 @@ import { _t } from "../../i18n";
 import { updateProfile } from "../../api/operations";
 import { getAccount } from "../../api/hive";
 
+import TextareaAutocomplete from "../textarea-autocomplete";
+import { Global } from "../../store/global/types";
+
 interface Props {
+  global: Global;
   activeUser: ActiveUser;
   account: Account;
   addAccount: (data: Account) => void;
@@ -60,7 +64,6 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
   valueChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
     const id = e.target.getAttribute("data-var") as string;
     const { value } = e.target;
-
     // @ts-ignore
     this.stateSet({ [id]: value, changed: true });
   };
@@ -76,6 +79,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
       this.setState({ profileImage: newImage || this.state.profileImage });
       this.props.updateActiveUser(this.props.account);
     }
+    return !isSameAccount || isImageChanged;
   }
 
   update = () => {
@@ -114,6 +118,7 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
   };
 
   render() {
+    const { activeUser } = this.props;
     const {
       name,
       about,
@@ -147,16 +152,23 @@ export default class ProfileEdit extends BaseComponent<Props, State> {
               />
             </Form.Group>
           </Col>
-          <Col lg={6} xl={4}>
+          <Col lg={6} xl={12}>
             <Form.Group>
               <Form.Label>{_t("profile-edit.about")}</Form.Label>
-              <Form.Control
-                type="text"
-                disabled={inProgress}
-                value={about}
-                maxLength={160}
+              <TextareaAutocomplete
                 data-var="about"
+                acceptCharset="UTF-8"
+                global={this.props.global}
+                id="the-editor"
+                className="the-editor accepts-emoji form-control"
+                as="textarea"
+                placeholder={_t("submit.body-placeholder")}
+                value={about}
                 onChange={this.valueChanged}
+                disableRows={true}
+                maxrows={100}
+                spellCheck={true}
+                activeUser={(activeUser && activeUser.username) || ""}
               />
             </Form.Group>
           </Col>

@@ -158,7 +158,8 @@ export const globalInstance: Global = {
   showRewardSplit: true,
   lowRewardThreshold: 100,
   showFrontEnd: true,
-  menuOrder: ["points", "hive", "engine", "spk"]
+  menuOrder: ["points", "hive", "engine", "spk"],
+  footer: ""
 };
 
 export const TrendingTagsInstance: TrendingTags = {

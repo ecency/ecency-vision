@@ -81,7 +81,6 @@ import { checkSvg, contentSaveSvg } from "../img/svg";
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import ModalConfirm from "../components/modal-confirm";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
-
 setProxyBase(defaults.imageServer);
 
 interface PostBase {
@@ -97,6 +96,8 @@ interface Advanced {
   schedule: string | null;
   reblogSwitch: boolean;
   description: string | null;
+  attachFooter: boolean;
+  footer: string;
 }
 
 interface PreviewProps extends PostBase {
@@ -194,7 +195,9 @@ class SubmitPage extends BaseComponent<Props, State> {
       body: "",
       description: ""
     },
-    disabled: true
+    disabled: true,
+    attachFooter: true,
+    footer: ""
   };
 
   _updateTimer: any = null;
@@ -211,6 +214,27 @@ class SubmitPage extends BaseComponent<Props, State> {
     this.detectDraft().then();
 
     let selectedThumbnail = ls.get("draft_selected_image");
+    const lAttachFooter = ls.get("attachFooter") as boolean | null;
+    let footer: string = "";
+    let attachFooter = true;
+    try {
+      const lFooter = ls.get("footer") as string | null;
+      if (lFooter === null) {
+        footer = defaults.footer || "";
+      } else {
+        footer = lFooter;
+      }
+      if (lAttachFooter !== null) {
+        attachFooter = lAttachFooter;
+      }
+    } catch {
+      footer = defaults.footer;
+      attachFooter = true;
+    } finally {
+      this.setState({ footer, attachFooter: !!attachFooter });
+    }
+
+    this.setState({ attachFooter });
     if (selectedThumbnail && selectedThumbnail.length > 0) {
       this.selectThumbnails(selectedThumbnail);
     }
@@ -382,14 +406,17 @@ class SubmitPage extends BaseComponent<Props, State> {
   };
 
   saveAdvanced = (): void => {
-    const { reward, beneficiaries, schedule, reblogSwitch, description } = this.state;
+    const { reward, beneficiaries, schedule, reblogSwitch, description, footer, attachFooter } =
+      this.state;
 
     const advanced: Advanced = {
       reward,
       beneficiaries,
       schedule,
       reblogSwitch,
-      description
+      description,
+      footer,
+      attachFooter
     };
 
     ls.set("local_advanced", advanced);
@@ -405,6 +432,11 @@ class SubmitPage extends BaseComponent<Props, State> {
       reblogSwitch ||
       description !== ""
     );
+  };
+
+  attachFooterChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
+    const { checked: attachFooter } = e.target;
+    this.stateSet({ attachFooter }, this.saveAdvanced);
   };
 
   titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -575,10 +607,22 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     const { activeUser, history, addEntry } = this.props;
-    const { title, tags, body, description, reward, reblogSwitch, beneficiaries } = this.state;
+    const {
+      title,
+      tags,
+      body,
+      description,
+      reward,
+      reblogSwitch,
+      beneficiaries,
+      footer,
+      attachFooter
+    } = this.state;
 
     // clean body
     const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
+    const cbodyWithFooter = cbody + (attachFooter ? "\n---\n" + footer : "");
+    const bodyWithFooter = body + (attachFooter ? "\n---\n" + footer : "");
 
     // make sure active user fully loaded
     if (!activeUser || !activeUser.data.__loaded) {
@@ -611,7 +655,8 @@ class SubmitPage extends BaseComponent<Props, State> {
     const jsonMeta = this.buildMetadata();
     const options = makeCommentOptions(author, permlink, reward, beneficiaries);
     this.stateSet({ posting: true });
-    comment(author, "", parentPermlink, permlink, title, cbody, jsonMeta, options, true)
+
+    comment(author, "", parentPermlink, permlink, title, cbodyWithFooter, jsonMeta, options, true)
       .then(() => {
         this.clearAdvanced();
 
@@ -623,7 +668,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             parentAuthor: "",
             parentPermlink,
             title,
-            body,
+            body: cbodyWithFooter,
             tags,
             description
           }),
@@ -865,7 +910,8 @@ class SubmitPage extends BaseComponent<Props, State> {
       clearModal,
       selectedThumbnail,
       thumbnails,
-      disabled
+      disabled,
+      attachFooter
     } = this.state;
 
     //  Meta config
@@ -1153,6 +1199,19 @@ class SubmitPage extends BaseComponent<Props, State> {
                           </Col>
                         </Form.Group>
                       )}
+                      <Form.Group as={Row}>
+                        <Col sm="3" />
+                        <Col sm="9">
+                          <Form.Check
+                            type="switch"
+                            id="attach-footer-switch"
+                            label={_t("submit.attachfooter")}
+                            checked={attachFooter}
+                            onChange={this.attachFooterChanged}
+                          />
+                          <Form.Text muted={true}>{_t("submit.attachfooter-hint")}</Form.Text>
+                        </Col>
+                      </Form.Group>
                       {thumbnails.length > 0 && (
                         <Form.Group as={Row}>
                           <Form.Label column={true} sm="3">

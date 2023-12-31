@@ -12,6 +12,13 @@ import currencies from "../../constants/currencies.json";
 import { ActiveUser } from "../../store/active-user/types";
 import { copyContent } from "../../img/svg";
 import * as ls from "../../util/local-storage";
+import {
+  postBodySummary,
+  proxifyImageSrc,
+  renderPostBody,
+  setProxyBase
+} from "@ecency/render-helper";
+import * as defaults from "../../constants/defaults.json";
 
 interface Props {
   global: Global;
@@ -26,6 +33,7 @@ interface Props {
   setShowRewardSplit: (value: boolean) => void;
   setLowRewardThreshold: (value: number) => void;
   setShowFrontEnd: (value: boolean) => void;
+  setFooter: (value: string) => void;
 }
 
 interface State {
@@ -38,6 +46,19 @@ export class Preferences extends BaseComponent<Props, State> {
     inProgress: false,
     defaultTheme: ""
   };
+
+  constructor(props: Props) {
+    super(props);
+    const { setFooter } = props;
+    let footer = ls.get("footer");
+    if (!footer) {
+      footer = defaults.footer || "";
+    }
+    if (props.global.footer != footer) {
+      console.log("settting footer:", footer);
+      setFooter(footer);
+    }
+  }
 
   notificationsChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { muteNotifications, unMuteNotifications } = this.props;
@@ -125,6 +146,14 @@ export class Preferences extends BaseComponent<Props, State> {
     success(_t("preferences.updated"));
   };
 
+  footerChanged = (e: React.ChangeEvent<typeof Form.Control & HTMLInputElement>) => {
+    const { setFooter, global } = this.props;
+    const oldValue = global.footer;
+    const { value } = e.target;
+    setFooter(value);
+    success(_t("preferences.updated"));
+  };
+
   lowRewardThresholdChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>) => {
     const { setLowRewardThreshold, global } = this.props;
     const { lowRewardThreshold } = global;
@@ -153,6 +182,7 @@ export class Preferences extends BaseComponent<Props, State> {
   };
 
   componentDidMount() {
+    const { props } = this;
     let use_system_theme = ls.get("use_system_theme", false);
     let theme = ls.get("theme");
     if (use_system_theme) {
@@ -164,6 +194,11 @@ export class Preferences extends BaseComponent<Props, State> {
   render() {
     const { global, activeUser } = this.props;
     const { inProgress } = this.state;
+    let footer = ls.get("footer");
+    if (!footer) {
+      footer = defaults.footer || "";
+    }
+    let renderedFooterPreview = renderPostBody(footer || "", false, global.canUseWebp);
 
     return (
       <>
@@ -344,6 +379,28 @@ export class Preferences extends BaseComponent<Props, State> {
                     </Form.Control>
                   </Form.Group>
                 </Col>
+                <Col lg={6} xl={12}>
+                  <Form.Group>
+                    <Form.Label>{_t("preferences.footer")}</Form.Label>
+                    <Form.Control
+                      id="the-footer-editor"
+                      className="the-editor accepts-emoji form-control"
+                      as="textarea"
+                      placeholder={_t("submit.body-placeholder")}
+                      defaultValue={footer}
+                      onChange={this.footerChanged}
+                      spellCheck={true}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xl={12}>
+                  <Form.Label>{_t("preferences.footer-preview")}</Form.Label>
+                  <br />
+                  <div
+                    className="preview-body markdown-view"
+                    dangerouslySetInnerHTML={{ __html: renderedFooterPreview }}
+                  />
+                </Col>
               </>
             )}
           </Form.Row>
@@ -366,7 +423,8 @@ export default (p: Props) => {
     setShowSelfVote: p.setShowSelfVote,
     setShowRewardSplit: p.setShowRewardSplit,
     setLowRewardThreshold: p.setLowRewardThreshold,
-    setShowFrontEnd: p.setShowFrontEnd
+    setShowFrontEnd: p.setShowFrontEnd,
+    setFooter: p.setFooter
   };
 
   return <Preferences {...props} />;

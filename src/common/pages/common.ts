@@ -33,7 +33,8 @@ import {
   setShowSelfVote,
   setShowRewardSplit,
   setLowRewardThreshold,
-  setShowFrontEnd
+  setShowFrontEnd,
+  setFooter
 } from "../store/global";
 import { fetchTrendingTags } from "../store/trending-tags";
 import { updateSubscriptions } from "../store/subscriptions";
@@ -132,6 +133,7 @@ export interface PageProps {
     limit?: number
   ) => void;
   resetTransactions: () => void;
+  setFooter: (s: string) => void;
 
   users: User[];
   addUser: (user: User) => void;
@@ -199,6 +201,7 @@ export const pageMapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
       setShowRewardSplit,
       setLowRewardThreshold,
       setShowFrontEnd,
+      setFooter,
       dismissNewVersion,
       fetchTrendingTags,
       updateSubscriptions,

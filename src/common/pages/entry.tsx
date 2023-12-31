@@ -82,6 +82,10 @@ import { SelectionPopover } from "../components/selection-popover";
 import { commentHistory } from "../api/private-api";
 import { getPost } from "../api/bridge";
 import formattedNumber from "../util/formatted-number";
+
+import { ScotRewardsInformation, getScotRewardsInformation } from "../api/hive-engine";
+import EntryHEPayout from "../components/entry-he-payout";
+
 setProxyBase(defaults.imageServer);
 
 interface MatchParams {
@@ -140,6 +144,8 @@ class EntryPage extends BaseComponent<Props, State> {
   viewElement: HTMLDivElement | undefined;
 
   componentDidMount() {
+    const { username, permlink } = this.props.match.params;
+
     this.ensureEntry();
     const { history } = this.props;
     if (history?.location.search.includes("?referral")) {
@@ -1212,6 +1218,10 @@ class EntryPage extends BaseComponent<Props, State> {
                           afterVote: this.afterVote
                         })}
                         {EntryPayout({
+                          ...this.props,
+                          entry
+                        })}
+                        {EntryHEPayout({
                           ...this.props,
                           entry
                         })}

@@ -268,7 +268,7 @@ export class WalletHiveEngine extends BaseComponent<Props, State> {
     name: string,
     group?: OperationGroup | "",
     start: number = -1,
-    limit: number = 500
+    limit: number = 250
   ) => {
     const { transactions } = this.state;
     const { list, oldest, newest } = transactions;

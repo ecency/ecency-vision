@@ -35,7 +35,7 @@ exports[`(1) Default render 1`] = `
       </div>
     </div>
     <div
-      className="col-xl-4 col-lg-6"
+      className="col-xl-12 col-lg-6"
     >
       <div
         className="form-group"
@@ -45,15 +45,269 @@ exports[`(1) Default render 1`] = `
         >
           About
         </label>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Profile Image
+        </label>
+        <div
+          className="mb-3 input-group"
+        >
+          <input
+            className="form-control"
+            data-var="profileImage"
+            disabled={false}
+            maxLength={500}
+            onChange={[Function]}
+            placeholder="https://"
+            type="text"
+            value="https://www.imgur.com/profile-image.jpg"
+          />
+          <div
+            className="input-group-append"
+          >
+            <button
+              className="btn btn-primary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                accept="image/*"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                  }
+                }
+                type="file"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Cover Image
+        </label>
+        <div
+          className="mb-3 input-group"
+        >
+          <input
+            className="form-control"
+            data-var="coverImage"
+            disabled={false}
+            maxLength={500}
+            onChange={[Function]}
+            placeholder="https://"
+            type="text"
+            value="https://www.imgur.com/cover-image.jpg"
+          />
+          <div
+            className="input-group-append"
+          >
+            <button
+              className="btn btn-primary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                accept="image/*"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                  }
+                }
+                type="file"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Website
+        </label>
         <input
           className="form-control"
-          data-var="about"
+          data-var="website"
           disabled={false}
-          maxLength={160}
+          maxLength={100}
+          onChange={[Function]}
+          placeholder="https://"
+          type="text"
+          value="https://lipsum.com"
+        />
+      </div>
+    </div>
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Location
+        </label>
+        <input
+          className="form-control"
+          data-var="location"
+          disabled={false}
+          maxLength={30}
           onChange={[Function]}
           type="text"
-          value="Lorem ipsum dolor sit amet"
+          value="New York"
         />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Many social media ids 1`] = `
+<div
+  className="profile-edit"
+>
+  <div
+    className="profile-edit-header"
+  >
+    Profile
+  </div>
+  <div
+    className="form-row"
+  >
+    <div
+      className="col-xl-4 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Display Name
+        </label>
+        <input
+          className="form-control"
+          data-var="name"
+          disabled={false}
+          maxLength={30}
+          onChange={[Function]}
+          type="text"
+          value="Foo B."
+        />
+      </div>
+    </div>
+    <div
+      className="col-xl-12 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          About
+        </label>
+        <div
+          className="rta  "
+        >
+          <textarea
+            acceptCharset="UTF-8"
+            as="textarea"
+            className="rta__textarea the-editor accepts-emoji form-control"
+            data-var="about"
+            global={
+              Object {
+                "canUseWebp": false,
+                "currency": "usd",
+                "currencyRate": 1,
+                "currencySymbol": "$",
+                "filter": "hot",
+                "footer": "",
+                "hasKeyChain": false,
+                "hsClientId": "ecency.app",
+                "intro": true,
+                "isElectron": false,
+                "isMobile": false,
+                "lang": "en-US",
+                "lastIndexPath": null,
+                "listStyle": "row",
+                "lowRewardThreshold": 100,
+                "menuOrder": Array [
+                  "points",
+                  "hive",
+                  "engine",
+                  "spk",
+                ],
+                "newVersion": null,
+                "notifications": true,
+                "nsfw": false,
+                "searchIndexCount": 10000000,
+                "showFrontEnd": true,
+                "showRewardSplit": true,
+                "showSelfVote": true,
+                "tag": "",
+                "theme": "day",
+                "usePrivate": true,
+              }
+            }
+            id="the-editor"
+            maxrows={100}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onScroll={[Function]}
+            onSelect={[Function]}
+            placeholder="Tell your story..."
+            spellCheck={true}
+            value="Lorem ipsum dolor sit amet"
+          />
+        </div>
       </div>
     </div>
     <div

@@ -653,7 +653,9 @@
     "show-reward-split-true": "On",
     "show-reward-split-false": "Off",
     "updated": "Preference updated!",
-    "not-a-number": "entered value isn't a number"
+    "not-a-number": "entered value isn't a number",
+    "footer": "Footer for your posts",
+    "footer-preview": "Footer Preview"
   },
   "wallet": {
     "staked": "staked {{symbol}}",
@@ -1179,7 +1181,9 @@
     "empty-title-alert": "Enter post title",
     "empty-tags-alert": "Enter post tags",
     "empty-body-alert": "Enter post body",
-    "description": "Short description"
+    "description": "Short description",
+    "attachfooter": "Attach footer",
+    "attachfooter-hint": "Attach the footer to the end of the post?"
   },
   "tag-selector": {
     "placeholder-empty": "Tags. First tag is main category. Sortable.",

@@ -23,5 +23,6 @@
   "lowRewardThreshold": 10,
   "showFrontEnd": true,
   "isEcency": false,
+  "footer": "Posted with [proof of brain](https://proofofbrain.blog)",
   "menuOrder": ["pob", "points", "hive", "engine", "spk"]
 }

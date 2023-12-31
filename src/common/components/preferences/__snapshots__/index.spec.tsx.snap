@@ -512,6 +512,45 @@ exports[`(1) Default render 1`] = `
         </select>
       </div>
     </div>
+    <div
+      className="col-xl-12 col-lg-6"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Footer for your posts
+        </label>
+        <textarea
+          className="the-editor accepts-emoji form-control form-control"
+          defaultValue="Posted with [proof of brain](https://proofofbrain.blog)"
+          id="the-footer-editor"
+          onChange={[Function]}
+          placeholder="Tell your story..."
+          spellCheck={true}
+        />
+      </div>
+    </div>
+    <div
+      className="col-xl-12"
+    >
+      <label
+        className="form-label"
+      >
+        Footer Preview
+      </label>
+      <br />
+      <div
+        className="preview-body markdown-view"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Posted with <a href=\\"https://proofofbrain.blog\\" class=\\"markdown-external-link\\" target=\\"_blank\\" rel=\\"noopener\\">proof of brain</a></p>",
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
