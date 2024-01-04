@@ -37,6 +37,7 @@ export function ChatPopupHeader({
   const { data: community } = useCommunityCache(channel?.communityName);
   const { privateKey } = useKeysQuery();
   const title = useMemo(() => {
+    console.log(directContact);
     if (revealPrivateKey) {
       return _t("chat.manage-chat-key");
     }

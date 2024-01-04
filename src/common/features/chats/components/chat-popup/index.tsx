@@ -47,7 +47,7 @@ export const ChatPopUp = () => {
   const hasUserJoinedChat = useMemo(() => !!privateKey, [privateKey]);
   const currentContact = useMemo(
     () => directContacts?.find((dc) => dc.pubkey === receiverPubKey),
-    [receiverPubKey]
+    [directContacts, receiverPubKey]
   );
   const currentChannel = useMemo(
     () => channels?.find((channel) => channel.communityName === communityName),
@@ -97,6 +97,8 @@ export const ChatPopUp = () => {
           })}
         >
           <ChatPopupHeader
+            directContact={currentContact}
+            channel={currentChannel}
             setExpanded={setExpanded}
             canSendMessage={canSendMessage}
             expanded={expanded}
@@ -107,6 +109,8 @@ export const ChatPopUp = () => {
           {(isJoinChatLoading || isChannelsLoading) && <LinearProgress />}
           <div
             className={`chat-body h-full ${
+              currentContact ? "current-user" : currentChannel ? "community" : ""
+            } ${
               !hasUserJoinedChat ? "flex items-center justify-center" : hasMore ? "no-scroll" : ""
             }`}
             ref={chatBodyDivRef}

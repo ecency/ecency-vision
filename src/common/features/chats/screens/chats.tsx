@@ -26,6 +26,7 @@ import {
   useDirectContactsQuery,
   useKeysQuery
 } from "@ecency/ns-query";
+import { useUnmount } from "react-use";
 
 interface Props extends PageProps {
   match: match<{
@@ -40,8 +41,7 @@ interface Props extends PageProps {
 
 export const Chats = ({ match, history }: Props) => {
   const { activeUser } = useMappedStore();
-  const { receiverPubKey, revealPrivateKey, setReceiverPubKey, setRevealPrivateKey } =
-    useContext(ChatContext);
+  const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
   const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
@@ -50,16 +50,18 @@ export const Chats = ({ match, history }: Props) => {
   const { data: channels } = useChannelsQuery();
 
   const isChannel = useMemo(() => match.params.channel === "channel", [match.params]);
-  // Generate temporary contact from username and its public key
+  // Generate temporary contact from username and its public key or give actual from contacts list
+  // note: if there are multiple accounts with same username it will get first one
   const directContact = useMemo(
     () =>
-      match.params.username && !isChannel
+      directContacts?.find((dc) => dc.name === match.params.username?.replace("@", "")) ??
+      (match.params.username && !isChannel
         ? {
             name: match.params.username.replace("@", ""),
             pubkey: receiverPubKey
           }
-        : undefined,
-    [receiverPubKey, match.params]
+        : undefined),
+    [directContacts, receiverPubKey, match.params]
   );
   const { data: communityChannel } = useCommunityChannelQuery(
     isChannel && community ? community : undefined,
@@ -95,6 +97,10 @@ export const Chats = ({ match, history }: Props) => {
 
     return title;
   }, [community, userAccount]);
+
+  useUnmount(() => {
+    setReceiverPubKey("");
+  });
 
   useEffect(() => {
     if (userAccount && !isChannel) {
