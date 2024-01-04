@@ -8,48 +8,44 @@ import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
-import { ChatContext, useKeysQuery } from "@ecency/ns-query";
+import { Channel, ChatContext, DirectContact, useKeysQuery } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../../core";
 
 interface Props {
-  currentUser: string;
-  communityName: string;
+  directContact?: DirectContact;
+  channel?: Channel;
   showSearchUser: boolean;
   expanded: boolean;
   canSendMessage: boolean;
-  isCommunity: boolean;
-  isCurrentUser: boolean;
   handleBackArrowSvg: () => void;
   handleMessageSvgClick: () => void;
   setExpanded: (v: boolean) => void;
 }
 
 export function ChatPopupHeader({
-  currentUser,
-  communityName,
+  directContact,
+  channel,
   showSearchUser,
   expanded,
   canSendMessage,
-  isCommunity,
-  isCurrentUser,
   handleBackArrowSvg,
   handleMessageSvgClick,
   setExpanded
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
-  const { data: community } = useCommunityCache(communityName);
+  const { data: community } = useCommunityCache(channel?.communityName);
   const { privateKey } = useKeysQuery();
   const title = useMemo(() => {
     if (revealPrivateKey) {
       return _t("chat.manage-chat-key");
     }
 
-    if (currentUser) {
-      return currentUser;
+    if (directContact) {
+      return directContact.name;
     }
 
-    if (isCommunity && community) {
+    if (community) {
       return community.title;
     }
 
@@ -58,10 +54,10 @@ export function ChatPopupHeader({
     }
 
     return _t("chat.page-title");
-  }, [currentUser, isCommunity, communityName, showSearchUser, revealPrivateKey]);
+  }, [directContact, community, showSearchUser, revealPrivateKey]);
   const isExpanded = useMemo(
-    () => (currentUser || communityName || showSearchUser || revealPrivateKey) && expanded,
-    [currentUser, communityName, showSearchUser, revealPrivateKey, expanded]
+    () => (directContact || community || showSearchUser || revealPrivateKey) && expanded,
+    [directContact, community, showSearchUser, revealPrivateKey, expanded]
   );
 
   return (
@@ -84,8 +80,8 @@ export function ChatPopupHeader({
           </Tooltip>
         )}
         <div className="flex items-center" onClick={() => setExpanded(!expanded)}>
-          {(currentUser || isCommunity) && (
-            <UserAvatar username={isCurrentUser ? currentUser : communityName || ""} size="small" />
+          {(directContact || channel) && (
+            <UserAvatar username={community?.name ?? directContact?.name ?? ""} size="small" />
           )}
 
           <div
@@ -128,8 +124,10 @@ export function ChatPopupHeader({
             />
           </Tooltip>
         )}
-        {isCommunity && <ChatsCommunityDropdownMenu history={history!} username={communityName} />}
-        {!isCommunity && !isCurrentUser && privateKey && (
+        {channel && (
+          <ChatsCommunityDropdownMenu history={history!} username={channel.communityName!} />
+        )}
+        {privateKey && (
           <div
             className="flex items-center"
             onClick={(e) => {
@@ -139,8 +137,6 @@ export function ChatPopupHeader({
           >
             <ChatsDropdownMenu
               history={history!}
-              communityName={communityName}
-              currentUser={currentUser}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
             />
           </div>
