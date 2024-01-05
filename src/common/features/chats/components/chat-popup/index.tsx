@@ -80,6 +80,7 @@ export const ChatPopUp = () => {
   };
 
   const handleBackArrowSvg = () => {
+    setReceiverPubKey("");
     setCommunityName("");
     setIsCommunity(false);
     setShowSearchUser(false);

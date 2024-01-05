@@ -27,6 +27,7 @@ export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
 };
 
 export const BUTTON_SIZES: Record<ButtonSize, string> = {
+  xxs: "h-4 text-xs [&>div>svg]:w-4",
   xs: "h-[2rem] text-sm font-[500] px-2 text-xs",
   sm: "h-[2rem] text-sm font-[500] px-2",
   md: "h-[2.125rem] px-3",
