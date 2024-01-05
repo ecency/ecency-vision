@@ -140,6 +140,12 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
     } catch (e) {
       throw e;
     } finally {
+      const params = new URLSearchParams(location.search);
+      const filterParams = params.get("filter");
+      if (!!filterParams) {
+        this.stateSet({ filter: filterParams as Filter });
+        this.applyFilter(filterParams as Filter);
+      }
       this.stateSet({ loading: false });
     }
   };
@@ -168,7 +174,9 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
         proposals = [
           ...proposals_.filter(
             (x) =>
-              ["ecency", "good-karma", "hivesearcher", "hivesigner"].includes(x.creator) &&
+              ["ecency", "good-karma", "hivesearcher", "hivesigner", "hivexplorer"].includes(
+                x.creator
+              ) &&
               (x.status === "active" || new Date(x.start_date) > new Date())
           )
         ];
