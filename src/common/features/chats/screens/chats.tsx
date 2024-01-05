@@ -50,18 +50,10 @@ export const Chats = ({ match, history }: Props) => {
   const { data: channels } = useChannelsQuery();
 
   const isChannel = useMemo(() => match.params.channel === "channel", [match.params]);
-  // Generate temporary contact from username and its public key or give actual from contacts list
-  // note: if there are multiple accounts with same username it will get first one
+
   const directContact = useMemo(
-    () =>
-      directContacts?.find((dc) => dc.name === match.params.username?.replace("@", "")) ??
-      (match.params.username && !isChannel
-        ? {
-            name: match.params.username.replace("@", ""),
-            pubkey: receiverPubKey
-          }
-        : undefined),
-    [directContacts, receiverPubKey, match.params]
+    () => directContacts?.find((dc) => dc.pubkey === receiverPubKey),
+    [directContacts, receiverPubKey]
   );
   const { data: communityChannel } = useCommunityChannelQuery(
     isChannel && community ? community : undefined,
@@ -75,12 +67,11 @@ export const Chats = ({ match, history }: Props) => {
   const isShowManageKey = useMemo(() => isReady && revealPrivateKey, [isReady, revealPrivateKey]);
   const isShowChatRoom = useMemo(
     () => isReady && (!!directContact || !!communityChannel) && !revealPrivateKey,
-    [isReady, receiverPubKey, revealPrivateKey, communityChannel, directContact]
+    [isReady, revealPrivateKey, communityChannel, directContact]
   );
   const isShowDefaultScreen = useMemo(
-    () =>
-      isReady && !directContact && !communityChannel && !revealPrivateKey && !match.params.username,
-    [isReady, receiverPubKey, directContact, communityChannel, match]
+    () => isReady && !directContact && !communityChannel && !revealPrivateKey && !receiverPubKey,
+    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey]
   );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
 
@@ -165,7 +156,7 @@ export const Chats = ({ match, history }: Props) => {
             )}
             {isShowChatRoom && (
               <ChatsMessagesBox
-                match={match}
+                community={community}
                 history={history}
                 channel={communityChannel!!}
                 currentContact={directContact}

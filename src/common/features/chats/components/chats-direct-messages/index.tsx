@@ -66,12 +66,12 @@ export default function ChatsDirectMessages(props: Props) {
                       onAppear={() =>
                         setTimeout(
                           () =>
-                            directMessages?.length - 1 === i
+                            groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
                               ? document
                                   .querySelector(`[data-message-id="${message.id}"]`)
                                   ?.scrollIntoView()
                               : {},
-                          100
+                          300
                         )
                       }
                       onInViewport={() =>

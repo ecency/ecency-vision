@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
@@ -35,14 +34,13 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
   );
 
   return (
-    <Link
+    <div
       className={classNameObject({
-        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
+        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
           true,
         "bg-gray-100 dark:bg-gray-800":
           rawUsername === contact.name && receiverPubKey === contact.pubkey
       })}
-      to={`/chats/@${contact.name}`}
       onClick={() => {
         setReceiverPubKey(contact.pubkey);
         if (revealPrivateKey) {
@@ -74,6 +72,6 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
         </div>
         <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
       </div>
-    </Link>
+    </div>
   );
 }
