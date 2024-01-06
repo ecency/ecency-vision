@@ -29,7 +29,7 @@ export function ChatDirectContactOrChannelItem({ contact, channel, username, use
   const { data: contactData } = useGetAccountFullQuery(contact?.name);
 
   const isJoined = useMemo(
-    () => (contactData ? !!getUserChatPublicKey(contactData) : false),
+    () => (contactData ? !!getUserChatPublicKey(contactData) : true),
     [contactData]
   );
   const isReadOnly = useMemo(

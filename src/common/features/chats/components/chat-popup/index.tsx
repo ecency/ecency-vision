@@ -32,7 +32,7 @@ export const ChatPopUp = () => {
 
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
-  const { data: channels, isLoading: isChannelsLoading } = useChannelsQuery();
+  const { data: channels } = useChannelsQuery();
 
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
@@ -41,7 +41,6 @@ export const ChatPopUp = () => {
   const [expanded, setExpanded] = useState(false);
   const [showSearchUser, setShowSearchUser] = useState(false);
   const [show, setShow] = useState(false);
-  const [isCommunity, setIsCommunity] = useState(false);
   const [communityName, setCommunityName] = useState("");
   const [hasMore, setHasMore] = useState(true);
 
@@ -59,8 +58,8 @@ export const ChatPopUp = () => {
     [communityName, channels]
   );
   const canSendMessage = useMemo(
-    () => hasUserJoinedChat && !!privateKey && !isCommunity && !revealPrivateKey,
-    [hasUserJoinedChat, privateKey, isCommunity, revealPrivateKey]
+    () => hasUserJoinedChat && !!privateKey && !currentChannel && !revealPrivateKey,
+    [hasUserJoinedChat, privateKey, currentChannel, revealPrivateKey]
   );
 
   useMount(() => {
@@ -74,7 +73,6 @@ export const ChatPopUp = () => {
 
   useEffect(() => {
     if (prevActiveUser?.username !== activeUser?.username) {
-      setIsCommunity(false);
       setCommunityName("");
     }
   }, [global.theme, activeUser]);
@@ -87,7 +85,6 @@ export const ChatPopUp = () => {
   const handleBackArrowSvg = () => {
     setReceiverPubKey("");
     setCommunityName("");
-    setIsCommunity(false);
     setShowSearchUser(false);
     setHasMore(true);
     setRevealPrivateKey(false);
@@ -112,7 +109,7 @@ export const ChatPopUp = () => {
             handleMessageSvgClick={handleMessageSvgClick}
             showSearchUser={showSearchUser}
           />
-          {(isJoinChatLoading || isChannelsLoading) && <LinearProgress />}
+          {isJoinChatLoading && <LinearProgress />}
           <div
             className={`chat-body h-full ${
               currentContact ? "current-user" : currentChannel ? "community" : ""
@@ -124,7 +121,7 @@ export const ChatPopUp = () => {
             {hasUserJoinedChat && !revealPrivateKey ? (
               <>
                 {!!currentContact || !!currentChannel ? (
-                  isContactJoined ? (
+                  isContactJoined || !!currentChannel ? (
                     <ChatPopupMessagesList
                       currentContact={currentContact}
                       currentChannel={currentChannel}
@@ -133,11 +130,15 @@ export const ChatPopUp = () => {
                     currentContact && <ChatInvitation currentContact={currentContact} />
                   )
                 ) : showSearchUser ? (
-                  <ChatPopupSearchUser />
+                  <ChatPopupSearchUser
+                    onCommunityClicked={(v) => {
+                      setCommunityName(v);
+                      setReceiverPubKey("");
+                    }}
+                  />
                 ) : (
                   <ChatPopupContactsAndChannels
                     communityClicked={(community: string) => {
-                      setIsCommunity(true);
                       setCommunityName(community);
                       setReceiverPubKey("");
                     }}

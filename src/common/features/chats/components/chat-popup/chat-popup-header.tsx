@@ -2,7 +2,6 @@ import Tooltip from "../../../../components/tooltip";
 import { _t } from "../../../../i18n";
 import { Button } from "@ui/button";
 import { addMessageSvg, arrowBackSvg, expandArrow } from "../../../../img/svg";
-import ChatsCommunityDropdownMenu from "../chats-community-actions";
 import { history } from "../../../../store";
 import ChatsDropdownMenu from "../chats-dropdown-menu";
 import { classNameObject } from "../../../../helper/class-name-object";
@@ -123,9 +122,6 @@ export function ChatPopupHeader({
               }}
             />
           </Tooltip>
-        )}
-        {channel && (
-          <ChatsCommunityDropdownMenu history={history!} username={channel.communityName!} />
         )}
         {privateKey && (
           <div

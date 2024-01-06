@@ -7,15 +7,22 @@ import { useCreateTemporaryContact } from "../../hooks";
 import { Community } from "../../../../store/communities";
 import { isCommunity } from "@ecency/ns-query";
 import { Reputations } from "../../../../api/hive";
+import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
 
-export function ChatPopupSearchUser() {
+interface Props {
+  onCommunityClicked: (communityName: string) => void;
+}
+
+export function ChatPopupSearchUser({ onCommunityClicked }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUser, setSelectedUser] = useState<string>("");
+  const [selectedCommunity, setSelectedCommunity] = useState("");
 
   const { data: searchUsers } = useSearchUsersQuery(searchQuery);
   const { data: searchCommunities } = useSearchCommunitiesQuery(searchQuery);
 
   useCreateTemporaryContact(selectedUser);
+  useCreateTemporaryChannel(selectedCommunity);
 
   return (
     <>
@@ -31,7 +38,8 @@ export function ChatPopupSearchUser() {
 
               const community = item as Community;
               if (community.name && isCommunity(community.name)) {
-                // history.push(`/chats/${(item as Community).name}/channel`);
+                setSelectedCommunity(community.name);
+                onCommunityClicked(community.name);
               } else {
                 setSelectedUser((item as Reputations).account);
               }

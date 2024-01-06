@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function ChatSidebarChannel({ channel, username, isChannel }: Props) {
-  const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
+  const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
   const lastMessage = useLastMessageQuery(undefined, channel);
 
@@ -27,6 +27,7 @@ export function ChatSidebarChannel({ channel, username, isChannel }: Props) {
       })}
       to={`/chats/${channel.communityName}/channel`}
       onClick={() => {
+        setReceiverPubKey("");
         if (revealPrivateKey) {
           setRevealPrivateKey(false);
         }

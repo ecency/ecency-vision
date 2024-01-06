@@ -17,6 +17,7 @@ import { useSearchCommunitiesQuery } from "../../queries/search-communities-quer
 import { Community } from "../../../../store/communities";
 import { Reputations } from "../../../../api/hive";
 import { useCreateTemporaryContact } from "../../hooks";
+import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
 
 interface Props {
   username: string;
@@ -33,6 +34,7 @@ export default function ChatsSideBar(props: Props) {
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
 
   const [selectedAccount, setSelectedAccount] = useState("");
+  const [selectedCommunity, setSelectedCommunity] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showDivider, setShowDivider] = useState(false);
 
@@ -40,6 +42,7 @@ export default function ChatsSideBar(props: Props) {
   const { data: searchCommunities } = useSearchCommunitiesQuery(searchQuery);
 
   useCreateTemporaryContact(selectedAccount);
+  useCreateTemporaryChannel(selectedCommunity);
 
   return (
     <div className="flex flex-col h-full">
@@ -57,6 +60,7 @@ export default function ChatsSideBar(props: Props) {
 
                 const community = item as Community;
                 if (community.name && isCommunity(community.name)) {
+                  setSelectedCommunity(community.name);
                   props.history.push(`/chats/${(item as Community).name}/channel`);
                 } else {
                   setSelectedAccount((item as Reputations).account);
