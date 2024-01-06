@@ -27,11 +27,15 @@ export function ChatDirectContactOrChannelItem({ contact, channel, username, use
   const { data: community } = useCommunityCache(channel?.communityName);
 
   const { data: contactData } = useGetAccountFullQuery(contact?.name);
-  const isReadOnly = useMemo(
-    () => (contactData ? contact?.pubkey !== getUserChatPublicKey(contactData) : false),
-    [contactData, contact]
-  );
 
+  const isJoined = useMemo(
+    () => (contactData ? !!getUserChatPublicKey(contactData) : false),
+    [contactData]
+  );
+  const isReadOnly = useMemo(
+    () => (contactData && isJoined ? contact?.pubkey !== getUserChatPublicKey(contactData) : false),
+    [contactData, contact, isJoined]
+  );
   return (
     <div
       className="flex items-center gap-3 px-3 border-b border-[--border-color] py-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-300"
@@ -39,7 +43,7 @@ export function ChatDirectContactOrChannelItem({ contact, channel, username, use
     >
       <div
         className={classNameObject({
-          grayscale: isReadOnly
+          grayscale: isReadOnly || !isJoined
         })}
       >
         <UserAvatar username={username} size="medium" />
@@ -51,6 +55,14 @@ export function ChatDirectContactOrChannelItem({ contact, channel, username, use
             <div className="text-gray-600 flex items-center text-xs">
               {_t("chat.read-only")}
               <Tooltip content={_t("chat.why-read-only")}>
+                <Button icon={informationOutlineSvg} size="xxs" appearance="gray-link" />
+              </Tooltip>
+            </div>
+          )}
+          {!isJoined && (
+            <div className="text-gray-600 flex items-center text-xs">
+              {_t("chat.user-not-joined")}
+              <Tooltip content={_t("chat.not-joined")}>
                 <Button icon={informationOutlineSvg} size="xxs" appearance="gray-link" />
               </Tooltip>
             </div>

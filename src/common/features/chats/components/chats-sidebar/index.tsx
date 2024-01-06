@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { History } from "history";
 import { ChatSidebarHeader } from "./chat-sidebar-header";
 import { ChatSidebarSearch } from "./chat-sidebar-search";
@@ -8,9 +8,6 @@ import { _t } from "../../../../i18n";
 import { ChatSidebarChannel } from "./chat-sidebar-channel";
 import {
   ChatContext,
-  ChatQueries,
-  DirectContact,
-  getUserChatPublicKey,
   isCommunity,
   useChannelsQuery,
   useDirectContactsQuery
@@ -19,8 +16,7 @@ import { useSearchUsersQuery } from "../../queries";
 import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
 import { Community } from "../../../../store/communities";
 import { Reputations } from "../../../../api/hive";
-import { useGetAccountFullQuery } from "../../../../api/queries";
-import { useQueryClient } from "@tanstack/react-query";
+import { useCreateTemporaryContact } from "../../hooks";
 
 interface Props {
   username: string;
@@ -30,7 +26,6 @@ interface Props {
 
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
-  const queryClient = useQueryClient();
   const { setRevealPrivateKey, setReceiverPubKey, activeUsername } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
@@ -41,32 +36,10 @@ export default function ChatsSideBar(props: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [showDivider, setShowDivider] = useState(false);
 
-  const { data: selectedAccountData } = useGetAccountFullQuery(selectedAccount);
   const { data: searchUsers } = useSearchUsersQuery(searchQuery);
   const { data: searchCommunities } = useSearchCommunitiesQuery(searchQuery);
 
-  // Create temporary contact and select it when searching users
-  // `not_joined_${selectedAccount}` – special constructor for creating a temporary contact
-  useEffect(() => {
-    if (selectedAccount && selectedAccountData) {
-      queryClient.setQueryData<DirectContact[]>(
-        [ChatQueries.DIRECT_CONTACTS, activeUsername],
-        [
-          ...(queryClient.getQueryData<DirectContact[]>([
-            ChatQueries.DIRECT_CONTACTS,
-            activeUsername
-          ]) ?? []),
-          {
-            name: selectedAccount,
-            pubkey: getUserChatPublicKey(selectedAccountData) ?? `not_joined_${selectedAccount}`
-          }
-        ]
-      );
-      setReceiverPubKey(
-        getUserChatPublicKey(selectedAccountData) ?? `not_joined_${selectedAccount}`
-      );
-    }
-  }, [selectedAccount, selectedAccountData]);
+  useCreateTemporaryContact(selectedAccount);
 
   return (
     <div className="flex flex-col h-full">

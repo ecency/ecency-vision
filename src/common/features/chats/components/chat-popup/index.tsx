@@ -21,6 +21,7 @@ import {
   useKeysQuery
 } from "@ecency/ns-query";
 import { uploadChatKeys } from "../../utils/upload-chat-keys";
+import { ChatInvitation } from "../chat-invitation";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -48,6 +49,10 @@ export const ChatPopUp = () => {
   const currentContact = useMemo(
     () => directContacts?.find((dc) => dc.pubkey === receiverPubKey),
     [directContacts, receiverPubKey]
+  );
+  const isContactJoined = useMemo(
+    () => !!currentContact?.pubkey && !currentContact.pubkey.startsWith("not_joined_"),
+    [currentContact]
   );
   const currentChannel = useMemo(
     () => channels?.find((channel) => channel.communityName === communityName),
@@ -118,11 +123,15 @@ export const ChatPopUp = () => {
           >
             {hasUserJoinedChat && !revealPrivateKey ? (
               <>
-                {receiverPubKey || isCommunity ? (
-                  <ChatPopupMessagesList
-                    currentContact={currentContact}
-                    currentChannel={currentChannel}
-                  />
+                {!!currentContact || !!currentChannel ? (
+                  isContactJoined ? (
+                    <ChatPopupMessagesList
+                      currentContact={currentContact}
+                      currentChannel={currentChannel}
+                    />
+                  ) : (
+                    currentContact && <ChatInvitation currentContact={currentContact} />
+                  )
                 ) : showSearchUser ? (
                   <ChatPopupSearchUser />
                 ) : (
@@ -148,7 +157,7 @@ export const ChatPopUp = () => {
             )}
           </div>
           <div className="pl-2">
-            {(receiverPubKey || isCommunity) && (
+            {((currentContact && isContactJoined) || currentChannel) && (
               <ChatInput
                 currentContact={currentContact}
                 currentChannel={currentChannel ?? undefined}
