@@ -16,21 +16,23 @@ import { Button } from "@ui/button";
 
 interface Props {
   contact: DirectContact;
-  username: string;
 }
 
-export function ChatSidebarDirectContact({ contact, username }: Props) {
+export function ChatSidebarDirectContact({ contact }: Props) {
   const { receiverPubKey, setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } =
     useContext(ChatContext);
 
   const { data: contactData } = useGetAccountFullQuery(contact.name);
   const lastMessage = useLastMessageQuery(contact);
-  const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 
+  const isJoined = useMemo(
+    () => (contactData ? !!getUserChatPublicKey(contactData) : false),
+    [contactData]
+  );
   const isReadOnly = useMemo(
-    () => (contactData ? contact.pubkey !== getUserChatPublicKey(contactData) : false),
-    [contactData, contact]
+    () => (contactData && isJoined ? contact.pubkey !== getUserChatPublicKey(contactData) : false),
+    [contactData, contact, isJoined]
   );
 
   return (
@@ -38,8 +40,7 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
       className={classNameObject({
         "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
           true,
-        "bg-gray-100 dark:bg-gray-800":
-          rawUsername === contact.name && receiverPubKey === contact.pubkey
+        "bg-gray-100 dark:bg-gray-800": receiverPubKey === contact.pubkey
       })}
       onClick={() => {
         setReceiverPubKey(contact.pubkey);
@@ -50,7 +51,7 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
     >
       <div
         className={classNameObject({
-          grayscale: isReadOnly
+          grayscale: isReadOnly || !isJoined
         })}
       >
         <UserAvatar username={contact.name} size="medium" />
@@ -62,6 +63,14 @@ export function ChatSidebarDirectContact({ contact, username }: Props) {
               <div className="text-gray-600 flex items-center text-xs">
                 {_t("chat.read-only")}
                 <Tooltip content={_t("chat.why-read-only")}>
+                  <Button icon={informationOutlineSvg} size="xxs" appearance="gray-link" />
+                </Tooltip>
+              </div>
+            )}
+            {!isJoined && (
+              <div className="text-gray-600 flex items-center text-xs">
+                {_t("chat.user-not-joined")}
+                <Tooltip content={_t("chat.not-joined")}>
                   <Button icon={informationOutlineSvg} size="xxs" appearance="gray-link" />
                 </Tooltip>
               </div>

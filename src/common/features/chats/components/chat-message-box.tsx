@@ -13,6 +13,7 @@ import {
   useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
 import { Community } from "../../../store/communities";
+import { ChatInvitation } from "./chat-invitation";
 
 interface MatchParams {
   filter: string;
@@ -39,6 +40,10 @@ export default function ChatsMessagesBox(props: Props) {
     () => leftCommunityChannelsIds?.includes(props.channel?.id ?? ""),
     [props.channel]
   );
+  const isContactJoined = useMemo(
+    () => !!props.currentContact?.pubkey && !props.currentContact.pubkey.startsWith("not_joined_"),
+    [props.currentContact]
+  );
 
   useAutoScrollInChatBox(props.currentContact, props.channel);
 
@@ -55,10 +60,14 @@ export default function ChatsMessagesBox(props: Props) {
             username={props.community?.name ?? props.currentContact?.name ?? ""}
             history={props.history}
           />
-          <ChatsMessagesView
-            currentContact={props.currentContact!!}
-            currentChannel={props.channel!!}
-          />
+          {!props.currentContact || isContactJoined ? (
+            <ChatsMessagesView
+              currentContact={props.currentContact!!}
+              currentChannel={props.channel!!}
+            />
+          ) : (
+            <ChatInvitation currentContact={props.currentContact} />
+          )}
         </>
       ) : (
         <>

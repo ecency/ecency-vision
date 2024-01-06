@@ -20,7 +20,6 @@ import { ChatsManageKeySection } from "./chats-manage-key-section";
 import { ChatsUserNotJoinedSection } from "./chats-user-not-joined-section";
 import {
   ChatContext,
-  getUserChatPublicKey,
   useChannelsQuery,
   useCommunityChannelQuery,
   useDirectContactsQuery,
@@ -82,25 +81,16 @@ export const Chats = ({ match, history }: Props) => {
 
     if (community) {
       title = `${community.title} | ${title}`;
-    } else if (userAccount) {
-      title = `${userAccount.name} | ${title}`;
+    } else if (directContact) {
+      title = `${directContact.name} | ${title}`;
     }
 
     return title;
-  }, [community, userAccount]);
+  }, [community, directContact]);
 
   useUnmount(() => {
     setReceiverPubKey("");
   });
-
-  useEffect(() => {
-    if (userAccount && !isChannel) {
-      const key = getUserChatPublicKey(userAccount);
-      setReceiverPubKey(key ?? "");
-    } else {
-      setReceiverPubKey("");
-    }
-  }, [userAccount, isChannel]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -136,7 +126,7 @@ export const Chats = ({ match, history }: Props) => {
                 <ChatsWelcome />
               </div>
             )}
-            {!isShowChatRoom && isReady && match.params.username && (
+            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
               <ChatsUserNotJoinedSection match={match} className="md:hidden" />
             )}
           </div>
@@ -162,7 +152,7 @@ export const Chats = ({ match, history }: Props) => {
                 currentContact={directContact}
               />
             )}
-            {!isShowChatRoom && isReady && match.params.username && (
+            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
               <ChatsUserNotJoinedSection match={match} />
             )}
             {isShowDefaultScreen && <ChatsDefaultScreen />}
