@@ -13,6 +13,7 @@ import { _t } from "../../../../i18n";
 import Tooltip from "../../../../components/tooltip";
 import { informationOutlineSvg } from "../../../../img/svg";
 import { Button } from "@ui/button";
+import { Link } from "react-router-dom";
 
 interface Props {
   contact: DirectContact;
@@ -36,7 +37,8 @@ export function ChatSidebarDirectContact({ contact }: Props) {
   );
 
   return (
-    <div
+    <Link
+      to="/chats"
       className={classNameObject({
         "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
           true,
@@ -81,6 +83,6 @@ export function ChatSidebarDirectContact({ contact }: Props) {
         </div>
         <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
       </div>
-    </div>
+    </Link>
   );
 }

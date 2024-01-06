@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
 import {
@@ -11,6 +11,7 @@ import {
 import { ChatFloatingDate } from "../chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
 import { groupMessages } from "../../utils";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -21,10 +22,21 @@ interface Props {
 export default function ChatsDirectMessages(props: Props) {
   const { directMessages } = props;
 
+  const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
   const { publicKey } = useKeysQuery();
-  const { fetchNextPage } = useDirectMessagesQuery(props.currentContact);
+  const directMessagesQuery = useDirectMessagesQuery(props.currentContact);
 
   const groupedDirectMessages = useMemo(() => groupMessages(directMessages), [directMessages]);
+
+  useDebounce(
+    () => {
+      if (needFetchNextPage) {
+        directMessagesQuery.fetchNextPage();
+      }
+    },
+    500,
+    [needFetchNextPage]
+  );
 
   return (
     <>
@@ -53,12 +65,8 @@ export default function ChatsDirectMessages(props: Props) {
                       300
                     )
                   }
-                  onInViewport={() =>
-                    i === groupedDirectMessages.length - 1 &&
-                    j === messages.length - 1 &&
-                    fetchNextPage({
-                      pageParam: message.created * 1000
-                    })
+                  onInViewport={(inViewport) =>
+                    i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
                   }
                 />
               ))}
