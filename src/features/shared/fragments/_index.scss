@@ -1,0 +1,74 @@
+@import "src/styles/vars_mixins";
+
+.fragments-modal {
+  .modal-body {
+    .dialog-content {
+      min-height: 590px;
+
+      .dialog-controls {
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .fragments-list {
+        height: 520px;
+        overflow: auto;
+
+        .fragment-list-item {
+          cursor: pointer;
+
+          &:not(:last-child) {
+            @include themify(day) {
+              border-bottom: 1px solid;
+              @apply border-light-300;
+            }
+
+            @include themify(night) {
+              border-bottom: solid 1px;
+              @apply border-dark-200;
+            }
+
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+          }
+
+          .item-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+
+            @include themify(day) {
+              @apply text-gray-charcoal;
+            }
+
+            @include themify(night) {
+              @apply text-silver;
+            }
+          }
+
+          .item-summary {
+            @include themify(day) {
+              @apply text-gray-steel;
+            }
+
+            @include themify(night) {
+              @apply text-silver;
+            }
+          }
+
+          .item-title,
+          .item-summary {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+

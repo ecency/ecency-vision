@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="linear-progress"
+  >
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
+  </div>
+</div>
+`;
+
+exports[`(2) With data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="linear-progress"
+  >
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
+  </div>
+</div>
+`;
+
+exports[`(3) Add 1`] = `
+<div
+  className=""
+>
+  <form
+    className="block "
+    onSubmit={[Function]}
+  >
+    <div
+      className="mb-4"
+    >
+      <label>
+        Title
+      </label>
+      <input
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        maxLength={255}
+        onChange={[Function]}
+        onInput={[Function]}
+        onInvalid={[Function]}
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <label>
+        Body
+      </label>
+      <textarea
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        maxLength={5000}
+        onChange={[Function]}
+        onInput={[Function]}
+        onInvalid={[Function]}
+        required={true}
+        style={
+          Object {
+            "height": "300px",
+          }
+        }
+        type="textarea"
+        value=""
+      />
+    </div>
+    <div
+      className="flex justify-between"
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Back
+        </div>
+      </button>
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        disabled={false}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="submit"
+      >
+        <div>
+          Add
+        </div>
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`(4) Edit 1`] = `
+<form
+  className="block "
+  onSubmit={[Function]}
+>
+  <div
+    className="mb-4"
+  >
+    <label>
+      Title
+    </label>
+    <input
+      autoFocus={true}
+      className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+      maxLength={255}
+      onChange={[Function]}
+      onInput={[Function]}
+      onInvalid={[Function]}
+      required={true}
+      type="text"
+      value="baz"
+    />
+  </div>
+  <div
+    className="mb-4"
+  >
+    <label>
+      Body
+    </label>
+    <textarea
+      className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+      maxLength={5000}
+      onChange={[Function]}
+      onInput={[Function]}
+      onInvalid={[Function]}
+      required={true}
+      style={
+        Object {
+          "height": "300px",
+        }
+      }
+      type="textarea"
+      value="lorem ipsum dolor sit amet"
+    />
+  </div>
+  <div
+    className="flex justify-between"
+  >
+    <div>
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "6px",
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Delete
+        </div>
+      </button>
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Back
+        </div>
+      </button>
+    </div>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={false}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="submit"
+    >
+      <div>
+        Update
+      </div>
+    </button>
+  </div>
+</form>
+`;

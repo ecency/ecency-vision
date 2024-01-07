@@ -9,6 +9,7 @@ import { bellOffSvg, bellSvg, chevronUpSvg, rocketSvg } from "@ui/svg";
 import { downVotingPower, votingPower } from "@/api/hive";
 import { Tooltip } from "@/features/ui";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { FragmentsDialog } from "@/features/shared/fragments";
 
 export * from "./wallet-badge";
 
@@ -148,7 +149,7 @@ export const UserNav = ({ icon }: Props) => {
       {/*{drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}*/}
       {/*{bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}*/}
       {/*{schedules && <Schedules history={history} onHide={() => setSchedules(false)} />}*/}
-      {/*{fragments && <Fragments onHide={() => setFragments(false)} />}*/}
+      {fragments && <FragmentsDialog onHide={() => setFragments(false)} />}
       <PurchaseQrDialog show={showPurchaseDialog} setShow={setShowPurchaseDialog} />
     </>
   );

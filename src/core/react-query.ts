@@ -24,5 +24,6 @@ export enum QueryIdentifiers {
   POST_HEADER = "post-header",
   GET_ACCOUNTS = "get-accounts",
   GET_ACCOUNT_FULL = "get-account-full",
-  TRENDING_TAGS = "trending-tags"
+  TRENDING_TAGS = "trending-tags",
+  FRAGMENTS = "fragments"
 }

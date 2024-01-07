@@ -24,6 +24,7 @@ import { Theme } from "@/enums";
 import { useState } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { Search } from "./search";
+import { FragmentsDialog } from "@/features/shared/fragments";
 
 interface Props {
   history: History;
@@ -289,7 +290,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
       {/*{schedules && activeUser && (*/}
       {/*  <Schedules history={history} onHide={() => setSchedules(!schedules)} />*/}
       {/*)}*/}
-      {/*{fragments && activeUser && <Fragments onHide={() => setFragments(!fragments)} />}*/}
+      {fragments && activeUser && <FragmentsDialog onHide={() => setFragments(!fragments)} />}
       <PurchaseQrDialog show={showPurchaseDialog} setShow={(v) => setShowPurchaseDialog(v)} />
     </>
   );

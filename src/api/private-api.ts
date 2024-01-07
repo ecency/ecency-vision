@@ -327,12 +327,12 @@ export const updateFragment = (
   fragmentId: string,
   title: string,
   body: string
-): Promise<any> => {
+): Promise<Fragment[]> => {
   const data = { code: getAccessToken(username), id: fragmentId, title, body };
   return axios.post(apiBase(`/private-api/fragments-update`), data).then((resp) => resp.data);
 };
 
-export const deleteFragment = (username: string, fragmentId: string): Promise<any> => {
+export const deleteFragment = (username: string, fragmentId: string): Promise<Fragment[]> => {
   const data = { code: getAccessToken(username), id: fragmentId };
   return axios.post(apiBase(`/private-api/fragments-delete`), data).then((resp) => resp.data);
 };
