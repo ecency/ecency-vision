@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="gallery-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
+exports[`(2) Test with data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="gallery-list"
+  >
+    <div
+      className="gallery-list-body"
+    >
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        className="gallery-list-item"
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfnH81mLRpXX88tDivAQ4rQeRnNaczmNwEK11cKdMzpuZk5EM7GrPsjaRQspjAUX4xHJoXXVEWyvn.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      >
+        <div
+          className="item-inner"
+          onClick={[Function]}
+        />
+        <div
+          className="item-controls"
+        >
+          <span
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            <svg
+              title="Delete"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

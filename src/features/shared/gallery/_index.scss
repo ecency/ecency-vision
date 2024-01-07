@@ -1,0 +1,73 @@
+@import "src/styles/vars_mixins";
+
+.gallery-modal {
+
+  .dialog-content {
+    height: 500px;
+    overflow: auto;
+
+    .gallery-list {
+
+
+      .gallery-list-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+
+        @media (min-width: $md-break) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $lg-break) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .gallery-list-item {
+          align-items: center;
+          @apply bg-light-400;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          height: 150px;
+          position: relative;
+          text-align: center;
+
+          .item-inner {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+          }
+
+          .item-controls {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            z-index: 1;
+
+            .btn-delete {
+              align-items: center;
+              @apply bg-red-020;
+              border-radius: 8px;
+              @apply text-white;
+              display: flex;
+              height: 20px;
+              justify-content: center;
+              width: 20px;
+
+              svg {
+                height: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

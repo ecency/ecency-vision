@@ -28,5 +28,6 @@ export enum QueryIdentifiers {
   FRAGMENTS = "fragments",
   SCHEDULES = "schedules",
   BOOKMARKS = "bookmarks",
-  FAVOURITES = "favourites"
+  FAVOURITES = "favourites",
+  GALLERY_IMAGES = "gallery-images"
 }

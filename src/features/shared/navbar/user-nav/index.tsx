@@ -12,6 +12,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdo
 import { FragmentsDialog } from "@/features/shared/fragments";
 import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
+import { GalleryDialog } from "@/features/shared/gallery";
 
 export * from "./wallet-badge";
 
@@ -147,7 +148,7 @@ export const UserNav = ({ icon }: Props) => {
         </Dropdown>
       </div>
       {/*{uiNotifications && <UserNotifications history={history} />}*/}
-      {/*{gallery && <Gallery onHide={() => setGallery(false)} />}*/}
+      {gallery && <GalleryDialog onHide={() => setGallery(false)} />}
       {/*{drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}*/}
       {bookmarks && <BookmarksDialog onHide={() => setBookmarks(false)} />}
       {schedules && <SchedulesDialog onHide={() => setSchedules(false)} />}

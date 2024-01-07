@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated schedules">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/bookmarks-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/favourites-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/bookmarks-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/favourites-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated bookmarks">
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/gallery-image.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/gallery-images-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/gallery/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/gallery/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/gallery/gallery-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/gallery/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/gallery/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/user-avatar/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +195,7 @@
       <workItem from="1703784681996" duration="1410000" />
       <workItem from="1703843700965" duration="662000" />
       <workItem from="1703844694855" duration="5566000" />
-      <workItem from="1704628898207" duration="6411000" />
+      <workItem from="1704628898207" duration="7133000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -358,7 +357,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704643204914</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Migrated bookmarks">
+      <option name="closed" value="true" />
+      <created>1704643963871</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1704643963871</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +390,8 @@
     <MESSAGE value="Migrated purchase qr dialog" />
     <MESSAGE value="Migrated fragments" />
     <MESSAGE value="Migrated schedules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated schedules" />
+    <MESSAGE value="Migrated bookmarks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated bookmarks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

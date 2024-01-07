@@ -27,6 +27,7 @@ import { Search } from "./search";
 import { FragmentsDialog } from "@/features/shared/fragments";
 import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
+import { GalleryDialog } from "@/features/shared/gallery";
 
 interface Props {
   history: History;
@@ -283,7 +284,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
           </div>
         </div>
       </div>
-      {/*{gallery && <Gallery onHide={() => setGallery(!gallery)} />}*/}
+      {gallery && <GalleryDialog onHide={() => setGallery(!gallery)} />}
       {/*{ui.notifications && activeUser && <UserNotifications history={history} />}*/}
       {/*{drafts && activeUser && <Drafts onHide={() => setDrafts(!drafts)} history={history} />}*/}
       {bookmarks && activeUser && <BookmarksDialog onHide={() => setBookmarks(!bookmarks)} />}

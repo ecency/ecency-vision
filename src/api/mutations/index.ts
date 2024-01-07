@@ -6,3 +6,4 @@ export * from "./pin-reply";
 export * from "./vote-witness";
 export * from "./fragments";
 export * from "./schedules";
+export * from "./gallery-image";
