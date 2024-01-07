@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Empty list 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="linear-progress"
+  >
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
+  </div>
+</div>
+`;
+
+exports[`(2) With data 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="linear-progress"
+  >
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
+  </div>
+</div>
+`;

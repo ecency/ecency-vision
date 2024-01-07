@@ -1,4 +1,3 @@
-// LIST
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { LinearProgress } from "@/features/shared";
 import { FormControl } from "@ui/input";
@@ -8,7 +7,7 @@ import { Fragment } from "@/entities";
 import { AddFragment } from "@/features/shared/fragments/add-fragment";
 import { EditFragment } from "@/features/shared/fragments/edit-fragment";
 import i18next from "i18next";
-import { useFragmentsQuery } from "@/api/queries/fragments-query";
+import { useFragmentsQuery } from "@/api/queries";
 import useMount from "react-use/lib/useMount";
 
 interface Props {

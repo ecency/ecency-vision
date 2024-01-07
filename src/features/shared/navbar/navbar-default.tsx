@@ -25,6 +25,7 @@ import { useState } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { Search } from "./search";
 import { FragmentsDialog } from "@/features/shared/fragments";
+import { SchedulesDialog } from "@/features/shared/schedules";
 
 interface Props {
   history: History;
@@ -287,9 +288,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
       {/*{bookmarks && activeUser && (*/}
       {/*  <Bookmarks history={history} onHide={() => setBookmarks(!bookmarks)} />*/}
       {/*)}*/}
-      {/*{schedules && activeUser && (*/}
-      {/*  <Schedules history={history} onHide={() => setSchedules(!schedules)} />*/}
-      {/*)}*/}
+      {schedules && activeUser && <SchedulesDialog onHide={() => setSchedules(!schedules)} />}
       {fragments && activeUser && <FragmentsDialog onHide={() => setFragments(!fragments)} />}
       <PurchaseQrDialog show={showPurchaseDialog} setShow={(v) => setShowPurchaseDialog(v)} />
     </>

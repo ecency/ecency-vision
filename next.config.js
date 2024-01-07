@@ -17,6 +17,15 @@ const config = {
     });
 
     return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ecency.com",
+        port: ""
+      }
+    ]
   }
 };
 

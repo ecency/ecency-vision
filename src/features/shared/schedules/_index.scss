@@ -1,0 +1,22 @@
+@import "src/styles/vars_mixins";
+
+.schedules-modal {
+  .modal-body {
+    .dialog-content {
+      min-height: 590px;
+
+      .dialog-filter {
+        height: 70px;
+      }
+
+      .schedules-list {
+        height: 520px;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.no-img {
+  width: 45px;
+}

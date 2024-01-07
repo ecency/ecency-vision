@@ -261,7 +261,7 @@ export const deleteSchedule = (username: string, id: string): Promise<any> => {
   return axios.post(apiBase(`/private-api/schedules-delete`), data).then((resp) => resp.data);
 };
 
-export const moveSchedule = (username: string, id: string): Promise<any> => {
+export const moveSchedule = (username: string, id: string): Promise<Schedule[]> => {
   const data = { code: getAccessToken(username), id };
   return axios.post(apiBase(`/private-api/schedules-move`), data).then((resp) => resp.data);
 };
