@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Bookmarks - No data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
+exports[`(2) Bookmarks - Test with data. 1`] = `null`;
+
+exports[`(3) Favorites - No data. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="dialog-list"
+  >
+    Nothing here
+  </div>
+</div>
+`;
+
+exports[`(4) Favorites - Test with data. 1`] = `null`;

@@ -9,3 +9,5 @@ export * from "./get-post-header-query";
 export * from "./get-accounts-query";
 export * from "./fragments-query";
 export * from "./schedules-query";
+export * from "./bookmarks-query";
+export * from "./favourites-query";

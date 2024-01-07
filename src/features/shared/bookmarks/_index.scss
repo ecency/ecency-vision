@@ -1,0 +1,81 @@
+@import "src/styles/vars_mixins";
+
+.bookmarks-modal {
+
+  .dialog-menu {
+    display: flex;
+    margin-bottom: 20px;
+
+    .menu-item {
+      font-size: 20px;
+      font-weight: 500;
+      margin-right: 20px;
+      cursor: pointer;
+      &:not(.active) {
+        @apply text-blue-dark-sky;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .dialog-content {
+    height: 500px;
+    overflow: auto;
+
+    .dialog-list {
+      .dialog-list-body {
+        .dialog-list-item {
+          align-items: center;
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          margin-bottom: 10px;
+          padding: 3px;
+
+          @include themify(day) {
+            @apply text-blue-dark-sky;
+          }
+
+          @include themify(night) {
+            @apply text-blue-powder;
+          }
+
+          &:hover {
+            @include themify(day) {
+              @apply bg-blue-duck-egg;
+            }
+
+            @include themify(night) {
+              @apply bg-blue-metallic;
+            }
+          }
+
+          .user-avatar {
+            flex-shrink: 0;
+            margin-right: 10px;
+          }
+
+          .item-body {
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: calc(100% - 50px);
+
+            .author {
+              font-weight: 700;
+
+              &:before {
+                content: '@';
+              }
+
+              &.with-slash:after {
+                content: '/';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -26,5 +26,7 @@ export enum QueryIdentifiers {
   GET_ACCOUNT_FULL = "get-account-full",
   TRENDING_TAGS = "trending-tags",
   FRAGMENTS = "fragments",
-  SCHEDULES = "schedules"
+  SCHEDULES = "schedules",
+  BOOKMARKS = "bookmarks",
+  FAVOURITES = "favourites"
 }

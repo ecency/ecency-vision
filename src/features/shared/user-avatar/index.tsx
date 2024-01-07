@@ -1,7 +1,10 @@
 import React, { useMemo } from "react";
-import { proxifyImageSrc } from "@ecency/render-helper";
+import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";
 import "./_index.scss";
 import { useGlobalStore } from "@/core/global-store";
+import defaults from "@/defaults.json";
+
+setProxyBase(defaults.imageServer);
 
 interface Props {
   username: string;

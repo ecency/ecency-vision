@@ -11,6 +11,7 @@ import { Tooltip } from "@/features/ui";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { FragmentsDialog } from "@/features/shared/fragments";
 import { SchedulesDialog } from "@/features/shared/schedules";
+import { BookmarksDialog } from "@/features/shared/bookmarks";
 
 export * from "./wallet-badge";
 
@@ -148,7 +149,7 @@ export const UserNav = ({ icon }: Props) => {
       {/*{uiNotifications && <UserNotifications history={history} />}*/}
       {/*{gallery && <Gallery onHide={() => setGallery(false)} />}*/}
       {/*{drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}*/}
-      {/*{bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}*/}
+      {bookmarks && <BookmarksDialog onHide={() => setBookmarks(false)} />}
       {schedules && <SchedulesDialog onHide={() => setSchedules(false)} />}
       {fragments && <FragmentsDialog onHide={() => setFragments(false)} />}
       <PurchaseQrDialog show={showPurchaseDialog} setShow={setShowPurchaseDialog} />
