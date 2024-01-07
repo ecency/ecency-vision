@@ -12,3 +12,4 @@ export * from "./schedules-query";
 export * from "./bookmarks-query";
 export * from "./favourites-query";
 export * from "./gallery-images-query";
+export * from "./drafts-query";

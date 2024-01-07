@@ -28,6 +28,7 @@ import { FragmentsDialog } from "@/features/shared/fragments";
 import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
 import { GalleryDialog } from "@/features/shared/gallery";
+import { DraftsDialog } from "@/features/shared/drafts";
 
 interface Props {
   history: History;
@@ -286,7 +287,7 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
       </div>
       {gallery && <GalleryDialog onHide={() => setGallery(!gallery)} />}
       {/*{ui.notifications && activeUser && <UserNotifications history={history} />}*/}
-      {/*{drafts && activeUser && <Drafts onHide={() => setDrafts(!drafts)} history={history} />}*/}
+      {drafts && activeUser && <DraftsDialog onHide={() => setDrafts(!drafts)} />}
       {bookmarks && activeUser && <BookmarksDialog onHide={() => setBookmarks(!bookmarks)} />}
       {schedules && activeUser && <SchedulesDialog onHide={() => setSchedules(!schedules)} />}
       {fragments && activeUser && <FragmentsDialog onHide={() => setFragments(!fragments)} />}

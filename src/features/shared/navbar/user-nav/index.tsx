@@ -13,6 +13,7 @@ import { FragmentsDialog } from "@/features/shared/fragments";
 import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
 import { GalleryDialog } from "@/features/shared/gallery";
+import { DraftsDialog } from "@/features/shared/drafts";
 
 export * from "./wallet-badge";
 
@@ -149,7 +150,7 @@ export const UserNav = ({ icon }: Props) => {
       </div>
       {/*{uiNotifications && <UserNotifications history={history} />}*/}
       {gallery && <GalleryDialog onHide={() => setGallery(false)} />}
-      {/*{drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}*/}
+      {drafts && <DraftsDialog onHide={() => setDrafts(false)} />}
       {bookmarks && <BookmarksDialog onHide={() => setBookmarks(false)} />}
       {schedules && <SchedulesDialog onHide={() => setSchedules(false)} />}
       {fragments && <FragmentsDialog onHide={() => setFragments(false)} />}
