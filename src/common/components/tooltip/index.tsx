@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
+import { useMountedState } from "react-use";
 
 interface Props {
   content: string | JSX.Element;
@@ -22,9 +23,11 @@ export function StyledTooltip({ children, content }: StyledProps) {
   const [popperElement, setPopperElement] = useState<any>();
   const [show, setShow] = useState(false);
 
+  const isMounted = useMountedState();
+
   const popper = usePopper(ref, popperElement);
 
-  return (
+  return isMounted() ? (
     <div
       ref={setRef}
       className="styled-tooltip"
@@ -57,5 +60,7 @@ export function StyledTooltip({ children, content }: StyledProps) {
         document.querySelector("#popper-container") ?? document.createElement("div")
       )}
     </div>
+  ) : (
+    <></>
   );
 }

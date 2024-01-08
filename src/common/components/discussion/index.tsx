@@ -344,7 +344,7 @@ export const Item = (props: ItemProps) => {
                   entry,
                   onSuccess: deleted,
                   children: (
-                    <a title={_t("g.delete")} className="delete-btn ml-0 pr-3">
+                    <a title={_t("g.delete")} className="delete-btn !ml-0 pr-3">
                       {deleteForeverSvg} {_t("g.delete")}
                     </a>
                   )
