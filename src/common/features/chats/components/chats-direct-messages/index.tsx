@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
 import {
@@ -37,6 +37,12 @@ export default function ChatsDirectMessages(props: Props) {
     500,
     [needFetchNextPage]
   );
+
+  useEffect(() => {
+    if (directMessages.length === 0) {
+      directMessagesQuery.refetch();
+    }
+  }, [directMessages]);
 
   return (
     <>
