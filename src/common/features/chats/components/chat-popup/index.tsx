@@ -80,6 +80,8 @@ export const ChatPopUp = () => {
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);
     setExpanded(true);
+    setRevealPrivateKey(false);
+    setReceiverPubKey("");
   };
 
   const handleBackArrowSvg = () => {

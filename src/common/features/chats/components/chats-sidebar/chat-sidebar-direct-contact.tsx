@@ -6,6 +6,7 @@ import {
   DirectContact,
   getRelativeDate,
   getUserChatPublicKey,
+  useKeysQuery,
   useLastMessageQuery
 } from "@ecency/ns-query";
 import { useGetAccountFullQuery } from "../../../../api/queries";
@@ -25,6 +26,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
   const { receiverPubKey, setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } =
     useContext(ChatContext);
 
+  const { publicKey } = useKeysQuery();
   const { data: contactData, isLoading: isContactDataLoading } = useGetAccountFullQuery(
     contact.name
   );
@@ -72,7 +74,12 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
           </div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
-        <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
+        <div className="text-sm text-gray-600 truncate">
+          {lastMessage?.creator === publicKey && (
+            <span className="mr-1 text-gray-500 dark:text-gray-700">{_t("g.you")}:</span>
+          )}
+          {lastMessage?.content}
+        </div>
       </div>
     </>
   );
