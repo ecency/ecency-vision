@@ -1834,7 +1834,7 @@
   "chat": {
     "page-title": "Conversations",
     "read-only": "Read-only",
-    "why-read-only": "This account didn't attach to Ecency anymore. Please, find actual account by username in search above.",
+    "why-read-only": "This user has changed their chat key. Please, find new account by username in search above.",
     "user-not-joined": "Hasn't joined yet",
     "title": "Chats",
     "messages": "Messages",
