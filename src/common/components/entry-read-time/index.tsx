@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Tooltip from "../tooltip";
+import { StyledTooltip } from "../tooltip";
 import { _t } from "../../i18n";
 import { informationVariantSvg } from "../../img/svg";
 import UserAvatar from "../user-avatar";
@@ -51,7 +51,7 @@ export const ReadTime = (props: any) => {
 
   return toolTip ? (
     <div className="post-info">
-      <Tooltip
+      <StyledTooltip
         content={
           _t("entry.post-word-count") +
           " " +
@@ -67,7 +67,7 @@ export const ReadTime = (props: any) => {
         <span className="flex items-center">
           <span className="info-icon w-[24px] mr-0 mr-md-2">{informationVariantSvg}</span>
         </span>
-      </Tooltip>
+      </StyledTooltip>
     </div>
   ) : (
     <>
@@ -82,13 +82,13 @@ export const ReadTime = (props: any) => {
           {topCurator && (
             <div className="top-curator">
               {_t("entry.post-top-curator")}
-              <Tooltip content={topCurator}>
+              <StyledTooltip content={topCurator}>
                 <Link to={`/@${topCurator}`}>
                   <div className="curator">
                     <UserAvatar username={topCurator} size="small" />
                   </div>
                 </Link>
-              </Tooltip>
+              </StyledTooltip>
             </div>
           )}
         </div>

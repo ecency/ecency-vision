@@ -90,7 +90,7 @@ export const RcDelegationsList = (props: any) => {
         {listMode === "out" && (
           <>
             {outGoingList.length > 0 ? (
-              <List defer={true} inline={true}>
+              <List scrollable={true} defer={true} inline={true}>
                 {outGoingList
                   ?.slice(0, loadList)
                   .filter(
