@@ -20,12 +20,12 @@ import { ChatsManageKeySection } from "./chats-manage-key-section";
 import { ChatsUserNotJoinedSection } from "./chats-user-not-joined-section";
 import {
   ChatContext,
-  getUserChatPublicKey,
   useChannelsQuery,
   useCommunityChannelQuery,
   useDirectContactsQuery,
   useKeysQuery
 } from "@ecency/ns-query";
+import { useUnmount } from "react-use";
 
 interface Props extends PageProps {
   match: match<{
@@ -40,8 +40,7 @@ interface Props extends PageProps {
 
 export const Chats = ({ match, history }: Props) => {
   const { activeUser } = useMappedStore();
-  const { receiverPubKey, revealPrivateKey, setReceiverPubKey, setRevealPrivateKey } =
-    useContext(ChatContext);
+  const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
   const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
@@ -50,16 +49,10 @@ export const Chats = ({ match, history }: Props) => {
   const { data: channels } = useChannelsQuery();
 
   const isChannel = useMemo(() => match.params.channel === "channel", [match.params]);
-  // Generate temporary contact from username and its public key
+
   const directContact = useMemo(
-    () =>
-      match.params.username && !isChannel
-        ? {
-            name: match.params.username.replace("@", ""),
-            pubkey: receiverPubKey
-          }
-        : undefined,
-    [receiverPubKey, match.params]
+    () => directContacts?.find((dc) => dc.pubkey === receiverPubKey),
+    [directContacts, receiverPubKey]
   );
   const { data: communityChannel } = useCommunityChannelQuery(
     isChannel && community ? community : undefined,
@@ -73,12 +66,11 @@ export const Chats = ({ match, history }: Props) => {
   const isShowManageKey = useMemo(() => isReady && revealPrivateKey, [isReady, revealPrivateKey]);
   const isShowChatRoom = useMemo(
     () => isReady && (!!directContact || !!communityChannel) && !revealPrivateKey,
-    [isReady, receiverPubKey, revealPrivateKey, communityChannel, directContact]
+    [isReady, revealPrivateKey, communityChannel, directContact]
   );
   const isShowDefaultScreen = useMemo(
-    () =>
-      isReady && !directContact && !communityChannel && !revealPrivateKey && !match.params.username,
-    [isReady, receiverPubKey, directContact, communityChannel, match]
+    () => isReady && !directContact && !communityChannel && !revealPrivateKey && !receiverPubKey,
+    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey]
   );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
 
@@ -89,21 +81,16 @@ export const Chats = ({ match, history }: Props) => {
 
     if (community) {
       title = `${community.title} | ${title}`;
-    } else if (userAccount) {
-      title = `${userAccount.name} | ${title}`;
+    } else if (directContact) {
+      title = `${directContact.name} | ${title}`;
     }
 
     return title;
-  }, [community, userAccount]);
+  }, [community, directContact]);
 
-  useEffect(() => {
-    if (userAccount && !isChannel) {
-      const key = getUserChatPublicKey(userAccount);
-      setReceiverPubKey(key ?? "");
-    } else {
-      setReceiverPubKey("");
-    }
-  }, [userAccount, isChannel]);
+  useUnmount(() => {
+    setReceiverPubKey("");
+  });
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -139,7 +126,7 @@ export const Chats = ({ match, history }: Props) => {
                 <ChatsWelcome />
               </div>
             )}
-            {!isShowChatRoom && isReady && match.params.username && (
+            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
               <ChatsUserNotJoinedSection match={match} className="md:hidden" />
             )}
           </div>
@@ -159,13 +146,13 @@ export const Chats = ({ match, history }: Props) => {
             )}
             {isShowChatRoom && (
               <ChatsMessagesBox
-                match={match}
+                community={community}
                 history={history}
                 channel={communityChannel!!}
                 currentContact={directContact}
               />
             )}
-            {!isShowChatRoom && isReady && match.params.username && (
+            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
               <ChatsUserNotJoinedSection match={match} />
             )}
             {isShowDefaultScreen && <ChatsDefaultScreen />}

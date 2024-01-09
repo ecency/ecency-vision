@@ -1,6 +1,6 @@
 import { isMessageGif } from "../utils";
 import { Spinner } from "@ui/spinner";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { renderPostBody } from "@ecency/render-helper";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -82,9 +82,13 @@ export function ChatMessageItem({
     [holdStarted]
   );
 
-  useEffect(() => {
-    onInViewport?.(inViewport);
-  }, [inViewport]);
+  useDebounce(
+    () => {
+      onInViewport?.(inViewport);
+    },
+    500,
+    [inViewport]
+  );
 
   return (
     <div key={message.id} data-message-id={message.id} ref={ref}>

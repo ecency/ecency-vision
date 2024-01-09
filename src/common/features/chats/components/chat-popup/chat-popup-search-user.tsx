@@ -3,15 +3,26 @@ import { useSearchUsersQuery } from "../../queries";
 import { ChatSidebarSearch } from "../chats-sidebar/chat-sidebar-search";
 import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
 import { ChatSidebarSearchItem } from "../chats-sidebar/chat-sidebar-search-item";
+import { useCreateTemporaryContact } from "../../hooks";
+import { Community } from "../../../../store/communities";
+import { isCommunity } from "@ecency/ns-query";
+import { Reputations } from "../../../../api/hive";
+import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
 
 interface Props {
-  setCurrentUser: (v: string) => void;
+  onCommunityClicked: (communityName: string) => void;
 }
 
-export function ChatPopupSearchUser({ setCurrentUser }: Props) {
+export function ChatPopupSearchUser({ onCommunityClicked }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedUser, setSelectedUser] = useState<string>("");
+  const [selectedCommunity, setSelectedCommunity] = useState("");
+
   const { data: searchUsers } = useSearchUsersQuery(searchQuery);
   const { data: searchCommunities } = useSearchCommunitiesQuery(searchQuery);
+
+  useCreateTemporaryContact(selectedUser);
+  useCreateTemporaryChannel(selectedCommunity);
 
   return (
     <>
@@ -22,7 +33,17 @@ export function ChatPopupSearchUser({ setCurrentUser }: Props) {
         {[...searchUsers, ...searchCommunities].map((item) => (
           <ChatSidebarSearchItem
             item={item}
-            onClick={() => setCurrentUser("account" in item ? item.account : item.name)}
+            onClick={async () => {
+              setSearchQuery("");
+
+              const community = item as Community;
+              if (community.name && isCommunity(community.name)) {
+                setSelectedCommunity(community.name);
+                onCommunityClicked(community.name);
+              } else {
+                setSelectedUser((item as Reputations).account);
+              }
+            }}
             key={"account" in item ? item.account : item.id}
           />
         ))}

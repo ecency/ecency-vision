@@ -48,7 +48,9 @@
     }
 
     &.community {
-      height: 422px;
+      @include media-breakpoint-up(md) {
+        height: 422px;
+      }
       @apply border-b;
 
       @include themify(day) {

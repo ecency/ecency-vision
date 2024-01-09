@@ -38,7 +38,7 @@ export default function JoinCommunityChatBtn(props: Props) {
   const { data: currentChannel, isLoading: isCurrentChannelLoading } = useCommunityChannelQuery(
     props.community
   );
-  const { data: channels, isLoading: isChannelsLoading } = useChannelsQuery();
+  const { data: channels } = useChannelsQuery();
   const { data: communityTeam, isLoading: isCommunityTeamLoading } =
     useNostrJoinedCommunityTeamQuery(
       props.community,
@@ -56,12 +56,8 @@ export default function JoinCommunityChatBtn(props: Props) {
     useLeaveCommunityChannel();
 
   const isGlobalLoading = useMemo(
-    () =>
-      isChannelsLoading ||
-      isChannelsIdsLoading ||
-      isCommunityAccountLoading ||
-      isCommunityTeamLoading,
-    [isChannelsLoading, isChannelsIdsLoading, isCommunityAccountLoading, isCommunityTeamLoading]
+    () => isChannelsIdsLoading || isCommunityAccountLoading || isCommunityTeamLoading,
+    [isChannelsIdsLoading, isCommunityAccountLoading, isCommunityTeamLoading]
   );
   const isCommunityChannelCreated = useMemo(() => !!currentChannel, [currentChannel]);
   const isCommunityChannelJoined = useMemo(
