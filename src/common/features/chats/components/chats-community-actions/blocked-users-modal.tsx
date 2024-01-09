@@ -9,6 +9,7 @@ import {
   useNostrGetUserProfilesQuery,
   useUpdateChannelBlockedUsers
 } from "@ecency/ns-query";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   username: string;
@@ -24,10 +25,16 @@ export function BlockedUsersModal({ username, setShow, show }: Props) {
     [channels]
   );
 
-  const { data: profiles } = useNostrGetUserProfilesQuery(currentChannel?.removedUserIds ?? []);
+  const { data: profiles, refetch: refetchProfiles } = useNostrGetUserProfilesQuery(
+    currentChannel?.removedUserIds ?? []
+  );
 
   const { mutateAsync: updateBlockedUsers, isLoading: isBlockedUsersLoading } =
     useUpdateChannelBlockedUsers(currentChannel!!);
+
+  useMount(() => {
+    refetchProfiles();
+  });
 
   return (
     <Modal centered={true} show={show} onHide={() => setShow(false)}>

@@ -1,14 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { _t } from "../../../../i18n";
 import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
-import { ChatDirectContactOrChannelItem } from "./chat-direct-contact-or-channel-item";
-import {
-  ChatContext,
-  useChannelsQuery,
-  useDirectContactsQuery,
-  useKeysQuery
-} from "@ecency/ns-query";
+import { useChannelsQuery, useDirectContactsQuery, useKeysQuery } from "@ecency/ns-query";
+import { ChatSidebarDirectContact } from "../chats-sidebar/chat-sidebar-direct-contact";
+import { ChatSidebarChannel } from "../chats-sidebar/chat-sidebar-channel";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -21,8 +17,6 @@ export function ChatPopupContactsAndChannels({
   userClicked,
   setShowSearchUser
 }: Props) {
-  const { setReceiverPubKey } = useContext(ChatContext);
-
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
@@ -38,11 +32,12 @@ export function ChatPopupContactsAndChannels({
                 {_t("chat.communities")}
               </div>
               {channels?.map((channel) => (
-                <ChatDirectContactOrChannelItem
+                <ChatSidebarChannel
+                  isChannel={false}
                   key={channel.id}
                   channel={channel}
                   username={channel.communityName!!}
-                  userClicked={() => communityClicked(channel.communityName!)}
+                  onClick={() => communityClicked(channel.communityName!)}
                 />
               ))}
               {directContacts?.length !== 0 && (
@@ -53,13 +48,10 @@ export function ChatPopupContactsAndChannels({
             </>
           )}
           {directContacts?.map((user) => (
-            <ChatDirectContactOrChannelItem
-              username={user.name}
+            <ChatSidebarDirectContact
+              isLink={false}
               contact={user}
-              userClicked={(v) => {
-                setReceiverPubKey(user.pubkey);
-                userClicked(v);
-              }}
+              onClick={() => userClicked(user.name)}
               key={user.pubkey}
             />
           ))}
