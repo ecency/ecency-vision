@@ -1833,9 +1833,9 @@
   },
   "chat": {
     "page-title": "Conversaciones",
-    "read-only": "Read-only",
-    "why-read-only": "This user has changed their chat key. Please, find new account by username in search above.",
-    "user-not-joined": "Hasn't joined yet",
+    "read-only": "Sólo lectura",
+    "why-read-only": "Este usuario ha cambiado su clave de chat. Por favor, encuentre una nueva cuenta por nombre de usuario en la búsqueda anterior.",
+    "user-not-joined": "Aún no se ha unido",
     "title": "Chats",
     "messages": "Mensajes",
     "key": "Clave de Chat de Ecency",
