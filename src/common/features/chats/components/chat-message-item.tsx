@@ -131,7 +131,7 @@ export function ChatMessageItem({
           <div
             className={classNameObject({
               "duration-300 max-w-[340px]": true,
-              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage && !isEmoji,
+              "text-sm p-2.5 rounded-b-2xl": !isGif && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
@@ -141,7 +141,7 @@ export function ChatMessageItem({
             })}
           >
             <div
-              className="sender-message-content"
+              className="sender-message-content [&>img]:rounded-xl"
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
             />
           </div>

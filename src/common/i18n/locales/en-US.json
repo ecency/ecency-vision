@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -1407,6 +1408,7 @@
     "image-error": "Couldn't upload image.",
     "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Snippets",
     "link-image": "Link"
   },
