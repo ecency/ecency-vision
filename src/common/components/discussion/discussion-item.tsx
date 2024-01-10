@@ -261,37 +261,36 @@ export function DiscussionItem({
               )}
 
               <div className="ml-3 dropdown-container">
-                <Dropdown>
-                  <DropdownToggle>
-                    <Button icon={dotsHorizontal} appearance="gray-link" />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {canEdit && (
-                      <DropdownItemWithIcon onClick={toggleEdit}>
-                        {pencilOutlineSvg}
-                        {_t("g.edit")}
-                      </DropdownItemWithIcon>
-                    )}
-                    {isOwnRoot && isTopComment && (
-                      <DropdownItemWithIcon onClick={() => pinReply({ pin: !isPinned })}>
-                        {pinSvg}
-                        {_t(isPinned ? "g.unpin" : "g.pin")}
-                      </DropdownItemWithIcon>
-                    )}
-                    {isDeletable && !isPinned && (
-                      <DropdownItemWithIcon>
-                        <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
-                          <div className="flex items-center [&>svg]:w-3.5 gap-3">
-                            {deleteForeverSvg} {_t("g.delete")}
-                          </div>
-                        </EntryDeleteBtn>
-                      </DropdownItemWithIcon>
-                    )}
-                    {!canEdit && !(isOwnRoot && isTopComment) && !isDeletable && (
-                      <>No actions to perform</>
-                    )}
-                  </DropdownMenu>
-                </Dropdown>
+                {!(!canEdit && !(isOwnRoot && isTopComment) && !isDeletable) && (
+                  <Dropdown>
+                    <DropdownToggle>
+                      <Button icon={dotsHorizontal} appearance="gray-link" />
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      {canEdit && (
+                        <DropdownItemWithIcon onClick={toggleEdit}>
+                          {pencilOutlineSvg}
+                          {_t("g.edit")}
+                        </DropdownItemWithIcon>
+                      )}
+                      {isOwnRoot && isTopComment && (
+                        <DropdownItemWithIcon onClick={() => pinReply({ pin: !isPinned })}>
+                          {pinSvg}
+                          {_t(isPinned ? "g.unpin" : "g.pin")}
+                        </DropdownItemWithIcon>
+                      )}
+                      {isDeletable && !isPinned && (
+                        <DropdownItemWithIcon>
+                          <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
+                            <div className="flex items-center [&>svg]:w-3.5 gap-3">
+                              {deleteForeverSvg} {_t("g.delete")}
+                            </div>
+                          </EntryDeleteBtn>
+                        </DropdownItemWithIcon>
+                      )}
+                    </DropdownMenu>
+                  </Dropdown>
+                )}
               </div>
             </div>
           )}
