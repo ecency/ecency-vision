@@ -5,6 +5,7 @@ import {
   chatBoxImageSvg,
   emoticonHappyOutlineSvg,
   gifIcon,
+  imageSvg,
   informationOutlineSvg,
   messageSendSvg
 } from "../../../img/svg";
@@ -28,6 +29,7 @@ import {
 import { useGetAccountFullQuery } from "../../../api/queries";
 import Tooltip from "../../../components/tooltip";
 import { ChatInputFiles } from "./chat-input-files";
+import Gallery from "../../../components/gallery";
 
 interface Props {
   currentChannel?: Channel;
@@ -48,6 +50,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   const [files, setFiles] = useState<File[]>([]);
   const [uploadedFileLinks, setUploadedFileLinks] = useState<string[]>([]);
   const [showGifPicker, setShowGifPicker] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
 
   const { data: contactData } = useGetAccountFullQuery(currentContact?.name);
   const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
@@ -127,6 +130,15 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
               setUploadedFileLinks={setUploadedFileLinks}
             />
           )}
+          {showGallery && (
+            <Gallery
+              onHide={() => setShowGallery(false)}
+              onPick={(e) => {
+                setUploadedFileLinks((links) => [...links, e]);
+                setShowGallery(false);
+              }}
+            />
+          )}
           <input
             onChange={(e) => setFiles([...(e.target.files ?? [])])}
             className="hidden"
@@ -162,8 +174,13 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
                 />
                 <DropdownItemWithIcon
                   icon={chatBoxImageSvg}
-                  label="Upload image"
+                  label={_t("chat.upload-image")}
                   onClick={() => fileInputRef.current?.click()}
+                />
+                <DropdownItemWithIcon
+                  icon={imageSvg}
+                  label={_t("user-nav.gallery")}
+                  onClick={() => setShowGallery(true)}
                 />
               </DropdownMenu>
             </Dropdown>
