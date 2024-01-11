@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "정말 진행하시겠습니까?",
@@ -1407,6 +1408,7 @@
     "image-error": "이미지를 업로드할 수 없습니다.",
     "image-error-cache": "이미지를 업로드할 수 없습니다. 로그아웃한 것 같습니다. 다시 로그인해 보세요.",
     "image-error-size": "이미지 사이즈가 너무 큽니다. 더 작은 크기의 이미지를 다시 시도하세요.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "스니펫",
     "link-image": "Link"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
