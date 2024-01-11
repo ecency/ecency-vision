@@ -20,7 +20,6 @@ import {
   useJoinChat,
   useKeysQuery
 } from "@ecency/ns-query";
-import { uploadChatKeys } from "../../utils/upload-chat-keys";
 import { ChatInvitation } from "../chat-invitation";
 
 export const ChatPopUp = () => {
@@ -28,7 +27,7 @@ export const ChatPopUp = () => {
 
   const { receiverPubKey, revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } =
     useContext(ChatContext);
-  const { isLoading: isJoinChatLoading } = useJoinChat(uploadChatKeys);
+  const { isLoading: isJoinChatLoading } = useJoinChat();
 
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
