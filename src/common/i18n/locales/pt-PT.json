@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -1407,6 +1408,7 @@
     "image-error": "Não foi possível carregar imagem.",
     "image-error-cache": "Não foi possível enviar a imagem. Você parece estar desconectado, tente realizar o login novamente.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Trechos",
     "link-image": "Link"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
