@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Weet je het zeker?",
@@ -1407,6 +1408,7 @@
     "image-error": "Kan afbeelding niet uploaden.",
     "image-error-cache": "Kan de afbeelding niet uploaden. Je lijkt te zijn afgemeld. Probeer je opnieuw aan te melden.",
     "image-error-size": "Je afbeelding is te groot, probeer een kleinere afbeelding.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Tekstfragmenten",
     "link-image": "Link"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
