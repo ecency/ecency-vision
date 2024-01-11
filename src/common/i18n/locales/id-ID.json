@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Apakah anda yakin?",
@@ -1407,6 +1408,7 @@
     "image-error": "Tidak dapat mengunggah gambar.",
     "image-error-cache": "Tidak dapat memasukkan gambar. Anda sepertinya sudah keluar dari akun Anda. Coba masuk kembali.",
     "image-error-size": "Ukuran gambar terlalu besar, coba masukkan ukuran gambar yang lebih kecil.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Cuplikan",
     "link-image": "Link"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
