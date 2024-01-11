@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Ești sigur?",
@@ -1407,6 +1408,7 @@
     "image-error": "Nu s-a putut încărca imaginea.",
     "image-error-cache": "Couldn't upload image. You seem to be signed out. Try signing in again.",
     "image-error-size": "Image size is too large, try smaller size image again.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Snippets",
     "link-image": "Link"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
