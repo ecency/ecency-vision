@@ -123,12 +123,18 @@ export function DiscussionItem({
     [activeUser, entryIsMuted, isComment, isOwnReply]
   );
   const isDeletable = useMemo(
-    () => !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0),
+    () =>
+      !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0) &&
+      entry.author === activeUser?.username,
     [entry]
   );
   const isPinned = useMemo(
     () => root.json_metadata.pinned_reply === `${entry.author}/${entry.permlink}`,
     [root, entry]
+  );
+  const hasAnyAction = useMemo(
+    () => canEdit || (isOwnRoot && isTopComment) || isDeletable,
+    [canEdit, isOwnRoot, isTopComment, isDeletable]
   );
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
@@ -137,7 +143,7 @@ export function DiscussionItem({
   const { mutateAsync: updateReply, isLoading: isUpdateReplyLoading } = useUpdateReply(entry, () =>
     toggleEdit()
   );
-  const { mutateAsync: pinReply, isLoading: isPinReplyLoading } = usePinReply(entry, root);
+  const { mutateAsync: pinReply } = usePinReply(entry, root);
 
   useEffect(() => {
     if (edit || reply) {
@@ -261,32 +267,37 @@ export function DiscussionItem({
               )}
 
               <div className="ml-3 dropdown-container">
-                {!(!canEdit && !(isOwnRoot && isTopComment) && !isDeletable) && (
+                {hasAnyAction && (
                   <Dropdown>
                     <DropdownToggle>
                       <Button icon={dotsHorizontal} appearance="gray-link" />
                     </DropdownToggle>
                     <DropdownMenu>
                       {canEdit && (
-                        <DropdownItemWithIcon onClick={toggleEdit}>
-                          {pencilOutlineSvg}
-                          {_t("g.edit")}
-                        </DropdownItemWithIcon>
+                        <DropdownItemWithIcon
+                          label={_t("g.edit")}
+                          icon={pencilOutlineSvg}
+                          onClick={toggleEdit}
+                        />
                       )}
                       {isOwnRoot && isTopComment && (
-                        <DropdownItemWithIcon onClick={() => pinReply({ pin: !isPinned })}>
-                          {pinSvg}
-                          {_t(isPinned ? "g.unpin" : "g.pin")}
-                        </DropdownItemWithIcon>
+                        <DropdownItemWithIcon
+                          label={_t(isPinned ? "g.unpin" : "g.pin")}
+                          icon={pinSvg}
+                          onClick={() => pinReply({ pin: !isPinned })}
+                        />
                       )}
-                      {isDeletable && !isPinned && (
-                        <DropdownItemWithIcon>
-                          <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
-                            <div className="flex items-center [&>svg]:w-3.5 gap-3">
-                              {deleteForeverSvg} {_t("g.delete")}
-                            </div>
-                          </EntryDeleteBtn>
-                        </DropdownItemWithIcon>
+                      {isDeletable && (
+                        <DropdownItemWithIcon
+                          label={
+                            <EntryDeleteBtn activeUser={activeUser} parent={root} entry={entry}>
+                              <div className="flex items-center [&>svg]:w-3.5 gap-3">
+                                {} {_t("g.delete")}
+                              </div>
+                            </EntryDeleteBtn>
+                          }
+                          icon={deleteForeverSvg}
+                        />
                       )}
                     </DropdownMenu>
                   </Dropdown>

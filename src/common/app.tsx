@@ -113,8 +113,6 @@ const App = (props: any) => {
         <Tracker />
         <UserActivityRecorder />
         <ChatContextProvider
-          privateApiHost=""
-          ecencyAccessToken=""
           activeUsername={activeUser?.username}
           activeUserData={activeUserAccount}
         >

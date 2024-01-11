@@ -23,6 +23,8 @@ export function Dropdown(props: HTMLProps<HTMLDivElement> & Props) {
   useClickAway(ref, () => {
     if (openPopovers.size === 0) {
       setShow(false);
+    } else {
+      return;
     }
 
     if (props.closeOnClickOutside ?? true) {

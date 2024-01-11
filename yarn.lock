@@ -1375,9 +1375,9 @@
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
 "@ecency/ns-query@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.0.2.tgz#54428550b53f87fa376405bd5313fbdbf180ba57"
-  integrity sha512-WPyS8pNKq2OHAz5efc37rZ7QiKS8BVR9o2kV2sA84rtU2tP6P2g4FzwToa/6cA5lZBEAel9HpQFjAV7txK5CXQ==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.0.3.tgz#937fd64d9025c7bab5517868fc175dff8a327ec6"
+  integrity sha512-GsrcZrxv5DMMI24kiz/3x2zyFOEJi75Z8iHWrrsLLdh6pf18nGoiyirip1VmOyCzvAVZGpiwyBRG4HAQwGw34w==
   dependencies:
     "@tanstack/react-query" "^4.29.7"
     date-fns "^2.30.0"

@@ -5,10 +5,9 @@ import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
-import { getAccountFull } from "./hive";
-import { getDiscussion } from "./bridge";
+import { getAccountFull, getFollowing } from "./hive";
+import { getAccountPosts, getDiscussion } from "./bridge";
 import { SortOrder } from "../store/discussion/types";
-import { getFollowing } from "./hive";
 import { useContext } from "react";
 import { sortDiscussions } from "../util/sort-discussions";
 
@@ -108,6 +107,15 @@ export function useGetAccountsFullQuery(usernames: string[]) {
       queryFn: () => getAccountFull(username!),
       enabled: !!username
     }))
+  });
+}
+
+export function useGetAccountPostsQuery(username?: string) {
+  return useQuery({
+    queryKey: [QueryIdentifiers.GET_POSTS, username],
+    queryFn: () => getAccountPosts("posts", username!).then((response) => response ?? []),
+    enabled: !!username,
+    initialData: []
   });
 }
 

@@ -29,5 +29,6 @@ export enum QueryIdentifiers {
   BY_DRAFT_ID = "by-draft-id",
   FETCH_DISCUSSIONS = "fetch-discussions",
   FETCH_MUTED_USERS = "fetch-muted-users",
-  GET_ACCOUNT_FULL = "get-account-full"
+  GET_ACCOUNT_FULL = "get-account-full",
+  GET_POSTS = "get-posts"
 }
