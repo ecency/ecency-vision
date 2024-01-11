@@ -6,6 +6,7 @@ import { getEmojiData } from "../../api/misc";
 import * as ls from "../../util/local-storage";
 import { insertOrReplace } from "../../util/input-util";
 import "./_index-old.scss";
+import { EmojiPickerStyleProps } from "@ecency/ns-query";
 
 interface Emoji {
   a: string;
@@ -32,6 +33,7 @@ interface EmojiCacheItem {
 
 interface Props {
   fallback?: (e: string) => void;
+  style?: EmojiPickerStyleProps;
 }
 
 interface State {
@@ -137,8 +139,12 @@ export default class EmojiPicker extends BaseComponent<Props> {
 
     const recent: string[] = ls.get("recent-emoji", []);
 
+    const emojiPickerStyle = {
+      ...(this.props.style && this.props.style)
+    };
+
     return (
-      <div className="emoji-picker">
+      <div className="emoji-picker" style={emojiPickerStyle}>
         <SearchBox
           autoComplete="off"
           autoCorrect="off"

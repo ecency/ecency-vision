@@ -448,7 +448,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       </div>
                     </button>
                     <button
-                      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
                       onClick={[Function]}
                       size="lg"
                       style={
@@ -631,7 +631,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                         </div>
                       </button>
                       <button
-                        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
                         onClick={[Function]}
                         size="lg"
                         style={

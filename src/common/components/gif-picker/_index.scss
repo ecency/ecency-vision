@@ -2,7 +2,7 @@
 
 .emoji-picker.gif {
   // width: 280px;
-  width: 430px !important;
+  width: 430px;
   position: absolute;
   right: 0;
   z-index: 12;
@@ -11,7 +11,7 @@
   padding: 14px 6px;
 
   @media (max-width: $sm-break) {
-    width: 160px !important;
+    width: 160px;
   }
 
   @include themify(day) {

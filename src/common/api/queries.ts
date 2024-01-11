@@ -1,10 +1,11 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useQueries, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { EntriesCacheContext, QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
+import { getAccountFull } from "./hive";
 import { getDiscussion } from "./bridge";
 import { SortOrder } from "../store/discussion/types";
 import { getFollowing } from "./hive";
@@ -92,6 +93,22 @@ export function useImageDownloader(
       retryDelay: 3000
     }
   );
+}
+
+export function useGetAccountFullQuery(username?: string) {
+  return useQuery([QueryIdentifiers.GET_ACCOUNT_FULL, username], () => getAccountFull(username!), {
+    enabled: !!username
+  });
+}
+
+export function useGetAccountsFullQuery(usernames: string[]) {
+  return useQueries({
+    queries: usernames.map((username) => ({
+      queryKey: [QueryIdentifiers.GET_ACCOUNT_FULL, username],
+      queryFn: () => getAccountFull(username!),
+      enabled: !!username
+    }))
+  });
 }
 
 export function useFetchDiscussionsQuery(

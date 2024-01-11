@@ -23,6 +23,7 @@ import { usrActivity } from "../../api/private-api";
 import { hsTokenRenew } from "../../api/auth-api";
 import { formatError, grantPostingPermission } from "../../api/operations";
 import { getRefreshToken } from "../../helper/user-token";
+
 import ReCAPTCHA from "react-google-recaptcha";
 import { addAccountAuthority, signBuffer } from "../../helper/keychain";
 import { _t } from "../../i18n";

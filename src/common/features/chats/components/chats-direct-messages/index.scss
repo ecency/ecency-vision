@@ -1,0 +1,19 @@
+@import "src/style/vars_mixins";
+
+.direct-messages {
+  padding-bottom: 15px;
+
+  .custom-divider {
+    .custom-divider-text {
+      margin-bottom: 1rem;
+      font-size: 14px;
+    }
+  }
+  
+  .not-joined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14%;
+  }
+}

@@ -2,7 +2,7 @@ import { ButtonAppearance, ButtonSize } from "@ui/button/props";
 
 export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
   primary:
-    "bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky",
+    "bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky",
   secondary: "bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white",
   link: "text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active",
   danger: "bg-red hover:bg-red-020 focus:bg-red-030 text-white",
@@ -27,6 +27,7 @@ export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {
 };
 
 export const BUTTON_SIZES: Record<ButtonSize, string> = {
+  xxs: "h-4 text-xs [&>div>svg]:w-4",
   xs: "h-[2rem] text-sm font-[500] px-2 text-xs",
   sm: "h-[2rem] text-sm font-[500] px-2",
   md: "h-[2.125rem] px-3",

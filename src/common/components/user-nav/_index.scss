@@ -36,6 +36,7 @@
   .user-wallet,
   .user-points,
   .notifications,
+  .chats,
   .points {
     @apply text-white;
     display: flex;
@@ -68,7 +69,8 @@
     }
   }
 
-  .notifications {
+  .notifications,
+  .chats {
     cursor: pointer;
     position: relative;
 
@@ -113,10 +115,6 @@
       @apply bg-dark-200;
     }
 
-    .label {
-
-    }
-
     .power {
       display: flex;
 
@@ -125,10 +123,10 @@
         margin-right: 2px;
       }
 
-      .voting, .downVoting {
+      .voting,
+      .downVoting {
         display: flex;
         align-items: center;
-
       }
 
       .voting {
@@ -148,7 +146,6 @@
 
   // custom dropdown override
   .custom-dropdown {
-
     .menu-inner {
       width: 220px;
 

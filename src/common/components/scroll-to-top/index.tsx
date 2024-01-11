@@ -37,6 +37,11 @@ export default class ScrollToTop extends Component {
     }
 
     if (this.shouldShow()) {
+      if (window.innerWidth <= 666) {
+        this.button.current.classList.add("small-screen");
+      } else {
+        this.button.current.classList.remove("small-screen");
+      }
       this.button.current.classList.add("visible");
       return;
     }

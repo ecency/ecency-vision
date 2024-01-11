@@ -34,6 +34,10 @@ interface Props {
   withPadding?: boolean;
   menuHide?: boolean;
   noMarginTop?: boolean;
+  style?: {
+    width: string;
+    height: string;
+  };
 }
 
 const MyDropDown = (props: Props) => {
@@ -112,11 +116,17 @@ const MyDropDown = (props: Props) => {
 
   const { label, float, items } = props;
 
+  const menuDownStyle = {
+    ...(props.style && props.style) // Merge the passed style props if available
+  };
+
   const child: JSX.Element =
     typeof label === "string" ? (
       <div className={_c(`dropdown-btn ${menu ? "hover" : ""}`)}>
         {label && <div className="label">{label}</div>}
-        <div className="menu-down">{props?.icon || menuDownSvg}</div>
+        <div style={menuDownStyle} className="menu-down">
+          {props?.icon || menuDownSvg}
+        </div>
       </div>
     ) : (
       label
@@ -203,7 +213,8 @@ export default (p: Props) => {
     className: p?.className,
     withPadding: p?.withPadding,
     menuHide: p?.menuHide,
-    noMarginTop: p?.noMarginTop
+    noMarginTop: p?.noMarginTop,
+    style: p?.style
   };
 
   return <MyDropDown {...props} />;

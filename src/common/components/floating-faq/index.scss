@@ -15,6 +15,10 @@
   border-radius: 18px;
   overflow: hidden;
 
+  &.small-screen {
+    bottom: 7rem;
+  }
+
   &.submit {
     position: fixed;
     right: 23.7rem !important;

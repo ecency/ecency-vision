@@ -2,10 +2,10 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="border bg-white rounded  search-topics"
+  className="border border-[--border-color] bg-white rounded  search-topics"
 >
   <div
-    className="bg-gray-100 border-b p-3"
+    className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3"
   >
     <strong>
       Topics
@@ -30,10 +30,10 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) No matches 1`] = `
 <div
-  className="border bg-white rounded  search-topics"
+  className="border border-[--border-color] bg-white rounded  search-topics"
 >
   <div
-    className="bg-gray-100 border-b p-3"
+    className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3"
   >
     <strong>
       Topics
