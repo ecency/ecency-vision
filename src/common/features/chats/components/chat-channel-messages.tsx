@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { _t } from "../../../i18n";
 import { ChatMessageItem } from "./chat-message-item";
@@ -17,6 +17,7 @@ import {
 import { groupMessages } from "../utils";
 import { ChatFloatingDate } from "./chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -31,9 +32,10 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
 
   // Message where users interacted with context menu
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
+  const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
 
   const { publicKey } = useKeysQuery();
-  const { fetchNextPage } = usePublicMessagesQuery(currentChannel);
+  const { fetchNextPage, refetch } = usePublicMessagesQuery(currentChannel);
 
   const { mutateAsync: updateBlockedUsers, isLoading: isUsersBlockingLoading } =
     useUpdateChannelBlockedUsers(currentChannel);
@@ -48,6 +50,22 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
     [publicMessages, currentChannel]
   );
   const groupedMessages = useMemo(() => groupMessages(messages), [messages]);
+
+  useEffect(() => {
+    if (messages.length === 0) {
+      refetch();
+    }
+  }, [messages]);
+
+  useDebounce(
+    () => {
+      if (needFetchNextPage) {
+        fetchNextPage();
+      }
+    },
+    500,
+    [needFetchNextPage]
+  );
 
   return (
     <>
@@ -88,12 +106,8 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                         100
                       )
                     }
-                    onInViewport={() =>
-                      i === groupedMessages.length - 1 &&
-                      j === group.length - 1 &&
-                      fetchNextPage({
-                        pageParam: message.created * 1000
-                      })
+                    onInViewport={(inViewport) =>
+                      i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
                     }
                   />
                   <DropdownMenu

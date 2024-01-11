@@ -94,7 +94,7 @@ export function ChatMessageItem({
     <div key={message.id} data-message-id={message.id} ref={ref}>
       <div
         className={classNameObject({
-          "flex gap-1 px-4": true,
+          "flex gap-1 px-4 w-full": true,
           "justify-start": type === "receiver",
           "justify-end": type === "sender",
           failed: isFailed,
@@ -123,15 +123,15 @@ export function ChatMessageItem({
         )}
         <div
           className={classNameObject({
-            "flex gap-1 flex-col": true,
+            "flex gap-1 flex-col w-full": true,
             "items-start": type === "receiver",
             "items-end": type === "sender"
           })}
         >
           <div
             className={classNameObject({
-              "duration-300": true,
-              "text-sm p-2.5 rounded-b-2xl": !isGif && !isImage && !isEmoji,
+              "duration-300 max-w-[340px]": true,
+              "text-sm p-2.5 rounded-b-2xl": !isGif && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
@@ -141,7 +141,7 @@ export function ChatMessageItem({
             })}
           >
             <div
-              className="sender-message-content"
+              className="sender-message-content [&>img]:rounded-xl"
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
             />
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import { EntryScreen } from "./pages/entry";
@@ -33,6 +33,8 @@ import { ChatPopUp } from "./features/chats/components/chat-popup";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ChatContextProvider } from "@ecency/ns-query";
 import { useGetAccountFullQuery } from "./api/queries";
+import defaults from "./constants/defaults.json";
+import { getAccessToken } from "./helper/user-token";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -105,13 +107,23 @@ const App = (props: any) => {
     }
   });
 
+  const accessToken = useMemo(
+    () => (activeUser ? getAccessToken(activeUser.username) ?? "" : ""),
+    [activeUser]
+  );
+
   return (
     <EntriesCacheManager>
       {/*Excluded from production*/}
       <ReactQueryDevtools initialIsOpen={false} />
       <Tracker />
       <UserActivityRecorder />
-      <ChatContextProvider activeUsername={activeUser?.username} activeUserData={activeUserAccount}>
+      <ChatContextProvider
+        privateApiHost={defaults.base}
+        activeUsername={activeUser?.username}
+        activeUserData={activeUserAccount}
+        ecencyAccessToken={accessToken}
+      >
         <Switch>
           <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
           <Route exact={true} strict={true} path={routes.FILTER} component={EntryIndexContainer} />

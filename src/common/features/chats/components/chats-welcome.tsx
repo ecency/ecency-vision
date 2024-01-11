@@ -6,12 +6,7 @@ import { useGetAccountFullQuery } from "../../../api/queries";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { CreateAnAccount } from "./create-an-account";
 import { ChatsImport } from "./chats-import";
-import {
-  ChatContext,
-  getUserChatPrivateKey,
-  getUserChatPublicKey,
-  useRestoreChatByPin
-} from "@ecency/ns-query";
+import { ChatContext, getUserChatPublicKey, useRestoreChatByPin } from "@ecency/ns-query";
 
 export function ChatsWelcome() {
   const { activeUser } = useMappedStore();
@@ -33,8 +28,7 @@ export function ChatsWelcome() {
       return false;
     }
     const publicKey = getUserChatPublicKey(fullAccount);
-    const { key, iv } = getUserChatPrivateKey(fullAccount);
-    return !!key && !!iv && !!publicKey;
+    return !!publicKey;
   }, [fullAccount]);
 
   useEffect(() => {
