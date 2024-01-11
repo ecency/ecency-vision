@@ -82,7 +82,8 @@
     "resend": "Отправить ещё раз",
     "failed": "Неудачно",
     "status": "Статус",
-    "download": "Скачать"
+    "download": "Скачать",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -1407,6 +1408,7 @@
     "image-error": "Не удалось загрузить изображение.",
     "image-error-cache": "Не удалось загрузить изображение. Похоже, что вы вышли из системы. Попробуйте авторизоваться заново.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Фрагменты",
     "link-image": "Ссылка"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Управление заблокированными пользователями",
     "unlock-the-section": "Пожалуйста, введите PIN-код, чтобы увидеть информацию о ваших учетных данных",
     "no-contacts-or-channels": "Диалогов пока нет",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Добро пожаловать в чаты",
       "description": "Создайте или импортируйте аккаунт с помощью чатов",
