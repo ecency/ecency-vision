@@ -82,7 +82,8 @@
     "resend": "Resend",
     "failed": "Failed",
     "status": "Status",
-    "download": "Download"
+    "download": "Download",
+    "retry": "Retry"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -1407,6 +1408,7 @@
     "image-error": "Не вдалося додати зображення.",
     "image-error-cache": "Не вдалося завантажити зображення. Здається, ви вийшли з системи. Спробуйте увійти знову.",
     "image-error-size": "Зображення завелике. Спробуйте зменшити його розмір.",
+    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Фрагменти",
     "link-image": "Посилання на зображення"
   },
@@ -1910,6 +1912,7 @@
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
+    "upload-image": "Upload image",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
