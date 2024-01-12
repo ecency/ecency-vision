@@ -83,7 +83,7 @@
     "failed": "Fallido",
     "status": "Estado",
     "download": "Descargar",
-    "retry": "Retry"
+    "retry": "Reintentar"
   },
   "confirm": {
     "title": "¿Estás seguro?",
