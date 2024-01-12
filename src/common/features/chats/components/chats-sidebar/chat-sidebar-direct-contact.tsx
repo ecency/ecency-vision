@@ -5,11 +5,10 @@ import {
   ChatContext,
   DirectContact,
   getRelativeDate,
-  getUserChatPublicKey,
+  useGetPublicKeysQuery,
   useKeysQuery,
   useLastMessageQuery
 } from "@ecency/ns-query";
-import { useGetAccountFullQuery } from "../../../../api/queries";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../../components/tooltip";
 import { informationOutlineSvg } from "../../../../img/svg";
@@ -27,26 +26,23 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     useContext(ChatContext);
 
   const { publicKey } = useKeysQuery();
-  const { data: contactData, isLoading: isContactDataLoading } = useGetAccountFullQuery(
+  const { data: contactKeys, isLoading: isContactKeysLoading } = useGetPublicKeysQuery(
     contact.name
   );
   const lastMessage = useLastMessageQuery(contact);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
 
-  const isJoined = useMemo(
-    () => (contactData ? !!getUserChatPublicKey(contactData) : false),
-    [contactData]
-  );
+  const isJoined = useMemo(() => (contactKeys ? contactKeys.pubkey : false), [contactKeys]);
   const isReadOnly = useMemo(
-    () => (contactData && isJoined ? contact.pubkey !== getUserChatPublicKey(contactData) : false),
-    [contactData, contact, isJoined]
+    () => (contactKeys && isJoined ? contact.pubkey !== contactKeys.pubkey : false),
+    [contactKeys, contact, isJoined]
   );
 
   const content = (
     <>
       <div
         className={classNameObject({
-          grayscale: isContactDataLoading ? true : isReadOnly || !isJoined
+          grayscale: isContactKeysLoading ? true : isReadOnly || !isJoined
         })}
       >
         <UserAvatar username={contact.name} size="medium" />
@@ -54,7 +50,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
       <div className="flex flex-col w-[calc(100%-40px-0.75rem)]">
         <div className="flex justify-between w-full items-center">
           <div>
-            {isReadOnly && !isContactDataLoading && (
+            {isReadOnly && !isContactKeysLoading && (
               <div className="text-gray-600 flex items-center text-xs">
                 {_t("chat.read-only")}
                 <Tooltip content={_t("chat.why-read-only")}>
@@ -62,7 +58,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
                 </Tooltip>
               </div>
             )}
-            {!isJoined && !isContactDataLoading && (
+            {!isJoined && !isContactKeysLoading && (
               <div className="text-gray-600 flex items-center text-xs">
                 {_t("chat.user-not-joined")}
                 <Tooltip content={_t("chat.not-joined")}>

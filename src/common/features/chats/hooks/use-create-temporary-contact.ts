@@ -1,18 +1,17 @@
 import { useContext, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { ChatContext, ChatQueries, DirectContact, getUserChatPublicKey } from "@ecency/ns-query";
-import { useGetAccountFullQuery } from "../../../api/queries";
+import { ChatContext, ChatQueries, DirectContact, useGetPublicKeysQuery } from "@ecency/ns-query";
 
 export function useCreateTemporaryContact(selectedAccount: string) {
   const queryClient = useQueryClient();
   const { setReceiverPubKey, activeUsername } = useContext(ChatContext);
 
-  const { data: selectedAccountData } = useGetAccountFullQuery(selectedAccount);
+  const { data: contactKeys, isFetched, isError } = useGetPublicKeysQuery(selectedAccount);
 
   // Create temporary contact and select it when searching users
   // `not_joined_${selectedAccount}` – special constructor for creating a temporary contact
   return useEffect(() => {
-    if (selectedAccount && selectedAccountData) {
+    if (selectedAccount && (isFetched || isError)) {
       queryClient.setQueryData<DirectContact[]>(
         [ChatQueries.DIRECT_CONTACTS, activeUsername],
         [
@@ -22,13 +21,11 @@ export function useCreateTemporaryContact(selectedAccount: string) {
           ]) ?? []),
           {
             name: selectedAccount,
-            pubkey: getUserChatPublicKey(selectedAccountData) ?? `not_joined_${selectedAccount}`
+            pubkey: contactKeys?.pubkey ?? `not_joined_${selectedAccount}`
           }
         ]
       );
-      setReceiverPubKey(
-        getUserChatPublicKey(selectedAccountData) ?? `not_joined_${selectedAccount}`
-      );
+      setReceiverPubKey(contactKeys?.pubkey ?? `not_joined_${selectedAccount}`);
     }
-  }, [selectedAccount, selectedAccountData]);
+  }, [selectedAccount, contactKeys, isFetched, isError]);
 }
