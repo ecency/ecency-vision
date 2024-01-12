@@ -1408,7 +1408,7 @@
     "image-error": "No se pudo cargar la imagen.",
     "image-error-cache": "No se pudo subir la imagen. Parece que has cerrado la sesión. Intenta iniciar sesión de nuevo.",
     "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño.",
-    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-conflict-name": "Ya tienes una imagen con este nombre de archivo. Selecciónala en la galería.",
     "fragments": "Fragmentos de código",
     "link-image": "Enlace"
   },
@@ -1912,7 +1912,7 @@
     "blocked-users-management": "Gestión de usuarios bloqueados",
     "unlock-the-section": "Por favor, introduce tu PIN para ver la información de tus credenciales",
     "no-contacts-or-channels": "Aún no hay conversaciones",
-    "upload-image": "Upload image",
+    "upload-image": "Subir imagen",
     "welcome": {
       "title": "Bienvenido a Chats",
       "description": "Crear o importar una cuenta empieza a usar Chats",
