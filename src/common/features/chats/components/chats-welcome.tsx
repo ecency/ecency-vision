@@ -2,20 +2,16 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import { _t } from "../../../i18n";
 import { CodeInput } from "@ui/input";
 import OrDivider from "../../../components/or-divider";
-import { useGetAccountFullQuery } from "../../../api/queries";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { CreateAnAccount } from "./create-an-account";
 import { ChatsImport } from "./chats-import";
-import { ChatContext, getUserChatPublicKey, useRestoreChatByPin } from "@ecency/ns-query";
+import { ChatContext, useKeysQuery, useRestoreChatByPin } from "@ecency/ns-query";
 
 export function ChatsWelcome() {
-  const { activeUser } = useMappedStore();
-
   const [step, setStep] = useState(0);
   const [pin, setPin] = useState("");
 
   const { hasUserJoinedChat } = useContext(ChatContext);
-  const { data: fullAccount } = useGetAccountFullQuery(activeUser?.username);
+  const { publicKey } = useKeysQuery();
 
   const {
     mutateAsync: restoreByPin,
@@ -23,13 +19,7 @@ export function ChatsWelcome() {
     isLoading: isRestoreLoading
   } = useRestoreChatByPin();
 
-  const isAlreadyRegisteredInChats = useMemo(() => {
-    if (!fullAccount) {
-      return false;
-    }
-    const publicKey = getUserChatPublicKey(fullAccount);
-    return !!publicKey;
-  }, [fullAccount]);
+  const isAlreadyRegisteredInChats = useMemo(() => !!publicKey, [publicKey]);
 
   useEffect(() => {
     // Handle PIN on account restoring

@@ -22,11 +22,10 @@ import {
   Channel,
   ChatContext,
   DirectContact,
-  getUserChatPublicKey,
   useChannelsQuery,
+  useGetPublicKeysQuery,
   useSendMessage
 } from "@ecency/ns-query";
-import { useGetAccountFullQuery } from "../../../api/queries";
 import Tooltip from "../../../components/tooltip";
 import { ChatInputFiles } from "./chat-input-files";
 import Gallery from "../../../components/gallery";
@@ -52,7 +51,9 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   const [showGifPicker, setShowGifPicker] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
 
-  const { data: contactData } = useGetAccountFullQuery(currentContact?.name);
+  const { data: contactKeys, isLoading: isContactKeysLoading } = useGetPublicKeysQuery(
+    currentContact?.name
+  );
   const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
     currentChannel,
     currentContact,
@@ -68,9 +69,10 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
     () => isCurrentUser && !receiverPubKey,
     [isCurrentUser, receiverPubKey]
   );
+  const isJoined = useMemo(() => (contactKeys ? contactKeys.pubkey : false), [contactKeys]);
   const isReadOnly = useMemo(
-    () => (contactData ? currentContact?.pubkey !== getUserChatPublicKey(contactData) : false),
-    [contactData, currentContact]
+    () => (contactKeys && isJoined ? currentContact?.pubkey !== contactKeys.pubkey : false),
+    [contactKeys, currentContact, isJoined]
   );
   const isFilesUploading = useMemo(
     () => (files.length > 0 ? files.length !== uploadedFileLinks.length : false),
