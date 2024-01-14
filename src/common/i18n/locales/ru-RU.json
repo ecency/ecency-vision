@@ -83,7 +83,7 @@
     "failed": "Неудачно",
     "status": "Статус",
     "download": "Скачать",
-    "retry": "Retry"
+    "retry": "Повторить"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -1408,7 +1408,7 @@
     "image-error": "Не удалось загрузить изображение.",
     "image-error-cache": "Не удалось загрузить изображение. Похоже, что вы вышли из системы. Попробуйте авторизоваться заново.",
     "image-error-size": "Слишком большой размер изображения. Попробуйте уменьшить его.",
-    "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-conflict-name": "У вас уже есть изображение с таким именем. Выберите его из галереи.",
     "fragments": "Фрагменты",
     "link-image": "Ссылка"
   },
@@ -1835,9 +1835,9 @@
   },
   "chat": {
     "page-title": "Диалоги",
-    "read-only": "Read-only",
-    "why-read-only": "This user has changed their chat key. Please, find new account by username in search above.",
-    "user-not-joined": "Hasn't joined yet",
+    "read-only": "Только для чтения",
+    "why-read-only": "Этот пользователь изменил свой ключ чата. Пожалуйста, найдите новый аккаунт по имени пользователя в поиске выше.",
+    "user-not-joined": "Пока не присоединился",
     "title": "Чаты",
     "messages": "Сообщения",
     "key": "Ключ чата Ecency",
@@ -1912,7 +1912,7 @@
     "blocked-users-management": "Управление заблокированными пользователями",
     "unlock-the-section": "Пожалуйста, введите PIN-код, чтобы увидеть информацию о ваших учетных данных",
     "no-contacts-or-channels": "Диалогов пока нет",
-    "upload-image": "Upload image",
+    "upload-image": "Загрузить изображение",
     "welcome": {
       "title": "Добро пожаловать в чаты",
       "description": "Создайте или импортируйте аккаунт с помощью чатов",
