@@ -20,3 +20,12 @@ export function DropdownItem(props: HTMLProps<HTMLDivElement>) {
     />
   );
 }
+
+export function DropdownItemHeader(props: HTMLProps<HTMLDivElement>) {
+  return (
+    <div
+      className="bg-gray-200 rounded-t-xl p-2 text-sm font-semibold -mt-2 w-[calc(100%+1rem)] text-gray-600 dark:bg-dark-200 dark:text-white"
+      {...props}
+    />
+  );
+}

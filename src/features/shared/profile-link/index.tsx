@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const makePath = (username: string) => `/@${username}`;
 
@@ -27,12 +28,12 @@ export function ProfileLink({ afterClick, target, className, children, username 
   };
 
   return (
-    <a
+    <Link
       href={target === "_blank" ? "#" : makePath(username)}
       className={className}
       onClick={clicked}
     >
       {children}
-    </a>
+    </Link>
   );
 }

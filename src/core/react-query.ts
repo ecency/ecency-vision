@@ -29,5 +29,9 @@ export enum QueryIdentifiers {
   SCHEDULES = "schedules",
   BOOKMARKS = "bookmarks",
   FAVOURITES = "favourites",
-  GALLERY_IMAGES = "gallery-images"
+  GALLERY_IMAGES = "gallery-images",
+  DYNAMIC_PROPS = "dynamic-props",
+  NOTIFICATIONS = "notifications",
+  NOTIFICATIONS_SETTINGS = "notifications-settings",
+  NOTIFICATIONS_UNREAD_COUNT = "notifications-unread-count"
 }

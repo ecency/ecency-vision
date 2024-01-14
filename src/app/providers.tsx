@@ -7,6 +7,7 @@ import useMount from "react-use/lib/useMount";
 import * as ls from "@/utils/local-storage";
 import Cookies from "js-cookie";
 import { useGlobalStore } from "@/core/global-store";
+import { PushNotificationsProvider } from "@/features/push-notifications";
 
 export default function Providers({ children }: PropsWithChildren) {
   const setActiveUser = useGlobalStore((state) => state.setActiveUser);
@@ -33,7 +34,7 @@ export default function Providers({ children }: PropsWithChildren) {
         })
       }
     >
-      {children}
+      <PushNotificationsProvider>{children}</PushNotificationsProvider>
       <ReactQueryDevtools initialIsOpen={false} />
       <div id="modal-overlay-container" />
       <div id="modal-dialog-container" />

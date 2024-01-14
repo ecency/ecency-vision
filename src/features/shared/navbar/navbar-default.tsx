@@ -29,18 +29,20 @@ import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
 import { GalleryDialog } from "@/features/shared/gallery";
 import { DraftsDialog } from "@/features/shared/drafts";
+import { NotificationsDialog } from "@/features/shared/notifications";
 
 interface Props {
   history: History;
   setSmVisible: (v: boolean) => void;
 }
 
-export function NavbarDefault({ setSmVisible, history }: Props) {
+export function NavbarDefault({ setSmVisible }: Props) {
   const toggleTheme = useGlobalStore((state) => state.toggleTheme);
   const activeUser = useGlobalStore((state) => state.activeUser);
   const setActiveUser = useGlobalStore((state) => state.setActiveUser);
   const toggleUIProp = useGlobalStore((state) => state.toggleUiProp);
   const theme = useGlobalStore((state) => state.theme);
+  const showNotifications = useGlobalStore((state) => state.uiNotifications);
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -286,7 +288,9 @@ export function NavbarDefault({ setSmVisible, history }: Props) {
         </div>
       </div>
       {gallery && <GalleryDialog onHide={() => setGallery(!gallery)} />}
-      {/*{ui.notifications && activeUser && <UserNotifications history={history} />}*/}
+      {showNotifications && activeUser && (
+        <NotificationsDialog onHide={() => toggleUIProp("notifications")} />
+      )}
       {drafts && activeUser && <DraftsDialog onHide={() => setDrafts(!drafts)} />}
       {bookmarks && activeUser && <BookmarksDialog onHide={() => setBookmarks(!bookmarks)} />}
       {schedules && activeUser && <SchedulesDialog onHide={() => setSchedules(!schedules)} />}

@@ -8,3 +8,4 @@ export * from "./fragments";
 export * from "./schedules";
 export * from "./gallery-image";
 export * from "./drafts";
+export * from "./notifications";

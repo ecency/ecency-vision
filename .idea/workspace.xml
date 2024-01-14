@@ -4,20 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated gallery">
-      <change afterPath="$PROJECT_DIR$/src/api/mutations/drafts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/drafts-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/draft-list-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/drafts-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/drafts/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated drafts">
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/notifications/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/notifications/mark-notifications.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/notifications/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/notifications/notification-unread-count-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/notifications/notifications-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/notifications/notifications-settings-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-list-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-bookmark-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-delegations-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-favourite-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-follow-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-inactive-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-mention-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-reblog-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-referral-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-reply-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-spin-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-transfer-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-vote-type.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-content.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-status-buttons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/utils/date2key.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/notifications/utils/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/button/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/button/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,43 +78,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "editor.preferences.completion",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared/notifications/notification-types&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/shared/notifications/notification-types" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
       <recent name="$PROJECT_DIR$/src/api" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/app/witnesses" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
@@ -195,7 +230,10 @@
       <workItem from="1703784681996" duration="1410000" />
       <workItem from="1703843700965" duration="662000" />
       <workItem from="1703844694855" duration="5566000" />
-      <workItem from="1704628898207" duration="9112000" />
+      <workItem from="1704628898207" duration="14510000" />
+      <workItem from="1704905915903" duration="329000" />
+      <workItem from="1705079414539" duration="2249000" />
+      <workItem from="1705249313313" duration="5751000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -373,11 +411,30 @@
       <option name="project" value="LOCAL" />
       <updated>1704644731023</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Migrated drafts">
+      <option name="closed" value="true" />
+      <created>1704646786595</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704646786595</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrated UI, some utils, added zustand" />
@@ -400,7 +457,8 @@
     <MESSAGE value="Migrated schedules" />
     <MESSAGE value="Migrated bookmarks" />
     <MESSAGE value="Migrated gallery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated gallery" />
+    <MESSAGE value="Migrated drafts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated drafts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

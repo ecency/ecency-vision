@@ -14,6 +14,8 @@ import { SchedulesDialog } from "@/features/shared/schedules";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
 import { GalleryDialog } from "@/features/shared/gallery";
 import { DraftsDialog } from "@/features/shared/drafts";
+import { NotificationsDialog } from "@/features/shared/notifications";
+import { useNotificationUnreadCountQuery } from "@/api/queries";
 
 export * from "./wallet-badge";
 
@@ -29,8 +31,7 @@ export const UserNav = ({ icon }: Props) => {
   const toggleUIProp = useGlobalStore((state) => state.toggleUiProp);
   const usePrivate = useGlobalStore((state) => state.usePrivate);
   const globalNotifications = useGlobalStore((state) => state.globalNotifications);
-  const notifications = useGlobalStore((state) => state.notifications);
-  const uiNotifications = useGlobalStore((state) => state.uiNotifications);
+  const showNotifications = useGlobalStore((state) => state.uiNotifications);
 
   const [gallery, setGallery] = useState(false);
   const [drafts, setDrafts] = useState(false);
@@ -38,6 +39,8 @@ export const UserNav = ({ icon }: Props) => {
   const [schedules, setSchedules] = useState(false);
   const [fragments, setFragments] = useState(false);
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
+
+  const { data: notificationsUnread } = useNotificationUnreadCountQuery();
 
   const dropDownItems = [
     {
@@ -97,9 +100,9 @@ export const UserNav = ({ icon }: Props) => {
         {usePrivate ? (
           <Tooltip content={i18next.t("user-nav.notifications")}>
             <span className="notifications" onClick={() => toggleUIProp("notifications")}>
-              {notifications.unread > 0 && (
+              {notificationsUnread > 0 && (
                 <span className="notifications-badge notranslate">
-                  {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
+                  {notificationsUnread.toString().length < 3 ? notificationsUnread : "..."}
                 </span>
               )}
               {globalNotifications ? bellSvg : bellOffSvg}
@@ -148,7 +151,9 @@ export const UserNav = ({ icon }: Props) => {
           </DropdownMenu>
         </Dropdown>
       </div>
-      {/*{uiNotifications && <UserNotifications history={history} />}*/}
+      {showNotifications && activeUser && (
+        <NotificationsDialog onHide={() => toggleUIProp("notifications")} />
+      )}
       {gallery && <GalleryDialog onHide={() => setGallery(false)} />}
       {drafts && <DraftsDialog onHide={() => setDrafts(false)} />}
       {bookmarks && <BookmarksDialog onHide={() => setBookmarks(false)} />}

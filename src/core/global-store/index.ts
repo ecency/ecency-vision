@@ -6,8 +6,8 @@ import { createUiActions } from "@/core/global-store/ui-module";
 import { createGlobalActions } from "@/core/global-store/global-module";
 import { createUsersActions } from "@/core/global-store/users-module";
 import { createActiveUserActions } from "@/core/global-store/active-user-module";
-import { createNotificationsActions } from "@/core/global-store/notifications-module";
 import { createSigningKeyActions } from "@/core/global-store/signing-key-module";
+import { createNotificationsActions } from "@/core/global-store/notifications-module";
 
 export const useGlobalStore = create(
   combine(INITIAL_STATE, (set, getState, store) => ({
@@ -16,7 +16,7 @@ export const useGlobalStore = create(
     ...createGlobalActions(set, getState),
     ...createUsersActions(),
     ...createActiveUserActions(set, getState),
-    ...createNotificationsActions(set, getState),
-    ...createSigningKeyActions(set, getState)
+    ...createSigningKeyActions(set, getState),
+    ...createNotificationsActions(set, getState)
   }))
 );

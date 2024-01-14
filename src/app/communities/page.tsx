@@ -11,7 +11,7 @@ export default async function Communities() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: [QueryIdentifiers.COMMUNITIES],
+    queryKey: [QueryIdentifiers.COMMUNITIES, "rank", undefined],
     queryFn: () => getCommunities("", 100, null, "rank")
   });
 
