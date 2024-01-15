@@ -199,7 +199,7 @@ exports[`(1) Default render 1`] = `
           type="button"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               viewBox="0 0 24 24"
@@ -227,7 +227,7 @@ exports[`(1) Default render 1`] = `
               type="button"
             >
               <div
-                className="flex justify-center items-center w-5 h-5 "
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -533,7 +533,7 @@ exports[`(2) Night Theme 1`] = `
           type="button"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               viewBox="0 0 24 24"
@@ -561,7 +561,7 @@ exports[`(2) Night Theme 1`] = `
               type="button"
             >
               <div
-                className="flex justify-center items-center w-5 h-5 "
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -867,7 +867,7 @@ exports[`(3) With active user 1`] = `
           type="button"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               viewBox="0 0 24 24"
@@ -895,7 +895,7 @@ exports[`(3) With active user 1`] = `
               type="button"
             >
               <div
-                className="flex justify-center items-center w-5 h-5 "
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -1201,7 +1201,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           type="button"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               viewBox="0 0 24 24"
@@ -1229,7 +1229,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
               type="button"
             >
               <div
-                className="flex justify-center items-center w-5 h-5 "
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   viewBox="0 0 24 24"

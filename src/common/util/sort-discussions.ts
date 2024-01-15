@@ -21,10 +21,10 @@ export function sortDiscussions(entry: Entry, discussion: Entry[], order: SortOr
         return -1;
       }
 
-      const apayout = allPayout(a);
-      const bpayout = allPayout(b);
-      if (apayout !== bpayout) {
-        return bpayout - apayout;
+      const _a = allPayout(a);
+      const _b = allPayout(b);
+      if (_a !== _b) {
+        return _b - _a;
       }
 
       return 0;

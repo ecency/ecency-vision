@@ -213,7 +213,7 @@ exports[`(2) Render with loaded data 1`] = `
     </div>
   </div>
   <div
-    className="btn-controls flex gap-3"
+    className="btn-controls flex flex-wrap gap-3"
   />
 </div>
 `;
@@ -404,7 +404,7 @@ exports[`(3) Should show profile edits 1`] = `
     </div>
   </div>
   <div
-    className="btn-controls flex gap-3"
+    className="btn-controls flex flex-wrap gap-3"
   >
     <a
       href="/@user1/referrals"

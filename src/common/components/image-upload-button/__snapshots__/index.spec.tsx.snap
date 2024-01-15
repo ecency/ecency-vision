@@ -15,7 +15,7 @@ Array [
     type="button"
   >
     <div
-      className="flex justify-center items-center w-5 h-5 "
+      className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
     >
       <svg
         viewBox="0 0 24 24"

@@ -339,7 +339,7 @@ exports[`(1) Default render 1`] = `
               type="button"
             >
               <div
-                className="flex justify-center items-center w-5 h-5 "
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   fill="currentColor"
