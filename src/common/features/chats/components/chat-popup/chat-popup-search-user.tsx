@@ -8,6 +8,7 @@ import { Community } from "../../../../store/communities";
 import { isCommunity } from "@ecency/ns-query";
 import { Reputations } from "../../../../api/hive";
 import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Props {
   onCommunityClicked: (communityName: string) => void;
@@ -15,7 +16,8 @@ interface Props {
 
 export function ChatPopupSearchUser({ onCommunityClicked }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedUser, setSelectedUser] = useState<string>("");
+  const [selectedUser, setSelectedUser] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [selectedCommunity, setSelectedCommunity] = useState("");
 
   const { data: searchUsers } = useSearchUsersQuery(searchQuery);
@@ -24,16 +26,27 @@ export function ChatPopupSearchUser({ onCommunityClicked }: Props) {
   useCreateTemporaryContact(selectedUser);
   useCreateTemporaryChannel(selectedCommunity);
 
+  useDebounce(
+    () => {
+      if (searchInput) {
+        setSearchQuery(searchInput);
+      }
+    },
+    500,
+    [searchInput]
+  );
+
   return (
     <>
       <div className="w-full mb-3">
-        <ChatSidebarSearch setSearch={setSearchQuery} />
+        <ChatSidebarSearch setSearch={setSearchInput} />
       </div>
       <div className="user-search-suggestion-list">
         {[...searchUsers, ...searchCommunities].map((item) => (
           <ChatSidebarSearchItem
             item={item}
             onClick={async () => {
+              setSearchInput("");
               setSearchQuery("");
 
               const community = item as Community;

@@ -5,15 +5,15 @@ import {
   chatBoxImageSvg,
   emoticonHappyOutlineSvg,
   gifIcon,
+  imageSvg,
   informationOutlineSvg,
   messageSendSvg
 } from "../../../img/svg";
-import { CHAT_FILE_CONTENT_TYPES, GifImagesStyle } from "./chat-popup/chat-constants";
+import { GifImagesStyle } from "./chat-popup/chat-constants";
 import { _t } from "../../../i18n";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
-import { useChatFileUpload } from "../mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import GifPicker from "../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
@@ -22,12 +22,13 @@ import {
   Channel,
   ChatContext,
   DirectContact,
-  getUserChatPublicKey,
   useChannelsQuery,
+  useGetPublicKeysQuery,
   useSendMessage
 } from "@ecency/ns-query";
-import { useGetAccountFullQuery } from "../../../api/queries";
 import Tooltip from "../../../components/tooltip";
+import { ChatInputFiles } from "./chat-input-files";
+import Gallery from "../../../components/gallery";
 
 interface Props {
   currentChannel?: Channel;
@@ -45,10 +46,14 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   const { receiverPubKey } = useContext(ChatContext);
 
   const [message, setMessage] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
+  const [uploadedFileLinks, setUploadedFileLinks] = useState<string[]>([]);
   const [showGifPicker, setShowGifPicker] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
 
-  const { data: contactData } = useGetAccountFullQuery(currentContact?.name);
-  const { mutateAsync: upload } = useChatFileUpload(setMessage);
+  const { data: contactKeys, isLoading: isContactKeysLoading } = useGetPublicKeysQuery(
+    currentContact?.name
+  );
   const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
     currentChannel,
     currentContact,
@@ -64,9 +69,14 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
     () => isCurrentUser && !receiverPubKey,
     [isCurrentUser, receiverPubKey]
   );
+  const isJoined = useMemo(() => (contactKeys ? contactKeys.pubkey : false), [contactKeys]);
   const isReadOnly = useMemo(
-    () => (contactData ? currentContact?.pubkey !== getUserChatPublicKey(contactData) : false),
-    [contactData, currentContact]
+    () => (contactKeys && isJoined ? currentContact?.pubkey !== contactKeys.pubkey : false),
+    [contactKeys, currentContact, isJoined]
+  );
+  const isFilesUploading = useMemo(
+    () => (files.length > 0 ? files.length !== uploadedFileLinks.length : false),
+    [files, uploadedFileLinks]
   );
 
   useClickAway(gifPickerRef, () => setShowGifPicker(false));
@@ -77,24 +87,21 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
     }
   }, [isCommunity, isCurrentUser]);
 
-  const checkFile = (filename: string) => {
-    const filenameLow = filename.toLowerCase();
-    return CHAT_FILE_CONTENT_TYPES.some((el) => filenameLow.endsWith(el));
-  };
-
-  const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let files = [...(e.target.files as FileList)].filter((i) => checkFile(i.name)).filter((i) => i);
-
-    if (files.length > 0) {
-      e.stopPropagation();
-      e.preventDefault();
+  const submit = async () => {
+    if (isDisabled || isSendMessageLoading || isFilesUploading || !message) {
+      return;
     }
-
-    files.forEach((file) => upload(file));
-
-    // reset input
-    e.target.value = "";
+    const nextMessage = buildImages(message);
+    await sendMessage(nextMessage);
+    setFiles([]);
+    setUploadedFileLinks([]);
+    // Re-focus to input because when DOM changes and input position changes then
+    //  focus is lost
+    setTimeout(() => inputRef.current?.focus(), 1);
   };
+
+  const buildImages = (message: string) =>
+    `${message}${uploadedFileLinks.map((link) => `\n![](${link})`)}`;
 
   return (
     <div className="chat-input">
@@ -117,8 +124,25 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
               fallback={(e) => sendMessage(e)}
             />
           )}
+          {(files.length > 0 || uploadedFileLinks.length > 0) && !showGifPicker && (
+            <ChatInputFiles
+              files={files}
+              setFiles={setFiles}
+              uploadedFileLinks={uploadedFileLinks}
+              setUploadedFileLinks={setUploadedFileLinks}
+            />
+          )}
+          {showGallery && (
+            <Gallery
+              onHide={() => setShowGallery(false)}
+              onPick={(e) => {
+                setUploadedFileLinks((links) => [...links, e]);
+                setShowGallery(false);
+              }}
+            />
+          )}
           <input
-            onChange={fileInputChanged}
+            onChange={(e) => setFiles([...(e.target.files ?? [])])}
             className="hidden"
             ref={fileInputRef}
             type="file"
@@ -130,11 +154,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              sendMessage(message).then(() => {
-                // Re-focus to input because when DOM changes and input position changes then
-                //  focus is lost
-                setTimeout(() => inputRef.current?.focus(), 1);
-              });
+              submit();
             }}
             className="w-full flex items-center gap-2 p-1.5"
           >
@@ -156,8 +176,13 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
                 />
                 <DropdownItemWithIcon
                   icon={chatBoxImageSvg}
-                  label="Upload image"
+                  label={_t("chat.upload-image")}
                   onClick={() => fileInputRef.current?.click()}
+                />
+                <DropdownItemWithIcon
+                  icon={imageSvg}
+                  label={_t("user-nav.gallery")}
+                  onClick={() => setShowGallery(true)}
                 />
               </DropdownMenu>
             </Dropdown>
@@ -194,8 +219,8 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
                 noPadding={true}
                 appearance="gray-link"
                 icon={isSendMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : messageSendSvg}
-                disabled={isDisabled || isSendMessageLoading}
-                onClick={() => sendMessage(message)}
+                disabled={isDisabled || isSendMessageLoading || isFilesUploading}
+                onClick={() => submit()}
               />
             </div>
           </Form>

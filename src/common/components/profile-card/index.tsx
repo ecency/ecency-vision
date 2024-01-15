@@ -260,7 +260,7 @@ export const ProfileCard = (props: Props) => {
           ))}
         </div>
       )}
-      <div className="btn-controls flex gap-3">
+      <div className="btn-controls flex flex-wrap gap-3">
         {isCommunity(account?.name) && (
           <>
             <Link to={`/created/${account?.name}`}>

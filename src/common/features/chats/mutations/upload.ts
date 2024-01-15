@@ -11,7 +11,7 @@ class FileUploadingError {
   constructor(public code: number, public message: string) {}
 }
 
-export function useChatFileUpload(setMessage: (v: string) => void) {
+export function useChatFileUpload(onSuccess: (file: File, v: string) => void) {
   const { activeUser, global } = useMappedStore();
 
   return useMutation(
@@ -29,9 +29,6 @@ export function useChatFileUpload(setMessage: (v: string) => void) {
         throw new FileUploadingError(1, "[Chat][File uploading] No token");
       }
 
-      const tempImgTag = `![Uploading ${file.name} #${Math.floor(Math.random() * 99)}]()\n\n`;
-      setMessage(tempImgTag);
-
       let imageUrl: string;
       const resp = await uploadImage(file, token);
       imageUrl = resp.url;
@@ -40,22 +37,22 @@ export function useChatFileUpload(setMessage: (v: string) => void) {
         await addImage(username, imageUrl);
       }
 
-      const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
-      if (imgTag) {
-        setMessage(imgTag);
-      }
+      return [file, imageUrl] as const;
     },
     {
       onError: (e) => {
         if (axios.isAxiosError(e) && e.response?.status === 413) {
           error(_t("editor-toolbar.image-error-size"));
+        } else if (axios.isAxiosError(e) && e.response?.status === 409) {
+          error(_t("editor-toolbar.image-error-conflict-name"));
         } else if (e instanceof FileUploadingError) {
           error(_t("editor-toolbar.image-error-cache"));
           throw new Error(e.message);
         } else {
           error(_t("editor-toolbar.image-error"));
         }
-      }
+      },
+      onSuccess: ([file, imageUrl]) => onSuccess(file, imageUrl)
     }
   );
 }

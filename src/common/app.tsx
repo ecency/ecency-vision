@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import EntryIndexContainer from "./pages/index";
 import { EntryScreen } from "./pages/entry";
@@ -33,6 +33,9 @@ import { ChatPopUp } from "./features/chats/components/chat-popup";
 import { ChatContextProvider } from "@ecency/ns-query";
 import { useGetAccountFullQuery } from "./api/queries";
 import { UIManager } from "@ui/core";
+import defaults from "./constants/defaults.json";
+import { getAccessToken } from "./helper/user-token";
+
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -105,6 +108,11 @@ const App = (props: any) => {
     }
   });
 
+  const accessToken = useMemo(
+    () => (activeUser ? getAccessToken(activeUser.username) ?? "" : ""),
+    [activeUser]
+  );
+
   return (
     <UIManager>
       <EntriesCacheManager>
@@ -113,8 +121,10 @@ const App = (props: any) => {
         <Tracker />
         <UserActivityRecorder />
         <ChatContextProvider
+          privateApiHost={defaults.base}
           activeUsername={activeUser?.username}
           activeUserData={activeUserAccount}
+          ecencyAccessToken={accessToken}
         >
           <Switch>
             <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />

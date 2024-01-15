@@ -5,14 +5,13 @@ import { CodeInput, FormControl } from "@ui/input";
 import React, { useState } from "react";
 import { Alert } from "@ui/alert";
 import { useImportChatByKeys } from "@ecency/ns-query";
-import { uploadChatKeys } from "../utils/upload-chat-keys";
 
 export function ChatsImport() {
   const [step, setStep] = useState(0);
   const [ecencyChatKey, setEcencyChatKey] = useState("");
   const [pin, setPin] = useState("");
 
-  const { mutateAsync: importChatByKey } = useImportChatByKeys(uploadChatKeys);
+  const { mutateAsync: importChatByKey } = useImportChatByKeys();
 
   return (
     <>
