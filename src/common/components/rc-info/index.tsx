@@ -316,7 +316,7 @@ export const ResourceCreditsInfo = (props: any) => {
           <ModalHeader thin={true} closeButton={true}>
             <ModalTitle />
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="border rounded-2xl">
             <ConfirmDelete
               activeUser={activeUser}
               to={toFromList}
