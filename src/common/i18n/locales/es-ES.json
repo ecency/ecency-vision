@@ -83,8 +83,8 @@
     "failed": "Fallido",
     "status": "Estado",
     "download": "Descargar",
-    "pin": "Pin",
-    "unpin": "Unpin",
+    "pin": "Anclar arriba",
+    "unpin": "Desanclar",
     "retry": "Reintentar"
   },
   "confirm": {
