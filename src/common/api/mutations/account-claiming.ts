@@ -1,21 +1,7 @@
+import { FullAccount } from "../../store/accounts/types";
 import { useMutation } from "@tanstack/react-query";
-import { usrActivity } from "./private-api";
-import { claimAccount, claimAccountByKeychain } from "./operations";
-import { FullAccount } from "../store/accounts/types";
 import { PrivateKey } from "@hiveio/dhive";
-
-interface Params {
-  bl?: string | number;
-  tx?: string | number;
-}
-
-export function useUserActivity(username: string | undefined, ty: number) {
-  return useMutation(["user-activity", username, ty], async (params: Params | undefined) => {
-    if (username) {
-      await usrActivity(username, ty, params?.bl, params?.tx);
-    }
-  });
-}
+import { claimAccount, claimAccountByKeychain } from "../operations";
 
 export function useAccountClaiming(account: FullAccount) {
   return useMutation(

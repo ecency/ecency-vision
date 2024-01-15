@@ -27,6 +27,8 @@ export enum QueryIdentifiers {
   THREE_SPEAK_VIDEO_LIST_FILTERED = "three-speak-video-list-filtered",
   DRAFTS = "drafts",
   BY_DRAFT_ID = "by-draft-id",
-
-  GET_ACCOUNT_FULL = "get-account-full"
+  FETCH_DISCUSSIONS = "fetch-discussions",
+  FETCH_MUTED_USERS = "fetch-muted-users",
+  GET_ACCOUNT_FULL = "get-account-full",
+  GET_POSTS = "get-posts"
 }

@@ -6,14 +6,13 @@ import { arrowLeftSvg } from "../../../../img/svg";
 import { renderPostBody } from "@ecency/render-helper";
 import { EntryInfo } from "../../../entry-info";
 import { History } from "history";
-import Discussion from "../../../discussion";
+import { Discussion } from "../../../discussion";
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import { useLocation } from "react-router";
 import { DeckPostViewerCommentBox } from "./deck-post-viewer-comment-box";
 import { _t } from "../../../../i18n";
 import { commentSvg, voteSvg } from "../../icons";
 import EntryVoteBtn from "../../../entry-vote-btn";
-import { EntriesCacheContext } from "../../../../core";
+import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import EntryVotes from "../../../entry-votes";
 import { useResizeDetector } from "react-resize-detector";
 import {
@@ -34,13 +33,14 @@ interface Props {
   onClose: () => void;
 }
 
-export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) => {
+export const DeckPostViewer = ({ entry: initialEntry, onClose, history, backTitle }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const [renderInitiated, setRenderInitiated] = useState(false);
 
+  const { data: entry } = useEntryCache(initialEntry);
+
   const { height, ref } = useResizeDetector();
   const store = useMappedStore();
-  const location = useLocation();
   const { updateVotes } = useContext(EntriesCacheContext);
 
   useMount(() => setIsMounted(true));
@@ -112,17 +112,15 @@ export const DeckPostViewer = ({ entry, onClose, history, backTitle }: Props) =>
           {entry.children}
         </div>
       </div>
-      <div className="px-3">
+      <div className="px-3 dark:[&>*>.comment-preview]:bg-dark-default">
         <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
       </div>
       <div className="px-3">
         <Discussion
-          {...store}
           parent={entry}
           community={null}
           hideControls={false}
           history={history}
-          location={location}
           isRawContent={false}
         />
       </div>

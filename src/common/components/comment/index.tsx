@@ -38,8 +38,10 @@ export class CommentPreview extends Component<PreviewProps> {
     }
 
     return (
-      <div className="comment-preview">
-        <div className="comment-preview-header">{_t("comment.preview")}</div>
+      <div className="comment-preview mt-4 rounded-2xl bg-gray-100 dark:bg-dark-200 p-4">
+        <div className="uppercase tracking-wider text-xs font-bold opacity-50 mb-4">
+          {_t("comment.preview")}
+        </div>
         <div
           className="preview-body markdown-view"
           dangerouslySetInnerHTML={{ __html: renderPostBody(text, false, global.canUseWebp) }}
@@ -82,10 +84,6 @@ interface State {
 
 export class Comment extends Component<Props, State> {
   commentBodyRef: React.RefObject<HTMLDivElement>;
-  constructor(props: Props) {
-    super(props);
-    this.commentBodyRef = React.createRef();
-  }
   state: State = {
     text: "",
     preview: "",
@@ -93,9 +91,13 @@ export class Comment extends Component<Props, State> {
     showGif: false,
     inputHeight: 0
   };
-
   timer: any = null;
   _updateTimer: any = null;
+
+  constructor(props: Props) {
+    super(props);
+    this.commentBodyRef = React.createRef();
+  }
 
   componentDidMount(): void {
     const { defText } = this.props;

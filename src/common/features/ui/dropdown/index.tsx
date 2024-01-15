@@ -1,7 +1,8 @@
-import React, { HTMLProps, useRef, useState } from "react";
+import React, { HTMLProps, useContext, useRef, useState } from "react";
 import { DropdownContext } from "@ui/dropdown/dropdown-context";
 import { classNameObject } from "../../../helper/class-name-object";
 import useClickAway from "react-use/lib/useClickAway";
+import { UIContext } from "@ui/core";
 import { useFilteredProps } from "../../../util/props-filter";
 
 export * from "./dropdown-item";
@@ -17,8 +18,15 @@ interface Props {
 export function Dropdown(props: HTMLProps<HTMLDivElement> & Props) {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const { openPopovers } = useContext(UIContext);
 
   useClickAway(ref, () => {
+    if (openPopovers.size === 0) {
+      setShow(false);
+    } else {
+      return;
+    }
+
     if (props.closeOnClickOutside ?? true) {
       setShow(false);
       // props.setShow?.(false);

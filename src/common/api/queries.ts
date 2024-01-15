@@ -1,11 +1,15 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "../core";
+import { useQueries, useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { EntriesCacheContext, QueryIdentifiers } from "../core";
 import { getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
 import { Entry } from "../store/entries/types";
-import { getAccountFull } from "./hive";
+import { getAccountFull, getFollowing } from "./hive";
+import { getAccountPosts, getDiscussion } from "./bridge";
+import { SortOrder } from "../store/discussion/types";
+import { useContext } from "react";
+import { sortDiscussions } from "../util/sort-discussions";
 
 const DEFAULT = {
   points: "0.000",
@@ -104,4 +108,55 @@ export function useGetAccountsFullQuery(usernames: string[]) {
       enabled: !!username
     }))
   });
+}
+
+export function useGetAccountPostsQuery(username?: string) {
+  return useQuery({
+    queryKey: [QueryIdentifiers.GET_POSTS, username],
+    queryFn: () => getAccountPosts("posts", username!).then((response) => response ?? []),
+    enabled: !!username,
+    initialData: []
+  });
+}
+
+export function useFetchDiscussionsQuery(
+  entry: Entry,
+  order: SortOrder,
+  queryOptions?: UseQueryOptions<Entry[]>
+) {
+  const { updateCache } = useContext(EntriesCacheContext);
+
+  return useQuery<Entry[]>(
+    [QueryIdentifiers.FETCH_DISCUSSIONS, entry?.author, entry?.permlink],
+    async () => {
+      const response = await getDiscussion(entry.author, entry.permlink);
+      if (response) {
+        const entries = Array.from(Object.values(response));
+        updateCache([...entries], true);
+        return entries;
+      }
+      return [];
+    },
+    {
+      ...queryOptions,
+      initialData: [],
+      select: (data) => sortDiscussions(entry, data, order)
+    }
+  );
+}
+
+export function useFetchMutedUsersQuery(username?: string) {
+  const { activeUser } = useMappedStore();
+
+  return useQuery(
+    [QueryIdentifiers.FETCH_MUTED_USERS, username ?? activeUser?.username ?? "anon"],
+    async () => {
+      const response = await getFollowing(username ?? activeUser!!.username, "", "ignore", 100);
+      return response.map((user) => user.following);
+    },
+    {
+      initialData: [],
+      enabled: !!username || !!activeUser
+    }
+  );
 }

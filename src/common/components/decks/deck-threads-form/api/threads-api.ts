@@ -7,9 +7,12 @@ import { version } from "../../../../../../package.json";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { v4 } from "uuid";
 import { ThreadItemEntry } from "../../columns/deck-threads-manager";
+import { useContext } from "react";
+import { EntriesCacheContext } from "../../../../core";
 
 export function useThreadsApi() {
-  const { activeUser, addReply, updateEntry } = useMappedStore();
+  const { activeUser } = useMappedStore();
+  const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
 
   const request = async (entry: Entry, raw: string, editingEntry?: ThreadItemEntry) => {
     if (!activeUser || !activeUser.data.__loaded) {
@@ -38,7 +41,7 @@ export function useThreadsApi() {
     });
 
     // add new reply to store
-    addReply(nReply);
+    addReply(entry, nReply);
 
     if (entry.children === 0) {
       // Activate discussion section with first comment.
@@ -46,8 +49,7 @@ export function useThreadsApi() {
         ...entry,
         children: 1
       };
-
-      updateEntry(nEntry);
+      updateRepliesCount(entry, 1);
     }
 
     return nReply;
