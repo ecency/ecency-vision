@@ -1,5 +1,5 @@
 import { FormControl, Tooltip } from "@/features/ui";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import i18n from "i18next";
@@ -20,7 +20,7 @@ import {
 } from "@/api/queries";
 import { hiveNotifySetLastRead } from "@/api/operations";
 import { useMarkNotifications, useUpdateNotificationsSettings } from "@/api/mutations";
-import { useDebounce } from "react-use";
+import { useDebounce, useMap } from "react-use";
 
 interface Props {
   filter: NotificationFilter | null;
@@ -30,7 +30,7 @@ export function NotificationsActions({ filter }: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const isMobile = useGlobalStore((state) => state.isMobile);
 
-  const [settings, setSettings] = useState({
+  const [settings, { set: setSettingItem }] = useMap<Record<NotifyTypes, boolean>>({
     [NotifyTypes.COMMENT]: false,
     [NotifyTypes.FOLLOW]: false,
     [NotifyTypes.MENTION]: false,
@@ -53,16 +53,29 @@ export function NotificationsActions({ filter }: Props) {
   const markNotifications = useMarkNotifications();
   const updateSettings = useUpdateNotificationsSettings();
 
+  useEffect(() => {
+    if (notificationSettings) {
+      Array.from(Object.keys(settings) as NotifyTypes[]).forEach((type) =>
+        setSettingItem(type, false)
+      );
+      notificationSettings.notify_types?.map((type) => setSettingItem(type, true));
+    }
+  }, [notificationSettings]);
+
   useDebounce(
     () => {
-      // if (settings === NotifyTypes.ALLOW_NOTIFY) {
-      //   const isEnabled = notificationSettings.allows_notify === 1;
-      //   return;
-      // }
-      // updateSettings.mutateAsync({
-      //   ...notificationSettings,
-      //
-      // });
+      const enabledTypes = Array.from(Object.keys(settings) as NotifyTypes[]).filter(
+        (type) => settings[type]
+      );
+      const isSame =
+        enabledTypes.every((et) => notificationSettings?.notify_types?.every((nt) => et !== nt)) &&
+        enabledTypes.length === notificationSettings?.notify_types?.length;
+      if (!isSame) {
+        updateSettings.mutateAsync({
+          notifyTypes: enabledTypes,
+          isEnabled: enabledTypes.length > 0
+        });
+      }
     },
     500,
     [settings]
@@ -74,7 +87,7 @@ export function NotificationsActions({ filter }: Props) {
       type="checkbox"
       isToggle={true}
       checked={settings[type]}
-      onChange={() => {}}
+      onChange={() => setSettingItem(type, !settings[type])}
     />
   );
 
@@ -168,46 +181,46 @@ export function NotificationsActions({ filter }: Props) {
               </Tooltip>
             </DropdownItem>
           )}
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(i18next.t(`notifications.type-rvotes`), NotifyTypes.VOTE)}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-replies`),
               NotifyTypes.COMMENT
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-mentions`),
               NotifyTypes.MENTION
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-nfavorites`),
               NotifyTypes.FAVORITES
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-nbookmarks`),
               NotifyTypes.BOOKMARKS
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-reblogs`),
               NotifyTypes.RE_BLOG
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-follows`),
               NotifyTypes.FOLLOW
             )}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem hideOnClick={false}>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-transfers`),
               NotifyTypes.TRANSFERS

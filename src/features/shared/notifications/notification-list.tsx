@@ -36,7 +36,7 @@ export function NotificationList({
       )}
       {dataFlow.length > 0 && (
         <div className="list-body">
-          {dataFlow.map((n) => (
+          {dataFlow.map((n, i) => (
             <Fragment key={n.id}>
               {currentStatus === NotificationViewType.ALL && (
                 <>
@@ -47,7 +47,7 @@ export function NotificationList({
                     setSelectedNotifications={setSelectedNotifications}
                     openLinksInNewTab={openLinksInNewTab}
                     onInViewport={(inViewport) => {
-                      if (inViewport) {
+                      if (inViewport && i === dataFlow.length - 1) {
                         fetchNextPage();
                       }
                     }}
@@ -63,7 +63,7 @@ export function NotificationList({
                     setSelectedNotifications={setSelectedNotifications}
                     openLinksInNewTab={openLinksInNewTab}
                     onInViewport={(inViewport) => {
-                      if (inViewport) {
+                      if (inViewport && i === dataFlow.length - 1) {
                         fetchNextPage();
                       }
                     }}
@@ -79,7 +79,7 @@ export function NotificationList({
                     setSelectedNotifications={setSelectedNotifications}
                     openLinksInNewTab={openLinksInNewTab}
                     onInViewport={(inViewport) => {
-                      if (inViewport) {
+                      if (inViewport && i === dataFlow.length - 1) {
                         fetchNextPage();
                       }
                     }}

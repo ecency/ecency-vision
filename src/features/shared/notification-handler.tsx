@@ -30,6 +30,7 @@ export function NotificationHandler() {
     nws.current
       .withActiveUser(activeUser)
       .withCallbackOnMessage(() => {
+        notificationsSettingsQuery.refetch();
         notificationUnreadCountQuery.refetch();
         notificationsQuery.refetch();
       })

@@ -17,6 +17,7 @@ export function useNotificationsSettingsQuery() {
       return getNotificationSetting(activeUser!.username, oldToken || token);
     },
     enabled: !!activeUser,
+    refetchOnMount: false,
     initialData: () => {
       const wasMutedPreviously = ls.get("notifications") === false;
       return {

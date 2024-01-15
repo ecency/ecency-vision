@@ -46,12 +46,11 @@ export function PushNotificationsProvider({ children }: PropsWithChildren) {
 
       if (permission === "granted") {
         if (oldToken !== token) {
+          ls.set("fb-notifications-token", token);
           await updateNotificationsSettings.mutateAsync({
-            token,
             notifyTypes: notificationsSettingsQuery.data?.notify_types ?? [],
             isEnabled: notificationsSettingsQuery.data.allows_notify == -1
           });
-          ls.set("fb-notifications-token", token);
         }
 
         if (isFbMessagingSupported) {

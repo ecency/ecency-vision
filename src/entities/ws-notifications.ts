@@ -225,7 +225,7 @@ export interface ApiDelegationsNotification extends BaseAPiNotification {
 export interface ApiNotificationSetting {
   system: string; //"web" | "desktop"
   allows_notify: number; //0|1
-  notify_types: number[]; //vote:1,mention:2,follow:3,reply:4,reblog:5,transfers:6,delegations:10,engine-transfers:12
+  notify_types: number[] | null; //vote:1,mention:2,follow:3,reply:4,reblog:5,transfers:6,delegations:10,engine-transfers:12
   status: number; //0|1
 }
 

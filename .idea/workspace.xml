@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated notifications pt.1">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated notifications pt.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/ui-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/ui-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmarks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/bookmarks/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/drafts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/drafts/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/fragments/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/fragments/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/gallery/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/gallery/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/schedules/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/schedules/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/button/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/button/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/notifications/notifications-settings-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/notifications/notifications-settings-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/ws-notifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/ws-notifications.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notification-handler.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notification-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/theme-night.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/theme-night.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +198,7 @@
       <workItem from="1705079414539" duration="2249000" />
       <workItem from="1705249313313" duration="7258000" />
       <workItem from="1705325978760" duration="1449000" />
-      <workItem from="1705327511500" duration="1599000" />
+      <workItem from="1705327511500" duration="3238000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -395,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705256379381</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Migrated notifications pt.2">
+      <option name="closed" value="true" />
+      <created>1705329123182</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1705329123182</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +440,8 @@
     <MESSAGE value="Migrated gallery" />
     <MESSAGE value="Migrated drafts" />
     <MESSAGE value="Migrated notifications pt.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated notifications pt.1" />
+    <MESSAGE value="Migrated notifications pt.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated notifications pt.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -35,7 +35,10 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     "show",
     "onHide",
     "centered",
-    "dialogClassName"
+    "dialogClassName",
+    "transitionFrom",
+    "transitionEnter",
+    "transitionLeave"
   ]);
 
   useMount(() => document.addEventListener("keyup", onKeyUp));
