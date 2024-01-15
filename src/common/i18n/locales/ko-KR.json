@@ -83,6 +83,8 @@
     "failed": "Failed",
     "status": "Status",
     "download": "Download",
+    "pin": "Pin",
+    "unpin": "Unpin",
     "retry": "Retry"
   },
   "confirm": {
