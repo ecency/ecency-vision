@@ -31,3 +31,9 @@
   background: theme('colors.dark.700');
   color: theme('colors.light.200');
 }
+
+.bg-white {
+  @include themify(night) {
+    @apply bg-dark-200;
+  }
+}

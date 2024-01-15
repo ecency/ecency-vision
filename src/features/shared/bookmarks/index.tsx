@@ -8,10 +8,11 @@ import { useBookmarksQuery, useFavouritesQuery } from "@/api/queries";
 import { useMount } from "react-use";
 
 interface Props {
-  onHide: () => void;
+  show: boolean;
+  setShow: (v: boolean) => void;
 }
 
-export function BookmarksDialog({ onHide }: Props) {
+export function BookmarksDialog({ show, setShow }: Props) {
   const [section, setSection] = useState("bookmarks");
   const bookmarksQuery = useBookmarksQuery();
   const favouritesQuery = useFavouritesQuery();
@@ -22,7 +23,13 @@ export function BookmarksDialog({ onHide }: Props) {
   });
 
   return (
-    <Modal show={true} centered={true} onHide={onHide} size="lg" className="bookmarks-modal">
+    <Modal
+      show={show}
+      centered={true}
+      onHide={() => setShow(false)}
+      size="lg"
+      className="bookmarks-modal"
+    >
       <ModalHeader closeButton={true} />
       <ModalBody>
         <div className="dialog-menu">
@@ -39,8 +46,8 @@ export function BookmarksDialog({ onHide }: Props) {
             {i18next.t("favorites.title")}
           </div>
         </div>
-        {section === "bookmarks" && <BookmarksList onHide={onHide} />}
-        {section === "favorites" && <FavouritesList onHide={onHide} />}
+        {section === "bookmarks" && <BookmarksList onHide={() => setShow(false)} />}
+        {section === "favorites" && <FavouritesList onHide={() => setShow(false)} />}
       </ModalBody>
     </Modal>
   );

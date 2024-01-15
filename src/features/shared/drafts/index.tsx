@@ -9,18 +9,25 @@ import { DraftsList } from "@/features/shared/drafts/drafts-list";
 setProxyBase(defaults.imageServer);
 
 interface Props {
-  onHide: () => void;
+  show: boolean;
+  setShow: (v: boolean) => void;
   onPick?: (url: string) => void;
 }
 
-export function DraftsDialog({ onHide, onPick }: Props) {
+export function DraftsDialog({ show, setShow, onPick }: Props) {
   return (
-    <Modal show={true} centered={true} onHide={onHide} size="lg" className="drafts-modal">
+    <Modal
+      show={show}
+      centered={true}
+      onHide={() => setShow(false)}
+      size="lg"
+      className="drafts-modal"
+    >
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("drafts.title")}</ModalTitle>
       </ModalHeader>
       <ModalBody>
-        <DraftsList onHide={onHide} onPick={onPick} />
+        <DraftsList onHide={() => setShow(false)} onPick={onPick} />
       </ModalBody>
     </Modal>
   );

@@ -31,7 +31,6 @@ export const UserNav = ({ icon }: Props) => {
   const toggleUIProp = useGlobalStore((state) => state.toggleUiProp);
   const usePrivate = useGlobalStore((state) => state.usePrivate);
   const globalNotifications = useGlobalStore((state) => state.globalNotifications);
-  const showNotifications = useGlobalStore((state) => state.uiNotifications);
 
   const [gallery, setGallery] = useState(false);
   const [drafts, setDrafts] = useState(false);
@@ -151,14 +150,12 @@ export const UserNav = ({ icon }: Props) => {
           </DropdownMenu>
         </Dropdown>
       </div>
-      {showNotifications && activeUser && (
-        <NotificationsDialog onHide={() => toggleUIProp("notifications")} />
-      )}
-      {gallery && <GalleryDialog onHide={() => setGallery(false)} />}
-      {drafts && <DraftsDialog onHide={() => setDrafts(false)} />}
-      {bookmarks && <BookmarksDialog onHide={() => setBookmarks(false)} />}
-      {schedules && <SchedulesDialog onHide={() => setSchedules(false)} />}
-      {fragments && <FragmentsDialog onHide={() => setFragments(false)} />}
+      <NotificationsDialog />
+      <GalleryDialog setShow={(v) => setGallery(v)} show={gallery} />
+      <DraftsDialog show={drafts} setShow={(v) => setDrafts(v)} />
+      <BookmarksDialog show={bookmarks} setShow={(v) => setBookmarks(v)} />
+      <SchedulesDialog show={schedules} setShow={(v) => setSchedules(v)} />
+      <FragmentsDialog show={fragments} setShow={(v) => setFragments(v)} />
       <PurchaseQrDialog show={showPurchaseDialog} setShow={setShowPurchaseDialog} />
     </>
   );

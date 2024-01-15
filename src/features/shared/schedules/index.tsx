@@ -9,17 +9,24 @@ import { SchedulesList } from "@/features/shared/schedules/schedules-list";
 setProxyBase(defaults.imageServer);
 
 interface Props {
-  onHide: () => void;
+  show: boolean;
+  setShow: (v: boolean) => void;
 }
 
-export function SchedulesDialog({ onHide }: Props) {
+export function SchedulesDialog({ show, setShow }: Props) {
   return (
-    <Modal show={true} centered={true} onHide={onHide} size="lg" className="schedules-modal">
+    <Modal
+      show={show}
+      centered={true}
+      onHide={() => setShow(false)}
+      size="lg"
+      className="schedules-modal"
+    >
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("schedules.title")}</ModalTitle>
       </ModalHeader>
       <ModalBody>
-        <SchedulesList onHide={onHide} />
+        <SchedulesList onHide={() => setShow(false)} />
       </ModalBody>
     </Modal>
   );

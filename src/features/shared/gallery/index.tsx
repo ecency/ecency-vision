@@ -9,13 +9,20 @@ import { GalleryList } from "@/features/shared/gallery/gallery-list";
 setProxyBase(defaults.imageServer);
 
 interface Props {
-  onHide: () => void;
+  show: boolean;
+  setShow: (v: boolean) => void;
   onPick?: (url: string) => void;
 }
 
-export function GalleryDialog({ onHide, onPick }: Props) {
+export function GalleryDialog({ show, setShow, onPick }: Props) {
   return (
-    <Modal show={true} centered={true} onHide={onHide} size="lg" className="gallery-modal">
+    <Modal
+      show={show}
+      centered={true}
+      onHide={() => setShow(false)}
+      size="lg"
+      className="gallery-modal"
+    >
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("gallery.title")}</ModalTitle>
       </ModalHeader>

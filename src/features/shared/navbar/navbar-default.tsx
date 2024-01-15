@@ -21,7 +21,7 @@ import {
 import { FullAccount } from "@/entities";
 import { downVotingPower, votingPower } from "@/api/hive";
 import { Theme } from "@/enums";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { Search } from "./search";
 import { FragmentsDialog } from "@/features/shared/fragments";
@@ -42,7 +42,6 @@ export function NavbarDefault({ setSmVisible }: Props) {
   const setActiveUser = useGlobalStore((state) => state.setActiveUser);
   const toggleUIProp = useGlobalStore((state) => state.toggleUiProp);
   const theme = useGlobalStore((state) => state.theme);
-  const showNotifications = useGlobalStore((state) => state.uiNotifications);
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -287,14 +286,12 @@ export function NavbarDefault({ setSmVisible }: Props) {
           </div>
         </div>
       </div>
-      {gallery && <GalleryDialog onHide={() => setGallery(!gallery)} />}
-      {showNotifications && activeUser && (
-        <NotificationsDialog onHide={() => toggleUIProp("notifications")} />
-      )}
-      {drafts && activeUser && <DraftsDialog onHide={() => setDrafts(!drafts)} />}
-      {bookmarks && activeUser && <BookmarksDialog onHide={() => setBookmarks(!bookmarks)} />}
-      {schedules && activeUser && <SchedulesDialog onHide={() => setSchedules(!schedules)} />}
-      {fragments && activeUser && <FragmentsDialog onHide={() => setFragments(!fragments)} />}
+      <GalleryDialog setShow={(v) => setGallery(v)} show={gallery} />
+      <NotificationsDialog />
+      <DraftsDialog show={drafts} setShow={(v) => setDrafts(false)} />
+      <BookmarksDialog show={bookmarks && !!activeUser} setShow={() => setBookmarks(!bookmarks)} />
+      <SchedulesDialog show={schedules && !!activeUser} setShow={(v) => setSchedules(v)} />
+      <FragmentsDialog show={fragments && !!activeUser} setShow={(v) => setFragments(v)} />
       <PurchaseQrDialog show={showPurchaseDialog} setShow={(v) => setShowPurchaseDialog(v)} />
     </>
   );
