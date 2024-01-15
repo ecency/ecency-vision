@@ -88,10 +88,10 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   }, [isCommunity, isCurrentUser]);
 
   const submit = async () => {
-    if (isDisabled || isSendMessageLoading || isFilesUploading || !message) {
+    const nextMessage = buildImages(message);
+    if (isDisabled || isSendMessageLoading || isFilesUploading || !nextMessage) {
       return;
     }
-    const nextMessage = buildImages(message);
     await sendMessage(nextMessage);
     setFiles([]);
     setUploadedFileLinks([]);
