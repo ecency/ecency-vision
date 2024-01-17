@@ -36,7 +36,6 @@ import { UIManager } from "@ui/core";
 import defaults from "./constants/defaults.json";
 import { getAccessToken } from "./helper/user-token";
 
-
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
 const ProfilePage = (props: any) => <ProfileContainer {...props} />;

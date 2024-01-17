@@ -5,6 +5,7 @@ import { AppState } from "../../common/store";
 import { makePreloadedState } from "../state";
 
 import { render } from "../template";
+import SERVERS from "../../common/constants/servers.json";
 
 export default async (req: express.Request, res: express.Response) => {
   const state = await makePreloadedState(req);
@@ -69,14 +70,6 @@ export const androidURI = async (req: express.Request, res: express.Response) =>
 
 export const nodeList = async (req: express.Request, res: express.Response) => {
   res.send({
-    hived: [
-      "https://rpc.ecency.com",
-      "https://api.deathwing.me",
-      "https://api.hive.blog",
-      "https://anyx.io",
-      "https://rpc.ausbit.dev",
-      "https://api.openhive.network",
-      "https://api.pharesim.me"
-    ]
+    hived: SERVERS
   });
 };
