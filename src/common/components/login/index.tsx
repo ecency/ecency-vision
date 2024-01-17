@@ -161,7 +161,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
 
     return (
       <>
-        <div className="dialog-header">
+        <div className="dialog-header flex flex-col items-center justify-center">
           <img src={keyChainLogo} alt="Logo" />
           <h2>{_t("login.with-keychain")}</h2>
         </div>
@@ -182,13 +182,15 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
               onKeyDown={this.inputKeyDown}
             />
           </div>
-          <Button disabled={inProgress} className="block" onClick={this.login}>
-            {inProgress && spinner}
-            {_t("g.login")}
-          </Button>
-          <Button outline={true} className="block" disabled={inProgress} onClick={this.back}>
-            {_t("g.back")}
-          </Button>
+          <div className="flex items-center justify-center gap-4">
+            <Button disabled={inProgress} className="block" onClick={this.login}>
+              {inProgress && spinner}
+              {_t("g.login")}
+            </Button>
+            <Button outline={true} className="block" disabled={inProgress} onClick={this.back}>
+              {_t("g.back")}
+            </Button>
+          </div>
         </Form>
       </>
     );

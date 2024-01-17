@@ -210,16 +210,7 @@ export const ConfirmDelete = (props: any) => {
   const { to, activeUser, hideConfirmDelete } = props;
   return (
     <>
-      <div
-        className="container"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "25%",
-          flexDirection: "column"
-        }}
-      >
+      <div className="container">
         <h5 className="text" style={{ width: "350px", alignSelf: "center" }}>
           {_t("rc-info.confirm-delete")}
         </h5>
