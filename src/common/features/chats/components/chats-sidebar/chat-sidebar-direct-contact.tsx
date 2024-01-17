@@ -14,6 +14,7 @@ import Tooltip from "../../../../components/tooltip";
 import { informationOutlineSvg } from "../../../../img/svg";
 import { Button } from "@ui/button";
 import { Link } from "react-router-dom";
+import { Badge } from "@ui/badge";
 
 interface Props {
   contact: DirectContact;
@@ -37,6 +38,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     () => (contactKeys && isJoined ? contact.pubkey !== contactKeys.pubkey : false),
     [contactKeys, contact, isJoined]
   );
+  console.log(contact);
 
   const content = (
     <>
@@ -70,11 +72,14 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
           </div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
-        <div className="text-sm text-gray-600 truncate">
-          {lastMessage?.creator === publicKey && (
-            <span className="mr-1 text-gray-500 dark:text-gray-700">{_t("g.you")}:</span>
-          )}
-          {lastMessage?.content}
+        <div className="flex justify-between">
+          <div className="text-sm text-gray-600 truncate">
+            {lastMessage?.creator === publicKey && (
+              <span className="mr-1 text-gray-500 dark:text-gray-700">{_t("g.you")}:</span>
+            )}
+            {lastMessage?.content}
+          </div>
+          {!!contact.unread && <Badge appearance="secondary">{contact.unread}</Badge>}
         </div>
       </div>
     </>

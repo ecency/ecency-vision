@@ -107,8 +107,8 @@ export const Chats = ({ match, history }: Props) => {
       <Meta title={title || _t("chat.page-title")} />
 
       <div className="container mx-auto md:py-6">
-        <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white border border-[--border-color] relative h-[100vh] md:h-auto">
-          <div className="col-span-12 md:col-span-4 xl:col-span-3 border-r border-[--border-color] max-h-[calc(100vh-69px)] md:h-[calc(100vh-69px-3rem)] overflow-y-auto">
+        <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white md:border border-[--border-color] relative h-[100vh] md:h-auto">
+          <div className="col-span-12 md:col-span-4 xl:col-span-3 md:border-r border-[--border-color] md:h-[calc(100vh-69px-3rem)] overflow-y-auto">
             {isReady ? (
               <ChatsSideBar
                 isChannel={isChannel}
@@ -122,7 +122,7 @@ export const Chats = ({ match, history }: Props) => {
               <ChatsDefaultScreen className="md:hidden" />
             )}
             {(!directContacts?.length || !channels?.length) && isShowImportChats && activeUser && (
-              <div className="h-full w-full flex items-center justify-center md:hidden">
+              <div className="md:h-full w-full flex items-center justify-center md:hidden">
                 <ChatsWelcome />
               </div>
             )}
@@ -132,7 +132,7 @@ export const Chats = ({ match, history }: Props) => {
           </div>
           <div
             className={classNameObject({
-              "col-span-12 md:col-span-8 xl:col-span-9 max-h-[calc(100vh-69px)] md:h-[calc(100vh-69px-3rem)] overflow-y-auto absolute w-full bg-white z-10 md:static duration-500":
+              "col-span-12 md:col-span-8 xl:col-span-9 md:h-[calc(100vh-69px-3rem)] md:overflow-y-auto absolute w-full bg-white z-10 md:static":
                 true,
               "translate-x-0": isShowChatRoom || isShowManageKey,
               "translate-x-[100%] md:translate-x-0": !isShowChatRoom && !isShowManageKey
@@ -140,7 +140,7 @@ export const Chats = ({ match, history }: Props) => {
           >
             {isShowManageKey && <ChatsManageKeySection />}
             {isShowImportChats && activeUser && (
-              <div className="h-full w-full flex items-center justify-center">
+              <div className="md:h-full w-full flex items-center justify-center">
                 <ChatsWelcome />
               </div>
             )}

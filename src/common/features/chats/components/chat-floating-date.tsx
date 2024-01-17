@@ -27,7 +27,7 @@ export function ChatFloatingDate({
       className={classNameObject({
         "sticky z-10 flex justify-center text-xs text-center": true,
         "top-0": !isPage,
-        "top-[57px]": isPage
+        "top-[180px] md:top-[57px]": isPage
       })}
     >
       <div className="bg-gray-200 my-3 dark:bg-gray-800 rounded-full p-1 ">

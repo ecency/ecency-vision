@@ -45,7 +45,7 @@ export default function ChatsSideBar(props: Props) {
   useCreateTemporaryChannel(selectedCommunity);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col md:h-full">
       <ChatSidebarHeader history={props.history} />
       <ChatSidebarSearch setSearch={setSearchQuery} />
       {showDivider && <div className="divider" />}

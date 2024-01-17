@@ -27,7 +27,7 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
     <>
       <div
         className={classNameObject({
-          "h-[100vh] md:h-full": true
+          "h-[100vh] md:h-full overflow-y-auto md:overflow-y-static": true
         })}
         ref={messagesBoxRef}
       >

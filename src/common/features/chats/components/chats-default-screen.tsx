@@ -28,7 +28,7 @@ export function ChatsDefaultScreen(props: HTMLProps<HTMLDivElement>) {
     <div
       {...props}
       className={classNameObject({
-        "flex flex-col justify-center items-center px-4 w-full h-full": true,
+        "flex flex-col justify-center items-center px-4 w-full pt-6 md:pt-0 md:h-full": true,
         [props.className ?? ""]: !!props.className
       })}
     >
