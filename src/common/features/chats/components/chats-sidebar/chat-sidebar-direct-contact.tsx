@@ -38,7 +38,6 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     () => (contactKeys && isJoined ? contact.pubkey !== contactKeys.pubkey : false),
     [contactKeys, contact, isJoined]
   );
-  console.log(contact);
 
   const content = (
     <>
