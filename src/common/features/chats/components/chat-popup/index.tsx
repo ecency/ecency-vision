@@ -18,7 +18,8 @@ import {
   useChannelsQuery,
   useDirectContactsQuery,
   useJoinChat,
-  useKeysQuery
+  useKeysQuery,
+  useUpdateDirectContactsUnreadCount
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
 
@@ -61,6 +62,8 @@ export const ChatPopUp = () => {
     [hasUserJoinedChat, privateKey, currentChannel, revealPrivateKey]
   );
 
+  const updateDirectContactsUnreadCount = useUpdateDirectContactsUnreadCount();
+
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
@@ -75,6 +78,13 @@ export const ChatPopUp = () => {
       setCommunityName("");
     }
   }, [global.theme, activeUser]);
+
+  // Whenever current contact is exists need to turn unread to 0
+  useEffect(() => {
+    if (currentContact) {
+      updateDirectContactsUnreadCount.mutateAsync({ contact: currentContact, unread: 0 });
+    }
+  }, [currentContact]);
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);

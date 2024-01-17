@@ -29,6 +29,7 @@ import {
 import Tooltip from "../../../components/tooltip";
 import { ChatInputFiles } from "./chat-input-files";
 import Gallery from "../../../components/gallery";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 interface Props {
   currentChannel?: Channel;
@@ -36,6 +37,7 @@ interface Props {
 }
 
 export default function ChatInput({ currentChannel, currentContact }: Props) {
+  const size = useWindowSize();
   useChannelsQuery();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -201,13 +203,15 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
             />
             <div className="flex items-center px-2 h-full gap-3">
               <div className="relative">
-                <Button
-                  ref={emojiButtonRef}
-                  noPadding={true}
-                  appearance="gray-link"
-                  disabled={isDisabled}
-                  icon={emoticonHappyOutlineSvg}
-                />
+                {size.width > 768 && (
+                  <Button
+                    ref={emojiButtonRef}
+                    noPadding={true}
+                    appearance="gray-link"
+                    disabled={isDisabled}
+                    icon={emoticonHappyOutlineSvg}
+                  />
+                )}
                 <EmojiPicker
                   isDisabled={isDisabled || isSendMessageLoading}
                   position="top"

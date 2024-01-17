@@ -30,7 +30,7 @@ export default function ChatsMessagesHeader(props: Props) {
   };
 
   return (
-    <div className="flex sticky z-[10] top-0 bg-white justify-between border-b border-[--border-color] px-4 h-[57px]">
+    <div className="flex sticky z-[10] top-[63px] md:top-0 bg-white justify-between border-b border-[--border-color] px-4 h-[57px]">
       <div className="flex items-center gap-4">
         <Button
           appearance="gray-link"

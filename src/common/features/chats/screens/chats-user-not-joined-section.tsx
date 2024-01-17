@@ -11,7 +11,7 @@ export function ChatsUserNotJoinedSection({
   return (
     <div
       className={classNameObject({
-        "flex flex-col justify-center h-full items-center px-4": true,
+        "flex flex-col justify-center md:h-full items-center px-4": true,
         [className ?? ""]: !!className
       })}
     >
