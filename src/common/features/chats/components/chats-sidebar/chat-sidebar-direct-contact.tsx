@@ -7,7 +7,8 @@ import {
   getRelativeDate,
   useGetPublicKeysQuery,
   useKeysQuery,
-  useLastMessageQuery
+  useLastMessageQuery,
+  useUnreadCountQuery
 } from "@ecency/ns-query";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../../components/tooltip";
@@ -31,8 +32,9 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     contact.name
   );
   const lastMessage = useLastMessageQuery(contact);
-  const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
+  const unread = useUnreadCountQuery(contact);
 
+  const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
   const isJoined = useMemo(() => (contactKeys ? contactKeys.pubkey : false), [contactKeys]);
   const isReadOnly = useMemo(
     () => (contactKeys && isJoined ? contact.pubkey !== contactKeys.pubkey : false),
@@ -78,7 +80,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
             )}
             {lastMessage?.content}
           </div>
-          {!!contact.unread && <Badge appearance="secondary">{contact.unread}</Badge>}
+          {!!unread && <Badge appearance="secondary">{unread}</Badge>}
         </div>
       </div>
     </>
