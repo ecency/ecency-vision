@@ -52,7 +52,7 @@ export function ChatPopupContactsAndChannels({
               isLink={false}
               contact={user}
               onClick={() => userClicked(user.name)}
-              key={user.pubkey + user.unread}
+              key={user.pubkey}
             />
           ))}
         </>

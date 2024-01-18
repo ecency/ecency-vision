@@ -19,7 +19,7 @@ import {
   useDirectContactsQuery,
   useJoinChat,
   useKeysQuery,
-  useUpdateDirectContactsUnreadCount
+  useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
 
@@ -62,7 +62,7 @@ export const ChatPopUp = () => {
     [hasUserJoinedChat, privateKey, currentChannel, revealPrivateKey]
   );
 
-  const updateDirectContactsUnreadCount = useUpdateDirectContactsUnreadCount();
+  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
 
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
@@ -82,7 +82,10 @@ export const ChatPopUp = () => {
   // Whenever current contact is exists need to turn unread to 0
   useEffect(() => {
     if (currentContact) {
-      updateDirectContactsUnreadCount.mutateAsync({ contact: currentContact, unread: 0 });
+      updateDirectContactsLastSeenDate.mutateAsync({
+        contact: currentContact,
+        lastSeenDate: new Date()
+      });
     }
   }, [currentContact]);
 
