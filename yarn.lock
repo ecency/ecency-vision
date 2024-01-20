@@ -1374,10 +1374,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@ecency/ns-query@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.0.7.tgz#edbc988ee553ee3707f13d14d2a3cf166019f051"
-  integrity sha512-uYus9nlmxl2R/vgPQgAj4RGIioXfrEZLrJH0eS2LJfxIkxhaAOWk2s07cnY7ewcgf+R744l287EOsH2tR1bYGg==
+"@ecency/ns-query@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.0.9.tgz#fbccba338be85cc0ce0f725767e9f5b259746d58"
+  integrity sha512-XGzqQD8z7YWV+MK5UBfTSy77k37nVFSaUznKLLU/nv96eOYfu3AiUVEsj9GRZ5s7UM+G5T/P6nI9qv5dz+8jlQ==
   dependencies:
     "@tanstack/react-query" "^4.29.7"
     axios "^0.21.2"
