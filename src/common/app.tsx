@@ -35,7 +35,6 @@ import { useGetAccountFullQuery } from "./api/queries";
 import { UIManager } from "@ui/core";
 import defaults from "./constants/defaults.json";
 import { getAccessToken } from "./helper/user-token";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -117,7 +116,7 @@ const App = (props: any) => {
     <UIManager>
       <EntriesCacheManager>
         {/*Excluded from production*/}
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
         <Tracker />
         <UserActivityRecorder />
         <ChatContextProvider
