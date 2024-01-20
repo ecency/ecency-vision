@@ -22,7 +22,6 @@ import {
   Channel,
   ChatContext,
   DirectContact,
-  useChannelsQuery,
   useGetPublicKeysQuery,
   useSendMessage
 } from "@ecency/ns-query";
@@ -38,7 +37,6 @@ interface Props {
 
 export default function ChatInput({ currentChannel, currentContact }: Props) {
   const size = useWindowSize();
-  useChannelsQuery();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);

@@ -52,11 +52,7 @@ export default function ChatsMessagesHeader(props: Props) {
 
       {isCommunity(username) && (
         <div className="flex items-center justify-center">
-          <ChatsCommunityDropdownMenu
-            from={CHATPAGE}
-            history={props.history}
-            username={props.username}
-          />
+          <ChatsCommunityDropdownMenu from={CHATPAGE} username={props.username} />
         </div>
       )}
     </div>

@@ -2,7 +2,6 @@ import React, { useContext, useMemo } from "react";
 import { History } from "history";
 import { Community } from "../../../store/communities";
 import { _t } from "../../../i18n";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
 import {
@@ -11,13 +10,10 @@ import {
   useChannelsQuery,
   useCommunityChannelQuery,
   useCreateCommunityChat,
-  useKeysQuery,
   useLeaveCommunityChannel,
-  useLeftCommunityChannelsQuery,
-  useNostrJoinedCommunityTeamQuery
+  useLeftCommunityChannelsQuery
 } from "@ecency/ns-query";
-import { useGetAccountFullQuery, useGetAccountsFullQuery } from "../../../api/queries";
-import { updateProfile } from "../../../api/operations";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
 interface Props {
   history: History;
@@ -25,39 +21,25 @@ interface Props {
 }
 
 export default function JoinCommunityChatBtn(props: Props) {
-  const { publicKey } = useKeysQuery();
   const { hasUserJoinedChat } = useContext(ChatContext);
-  const { activeUser } = useMappedStore();
-
-  const { data: communityAccount, isLoading: isCommunityAccountLoading } = useGetAccountFullQuery(
-    props.community.name
-  );
-  const communityTeamQueries = useGetAccountsFullQuery(
-    props.community.team.map(([name, role]) => name)
-  );
   const { data: currentChannel, isLoading: isCurrentChannelLoading } = useCommunityChannelQuery(
     props.community
   );
+  const { activeUser } = useMappedStore();
   const { data: channels } = useChannelsQuery();
-  const { data: communityTeam, isLoading: isCommunityTeamLoading } =
-    useNostrJoinedCommunityTeamQuery(
-      props.community,
-      communityAccount!!,
-      communityTeamQueries.map((query) => query.data!!)
-    );
   const { data: leftChannelsIds, isLoading: isChannelsIdsLoading } =
     useLeftCommunityChannelsQuery();
 
   const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
     useAddCommunityChannel(currentChannel);
   const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
-    useCreateCommunityChat(props.community, communityAccount!!, updateProfile);
+    useCreateCommunityChat(props.community);
   const { mutateAsync: leaveCommunityChannel, isLoading: isLeavingCommunityChannelLoading } =
-    useLeaveCommunityChannel();
+    useLeaveCommunityChannel(currentChannel);
 
   const isGlobalLoading = useMemo(
-    () => isChannelsIdsLoading || isCommunityAccountLoading || isCommunityTeamLoading,
-    [isChannelsIdsLoading, isCommunityAccountLoading, isCommunityTeamLoading]
+    () => isChannelsIdsLoading || isCurrentChannelLoading,
+    [isChannelsIdsLoading, isCurrentChannelLoading]
   );
   const isCommunityChannelCreated = useMemo(() => !!currentChannel, [currentChannel]);
   const isCommunityChannelJoined = useMemo(
@@ -69,12 +51,9 @@ export default function JoinCommunityChatBtn(props: Props) {
       ),
     [channels, leftChannelsIds]
   );
-  // Todo: all admin team should be able to create a channel
-  //      Upd: only community owner could create a channel because it requires Nostr private key
-  const isAbleToCreateChannel = useMemo(
-    () => props.community.name === activeUser?.username,
-    [activeUser, props.community]
-  );
+
+  // For now only Ecency official account able to start community channels
+  const isAbleToCreateChannel = useMemo(() => activeUser?.username === "ecency", [activeUser]);
 
   const join = async () => {
     if (!hasUserJoinedChat) {
@@ -93,12 +72,12 @@ export default function JoinCommunityChatBtn(props: Props) {
           appearance="secondary"
           disabled={isLeavingCommunityChannelLoading}
           icon={isLeavingCommunityChannelLoading && <Spinner className="w-3.5 h-3.5" />}
-          onClick={() => leaveCommunityChannel(currentChannel!!.name)}
+          onClick={() => leaveCommunityChannel()}
         >
           {_t("chat.chat-joined")}
         </Button>
       )}
-      {!isCommunityChannelJoined && (
+      {!isCommunityChannelJoined && isCommunityChannelCreated && (
         <Button
           size="sm"
           disabled={isAddCommunityChannelLoading}
@@ -111,12 +90,7 @@ export default function JoinCommunityChatBtn(props: Props) {
       {!isCommunityChannelCreated && isAbleToCreateChannel && (
         <Button
           size="sm"
-          onClick={async () => {
-            if (communityTeam.some((role) => role.pubkey === publicKey)) {
-              await createCommunityChat();
-              await join();
-            }
-          }}
+          onClick={() => createCommunityChat()}
           disabled={isCreateCommunityChatLoading}
           icon={isCreateCommunityChatLoading && <Spinner />}
           iconPlacement="left"

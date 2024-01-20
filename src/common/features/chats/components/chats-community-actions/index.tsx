@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { History } from "history";
 import { chatLeaveSvg, editSVG, kebabMenuSvg, linkSvg, removeUserSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import { useMappedStore } from "../../../../store/use-mapped-store";
@@ -11,12 +10,11 @@ import { BlockedUsersModal } from "./blocked-users-modal";
 import { copyToClipboard, useChannelsQuery, useLeaveCommunityChannel } from "@ecency/ns-query";
 
 interface Props {
-  history: History;
   from?: string;
   username: string;
 }
 
-const ChatsCommunityDropdownMenu = ({ history, username }: Props) => {
+const ChatsCommunityDropdownMenu = ({ username }: Props) => {
   const { activeUser } = useMappedStore();
 
   const [showEditRolesModal, setShowEditRolesModal] = useState(false);
@@ -33,7 +31,7 @@ const ChatsCommunityDropdownMenu = ({ history, username }: Props) => {
     [currentChannel]
   );
 
-  const { mutateAsync: leaveChannel } = useLeaveCommunityChannel(() => history?.push("/chats"));
+  const { mutateAsync: leaveChannel } = useLeaveCommunityChannel(currentChannel);
 
   return (
     <>
@@ -54,8 +52,8 @@ const ChatsCommunityDropdownMenu = ({ history, username }: Props) => {
           />
           <DropdownItemWithIcon
             icon={chatLeaveSvg}
-            label={_t("chat.leave")}
-            onClick={() => leaveChannel(currentChannel?.id!!)}
+            label={_t("chat.leave-channel")}
+            onClick={() => leaveChannel()}
           />
           {activeUser?.username === currentChannel?.communityName && (
             <DropdownItemWithIcon

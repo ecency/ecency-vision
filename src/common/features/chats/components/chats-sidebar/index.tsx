@@ -27,7 +27,7 @@ interface Props {
 
 export default function ChatsSideBar(props: Props) {
   const { username } = props;
-  const { setRevealPrivateKey, setReceiverPubKey, activeUsername } = useContext(ChatContext);
+  const { setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
@@ -61,8 +61,10 @@ export default function ChatsSideBar(props: Props) {
                 const community = item as Community;
                 if (community.name && isCommunity(community.name)) {
                   setSelectedCommunity(community.name);
+                  setReceiverPubKey("");
                   props.history.push(`/chats/${(item as Community).name}/channel`);
                 } else {
+                  props.history.push("/chats");
                   setSelectedAccount((item as Reputations).account);
                 }
               }}

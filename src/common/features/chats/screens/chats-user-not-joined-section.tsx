@@ -1,13 +1,13 @@
 import { _t } from "../../../i18n";
 import ChatsProfileBox from "../components/chat-profile-box";
 import React, { HTMLProps } from "react";
-import { match } from "react-router";
 import { classNameObject } from "../../../helper/class-name-object";
+import { DirectContact } from "@ecency/ns-query";
 
 export function ChatsUserNotJoinedSection({
-  match,
+  directContact,
   className
-}: HTMLProps<HTMLDivElement> & { match: match<{ username: string }> }) {
+}: HTMLProps<HTMLDivElement> & { directContact: DirectContact }) {
   return (
     <div
       className={classNameObject({
@@ -19,7 +19,7 @@ export function ChatsUserNotJoinedSection({
       <div className="text-gray-600 dark:text-gray-400 mb-4">
         {_t("chat.welcome.user-not-joined-yet")}
       </div>
-      <ChatsProfileBox currentUser={match.params.username} />
+      <ChatsProfileBox currentUser={directContact.name} />
     </div>
   );
 }

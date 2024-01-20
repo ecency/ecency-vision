@@ -133,6 +133,7 @@ export function ChatPopupHeader({
           >
             <ChatsDropdownMenu
               history={history!}
+              channel={channel}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
             />
           </div>

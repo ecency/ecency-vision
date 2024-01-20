@@ -11,7 +11,6 @@ import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
-import { useGetAccountFullQuery } from "../../../api/queries";
 import useMountedState from "react-use/lib/useMountedState";
 import { _t } from "../../../i18n";
 import Meta from "../../../components/meta";
@@ -44,7 +43,6 @@ export const Chats = ({ match, history }: Props) => {
   const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
-  const { data: userAccount } = useGetAccountFullQuery(match.params.username?.replace("@", ""));
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
 
@@ -55,8 +53,7 @@ export const Chats = ({ match, history }: Props) => {
     [directContacts, receiverPubKey]
   );
   const { data: communityChannel } = useCommunityChannelQuery(
-    isChannel && community ? community : undefined,
-    userAccount
+    isChannel && community ? community : undefined
   );
 
   const isReady = useMemo(
@@ -93,6 +90,12 @@ export const Chats = ({ match, history }: Props) => {
   });
 
   useEffect(() => {
+    if (communityChannel) {
+      setReceiverPubKey("");
+    }
+  }, [communityChannel]);
+
+  useEffect(() => {
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -127,7 +130,7 @@ export const Chats = ({ match, history }: Props) => {
               </div>
             )}
             {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection match={match} className="md:hidden" />
+              <ChatsUserNotJoinedSection directContact={directContact} className="md:hidden" />
             )}
           </div>
           <div
@@ -153,7 +156,7 @@ export const Chats = ({ match, history }: Props) => {
               />
             )}
             {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection match={match} />
+              <ChatsUserNotJoinedSection directContact={directContact} />
             )}
             {isShowDefaultScreen && <ChatsDefaultScreen />}
           </div>

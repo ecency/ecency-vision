@@ -19,9 +19,11 @@ import {
   useDirectContactsQuery,
   useJoinChat,
   useKeysQuery,
+  useOriginalJoinedChannelsQuery,
   useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
+import { ChatChannelNotJoined } from "../chat-channel-not-joined";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -33,7 +35,7 @@ export const ChatPopUp = () => {
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
-
+  const { data: originalChannels } = useOriginalJoinedChannelsQuery();
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
   const chatBodyDivRef = useRef<HTMLDivElement | null>(null);
@@ -60,6 +62,10 @@ export const ChatPopUp = () => {
   const canSendMessage = useMemo(
     () => hasUserJoinedChat && !!privateKey && !currentChannel && !revealPrivateKey,
     [hasUserJoinedChat, privateKey, currentChannel, revealPrivateKey]
+  );
+  const isJoinedToChannel = useMemo(
+    () => originalChannels?.some((c) => c.id === currentChannel?.id) === true,
+    [currentChannel, originalChannels]
   );
 
   const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
@@ -172,11 +178,11 @@ export const ChatPopUp = () => {
             )}
           </div>
           <div className="pl-2">
-            {((currentContact && isContactJoined) || currentChannel) && (
-              <ChatInput
-                currentContact={currentContact}
-                currentChannel={currentChannel ?? undefined}
-              />
+            {((currentContact && isContactJoined) || (currentChannel && isJoinedToChannel)) && (
+              <ChatInput currentContact={currentContact} currentChannel={currentChannel} />
+            )}
+            {currentChannel && !isJoinedToChannel && (
+              <ChatChannelNotJoined channel={currentChannel} />
             )}
           </div>
         </div>
