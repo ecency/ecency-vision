@@ -65,11 +65,25 @@ export const Chats = ({ match, history }: Props) => {
     () => isReady && (!!directContact || !!communityChannel) && !revealPrivateKey,
     [isReady, revealPrivateKey, communityChannel, directContact]
   );
-  const isShowDefaultScreen = useMemo(
-    () => isReady && !directContact && !communityChannel && !revealPrivateKey && !receiverPubKey,
-    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey]
-  );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
+  const isShowUserNotJoined = useMemo(
+    () =>
+      !isShowChatRoom &&
+      isReady &&
+      (!!directContact?.pubkey.startsWith("not_joined_") || (community && !communityChannel)),
+    [isShowChatRoom, isReady, directContact]
+  );
+
+  const isShowDefaultScreen = useMemo(
+    () =>
+      isReady &&
+      !directContact &&
+      !communityChannel &&
+      !revealPrivateKey &&
+      !receiverPubKey &&
+      !isShowUserNotJoined,
+    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey, isShowUserNotJoined]
+  );
 
   const isMounted = useMountedState();
 
@@ -129,8 +143,11 @@ export const Chats = ({ match, history }: Props) => {
                 <ChatsWelcome />
               </div>
             )}
-            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection directContact={directContact} className="md:hidden" />
+            {isShowUserNotJoined && (
+              <ChatsUserNotJoinedSection
+                username={directContact?.name ?? community?.name ?? ""}
+                className="md:hidden"
+              />
             )}
           </div>
           <div
@@ -155,8 +172,8 @@ export const Chats = ({ match, history }: Props) => {
                 currentContact={directContact}
               />
             )}
-            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection directContact={directContact} />
+            {isShowUserNotJoined && (
+              <ChatsUserNotJoinedSection username={directContact?.name ?? community?.name ?? ""} />
             )}
             {isShowDefaultScreen && <ChatsDefaultScreen />}
           </div>

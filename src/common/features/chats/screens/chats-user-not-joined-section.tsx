@@ -2,12 +2,11 @@ import { _t } from "../../../i18n";
 import ChatsProfileBox from "../components/chat-profile-box";
 import React, { HTMLProps } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
-import { DirectContact } from "@ecency/ns-query";
 
 export function ChatsUserNotJoinedSection({
-  directContact,
+  username,
   className
-}: HTMLProps<HTMLDivElement> & { directContact: DirectContact }) {
+}: HTMLProps<HTMLDivElement> & { username: string }) {
   return (
     <div
       className={classNameObject({
@@ -16,10 +15,10 @@ export function ChatsUserNotJoinedSection({
       })}
     >
       <div className="font-bold">{_t("chat.welcome.oops")}</div>
-      <div className="text-gray-600 dark:text-gray-400 mb-4">
+      <div className="text-gray-600 text-center dark:text-gray-400 mb-4">
         {_t("chat.welcome.user-not-joined-yet")}
       </div>
-      <ChatsProfileBox currentUser={directContact.name} />
+      <ChatsProfileBox currentUser={username} />
     </div>
   );
 }

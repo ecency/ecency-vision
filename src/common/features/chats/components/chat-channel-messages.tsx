@@ -80,6 +80,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
             {group.map((message, j) => (
               <>
                 <Dropdown
+                  key={message.id}
                   show={currentInteractingMessageId === message.id}
                   setShow={(v) =>
                     setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
