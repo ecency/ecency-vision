@@ -10,7 +10,6 @@ import {
   DirectContact,
   DirectMessage,
   PublicMessage,
-  useAddCommunityChannel,
   useMessagesQuery,
   useOriginalJoinedChannelsQuery
 } from "@ecency/ns-query";
@@ -31,9 +30,6 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
     () => channels?.some((c) => c.id === currentChannel?.id) === true,
     [currentChannel, channels]
   );
-
-  const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
-    useAddCommunityChannel(currentChannel);
 
   return (
     <>

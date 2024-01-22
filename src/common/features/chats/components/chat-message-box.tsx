@@ -1,8 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
-import { Channel, DirectContact, useAutoScrollInChatBox } from "@ecency/ns-query";
+import {
+  Channel,
+  DirectContact,
+  useAutoScrollInChatBox,
+  useUpdateChannelLastSeenDate,
+  useUpdateDirectContactsLastSeenDate
+} from "@ecency/ns-query";
 import { Community } from "../../../store/communities";
 import { ChatInvitation } from "./chat-invitation";
 
@@ -27,7 +33,29 @@ export default function ChatsMessagesBox(props: Props) {
     [props.currentContact]
   );
 
+  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
+  const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
+
   useAutoScrollInChatBox(props.currentContact, props.channel);
+
+  // Whenever current contact is exists need to turn unread to 0
+  useEffect(() => {
+    if (props.currentContact) {
+      updateDirectContactsLastSeenDate.mutateAsync({
+        contact: props.currentContact,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [props.currentContact]);
+
+  useEffect(() => {
+    if (props.channel) {
+      updateChannelLastSeenDate.mutateAsync({
+        channel: props.channel,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [props.channel]);
 
   return (
     <div
@@ -37,6 +65,7 @@ export default function ChatsMessagesBox(props: Props) {
       }}
     >
       <ChatsMessagesHeader
+        channel={props.channel}
         username={props.community?.name ?? props.currentContact?.name ?? ""}
         history={props.history}
       />

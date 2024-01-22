@@ -2,15 +2,14 @@ import React, { useContext } from "react";
 import { History } from "history";
 import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
-import { CHATPAGE } from "./chat-popup/chat-constants";
 import Link from "../../../components/alink";
 import { expandSideBar } from "../../../img/svg";
 import { Button } from "@ui/button";
-import isCommunity from "../../../helper/is-community";
-import { ChatContext, formattedUserName, useChannelsQuery } from "@ecency/ns-query";
+import { Channel, ChatContext, formattedUserName, useChannelsQuery } from "@ecency/ns-query";
 
 interface Props {
   username: string;
+  channel?: Channel;
   history: History;
 }
 
@@ -50,9 +49,9 @@ export default function ChatsMessagesHeader(props: Props) {
         </Link>
       </div>
 
-      {isCommunity(username) && (
+      {props.channel && (
         <div className="flex items-center justify-center">
-          <ChatsCommunityDropdownMenu from={CHATPAGE} username={props.username} />
+          <ChatsCommunityDropdownMenu channel={props.channel} />
         </div>
       )}
     </div>

@@ -19,8 +19,7 @@ import {
   useDirectContactsQuery,
   useJoinChat,
   useKeysQuery,
-  useOriginalJoinedChannelsQuery,
-  useUpdateDirectContactsLastSeenDate
+  useOriginalJoinedChannelsQuery
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
 import { ChatChannelNotJoined } from "../chat-channel-not-joined";
@@ -68,8 +67,6 @@ export const ChatPopUp = () => {
     [currentChannel, originalChannels]
   );
 
-  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
-
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
@@ -84,16 +81,6 @@ export const ChatPopUp = () => {
       setCommunityName("");
     }
   }, [global.theme, activeUser]);
-
-  // Whenever current contact is exists need to turn unread to 0
-  useEffect(() => {
-    if (currentContact) {
-      updateDirectContactsLastSeenDate.mutateAsync({
-        contact: currentContact,
-        lastSeenDate: new Date()
-      });
-    }
-  }, [currentContact]);
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);

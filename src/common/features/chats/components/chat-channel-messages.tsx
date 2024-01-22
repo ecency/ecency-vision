@@ -43,10 +43,11 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
     useHideMessageInChannel(currentChannel);
 
   const messages = useMemo(
-    () =>
-      publicMessages.filter((m) =>
-        currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
-      ),
+    () => publicMessages,
+    // todo
+    // publicMessages.filter((m) =>
+    //   currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
+    // ),
     [publicMessages, currentChannel]
   );
   const groupedMessages = useMemo(() => groupMessages(messages), [messages]);
@@ -73,7 +74,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
         {groupedMessages.map(([date, group], i) => (
           <React.Fragment key={date.getTime()}>
             {(i > 0 ? differenceInCalendarDays(date, groupedMessages[i - 1][0]) : 1) ? (
-              <ChatFloatingDate currentDate={date} isPage={isPage} />
+              <ChatFloatingDate key={date.getTime()} currentDate={date} isPage={isPage} />
             ) : (
               <></>
             )}
@@ -118,13 +119,15 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     <DropdownItemWithIcon
                       icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
                       label={_t("chat.hide-message")}
-                      onClick={() =>
-                        hideMessage({
-                          hide:
-                            currentChannel?.hiddenMessageIds?.some((id) => id === message.id) ===
-                            false,
-                          messageId: message.id
-                        })
+                      onClick={
+                        () => {}
+                        // todo
+                        // hideMessage({
+                        //   hide:
+                        //     currentChannel?.hiddenMessageIds?.some((id) => id === message.id) ===
+                        //     false,
+                        //   messageId: message.id
+                        // })
                       }
                     />
                     <DropdownItemWithIcon
@@ -132,11 +135,13 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                         isUsersBlockingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
                       }
                       label={_t("chat.block-author")}
-                      onClick={() =>
-                        updateBlockedUsers([
-                          ...(currentChannel?.removedUserIds ?? []),
-                          message.creator
-                        ])
+                      onClick={
+                        () => {}
+                        // todo
+                        // updateBlockedUsers([
+                        //   ...(currentChannel?.removedUserIds ?? []),
+                        //   message.creator
+                        // ])
                       }
                     />
                   </DropdownMenu>
@@ -145,11 +150,12 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
             ))}
           </React.Fragment>
         ))}
-        {currentChannel?.removedUserIds?.includes(activeUser?.username!!) && (
-          <span className="flex justify-center items-center mt-3">
-            You have been blocked from this community
-          </span>
-        )}
+        // todo
+        {/*{currentChannel?.removedUserIds?.includes(activeUser?.username!!) && (*/}
+        {/*  <span className="flex justify-center items-center mt-3">*/}
+        {/*    You have been blocked from this community*/}
+        {/*  </span>*/}
+        {/*)}*/}
       </div>
     </>
   );
