@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { FullAccount } from "../../../store/accounts/types";
-import { createPermlink, makeCommentOptions } from "../../../helper/posting";
+import { createPermlink, makeApp, makeCommentOptions } from "../../../helper/posting";
 import * as bridgeApi from "../../../api/bridge";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import { markAsPublished, updateSpeakVideoInfo } from "../../../api/threespeak";
@@ -22,6 +22,7 @@ import { useThreeSpeakManager } from "../hooks";
 import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
+import { version } from "../../../../../package.json";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
@@ -112,7 +113,7 @@ export function usePublishApi(history: History, onClear: () => void) {
           isNsfw
         );
         // set specific metadata for 3speak
-        jsonMeta.app = "3speak/0.3.0";
+        jsonMeta.app = makeApp(version);
         jsonMeta.type = "video";
       }
 
