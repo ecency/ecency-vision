@@ -754,7 +754,7 @@ export class WalletHive extends BaseComponent<Props, State> {
                       >
                         {remainingDays > 0
                           ? _t("wallet.hive-dollars-apr-day", { value: remainingDays })
-                          : remainingDays == 0
+                          : remainingDays == 0 && remainingHours > 0
                           ? _t("wallet.hive-dollars-apr-hour", { value: remainingHours })
                           : _t("wallet.hive-dollars-apr-now")}{" "}
                         {plusCircle}
