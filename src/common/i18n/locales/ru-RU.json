@@ -83,8 +83,8 @@
     "failed": "Неудачно",
     "status": "Статус",
     "download": "Скачать",
-    "pin": "Pin",
-    "unpin": "Unpin",
+    "pin": "Закрепить",
+    "unpin": "Открепить",
     "retry": "Повторить"
   },
   "confirm": {
