@@ -12,6 +12,7 @@ import {
 } from "@ecency/ns-query";
 import { _t } from "../../../../i18n";
 import { Badge } from "@ui/badge";
+import { useCommunityCache } from "../../../../core";
 
 interface Props {
   username: string;
@@ -30,13 +31,13 @@ export function ChatSidebarChannel({
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
+  const { data: community } = useCommunityCache(channel?.communityName);
   const { publicKey } = useKeysQuery();
-  const lastMessage = useLastMessageQuery(undefined, channel);
+  const unread = useUnreadCountQuery(undefined, channel);
+  const lastMessage = useLastMessageQuery(undefined, channel, community ?? undefined);
 
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
-
-  const unread = useUnreadCountQuery(undefined, channel);
 
   const content = (
     <>

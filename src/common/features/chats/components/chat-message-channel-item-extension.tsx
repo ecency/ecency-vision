@@ -1,15 +1,9 @@
 import { Popover, PopoverContent } from "@ui/popover";
 import React, { PropsWithChildren, RefObject, useMemo, useRef } from "react";
 import FollowControls from "../../../components/follow-controls";
-import { Button } from "@ui/button";
-import { _t } from "../../../i18n";
 import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import {
-  Channel,
-  useNostrGetUserProfileQuery,
-  useUpdateChannelBlockedUsers
-} from "@ecency/ns-query";
+import { Channel, useNostrGetUserProfileQuery } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../core";
 
 interface Props {
@@ -35,18 +29,6 @@ export function ChatMessageChannelItemExtension({
     [creator, nostrUserProfiles]
   );
   const communityTeam = useMemo(() => community?.team.map(([name]) => name) ?? [], [community]);
-
-  const { mutateAsync: updateBlockedUsers } = useUpdateChannelBlockedUsers(currentChannel);
-
-  // todo
-  const block = (removedUserId: string) => {};
-  // updateBlockedUsers([...(currentChannel.removedUserIds ?? []), removedUserId]);
-
-  // todo
-  const unBlock = (removedUserId: string) => {};
-  // updateBlockedUsers(
-  //   currentChannel.removedUserIds?.filter((item) => item !== removedUserId) ?? []
-  // );
 
   return (
     <>
@@ -80,27 +62,6 @@ export function ChatMessageChannelItemExtension({
                   ui={ui}
                   users={users}
                 />
-
-                {communityTeam.includes(activeUser?.username!) &&
-                  profile?.name !== currentChannel.communityName && (
-                    <>
-                      {/*// todo*/}
-                      {/*{currentChannel?.removedUserIds?.includes(profile?.creator ?? "") ? (*/}
-                      {true ? (
-                        <>
-                          <Button onClick={() => unBlock(profile?.creator ?? "")}>
-                            {_t("chat.unblock")}
-                          </Button>
-                        </>
-                      ) : (
-                        <>
-                          <Button onClick={() => block(profile?.creator ?? "")}>
-                            {_t("chat.block")}
-                          </Button>
-                        </>
-                      )}
-                    </>
-                  )}
               </div>
             </div>
           </div>

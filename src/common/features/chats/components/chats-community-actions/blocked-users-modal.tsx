@@ -2,7 +2,7 @@ import { _t } from "../../../../i18n";
 import React, { useMemo } from "react";
 import { Table, Th, Tr } from "@ui/table";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
-import { useChannelsQuery, useUpdateChannelBlockedUsers } from "@ecency/ns-query";
+import { useChannelsQuery, useMuteUserInChannel } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../../core";
 
 interface Props {
@@ -20,8 +20,8 @@ export function BlockedUsersModal({ username, setShow, show }: Props) {
     [channels]
   );
 
-  const { mutateAsync: updateBlockedUsers, isLoading: isBlockedUsersLoading } =
-    useUpdateChannelBlockedUsers(currentChannel!!);
+  const { mutateAsync: muteUserInChannel, isLoading: isMuteUserInChannelLoading } =
+    useMuteUserInChannel(currentChannel!!);
 
   return (
     <Modal centered={true} show={show} onHide={() => setShow(false)}>
