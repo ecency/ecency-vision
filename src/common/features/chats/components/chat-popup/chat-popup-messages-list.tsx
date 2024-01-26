@@ -9,6 +9,7 @@ import {
   DirectContact,
   DirectMessage,
   PublicMessage,
+  useDirectContactsQuery,
   useMessagesQuery,
   useUpdateChannelLastSeenDate,
   useUpdateDirectContactsLastSeenDate
@@ -22,19 +23,20 @@ interface Props {
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
   const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
   const { data: messages } = useMessagesQuery(currentContact, currentChannel);
+  const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
 
   const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
   const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
 
   // Whenever current contact is exists need to turn unread to 0
   useEffect(() => {
-    if (currentContact) {
+    if (currentContact && isDirectContactsLoaded) {
       updateDirectContactsLastSeenDate.mutateAsync({
         contact: currentContact,
         lastSeenDate: new Date()
       });
     }
-  }, [currentContact]);
+  }, [currentContact, isDirectContactsLoaded]);
 
   useEffect(() => {
     if (currentChannel) {

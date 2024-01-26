@@ -6,6 +6,7 @@ import {
   Channel,
   DirectContact,
   useAutoScrollInChatBox,
+  useDirectContactsQuery,
   useUpdateChannelLastSeenDate,
   useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
@@ -33,6 +34,7 @@ export default function ChatsMessagesBox(props: Props) {
     [props.currentContact]
   );
 
+  const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
   const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
   const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
 
@@ -40,13 +42,13 @@ export default function ChatsMessagesBox(props: Props) {
 
   // Whenever current contact is exists need to turn unread to 0
   useEffect(() => {
-    if (props.currentContact) {
+    if (props.currentContact && isDirectContactsLoaded) {
       updateDirectContactsLastSeenDate.mutateAsync({
         contact: props.currentContact,
         lastSeenDate: new Date()
       });
     }
-  }, [props.currentContact]);
+  }, [props.currentContact, isDirectContactsLoaded]);
 
   useEffect(() => {
     if (props.channel) {
