@@ -42,8 +42,6 @@ import { Button } from "@ui/button";
 
 setProxyBase(defaults.imageServer);
 
-setProxyBase(defaults.imageServer);
-
 interface ItemBodyProps {
   entry: Entry;
   global: Global;

@@ -105,18 +105,18 @@ export class NotificationsWebSocket {
 
     window.nws = new WebSocket(`${defaults.nwsServer}/ws?user=${this.activeUser.username}`);
     window.nws.onopen = () => {
-      console.log("nws connected");
+      console.debug("nws connected");
       this.isConnected = true;
     };
     window.nws.onmessage = (e) => this.onMessageReceive(e);
     window.nws.onclose = (evt: CloseEvent) => {
-      console.log("nws disconnected");
+      console.debug("nws disconnected");
 
       window.nws = undefined;
 
       if (!evt.wasClean) {
         // Disconnected due connection error
-        console.log("nws trying to reconnect");
+        console.debug("nws trying to reconnect");
 
         setTimeout(() => {
           this.connect();
