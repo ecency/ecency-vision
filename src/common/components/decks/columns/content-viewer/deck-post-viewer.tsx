@@ -81,7 +81,13 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, history, backTitl
           >
             {backTitle}
           </Button>
-          <Button outline={true} href={entry.url} target="_blank" size="sm">
+          <Button
+            className="flex pt-[0.35rem]"
+            outline={true}
+            href={entry.url}
+            target="_blank"
+            size="sm"
+          >
             {_t("decks.columns.view-full-post")}
           </Button>
         </div>

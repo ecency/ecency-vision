@@ -94,7 +94,7 @@ export const DeckGrid = ({ history }: Props) => {
     <div className="deck-grid">
       {isScrollStarted && (
         <div
-          className="arrow-right hidden md:flex h-full items-center px-3 opacity-50 hover:opacity-100 cursor-pointer duration-300 bg-gradient-to-l from-transparent to-dark-200 fixed left-[72px] w-12 z-30"
+          className="arrow-right hidden md:flex h-full items-center px-3 opacity-25 hover:opacity-50 cursor-pointer duration-300 bg-gradient-to-l from-transparent to-dark-200 fixed left-[72px] w-12 z-30"
           onClick={() => scrollTo("left")}
         >
           {arrowLeftSvg}
@@ -102,7 +102,7 @@ export const DeckGrid = ({ history }: Props) => {
       )}
       {!isScrollEnded && (
         <div
-          className="arrow-right hidden md:flex h-full flex items-center px-3 opacity-50 hover:opacity-100 cursor-pointer duration-300 bg-gradient-to-r from-transparent to-dark-200 fixed right-0 w-12 z-30"
+          className="arrow-right hidden md:flex h-full items-center px-3 opacity-25 hover:opacity-50 cursor-pointer duration-300 bg-gradient-to-r from-transparent to-dark-200 fixed right-0 w-12 z-30"
           onClick={() => scrollTo("right")}
         >
           {arrowRightSvg}

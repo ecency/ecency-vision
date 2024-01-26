@@ -79,7 +79,9 @@ export const DeckThreadItemViewer = ({
             parent.replies = parent.replies.filter((r) => r !== key);
             result.push(parent);
           }
-        } else {
+        } else if (
+          result.every((r) => r.author !== value.author && r.permlink !== value.permlink)
+        ) {
           result.push(value);
         }
       });
@@ -104,7 +106,13 @@ export const DeckThreadItemViewer = ({
           >
             {backTitle}
           </Button>
-          <Button outline={true} href={entry.url} target="_blank" size="sm">
+          <Button
+            className="flex pt-[0.35rem]"
+            outline={true}
+            href={entry.url}
+            target="_blank"
+            size="sm"
+          >
             {_t("decks.columns.view-full-post")}
           </Button>
         </div>
