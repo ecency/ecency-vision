@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { chatLeaveSvg, kebabMenuSvg, linkSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import { success } from "../../../../components/feedback";
@@ -10,17 +10,30 @@ import {
   useChannelsQuery,
   useLeaveCommunityChannel
 } from "@ecency/ns-query";
+import { BlockedUsersModal } from "./blocked-users-modal";
+import { useCommunityCache } from "../../../../core";
+import { useMappedStore } from "../../../../store/use-mapped-store";
+import { userIconSvg } from "../../../../components/decks/icons";
 
 interface Props {
   channel?: Channel;
 }
 
 const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
+  const { activeUser } = useMappedStore();
+
+  const [showBlockedUsersModal, setShowBlockedUsersModal] = useState(false);
+
+  const { data: community } = useCommunityCache(channel?.communityName);
   const { data: channels } = useChannelsQuery();
 
   const isJoinedToChannel = useMemo(
     () => channels?.some((c) => c.id === channel?.id) === true,
     [channel, channels]
+  );
+  const isTeamMember = useMemo(
+    () => community?.team.some(([name]) => name === activeUser?.username) === true,
+    [activeUser, community]
   );
 
   const { mutateAsync: leaveChannel } = useLeaveCommunityChannel(channel);
@@ -40,6 +53,13 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
               success("Link copied into clipboard.");
             }}
           />
+          {isTeamMember && (
+            <DropdownItemWithIcon
+              icon={userIconSvg}
+              label={_t("chat.blocked-users")}
+              onClick={() => setShowBlockedUsersModal(true)}
+            />
+          )}
           {isJoinedToChannel && (
             <DropdownItemWithIcon
               icon={chatLeaveSvg}
@@ -49,6 +69,11 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
           )}
         </DropdownMenu>
       </Dropdown>
+      <BlockedUsersModal
+        show={showBlockedUsersModal}
+        setShow={setShowBlockedUsersModal}
+        channel={channel}
+      />
     </>
   );
 };

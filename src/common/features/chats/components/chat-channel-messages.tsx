@@ -136,7 +136,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                         isUserMutingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
                       }
                       label={_t("chat.block-author")}
-                      onClick={() => muteUserInChannel({ pubkey: message.creator })}
+                      onClick={() => muteUserInChannel({ pubkey: message.creator, status: 0 })}
                     />
                   </DropdownMenu>
                 </Dropdown>
