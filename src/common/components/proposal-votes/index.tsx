@@ -153,6 +153,7 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
           let preVoters: Voter[] = this.state.voters;
           voters = preVoters.concat(voters);
         }
+
         this.stateSet(
           {
             voters,
@@ -181,8 +182,8 @@ export class ProposalVotesDetail extends BaseComponent<Props, State> {
     const end = start + pageSize;
     const sliced = voters
       .sort((a, b) => {
-        const keyA = a[sort]!;
-        const keyB = b[sort]!;
+        const keyA = Number(a[sort == "hp" ? "totalHp" : "reputation"]!);
+        const keyB = Number(b[sort == "hp" ? "totalHp" : "reputation"]!);
         if (keyA > keyB) return -1;
         else if (keyA < keyB) return 1;
         else return 0;
