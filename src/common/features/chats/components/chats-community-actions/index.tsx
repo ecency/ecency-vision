@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { chatLeaveSvg, kebabMenuSvg, linkSvg } from "../../../../img/svg";
+import { chatLeaveSvg, kebabMenuSvg, linkSvg, messageSendSvg } from "../../../../img/svg";
 import { _t } from "../../../../i18n";
 import { success } from "../../../../components/feedback";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
@@ -14,6 +14,7 @@ import { BlockedUsersModal } from "./blocked-users-modal";
 import { useCommunityCache } from "../../../../core";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { userIconSvg } from "../../../../components/decks/icons";
+import { HiddenMessagesModal } from "./hidden-messages-modal";
 
 interface Props {
   channel?: Channel;
@@ -23,6 +24,7 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
   const { activeUser } = useMappedStore();
 
   const [showBlockedUsersModal, setShowBlockedUsersModal] = useState(false);
+  const [showHiddenMessagesModal, setShowHiddenMessagesModal] = useState(false);
 
   const { data: community } = useCommunityCache(channel?.communityName);
   const { data: channels } = useChannelsQuery();
@@ -60,6 +62,13 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
               onClick={() => setShowBlockedUsersModal(true)}
             />
           )}
+          {isTeamMember && (
+            <DropdownItemWithIcon
+              icon={messageSendSvg}
+              label={_t("chat.hidden-messages")}
+              onClick={() => setShowHiddenMessagesModal(true)}
+            />
+          )}
           {isJoinedToChannel && (
             <DropdownItemWithIcon
               icon={chatLeaveSvg}
@@ -72,6 +81,11 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
       <BlockedUsersModal
         show={showBlockedUsersModal}
         setShow={setShowBlockedUsersModal}
+        channel={channel}
+      />
+      <HiddenMessagesModal
+        show={showHiddenMessagesModal}
+        setShow={setShowHiddenMessagesModal}
         channel={channel}
       />
     </>

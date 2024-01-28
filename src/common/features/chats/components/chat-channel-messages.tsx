@@ -129,7 +129,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     <DropdownItemWithIcon
                       icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
                       label={_t("chat.hide-message")}
-                      onClick={() => hideMessage({ messageId: message.id })}
+                      onClick={() => hideMessage({ messageId: message.id, status: 0 })}
                     />
                     <DropdownItemWithIcon
                       icon={

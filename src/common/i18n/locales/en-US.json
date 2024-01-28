@@ -83,10 +83,10 @@
     "failed": "Failed",
     "status": "Status",
     "download": "Download",
-    "last": "Last",
     "pin": "Pin",
     "unpin": "Unpin",
-    "retry": "Retry"
+    "retry": "Retry",
+    "message": "Message"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -1918,6 +1918,8 @@
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
     "upload-image": "Upload image",
+    "hidden-messages": "Hidden messages",
+    "hidden-messages-management": "Hidden messages management",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
