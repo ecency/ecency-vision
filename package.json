@@ -13,7 +13,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
-    "@ecency/ns-query": "^1.0.9",
+    "@ecency/ns-query": "^1.1.0",
     "@ecency/render-helper": "^2.2.29",
     "@ecency/render-helper-amp": "^1.1.0",
     "@emoji-mart/data": "^1.1.2",
