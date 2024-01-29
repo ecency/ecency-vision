@@ -307,12 +307,10 @@ export const Profile = (props: Props) => {
       const { global } = props;
       setSearchDataLoading(true);
 
-      let query = `${value} author:${global.tag.substring(1)}`;
+      let query = `${value} author:${global.tag.substring(1)} type:post`;
 
-      if (global.filter === "posts") {
-        query += ` type:post`;
-      } else if (global.filter === "comments") {
-        query += ` type:comment`;
+      if (global.filter === "comments") {
+        query.replace("type:post", "type:comment");
       }
       let data: any;
       try {
@@ -424,7 +422,9 @@ export const Profile = (props: Props) => {
 
           {data &&
             data.entries.length > 0 &&
-            (props.global.filter === "posts" || props.global.filter === "comments") &&
+            (props.global.filter === "blog" ||
+              props.global.filter === "posts" ||
+              props.global.filter === "comments") &&
             section === props.global.filter && (
               <div className="searchProfile">
                 <SearchBox

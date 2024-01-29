@@ -19,8 +19,6 @@ import { useFetchDiscussionsQuery } from "../../api/queries";
 
 setProxyBase(defaults.imageServer);
 
-setProxyBase(defaults.imageServer);
-
 interface Props {
   history: History;
   parent: Entry;
