@@ -1,16 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { History } from "history";
 import ChatsMessagesHeader from "./chat-messages-header";
 import ChatsMessagesView from "./chat-messages-view";
-import { Button } from "@ui/button";
-import ChatsProfileBox from "./chat-profile-box";
-import { _t } from "../../../i18n";
 import {
   Channel,
   DirectContact,
-  useAddCommunityChannel,
   useAutoScrollInChatBox,
-  useLeftCommunityChannelsQuery
+  useDirectContactsQuery,
+  useUpdateChannelLastSeenDate,
+  useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
 import { Community } from "../../../store/communities";
 import { ChatInvitation } from "./chat-invitation";
@@ -31,21 +29,35 @@ interface Props {
 }
 
 export default function ChatsMessagesBox(props: Props) {
-  const { data: leftCommunityChannelsIds } = useLeftCommunityChannelsQuery();
-
-  const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
-    useAddCommunityChannel(props.channel);
-
-  const hasLeftCommunity = useMemo(
-    () => leftCommunityChannelsIds?.includes(props.channel?.id ?? ""),
-    [props.channel]
-  );
   const isContactJoined = useMemo(
     () => !!props.currentContact?.pubkey && !props.currentContact.pubkey.startsWith("not_joined_"),
     [props.currentContact]
   );
 
+  const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
+  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
+  const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
+
   useAutoScrollInChatBox(props.currentContact, props.channel);
+
+  // Whenever current contact is exists need to turn unread to 0
+  useEffect(() => {
+    if (props.currentContact && isDirectContactsLoaded) {
+      updateDirectContactsLastSeenDate.mutateAsync({
+        contact: props.currentContact,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [props.currentContact, isDirectContactsLoaded]);
+
+  useEffect(() => {
+    if (props.channel) {
+      updateChannelLastSeenDate.mutateAsync({
+        channel: props.channel,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [props.channel]);
 
   return (
     <div
@@ -54,33 +66,18 @@ export default function ChatsMessagesBox(props: Props) {
         gridTemplateRows: "min-content 1fr min-content"
       }}
     >
-      {(props.channel && !hasLeftCommunity) || props.currentContact ? (
-        <>
-          <ChatsMessagesHeader
-            username={props.community?.name ?? props.currentContact?.name ?? ""}
-            history={props.history}
-          />
-          {!props.currentContact || isContactJoined ? (
-            <ChatsMessagesView
-              currentContact={props.currentContact!!}
-              currentChannel={props.channel!!}
-            />
-          ) : (
-            <ChatInvitation currentContact={props.currentContact} />
-          )}
-        </>
+      <ChatsMessagesHeader
+        channel={props.channel}
+        username={props.community?.name ?? props.currentContact?.name ?? ""}
+        history={props.history}
+      />
+      {!props.currentContact || isContactJoined ? (
+        <ChatsMessagesView
+          currentContact={props.currentContact!!}
+          currentChannel={props.channel!!}
+        />
       ) : (
-        <>
-          <div />
-          <div className="flex flex-col justify-center items-center mb-4">
-            <ChatsProfileBox communityName={props.community?.name} />
-            <p className="mb-4 text-gray-600">{_t("chat.welcome.join-description")}</p>
-            <Button onClick={() => addCommunityChannel()} disabled={isAddCommunityChannelLoading}>
-              Join Community Chat
-            </Button>
-          </div>
-          <div />
-        </>
+        <ChatInvitation currentContact={props.currentContact} />
       )}
     </div>
   );

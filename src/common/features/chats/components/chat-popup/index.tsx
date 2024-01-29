@@ -19,9 +19,10 @@ import {
   useDirectContactsQuery,
   useJoinChat,
   useKeysQuery,
-  useUpdateDirectContactsLastSeenDate
+  useOriginalJoinedChannelsQuery
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
+import { ChatChannelNotJoined } from "../chat-channel-not-joined";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -33,7 +34,7 @@ export const ChatPopUp = () => {
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
-
+  const { data: originalChannels } = useOriginalJoinedChannelsQuery();
   const routerLocation = useLocation();
   const prevActiveUser = usePrevious(activeUser);
   const chatBodyDivRef = useRef<HTMLDivElement | null>(null);
@@ -61,8 +62,10 @@ export const ChatPopUp = () => {
     () => hasUserJoinedChat && !!privateKey && !currentChannel && !revealPrivateKey,
     [hasUserJoinedChat, privateKey, currentChannel, revealPrivateKey]
   );
-
-  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
+  const isJoinedToChannel = useMemo(
+    () => originalChannels?.some((c) => c.id === currentChannel?.id) === true,
+    [currentChannel, originalChannels]
+  );
 
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
@@ -78,16 +81,6 @@ export const ChatPopUp = () => {
       setCommunityName("");
     }
   }, [global.theme, activeUser]);
-
-  // Whenever current contact is exists need to turn unread to 0
-  useEffect(() => {
-    if (currentContact) {
-      updateDirectContactsLastSeenDate.mutateAsync({
-        contact: currentContact,
-        lastSeenDate: new Date()
-      });
-    }
-  }, [currentContact]);
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);
@@ -172,11 +165,11 @@ export const ChatPopUp = () => {
             )}
           </div>
           <div className="pl-2">
-            {((currentContact && isContactJoined) || currentChannel) && (
-              <ChatInput
-                currentContact={currentContact}
-                currentChannel={currentChannel ?? undefined}
-              />
+            {((currentContact && isContactJoined) || (currentChannel && isJoinedToChannel)) && (
+              <ChatInput currentContact={currentContact} currentChannel={currentChannel} />
+            )}
+            {currentChannel && !isJoinedToChannel && (
+              <ChatChannelNotJoined channel={currentChannel} />
             )}
           </div>
         </div>

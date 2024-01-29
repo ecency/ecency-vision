@@ -2,7 +2,17 @@ import { Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
-import { Channel, ChatContext, getRelativeDate, useLastMessageQuery } from "@ecency/ns-query";
+import {
+  Channel,
+  ChatContext,
+  getRelativeDate,
+  useKeysQuery,
+  useLastMessageQuery,
+  useUnreadCountQuery
+} from "@ecency/ns-query";
+import { _t } from "../../../../i18n";
+import { Badge } from "@ui/badge";
+import { useCommunityCache } from "../../../../core";
 
 interface Props {
   username: string;
@@ -21,7 +31,10 @@ export function ChatSidebarChannel({
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
-  const lastMessage = useLastMessageQuery(undefined, channel);
+  const { data: community } = useCommunityCache(channel?.communityName);
+  const { publicKey } = useKeysQuery();
+  const unread = useUnreadCountQuery(undefined, channel);
+  const lastMessage = useLastMessageQuery(undefined, channel, community ?? undefined);
 
   const rawUsername = useMemo(() => username?.replace("@", "") ?? "", [username]);
   const lastMessageDate = useMemo(() => getRelativeDate(lastMessage?.created), [lastMessage]);
@@ -34,7 +47,15 @@ export function ChatSidebarChannel({
           <div className="font-semibold truncate dark:text-white">{channel.name}</div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
-        <div className="text-sm text-gray-600 truncate">{lastMessage?.content}</div>
+        <div className="flex justify-between">
+          <div className="text-sm text-gray-600 truncate">
+            {lastMessage?.creator === publicKey && (
+              <span className="mr-1 text-gray-500 dark:text-gray-700">{_t("g.you")}:</span>
+            )}
+            {lastMessage?.content}
+          </div>
+          {!!unread && <Badge appearance="secondary">{unread}</Badge>}
+        </div>
       </div>
     </>
   );

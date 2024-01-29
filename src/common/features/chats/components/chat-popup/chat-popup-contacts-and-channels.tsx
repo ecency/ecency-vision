@@ -38,6 +38,7 @@ export function ChatPopupContactsAndChannels({
                   channel={channel}
                   username={channel.communityName!!}
                   onClick={() => communityClicked(channel.communityName!)}
+                  isLink={false}
                 />
               ))}
               {directContacts?.length !== 0 && (

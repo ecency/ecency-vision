@@ -1,11 +1,11 @@
 import { _t } from "../../../../i18n";
-import React from "react";
+import React, { useMemo } from "react";
 import { Table, Td, Th, Tr } from "@ui/table";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import {
   Channel,
-  useChannelMutedUsersQuery,
-  useMuteUserInChannel,
+  useChannelHiddenMessagesQuery,
+  useHideMessageInChannel,
   useNostrGetUserProfilesQuery
 } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../../core";
@@ -18,44 +18,59 @@ interface Props {
   setShow: (v: boolean) => void;
 }
 
-export function BlockedUsersModal({ channel, setShow, show }: Props) {
+export function HiddenMessagesModal({ channel, setShow, show }: Props) {
   const { data: community } = useCommunityCache(channel?.communityName);
 
-  const { data: mutedUsersIds } = useChannelMutedUsersQuery(channel, community ?? undefined);
-  const { data: mutedUsersProfiles } = useNostrGetUserProfilesQuery(mutedUsersIds ?? []);
+  const { data: hiddenMessages } = useChannelHiddenMessagesQuery(channel, community ?? undefined);
 
-  const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
-    useMuteUserInChannel(channel);
+  const uniqueAuthors = useMemo(
+    () => Array.from(new Set(hiddenMessages?.map((m) => m.creator) ?? []).values()),
+    [hiddenMessages]
+  );
+
+  const { data: profiles } = useNostrGetUserProfilesQuery(uniqueAuthors);
+  const { mutateAsync: hideInChannel, isLoading: isHidingLoading } =
+    useHideMessageInChannel(channel);
 
   return (
     <Modal centered={true} show={show} onHide={() => setShow(false)}>
-      <ModalHeader closeButton={true}>{_t("chat.blocked-users-management")}</ModalHeader>
+      <ModalHeader closeButton={true}>{_t("chat.hidden-messages-management")}</ModalHeader>
       <ModalBody>
         <div className="flex flex-col mb-6 gap-6">
-          {(mutedUsersProfiles?.length ?? 0) > 0 && (
+          {(hiddenMessages?.length ?? 0) > 0 && (
             <Table className="overflow-x-auto" full={true}>
               <thead>
                 <Tr>
-                  <Th>{_t("g.username")}</Th>
+                  <Th>{_t("g.message")}</Th>
                   <Th>{_t("g.status")}</Th>
                 </Tr>
               </thead>
               <tbody>
-                {mutedUsersProfiles?.map((user, i) => {
+                {hiddenMessages?.map((message, i) => {
                   return (
                     <Tr key={i}>
                       <Td>
                         <div className="flex">
-                          <UserAvatar username={user.name} size="medium" />{" "}
-                          <span className="mt-2 ml-2 username">@{user.name}</span>
+                          <UserAvatar
+                            username={
+                              profiles?.find((p) => p.creator === message.creator)?.name ?? ""
+                            }
+                            size="medium"
+                          />{" "}
+                          <span className="mt-2 ml-2 username">
+                            @{profiles?.find((p) => p.creator === message.creator)?.name ?? ""}
+                          </span>
+                        </div>
+                        <div className="mt-2 bg-gray-200 dark:bg-gray-800 p-2 rounded-xl text-sm">
+                          {message.content}
                         </div>
                       </Td>
                       <Td>
                         <Button
-                          disabled={isUserMutingLoading}
+                          disabled={isHidingLoading}
                           size="sm"
                           outline={true}
-                          onClick={() => muteUserInChannel({ pubkey: user.creator, status: 1 })}
+                          onClick={() => hideInChannel({ messageId: message.id, status: 1 })}
                         >
                           {_t("chat.unblock")}
                         </Button>
@@ -66,7 +81,7 @@ export function BlockedUsersModal({ channel, setShow, show }: Props) {
               </tbody>
             </Table>
           )}
-          {(!mutedUsersProfiles || mutedUsersProfiles?.length === 0) && (
+          {(!hiddenMessages || hiddenMessages?.length === 0) && (
             <div className="text-center text-gray-400 dark:text-gray-600">
               {_t("chat.no-locked-user")}
             </div>

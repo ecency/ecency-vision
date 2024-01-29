@@ -10,14 +10,17 @@ import {
   checkContiguousMessage,
   PublicMessage,
   useHideMessageInChannel,
+  useJoinedCommunityTeamQuery,
   useKeysQuery,
-  usePublicMessagesQuery,
-  useUpdateChannelBlockedUsers
+  useMuteUserInChannel,
+  usePublicMessagesQuery
 } from "@ecency/ns-query";
 import { groupMessages } from "../utils";
 import { ChatFloatingDate } from "./chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
 import useDebounce from "react-use/lib/useDebounce";
+import { useCommunityCache } from "../../../core";
+import { ROLES } from "../../../store/communities";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -34,28 +37,36 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
   const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
 
+  const { data: community } = useCommunityCache(currentChannel?.communityName);
+  const { data: joinedCommunityTeamKeys, isSuccess: isJoinedCommunityTeamKeysFetched } =
+    useJoinedCommunityTeamQuery(community ?? undefined);
   const { publicKey } = useKeysQuery();
-  const { fetchNextPage, refetch } = usePublicMessagesQuery(currentChannel);
+  const { fetchNextPage, refetch } = usePublicMessagesQuery(
+    currentChannel,
+    joinedCommunityTeamKeys
+  );
 
-  const { mutateAsync: updateBlockedUsers, isLoading: isUsersBlockingLoading } =
-    useUpdateChannelBlockedUsers(currentChannel);
+  const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
+    useMuteUserInChannel(currentChannel);
   const { mutateAsync: hideMessage, isLoading: isHideMessageLoading } =
     useHideMessageInChannel(currentChannel);
 
-  const messages = useMemo(
+  const isCommunityTeamMember = useMemo(
     () =>
-      publicMessages.filter((m) =>
-        currentChannel?.removedUserIds ? !currentChannel.removedUserIds.includes(m.creator) : true
-      ),
-    [publicMessages, currentChannel]
+      community?.team.some(
+        ([name, role]) =>
+          name === activeUser?.username &&
+          [ROLES.MOD, ROLES.ADMIN, ROLES.OWNER].includes(role as ROLES)
+      ) ?? false,
+    [community, activeUser]
   );
-  const groupedMessages = useMemo(() => groupMessages(messages), [messages]);
+  const groupedMessages = useMemo(() => groupMessages(publicMessages), [publicMessages]);
 
   useEffect(() => {
-    if (messages.length === 0) {
+    if (publicMessages.length === 0 && isJoinedCommunityTeamKeysFetched) {
       refetch();
     }
-  }, [messages]);
+  }, [publicMessages, isJoinedCommunityTeamKeysFetched]);
 
   useDebounce(
     () => {
@@ -73,13 +84,14 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
         {groupedMessages.map(([date, group], i) => (
           <React.Fragment key={date.getTime()}>
             {(i > 0 ? differenceInCalendarDays(date, groupedMessages[i - 1][0]) : 1) ? (
-              <ChatFloatingDate currentDate={date} isPage={isPage} />
+              <ChatFloatingDate key={date.getTime()} currentDate={date} isPage={isPage} />
             ) : (
               <></>
             )}
             {group.map((message, j) => (
               <>
                 <Dropdown
+                  key={message.id}
                   show={currentInteractingMessageId === message.id}
                   setShow={(v) =>
                     setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
@@ -89,9 +101,9 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     currentChannel={currentChannel}
                     type={message.creator !== publicKey ? "receiver" : "sender"}
                     message={message}
-                    isSameUser={checkContiguousMessage(message, i, messages)}
+                    isSameUser={checkContiguousMessage(message, i, publicMessages)}
                     onContextMenu={() => {
-                      if (currentChannel?.communityName === activeUser?.username) {
+                      if (isCommunityTeamMember) {
                         setCurrentInteractingMessageId(message.id);
                       }
                     }}
@@ -117,26 +129,14 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     <DropdownItemWithIcon
                       icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
                       label={_t("chat.hide-message")}
-                      onClick={() =>
-                        hideMessage({
-                          hide:
-                            currentChannel?.hiddenMessageIds?.some((id) => id === message.id) ===
-                            false,
-                          messageId: message.id
-                        })
-                      }
+                      onClick={() => hideMessage({ messageId: message.id, status: 0 })}
                     />
                     <DropdownItemWithIcon
                       icon={
-                        isUsersBlockingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
+                        isUserMutingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
                       }
                       label={_t("chat.block-author")}
-                      onClick={() =>
-                        updateBlockedUsers([
-                          ...(currentChannel?.removedUserIds ?? []),
-                          message.creator
-                        ])
-                      }
+                      onClick={() => muteUserInChannel({ pubkey: message.creator, status: 0 })}
                     />
                   </DropdownMenu>
                 </Dropdown>
@@ -144,11 +144,6 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
             ))}
           </React.Fragment>
         ))}
-        {currentChannel?.removedUserIds?.includes(activeUser?.username!!) && (
-          <span className="flex justify-center items-center mt-3">
-            You have been blocked from this community
-          </span>
-        )}
       </div>
     </>
   );

@@ -11,7 +11,6 @@ import { classNameObject } from "../../../helper/class-name-object";
 import "./_chats.scss";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
-import { useGetAccountFullQuery } from "../../../api/queries";
 import useMountedState from "react-use/lib/useMountedState";
 import { _t } from "../../../i18n";
 import Meta from "../../../components/meta";
@@ -44,7 +43,6 @@ export const Chats = ({ match, history }: Props) => {
   const { data: community } = useCommunityCache(match.params.username);
 
   const { publicKey, privateKey } = useKeysQuery();
-  const { data: userAccount } = useGetAccountFullQuery(match.params.username?.replace("@", ""));
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
 
@@ -55,8 +53,7 @@ export const Chats = ({ match, history }: Props) => {
     [directContacts, receiverPubKey]
   );
   const { data: communityChannel } = useCommunityChannelQuery(
-    isChannel && community ? community : undefined,
-    userAccount
+    isChannel && community ? community : undefined
   );
 
   const isReady = useMemo(
@@ -68,11 +65,25 @@ export const Chats = ({ match, history }: Props) => {
     () => isReady && (!!directContact || !!communityChannel) && !revealPrivateKey,
     [isReady, revealPrivateKey, communityChannel, directContact]
   );
-  const isShowDefaultScreen = useMemo(
-    () => isReady && !directContact && !communityChannel && !revealPrivateKey && !receiverPubKey,
-    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey]
-  );
   const isShowImportChats = useMemo(() => !isReady, [isReady]);
+  const isShowUserNotJoined = useMemo(
+    () =>
+      !isShowChatRoom &&
+      isReady &&
+      (!!directContact?.pubkey.startsWith("not_joined_") || (community && !communityChannel)),
+    [isShowChatRoom, isReady, directContact]
+  );
+
+  const isShowDefaultScreen = useMemo(
+    () =>
+      isReady &&
+      !directContact &&
+      !communityChannel &&
+      !revealPrivateKey &&
+      !receiverPubKey &&
+      !isShowUserNotJoined,
+    [isReady, receiverPubKey, directContact, communityChannel, receiverPubKey, isShowUserNotJoined]
+  );
 
   const isMounted = useMountedState();
 
@@ -91,6 +102,12 @@ export const Chats = ({ match, history }: Props) => {
   useUnmount(() => {
     setReceiverPubKey("");
   });
+
+  useEffect(() => {
+    if (communityChannel) {
+      setReceiverPubKey("");
+    }
+  }, [communityChannel]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -126,8 +143,11 @@ export const Chats = ({ match, history }: Props) => {
                 <ChatsWelcome />
               </div>
             )}
-            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection match={match} className="md:hidden" />
+            {isShowUserNotJoined && (
+              <ChatsUserNotJoinedSection
+                username={directContact?.name ?? community?.name ?? ""}
+                className="md:hidden"
+              />
             )}
           </div>
           <div
@@ -152,8 +172,8 @@ export const Chats = ({ match, history }: Props) => {
                 currentContact={directContact}
               />
             )}
-            {!isShowChatRoom && isReady && directContact?.pubkey.startsWith("not_joined_") && (
-              <ChatsUserNotJoinedSection match={match} />
+            {isShowUserNotJoined && (
+              <ChatsUserNotJoinedSection username={directContact?.name ?? community?.name ?? ""} />
             )}
             {isShowDefaultScreen && <ChatsDefaultScreen />}
           </div>

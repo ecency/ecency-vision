@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import UserAvatar from "../../../components/user-avatar";
 import { dateToFormatted } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
-import { getAccountFull } from "../../../api/hive";
 import { useCommunityCache } from "../../../core";
+import { useGetAccountFullQuery } from "../../../api/queries";
 
 export interface ProfileData {
   joiningData: string;
@@ -19,13 +19,29 @@ interface Props {
 }
 
 export default function ChatsProfileBox({ communityName, currentUser }: Props) {
-  const [profileData, setProfileData] = useState<ProfileData>();
-
   const { data: community } = useCommunityCache(communityName!);
+  const { data: account } = useGetAccountFullQuery(currentUser);
 
-  useEffect(() => {
-    fetchProfileData();
-  }, [communityName, currentUser]);
+  const profileData = useMemo(() => {
+    if (community) {
+      return {
+        joiningData: community?.created_at!,
+        about: community?.about,
+        followers: community?.subscribers,
+        name: community?.title!,
+        username: community?.name!
+      };
+    } else if (account) {
+      return {
+        joiningData: account.created,
+        about: account.profile?.about,
+        followers: account.follow_stats?.follower_count,
+        name: account.name,
+        username: account.name
+      };
+    }
+    return {};
+  }, [community, account]);
 
   const formatFollowers = (count: number | undefined) => {
     if (count) {
@@ -36,27 +52,6 @@ export default function ChatsProfileBox({ communityName, currentUser }: Props) {
         : count.toLocaleString();
     }
     return count;
-  };
-
-  const fetchProfileData = async () => {
-    if (community) {
-      setProfileData({
-        joiningData: community?.created_at!,
-        about: community?.about,
-        followers: community?.subscribers,
-        name: community?.title!,
-        username: community?.name!
-      });
-    } else if (currentUser) {
-      const response = await getAccountFull(currentUser.replace("@", ""));
-      setProfileData({
-        joiningData: response.created,
-        about: response.profile?.about,
-        followers: response.follow_stats?.follower_count,
-        name: response.name,
-        username: response.name
-      });
-    }
   };
 
   return profileData?.joiningData ? (

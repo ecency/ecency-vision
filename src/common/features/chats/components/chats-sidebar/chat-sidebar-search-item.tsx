@@ -13,7 +13,7 @@ interface Props {
 export function ChatSidebarSearchItem({ item, onClick }: Props) {
   const username = useMemo(() => {
     if ("account" in item) {
-      return isCommunity(item.account) ? item.account : "@" + item.account;
+      return item.account;
     }
     return item.name;
   }, [item]);

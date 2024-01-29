@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
-import React from "react";
+import React, { useEffect } from "react";
 import { useCommunityCache } from "../../../../core";
 import { ChatsChannelMessages } from "../chat-channel-messages";
 import {
@@ -9,7 +9,10 @@ import {
   DirectContact,
   DirectMessage,
   PublicMessage,
-  useMessagesQuery
+  useDirectContactsQuery,
+  useMessagesQuery,
+  useUpdateChannelLastSeenDate,
+  useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
 
 interface Props {
@@ -20,6 +23,29 @@ interface Props {
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
   const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
   const { data: messages } = useMessagesQuery(currentContact, currentChannel);
+  const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
+
+  const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
+  const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
+
+  // Whenever current contact is exists need to turn unread to 0
+  useEffect(() => {
+    if (currentContact && isDirectContactsLoaded) {
+      updateDirectContactsLastSeenDate.mutateAsync({
+        contact: currentContact,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [currentContact, isDirectContactsLoaded]);
+
+  useEffect(() => {
+    if (currentChannel) {
+      updateChannelLastSeenDate.mutateAsync({
+        channel: currentChannel,
+        lastSeenDate: new Date()
+      });
+    }
+  }, [currentChannel]);
 
   return (
     <div className="chats h-full">

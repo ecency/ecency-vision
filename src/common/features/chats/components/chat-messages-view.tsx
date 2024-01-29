@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import ChatsProfileBox from "./chat-profile-box";
 import ChatsDirectMessages from "./chats-direct-messages";
@@ -10,8 +10,10 @@ import {
   DirectContact,
   DirectMessage,
   PublicMessage,
-  useMessagesQuery
+  useMessagesQuery,
+  useOriginalJoinedChannelsQuery
 } from "@ecency/ns-query";
+import { ChatChannelNotJoined } from "./chat-channel-not-joined";
 
 interface Props {
   currentContact: DirectContact;
@@ -19,9 +21,15 @@ interface Props {
 }
 
 export default function ChatsMessagesView({ currentContact, currentChannel }: Props) {
-  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
-
   const messagesBoxRef = useRef<HTMLDivElement>(null);
+
+  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
+  const { data: channels } = useOriginalJoinedChannelsQuery();
+
+  const isJoinedToChannel = useMemo(
+    () => channels?.some((c) => c.id === currentChannel?.id) === true,
+    [currentChannel, channels]
+  );
 
   return (
     <>
@@ -37,7 +45,7 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
           target="_blank"
         >
           <ChatsProfileBox
-            communityName={currentChannel?.name}
+            communityName={currentChannel?.communityName}
             currentUser={currentContact?.name}
           />
         </Link>
@@ -59,7 +67,11 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
       </div>
 
       <div className="sticky z-10 bottom-0 border-t border-[--border-color] bg-white pl-3">
-        <ChatInput currentContact={currentContact} currentChannel={currentChannel} />
+        {!currentChannel || isJoinedToChannel ? (
+          <ChatInput currentContact={currentContact} currentChannel={currentChannel} />
+        ) : (
+          <ChatChannelNotJoined channel={currentChannel} />
+        )}
       </div>
     </>
   );
