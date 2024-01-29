@@ -85,7 +85,8 @@
     "download": "Lataa",
     "pin": "Kiinnitä",
     "unpin": "Irrota",
-    "retry": "Yritä uudelleen"
+    "retry": "Yritä uudelleen",
+    "message": "Message"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -1853,6 +1854,7 @@
     "start-chat-placeholder": "Kirjoita uusi viesti",
     "search": "Etsi ihmisiä tai yhteisöjä",
     "join-chat": "Liity keskusteluun",
+    "join-channel": "Join channel",
     "back": "Takaisin",
     "no-chat": "Keskustelua ei löytynyt",
     "start-chat": "Aloita keskustelu",
@@ -1876,7 +1878,8 @@
     "close": "Sulje",
     "confirm": "Vahvista",
     "error-updating-community": "Yhteisön päivittämisessä tapahtui virhe",
-    "leave": "Poistu",
+    "leave-channel": "Leave channel",
+    "leaving": "Leaving",
     "edit-roles": "Muokkaa rooleja",
     "manage-chat-key": "Käyttäjätiedot",
     "block": "Estä",
@@ -1915,6 +1918,8 @@
     "unlock-the-section": "Ole hyvä ja syötä PIN nähdäksesi käyttäjätietosi",
     "no-contacts-or-channels": "Ei keskusteluja vielä",
     "upload-image": "Lataa kuva",
+    "hidden-messages": "Hidden messages",
+    "hidden-messages-management": "Hidden messages management",
     "welcome": {
       "title": "Tervetuloa Keskusteluihin",
       "description": "Luo tai tuo tili käyttääksesi Keskusteluja",
@@ -1925,7 +1930,7 @@
       "user-not-joined-yet": "Et voi lähettää viestiä. Tämä käyttäjä tai kanava ei ole vielä liittynyt keskusteluihin.",
       "hello": "Hei",
       "start-description": "Etsi henkilöä tai yhteisöä ja aloita viestittely",
-      "join-description": "Et ole tässä yhteisössä. Liity yhteisön keskusteluun nyt!",
+      "join-description": "You aren't part of channel",
       "rejoin-description": "Olet poistunut tästä yhteisökeskustelusta. Liity uudelleen!"
     },
     "import": {
