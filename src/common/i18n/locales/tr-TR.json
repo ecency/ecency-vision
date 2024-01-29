@@ -85,7 +85,8 @@
     "download": "Download",
     "pin": "Pin",
     "unpin": "Unpin",
-    "retry": "Retry"
+    "retry": "Retry",
+    "message": "Message"
   },
   "confirm": {
     "title": "Emin misiniz?",
@@ -1853,6 +1854,7 @@
     "start-chat-placeholder": "Start a new message",
     "search": "Search people or communities",
     "join-chat": "Join chat",
+    "join-channel": "Join channel",
     "back": "Back",
     "no-chat": "No conversation found",
     "start-chat": "Start chatting",
@@ -1876,7 +1878,8 @@
     "close": "Close",
     "confirm": "Confirm",
     "error-updating-community": "Error occurred while updating community",
-    "leave": "Leave",
+    "leave-channel": "Leave channel",
+    "leaving": "Leaving",
     "edit-roles": "Edit Roles",
     "manage-chat-key": "Credentials info",
     "block": "Block",
@@ -1915,6 +1918,8 @@
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
     "no-contacts-or-channels": "No conversations yet",
     "upload-image": "Upload image",
+    "hidden-messages": "Hidden messages",
+    "hidden-messages-management": "Hidden messages management",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
@@ -1925,7 +1930,7 @@
       "user-not-joined-yet": "You can't send a message. This user or channel hasn't joined to chats yet.",
       "hello": "Hello",
       "start-description": "Search a person or community and start messaging",
-      "join-description": "You are not part of this community. Join the community chat now!",
+      "join-description": "You aren't part of channel",
       "rejoin-description": "You have left this community chat. Rejoin the chat now!"
     },
     "import": {
