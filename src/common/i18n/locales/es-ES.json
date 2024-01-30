@@ -86,7 +86,7 @@
     "pin": "Anclar arriba",
     "unpin": "Desanclar",
     "retry": "Reintentar",
-    "message": "Message"
+    "message": "Mensaje"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -1854,7 +1854,7 @@
     "start-chat-placeholder": "Iniciar un nuevo mensaje",
     "search": "Buscar personas o comunidades",
     "join-chat": "Unirse al chat",
-    "join-channel": "Join channel",
+    "join-channel": "Unirse al canal",
     "back": "Regresar",
     "no-chat": "No se encontró ninguna conversación",
     "start-chat": "Empezar a chatear",
@@ -1878,8 +1878,8 @@
     "close": "Cerrar",
     "confirm": "Confirmar",
     "error-updating-community": "Error al actualizar la comunidad",
-    "leave-channel": "Leave channel",
-    "leaving": "Leaving",
+    "leave-channel": "Abandonar canal",
+    "leaving": "Abandonando",
     "edit-roles": "Editar Roles",
     "manage-chat-key": "Información de credenciales",
     "block": "Bloquear",
@@ -1918,8 +1918,8 @@
     "unlock-the-section": "Por favor, introduce tu PIN para ver la información de tus credenciales",
     "no-contacts-or-channels": "Aún no hay conversaciones",
     "upload-image": "Subir imagen",
-    "hidden-messages": "Hidden messages",
-    "hidden-messages-management": "Hidden messages management",
+    "hidden-messages": "Mensajes ocultos",
+    "hidden-messages-management": "Gestión de mensajes ocultos",
     "welcome": {
       "title": "Bienvenido a Chats",
       "description": "Crear o importar una cuenta empieza a usar Chats",
@@ -1930,7 +1930,7 @@
       "user-not-joined-yet": "No puedes enviar un mensaje. Este usuario o canal no se ha unido a chats todavía.",
       "hello": "Hola",
       "start-description": "Busca en una persona o comunidad y empieza a enviar mensajes",
-      "join-description": "You aren't part of channel",
+      "join-description": "No eres parte del canal",
       "rejoin-description": "Has abandonado este chat de la comunidad. ¡Regresa al chat ahora!"
     },
     "import": {
