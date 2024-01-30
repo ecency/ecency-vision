@@ -86,7 +86,9 @@
     "pin": "Pin",
     "unpin": "Unpin",
     "retry": "Retry",
-    "message": "Message"
+    "message": "Message",
+    "actions": "Actions",
+    "restore": "Restore"
   },
   "confirm": {
     "title": "Are you sure?",
@@ -1872,6 +1874,7 @@
     "unblock": "Unblock",
     "ecency-key": "Ecency key",
     "no-locked-user": "Blocked users not found",
+    "no-hidden-messages": "Hidden messages not found",
     "enter-private-key": "Enter Chat private key",
     "enter-private-key-detail": "Enter chat private key to import all chats",
     "close": "Close",

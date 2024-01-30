@@ -37,7 +37,7 @@ export function BlockedUsersModal({ channel, setShow, show }: Props) {
               <thead>
                 <Tr>
                   <Th>{_t("g.username")}</Th>
-                  <Th>{_t("g.status")}</Th>
+                  <Th>{_t("g.actions")}</Th>
                 </Tr>
               </thead>
               <tbody>
