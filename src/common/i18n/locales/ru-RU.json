@@ -86,7 +86,7 @@
     "pin": "Закрепить",
     "unpin": "Открепить",
     "retry": "Повторить",
-    "message": "Message"
+    "message": "Сообщение"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -1854,7 +1854,7 @@
     "start-chat-placeholder": "Написать новое сообщение",
     "search": "Поиск людей или сообществ",
     "join-chat": "Присоединиться к чату",
-    "join-channel": "Join channel",
+    "join-channel": "Присоединиться к каналу",
     "back": "Назад",
     "no-chat": "Диалоги не найдены",
     "start-chat": "Начать общение",
@@ -1878,8 +1878,8 @@
     "close": "Закрыть",
     "confirm": "Подтвердить",
     "error-updating-community": "Произошла ошибка при обновлении сообщества",
-    "leave-channel": "Leave channel",
-    "leaving": "Leaving",
+    "leave-channel": "Покинуть канал",
+    "leaving": "Выход",
     "edit-roles": "Изменить роли",
     "manage-chat-key": "Данные учётной записи",
     "block": "Заблокировать",
@@ -1918,8 +1918,8 @@
     "unlock-the-section": "Пожалуйста, введите PIN-код, чтобы увидеть информацию о ваших учетных данных",
     "no-contacts-or-channels": "Диалогов пока нет",
     "upload-image": "Загрузить изображение",
-    "hidden-messages": "Hidden messages",
-    "hidden-messages-management": "Hidden messages management",
+    "hidden-messages": "Скрытые сообщения",
+    "hidden-messages-management": "Управление скрытыми сообщениями",
     "welcome": {
       "title": "Добро пожаловать в чаты",
       "description": "Создайте или импортируйте аккаунт с помощью чатов",
@@ -1930,7 +1930,7 @@
       "user-not-joined-yet": "Вы не можете отправить сообщение. Этот пользователь или канал еще не присоединились к чатам.",
       "hello": "Привет",
       "start-description": "Поиск пользователя, сообщества и отправка сообщений",
-      "join-description": "You aren't part of channel",
+      "join-description": "Вы не являетесь участником канала",
       "rejoin-description": "Вы покинули чат сообщества. Присоединяйтесь к чату прямо сейчас!"
     },
     "import": {
