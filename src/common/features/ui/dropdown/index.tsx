@@ -20,19 +20,28 @@ export function Dropdown(props: HTMLProps<HTMLDivElement> & Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const { openPopovers } = useContext(UIContext);
 
-  useClickAway(ref, () => {
+  useClickAway(ref, (e) => {
     if (openPopovers.size === 0) {
       setShow(false);
     } else {
       return;
     }
 
-    if (props.closeOnClickOutside ?? true) {
+    if (!isInsideDropdown(e) && (props.closeOnClickOutside ?? true)) {
       setShow(false);
-      // props.setShow?.(false);
+      props.setShow?.(false);
     }
   });
   const nativeProps = useFilteredProps(props, ["show", "setShow", "closeOnClickOutside"]);
+
+  const isInsideDropdown = (e: Event) => {
+    let target = e.target as HTMLElement | null;
+    while (!target?.parentElement?.classList.contains("ecency-dropdown-menu") && target) {
+      target = target?.parentElement ?? null;
+    }
+
+    return !!target;
+  };
 
   return (
     <DropdownContext.Provider
