@@ -43,7 +43,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   const { publicKey } = useKeysQuery();
   const { fetchNextPage, refetch } = usePublicMessagesQuery(
     currentChannel,
-    joinedCommunityTeamKeys
+    joinedCommunityTeamKeys.map(({ pubkey }) => pubkey)
   );
 
   const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
