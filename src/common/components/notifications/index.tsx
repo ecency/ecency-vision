@@ -550,7 +550,8 @@ class NotificationsDialog extends Component<NotificationProps> {
       <Modal
         show={true}
         onHide={this.hide}
-        className={"notifications-modal drawer " + this.props.className}
+        className={"notifications-modal drawer !top-[70px] " + this.props.className}
+        overlayClassName="!top-[70px]"
       >
         <ModalBody>
           <DialogContent {...this.props} />

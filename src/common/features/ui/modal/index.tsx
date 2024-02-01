@@ -12,6 +12,7 @@ interface Props {
   animation?: boolean;
   size?: "md" | "lg";
   dialogClassName?: string;
+  overlayClassName?: string;
 }
 
 export const ModalContext = createContext<{
@@ -59,7 +60,12 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     <ModalContext.Provider value={{ show, setShow }}>
       {show &&
         createPortal(
-          <div className="bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0" />,
+          <div
+            className={classNameObject({
+              "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true,
+              [props.overlayClassName ?? ""]: !!props.overlayClassName
+            })}
+          />,
           document.querySelector("#modal-overlay-container")!!
         )}
       {show &&
