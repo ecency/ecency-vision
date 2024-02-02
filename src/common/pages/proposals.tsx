@@ -125,7 +125,8 @@ class ProposalsPage extends BaseComponent<PageProps, State> {
       //  add up total votes
       let _thresholdProposalId: number | null = null;
       const dailyFunded = eligible.reduce((a, b) => {
-        const _sum_amount = a + Number(b.daily_pay.amount) / Math.pow(10, b.daily_pay.precision);
+        const dp = parseAsset(b.daily_pay);
+        const _sum_amount = a + Number(dp.amount);
         if (_sum_amount >= dailyBudget && !_thresholdProposalId) {
           _thresholdProposalId = b.id;
         }
