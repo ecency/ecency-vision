@@ -1,4 +1,4 @@
-import { Client, RCAPI, utils } from "@hiveio/dhive";
+import { Client, RCAPI, SMTAsset, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
@@ -447,11 +447,7 @@ export const getWitnessesByVote = (from: string, limit: number): Promise<Witness
 
 export interface Proposal {
   creator: string;
-  daily_pay: {
-    amount: string;
-    nai: string;
-    precision: number;
-  };
+  daily_pay: string | SMTAsset;
   end_date: string;
   id: number;
   permlink: string;
@@ -473,6 +469,9 @@ export const getProposals = (): Promise<Proposal[]> =>
       status: "all"
     })
     .then((r) => r.proposals);
+
+export const findProposals = (id: number): Promise<Proposal> =>
+  client.call("condenser_api", "find_proposals", [[id]]).then((r) => r[0]);
 
 export interface ProposalVote {
   id: number;

@@ -100,6 +100,9 @@ export default (props: any) => {
           <div className="flex flex-wrap justify-center items-center">
             <p className="mb-3 w-88">{_t("landing-page.what-is-ecency")}</p>
           </div>
+          {/*<button className="get-started mx-auto" onClick={() => props.setStep(2)}>
+            {_t("landing-page.how-it-works")}
+          </button>*/}
           <button className="get-started mx-auto" onClick={() => props.setStep(2)}>
             {_t("landing-page.get-started")}
           </button>

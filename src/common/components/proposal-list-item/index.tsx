@@ -33,6 +33,7 @@ import { _t } from "../../i18n";
 import { linkSvg } from "../../img/svg";
 import { Skeleton } from "../skeleton";
 import "./_index.scss";
+import parseAsset from "../../helper/parse-asset";
 
 interface Props {
   history: History;
@@ -123,10 +124,10 @@ export class ProposalListItem extends Component<Props, State> {
     const votesHP = (Number(proposal.total_votes) / 1e12) * dynamicProps.hivePerMVests;
     const strVotes = numeral(votesHP).format("0.00,") + " HP";
 
-    const dailyPayment = Number(proposal.daily_pay.amount) / 1e3;
-    const strDailyHdb = numeral(dailyPayment).format("0.0a");
+    const dailyPayment = parseAsset(proposal.daily_pay);
+    const strDailyHdb = numeral(dailyPayment.amount).format("0.0a");
 
-    const allPayment = dailyPayment * duration;
+    const allPayment = dailyPayment.amount * duration;
     const strAllPayment = numeral(allPayment).format("0.0a");
     const diff = endDate.diff(moment(now()), "days");
     const remaining = diff < 0 ? 0 : diff;
