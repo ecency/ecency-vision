@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import _ from "lodash";
 import badActors from "@hiveio/hivescript/bad-actors.json";
 import LinearProgress from "../linear-progress";
@@ -10,6 +10,7 @@ import { getAccount } from "../../api/hive";
 import { arrowRightSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { getRcOperationStats } from "../../api/hive";
 
 export const ResourceCreditsDelegation = (props: any) => {
   const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
@@ -24,12 +25,21 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [toWarning, setToWarning] = useState<string>("");
   const [toData, setToData] = useState<any>(delegateeData || "");
   const [convertedValue, setConvertedValue] = useState<any>(null);
+  const [commentAmount, setCommentAmount] = useState(0);
+  const [voteAmount, setVoteAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [customJsonAmount, setCustomJsonAmount] = useState(0);
+  const [claimAccountAmount, setClaimAccountAmount] = useState(0);
 
   const pointValues = [0, 25, 50, 75, 100];
 
   const [fillWidth, setFillWidth] = useState(0);
 
   const [convertedVal, setConvertedVal] = useState<any>(null);
+
+  useEffect(() => {
+    rcOperationsCost()
+  }, [amount])
 
   const convertToBillions = (input: string) => {
     const inputNumber = parseFloat(input);
@@ -59,6 +69,7 @@ export const ResourceCreditsDelegation = (props: any) => {
     setConvertedVal(sonvertedAmount)
     
     setAmount(Number(value));
+    updateOnAmount(Number(value))
     console.log(amount)
     if (
       sonvertedAmount === "" ||
@@ -98,6 +109,30 @@ export const ResourceCreditsDelegation = (props: any) => {
       });
     hideDelegation();
     return;
+  };
+
+  const rcOperationsCost = async () => {
+    const rcStats: any = await getRcOperationStats();
+    const operationCosts = rcStats.rc_stats.ops;
+    const commentCost = operationCosts.comment_operation.avg_cost;
+    const transferCost = operationCosts.transfer_operation.avg_cost;
+    const voteCost = operationCosts.vote_operation.avg_cost;
+    const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+    const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
+
+    const commentCount: number = Math.ceil(Number(amount) * 1e9 / commentCost);
+    const votetCount: number = Math.ceil(Number(amount) * 1e9 / voteCost);
+    const transferCount: number = Math.ceil(Number(amount) * 1e9 / transferCost);
+    const customJsonCount: number = Math.ceil(Number(amount) * 1e9 / customJsonOperationsCosts
+    );
+    const createClaimAccountCount: number = Math.floor(
+      Number(amount) / createClaimAccountCost
+    );
+    setCommentAmount(commentCount);
+    setVoteAmount(votetCount);
+    setTransferAmount(transferCount);
+    setCustomJsonAmount(customJsonCount);
+    setClaimAccountAmount(createClaimAccountCount);
   };
 
   const canSubmit =
@@ -172,22 +207,28 @@ export const ResourceCreditsDelegation = (props: any) => {
     </div>
   );
 
-  const handlePointClick = (index: number) => {
-    const fillPercentage = (index) * (100 / 4);
-    setFillWidth(fillPercentage);
-    const formartInput = (((fillPercentage / 100) * resourceCredit) / 1e9).toFixed(0)
-    console.log(fillPercentage)
+  const handlePointClick = (event:any, index: number, percentage: number) => {
+    event.stopPropagation();
+    setFillWidth(percentage);
+    const formartInput = (((percentage / 100) * resourceCredit) / 1e9).toFixed(0)
+    console.log(percentage)
     setAmount(formartInput)
   };
 
   const handleProgressLineClick = (event: any) => {
     const clickedPosition = (event.nativeEvent.offsetX / event.currentTarget.clientWidth) * 100;
     console.log(clickedPosition)
+    event.stopPropagation()
 
     const formmattedInput = ((clickedPosition / 100) * resourceCredit / 1e9).toFixed(0);
     setFillWidth(clickedPosition);
     setAmount(formmattedInput);
   };
+
+  const updateOnAmount = (a: number) => {
+    const rcPercent = (a * 1e9) / resourceCredit * 100
+    setFillWidth(rcPercent)
+  }
 
   return (
     <div className="transfer-dialog-content">
@@ -234,7 +275,7 @@ export const ResourceCreditsDelegation = (props: any) => {
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 sm:col-span-2 mt-3">
-                <label>{_t("transfer.amount")} (Bn)</label>
+                <label>{_t("transfer.amount")} (Bn) Minimum Rc that can be delegated is 5Bn</label>
               </div>
               <div className="col-span-12 sm:col-span-10">
                 <InputGroup>
@@ -256,24 +297,32 @@ export const ResourceCreditsDelegation = (props: any) => {
               <small className="text-red tr-form-text">{amountError}</small>
             )}
 
+            <div className="operation-amount d-flex">
+              <span className="operations">Posts/Comment: {commentAmount}</span>
+              <span className="operations">Votes: {voteAmount}</span>
+              <span className="operations">Transfers: {transferAmount}</span>
+              <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+            </div>
+
             <div className="d-flex rc-progress-line" onClick={handleProgressLineClick}>
               <div className="rc-fill" style={{ width: `${fillWidth}%` }}></div>
 
               <div className="rc-points" 
-              onClick={() => handlePointClick(0)}
+              onClick={(e) => handlePointClick(e, 0, 0)}
               ></div>
               <div className="rc-points"
-              onClick={() => handlePointClick(1)}
+              onClick={(e) => handlePointClick(e, 1, 25)}
               ></div>
               <div className="rc-points" 
-              onClick={() => handlePointClick(2)}
+              onClick={(e) => handlePointClick(e, 2, 50)}
               ></div>
               <div className="rc-points"  
-              onClick={() => handlePointClick(3)}
+              onClick={(e) => handlePointClick(e, 3, 75)}
               ></div>
               <div className="rc-points"  
-              onClick={() => handlePointClick(4)}
+              onClick={(e) => handlePointClick(e, 4, 100)}
               ></div>
+              
             </div>
 
             <div className="grid grid-cols-12">
@@ -305,17 +354,19 @@ export const ResourceCreditsDelegation = (props: any) => {
               <div className="users">
                 <div className="from-user">
                   <UserAvatar username={activeUser?.username} size="large" />
+                  <span>{activeUser?.username}</span>
                 </div>
                 {
                   <>
                     <div className="arrow">{arrowRightSvg}</div>
                     <div className="to-user">
                       <UserAvatar username={to} size="large" />
+                      <span>{to}</span>
                     </div>
                   </>
                 }
               </div>
-              <div className="amount">{amount} RC</div>
+              <div className="amount">{amount}Bn RC</div>
             </div>
             <div className="flex justify-center">
               <Button  disabled={inProgress} onClick={back}>

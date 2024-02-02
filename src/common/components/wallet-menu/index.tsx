@@ -26,7 +26,7 @@ export default class WalletMenu extends Component<Props> {
             //REMOVE USE PRIVATE FOR POINTS
             <div className="wallet-menu">
                 <Link className={_c(`menu-item ecency ${active === "ecency" ? "active" : ""}`)} to={`/@${username}/points`}>
-                    <span className="title">{communityInfo?.profile?.name}</span>
+                    <span className="title">{communityInfo?.title}</span>
                     <span className="sub-title">Points</span>
                     <span className="platform-logo"><img alt="ecency" src={logo}/></span>
                 </Link>

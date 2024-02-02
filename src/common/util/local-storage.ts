@@ -6,9 +6,16 @@ export const get = (k: string, def: any = null): any => {
         return null;
     }
 
-    const key = `${PREFIX}_${k}`;
-    const val = localStorage.getItem(key);
-    return val ? JSON.parse(val) : def;
+    try {
+        
+        const key = `${PREFIX}_${k}`;
+        const val = localStorage.getItem(key);
+        // console.log("value", val)
+        return val ? JSON.parse(val) : def;
+    } catch (error) {
+        console.log(error)
+    }
+
 };
 
 export const set = (k: string, v: any): void => {

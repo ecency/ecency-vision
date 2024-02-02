@@ -17,6 +17,9 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Link } from "react-router-dom";
 import { createBreakawayUser } from "../../api/breakaway";
 import { getAccounts } from "../../api/hive";
+import { delegateRC, formatError } from "../../api/operations";
+import { FormControl, InputGroup } from "react-bootstrap";
+import { getRcOperationStats } from "../../api/hive";
 
 interface Props {
   activeUser: ActiveUser
@@ -44,6 +47,12 @@ const OnboardFriend = (props: Props | any) => {
   const [step, setStep] = useState("confirm");
   const [msg, setMsg] = useState("");
   const [token, setToken] = useState(0)
+  const [rcAmount, setRcAmount] = useState(0)
+  const [isChecked, setChecked] = useState(false);
+  const [commentAmount, setCommentAmount] = useState(0);
+  const [voteAmount, setVoteAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [customJsonAmount, setCustomJsonAmount] = useState(0);
 
   useEffect(() => {
     let decodedObj;
@@ -61,6 +70,10 @@ const OnboardFriend = (props: Props | any) => {
   useEffect(() => {
     getAccountTokens();
   }, [token])
+
+  useEffect(() => {
+    rcOperationsCost();
+  }, [rcAmount])
   
   const getAccountTokens = async ()=>{
     const acc = await getAccounts([activeUser?.username!]);
@@ -76,6 +89,9 @@ const OnboardFriend = (props: Props | any) => {
       activeUser?.username
       )
       if (response.success === true) {
+        if(isChecked){
+          delegateRC(activeUser?.username, urlInfo!.username, rcAmount)
+        }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
@@ -113,6 +129,32 @@ const OnboardFriend = (props: Props | any) => {
     title: `Welcome to ${community?.title}`,
   };
 
+  const rcOperationsCost = async () => {
+    const rcStats: any = await getRcOperationStats();
+    const operationCosts = rcStats.rc_stats.ops;
+    const commentCost = operationCosts.comment_operation.avg_cost;
+    const transferCost = operationCosts.transfer_operation.avg_cost;
+    const voteCost = operationCosts.vote_operation.avg_cost;
+    const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+    const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
+
+    const commentCount: number = Math.ceil(Number(rcAmount) / commentCost);
+    const votetCount: number = Math.ceil(Number(rcAmount) / voteCost);
+    const transferCount: number = Math.ceil(Number(rcAmount) / transferCost);
+    const customJsonCount: number = Math.ceil(Number(rcAmount) / customJsonOperationsCosts);
+
+    console.log("commentCount", commentCount)
+    console.log("votetCount", votetCount )
+    console.log("transferCount", transferCount)
+    console.log("customJsonCount", customJsonCount)
+   
+    setCommentAmount(commentCount);
+    setVoteAmount(votetCount);
+    setTransferAmount(transferCount);
+    setCustomJsonAmount(customJsonCount);
+    // setClaimAccountAmount(createClaimAccountCount);
+  };
+
   let containerClasses = global.isElectron
     ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
     : "app-content sign-up-page mb-lg-0";
@@ -144,6 +186,44 @@ const OnboardFriend = (props: Props | any) => {
               </div>
             )}
             </div>
+
+            <div className="delegate-rc">
+              <div className="col-span-12 sm:col-span-10">
+                <div className="check mb-2">
+                  <input 
+                    type="checkbox" 
+                    className="checkbox" 
+                    checked={isChecked} 
+                    onChange={() => {
+                      setChecked(!isChecked)
+                    }}
+                  />
+                  <span>Delegate some resource credits to @{urlInfo!?.username} (Minimum Rc is 5Bn)</span>
+                </div>
+                {isChecked &&
+                <div className="mt-3">
+                  <InputGroup>
+                    <FormControl
+                      type="text"
+                      placeholder={"Enter amount to delegate(Bn)"}
+                      // value={rcAmount}
+                      onChange={(e: any) => setRcAmount(Number(e.target.value) * 1e9)}
+                      // className={
+                        // Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
+                      // }
+                    />
+                  </InputGroup>
+                  <div className="operation-amount d-flex mt-3">
+                    <span className="operations">Posts/Comment: {commentAmount} |</span>
+                    <span className="operations">Votes: {voteAmount} |</span>
+                    <span className="operations">Transfers: {transferAmount} |</span>
+                    <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+
             <div className="create-buttons w-100">
                 <Button onClick={()=> createAccount()} className="w-100">Pay with (3Hive)</Button>   
                 <Button  
@@ -151,15 +231,16 @@ const OnboardFriend = (props: Props | any) => {
                 onClick={()=> accountWithCredit()} 
                 className="w-100"
                 >
-                  Pay with credits
+                  Pay with account token
                 </Button>   
             </div>
           </>} 
           {step === "success" &&
           <>
             <h4 className="text-success">{msg}</h4>
-            <Link to={`/@${urlInfo?.username}`}>Visist @{urlInfo?.username}'s profile</Link>
-          </>} 
+            <Link to={`/@${urlInfo?.username}`}>Visit @{urlInfo?.username}'s profile</Link>
+          </>
+          } 
           {step === "fail" && <>
             <h4 className="text-danger">{msg}</h4>
             <Button onClick={()=> setStep("confirm")}>{_t("onboard.try-again")}</Button>
