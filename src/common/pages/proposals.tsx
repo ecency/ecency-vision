@@ -24,7 +24,7 @@ import SearchBox from "../components/search-box";
 import { _t } from "../i18n";
 import { Tsx } from "../i18n/helper";
 
-import { getAccount, getPost, getProposals, Proposal } from "../api/hive";
+import { findProposals, getAccount, getPost, getProposals, Proposal } from "../api/hive";
 
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 
@@ -370,14 +370,22 @@ class ProposalDetailPage extends BaseComponent<DetailProps, DetailState> {
     const proposalId = Number(match.params.id);
 
     this.stateSet({ loading: true });
-    getProposals()
-      .then((proposals) => {
-        const proposal = proposals.find((x) => x.id === proposalId);
+    findProposals(proposalId)
+      .then((proposal) => {
+        if (
+          new Date(proposal.start_date) < new Date() &&
+          new Date(proposal.end_date) >= new Date()
+        ) {
+          proposal.status = "active";
+        } else if (new Date(proposal.end_date) < new Date()) {
+          proposal.status = "expired";
+        } else {
+          proposal.status = "inactive";
+        }
         if (proposal) {
           this.stateSet({ proposal });
           return getPost(proposal.creator, proposal.permlink);
         }
-
         return null;
       })
       .then((entry) => {
