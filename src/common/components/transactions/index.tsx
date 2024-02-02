@@ -74,13 +74,13 @@ export class TransactionRow extends Component<RowProps> {
         ...this.props,
         entry: {
           category: "history",
-          author: tr.comment_author,
-          permlink: tr.comment_permlink
+          author: tr.comment_author || tr.author || "",
+          permlink: tr.comment_permlink || tr.permlink || ""
         },
         children: (
           <span>
             {"@"}
-            {tr.comment_author}/{tr.comment_permlink}
+            {tr.comment_author || tr.author}/{tr.comment_permlink || tr.permlink}
           </span>
         )
       });
