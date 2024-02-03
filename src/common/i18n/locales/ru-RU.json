@@ -86,7 +86,9 @@
     "pin": "Закрепить",
     "unpin": "Открепить",
     "retry": "Повторить",
-    "message": "Сообщение"
+    "message": "Сообщение",
+    "actions": "Actions",
+    "restore": "Restore"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -762,7 +764,6 @@
     "roles-role": "Роль",
     "roles-account-title": "Заголовок",
     "roles-add": "Добавить пользователя",
-    "join-community-chat": "Присоединиться к чату сообщества",
     "already-joined-community": "Вы уже присоединились к этому сообществу"
   },
   "community-cover": {
@@ -1873,6 +1874,7 @@
     "unblock": "Разблокировать",
     "ecency-key": "Ключ Ecency",
     "no-locked-user": "Заблокированные пользователи не найдены",
+    "no-hidden-messages": "Hidden messages not found",
     "enter-private-key": "Введите приватный ключ чата",
     "enter-private-key-detail": "Введите приватный ключ чата для импорта всех чатов",
     "close": "Закрыть",
@@ -1889,9 +1891,8 @@
     "create-new-account": "Создать новую учетную запись",
     "loading": "Загрузка...",
     "blocked-user-message": "Вы были заблокированы в этом сообществе",
-    "chat-joined": "Присоединился к чату",
-    "start-community-chat": "Начать чат сообщества",
-    "join-community-chat": "Присоединиться к чату сообщества",
+    "start-community-channel": "Start community channel",
+    "view-community-channel": "View community channel",
     "submit": "Отправить",
     "chat-priv-key": "Пожалуйста, сохраните ключ чата, нажав на кнопку загрузки или сканируя QR-код для восстановления ваших диалогов.",
     "public-key": "Открытый ключ",
