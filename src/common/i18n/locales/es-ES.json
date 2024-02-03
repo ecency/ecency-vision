@@ -86,7 +86,9 @@
     "pin": "Anclar arriba",
     "unpin": "Desanclar",
     "retry": "Reintentar",
-    "message": "Mensaje"
+    "message": "Mensaje",
+    "actions": "Actions",
+    "restore": "Restore"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -762,7 +764,6 @@
     "roles-role": "Rol",
     "roles-account-title": "Título",
     "roles-add": "Añadir usuario",
-    "join-community-chat": "Unirse al Chat de la Comunidad",
     "already-joined-community": "Ya te has unido a esta comunidad"
   },
   "community-cover": {
@@ -1873,6 +1874,7 @@
     "unblock": "Desbloquear",
     "ecency-key": "Clave de Ecency",
     "no-locked-user": "Usuarios bloqueados no encontrados",
+    "no-hidden-messages": "Hidden messages not found",
     "enter-private-key": "Introducir clave privada de chat",
     "enter-private-key-detail": "Introduzca la clave privada del chat para importar todos los chats",
     "close": "Cerrar",
@@ -1889,9 +1891,8 @@
     "create-new-account": "Crear Nueva Cuenta",
     "loading": "Cargando...",
     "blocked-user-message": "Has sido bloqueado de esta comunidad",
-    "chat-joined": "Chat unido",
-    "start-community-chat": "Iniciar Chat de la Comunidad",
-    "join-community-chat": "Unirse al Chat de la Comunidad",
+    "start-community-channel": "Start community channel",
+    "view-community-channel": "View community channel",
     "submit": "Enviar",
     "chat-priv-key": "Por favor, guarde la clave de chat haciendo clic en el botón de descarga o escaneando el código QR para restaurar sus conversaciones.",
     "public-key": "Clave pública",
