@@ -86,7 +86,9 @@
     "pin": "Kiinnitä",
     "unpin": "Irrota",
     "retry": "Yritä uudelleen",
-    "message": "Viesti"
+    "message": "Viesti",
+    "actions": "Actions",
+    "restore": "Restore"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -762,7 +764,6 @@
     "roles-role": "Rooli",
     "roles-account-title": "Otsikko",
     "roles-add": "Lisää käyttäjä",
-    "join-community-chat": "Liity Yhteisön Keskusteluun",
     "already-joined-community": "Olet jo liittynyt tähän yhteisöön"
   },
   "community-cover": {
@@ -1873,6 +1874,7 @@
     "unblock": "Poista esto",
     "ecency-key": "Ecency-avain",
     "no-locked-user": "Estettyjä käyttäjiä ei löytynyt",
+    "no-hidden-messages": "Hidden messages not found",
     "enter-private-key": "Syötä Keskustelun yksityinen avain",
     "enter-private-key-detail": "Syötä chatin yksityinen avain kaikkien keskustelujen tuomiseksi",
     "close": "Sulje",
@@ -1889,9 +1891,8 @@
     "create-new-account": "Luo uusi tili",
     "loading": "Ladataan...",
     "blocked-user-message": "Sinut on estetty tästä yhteisöstä",
-    "chat-joined": "Liittyi",
-    "start-community-chat": "Käynnistä Yhteisökeskustelu",
-    "join-community-chat": "Liity Yhteisökeskusteluun",
+    "start-community-channel": "Start community channel",
+    "view-community-channel": "View community channel",
     "submit": "Lähetä",
     "chat-priv-key": "Tallenna Keskusteluavain klikkaamalla latauspainiketta tai skannaamalla QR-koodi palauttaaksesi keskustelut.",
     "public-key": "Julkinen avain",
