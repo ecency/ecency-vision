@@ -86,7 +86,9 @@
     "pin": "Pin",
     "unpin": "Unpin",
     "retry": "Retry",
-    "message": "Message"
+    "message": "Message",
+    "actions": "Actions",
+    "restore": "Restore"
   },
   "confirm": {
     "title": "Olete kindel?",
@@ -762,7 +764,6 @@
     "roles-role": "Roll",
     "roles-account-title": "Pealkiri",
     "roles-add": "Lisa kasutaja",
-    "join-community-chat": "Join Community Chat",
     "already-joined-community": "You have already joined this community"
   },
   "community-cover": {
@@ -1873,6 +1874,7 @@
     "unblock": "Unblock",
     "ecency-key": "Ecency key",
     "no-locked-user": "Blocked users not found",
+    "no-hidden-messages": "Hidden messages not found",
     "enter-private-key": "Enter Chat private key",
     "enter-private-key-detail": "Enter chat private key to import all chats",
     "close": "Close",
@@ -1889,9 +1891,8 @@
     "create-new-account": "Create New Account",
     "loading": "Loading...",
     "blocked-user-message": "You have been blocked from this community",
-    "chat-joined": "Chat Joined",
-    "start-community-chat": "Start Community Chat",
-    "join-community-chat": "Join Community Chat",
+    "start-community-channel": "Start community channel",
+    "view-community-channel": "View community channel",
     "submit": "Submit",
     "chat-priv-key": "Please, save Chat key by clicking on download button or scanning QR code to restore your conversations.",
     "public-key": "Public key",
