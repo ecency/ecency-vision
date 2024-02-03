@@ -8,9 +8,8 @@ export function useSearchUsersQuery(query: string) {
       if (!query) {
         return [];
       }
-      const response = await getAccountReputations(query, 10);
-      response.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
-      return response;
+      const response = await getAccountReputations(query.toLowerCase(), 5);
+      return response.sort((a, b) => (a.reputation > b.reputation ? -1 : 1));
     },
     {
       initialData: []

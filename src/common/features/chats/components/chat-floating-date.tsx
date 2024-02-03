@@ -25,7 +25,7 @@ export function ChatFloatingDate({
   return currentFormattedDate ? (
     <div
       className={classNameObject({
-        "sticky z-10 flex justify-center text-xs text-center": true,
+        "sticky z-[9] flex justify-center text-xs text-center": true,
         "top-0": !isPage,
         "top-[180px] md:top-[57px]": isPage
       })}

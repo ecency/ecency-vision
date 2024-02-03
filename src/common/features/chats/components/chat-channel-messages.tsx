@@ -43,7 +43,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   const { publicKey } = useKeysQuery();
   const { fetchNextPage, refetch } = usePublicMessagesQuery(
     currentChannel,
-    joinedCommunityTeamKeys
+    joinedCommunityTeamKeys.map(({ pubkey }) => pubkey)
   );
 
   const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
@@ -92,6 +92,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
               <>
                 <Dropdown
                   key={message.id}
+                  closeOnClickOutside={true}
                   show={currentInteractingMessageId === message.id}
                   setShow={(v) =>
                     setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
@@ -131,13 +132,15 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                       label={_t("chat.hide-message")}
                       onClick={() => hideMessage({ messageId: message.id, status: 0 })}
                     />
-                    <DropdownItemWithIcon
-                      icon={
-                        isUserMutingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
-                      }
-                      label={_t("chat.block-author")}
-                      onClick={() => muteUserInChannel({ pubkey: message.creator, status: 0 })}
-                    />
+                    {message.creator !== publicKey && (
+                      <DropdownItemWithIcon
+                        icon={
+                          isUserMutingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
+                        }
+                        label={_t("chat.block-author")}
+                        onClick={() => muteUserInChannel({ pubkey: message.creator, status: 0 })}
+                      />
+                    )}
                   </DropdownMenu>
                 </Dropdown>
               </>

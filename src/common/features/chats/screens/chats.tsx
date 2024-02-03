@@ -71,7 +71,7 @@ export const Chats = ({ match, history }: Props) => {
       !isShowChatRoom &&
       isReady &&
       (!!directContact?.pubkey.startsWith("not_joined_") || (community && !communityChannel)),
-    [isShowChatRoom, isReady, directContact]
+    [isShowChatRoom, isReady, directContact, communityChannel, community]
   );
 
   const isShowDefaultScreen = useMemo(

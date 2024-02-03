@@ -3,6 +3,10 @@
 .scroll-to-top.visible ~ .floating-faq-button button {
   right: 4rem;
   bottom: 1.25rem;
+
+  @include media-breakpoint-down(md) {
+    bottom: 4rem;
+  }
 }
 
 .floating-container {

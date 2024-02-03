@@ -5,7 +5,7 @@ export function useSearchCommunitiesQuery(query: string) {
   return useQuery(
     ["chats/search-communities", query],
     async () => {
-      const response = await getCommunities("", 10, query);
+      const response = await getCommunities("", 5, query.toLowerCase());
       return response ?? [];
     },
     {

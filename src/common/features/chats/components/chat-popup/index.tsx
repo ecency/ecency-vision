@@ -23,6 +23,7 @@ import {
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
 import { ChatChannelNotJoined } from "../chat-channel-not-joined";
+import { ChatsUserNotJoinedSection } from "../../screens/chats-user-not-joined-section";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -162,6 +163,9 @@ export const ChatPopUp = () => {
               </div>
             ) : (
               <ChatsWelcome />
+            )}
+            {communityName && !currentChannel && (
+              <ChatsUserNotJoinedSection username={communityName} />
             )}
           </div>
           <div className="pl-2">

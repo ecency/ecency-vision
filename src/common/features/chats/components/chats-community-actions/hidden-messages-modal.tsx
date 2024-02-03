@@ -42,7 +42,7 @@ export function HiddenMessagesModal({ channel, setShow, show }: Props) {
               <thead>
                 <Tr>
                   <Th>{_t("g.message")}</Th>
-                  <Th>{_t("g.status")}</Th>
+                  <Th>{_t("g.actions")}</Th>
                 </Tr>
               </thead>
               <tbody>
@@ -72,7 +72,7 @@ export function HiddenMessagesModal({ channel, setShow, show }: Props) {
                           outline={true}
                           onClick={() => hideInChannel({ messageId: message.id, status: 1 })}
                         >
-                          {_t("chat.unblock")}
+                          {_t("g.restore")}
                         </Button>
                       </Td>
                     </Tr>
@@ -83,7 +83,7 @@ export function HiddenMessagesModal({ channel, setShow, show }: Props) {
           )}
           {(!hiddenMessages || hiddenMessages?.length === 0) && (
             <div className="text-center text-gray-400 dark:text-gray-600">
-              {_t("chat.no-locked-user")}
+              {_t("chat.no-hidden-messages")}
             </div>
           )}
         </div>
