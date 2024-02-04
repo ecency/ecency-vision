@@ -35,7 +35,6 @@ import { useGetAccountFullQuery } from "./api/queries";
 import { UIManager } from "@ui/core";
 import defaults from "./constants/defaults.json";
 import { getAccessToken } from "./helper/user-token";
-import { ChatLocaitonListener } from "./features/chats/components/chat-locaiton-listener";
 
 // Define lazy pages
 const ProfileContainer = loadable(() => import("./pages/profile-functional"));
@@ -126,7 +125,6 @@ const App = (props: any) => {
           activeUserData={activeUserAccount}
           ecencyAccessToken={accessToken}
         >
-          <ChatLocaitonListener />
           <Switch>
             <Route exact={true} path={routes.HOME} component={EntryIndexContainer} />
             <Route
