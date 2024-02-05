@@ -23,7 +23,7 @@ export default async (req: express.Request, res: express.Response) => {
   let entries = {};
 
   // blog or comments or replies section
-  if (ProfileFilter[section]) {
+  if (ProfileFilter[section as ProfileFilter]) {
     let entryList: Entry[] = [];
 
     try {
