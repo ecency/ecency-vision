@@ -98,7 +98,7 @@ class CommunityPage extends BaseComponent<Props, State> {
     const { match, fetchEntries } = this.props;
 
     const { filter, name } = match.params;
-    if (EntryFilter[filter]) {
+    if (EntryFilter[filter as EntryFilter]) {
       // fetch blog posts.
       fetchEntries(filter, name, false);
     }
@@ -127,7 +127,7 @@ class CommunityPage extends BaseComponent<Props, State> {
     //  community or filter changed
     if (
       (filter !== prevParams.filter || name !== prevParams.name) &&
-      EntryFilter[filter]
+      EntryFilter[filter as EntryFilter]
     ) {
       fetchEntries(match.params.filter, match.params.name, false);
     }
@@ -199,7 +199,7 @@ class CommunityPage extends BaseComponent<Props, State> {
       const { match, fetchEntries, invalidateEntries } = this.props;
       const { filter, name } = match.params;
 
-      if (EntryFilter[filter]) {
+      if (EntryFilter[filter as EntryFilter]) {
         invalidateEntries(makeGroupKey(filter, name));
         fetchEntries(filter, name, false);
       }
