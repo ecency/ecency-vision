@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { History } from "history";
 import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
 import Link from "../../../components/alink";
 import { expandSideBar } from "../../../img/svg";
 import { Button } from "@ui/button";
-import { Channel, ChatContext, formattedUserName, useChannelsQuery } from "@ecency/ns-query";
+import {
+  Channel,
+  ChatContext,
+  formattedUserName,
+  useChannelsQuery,
+  useKeysQuery
+} from "@ecency/ns-query";
+import { ChatSidebarSavedMessagesAvatar } from "./chats-sidebar/chat-sidebar-saved-messages-avatar";
+import { _t } from "../../../i18n";
 
 interface Props {
   username: string;
@@ -15,8 +23,12 @@ interface Props {
 
 export default function ChatsMessagesHeader(props: Props) {
   const { username } = props;
-  const { setReceiverPubKey } = useContext(ChatContext);
+  const { setReceiverPubKey, receiverPubKey } = useContext(ChatContext);
+
+  const { publicKey } = useKeysQuery();
   const { data: channels } = useChannelsQuery();
+
+  const isActiveUser = useMemo(() => receiverPubKey === publicKey, [publicKey, receiverPubKey]);
 
   const formattedName = (username: string) => {
     if (username && !username.startsWith("@")) {
@@ -44,8 +56,12 @@ export default function ChatsMessagesHeader(props: Props) {
           to={username.startsWith("@") ? `/${username}` : `/created/${username}`}
           target="_blank"
         >
-          <UserAvatar username={formattedUserName(username)} size="medium" />
-          <div>{formattedName(username)}</div>
+          {isActiveUser ? (
+            <ChatSidebarSavedMessagesAvatar />
+          ) : (
+            <UserAvatar username={formattedUserName(username)} size="medium" />
+          )}
+          <div>{isActiveUser ? _t("chat.saved-messages") : formattedName(username)}</div>
         </Link>
       </div>
 

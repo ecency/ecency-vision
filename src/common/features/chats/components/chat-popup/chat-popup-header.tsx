@@ -9,6 +9,7 @@ import React, { useContext, useMemo } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { Channel, ChatContext, DirectContact, useKeysQuery } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../../core";
+import { ChatSidebarSavedMessagesAvatar } from "../chats-sidebar/chat-sidebar-saved-messages-avatar";
 
 interface Props {
   directContact?: DirectContact;
@@ -35,9 +36,19 @@ export function ChatPopupHeader({
 
   const { data: community } = useCommunityCache(channel?.communityName);
   const { privateKey } = useKeysQuery();
+  const { publicKey } = useKeysQuery();
+
+  const isActiveUser = useMemo(
+    () => directContact?.pubkey === publicKey,
+    [publicKey, directContact]
+  );
   const title = useMemo(() => {
     if (revealPrivateKey) {
       return _t("chat.manage-chat-key");
+    }
+
+    if (isActiveUser) {
+      return _t("chat.saved-messages");
     }
 
     if (directContact) {
@@ -53,7 +64,7 @@ export function ChatPopupHeader({
     }
 
     return _t("chat.page-title");
-  }, [directContact, community, showSearchUser, revealPrivateKey]);
+  }, [directContact, community, showSearchUser, revealPrivateKey, isActiveUser]);
   const isExpanded = useMemo(
     () => (directContact || community || showSearchUser || revealPrivateKey) && expanded,
     [directContact, community, showSearchUser, revealPrivateKey, expanded]
@@ -79,9 +90,12 @@ export function ChatPopupHeader({
           </Tooltip>
         )}
         <div className="flex items-center" onClick={() => setExpanded(!expanded)}>
-          {(directContact || channel) && (
-            <UserAvatar username={community?.name ?? directContact?.name ?? ""} size="small" />
-          )}
+          {(directContact || channel) &&
+            (isActiveUser ? (
+              <ChatSidebarSavedMessagesAvatar width={24} height={24} />
+            ) : (
+              <UserAvatar username={community?.name ?? directContact?.name ?? ""} size="small" />
+            ))}
 
           <div
             className={classNameObject({

@@ -10,6 +10,7 @@ import {
   DirectContact,
   DirectMessage,
   PublicMessage,
+  useKeysQuery,
   useMessagesQuery,
   useOriginalJoinedChannelsQuery
 } from "@ecency/ns-query";
@@ -23,12 +24,17 @@ interface Props {
 export default function ChatsMessagesView({ currentContact, currentChannel }: Props) {
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
+  const { publicKey } = useKeysQuery();
   const { data: messages } = useMessagesQuery(currentContact, currentChannel);
   const { data: channels } = useOriginalJoinedChannelsQuery();
 
   const isJoinedToChannel = useMemo(
     () => channels?.some((c) => c.id === currentChannel?.id) === true,
     [currentChannel, channels]
+  );
+  const isActiveUser = useMemo(
+    () => currentContact?.pubkey === publicKey,
+    [publicKey, currentContact]
   );
 
   return (
@@ -39,16 +45,18 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
         })}
         ref={messagesBoxRef}
       >
-        <Link
-          className="after:!hidden"
-          to={!!currentChannel ? `/created/${currentChannel?.name}` : `/@${currentContact?.name}`}
-          target="_blank"
-        >
-          <ChatsProfileBox
-            communityName={currentChannel?.communityName}
-            currentUser={currentContact?.name}
-          />
-        </Link>
+        {!isActiveUser && (
+          <Link
+            className="after:!hidden"
+            to={!!currentChannel ? `/created/${currentChannel?.name}` : `/@${currentContact?.name}`}
+            target="_blank"
+          >
+            <ChatsProfileBox
+              communityName={currentChannel?.communityName}
+              currentUser={currentContact?.name}
+            />
+          </Link>
+        )}
         {currentChannel ? (
           <>
             <ChatsChannelMessages
