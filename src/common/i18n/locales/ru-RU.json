@@ -1913,7 +1913,7 @@
     "successfully-invited": "Приглашение успешно отправлено!",
     "invite-couldnt-be-sent": "Приглашение не может быть отправлено из-за отсутствия сообщения",
     "no-posts-for-invite": "К сожалению, пользователь не активен и не создавал никаких сообщений.",
-    "warn-key-saving": "Сохраните ключ чата для доступа к сообщениям. Храните его в безопасном месте, чтобы обеспечить бесперебойную работу!",
+    "warn-key-saving": "Backup your Chat key to keep account secure and also have uninterrupted service!",
     "view-and-save": "Показать ключи и сохранить",
     "blocked-users-management": "Управление заблокированными пользователями",
     "unlock-the-section": "Пожалуйста, введите PIN-код, чтобы увидеть информацию о ваших учетных данных",
