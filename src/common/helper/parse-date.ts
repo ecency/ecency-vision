@@ -56,11 +56,14 @@ export const secondDiff = (d: string) => {
   return Math.abs(Math.round(diff));
 };
 
-const parseDate = (d: string): Date => {
+const parseDate = (d: string, dropTimezone = true): Date => {
   if (!d) return new Date();
   try {
     const date = moment(d).isValid() ? moment(d).toDate() : new Date();
-    return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    if (dropTimezone) {
+      return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    }
+    return date;
   } catch (e) {
     return new Date();
   }
