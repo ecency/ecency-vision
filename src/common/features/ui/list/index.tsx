@@ -17,7 +17,7 @@ export function List(props: HTMLProps<HTMLDivElement> & Props) {
       {...nativeProps}
       className={classNameObject({
         flex: !props.grid ?? true,
-        "grid grid-cols-2": props.grid ?? false,
+        "grid sm:grid-cols-2": props.grid ?? false,
         "gap-3": props.defer ?? false,
         "flex-row flex-wrap": props.inline ?? false,
         "flex-col rounded-xl border border-[--border-color] bg-gray-100 dark:bg-gray-900":

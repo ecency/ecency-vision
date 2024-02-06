@@ -32,7 +32,7 @@ export const EntryInfo = ({ entry, history }: Props) => {
   } = useMappedStore();
 
   const reputation = accountReputation(entry.author_reputation);
-  const published = moment(parseDate(entry.created));
+  const published = moment(parseDate(entry.created, false));
 
   return (
     <div className="entry-info">
