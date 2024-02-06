@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ChatsProfileBox from "../chat-profile-box";
 import ChatsDirectMessages from "../chats-direct-messages";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useCommunityCache } from "../../../../core";
 import { ChatsChannelMessages } from "../chat-channel-messages";
 import {
@@ -10,6 +10,7 @@ import {
   DirectMessage,
   PublicMessage,
   useDirectContactsQuery,
+  useKeysQuery,
   useMessagesQuery,
   useUpdateChannelLastSeenDate,
   useUpdateDirectContactsLastSeenDate
@@ -22,11 +23,18 @@ interface Props {
 
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
   const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
+
+  const { publicKey } = useKeysQuery();
   const { data: messages } = useMessagesQuery(currentContact, currentChannel);
   const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
 
   const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();
   const updateChannelLastSeenDate = useUpdateChannelLastSeenDate();
+
+  const isActiveUser = useMemo(
+    () => currentContact?.pubkey === publicKey,
+    [publicKey, currentContact]
+  );
 
   // Whenever current contact is exists need to turn unread to 0
   useEffect(() => {
@@ -50,14 +58,16 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
   return (
     <div className="chats h-full">
       {" "}
-      <Link
-        to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${currentContact?.name}`}
-      >
-        <ChatsProfileBox
-          communityName={currentChannel?.communityName}
-          currentUser={currentContact?.name}
-        />
-      </Link>
+      {!isActiveUser && (
+        <Link
+          to={!!currentChannel ? `/created/${currentCommunity?.name}` : `/@${currentContact?.name}`}
+        >
+          <ChatsProfileBox
+            communityName={currentChannel?.communityName}
+            currentUser={currentContact?.name}
+          />
+        </Link>
+      )}
       {!!currentChannel ? (
         <ChatsChannelMessages
           publicMessages={messages as PublicMessage[]}

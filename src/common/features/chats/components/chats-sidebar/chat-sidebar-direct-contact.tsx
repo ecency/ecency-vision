@@ -16,6 +16,7 @@ import { informationOutlineSvg } from "../../../../img/svg";
 import { Button } from "@ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@ui/badge";
+import { ChatSidebarSavedMessagesAvatar } from "./chat-sidebar-saved-messages-avatar";
 
 interface Props {
   contact: DirectContact;
@@ -40,6 +41,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     () => (contactKeys && isJoined ? contact.pubkey !== contactKeys.pubkey : false),
     [contactKeys, contact, isJoined]
   );
+  const isActiveUser = useMemo(() => contact.pubkey === publicKey, [publicKey, contact]);
 
   const content = (
     <>
@@ -48,7 +50,11 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
           grayscale: isContactKeysLoading ? true : isReadOnly || !isJoined
         })}
       >
-        <UserAvatar username={contact.name} size="medium" />
+        {isActiveUser ? (
+          <ChatSidebarSavedMessagesAvatar />
+        ) : (
+          <UserAvatar username={contact.name} size="medium" />
+        )}
       </div>
       <div className="flex flex-col w-[calc(100%-40px-0.75rem)]">
         <div className="flex justify-between w-full items-center">
@@ -69,18 +75,20 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
                 </Tooltip>
               </div>
             )}
-            <div className="font-semibold truncate dark:text-white">{contact.name}</div>
+            <div className="font-semibold truncate dark:text-white">
+              {isActiveUser ? _t("chat.saved-messages") : contact.name}
+            </div>
           </div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>
         </div>
         <div className="flex justify-between">
           <div className="text-sm text-gray-600 truncate">
-            {lastMessage?.creator === publicKey && (
+            {lastMessage?.creator === publicKey && !isActiveUser && (
               <span className="mr-1 text-gray-500 dark:text-gray-700">{_t("g.you")}:</span>
             )}
             {lastMessage?.content}
           </div>
-          {!!unread && <Badge appearance="secondary">{unread}</Badge>}
+          {!!unread && !isActiveUser && <Badge appearance="secondary">{unread}</Badge>}
         </div>
       </div>
     </>
