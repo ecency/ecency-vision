@@ -1913,7 +1913,7 @@
     "successfully-invited": "¡Invitado con éxito!",
     "invite-couldnt-be-sent": "La invitación no pudo ser enviada debido a que el usuario aún no tiene ninguna publicación",
     "no-posts-for-invite": "Desafortunadamente, el usuario no parece estar activo y no ha hecho ningún mensaje.",
-    "warn-key-saving": "Guarda la clave de chat para acceder a tus mensajes. ¡Manténgala segura para un servicio ininterrumpido!",
+    "warn-key-saving": "Backup your Chat key to keep account secure and also have uninterrupted service!",
     "view-and-save": "Mostrar claves y guardar",
     "blocked-users-management": "Gestión de usuarios bloqueados",
     "unlock-the-section": "Por favor, introduce tu PIN para ver la información de tus credenciales",
