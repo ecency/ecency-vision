@@ -1913,7 +1913,7 @@
     "successfully-invited": "Приглашение успешно отправлено!",
     "invite-couldnt-be-sent": "Приглашение не может быть отправлено из-за отсутствия сообщения",
     "no-posts-for-invite": "К сожалению, пользователь не активен и не создавал никаких сообщений.",
-    "warn-key-saving": "Backup your Chat key to keep account secure and also have uninterrupted service!",
+    "warn-key-saving": "Создайте резервную копию ключа чата, чтобы сохранить безопасность аккаунта и обеспечить бесперебойную работу сервиса!",
     "view-and-save": "Показать ключи и сохранить",
     "blocked-users-management": "Управление заблокированными пользователями",
     "unlock-the-section": "Пожалуйста, введите PIN-код, чтобы увидеть информацию о ваших учетных данных",
@@ -1921,7 +1921,7 @@
     "upload-image": "Загрузить изображение",
     "hidden-messages": "Скрытые сообщения",
     "hidden-messages-management": "Управление скрытыми сообщениями",
-    "saved-messages": "Saved messages",
+    "saved-messages": "Сохраненные сообщения",
     "welcome": {
       "title": "Добро пожаловать в чаты",
       "description": "Создайте или импортируйте аккаунт с помощью чатов",
