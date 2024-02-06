@@ -61,13 +61,28 @@ interface LoginKcProps {
 interface LoginKcState {
   username: string;
   inProgress: boolean;
+  community: string | any;
 }
 
 export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   state: LoginKcState = {
     username: "",
     inProgress: false,
+    community: "",
   };
+
+  componentDidMount(): void {
+    this.getCurrentCommunity()
+  }
+
+  getCurrentCommunity = async () => {
+    const communityId = this.props.global.hive_id
+    const community = await getCommunity(communityId);
+    if (community) {
+      this.setState({community})
+      console.log(community)
+    }
+  }
 
   usernameChanged = (
     e: React.ChangeEvent<typeof FormControl & HTMLInputElement>
