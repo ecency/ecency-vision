@@ -10,7 +10,7 @@ export function ChatSidebarSavedMessagesAvatar({
 }) {
   return (
     <div
-      className="text-white flex items-center justify-center bg-gradient-to-tl rounded-full from-blue-dark-sky to-blue-dark-sky-010"
+      className="text-white flex items-center justify-center bg-blue-dark-sky rounded-full"
       style={{
         width,
         height
