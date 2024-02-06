@@ -1913,7 +1913,7 @@
     "successfully-invited": "Onnistuneesti kutsuttu!",
     "invite-couldnt-be-sent": "Kutsua ei voitu lähettää, koska käyttäjällä ei ole vielä yhtään julkaisua",
     "no-posts-for-invite": "Valitettavasti käyttäjä ei vaikuta aktiiviselta, eikä ole tehnyt yhtään julkaisua.",
-    "warn-key-saving": "Tallenna Keskusteluavain päästäksesi viesteihisi. Pidä se turvassa keskeytymättömän palvelun varmistamiseksi!",
+    "warn-key-saving": "Backup your Chat key to keep account secure and also have uninterrupted service!",
     "view-and-save": "Näytä avaimet ja tallenna",
     "blocked-users-management": "Estettyjen käyttäjien hallinta",
     "unlock-the-section": "Ole hyvä ja syötä PIN nähdäksesi käyttäjätietosi",
