@@ -29,6 +29,7 @@ import Tooltip from "../../../components/tooltip";
 import { ChatInputFiles } from "./chat-input-files";
 import Gallery from "../../../components/gallery";
 import useWindowSize from "react-use/lib/useWindowSize";
+import "./_chats.scss";
 
 interface Props {
   currentChannel?: Channel;

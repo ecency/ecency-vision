@@ -8,7 +8,6 @@ import Feedback from "../../../components/feedback";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import ChatsMessagesBox from "../components/chat-message-box";
 import { classNameObject } from "../../../helper/class-name-object";
-import "./_chats.scss";
 import { ChatsWelcome } from "../components/chats-welcome";
 import { useCommunityCache } from "../../../core";
 import useMountedState from "react-use/lib/useMountedState";

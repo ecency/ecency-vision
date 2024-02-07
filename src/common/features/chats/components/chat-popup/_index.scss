@@ -159,7 +159,8 @@
     }
 
     &.expanded {
-      height: 100vh;
+      height: calc(100dvh - 63px);
+      border-radius: 0;
     }
 
     .message-header-title {
