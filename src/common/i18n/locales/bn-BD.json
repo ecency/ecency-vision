@@ -1922,6 +1922,7 @@
     "hidden-messages": "Hidden messages",
     "hidden-messages-management": "Hidden messages management",
     "saved-messages": "Saved messages",
+    "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
