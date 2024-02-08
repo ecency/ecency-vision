@@ -9,6 +9,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionItem } from "./discussion-item";
 import { useLocation } from "react-router";
 import { useFetchMutedUsersQuery } from "../../api/queries";
+import botsList from "../../constants/bots-list.json";
 
 interface Props {
   hideControls: boolean;
@@ -65,6 +66,10 @@ export function DiscussionList({
 
     return isHiddenPermitted ? [...unMutedContent, ...mutedContent] : unMutedContent;
   }, [filtered, activeUser, mutedUsers, isHiddenPermitted]);
+  const botsFreeData = useMemo(
+    () => data.filter((entry) => (botsList.includes(entry.author) ? entry.children > 0 : true)),
+    [data]
+  );
 
   useMount(() => (document.getElementsByTagName("html")[0].style.position = "relative"));
   useUnmount(() => (document.getElementsByTagName("html")[0].style.position = "unset"));
@@ -84,7 +89,7 @@ export function DiscussionList({
 
   return filtered.length > 0 ? (
     <div className="discussion-list">
-      {data.map((d) => (
+      {botsFreeData.map((d) => (
         <DiscussionItem
           root={root}
           discussionList={discussionList}

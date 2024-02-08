@@ -29,6 +29,8 @@ import { useCreateReply, usePinReply, useUpdateReply } from "../../api/mutations
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { EntryDeleteBtn } from "../entry-delete-btn";
 import { Button } from "@ui/button";
+import { DiscussionBots } from "./discussion-bots";
+import botsList from "../../constants/bots-list.json";
 
 interface Props {
   history: History;
@@ -135,6 +137,17 @@ export function DiscussionItem({
   const hasAnyAction = useMemo(
     () => canEdit || (isOwnRoot && isTopComment) || isDeletable,
     [canEdit, isOwnRoot, isTopComment, isDeletable]
+  );
+  const filtered = useMemo(
+    () =>
+      discussionList.filter(
+        (x) => x.parent_author === entry.author && x.parent_permlink === entry.permlink
+      ),
+    [discussionList, entry]
+  );
+  const botsData = useMemo(
+    () => filtered.filter((entry) => botsList.includes(entry.author) && entry.children === 0),
+    [filtered]
   );
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
@@ -303,6 +316,7 @@ export function DiscussionItem({
                   </Dropdown>
                 )}
               </div>
+              <DiscussionBots entries={botsData} history={history} />
             </div>
           )}
           {readMore && (
