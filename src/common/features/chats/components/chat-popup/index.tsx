@@ -24,6 +24,7 @@ import {
 import { ChatInvitation } from "../chat-invitation";
 import { ChatChannelNotJoined } from "../chat-channel-not-joined";
 import { ChatsUserNotJoinedSection } from "../../screens/chats-user-not-joined-section";
+import { NetworkError } from "../network-error";
 
 export const ChatPopUp = () => {
   const { activeUser, global } = useMappedStore();
@@ -67,7 +68,6 @@ export const ChatPopUp = () => {
     () => originalChannels?.some((c) => c.id === currentChannel?.id) === true,
     [currentChannel, originalChannels]
   );
-
   useMount(() => {
     setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
   });
@@ -118,6 +118,7 @@ export const ChatPopUp = () => {
             showSearchUser={showSearchUser}
           />
           {isJoinChatLoading && <LinearProgress />}
+          <NetworkError />
           <div
             className={`chat-body h-full ${
               currentContact ? "current-user" : currentChannel ? "community" : ""

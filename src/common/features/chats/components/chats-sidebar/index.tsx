@@ -18,6 +18,7 @@ import { Community } from "../../../../store/communities";
 import { Reputations } from "../../../../api/hive";
 import { useCreateTemporaryContact } from "../../hooks";
 import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
+import { NetworkError } from "../network-error";
 
 interface Props {
   username: string;
@@ -48,6 +49,7 @@ export default function ChatsSideBar(props: Props) {
     <div className="flex flex-col md:h-full">
       <ChatSidebarHeader history={props.history} />
       <ChatSidebarSearch setSearch={setSearchQuery} />
+      <NetworkError />
       {showDivider && <div className="divider" />}
       <div className="flex flex-col" ref={chatsSideBarRef}>
         {searchQuery ? (

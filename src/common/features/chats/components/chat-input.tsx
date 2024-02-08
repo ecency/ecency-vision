@@ -30,6 +30,7 @@ import { ChatInputFiles } from "./chat-input-files";
 import Gallery from "../../../components/gallery";
 import useWindowSize from "react-use/lib/useWindowSize";
 import "./_chats.scss";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
 interface Props {
   currentChannel?: Channel;
@@ -38,6 +39,7 @@ interface Props {
 
 export default function ChatInput({ currentChannel, currentContact }: Props) {
   const size = useWindowSize();
+  const { global } = useMappedStore();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -190,7 +192,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
             <FormControl
               ref={inputRef}
               value={message}
-              autoFocus={true}
+              autoFocus={!global.isMobile}
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
