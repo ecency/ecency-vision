@@ -1922,6 +1922,7 @@
     "hidden-messages": "Piilotetut viestit",
     "hidden-messages-management": "Piilotettujen viestien hallinta",
     "saved-messages": "Tallennetut viestit",
+    "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
     "welcome": {
       "title": "Tervetuloa Keskusteluihin",
       "description": "Luo tai tuo tili käyttääksesi Keskusteluja",
