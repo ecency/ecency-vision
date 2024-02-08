@@ -230,12 +230,12 @@ export const SignUp = (props: PageProps) => {
               <>
                 <div className="form-title">{_t("sign-up.header")}</div>
                 <div className="form-sub-title">{_t("sign-up.description")}</div>
-                <div className="form-icons">
+                <div className="flex items-center justify-center form-icons">
                   <img src={logoCircle} alt="Ecency" title="Ecency" />
                   <span title="Hive">{hiveSvg}</span>
                 </div>
 
-                <div className="form-image">
+                <div className="flex items-center justify-center form-image">
                   <img src={signupSvg} alt="Signup" />
                 </div>
                 {done ? (
