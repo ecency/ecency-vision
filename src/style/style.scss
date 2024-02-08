@@ -1,6 +1,18 @@
 @tailwind base;
 @tailwind components;
 
+@layer utilities {
+  .w-full-dynamic {
+    width: 100vw;
+    width: 100dvw;
+  }
+
+  .min-h-full-dynamic {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
 @import "./variables";
 @import "./mixins";
 
