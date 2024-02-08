@@ -1922,6 +1922,7 @@
     "hidden-messages": "Скрытые сообщения",
     "hidden-messages-management": "Управление скрытыми сообщениями",
     "saved-messages": "Сохраненные сообщения",
+    "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
     "welcome": {
       "title": "Добро пожаловать в чаты",
       "description": "Создайте или импортируйте аккаунт с помощью чатов",
