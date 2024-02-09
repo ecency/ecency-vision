@@ -6,10 +6,11 @@ import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { classNameObject } from "../../helper/class-name-object";
 import useClickAway from "react-use/lib/useClickAway";
-import { useLocation } from "react-router";
 import { History } from "history";
 import { dateToRelative } from "../../helper/parse-date";
 import { renderPostBody } from "@ecency/render-helper";
+import { EntryLink } from "../entry-link";
+import ProfileLink from "../profile-link";
 
 interface Props {
   history: History;
@@ -17,8 +18,7 @@ interface Props {
 }
 
 export function DiscussionBots({ entries, history }: Props) {
-  const { global } = useMappedStore();
-  const location = useLocation();
+  const { global, addAccount } = useMappedStore();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [host, setHost] = useState<any>();
@@ -54,7 +54,8 @@ export function DiscussionBots({ entries, history }: Props) {
           <div
             ref={setPopperElement}
             className={classNameObject({
-              hidden: !show
+              hidden: !show,
+              "z-20": true
             })}
             style={popper.styles.popper}
             {...popper.attributes.popper}
@@ -68,12 +69,16 @@ export function DiscussionBots({ entries, history }: Props) {
                   className="bg-white p-2 border rounded-xl border-(--border-color)"
                   key={e.author + e.permlink}
                 >
-                  <div className="flex gap-2 justify-between">
-                    <div className="flex gap-3 items-center">
-                      <UserAvatar global={global} username={e.author} size="small" />
-                      <div className="font-bold">{e.author}</div>
-                    </div>
-                    <div className="text-gray-400 text-xs">{dateToRelative(e.created)}</div>
+                  <div className="flex items-center gap-3 justify-between">
+                    <ProfileLink history={history} username={e.author} addAccount={addAccount}>
+                      <div className="flex gap-3 items-center">
+                        <UserAvatar global={global} username={e.author} size="small" />
+                        <div className="font-bold">{e.author}</div>
+                      </div>
+                    </ProfileLink>
+                    <EntryLink entry={e} history={history}>
+                      <div className="text-gray-400 text-xs">{dateToRelative(e.created)}</div>
+                    </EntryLink>
                   </div>
                   <div dangerouslySetInnerHTML={{ __html: renderPostBody(e) }} />
                 </div>

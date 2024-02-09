@@ -24,13 +24,12 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
-import { useFetchMutedUsersQuery } from "../../api/queries";
+import { useBotsQuery, useFetchMutedUsersQuery } from "../../api/queries";
 import { useCreateReply, usePinReply, useUpdateReply } from "../../api/mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { EntryDeleteBtn } from "../entry-delete-btn";
 import { Button } from "@ui/button";
 import { DiscussionBots } from "./discussion-bots";
-import botsList from "../../constants/bots-list.json";
 
 interface Props {
   history: History;
@@ -70,6 +69,7 @@ export function DiscussionItem({
   } = useMappedStore();
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
 
+  const { data: botsList } = useBotsQuery();
   const location = useLocation();
 
   const readMore = useMemo(() => entry.children > 0 && entry.depth > 5, [entry]);

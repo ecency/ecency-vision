@@ -8,8 +8,7 @@ import useMount from "react-use/lib/useMount";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionItem } from "./discussion-item";
 import { useLocation } from "react-router";
-import { useFetchMutedUsersQuery } from "../../api/queries";
-import botsList from "../../constants/bots-list.json";
+import { useBotsQuery, useFetchMutedUsersQuery } from "../../api/queries";
 
 interface Props {
   hideControls: boolean;
@@ -36,6 +35,7 @@ export function DiscussionList({
   const { activeUser } = useMappedStore();
 
   const { data: mutedUsers } = useFetchMutedUsersQuery();
+  const { data: botsList } = useBotsQuery();
 
   const filtered = useMemo(
     () =>

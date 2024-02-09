@@ -10,6 +10,7 @@ import { getAccountPosts, getDiscussion } from "./bridge";
 import { SortOrder } from "../store/discussion/types";
 import { useContext } from "react";
 import { sortDiscussions } from "../util/sort-discussions";
+import { apiBase } from "./helper";
 
 const DEFAULT = {
   points: "0.000",
@@ -159,4 +160,13 @@ export function useFetchMutedUsersQuery(username?: string) {
       enabled: !!username || !!activeUser
     }
   );
+}
+
+export function useBotsQuery() {
+  return useQuery({
+    queryKey: [QueryIdentifiers.GET_BOTS],
+    queryFn: () =>
+      axios.get<string[]>(apiBase("/private-api/public/bots")).then((resp) => resp.data),
+    initialData: []
+  });
 }
