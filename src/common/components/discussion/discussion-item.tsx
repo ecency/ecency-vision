@@ -24,11 +24,12 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
-import { useFetchMutedUsersQuery } from "../../api/queries";
+import { useBotsQuery, useFetchMutedUsersQuery } from "../../api/queries";
 import { useCreateReply, usePinReply, useUpdateReply } from "../../api/mutations";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { EntryDeleteBtn } from "../entry-delete-btn";
 import { Button } from "@ui/button";
+import { DiscussionBots } from "./discussion-bots";
 
 interface Props {
   history: History;
@@ -68,6 +69,7 @@ export function DiscussionItem({
   } = useMappedStore();
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
 
+  const { data: botsList } = useBotsQuery();
   const location = useLocation();
 
   const readMore = useMemo(() => entry.children > 0 && entry.depth > 5, [entry]);
@@ -135,6 +137,17 @@ export function DiscussionItem({
   const hasAnyAction = useMemo(
     () => canEdit || (isOwnRoot && isTopComment) || isDeletable,
     [canEdit, isOwnRoot, isTopComment, isDeletable]
+  );
+  const filtered = useMemo(
+    () =>
+      discussionList.filter(
+        (x) => x.parent_author === entry.author && x.parent_permlink === entry.permlink
+      ),
+    [discussionList, entry]
+  );
+  const botsData = useMemo(
+    () => filtered.filter((entry) => botsList.includes(entry.author) && entry.children === 0),
+    [filtered]
   );
 
   const { mutateAsync: createReply, isLoading: isCreateLoading } = useCreateReply(entry, root, () =>
@@ -303,6 +316,7 @@ export function DiscussionItem({
                   </Dropdown>
                 )}
               </div>
+              <DiscussionBots entries={botsData} history={history} />
             </div>
           )}
           {readMore && (

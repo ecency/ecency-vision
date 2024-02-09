@@ -15,7 +15,8 @@ import { Button } from "@ui/button";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { DiscussionList } from "./discussion-list";
 import usePrevious from "react-use/lib/usePrevious";
-import { useFetchDiscussionsQuery } from "../../api/queries";
+import { useBotsQuery, useFetchDiscussionsQuery } from "../../api/queries";
+import { DiscussionBots } from "./discussion-bots";
 
 setProxyBase(defaults.imageServer);
 
@@ -38,11 +39,23 @@ export function Discussion({ hideControls, isRawContent, parent, community, hist
   const { isLoading, data } = useFetchDiscussionsQuery(parent, order, {
     enabled: visible && !!parent
   });
+  const { data: botsList } = useBotsQuery();
 
   const count = useMemo(() => parent.children, [parent]);
   const strCount = useMemo(
     () => (count > 1 ? _t("discussion.n-replies", { n: count }) : _t("discussion.replies")),
     [count]
+  );
+  const filtered = useMemo(
+    () =>
+      data.filter(
+        (x) => x.parent_author === parent.author && x.parent_permlink === parent.permlink
+      ),
+    [data, parent]
+  );
+  const botsData = useMemo(
+    () => filtered.filter((entry) => botsList.includes(entry.author) && entry.children === 0),
+    [filtered]
   );
 
   useEffect(() => {
@@ -104,10 +117,11 @@ export function Discussion({ hideControls, isRawContent, parent, community, hist
     <div className="discussion" id="discussion">
       {!activeUser && <>{join}</>}
       <div className="discussion-header">
-        <div className="count">
+        <div className="count mr-4">
           {" "}
           {commentSvg} {strCount}
         </div>
+        <DiscussionBots history={history} entries={botsData} />
         <span className="flex-spacer" />
         {hideControls ? (
           <></>
