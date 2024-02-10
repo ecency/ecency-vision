@@ -117,13 +117,13 @@ export const Chats = ({ match, history }: Props) => {
   }, []);
 
   return isMounted() ? (
-    <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] min-h-full-dynamic">
+    <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] md:pt-[69px] h-full-dynamic">
       <Feedback activeUser={activeUser} />
       <NavBar history={history} />
       <Meta title={title || _t("chat.page-title")} />
 
       <div className="container mx-auto md:py-6">
-        <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white md:border border-[--border-color] relative min-h-full-dynamic md:h-auto">
+        <div className="grid grid-cols-12 overflow-hidden md:rounded-2xl bg-white md:border border-[--border-color] relative h-full-dynamic md:min-h-full md:max-h-full">
           <div className="col-span-12 md:col-span-4 xl:col-span-3 md:border-r border-[--border-color] md:h-[calc(100vh-69px-3rem)] overflow-y-auto">
             {isReady ? (
               <ChatsSideBar
