@@ -33,7 +33,7 @@ export const ResourceCreditsDelegation = (props: any) => {
 
   const convertToBillions = (input: string) => {
     const inputNumber = parseFloat(input);
-    let  resultDivided;
+    let  resultDivided: number;
 
     if (!isNaN(inputNumber)) {
        resultDivided = inputNumber / 1e9;

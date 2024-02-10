@@ -150,7 +150,8 @@ export const reblog = (username: string, author: string, permlink: string, _dele
     };
 
     if (_delete) {
-        message["delete"] = "delete";
+        // Type assertion
+        (message as any)["delete"] = "delete";
     }
 
     const json = ["reblog", message];
