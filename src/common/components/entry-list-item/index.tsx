@@ -329,23 +329,25 @@ export function EntryListItem({
           />
           <EntryPayout entry={entry} />
           <EntryVotes entry={entry} history={history} />
-          <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
-            <a className="replies notranslate">
-              <Tooltip
-                content={
-                  entry.children > 0
-                    ? entry.children === 1
-                      ? _t("entry-list-item.replies")
-                      : _t("entry-list-item.replies-n", { n: entry.children })
-                    : _t("entry-list-item.no-replies")
-                }
-              >
-                <span className="inner">
-                  {commentSvg} {entry.children}
-                </span>
-              </Tooltip>
-            </a>
-          </EntryLink>
+          {(entry.children > 0 || entryProp.children > 0) && (
+            <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
+              <a className="replies notranslate">
+                <Tooltip
+                  content={
+                    entry.children > 0
+                      ? entry.children === 1
+                        ? _t("entry-list-item.replies")
+                        : _t("entry-list-item.replies-n", { n: entry.children })
+                      : _t("entry-list-item.no-replies")
+                  }
+                >
+                  <span className="inner">
+                    {commentSvg} {entry.children}
+                  </span>
+                </Tooltip>
+              </a>
+            </EntryLink>
+          )}
           <EntryReblogBtn entry={entry} />
           <EntryMenu history={history} alignBottom={order >= 1} entry={entry} />
         </div>

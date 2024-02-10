@@ -111,7 +111,7 @@ export class EntryReblogBtn extends BaseComponent<Props> {
         <Tooltip content={reblogged ? _t("entry-reblog.delete-reblog") : _t("entry-reblog.reblog")}>
           <a className="inner-btn">
             {repeatSvg}
-            <span>{entry.reblogs}</span>
+            <span>{entry?.reblogs > 0 ? entry.reblogs : ""}</span>
           </a>
         </Tooltip>
       </div>
