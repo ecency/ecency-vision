@@ -63,6 +63,7 @@ export interface Entry {
   post_id: any;
   id?: number;
   num?: number;
+  reblogs?: number;
   promoted: string;
   reblogged_by?: string[] | any;
   replies: any[];
