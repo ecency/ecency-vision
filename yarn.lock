@@ -1406,10 +1406,10 @@
     xmldom "^0.5.0"
     xss "^1.0.8"
 
-"@ecency/render-helper@^2.2.29":
-  version "2.2.29"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.29.tgz#313b020e0bb651eef949b41aedaa3728510b00fd"
-  integrity sha512-QRw6kxZeGobB7YoQNkObhMroQnEQYVIB/UPCiyD+yXSr8yitfTn2/m+jTeOpBx98+J+0Y/PzlXDDzXkdO9Gt6A==
+"@ecency/render-helper@^2.2.30":
+  version "2.2.30"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.30.tgz#33b890910dc90f77e84e7e6bfa6d14dd31371b9b"
+  integrity sha512-+JAPXFSHiquEMmerZe0t4k1gnHwouyba25v+cfIR3kL6KRToy1P5wcBhKyFr85uGx5VEBEFHDiK6Q8mtydNJfg==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"
@@ -12866,7 +12866,20 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-tus-js-client@*, tus-js-client@^3.1.0:
+tus-js-client@*:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/tus-js-client/-/tus-js-client-4.0.1.tgz#9859bacebf88f6ff6f3597d48fc4cccf334a46f7"
+  integrity sha512-rbP0LNKIScy0137YUn0cOkBWsQS5z2815TjxrzzKKWWpiqJVcLhGyuiovm8uDpjzeP8ECCnZGiuSiGIPm5exOQ==
+  dependencies:
+    buffer-from "^1.1.2"
+    combine-errors "^3.0.3"
+    is-stream "^2.0.0"
+    js-base64 "^3.7.2"
+    lodash.throttle "^4.1.1"
+    proper-lockfile "^4.1.2"
+    url-parse "^1.5.7"
+
+tus-js-client@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/tus-js-client/-/tus-js-client-3.1.0.tgz#20af57d06c23823fbe108ccb3a3dcb7503968cb4"
   integrity sha512-Hfpc8ho4C9Lhs/OflPUA/nHUHZJUrKD5upoPBq7dYJJ9DQhWocsjJU2RZYfN16Y5n19j9dFDszwCvVZ5sfcogw==
