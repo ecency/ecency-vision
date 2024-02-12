@@ -24,6 +24,7 @@ import {
   useKeysQuery
 } from "@ecency/ns-query";
 import { useUnmount } from "react-use";
+import { useCreateTemporaryContactFromParam } from "../hooks";
 
 interface Props extends PageProps {
   match: match<{
@@ -41,6 +42,7 @@ export const Chats = ({ match, history }: Props) => {
   const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
   const { data: community } = useCommunityCache(match.params.username);
 
+  useCreateTemporaryContactFromParam();
   const { publicKey, privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
