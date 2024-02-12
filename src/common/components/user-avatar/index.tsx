@@ -7,7 +7,7 @@ import { proxifyImageSrc } from '@ecency/render-helper';
 // import { useMappedStore } from "../../store/use-mapped-store";
 
 interface Props {
-    global: Global;
+    global?: Global;
     username: string,
     size?: string,
     src?: string
