@@ -74,7 +74,9 @@
   }
 
   @keyframes rotate {
-    to { transform: rotate(-360deg); }
+    to {
+      transform: rotate(-360deg);
+    }
   }
 
   .swap-button {
@@ -85,6 +87,11 @@
     align-items: center;
     position: relative;
     color: $primary;
+
+    > div, > div > svg {
+      width: auto !important;
+      height: auto !important;
+    }
 
     &:hover, &:active, &:focus {
       color: darken($primary, 5);
