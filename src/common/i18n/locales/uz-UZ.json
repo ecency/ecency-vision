@@ -2282,8 +2282,8 @@
     "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
-    "welcome-text": "Ecencyga xush kelibsiz!",
-    "what-is-ecency": "Markazlashtirilmagan, mukofot beradigan, haqiqiy egalik ijtimoiy tarmog'i",
+    "welcome-text": "Ecency",
+    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
     "powered-by-hive": "hive tomonidan quvvatlanadi",
     "how-it-works": "HOW IT WORKS?",
     "get-started": "JOIN NOW",
