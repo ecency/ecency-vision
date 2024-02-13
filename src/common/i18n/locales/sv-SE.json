@@ -454,7 +454,7 @@
     "settings": "Settings",
     "refresh-time": "Refresh time",
     "hours": "hours",
-    "save": "Save",
+    "save": "Spara",
     "update-interval": "Update interval",
     "update-interval-min": "In minutes",
     "update-n-seconds": "Every {{sec}} sec",
@@ -578,7 +578,7 @@
       "infinite-failed": "Oops, fetching failed. Sit tight, we are retrying..."
     },
     "threads-form": {
-      "save": "Save",
+      "save": "Spara",
       "publish": "Publish it!",
       "create-regular-post": "Create long post",
       "input-placeholder": "What's happening?",
@@ -1438,7 +1438,7 @@
     "preview": "Preview",
     "publish": "Publish",
     "update": "Update",
-    "save-draft": "Save Draft",
+    "save-draft": "Spara utkast",
     "load-draft": "Load Draft",
     "draft-saved": "Draft saved",
     "update-draft": "Update Draft",
