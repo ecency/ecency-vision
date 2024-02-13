@@ -79,7 +79,7 @@ exports[`(1) No active user. Default filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -245,7 +245,7 @@ exports[`(2) No active user. Trending filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -535,7 +535,7 @@ exports[`(3) Active user. Trending filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -844,7 +844,7 @@ exports[`(4) Active user. Friends 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -1046,7 +1046,7 @@ exports[`(5) Active user. Communities 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -1230,7 +1230,7 @@ exports[`(6) No active user. Communities 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
