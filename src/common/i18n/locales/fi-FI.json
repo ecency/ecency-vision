@@ -2282,8 +2282,8 @@
     "missing-owner-authority": "Tämä toiminto vaatii omistajan yksityisen avaimen tai valtuuden."
   },
   "landing-page": {
-    "welcome-text": "Tervetuloa Ecencyyn!",
-    "what-is-ecency": "Hajautettu, palkitseva, todellisen omistajuuden sosiaalinen verkosto",
+    "welcome-text": "Ecency",
+    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
     "powered-by-hive": "Hive:n päällä",
     "how-it-works": "Kuinka se toimii?",
     "get-started": "Liity nyt",
