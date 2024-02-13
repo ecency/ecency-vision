@@ -129,10 +129,10 @@
 
       .form-content {
         max-width: 460px;
-        margin: auto;
+        margin: 10px auto;
 
         form {
-          margin-bottom: 26px;
+          margin-bottom: 30px;
         }
 
         .form-do-login,
@@ -140,13 +140,7 @@
         .form-faq {
           opacity: 0.7;
           text-align: center;
-          margin-bottom: 22px;
-        }
-
-        .form-bottom-description {
-          margin-bottom: 0px;
-          margin-top: 16px;
-          line-height: 22px;
+          margin-bottom: 10px;
         }
       }
     }

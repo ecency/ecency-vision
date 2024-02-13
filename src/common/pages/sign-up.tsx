@@ -255,6 +255,9 @@ export const SignUp = (props: PageProps) => {
             )}
             {!done && stage === Stage.FORM ? (
               <div className="form-content">
+                <div className="form-bottom-description text-center">
+                  {_t("sign-up.bottom-description")}
+                </div>
                 <Tsx k="sign-up.learn-more">
                   <div className="form-faq" />
                 </Tsx>
@@ -364,10 +367,6 @@ export const SignUp = (props: PageProps) => {
                   <a className="pl-1" href="#" onClick={(e) => props.toggleUIProp("login")}>
                     {_t("sign-up.login-text-2")}
                   </a>
-                </div>
-
-                <div className="form-bottom-description text-center">
-                  {_t("sign-up.bottom-description")}
                 </div>
               </div>
             ) : (
