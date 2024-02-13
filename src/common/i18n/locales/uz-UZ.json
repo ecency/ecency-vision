@@ -215,9 +215,9 @@
     "sign-up-text-2": "Hoziroq ro'yxatdan o'ting!"
   },
   "sign-up": {
-    "header": "Mokofotlovchi guruhlar",
-    "description": "So'z erkinligini qadrlang, mas'uliyatni o'z zimmangizga oling, moliyaviy erkinlikka erishing!",
-    "bottom-description": "Har bir hisob blokcheynda yaratilgan va faqat siz ushbu hisobni boshqarishingiz mumkin. Blockchain va Ecency bilan bog'liq hamma narsani boshqarish uchun bitta hisob yetarli.",
+    "header": "Rewarding Web3 Communities",
+    "description": "Freespeech, True ownership, Financial freedom!",
+    "bottom-description": "One account, one wallet to manage everything on Blockchain.",
     "learn-more": "\nImtiyozlar haqida batafsil ma'lumotni <a href=\"/faq#how-to-join\">FAQ</a> bo‘limida o‘qing",
     "username": "Foydalanuvchi nomini tanlang",
     "email": "Pochta manzilingizni kiriting",
