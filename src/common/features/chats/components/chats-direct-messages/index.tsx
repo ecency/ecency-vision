@@ -66,7 +66,7 @@ export default function ChatsDirectMessages(props: Props) {
                         groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
                           ? document
                               .querySelector(`[data-message-id="${message.id}"]`)
-                              ?.scrollIntoView()
+                              ?.scrollIntoView({ block: "nearest" })
                           : {},
                       300
                     )

@@ -114,7 +114,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                           publicMessages?.length - 1 === i
                             ? document
                                 .querySelector(`[data-message-id="${message.id}"]`)
-                                ?.scrollIntoView()
+                                ?.scrollIntoView({ block: "nearest" })
                             : {},
                         100
                       )

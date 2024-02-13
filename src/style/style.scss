@@ -4,12 +4,22 @@
 @layer utilities {
   .w-full-dynamic {
     width: 100vw;
-    width: 100dvw;
+    @media screen and (max-width: 768px) {
+      width: 100vw;
+      width: 100dvw;
+    }
   }
 
-  .min-h-full-dynamic {
+  .h-full-dynamic {
     min-height: 100vh;
-    min-height: 100dvh;
+    max-height: 100vh;
+
+    @media screen and (max-width: 768px) {
+      min-height: 100vh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      min-height: 100dvh;
+    }
   }
 }
 

@@ -68,7 +68,7 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  onSubmit: (text: string) => void;
+  onSubmit: (text: string) => Promise<any>;
   resetSelection?: () => void;
   onCancel?: () => void;
   inputRef?: Ref<any>;
@@ -154,10 +154,11 @@ export class Comment extends Component<Props, State> {
     }, 50);
   };
 
-  submit = () => {
+  submit = async () => {
     const { text } = this.state;
     const { onSubmit } = this.props;
-    onSubmit(text);
+    await onSubmit(text);
+    this.setState({ text: "" });
   };
 
   cancel = () => {

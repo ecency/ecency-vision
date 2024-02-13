@@ -94,7 +94,7 @@ export default function ChatsSideBar(props: Props) {
               </div>
             )}
             {directContacts?.map((contact) => (
-              <ChatSidebarDirectContact key={contact.pubkey} contact={contact} />
+              <ChatSidebarDirectContact isLink={true} key={contact.pubkey} contact={contact} />
             ))}
           </>
         )}

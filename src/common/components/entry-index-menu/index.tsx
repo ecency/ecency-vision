@@ -558,7 +558,7 @@ export class EntryIndexMenu extends Component<Props, States> {
                     ) : null}
                   </ul>
                 </div>
-                <div className="kebab-icon">
+                <div className="kebab-icon flex">
                   <DropDown {...kebabMenuConfig} float="left" />
                 </div>
               </div>
