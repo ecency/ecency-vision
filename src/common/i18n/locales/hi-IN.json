@@ -2282,8 +2282,8 @@
     "missing-owner-authority": "This operation requires Owner private key or authority."
   },
   "landing-page": {
-    "welcome-text": "इसेंसी में आपका स्वागत है!",
-    "what-is-ecency": "विकेंद्रीकृत, पुरस्कृत, सच्चा स्वामित्व वाला सामाजिक नेटवर्क",
+    "welcome-text": "Ecency",
+    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
     "powered-by-hive": "हाइव द्वारा संचालित",
     "how-it-works": "HOW IT WORKS?",
     "get-started": "JOIN NOW",
