@@ -74,9 +74,9 @@ interface State {
     transferMode: null | TransferMode;
     transferAsset: null | TransferAsset;
     converting: number;
-    withdrawSavings: { hbd:string | number, hive: string | number };
-    openOrders: { hbd:string | number, hive: string | number };
-    aprs: { hbd:string | number, hp: string | number }
+    withdrawSavings: { hbd: number, hive: number };
+    openOrders: { hbd: number, hive: number };
+    aprs: { hbd: number, hp:  number | string }
 }
 
 export class WalletHive extends BaseComponent<Props, State> {

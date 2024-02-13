@@ -27,6 +27,13 @@ interface State {
     inProgress: boolean,
 }
 
+interface KeysObject {
+    active: string;
+    memo: string;
+    owner: string;
+    posting: string;
+  }
+
 export default class ViewKeys extends BaseComponent<Props, State> {
     state: State = {
         curPass: "",
@@ -41,35 +48,35 @@ export default class ViewKeys extends BaseComponent<Props, State> {
     }
 
     genKeys = () => {
-        const {activeUser} = this.props;
-        const {curPass} = this.state;
-
+        const { activeUser } = this.props;
+        const { curPass } = this.state;
+      
         if (!activeUser.data.__loaded) {
-            return;
+          return;
         }
-
-        this.stateSet({inProgress: true});
-
-        const newPrivateKeys = {active: "", memo: "", owner: "", posting: ""};
+      
+        this.stateSet({ inProgress: true });
+      
+        const newPrivateKeys: KeysObject = { active: "", memo: "", owner: "", posting: "" };
         let keyCheck = "";
-
+      
         try {
-            ['owner', 'active', 'posting', 'memo'].forEach(r => {
-                const k = PrivateKey.fromLogin(activeUser.username, curPass, r as KeyRole);
-                newPrivateKeys[r] = k.toString();
-                if (r === 'memo') keyCheck = k.createPublic().toString();
-            });    
+          (['owner', 'active', 'posting', 'memo'] as (keyof KeysObject)[]).forEach(r => {
+            const k: PrivateKey = PrivateKey.fromLogin(activeUser.username, curPass, r as KeyRole);
+            newPrivateKeys[r] = k.toString();
+            if (r === 'memo') keyCheck = k.createPublic().toString();
+          });
         } catch (err) {
-            error(formatError(err));
+          error(formatError(err));
         }
-        
+      
         if (activeUser.data.memo_key !== keyCheck) {
-            error(_t("view-keys.error"));
-            this.stateSet({inProgress: false, keys: {}});
+          error(_t("view-keys.error"));
+          this.stateSet({ inProgress: false, keys: {} });
         } else {
-            this.stateSet({inProgress: false, keys: newPrivateKeys});
+          this.stateSet({ inProgress: false, keys: newPrivateKeys });
         }
-    }
+      }
 
     copyToClipboard = (text: string) => {
         const textField = document.createElement('textarea');

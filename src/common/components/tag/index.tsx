@@ -32,6 +32,10 @@ interface CommunityTag {
   title: string;
 }
 
+interface ComTag {
+  [key: string]: any;
+}
+
 interface Props {
   global: Global;
   history: History;
@@ -51,17 +55,18 @@ if (typeof window !== "undefined") {
   window.comTag = {};
 }
 
-const comTagGet = (k: string) => {
+const comTagGet = (k: string): any | undefined => {
   if (typeof window !== "undefined" && window.comTag) {
-    return window.comTag[k];
+    const comTag: ComTag = window.comTag;
+    return comTag[k];
   }
-
   return undefined;
 };
 
 const comTagSet = (k: string, v: string) => {
   if (typeof window !== "undefined" && window.comTag) {
-    window.comTag[k] = v;
+    const comTag: ComTag = window.comTag;
+    comTag[k] = v;
   }
 };
 

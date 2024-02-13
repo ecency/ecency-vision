@@ -13,7 +13,7 @@ interface Props {
   global: Global;
   username: string;
   active: string;
-  communityInfo: any;
+  communityInfo?: any;
 }
 
 export default class WalletMenu extends Component<Props> {
