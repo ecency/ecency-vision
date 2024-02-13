@@ -2282,8 +2282,8 @@
     "missing-owner-authority": "Эта операция требует приватного ключа владельца или пароля."
   },
   "landing-page": {
-    "welcome-text": "Добро пожаловать!",
-    "what-is-ecency": "По настоящему децентрализованная социальная сеть, с возможностью вознаграждения",
+    "welcome-text": "Ecency",
+    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
     "powered-by-hive": "работает на Hive",
     "how-it-works": "КАК ЭТО РАБОТАЕТ?",
     "get-started": "ПРИСОЕДИНЯЙТЕСЬ СЕЙЧАС",
