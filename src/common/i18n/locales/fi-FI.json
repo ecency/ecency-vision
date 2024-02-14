@@ -215,9 +215,9 @@
     "sign-up-text-2": "Rekisteröidy nyt!"
   },
   "sign-up": {
-    "header": "Rewarding Web3 Communities",
-    "description": "Freespeech, True ownership, Financial freedom!",
-    "bottom-description": "One account, one wallet to manage everything on Blockchain.",
+    "header": "Palkitsevia Web3-yhteisöjä",
+    "description": "Sananvapaus, Todellinen omistus, Taloudellinen vapaus!",
+    "bottom-description": "Yksi tili ja lompakko hallitaksesi kaikkea Lohkoketjussa.",
     "learn-more": "Lue lisää hyödyistä <a href=\"/faq#how-to-join\">UKK:sta</a>",
     "username": "Valitse käyttäjänimi",
     "email": "Syötä sähköpostiosoitteesi",
@@ -1922,7 +1922,7 @@
     "hidden-messages": "Piilotetut viestit",
     "hidden-messages-management": "Piilotettujen viestien hallinta",
     "saved-messages": "Tallennetut viestit",
-    "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
+    "fetch-error": "Kun olit poissa, verkkomuutos on havaittu. Lataa sivu uudelleen saadaksesi uuden datan",
     "welcome": {
       "title": "Tervetuloa Keskusteluihin",
       "description": "Luo tai tuo tili käyttääksesi Keskusteluja",
@@ -2283,11 +2283,11 @@
   },
   "landing-page": {
     "welcome-text": "Ecency",
-    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
+    "what-is-ecency": "Sananvapaus, todellinen omistus, palkitsevat Web3-yhteisöt",
     "powered-by-hive": "Hive:n päällä",
     "how-it-works": "Kuinka se toimii?",
     "get-started": "Liity nyt",
-    "explore": "EXPLORE",
+    "explore": "SELAA",
     "earn-money": "Ansaitse rahaa",
     "earn-money-block-chain-based": "Lohkoketjupohjainen sosiaalinen verkosto, ",
     "join-us": "liity mukaan",
