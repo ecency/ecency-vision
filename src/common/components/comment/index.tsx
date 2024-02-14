@@ -4,7 +4,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Entry } from "../../store/entries/types";
-import EditorToolbar, { detectEvent, toolbarEventListener } from "../editor-toolbar";
+import { detectEvent, EditorToolbar, toolbarEventListener } from "../editor-toolbar";
 import LoginRequired from "../login-required";
 import defaults from "../../constants/defaults.json";
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
@@ -238,7 +238,7 @@ export class Comment extends Component<Props, State> {
             !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
           }
         >
-          {EditorToolbar({ ...this.props, sm: true, showEmoji, comment: true })}
+          <EditorToolbar comment={true} {...this.props} sm={true} />
           <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
               className={`the-editor accepts-emoji ${text?.length > 20 ? "expanded" : ""}`}

@@ -200,10 +200,26 @@ exports[`(1) Default render 1`] = `
           fill="currentColor"
         />
       </svg>
+      <div
+        className="sub-tool-menu"
+      >
+        <div
+          className="sub-tool-menu-item"
+          onClick={[Function]}
+        >
+          Upload
+        </div>
+        <div
+          className="sub-tool-menu-item"
+          onClick={[Function]}
+        >
+          Gallery
+        </div>
+      </div>
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-525d9194-2e44-4e7a-9e86-ef2e448c455a"
+      id="editor-tool-emoji-picker-819cbf44-a32a-4077-a426-e918846a334c"
       role="none"
       title="Emoji"
     >
@@ -549,10 +565,26 @@ exports[`(2) Cancellable, in progress 1`] = `
           fill="currentColor"
         />
       </svg>
+      <div
+        className="sub-tool-menu"
+      >
+        <div
+          className="sub-tool-menu-item"
+          onClick={[Function]}
+        >
+          Upload
+        </div>
+        <div
+          className="sub-tool-menu-item"
+          onClick={[Function]}
+        >
+          Gallery
+        </div>
+      </div>
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-1dfb459c-12aa-465e-b119-bf96521d112c"
+      id="editor-tool-emoji-picker-2baa82a6-c21a-4fe6-b80f-3c6b2a6a0b20"
       role="none"
       title="Emoji"
     >
