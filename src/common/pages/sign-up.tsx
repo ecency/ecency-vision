@@ -176,6 +176,7 @@ export const SignUp = (props: PageProps) => {
       } else {
         setDone(true);
         setLsReferral(undefined);
+        setStage(Stage.FORM);
       }
     } catch (e) {
       if (axios.isAxiosError(e) && e.response?.data?.message) {
@@ -226,7 +227,7 @@ export const SignUp = (props: PageProps) => {
             <img src={signupSvg} alt="Signup" />
           </div>
           <div className="the-form">
-            {!done && stage === Stage.FORM ? (
+            {stage === Stage.FORM ? (
               <>
                 <div className="form-title">{_t("sign-up.header")}</div>
                 <div className="form-sub-title">{_t("sign-up.description")}</div>
@@ -238,6 +239,15 @@ export const SignUp = (props: PageProps) => {
                 <div className="flex items-center justify-center form-image">
                   <img src={signupSvg} alt="Signup" />
                 </div>
+
+                <div className="bottom-description text-center">
+                  {_t("sign-up.bottom-description")}
+                </div>
+
+                <Tsx k="sign-up.learn-more">
+                  <div className="form-faq" />
+                </Tsx>
+
                 {done ? (
                   <div className="form-done">
                     <div className="done-icon">{checkSvg}</div>
@@ -255,14 +265,8 @@ export const SignUp = (props: PageProps) => {
             )}
             {!done && stage === Stage.FORM ? (
               <div className="form-content">
-                <div className="form-bottom-description text-center">
-                  {_t("sign-up.bottom-description")}
-                </div>
-                <Tsx k="sign-up.learn-more">
-                  <div className="form-faq" />
-                </Tsx>
-
                 <Form
+                  className="form-content"
                   ref={form}
                   onSubmit={async (e: React.FormEvent) => {
                     e.preventDefault();
@@ -383,7 +387,11 @@ export const SignUp = (props: PageProps) => {
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
                   <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
-                    <Button className="w-full" onClick={regularRegister}>
+                    <Button
+                      className="w-full"
+                      onClick={regularRegister}
+                      icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                    >
                       {_t("sign-up.register-free")}
                     </Button>
                   </div>
