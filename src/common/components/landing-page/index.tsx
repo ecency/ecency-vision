@@ -100,12 +100,16 @@ export default (props: any) => {
           <div className="flex flex-wrap justify-center items-center">
             <p className="mb-3 w-88">{_t("landing-page.what-is-ecency")}</p>
           </div>
-          {/*<button className="get-started mx-auto" onClick={() => props.setStep(2)}>
-            {_t("landing-page.how-it-works")}
-          </button>*/}
-          <button className="get-started mx-auto" onClick={() => props.setStep(2)}>
-            {_t("landing-page.get-started")}
-          </button>
+          <div className="flex justify-center items-center mt-10">
+            <button className="get-started mr-5" onClick={() => props.setStep(2)}>
+              {_t("landing-page.explore")}
+            </button>
+            <button className="get-started ml-5">
+              <Link className="link-btn" to="/signup?referral=ecency">
+                {_t("landing-page.get-started")}
+              </Link>
+            </button>
+          </div>
           <span
             className="scroll-down cursor-pointer"
             onClick={() => earnMoneyRef.current?.scrollIntoView({ behavior: "smooth" })}
