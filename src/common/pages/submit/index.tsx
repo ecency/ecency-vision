@@ -18,7 +18,7 @@ import {
 import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
-import EditorToolbar, { toolbarEventListener } from "../../components/editor-toolbar";
+import { EditorToolbar, toolbarEventListener } from "../../components/editor-toolbar";
 import useMount from "react-use/lib/useMount";
 import { handleFloatingContainer } from "../../components/floating-faq";
 import { useUnmount } from "react-use";
