@@ -215,9 +215,9 @@
     "sign-up-text-2": "Зарегистрируйтесь сейчас!"
   },
   "sign-up": {
-    "header": "Rewarding Web3 Communities",
-    "description": "Freespeech, True ownership, Financial freedom!",
-    "bottom-description": "One account, one wallet to manage everything on Blockchain.",
+    "header": "Вознаграждение сообществ Web3",
+    "description": "Свобода слова, истинное право собственности, финансовая свобода!",
+    "bottom-description": "Один счёт, один кошелёк для управления всем на Blockchain.",
     "learn-more": "Узнайте больше о преимуществах <a href=\"/faq#how-to-join\">FAQ</a>",
     "username": "Выберите имя пользователя",
     "email": "Введите свой email адрес",
@@ -2283,11 +2283,11 @@
   },
   "landing-page": {
     "welcome-text": "Ecency",
-    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
+    "what-is-ecency": "Свобода слова, истинное право собственности, вознаграждение сообществ в Web3",
     "powered-by-hive": "работает на Hive",
     "how-it-works": "КАК ЭТО РАБОТАЕТ?",
     "get-started": "ПРИСОЕДИНЯЙТЕСЬ СЕЙЧАС",
-    "explore": "EXPLORE",
+    "explore": "ИССЛЕДУЙТЕ",
     "earn-money": "Зарабатывайте деньги",
     "earn-money-block-chain-based": "Социальная сеть на основе блокчейна, ",
     "join-us": "присоединяйтесь к нам",
