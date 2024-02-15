@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "Pitäisi sisältää vain kirjaimia, numeroita ja tavuviivoja",
     "username-contains-double-hyphens": "Ei saa sisältää kaksinkertaisia tavuviivoja",
     "username-exists": "Tämä nimimerkki on jo käytössä! Kokeile toista",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "Tämä suositus on virheellinen. Kokeile toista",
     "referral-min-length-error": "Käyttäjänimen pituuden on oltava vähintään 3 merkkiä",
     "referral-max-length-error": "Käyttäjänimen pituuden on oltava vähemmän kuin 16 merkkiä",
