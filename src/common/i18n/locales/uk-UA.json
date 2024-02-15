@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "Повинні містити лише літери, цифри та дефіс",
     "username-contains-double-hyphens": "Не повинні містити подвійних дефісів",
     "username-exists": "Це ім'я користувача вже зареєстровано. Будь ласка, спробуйте інше",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "Це реферальне посилання недійсне. Будь ласка, спробуйте інше",
     "referral-min-length-error": "Довжина реферального посилання повинна бути не менше 3 символів",
     "referral-max-length-error": "Довжина реферального посилання повинна бути не більше 16 символів",
