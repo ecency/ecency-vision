@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "केवल अक्षर, अंक, हाइफ़न होना चाहिए",
     "username-contains-double-hyphens": "डबल हाइफ़न नहीं होना चाहिए",
     "username-exists": "यह उपयोक्तानाम पहले से ही पंजीकृत है. कृपया, कोई दूसरा प्रयास करें",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "यह रेफरल अमान्य है. कृपया, कोई दूसरा प्रयास करें",
     "referral-min-length-error": "रेफरल की लंबाई कम से कम 3 अक्षर होनी चाहिए",
     "referral-max-length-error": "रेफरल की लंबाई 16 अक्षरों से अधिक नहीं होनी चाहिए",
