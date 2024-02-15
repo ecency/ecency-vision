@@ -136,6 +136,7 @@
 
       .form-content {
         max-width: 460px;
+        width: 100%;
         margin: 10px auto;
 
         form {
@@ -150,6 +151,7 @@
 
     .error {
       padding: 12px 30px;
+
       .error-info {
         @apply text-red-020;
         font-size: 93%;
@@ -163,13 +165,14 @@
   }
 
   .app-btn {
+    @apply px-2 py-1;
+
     @include themify(day) {
-      @apply text-white;
+      @apply bg-gray-300 text-dark-200 hover:bg-gray-400;
     }
 
     @include themify(night) {
-      @apply bg-blue-dark-sky-010;
-      @apply text-dark-200;
+      @apply bg-dark-200 text-white hover:bg-black;
     }
 
     border-radius: 8px;
@@ -196,7 +199,13 @@
       margin-right: 8px;
 
       path {
-        @apply fill-white;
+        @include themify(day) {
+          @apply fill-dark-200;
+        }
+
+        @include themify(night) {
+          @apply fill-white;
+        }
       }
     }
 
@@ -208,7 +217,5 @@
       width: 32px;
       height: 32px;
     }
-
-    @include button-variant(#161d26, #161d26);
   }
 }
