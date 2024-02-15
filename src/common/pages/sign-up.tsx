@@ -115,6 +115,9 @@ export const SignUp = (props: PageProps) => {
         } else if (item.includes("--")) {
           setUsernameError(_t("sign-up.username-contains-double-hyphens"));
           setIsDisabled(true);
+        } else if (/^\d/.test(item)) {
+          setUsernameError(_t("sign-up.username-starts-number"));
+          setIsDisabled(true);
         }
       });
     }
