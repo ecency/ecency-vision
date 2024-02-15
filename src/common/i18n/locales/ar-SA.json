@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "يجب أن تحتوي على أحرف وأرقام وواصلة فقط",
     "username-contains-double-hyphens": "يجب ألا تحتوي على واصلات مزدوجة",
     "username-exists": "هذا البريد الإلكتروني موجود بالفعل. الرجاء إدخال بريد إلكتروني آخر",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "هذه الإحالة غير صالحة. من فضلك ، جرب واحدة أخرى",
     "referral-min-length-error": "يجب أن يكون طول الإحالة ٣ حروف على الأقل",
     "referral-max-length-error": "يجب أن لا يزيد طول الإحالة عن ١٦ حرفاً",
