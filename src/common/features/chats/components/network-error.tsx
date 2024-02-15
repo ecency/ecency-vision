@@ -5,8 +5,16 @@ import { useDirectContactsQuery, useOriginalJoinedChannelsQuery } from "@ecency/
 import usePrevious from "react-use/lib/usePrevious";
 
 export function NetworkError() {
-  const { data: channels, isError: isChannelsFailed } = useOriginalJoinedChannelsQuery();
-  const { data: contacts, isError: isDirectContactsFailed } = useDirectContactsQuery();
+  const {
+    data: channels,
+    isError: isChannelsFailed,
+    isSuccess: isContactsFetchedSuccess
+  } = useOriginalJoinedChannelsQuery();
+  const {
+    data: contacts,
+    isError: isDirectContactsFailed,
+    isSuccess: isChannelsFetchedSuccess
+  } = useDirectContactsQuery();
   const previousChannels = usePrevious(channels);
   const previousContacts = usePrevious(contacts);
 
@@ -14,6 +22,8 @@ export function NetworkError() {
     () =>
       isDirectContactsFailed ||
       isChannelsFailed ||
+      (contacts?.length === 0 && isContactsFetchedSuccess) ||
+      (channels?.length === 0 && isChannelsFetchedSuccess) ||
       (contacts?.length === 0 && (previousContacts ?? []).length > 0) ||
       (channels?.length === 0 && (previousChannels ?? []).length > 0),
     [
@@ -22,7 +32,9 @@ export function NetworkError() {
       contacts,
       previousContacts,
       channels,
-      previousChannels
+      previousChannels,
+      isContactsFetchedSuccess,
+      isChannelsFetchedSuccess
     ]
   );
 
