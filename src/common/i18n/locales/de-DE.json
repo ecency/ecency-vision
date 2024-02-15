@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "Der Benutzername sollte nur Buchstaben, Zahlen und Bindestriche enthalten",
     "username-contains-double-hyphens": "Es sollten keine doppelten Bindestriche enthalten sein",
     "username-exists": "Dieser Benutzername ist bereits registriert. Bitte versuche es mit einem anderen",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "This referral is invalid. Please, try another one",
     "referral-min-length-error": "Length of referral should be at least 3 characters",
     "referral-max-length-error": "Length of referral should be no more than 16 characters",
