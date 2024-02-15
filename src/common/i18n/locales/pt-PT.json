@@ -244,6 +244,7 @@
     "username-contains-symbols-error": "Deve só conter letras, números, hífen",
     "username-contains-double-hyphens": "Não deve conter dois hífens seguidos",
     "username-exists": "Utilizador já registado. Por favor, tente outro",
+    "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "Está referência é invalida. Por favor, tente outra",
     "referral-min-length-error": "O tamanho da referência deve ter no mínimo 3 caracteres",
     "referral-max-length-error": "O tango da referência não pode ter mais do que 16 caracteres",
