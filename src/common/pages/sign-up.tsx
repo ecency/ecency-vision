@@ -458,17 +458,13 @@ export const SignUp = (props: PageProps) => {
                 <a href={url}>
                   <img ref={qrCodeRef} />
                 </a>
-                <div className="flex flex-col flex-sm-row">
-                  <a
-                    href="https://ios.ecency.com"
-                    className="btn app-btn mb-2 sm:mb-0 mr-sm-2"
-                    target="_blank"
-                  >
+                <div className="flex flex-col my-4 mb-16 gap-4 sm:flex-row">
+                  <a href="https://ios.ecency.com" className="app-btn" target="_blank">
                     <i className="icon">{appleSvg}</i>
                     <span className="text">Download on the</span>
                     <span className="headline">AppStore</span>
                   </a>
-                  <a href="https://android.ecency.com" className="btn app-btn" target="_blank">
+                  <a href="https://android.ecency.com" className="app-btn" target="_blank">
                     <i className="icon">{googleSvg}</i>
                     <span className="text">Get it on</span>
                     <span className="headline">GooglePlay</span>
