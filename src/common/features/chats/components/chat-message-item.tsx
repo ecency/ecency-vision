@@ -21,6 +21,7 @@ import {
 } from "@ecency/ns-query";
 import { format } from "date-fns";
 import { useInViewport } from "react-in-viewport";
+import "./_chat-message-item.scss";
 
 interface Props {
   type: "sender" | "receiver";
@@ -94,9 +95,9 @@ export function ChatMessageItem({
     <div key={message.id} data-message-id={message.id} ref={ref}>
       <div
         className={classNameObject({
-          "flex gap-1 px-4 w-full": true,
-          "justify-start": type === "receiver",
-          "justify-end": type === "sender",
+          "chat-message-item flex gap-1 px-4 w-full": true,
+          "justify-start chat-message-item-receiver": type === "receiver",
+          "justify-end chat-message-item-sender": type === "sender",
           failed: isFailed,
           sending: isSending,
           "mb-4": showDate,
