@@ -244,7 +244,7 @@
     "username-contains-symbols-error": "Debe contener solamente letras, números, Signos de Puntuación",
     "username-contains-double-hyphens": "No debe contener Signos de Puntuación dobles",
     "username-exists": "Este nombre de usuario ya está registrado. Por favor, prueba otro",
-    "username-starts-number": "Should not start with Numbers",
+    "username-starts-number": "No debe comenzar con números",
     "referral-invalid": "Esta referencia no es válida. Por favor, prueba con otra",
     "referral-min-length-error": "La longitud de la referencia debe tener al menos 3 caracteres",
     "referral-max-length-error": "La longitud de la referencia no debe tener más de 16 caracteres",
