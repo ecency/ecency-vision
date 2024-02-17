@@ -244,7 +244,7 @@
     "username-contains-symbols-error": "Должно содержать только буквы, цифры и дефисы",
     "username-contains-double-hyphens": "Не должно содержать двойные дефисы",
     "username-exists": "Это имя пользователя уже зарегистрировано. Пожалуйста, подберите другое",
-    "username-starts-number": "Should not start with Numbers",
+    "username-starts-number": "Не должно начинаться с цифр",
     "referral-invalid": "Этот реферал недействителен. Пожалуйста, попробуйте другого",
     "referral-min-length-error": "Длина имени реферала должна быть не менее трёх символов",
     "referral-max-length-error": "Длина имени реферала должна быть не более 16 символов",
