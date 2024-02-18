@@ -226,7 +226,7 @@
     "validation-username": "İstifadəçi adı lazımdır.",
     "validation-email": "E-poçt lazımdır.",
     "success": "{{email}} ünvanına bir e-poçt göndərdik.",
-    "success-2": "Qeydiyyat prosesini tamamlamaq üçün təlimatları izləyin.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Hesabınız yoxdur?",
     "login-text-2": "Giriş et",
     "free-account": "Free account",
