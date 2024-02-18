@@ -226,7 +226,7 @@
     "validation-username": "사용자 이름이 필요합니다",
     "validation-email": "이메일이 필요합니다.",
     "success": "{{email}}로 이메일을 발송하였습니다.",
-    "success-2": "안내에 따라 가입 절차를 완료하세요.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "계정이 없으신가요?",
     "login-text-2": "로그인",
     "free-account": "Free account",
