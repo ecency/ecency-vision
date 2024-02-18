@@ -226,7 +226,7 @@
     "validation-username": "Ім'я користувача є обов'язковим",
     "validation-email": "Адреса електронної пошти є обов'язковою",
     "success": "Ми надіслали лист на {{email}}.",
-    "success-2": "Дотримуйтесь інструкцій для завершення процесу реєстрації.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Вже маєте обліковку?",
     "login-text-2": "Увійти",
     "free-account": "Безплатний обліковий запис",
