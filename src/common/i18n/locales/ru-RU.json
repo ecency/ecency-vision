@@ -226,7 +226,7 @@
     "validation-username": "Требуется имя пользователя.",
     "validation-email": "Требуется адрес эл. почты.",
     "success": "Мы отправили письмо на адрес {{email}}.",
-    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
+    "success-2": "Проверьте, чтобы завершить процесс регистрации. Примечание: проверьте папку \"Спам\", если вы не смогли найти письмо.",
     "login-text-1": "Есть ли у вас учетная запись?",
     "login-text-2": "Войти",
     "free-account": "Бесплатный аккаунт",
