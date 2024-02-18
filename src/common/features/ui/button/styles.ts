@@ -31,7 +31,8 @@ export const BUTTON_SIZES: Record<ButtonSize, string> = {
   xs: "h-[2rem] text-sm font-[500] px-2 text-xs",
   sm: "h-[2rem] text-sm font-[500] px-2",
   md: "h-[2.125rem] px-3",
-  lg: "h-[2.5rem] px-4"
+  lg: "h-[2.5rem] px-4",
+  display: "h-[3rem] px-4 text-sm font-semibold"
 };
 
 export const BUTTON_IN_GROUP =

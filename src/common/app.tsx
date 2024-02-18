@@ -86,6 +86,7 @@ const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
 const DecksPage = loadable(() => import("./pages/decks"));
+const EcencyPerksPage = loadable(() => import("./features/perks/screens/main"));
 
 const App = (props: any) => {
   const { global, activeUser } = useMappedStore();
@@ -221,6 +222,7 @@ const App = (props: any) => {
               path={routes.CONTRIBUTORS}
               component={ContributorsPage}
             />
+            <Route exact={true} strict={true} path={routes.PERKS} component={EcencyPerksPage} />
             <Route
               exact={true}
               strict={true}

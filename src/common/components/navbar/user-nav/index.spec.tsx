@@ -11,8 +11,8 @@ import {
   globalInstance,
   notificationsInstance1,
   UiInstance
-} from "../../helper/test-helper";
-import { withStore } from "../../tests/with-store";
+} from "../../../helper/test-helper";
+import { withStore } from "../../../tests/with-store";
 
 const defProps = {
   global: globalInstance,

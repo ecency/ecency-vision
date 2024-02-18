@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { _t } from "../../i18n";
-import { useMappedStore } from "../../store/use-mapped-store";
+import { _t } from "../../../i18n";
+import { useMappedStore } from "../../../store/use-mapped-store";
 import { useLocation } from "react-router";
 import "./_index.scss";
-import { bellOffSvg, bellSvg, chevronUpSvg, rocketSvg } from "../../img/svg";
-import { downVotingPower, votingPower } from "../../api/hive";
+import { bellOffSvg, bellSvg, chevronUpSvg, rocketSvg } from "../../../img/svg";
+import { downVotingPower, votingPower } from "../../../api/hive";
 import { WalletBadge } from "./wallet-badge";
-import ToolTip from "../tooltip";
-import DropDown from "../dropdown";
-import UserNotifications from "../notifications";
-import { PurchaseQrDialog } from "../purchase-qr";
+import ToolTip from "../../tooltip";
+import DropDown from "../../dropdown";
+import UserNotifications from "../../notifications";
+import { PurchaseQrDialog } from "../../purchase-qr";
 import { History } from "history";
-import UserAvatar from "../user-avatar";
-import Gallery from "../gallery";
-import Drafts from "../drafts";
-import Bookmarks from "../bookmarks";
-import Schedules from "../schedules";
-import Fragments from "../fragments";
+import UserAvatar from "../../user-avatar";
+import Gallery from "../../gallery";
+import Drafts from "../../drafts";
+import Bookmarks from "../../bookmarks";
+import Schedules from "../../schedules";
+import Fragments from "../../fragments";
 
 export * from "./wallet-badge";
 

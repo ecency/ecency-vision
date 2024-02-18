@@ -1,7 +1,7 @@
 import { bellSvg, rocketSvg } from "../../../img/svg";
 import React from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { WalletBadge } from "../../user-nav";
+import { WalletBadge } from "../../navbar/user-nav";
 import { dotsMenuIconSvg, walletIconSvg } from "../icons";
 import { _t } from "../../../i18n";
 import Link from "../../alink";

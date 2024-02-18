@@ -2357,5 +2357,8 @@
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
     "insufficient-resource-wait": "Wait few hours for RC refill",
     "report": "Report"
+  },
+  "perks": {
+    "page-title": "Welcome to Perks"
   }
 }

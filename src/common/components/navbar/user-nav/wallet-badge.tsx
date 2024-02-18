@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import HiveWallet from "../../helper/hive-wallet";
-import { _t } from "../../i18n";
-import { creditCardSvg } from "../../img/svg";
-import ToolTip from "../tooltip";
-import { useMappedStore } from "../../store/use-mapped-store";
+import HiveWallet from "../../../helper/hive-wallet";
+import { _t } from "../../../i18n";
+import { creditCardSvg } from "../../../img/svg";
+import ToolTip from "../../tooltip";
+import { useMappedStore } from "../../../store/use-mapped-store";
 
 export const WalletBadge = ({ icon }: { icon: ReactNode }) => {
   const { activeUser, dynamicProps } = useMappedStore();
