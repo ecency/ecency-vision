@@ -226,7 +226,7 @@
     "validation-username": "Το Όνομα χρήστη είναι απαραίτητο.",
     "validation-email": "Απαιτείται η διεύθυνση ηλεκτρονικού ταχυδρομείου.",
     "success": "Έχουμε στείλει ένα email στο {{email}}.",
-    "success-2": "Ακολουθήστε τις οδηγίες για να ολοκληρώσετε τη διαδικασία εγγραφής.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Έχετε λογαριασμό;",
     "login-text-2": "Σύνδεση",
     "free-account": "Free account",
