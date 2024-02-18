@@ -226,7 +226,7 @@
     "validation-username": "Foydalanuvchi nomi talab qilinadi.",
     "validation-email": "Emailingizni kiriting.",
     "success": "Biz {{email}} manziliga xat yubordik.",
-    "success-2": "Roʻyxatdan oʻtish jarayonini yakunlash uchun koʻrsatmalarga amal qiling.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Akkauntingiz bormi?",
     "login-text-2": "Kirish",
     "free-account": "Free account",
