@@ -226,7 +226,7 @@
     "validation-username": "Nama pengguna diperlukan.",
     "validation-email": "Email diperlukan.",
     "success": "Kami sudah mengirimkan email ke {{email}}.",
-    "success-2": "Ikuti petunjuk melengkapi proses pendaftaran.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Apakah anda memiliki akun?",
     "login-text-2": "Masuk",
     "free-account": "Free account",
