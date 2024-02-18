@@ -226,7 +226,7 @@
     "validation-username": "Username is required.",
     "validation-email": "Email is required.",
     "success": "Nagpadala kami ng email sa {{email}}.",
-    "success-2": "Sundin ang mga panuntunan para makumpleto ang proseso ng pag-sign up.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "May account ka ba?",
     "login-text-2": "Pumasok",
     "free-account": "Free account",
