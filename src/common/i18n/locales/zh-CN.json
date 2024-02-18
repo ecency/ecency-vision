@@ -226,7 +226,7 @@
     "validation-username": "用户名是必需的。",
     "validation-email": "电子邮件是必需的。",
     "success": "我们已经向 {{email}} 发送了一封电子邮件。",
-    "success-2": "按照说明完成注册过程。",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "您是否有账户？",
     "login-text-2": "登陆",
     "free-account": "Free account",
