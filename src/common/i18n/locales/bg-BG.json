@@ -226,7 +226,7 @@
     "validation-username": "Потребителското име е задължително.",
     "validation-email": "Имейла е задължителен.",
     "success": "Изпратихме имейл на {{email}}.",
-    "success-2": "Следвайте инструкциите за да завършите регистрирането.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Имате ли акаунт?",
     "login-text-2": "Вход",
     "free-account": "Free account",
