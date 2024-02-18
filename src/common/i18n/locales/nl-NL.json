@@ -226,7 +226,7 @@
     "validation-username": "Gebruikersnaam is verplicht.",
     "validation-email": "E-mailadres is vereist.",
     "success": "We hebben een email gestuurd naar {{email}}.",
-    "success-2": "Volg de instructies om het inschrijvingsproces te voltooien.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Ben je al lid?",
     "login-text-2": "Aanmelden",
     "free-account": "Free account",
