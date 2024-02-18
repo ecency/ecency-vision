@@ -226,7 +226,7 @@
     "validation-username": "यूज़रनेम आवश्यक है",
     "validation-email": "ईमेल जरुरी है।",
     "success": "हमने {{email}} को एक ईमेल भेजा है।",
-    "success-2": "साइनअप प्रक्रिया को पूरा करने के लिए निर्देशों का पालन करें।",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "क्या आपका अकाउंट है?",
     "login-text-2": "प्रवेश करें",
     "free-account": "नि: शुल्क खाता",
