@@ -226,7 +226,7 @@
     "validation-username": "Reikalingas vartotojo vardas.",
     "validation-email": "Būtinas el. pašto adresas.",
     "success": "Išsiuntėme patvirtinimo laišką {{email}}.",
-    "success-2": "Sekite instrukcijas, kad sėkmingai prisiregistruotumėte.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Ar turite paskyrą?",
     "login-text-2": "Prisijungti",
     "free-account": "Free account",
