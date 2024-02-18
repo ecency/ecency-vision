@@ -226,7 +226,7 @@
     "validation-username": "Username is required.",
     "validation-email": "Email is required.",
     "success": "Ți-am trimis un e-mail la {{email}}.",
-    "success-2": "Urmează instrucțiunile pentru a finaliza procesul de înscriere.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Am deja un cont?",
     "login-text-2": "Autentificare",
     "free-account": "Free account",
