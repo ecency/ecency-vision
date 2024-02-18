@@ -226,7 +226,7 @@
     "validation-username": "Perle nan.",
     "validation-email": "Perle Email.",
     "success": "Kamoe ka meu kireem email ke {{email}}.",
-    "success-2": "Ikot lagee nyang di yue untok peselesoe proses daftar.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Droneuh kana akun?",
     "login-text-2": "Tamong",
     "free-account": "Free account",
