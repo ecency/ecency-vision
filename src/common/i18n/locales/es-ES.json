@@ -226,7 +226,7 @@
     "validation-username": "Se requiere nombre de usuario.",
     "validation-email": "Se requiere un correo electrónico.",
     "success": "Hemos enviado un correo electrónico a {{email}}.",
-    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
+    "success-2": "Verificar para finalizar el proceso de registro. Nota: Compruebe la carpeta de spam si no pudo encontrar el correo electrónico.",
     "login-text-1": "¿Tienes una cuenta?",
     "login-text-2": "Iniciar Sesión",
     "free-account": "Cuenta gratuita",
