@@ -226,7 +226,7 @@
     "validation-username": "اسم المستخدم مطلوب.",
     "validation-email": "البريد الإلكتروني مطلوب.",
     "success": "لقد أرسلنا رسالة بريد إلكتروني إلى {{email}}.",
-    "success-2": "اتبع التعليمات لإكمال عملية التسجيل.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "هل لديك حساب؟",
     "login-text-2": "تسجيل الدخول",
     "free-account": "حساب مجاني",
