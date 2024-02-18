@@ -226,7 +226,7 @@
     "validation-username": "Käyttäjätunnus vaaditaan.",
     "validation-email": "Sähköpostiosoite vaaditaan.",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
-    "success-2": "Seuraa ohjeita suorittaaksesi rekisteröinti.",
+    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
     "login-text-2": "Kirjaudu sisään",
     "free-account": "Ilmainen tili",
