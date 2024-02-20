@@ -3,7 +3,7 @@ import ToolTip from "../tooltip";
 import { brightnessSvg, pencilOutlineSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
-import React from "react";
+import React, { useState } from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import Search from "../search";
 import SwitchLang from "../switch-lang";
@@ -11,7 +11,8 @@ import { History } from "history";
 import * as ls from "../../util/local-storage";
 import { NavbarTextMenu } from "./navbar-text-menu";
 import { classNameObject } from "../../helper/class-name-object";
-import { UserNav } from "./user-nav";
+import { NavbarSide } from "./navbar-side";
+import UserAvatar from "../user-avatar";
 
 interface Props {
   step?: number;
@@ -35,6 +36,8 @@ export function NavbarDesktop({
   themeText
 }: Props) {
   const { activeUser, toggleUIProp, toggleTheme } = useMappedStore();
+
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const changeTheme = () => {
     ls.remove("use_system_theme");
@@ -63,7 +66,7 @@ export function NavbarDesktop({
         className={classNameObject({
           "max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800":
             true,
-          "bg-light-200 dark:bg-dark-200": true,
+          "bg-white dark:bg-dark-700": true,
           transparent: !transparentVerify && step === 1
         })}
       >
@@ -117,9 +120,14 @@ export function NavbarDesktop({
               </Link>
             </div>
           )}
-          {activeUser && <UserNav history={history} />}
+          {activeUser && (
+            <div className="cursor-pointer" onClick={() => setShowSidebar(true)}>
+              <UserAvatar size="medium" username={activeUser.username} />
+            </div>
+          )}
         </div>
       </div>
+      {activeUser && <NavbarSide history={history} show={showSidebar} setShow={setShowSidebar} />}
     </div>
   );
 }
