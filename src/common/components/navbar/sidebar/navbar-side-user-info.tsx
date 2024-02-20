@@ -12,7 +12,7 @@ export function NavbarSideUserInfo({ history }: { history: History }) {
   const { activeUser, addAccount } = useMappedStore();
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 max-w-[16rem] truncate">
       <ProfileLink history={history} username={activeUser!.username} addAccount={addAccount}>
         <UserAvatar username={activeUser!.username} size="medium" />
       </ProfileLink>

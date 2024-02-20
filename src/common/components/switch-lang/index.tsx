@@ -10,9 +10,7 @@ import i18n from "i18next";
 
 import DropDown from "../dropdown";
 
-import { _t } from "../../i18n";
-
-import { langOptions } from "../../i18n";
+import { _t, langOptions } from "../../i18n";
 
 import * as ls from "../../util/local-storage";
 import { useMappedStore } from "../../store/use-mapped-store";
@@ -34,6 +32,7 @@ export class SwitchLang extends Component<Props> {
     const langMenuConfig = {
       history: this.props.history,
       label: label || lang,
+      alignBottom: true,
       items: langOptions.map((f) => {
         return {
           label: f.name,

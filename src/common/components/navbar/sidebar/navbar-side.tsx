@@ -12,6 +12,8 @@ import { NavbarPerksButton } from "../navbar-perks-button";
 import { walletIconSvg } from "../../decks/icons";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import * as pack from "../../../../../package.json";
+import { NavbarNotificationsButton } from "../navbar-notifications-button";
+import { UilEditAlt } from "@iconscout/react-unicons";
 
 interface Props {
   show: boolean;
@@ -37,19 +39,23 @@ export function NavbarSide({ show, setShow, history }: Props) {
           transform: `translateX(${showAnimated ? 0 : 100}%)`
         }}
       >
-        <div className="flex p-4 gap-4 items-center justify-between">
+        <div className="flex px-4 pt-4 pb-2 gap-4 items-center justify-between">
           <NavbarSideUserInfo history={history} />
           <Button icon={closeSvg} size="sm" appearance="gray-link" onClick={() => setShow(false)} />
         </div>
-        <div className="px-4 justify-between gap-4 pb-4 flex items-center">
+        <div className="px-4 justify-between pb-2 flex items-center">
           <NavbarSideThemeSwitcher />
-          <NavbarPerksButton />
+          <Button to="/submit" appearance="gray-link" icon={<UilEditAlt />} />
+          <NavbarNotificationsButton onClick={() => setShow(false)} />
           <Button
             icon={walletIconSvg}
             size="sm"
             appearance="gray-link"
             to={`/@${activeUser?.username}/wallet`}
           />
+        </div>
+        <div className="px-4 pb-3">
+          <NavbarPerksButton />
         </div>
         <NavbarSideMainMenu history={history} onHide={() => setShow(false)} />
         <div className="p-4 items-center flex justify-between">

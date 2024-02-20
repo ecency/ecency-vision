@@ -87,7 +87,7 @@ export function NavbarDesktop({
         <div className="flex items-center ml-3">
           <NavbarPerksButton />
           <ToolTip content={_t("navbar.post")}>
-            <Button to="/submit" appearance="gray-link" icon={<UilEditAlt />} />
+            <Button to="/submit" appearance="gray-link" className="ml-3" icon={<UilEditAlt />} />
           </ToolTip>
           {activeUser && <NavbarNotificationsButton />}
         </div>
