@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import ToolTip from "../tooltip";
-import { brightnessSvg, pencilOutlineSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
 import React, { useState } from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import Search from "../search";
-import SwitchLang from "../switch-lang";
 import { History } from "history";
-import * as ls from "../../util/local-storage";
 import { NavbarTextMenu } from "./navbar-text-menu";
 import { classNameObject } from "../../helper/class-name-object";
-import { NavbarSide } from "./navbar-side";
+import { NavbarSide } from "./sidebar/navbar-side";
 import UserAvatar from "../user-avatar";
+import UserNotifications from "../notifications";
+import { NavbarNotificationsButton } from "./navbar-notifications-button";
+import { UilEditAlt } from "@iconscout/react-unicons";
+import { NavbarPerksButton } from "./navbar-perks-button";
+import { AnonUserButtons } from "./anon-user-buttons";
 
 interface Props {
   step?: number;
@@ -35,14 +37,9 @@ export function NavbarDesktop({
   setStepOne,
   themeText
 }: Props) {
-  const { activeUser, toggleUIProp, toggleTheme } = useMappedStore();
+  const { activeUser, ui, toggleUIProp } = useMappedStore();
 
   const [showSidebar, setShowSidebar] = useState(false);
-
-  const changeTheme = () => {
-    ls.remove("use_system_theme");
-    toggleTheme();
-  };
 
   const onLogoClick = () => {
     if (
@@ -87,46 +84,23 @@ export function NavbarDesktop({
             <Search history={history} />
           </div>
         )}
-        <div className="flex items-center ml-3 gap-3">
-          <SwitchLang history={history} />
-          {(step !== 1 || transparentVerify) && (
-            <ToolTip content={themeText}>
-              <Button outline={true} icon={brightnessSvg} onClick={changeTheme} />
-            </ToolTip>
-          )}
-          <div>
-            <ToolTip content={_t("navbar.post")}>
-              <Link to="/submit">
-                <Button outline={true} icon={pencilOutlineSvg} />
-              </Link>
-            </ToolTip>
-          </div>
+        <div className="flex items-center ml-3">
+          <NavbarPerksButton />
+          <ToolTip content={_t("navbar.post")}>
+            <Button to="/submit" appearance="gray-link" icon={<UilEditAlt />} />
+          </ToolTip>
+          {activeUser && <NavbarNotificationsButton />}
         </div>
         <div className="btn-menu">
-          {!activeUser && (
-            <div className="login-required flex ml-2 gap-2">
-              <Button
-                className="btn-login"
-                onClick={() => {
-                  toggleUIProp("login");
-                  setSmVisible(false);
-                }}
-              >
-                {_t("g.login")}
-              </Button>
-
-              <Link to="/signup">
-                <Button outline={true}>{_t("g.signup")}</Button>
-              </Link>
-            </div>
-          )}
+          <AnonUserButtons />
           {activeUser && (
-            <div className="cursor-pointer" onClick={() => setShowSidebar(true)}>
+            <div className="cursor-pointer ml-4" onClick={() => setShowSidebar(true)}>
               <UserAvatar size="medium" username={activeUser.username} />
             </div>
           )}
         </div>
       </div>
+      {ui.notifications && <UserNotifications history={history} />}
       {activeUser && <NavbarSide history={history} show={showSidebar} setShow={setShowSidebar} />}
     </div>
   );

@@ -4,8 +4,10 @@ import { NavbarTextMenu } from "./navbar-text-menu";
 import React from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { History } from "history";
-import { NavbarToggle } from "./navbar-toggle";
-import { NavbarDefault } from "./navbar-default";
+import { NavbarSide } from "./sidebar/navbar-side";
+import UserAvatar from "../user-avatar";
+import { _t } from "../../i18n";
+import { Button } from "@ui/button";
 
 interface Props {
   step?: number;
@@ -26,7 +28,7 @@ export function NavbarMobile({
   expanded,
   setExpanded
 }: Props) {
-  const { activeUser } = useMappedStore();
+  const { activeUser, toggleUIProp } = useMappedStore();
 
   const onLogoClick = () => {
     if (
@@ -60,9 +62,18 @@ export function NavbarMobile({
 
       <NavbarTextMenu />
 
-      <NavbarToggle onToggle={() => setExpanded(!expanded)} expanded={expanded} />
+      {activeUser && (
+        <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>
+          <UserAvatar size="medium" username={activeUser.username} />
+        </div>
+      )}
+      {!activeUser && (
+        <Button className="btn-login" onClick={() => toggleUIProp("login")}>
+          {_t("g.login")}
+        </Button>
+      )}
 
-      {expanded && <NavbarDefault history={history} setSmVisible={() => {}} />}
+      {activeUser && <NavbarSide history={history} show={expanded} setShow={setExpanded} />}
     </div>
   );
 }

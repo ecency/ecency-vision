@@ -187,7 +187,8 @@
     "vote-power": "Vote Power",
     "boost": "Boost",
     "submit": "Create a post",
-    "chats": "Chats"
+    "chats": "Chats",
+    "perks": "Buy perks"
   },
   "intro": {
     "title": "Aspire to greatness",
@@ -646,6 +647,7 @@
     "fee-free": "Free",
     "order-book-impact": "Order book impact",
     "swap-title": "Swap your funds",
+    "advanced-title": "Trade token",
     "sign-title": "Sign your transaction",
     "fetching-market": "Fetching market...",
     "back": "Back",

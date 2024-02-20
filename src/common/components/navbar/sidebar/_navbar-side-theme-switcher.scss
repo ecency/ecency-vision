@@ -1,0 +1,39 @@
+@import "src/style/vars_mixins";
+
+.switch-theme {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @apply duration-300 rounded-full;
+
+  &.switched svg {
+    transform: rotate(180deg);
+  }
+
+  svg {
+    @apply text-gray-500;
+    width: 1.25rem;
+    height: 1.25rem;
+
+    @include transition(0.3s);
+  }
+
+  &:hover {
+
+    @include themify(day) {
+      @apply bg-blue-duck-egg;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-default;
+    }
+
+    svg {
+      color: $primary;
+    }
+  }
+}
