@@ -341,7 +341,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -561,7 +561,7 @@ exports[`(1) Hive Engine - Transfer (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -906,7 +906,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -989,7 +989,7 @@ exports[`(2) Hive Engine - Delegate (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1299,7 +1299,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1382,7 +1382,7 @@ exports[`(3) Hive Engine - Undelegate (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1723,7 +1723,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1806,7 +1806,7 @@ exports[`(4) Hive Engine - Stake (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -2082,7 +2082,7 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -2165,7 +2165,7 @@ exports[`(5) Hive Engine - Unstake (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {

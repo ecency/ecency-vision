@@ -48,17 +48,17 @@ exports[`(1) Default render 1`] = `
       </a>
     </div>
     <div
-      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      className="cursor-pointer ml-4"
       onClick={[Function]}
     >
       <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
+        className="user-avatar medium"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+          }
+        }
       />
     </div>
   </div>
@@ -66,7 +66,7 @@ exports[`(1) Default render 1`] = `
     className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
         className="h-[40px] min-w-[40px] cursor-pointer"
@@ -182,126 +182,104 @@ exports[`(1) Default render 1`] = `
         </div>
       </div>
       <div
-        className="flex items-center ml-3 gap-3"
+        className="flex items-center ml-3"
       >
-        <div
-          className="switch-language"
-        />
-        <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          href="/perks"
           onClick={[Function]}
-          style={
-            Object {
-              "outline": "none",
-            }
-          }
-          title=""
-          type="button"
+        >
+          <div>
+            Buy perks
+          </div>
+          <div
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m8.468 8.395-.002.001-.003.002Zm9.954-.187a1.237 1.237 0 0 0-.23-.175 1 1 0 0 0-1.4.411 5.782 5.782 0 0 1-1.398 1.778 8.664 8.664 0 0 0 .134-1.51 8.714 8.714 0 0 0-4.4-7.582 1 1 0 0 0-1.492.806 7.017 7.017 0 0 1-2.471 4.942l-.23.187a8.513 8.513 0 0 0-1.988 1.863 8.983 8.983 0 0 0 3.656 13.908 1 1 0 0 0 1.377-.926 1.05 1.05 0 0 0-.05-.312 6.977 6.977 0 0 1-.19-2.581 9.004 9.004 0 0 0 4.313 4.016.997.997 0 0 0 .715.038 8.995 8.995 0 0 0 3.654-14.863Zm-3.905 12.831a6.964 6.964 0 0 1-3.577-4.402 8.908 8.908 0 0 1-.18-.964 1 1 0 0 0-.799-.845.982.982 0 0 0-.191-.018 1 1 0 0 0-.867.5 8.959 8.959 0 0 0-1.205 4.718 6.985 6.985 0 0 1-1.176-9.868 6.555 6.555 0 0 1 1.562-1.458.745.745 0 0 0 .075-.055s.296-.245.306-.25a8.968 8.968 0 0 0 2.9-4.633 6.736 6.736 0 0 1 1.385 8.088 1 1 0 0 0 1.184 1.418 7.856 7.856 0 0 0 3.862-2.688 7 7 0 0 1-3.279 10.457Z"
+              />
+            </svg>
+          </div>
+        </a>
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
         >
           <div
             className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
+              fill="currentColor"
+              height="24"
               viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-                fill="currentColor"
+                d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
               />
             </svg>
           </div>
-        </button>
-        <div>
-          <a
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
-              style={
-                Object {
-                  "outline": "none",
-                }
+        </a>
+        <div
+          className="notifications"
+          onClick={[Function]}
+          title="Notifications"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            style={
+              Object {
+                "outline": "none",
               }
-              type="button"
+            }
+            type="button"
+          >
+            <div
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
-              <div
-                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </button>
-          </a>
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
       <div
         className="btn-menu"
       >
         <div
-          className="user-nav"
+          className="cursor-pointer ml-4"
+          onClick={[Function]}
         >
-          <div
-            className="user-points cursor-pointer"
-            onClick={[Function]}
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <a
-            className="user-wallet"
-            href="/@foo/wallet"
-            onClick={[Function]}
-            title="Wallet"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
           <span
-            className="notifications"
+            className="user-avatar medium"
             onClick={[Function]}
-            title="Notifications"
-          >
-            <svg
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
-              />
-            </svg>
-          </span>
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
         </div>
       </div>
     </div>
@@ -321,7 +299,7 @@ exports[`(2) Night Theme 1`] = `
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -357,17 +335,17 @@ exports[`(2) Night Theme 1`] = `
       </a>
     </div>
     <div
-      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      className="cursor-pointer ml-4"
       onClick={[Function]}
     >
       <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
+        className="user-avatar medium"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+          }
+        }
       />
     </div>
   </div>
@@ -375,13 +353,13 @@ exports[`(2) Night Theme 1`] = `
     className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
         className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/"
+          href="/hot"
           onClick={[Function]}
         >
           <img
@@ -491,126 +469,104 @@ exports[`(2) Night Theme 1`] = `
         </div>
       </div>
       <div
-        className="flex items-center ml-3 gap-3"
+        className="flex items-center ml-3"
       >
-        <div
-          className="switch-language"
-        />
-        <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          href="/perks"
           onClick={[Function]}
-          style={
-            Object {
-              "outline": "none",
-            }
-          }
-          title=""
-          type="button"
+        >
+          <div>
+            Buy perks
+          </div>
+          <div
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m8.468 8.395-.002.001-.003.002Zm9.954-.187a1.237 1.237 0 0 0-.23-.175 1 1 0 0 0-1.4.411 5.782 5.782 0 0 1-1.398 1.778 8.664 8.664 0 0 0 .134-1.51 8.714 8.714 0 0 0-4.4-7.582 1 1 0 0 0-1.492.806 7.017 7.017 0 0 1-2.471 4.942l-.23.187a8.513 8.513 0 0 0-1.988 1.863 8.983 8.983 0 0 0 3.656 13.908 1 1 0 0 0 1.377-.926 1.05 1.05 0 0 0-.05-.312 6.977 6.977 0 0 1-.19-2.581 9.004 9.004 0 0 0 4.313 4.016.997.997 0 0 0 .715.038 8.995 8.995 0 0 0 3.654-14.863Zm-3.905 12.831a6.964 6.964 0 0 1-3.577-4.402 8.908 8.908 0 0 1-.18-.964 1 1 0 0 0-.799-.845.982.982 0 0 0-.191-.018 1 1 0 0 0-.867.5 8.959 8.959 0 0 0-1.205 4.718 6.985 6.985 0 0 1-1.176-9.868 6.555 6.555 0 0 1 1.562-1.458.745.745 0 0 0 .075-.055s.296-.245.306-.25a8.968 8.968 0 0 0 2.9-4.633 6.736 6.736 0 0 1 1.385 8.088 1 1 0 0 0 1.184 1.418 7.856 7.856 0 0 0 3.862-2.688 7 7 0 0 1-3.279 10.457Z"
+              />
+            </svg>
+          </div>
+        </a>
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
         >
           <div
             className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
+              fill="currentColor"
+              height="24"
               viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-                fill="currentColor"
+                d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
               />
             </svg>
           </div>
-        </button>
-        <div>
-          <a
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
-              style={
-                Object {
-                  "outline": "none",
-                }
+        </a>
+        <div
+          className="notifications"
+          onClick={[Function]}
+          title="Notifications"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            style={
+              Object {
+                "outline": "none",
               }
-              type="button"
+            }
+            type="button"
+          >
+            <div
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
-              <div
-                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </button>
-          </a>
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
       <div
         className="btn-menu"
       >
         <div
-          className="user-nav"
+          className="cursor-pointer ml-4"
+          onClick={[Function]}
         >
-          <div
-            className="user-points cursor-pointer"
-            onClick={[Function]}
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <a
-            className="user-wallet"
-            href="/@foo/wallet"
-            onClick={[Function]}
-            title="Wallet"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
           <span
-            className="notifications"
+            className="user-avatar medium"
             onClick={[Function]}
-            title="Notifications"
-          >
-            <svg
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
-              />
-            </svg>
-          </span>
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
         </div>
       </div>
     </div>
@@ -666,17 +622,17 @@ exports[`(3) With active user 1`] = `
       </a>
     </div>
     <div
-      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      className="cursor-pointer ml-4"
       onClick={[Function]}
     >
       <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
+        className="user-avatar medium"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+          }
+        }
       />
     </div>
   </div>
@@ -684,7 +640,7 @@ exports[`(3) With active user 1`] = `
     className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
         className="h-[40px] min-w-[40px] cursor-pointer"
@@ -800,126 +756,104 @@ exports[`(3) With active user 1`] = `
         </div>
       </div>
       <div
-        className="flex items-center ml-3 gap-3"
+        className="flex items-center ml-3"
       >
-        <div
-          className="switch-language"
-        />
-        <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          href="/perks"
           onClick={[Function]}
-          style={
-            Object {
-              "outline": "none",
-            }
-          }
-          title=""
-          type="button"
+        >
+          <div>
+            Buy perks
+          </div>
+          <div
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m8.468 8.395-.002.001-.003.002Zm9.954-.187a1.237 1.237 0 0 0-.23-.175 1 1 0 0 0-1.4.411 5.782 5.782 0 0 1-1.398 1.778 8.664 8.664 0 0 0 .134-1.51 8.714 8.714 0 0 0-4.4-7.582 1 1 0 0 0-1.492.806 7.017 7.017 0 0 1-2.471 4.942l-.23.187a8.513 8.513 0 0 0-1.988 1.863 8.983 8.983 0 0 0 3.656 13.908 1 1 0 0 0 1.377-.926 1.05 1.05 0 0 0-.05-.312 6.977 6.977 0 0 1-.19-2.581 9.004 9.004 0 0 0 4.313 4.016.997.997 0 0 0 .715.038 8.995 8.995 0 0 0 3.654-14.863Zm-3.905 12.831a6.964 6.964 0 0 1-3.577-4.402 8.908 8.908 0 0 1-.18-.964 1 1 0 0 0-.799-.845.982.982 0 0 0-.191-.018 1 1 0 0 0-.867.5 8.959 8.959 0 0 0-1.205 4.718 6.985 6.985 0 0 1-1.176-9.868 6.555 6.555 0 0 1 1.562-1.458.745.745 0 0 0 .075-.055s.296-.245.306-.25a8.968 8.968 0 0 0 2.9-4.633 6.736 6.736 0 0 1 1.385 8.088 1 1 0 0 0 1.184 1.418 7.856 7.856 0 0 0 3.862-2.688 7 7 0 0 1-3.279 10.457Z"
+              />
+            </svg>
+          </div>
+        </a>
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
         >
           <div
             className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
+              fill="currentColor"
+              height="24"
               viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-                fill="currentColor"
+                d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
               />
             </svg>
           </div>
-        </button>
-        <div>
-          <a
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
-              style={
-                Object {
-                  "outline": "none",
-                }
+        </a>
+        <div
+          className="notifications"
+          onClick={[Function]}
+          title="Notifications"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            style={
+              Object {
+                "outline": "none",
               }
-              type="button"
+            }
+            type="button"
+          >
+            <div
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
-              <div
-                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </button>
-          </a>
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
       <div
         className="btn-menu"
       >
         <div
-          className="user-nav"
+          className="cursor-pointer ml-4"
+          onClick={[Function]}
         >
-          <div
-            className="user-points cursor-pointer"
-            onClick={[Function]}
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <a
-            className="user-wallet"
-            href="/@foo/wallet"
-            onClick={[Function]}
-            title="Wallet"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
           <span
-            className="notifications"
+            className="user-avatar medium"
             onClick={[Function]}
-            title="Notifications"
-          >
-            <svg
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
-              />
-            </svg>
-          </span>
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
         </div>
       </div>
     </div>
@@ -939,7 +873,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="h-[40px] w-[40px] shrink-0 cursor-pointer"
     >
       <a
-        href="/"
+        href="/hot"
         onClick={[Function]}
       >
         <img
@@ -975,17 +909,17 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       </a>
     </div>
     <div
-      className="navbar-toggle flex w-[1.5rem] h-[1.5rem] justify-center flex-col gap-1"
+      className="cursor-pointer ml-4"
       onClick={[Function]}
     >
       <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
-      />
-      <span
-        className="bg-gray-500"
+        className="user-avatar medium"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+          }
+        }
       />
     </div>
   </div>
@@ -993,13 +927,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     className="hidden md:flex w-full select-none relative  "
   >
     <div
-      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-dark-200 bg-light-200 dark:bg-dark-200"
+      className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
         className="h-[40px] min-w-[40px] cursor-pointer"
       >
         <a
-          href="/"
+          href="/hot"
           onClick={[Function]}
         >
           <img
@@ -1109,126 +1043,104 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         </div>
       </div>
       <div
-        className="flex items-center ml-3 gap-3"
+        className="flex items-center ml-3"
       >
-        <div
-          className="switch-language"
-        />
-        <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          href="/perks"
           onClick={[Function]}
-          style={
-            Object {
-              "outline": "none",
-            }
-          }
-          title=""
-          type="button"
+        >
+          <div>
+            Buy perks
+          </div>
+          <div
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m8.468 8.395-.002.001-.003.002Zm9.954-.187a1.237 1.237 0 0 0-.23-.175 1 1 0 0 0-1.4.411 5.782 5.782 0 0 1-1.398 1.778 8.664 8.664 0 0 0 .134-1.51 8.714 8.714 0 0 0-4.4-7.582 1 1 0 0 0-1.492.806 7.017 7.017 0 0 1-2.471 4.942l-.23.187a8.513 8.513 0 0 0-1.988 1.863 8.983 8.983 0 0 0 3.656 13.908 1 1 0 0 0 1.377-.926 1.05 1.05 0 0 0-.05-.312 6.977 6.977 0 0 1-.19-2.581 9.004 9.004 0 0 0 4.313 4.016.997.997 0 0 0 .715.038 8.995 8.995 0 0 0 3.654-14.863Zm-3.905 12.831a6.964 6.964 0 0 1-3.577-4.402 8.908 8.908 0 0 1-.18-.964 1 1 0 0 0-.799-.845.982.982 0 0 0-.191-.018 1 1 0 0 0-.867.5 8.959 8.959 0 0 0-1.205 4.718 6.985 6.985 0 0 1-1.176-9.868 6.555 6.555 0 0 1 1.562-1.458.745.745 0 0 0 .075-.055s.296-.245.306-.25a8.968 8.968 0 0 0 2.9-4.633 6.736 6.736 0 0 1 1.385 8.088 1 1 0 0 0 1.184 1.418 7.856 7.856 0 0 0 3.862-2.688 7 7 0 0 1-3.279 10.457Z"
+              />
+            </svg>
+          </div>
+        </a>
+        <a
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          href="/submit"
+          onClick={[Function]}
+          title="Create Post"
         >
           <div
             className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
+              fill="currentColor"
+              height="24"
               viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"
-                fill="currentColor"
+                d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
               />
             </svg>
           </div>
-        </button>
-        <div>
-          <a
-            href="/submit"
-            onClick={[Function]}
-            title="Create Post"
-          >
-            <button
-              className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
-              style={
-                Object {
-                  "outline": "none",
-                }
+        </a>
+        <div
+          className="notifications"
+          onClick={[Function]}
+          title="Notifications"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            style={
+              Object {
+                "outline": "none",
               }
-              type="button"
+            }
+            type="button"
+          >
+            <div
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
-              <div
-                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </button>
-          </a>
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
       <div
         className="btn-menu"
       >
         <div
-          className="user-nav"
+          className="cursor-pointer ml-4"
+          onClick={[Function]}
         >
-          <div
-            className="user-points cursor-pointer"
-            onClick={[Function]}
-          >
-            <svg
-              height="16px"
-              version="1.1"
-              viewBox="0 0 512 512"
-              width="16px"
-            >
-              <path
-                d="M494.41,0.783 C490.167,0.972 412.085,4.973 340.075,42.863 L469.135,171.923 C507.025,99.913 511.026,21.831 511.215,17.588 L511.999,0 L494.41,0.783 Z"
-                fill="currentColor"
-              />
-              <path
-                d="M452.007,200.344 L311.654,59.992 C300.094,67.958 289.001,76.981 278.762,87.221 L222.827,143.156 L95.071,121.623 L2.84217094e-14,216.694 L127.757,238.227 L120.544,245.44 C104.756,261.227 97.327,282.83 99.624,306.271 C101.563,326.056 110.338,345.785 125.187,364.038 L244.128,245.097 L266.903,267.872 L147.961,386.812 C166.213,401.661 185.943,410.436 205.728,412.375 C208.52,412.649 211.284,412.785 214.017,412.785 C234.229,412.785 252.652,405.362 266.558,391.455 L273.77,384.243 L295.303,512 L390.374,416.929 L368.842,289.171 L424.777,233.236 C435.018,222.997 444.042,211.905 452.007,200.344 Z M351.08,202.692 C345.322,208.451 337.757,211.33 330.194,211.33 C322.63,211.33 315.065,208.45 309.308,202.692 C297.79,191.175 297.79,172.436 309.308,160.918 C320.825,149.4 339.565,149.4 351.082,160.918 C362.598,172.436 362.598,191.175 351.08,202.692 Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <a
-            className="user-wallet"
-            href="/@foo/wallet"
-            onClick={[Function]}
-            title="Wallet"
-          >
-            <svg
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
           <span
-            className="notifications"
+            className="user-avatar medium"
             onClick={[Function]}
-            title="Notifications"
-          >
-            <svg
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
-              />
-            </svg>
-          </span>
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+              }
+            }
+          />
         </div>
       </div>
     </div>
