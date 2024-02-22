@@ -2362,5 +2362,9 @@
   },
   "perks": {
     "page-title": "Welcome to Perks"
+  },
+  "boost-plus": {
+    "title": "Boost+",
+    "sub-title": "Boost your account using Ecency points"
   }
 }

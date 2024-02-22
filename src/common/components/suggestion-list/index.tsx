@@ -213,7 +213,7 @@ export default class SuggestionList extends Component<Props> {
             {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
             {showList && !modeItems && items.length > 0 ? (
               <div
-                className="modal-suggestion-list rounded-3xl -top-[44px] absolute"
+                className="modal-suggestion-list rounded-3xl absolute"
                 style={this.props.listStyle}
               >
                 {header && (

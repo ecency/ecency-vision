@@ -464,6 +464,11 @@ export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
   return axios.post(apiBase(`/private-api/promote-price`), data).then((resp) => resp.data);
 };
 
+export const getBoostPlusPrice = (username: string): Promise<PromotePrice[]> => {
+  const data = { code: getAccessToken(username) };
+  return axios.post(apiBase(`/private-api/boost-plus-price`), data).then((resp) => resp.data);
+};
+
 export const getPromotedPost = (
   username: string,
   author: string,
@@ -601,6 +606,7 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
     throw error;
   }
 };
+
 export interface Recoveries {
   username: string;
   email: string;

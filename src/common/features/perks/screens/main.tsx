@@ -8,13 +8,12 @@ import { History } from "history";
 import { connect } from "react-redux";
 import { pageMapDispatchToProps, pageMapStateToProps } from "../../../pages/common";
 import { MajorPerkCard, PerksHeader } from "../components";
-import { rocketSvg } from "../../../img/svg";
-import { walletIconSvg } from "../../../components/decks/icons";
 import { PurchaseQrDialog } from "../../../components/purchase-qr";
 import { useLocation } from "react-router";
 import { PurchaseTypes } from "../../../components/purchase-qr/purchase-types";
 import Promote from "../../../components/promote";
 import Boost from "../../../components/boost";
+import { UilChart, UilFire, UilMoneyWithdraw, UilRocket } from "@iconscout/react-unicons";
 
 interface Props {
   history: History;
@@ -37,46 +36,48 @@ export function EcencyPerks({ history }: Props) {
       <Meta title={_t("perks.page-title")} />
 
       <div className="container mx-auto">
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 items-stretch gap-6">
           <div className="col-span-12">
             <PerksHeader />
           </div>
-          <div className="col-span-6">
-            <MajorPerkCard
-              title="Account boosting"
-              actionText="Boost now!"
-              subtitle="Be first"
-              img={require("../../../img/writer.png")}
-              icon={rocketSvg}
-              onClick={() => setShowPurchaseDialog(true)}
-            />
-          </div>
-          <div className="col-span-6">
+          <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
               title="Buy points"
               actionText="Buy"
-              subtitle="Buy points"
-              img={require("../../../img/writer.png")}
-              icon={walletIconSvg}
+              subtitle="Jump start to improve engagement on your content by purchasing Points with Ecency Mobile"
+              img={require("../../../img/reward.png")}
+              icon={<UilMoneyWithdraw />}
               onClick={() => setShowBuyPointsDialog(true)}
             />
           </div>
-          <div className="col-span-6">
+          <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
+            <MajorPerkCard
+              title="Account boosting"
+              actionText="Boost now!"
+              subtitle="Use Points or In-App purchase to acquire extra powers"
+              img={require("../../../img/like.png")}
+              icon={<UilRocket />}
+              onClick={() => setShowPurchaseDialog(true)}
+            />
+          </div>
+          <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
               title="Promote your post"
               img={require("../../../img/writer.png")}
+              icon={<UilChart />}
               actionText="Promote"
-              subtitle="Boost your post"
-              onClick={() => setShowBoostDialog(true)}
+              subtitle="Impressions boost that will increase eyeballs on your content"
+              onClick={() => setShowPromoteDialog(true)}
             />
           </div>
-          <div className="col-span-6">
+          <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
-              title="Boost your post"
-              actionText="Boost"
-              subtitle="Promote your post"
-              img={require("../../../img/writer.png")}
-              onClick={() => setShowPromoteDialog(true)}
+              title="Boost+"
+              actionText="Boost+"
+              subtitle="Boost your account with your points in few clicks"
+              img={require("../../../img/writer-thinking.png")}
+              icon={<UilFire />}
+              onClick={() => setShowBoostDialog(true)}
             />
           </div>
         </div>

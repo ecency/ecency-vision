@@ -1,6 +1,6 @@
 import { useQueries, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { EntriesCacheContext, QueryIdentifiers } from "../core";
-import { getPoints, getPointTransactions } from "./private-api";
+import { getBoostPlusPrice, getPoints, getPointTransactions } from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
@@ -167,6 +167,15 @@ export function useBotsQuery() {
     queryKey: [QueryIdentifiers.GET_BOTS],
     queryFn: () =>
       axios.get<string[]>(apiBase("/private-api/public/bots")).then((resp) => resp.data),
+    initialData: []
+  });
+}
+
+export function useGetBoostPlusPricesQuery() {
+  const { activeUser } = useMappedStore();
+  return useQuery({
+    queryKey: [QueryIdentifiers.GET_BOOST_PLUS_PRICES],
+    queryFn: () => getBoostPlusPrice(activeUser!.username),
     initialData: []
   });
 }
