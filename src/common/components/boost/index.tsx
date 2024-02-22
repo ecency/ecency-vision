@@ -30,7 +30,7 @@ function BoostDialog({ onHide }: Props) {
   const [inProgress, setInProgress] = useState(false);
 
   const price = useMemo(
-    () => prices?.find((x) => x.duration === duration) ?? 0,
+    () => prices?.find((x) => x.duration === duration)?.price ?? 0,
     [prices, duration]
   );
   const balanceError = useMemo(
@@ -38,7 +38,7 @@ function BoostDialog({ onHide }: Props) {
       parseFloat(activeUser?.points.points ?? "0") < price
         ? _t("trx-common.insufficient-funds")
         : "",
-    [activeUser]
+    [activeUser, price]
   );
   const canSubmit = useMemo(() => !balanceError, [balanceError]);
 
