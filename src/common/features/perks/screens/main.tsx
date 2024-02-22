@@ -20,8 +20,7 @@ interface Props {
 }
 
 export function EcencyPerks({ history }: Props) {
-  const { activeUser, global, setSigningKey, signingKey, updateActiveUser, dynamicProps } =
-    useMappedStore();
+  const { activeUser, global, setSigningKey, signingKey, updateActiveUser } = useMappedStore();
   const location = useLocation();
 
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
@@ -104,17 +103,7 @@ export function EcencyPerks({ history }: Props) {
           updateActiveUser={updateActiveUser}
         />
       )}
-      {showBoostDialog && (
-        <Boost
-          global={global}
-          setSigningKey={setSigningKey}
-          signingKey={signingKey}
-          updateActiveUser={updateActiveUser}
-          activeUser={activeUser!}
-          onHide={() => setShowBoostDialog(false)}
-          dynamicProps={dynamicProps}
-        />
-      )}
+      {showBoostDialog && <Boost onHide={() => setShowBoostDialog(false)} />}
     </div>
   );
 }
