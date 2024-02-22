@@ -41,9 +41,9 @@ export function EcencyPerks({ history }: Props) {
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
-              title="Buy points"
-              actionText="Buy"
-              subtitle="Jump start to improve engagement on your content by purchasing Points with Ecency Mobile"
+              title={_t("perks.points-title")}
+              actionText={_t("perks.points-action")}
+              subtitle={_t("perks.points-description")}
               img={require("../../../img/reward.png")}
               icon={<UilMoneyWithdraw />}
               onClick={() => setShowBuyPointsDialog(true)}
@@ -51,9 +51,9 @@ export function EcencyPerks({ history }: Props) {
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
-              title="Account boosting"
-              actionText="Boost now!"
-              subtitle="Use Points or In-App purchase to acquire extra powers"
+              title={_t("perks.account-boost-title")}
+              actionText={_t("perks.account-boost-action")}
+              subtitle={_t("perks.account-boost-description")}
               img={require("../../../img/like.png")}
               icon={<UilRocket />}
               onClick={() => setShowPurchaseDialog(true)}
@@ -61,19 +61,19 @@ export function EcencyPerks({ history }: Props) {
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
-              title="Promote your post"
+              title={_t("perks.promote-title")}
               img={require("../../../img/writer.png")}
               icon={<UilChart />}
-              actionText="Promote"
-              subtitle="Impressions boost that will increase eyeballs on your content"
+              actionText={_t("perks.promote-action")}
+              subtitle={_t("perks.promote-description")}
               onClick={() => setShowPromoteDialog(true)}
             />
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <MajorPerkCard
-              title="Boost+"
-              actionText="Boost+"
-              subtitle="Boost your account with your points in few clicks"
+              title={_t("perks.boost-plus-title")}
+              actionText={_t("perks.boost-plus-action")}
+              subtitle={_t("perks.boost-plus-description")}
               img={require("../../../img/writer-thinking.png")}
               icon={<UilFire />}
               onClick={() => setShowBoostDialog(true)}

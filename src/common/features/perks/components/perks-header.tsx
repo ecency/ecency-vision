@@ -1,4 +1,5 @@
 import React from "react";
+import { _t } from "../../../i18n";
 
 export function PerksHeader() {
   return (
@@ -15,8 +16,7 @@ export function PerksHeader() {
       <div className="md:min-h-[400px] rounded-b-3xl p-6 items-end justify-start grid grid-cols-12">
         <div className="col-span-12 lg:col-span-6 relative">
           <h1 className="text-xl md:text-5xl relative md:leading-[4rem]">
-            <b className="text-blue-dark-sky">Meet Ecency perks</b> – unified, fast and simple way
-            to boost your account
+            <b className="text-blue-dark-sky">{_t("perks.title")}</b> – {_t("perks.title-next")}
           </h1>
         </div>
       </div>
