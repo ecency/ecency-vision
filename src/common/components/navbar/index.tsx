@@ -1,7 +1,7 @@
 import { History } from "history";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import queryString from "query-string";
 import isCommunity from "../../helper/is-community";
@@ -37,8 +37,6 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
 
   const previousLocation = usePrevious(location);
   const previousActiveUser = usePrevious(activeUser);
-
-  const navRef = useRef<any>();
 
   const logo = require("../../img/logo-circle.svg");
 
@@ -135,12 +133,9 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
         history={history}
       />
       <NavbarDesktop
-        themeText={themeText}
         transparentVerify={transparentVerify}
-        logoHref={logoHref}
         mainBarExpanded={mainBarExpanded}
         setMainBarExpanded={setMainBarExpanded}
-        logo={logo}
         step={step}
         setStepOne={setStepOne}
         history={history}

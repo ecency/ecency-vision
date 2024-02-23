@@ -7,6 +7,7 @@ import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
 import { NavbarMainSidebar } from "./navbar-main-sidebar";
+import { NavbarMainSidebarToggle } from "./navbar-main-sidebar-toggle";
 
 interface Props {
   step?: number;
@@ -41,14 +42,7 @@ export function NavbarMobile({
         transparent: step === 1
       })}
     >
-      <div className="h-[40px] w-[40px] shrink-0 cursor-pointer">
-        <img
-          src={logo}
-          className="h-[40px] w-[40px]"
-          alt="Logo"
-          onClick={() => setMainBarExpanded(true)}
-        />
-      </div>
+      <NavbarMainSidebarToggle onClick={() => setMainBarExpanded(true)} />
 
       {activeUser && (
         <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>
