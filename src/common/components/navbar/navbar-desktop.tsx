@@ -72,7 +72,15 @@ export function NavbarDesktop({
         <div className="btn-menu">
           <AnonUserButtons />
           {activeUser && (
-            <div className="cursor-pointer ml-4" onClick={() => setShowSidebar(true)}>
+            <div
+              className="cursor-pointer ml-4"
+              onClick={() => {
+                setShowSidebar(true);
+                if (ui.notifications) {
+                  toggleUIProp("notifications");
+                }
+              }}
+            >
               <UserAvatar size="medium" username={activeUser.username} />
             </div>
           )}

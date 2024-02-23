@@ -13,18 +13,21 @@ import { ModeSelector } from "./mode-selector";
 import { AdvancedMode } from "./advanced-mode";
 import "./index.scss";
 import { SwapMode } from "../../components/market-swap-form/swap-mode";
+import { useLocation } from "react-router";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
   const [title, setTitle] = useState(_t("market.title"));
   const [description, setDescription] = useState(_t("market.description"));
 
+  const location = useLocation();
+
   useEffect(() => {
     const hash = props.location.hash;
     if (hash === "#swap") setMode(MarketMode.SWAP);
     if (hash === "#limit") setMode(MarketMode.LIMIT);
     if (hash === "#advanced") setMode(MarketMode.ADVANCED);
-  }, []);
+  }, [location.hash]);
 
   return (
     <>
