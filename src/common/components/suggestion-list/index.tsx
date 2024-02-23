@@ -203,7 +203,7 @@ export default class SuggestionList extends Component<Props> {
       <>
         <div
           className={classNameObject({
-            "suggestion relative": true,
+            "suggestion relative z-[11]": true,
             [containerClassName ?? ""]: !!containerClassName
           })}
           ref={this.parent}
