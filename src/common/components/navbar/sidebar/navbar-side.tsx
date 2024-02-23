@@ -7,11 +7,9 @@ import { History } from "history";
 import { Button } from "@ui/button";
 import { closeSvg } from "../../../img/svg";
 import { NavbarSideThemeSwitcher } from "./navbar-side-theme-switcher";
-import SwitchLang from "../../switch-lang";
 import { NavbarPerksButton } from "../navbar-perks-button";
 import { walletIconSvg } from "../../decks/icons";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import * as pack from "../../../../../package.json";
 import { NavbarNotificationsButton } from "../navbar-notifications-button";
 import { UilEditAlt } from "@iconscout/react-unicons";
 
@@ -58,10 +56,6 @@ export function NavbarSide({ show, setShow, history }: Props) {
           <NavbarPerksButton />
         </div>
         <NavbarSideMainMenu history={history} onHide={() => setShow(false)} />
-        <div className="p-4 items-center flex justify-between">
-          <span className="text-xs opacity-50">v{pack.version}</span>
-          <SwitchLang history={history} />
-        </div>
       </div>
     </Modal>
   );

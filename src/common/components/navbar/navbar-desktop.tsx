@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ToolTip from "../tooltip";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
@@ -15,6 +14,7 @@ import { NavbarNotificationsButton } from "./navbar-notifications-button";
 import { UilEditAlt } from "@iconscout/react-unicons";
 import { NavbarPerksButton } from "./navbar-perks-button";
 import { AnonUserButtons } from "./anon-user-buttons";
+import { NavbarMainSidebar } from "./navbar-main-sidebar";
 
 interface Props {
   step?: number;
@@ -25,33 +25,22 @@ interface Props {
   setStepOne?: () => void;
   setSmVisible: (v: boolean) => void;
   themeText: string;
+  mainBarExpanded: boolean;
+  setMainBarExpanded: (v: boolean) => void;
 }
 
 export function NavbarDesktop({
   step,
   transparentVerify,
   logo,
-  logoHref,
   history,
-  setSmVisible,
   setStepOne,
-  themeText
+  mainBarExpanded,
+  setMainBarExpanded
 }: Props) {
   const { activeUser, ui, toggleUIProp } = useMappedStore();
 
   const [showSidebar, setShowSidebar] = useState(false);
-
-  const onLogoClick = () => {
-    if (
-      "/" !== location.pathname ||
-      location.pathname?.startsWith("/hot") ||
-      location.pathname?.startsWith("/created") ||
-      location.pathname?.startsWith("/trending")
-    ) {
-      history.push("/");
-    }
-    setStepOne?.();
-  };
 
   return (
     <div
@@ -68,13 +57,7 @@ export function NavbarDesktop({
         })}
       >
         <div className="h-[40px] min-w-[40px] cursor-pointer">
-          {activeUser !== null ? (
-            <Link to={logoHref}>
-              <img src={logo} className="logo" alt="Logo" />
-            </Link>
-          ) : (
-            <img src={logo} className="logo" alt="Logo" onClick={onLogoClick} />
-          )}
+          <img src={logo} className="logo" alt="Logo" onClick={() => setMainBarExpanded(true)} />
         </div>
         <div className="flex-1" />
         <NavbarTextMenu />
@@ -102,6 +85,12 @@ export function NavbarDesktop({
       </div>
       {ui.notifications && <UserNotifications history={history} />}
       {activeUser && <NavbarSide history={history} show={showSidebar} setShow={setShowSidebar} />}
+      <NavbarMainSidebar
+        show={mainBarExpanded}
+        setShow={setMainBarExpanded}
+        history={history}
+        setStepOne={setStepOne}
+      />
     </div>
   );
 }

@@ -1,6 +1,4 @@
 import { classNameObject } from "../../helper/class-name-object";
-import { Link } from "react-router-dom";
-import { NavbarTextMenu } from "./navbar-text-menu";
 import React from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { History } from "history";
@@ -8,6 +6,7 @@ import { NavbarSide } from "./sidebar/navbar-side";
 import UserAvatar from "../user-avatar";
 import { _t } from "../../i18n";
 import { Button } from "@ui/button";
+import { NavbarMainSidebar } from "./navbar-main-sidebar";
 
 interface Props {
   step?: number;
@@ -17,6 +16,8 @@ interface Props {
   setStepOne?: () => void;
   expanded: boolean;
   setExpanded: (v: boolean) => void;
+  mainBarExpanded: boolean;
+  setMainBarExpanded: (v: boolean) => void;
 }
 
 export function NavbarMobile({
@@ -26,21 +27,11 @@ export function NavbarMobile({
   history,
   setStepOne,
   expanded,
-  setExpanded
+  setExpanded,
+  mainBarExpanded,
+  setMainBarExpanded
 }: Props) {
   const { activeUser, toggleUIProp } = useMappedStore();
-
-  const onLogoClick = () => {
-    if (
-      "/" !== location.pathname ||
-      location.pathname?.startsWith("/hot") ||
-      location.pathname?.startsWith("/created") ||
-      location.pathname?.startsWith("/trending")
-    ) {
-      history.push("/");
-    }
-    setStepOne?.();
-  };
 
   return (
     <div
@@ -51,16 +42,13 @@ export function NavbarMobile({
       })}
     >
       <div className="h-[40px] w-[40px] shrink-0 cursor-pointer">
-        {activeUser !== null ? (
-          <Link to={logoHref}>
-            <img src={logo} className="h-[40px] w-[40px]" alt="Logo" />
-          </Link>
-        ) : (
-          <img src={logo} className="h-[40px] w-[40px]" alt="Logo" onClick={onLogoClick} />
-        )}
+        <img
+          src={logo}
+          className="h-[40px] w-[40px]"
+          alt="Logo"
+          onClick={() => setMainBarExpanded(true)}
+        />
       </div>
-
-      <NavbarTextMenu />
 
       {activeUser && (
         <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>
@@ -74,6 +62,12 @@ export function NavbarMobile({
       )}
 
       {activeUser && <NavbarSide history={history} show={expanded} setShow={setExpanded} />}
+      <NavbarMainSidebar
+        setShow={setMainBarExpanded}
+        show={mainBarExpanded}
+        setStepOne={setStepOne}
+        history={history}
+      />
     </div>
   );
 }

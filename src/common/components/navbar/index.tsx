@@ -33,6 +33,7 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
   const [themeText, setThemeText] = useState("");
   const [smVisible, setSmVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [mainBarExpanded, setMainBarExpanded] = useState(false);
 
   const previousLocation = usePrevious(location);
   const previousActiveUser = usePrevious(activeUser);
@@ -126,6 +127,8 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
       <NavbarMobile
         expanded={expanded}
         setExpanded={setExpanded}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         step={step}
         logoHref={logoHref}
         logo={logo}
@@ -135,6 +138,8 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
         themeText={themeText}
         transparentVerify={transparentVerify}
         logoHref={logoHref}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         logo={logo}
         step={step}
         setStepOne={setStepOne}

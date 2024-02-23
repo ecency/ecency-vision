@@ -132,30 +132,6 @@ export function NavbarSideMainMenu({ history, onHide }: Props) {
             icon={icon}
           />
         ))}
-        <hr className="my-2" />
-        <div className="text-xs">
-          <NavbarSideMainMenuItem
-            label={_t("proposals.page-title")}
-            to="/proposals"
-            onClick={onHide}
-          />
-          <NavbarSideMainMenuItem
-            label={_t("witnesses.page-title")}
-            to="/witnesses"
-            onClick={onHide}
-          />
-          <NavbarSideMainMenuItem label={_t("entry-index.faq")} to="/faq" onClick={onHide} />
-          <NavbarSideMainMenuItem
-            label={_t("entry-index.tos")}
-            to="/terms-of-service"
-            onClick={onHide}
-          />
-          <NavbarSideMainMenuItem
-            label={_t("entry-index.pp")}
-            to="/privacy-policy"
-            onClick={onHide}
-          />
-        </div>
       </div>
       {gallery && <Gallery onHide={() => setGallery(false)} />}
       {drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}
