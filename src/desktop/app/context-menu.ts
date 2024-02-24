@@ -1,76 +1,56 @@
-import {remote, shell, clipboard} from "electron";
+import { ipcRenderer, shell, clipboard, Menu } from "electron";
 
-import {_t} from "../../common/i18n";
-
-const {Menu, MenuItem} = remote;
+import { _t } from "../../common/i18n";
 
 const isAnyTextSelected = () => window.getSelection() && window.getSelection()!.toString() !== '';
 
-const itemCut = () =>
-    new MenuItem({
-        label: _t('context-menu.cut'),
-        click: () => {
-            document.execCommand('cut');
-        }
-    });
+const itemCut = () => ({
+    label: _t('context-menu.cut'),
+    click: () => {
+        document.execCommand('cut');
+    }
+});
 
-const itemCopy = () =>
-    new MenuItem({
-        label: _t('context-menu.copy'),
-        click: () => {
-            document.execCommand('copy');
-        }
-    });
+const itemCopy = () => ({
+    label: _t('context-menu.copy'),
+    click: () => {
+        document.execCommand('copy');
+    }
+});
 
-const itemPaste = () =>
-    new MenuItem({
-        label: _t('context-menu.paste'),
-        click: () => {
-            document.execCommand('paste');
-        }
-    });
+const itemPaste = () => ({
+    label: _t('context-menu.paste'),
+    click: () => {
+        document.execCommand('paste');
+    }
+});
 
 let imgUrlToOpen = '';
-const itemImgOpen = () =>
-    new MenuItem({
-        label: _t('context-menu.open-image-browser'),
-        click: () => {
-            shell.openExternal(imgUrlToOpen);
-        }
-    });
+const itemImgOpen = () => ({
+    label: _t('context-menu.open-image-browser'),
+    click: () => {
+        shell.openExternal(imgUrlToOpen);
+    }
+});
 
-const itemImgCopyUrl = () =>
-    new MenuItem({
-        label: _t('context-menu.copy-image-url'),
-        click: () => {
-            clipboard.writeText(imgUrlToOpen);
-        }
-    });
+const itemImgCopyUrl = () => ({
+    label: _t('context-menu.copy-image-url'),
+    click: () => {
+        clipboard.writeText(imgUrlToOpen);
+    }
+});
 
-const normalMenu = new Menu();
-normalMenu.append(itemCopy());
+let menuTemplate: any[] | null = null;
 
-const textEditMenu = () => {
-    const menu = new Menu();
-    menu.append(itemCut());
-    menu.append(itemCopy());
-    menu.append(itemPaste());
+const normalMenuTemplate = [itemCopy()];
 
-    return menu;
-};
+const textEditMenuTemplate = [itemCut(), itemCopy(), itemPaste()];
 
-const imgMenu = () => {
-    const menu = new Menu();
-    menu.append(itemImgOpen());
-    menu.append(itemImgCopyUrl());
-
-    return menu;
-};
+const imgMenuTemplate = [itemImgOpen(), itemImgCopyUrl()];
 
 document.addEventListener(
     'contextmenu',
     (e: MouseEvent) => {
-
         const target = e.target as HTMLElement;
 
         switch (target.nodeName) {
@@ -78,19 +58,24 @@ document.addEventListener(
                 imgUrlToOpen = target.getAttribute('src') || '';
                 if (imgUrlToOpen.startsWith('https://')) {
                     e.preventDefault();
-                    imgMenu().popup({window: remote.getCurrentWindow()});
+                    menuTemplate = imgMenuTemplate;
                 }
                 break;
             case 'TEXTAREA':
             case 'INPUT':
                 e.preventDefault();
-                textEditMenu().popup({window: remote.getCurrentWindow()});
+                menuTemplate = textEditMenuTemplate;
                 break;
             default:
                 if (isAnyTextSelected()) {
                     e.preventDefault();
-                    normalMenu.popup({window: remote.getCurrentWindow()});
+                    menuTemplate = normalMenuTemplate;
                 }
+        }
+
+        if (menuTemplate) {
+            const menu = Menu.buildFromTemplate(menuTemplate);
+            menu.popup();
         }
     },
     false

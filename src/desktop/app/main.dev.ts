@@ -8,16 +8,15 @@
  * When running `yarn build` or `yarn build-main`, this file is compiled to
  * `./app/main.prod.js` using webpack. This gives us some performance wins.
  */
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import path from "path";
-import { app, BrowserWindow, ipcMain, shell } from "electron";
-import { autoUpdater } from "electron-updater";
+
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import path from 'path';
+// import { autoUpdater } from 'electron-updater'; //THIS WAS CONSTITUTING TO THE BUILD ERROR, CHANGED TO REQUIRE
+const autoUpdater = require("electron-updater").autoUpdater    
 import MenuBuilder from "./menu";
 import { HandlerDetails } from "electron/main";
 
 const osPlatform = require("os").platform();
-
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === "production") {
@@ -31,10 +30,6 @@ if (
 ) {
   require("electron-debug")();
 }
-
-/**
- * Deep linking
- */
 
 let deepUrl: any;
 
@@ -85,7 +80,7 @@ const installExtensions = async () => {
   const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 
   return Promise.all(
-    extensions.map((name) => installer.default(installer[name], forceDownload))
+    extensions.map((name: string) => installer.default(installer[name], forceDownload))
   ).catch(console.log);
 };
 
@@ -114,16 +109,13 @@ const createWindow = async () => {
     icon: getAssetPath("icon.png"),
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
       contextIsolation: false,
-      worldSafeExecuteJavaScript: false,
+      // worldSafeExecuteJavaScript: false,
     },
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-  // @TODO: Use 'ready-to-show' event
-  // https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
   mainWindow.webContents.on("did-finish-load", () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
@@ -135,22 +127,18 @@ const createWindow = async () => {
       mainWindow.focus();
     }
 
-    // Enable zoom
     mainWindow.webContents.setVisualZoomLevelLimits(1, 3);
 
-    // Auto updater checks
     if (process.env.NODE_ENV === "production") {
       autoUpdater.autoDownload = false;
 
       autoUpdater.checkForUpdates();
 
-      // run auto updater to check if is there a new version for each 4 hours
       setInterval(() => {
         autoUpdater.checkForUpdates();
       }, 1000 * 60 * 240);
     }
 
-    // Deeplink protocol handler for win32 and linux
     if (process.platform === "win32" || process.platform === "linux") {
       deepUrl = process.argv.slice(1);
     }
@@ -175,30 +163,19 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 };
 
-/**
- * Add event listeners...
- */
-
 app.on("window-all-closed", () => {
   app.quit();
 });
 
 if (process.env.E2E_BUILD === "true") {
-  // eslint-disable-next-line promise/catch-or-return
   app.whenReady().then(createWindow);
 } else {
   app.on("ready", createWindow);
 }
 
 app.on("activate", () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
 });
-
-/**
- * Event handlers for auto updater
- */
 
 autoUpdater.on("update-available", (info: any) => {
   mainWindow!.webContents.send("update-available", info.releaseName);
@@ -213,7 +190,6 @@ autoUpdater.on("update-downloaded", () => {
 });
 
 ipcMain.on("download-update", (event: any, version: any) => {
-  // Windows
   if (osPlatform === "win32") {
     const u = `https://github.com/ecency/ecency-vision/releases/download/${version}/Ecency-Setup-${version}.exe`;
     shell.openExternal(u);

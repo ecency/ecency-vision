@@ -20,6 +20,13 @@ interface State {
   completed: boolean;
 }
 
+interface CustomWindow extends Window {
+    ipcRenderer?: {
+        on(event: string, listener: (...args: any[]) => void): void;
+        send(event: string, ...args: any[]): void;
+    };
+}
+
 export default class Updater extends Component<Props, State> {
   state: State = {
     ver: "",
