@@ -211,20 +211,21 @@ export class NavBar extends Component<Props, State> {
   //     this.props.toggleTheme(_default_theme);
   // }
 
-  handleAutoDetectTheme = (e: any = null) => {
+  handleAutoDetectTheme = (e: MediaQueryListEvent | null = null) => {
     const _default_theme =
-      e && e.matches ? Theme.night : Theme[this.props.global.ctheme];
+      e && e.matches ? Theme.night : (Theme as {[key: string]: string})[this.props.global.ctheme];
     this.props.toggleTheme(_default_theme);
-  };
+};
 
   render() {
     const { global, activeUser, ui, step, toggleUIProp, setActiveUser, match } =
       this.props;
 
-    const themeText =
-      global.theme == Theme[global.ctheme]
+      const themeText =
+      global.theme === Theme[global.ctheme as keyof typeof Theme]
         ? _t("navbar.night-theme")
         : _t(`navbar.${global.ctheme}-theme`);
+            
     const logoHref = activeUser ? `/trending/${global.hive_id}` : "/";
     const {
       smVisible,

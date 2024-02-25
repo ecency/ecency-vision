@@ -85,7 +85,8 @@ export const fullAccountInstance: FullAccount = {
         "website": "https://github.com/talhasch",
         "location": "Istanbul"
     },
-    "follow_stats": {"account": "talhasch", "following_count": 27, "follower_count": 232}
+    "follow_stats": {"account": "talhasch", "following_count": 27, "follower_count": 232},
+    pending_claimed_accounts: 0
 }
 
 export const RcAccountInstance = {

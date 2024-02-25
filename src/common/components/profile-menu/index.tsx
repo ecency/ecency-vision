@@ -43,7 +43,7 @@ export class ProfileMenu extends Component<Props> {
             items: MenuItem[]
         } = {
             history: this.props.history,
-            label: ProfileFilter[section] ? _t(`profile.section-${section}`) : '',
+            label: ProfileFilter[section as keyof typeof ProfileFilter] ? _t(`profile.section-${section}`) : '',
             items: [
                 ...[ProfileFilter.blog, ProfileFilter.posts, ProfileFilter.comments, ProfileFilter.replies].map((x) => {
                     return {
@@ -54,7 +54,7 @@ export class ProfileMenu extends Component<Props> {
                     };
                 }),
             ],
-        };
+        };        
 
         let showDropdown = menuConfig.items.filter(item => item.id === section).length > 0;
 
@@ -85,7 +85,7 @@ export class ProfileMenu extends Component<Props> {
                     )}
                 </div>
 
-                <div className="page-tools">{ProfileFilter[section] && 
+                <div className="page-tools">{ProfileFilter[section as keyof typeof ProfileFilter] && 
                     <ListStyleToggle global={this.props.global} toggleListStyle={this.props.toggleListStyle}/>}
                 </div>
             </div>
