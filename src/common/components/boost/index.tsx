@@ -9,11 +9,12 @@ import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { useMappedStore } from "../../store/use-mapped-store";
-import { useGetBoostPlusPricesQuery } from "../../api/queries";
+import { useGetBoostPlusAccountPricesQuery, useGetBoostPlusPricesQuery } from "../../api/queries";
 import { PrivateKey } from "@hiveio/dhive";
 import { boostPlus, boostPlusHot, boostPlusKc, formatError } from "../../api/operations";
 import { error } from "../feedback";
 import { SearchByUsername } from "../search-by-username";
+import { isAfter } from "date-fns";
 
 interface Props {
   onHide: () => void;
@@ -29,6 +30,8 @@ function BoostDialog({ onHide }: Props) {
   const [account, setAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
 
+  const { data: alreadyBoostAccount } = useGetBoostPlusAccountPricesQuery(account);
+
   const price = useMemo(
     () => prices?.find((x) => x.duration === duration)?.price ?? 0,
     [prices, duration]
@@ -40,7 +43,17 @@ function BoostDialog({ onHide }: Props) {
         : "",
     [activeUser, price]
   );
-  const canSubmit = useMemo(() => !balanceError, [balanceError]);
+  const isAlreadyBoosted = useMemo(
+    () =>
+      alreadyBoostAccount && alreadyBoostAccount.expires
+        ? isAfter(alreadyBoostAccount.expires, new Date())
+        : false,
+    [alreadyBoostAccount]
+  );
+  const canSubmit = useMemo(
+    () => !balanceError || !isAlreadyBoosted,
+    [balanceError, isAlreadyBoosted]
+  );
 
   useEffect(() => {
     if (prices.length > 0) {
@@ -118,6 +131,13 @@ function BoostDialog({ onHide }: Props) {
                       value={`${activeUser?.points.points} POINTS`}
                     />
                     {balanceError && <small className="pl-3 text-red">{balanceError}</small>}
+                    {isAlreadyBoosted && (
+                      <div>
+                        <small className="pl-3 text-red">
+                          {_t("boost-plus.already-boosted-account")}
+                        </small>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="grid grid-cols-12 mb-4">

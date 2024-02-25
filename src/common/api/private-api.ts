@@ -469,6 +469,17 @@ export const getBoostPlusPrice = (username: string): Promise<PromotePrice[]> => 
   return axios.post(apiBase(`/private-api/boost-plus-price`), data).then((resp) => resp.data);
 };
 
+export const getBoostPlusAccounts = (
+  username: string,
+  account: string
+): Promise<{
+  expires: string;
+  account: string;
+}> => {
+  const data = { code: getAccessToken(username), account };
+  return axios.post(apiBase("/private-api/boosted-plus-account"), data).then((resp) => resp.data);
+};
+
 export const getPromotedPost = (
   username: string,
   author: string,

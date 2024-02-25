@@ -1,6 +1,11 @@
 import { useQueries, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { EntriesCacheContext, QueryIdentifiers } from "../core";
-import { getBoostPlusPrice, getPoints, getPointTransactions } from "./private-api";
+import {
+  getBoostPlusAccounts,
+  getBoostPlusPrice,
+  getPoints,
+  getPointTransactions
+} from "./private-api";
 import { useMappedStore } from "../store/use-mapped-store";
 import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
@@ -8,9 +13,10 @@ import { Entry } from "../store/entries/types";
 import { getAccountFull, getFollowing } from "./hive";
 import { getAccountPosts, getDiscussion } from "./bridge";
 import { SortOrder } from "../store/discussion/types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { sortDiscussions } from "../util/sort-discussions";
 import { apiBase } from "./helper";
+import useDebounce from "react-use/lib/useDebounce";
 
 const DEFAULT = {
   points: "0.000",
@@ -177,5 +183,36 @@ export function useGetBoostPlusPricesQuery() {
     queryKey: [QueryIdentifiers.GET_BOOST_PLUS_PRICES],
     queryFn: () => getBoostPlusPrice(activeUser!.username),
     initialData: []
+  });
+}
+
+export function useGetBoostPlusAccountPricesQuery(account: string) {
+  const { activeUser } = useMappedStore();
+
+  const [query, setQuery] = useState("");
+
+  useDebounce(
+    () => {
+      if (account) {
+        setQuery(account);
+      }
+    },
+    300,
+    [account]
+  );
+
+  return useQuery({
+    queryKey: [QueryIdentifiers.GET_BOOST_PLUS_ACCOUNTS, query],
+    queryFn: () =>
+      getBoostPlusAccounts(activeUser!.username, query).then((data) =>
+        data
+          ? ({
+              ...data,
+              expires: new Date(data.expires)
+            } as { account?: string; expires?: Date })
+          : {}
+      ),
+    initialData: {},
+    enabled: !!query
   });
 }
