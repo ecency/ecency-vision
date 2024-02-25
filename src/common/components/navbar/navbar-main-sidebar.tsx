@@ -6,6 +6,7 @@ import {
   UilCloudComputing,
   UilColumns,
   UilCommentPlus,
+  UilHome,
   UilUsersAlt,
   UilUserSquare
 } from "@iconscout/react-unicons";
@@ -67,6 +68,14 @@ export function NavbarMainSidebar({ show, setShow, history, setStepOne }: Props)
           <Button icon={closeSvg} size="sm" appearance="gray-link" onClick={() => setShow(false)} />
         </div>
         <div className="px-4 py-6 flex flex-col gap-0.5">
+          <NavbarSideMainMenuItem
+            label={_t("navbar.home")}
+            onClick={() => {
+              setShow(false);
+              onLogoClick();
+            }}
+            icon={<UilHome size={16} />}
+          />
           <NavbarSideMainMenuItem
             label={_t("navbar.discover")}
             to="/discover"

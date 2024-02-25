@@ -148,7 +148,8 @@
     "post": "Create Post",
     "day-theme": "Day Theme",
     "night-theme": "Night Theme",
-    "address-placeholder": "enter url or search query"
+    "address-placeholder": "enter url or search query",
+    "home": "Home"
   },
   "search": {
     "placeholder": "Search",
