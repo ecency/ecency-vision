@@ -1,6 +1,5 @@
 import Tooltip from "../../tooltip";
 import { _t } from "../../../i18n";
-import { imageSvg } from "../../../img/svg";
 import React, { useRef, useState } from "react";
 import AddImage from "../../add-image";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -11,6 +10,7 @@ import axios from "axios";
 import Gallery from "../../gallery";
 import { PopperDropdown } from "../../popper-dropdown";
 import { Button } from "@ui/button";
+import { UilImage } from "@iconscout/react-unicons";
 
 interface Props {
   onAddImage: (link: string, name: string) => void;
@@ -73,7 +73,9 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
     <div className="deck-threads-form-toolbar-image-picker">
       {activeUser && (
         <Tooltip content={_t("editor-toolbar.image")}>
-          <PopperDropdown toggle={<Button icon={imageSvg} appearance="link" noPadding={true} />}>
+          <PopperDropdown
+            toggle={<Button icon={<UilImage />} appearance="gray-link" noPadding={true} />}
+          >
             <div className="dropdown-menu">
               <div
                 className="dropdown-item"
