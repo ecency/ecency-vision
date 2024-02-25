@@ -33,7 +33,7 @@ export const ResourceCreditsDelegation = (props: any) => {
 
   const convertToBillions = (input: string) => {
     const inputNumber = parseFloat(input);
-    let  resultDivided;
+    let  resultDivided: number;
 
     if (!isNaN(inputNumber)) {
        resultDivided = inputNumber / 1e9;
@@ -257,23 +257,23 @@ export const ResourceCreditsDelegation = (props: any) => {
             )}
 
             <div className="d-flex rc-progress-line" onClick={handleProgressLineClick}>
-              <div className="rc-fill" style={{ width: `${fillWidth}%` }}></div>
+              <div className="rc-fill" style={{ width: `${fillWidth}%` }} />
 
               <div className="rc-points" 
               onClick={() => handlePointClick(0)}
-              ></div>
+              />
               <div className="rc-points"
               onClick={() => handlePointClick(1)}
-              ></div>
+              />
               <div className="rc-points" 
               onClick={() => handlePointClick(2)}
-              ></div>
+              />
               <div className="rc-points"  
               onClick={() => handlePointClick(3)}
-              ></div>
+              />
               <div className="rc-points"  
               onClick={() => handlePointClick(4)}
-              ></div>
+              />
             </div>
 
             <div className="grid grid-cols-12">

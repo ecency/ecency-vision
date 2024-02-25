@@ -25,7 +25,7 @@ export const getPrivateKeys = (username: any, password: any) => {
     memoPubkey: string;
   };
 
-  let privKeys: keysType = {
+  let privKeys: keysType | any = {
     owner: "",
     active: "",
     posting: "",

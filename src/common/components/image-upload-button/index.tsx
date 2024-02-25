@@ -35,35 +35,38 @@ export default class UploadButton extends BaseComponent<UploadButtonProps, Uploa
     };
 
     handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = [...e.target.files];
-
-        if (files.length === 0) {
+        const files = e.target.files;
+    
+        if (!files || files.length === 0) {
             return;
         }
-
-        const [file] = files;
-
+    
+        const file = files[0];
+    
         const {onBegin, onEnd, activeUser} = this.props;
-
+    
         onBegin();
-
+    
         this.stateSet({inProgress: true});
         let token = getAccessToken(activeUser.username);
-
-        if(token){
-            uploadImage(file, token).then(r => {
-            onEnd(r.url);
-            success(_t('image-upload-button.uploaded'));
-        }).catch(() => {
-            error(_t('g.server-error'));
-        }).finally(() => {
-            this.stateSet({inProgress: false});
-        });
-    }
-    else {
-        error(_t("editor-toolbar.image-error-cache"))
-    }
+    
+        if (token) {
+            uploadImage(file, token)
+                .then(r => {
+                    onEnd(r.url);
+                    success(_t('image-upload-button.uploaded'));
+                })
+                .catch(() => {
+                    error(_t('g.server-error'));
+                })
+                .finally(() => {
+                    this.stateSet({inProgress: false});
+                });
+        } else {
+            error(_t("editor-toolbar.image-error-cache"))
+        }
     };
+    
 
     render() {
         const {inProgress} = this.state;

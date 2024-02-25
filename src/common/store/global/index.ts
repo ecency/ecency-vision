@@ -34,10 +34,10 @@ import filterTagExtract from "../../helper/filter-tag-extract";
 import { setupConfig } from "../../../setup";
 
 export const initialState: Global = {
-  // filter: AllFilter[defaults.filter],
+  filter: AllFilter[defaults.filter as keyof typeof AllFilter] || AllFilter.hot,
+  theme: (setupConfig.selectedTheme && Theme[setupConfig.selectedTheme as keyof typeof Theme]) || Theme.day,
+  listStyle: (defaults.listStyle && ListStyle[defaults.listStyle as keyof typeof ListStyle]) || ListStyle.row,
   tag: "",
-  // theme: Theme[setupConfig.selectedTheme],
-  // listStyle: ListStyle[defaults.listStyle],
   intro: true,
   currency: defaults && defaults.currency && defaults.currency.currency,
   currencyRate: defaults && defaults.currency && defaults.currency.rate,
@@ -70,7 +70,7 @@ export default (state: Global = initialState, action: Actions): Global => {
 
       const { filter, tag } = params;
 
-      return { ...state, filter: AllFilter[filter] || "", tag: tag };
+      return { ...state, filter: AllFilter[filter as keyof typeof AllFilter] || "", tag: tag };
     }
     case ActionTypes.THEME_CHANGE: {
       const { theme } = action;

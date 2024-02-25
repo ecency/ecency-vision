@@ -47,6 +47,7 @@
     "typePatches",
     "node",
     "jest",
-    "webpack-env"
+    "webpack-env",
+    "electron" 
   ]
 }

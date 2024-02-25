@@ -32,6 +32,13 @@ interface State {
     inProgress: boolean,
 }
 
+interface KeyObject {
+    active: string;
+    memo: string;
+    owner: string;
+    posting: string;
+}
+
 export class PasswordUpdate extends BaseComponent<Props, State> {
     state: State = {
         curPass: "",
@@ -65,14 +72,14 @@ export class PasswordUpdate extends BaseComponent<Props, State> {
 
         this.stateSet({inProgress: true});
 
-        const newPrivateKeys = {active: "", memo: "", owner: "", posting: ""};
-        const newPublicKeys = {active: "", memo: "", owner: "", posting: ""};
+        const newPrivateKeys: KeyObject = {active: "", memo: "", owner: "", posting: ""};
+        const newPublicKeys: KeyObject = {active: "", memo: "", owner: "", posting: ""};
 
         ['owner', 'active', 'posting', 'memo'].forEach(r => {
             const k = PrivateKey.fromLogin(activeUser.username, newPass, r as KeyRole);
-            newPrivateKeys[r] = k.toString();
+            newPrivateKeys[r as keyof KeyObject] = k.toString();
 
-            newPublicKeys[r] = k.createPublic().toString();
+            newPublicKeys[r as keyof KeyObject] = k.createPublic().toString();
         });
 
         const ownerKey = PrivateKey.fromLogin(activeUser.username, curPass, "owner");
