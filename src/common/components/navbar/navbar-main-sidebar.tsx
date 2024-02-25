@@ -7,6 +7,7 @@ import {
   UilColumns,
   UilCommentPlus,
   UilHome,
+  UilListUl,
   UilUsersAlt,
   UilUserSquare
 } from "@iconscout/react-unicons";
@@ -106,6 +107,12 @@ export function NavbarMainSidebar({ show, setShow, history, setStepOne }: Props)
             to="/witnesses"
             onClick={() => setShow(false)}
             icon={<UilCloudComputing size={16} />}
+          />
+          <NavbarSideMainMenuItem
+            label={_t("switch-lang.contributors")}
+            to="/contributors"
+            onClick={() => setShow(false)}
+            icon={<UilListUl size={16} />}
           />
 
           <hr className="my-2" />
