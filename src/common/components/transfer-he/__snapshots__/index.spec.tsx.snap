@@ -78,7 +78,7 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -490,7 +490,7 @@ exports[`(1) Hive Engine - Transfer (3) Step 3 1`] = `
               Sign with hivesigner
             </div>
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <img
                 alt="hivesigner"
@@ -675,7 +675,7 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -1072,7 +1072,7 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -1496,7 +1496,7 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"

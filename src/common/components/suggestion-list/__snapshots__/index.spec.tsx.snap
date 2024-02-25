@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="suggestion relative"
+  className="suggestion relative z-[11]"
 >
   <span>
     children
@@ -13,7 +13,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Show list 1`] = `
 <div
-  className="suggestion relative"
+  className="suggestion relative z-[11]"
 >
   <span>
     children

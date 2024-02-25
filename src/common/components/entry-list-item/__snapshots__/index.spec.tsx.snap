@@ -724,24 +724,6 @@ exports[`(3) Nsfw 1`] = `
       </div>
     </div>
     <div
-      className="item-image "
-    >
-      <a
-        href="/hive/@good-karma/awesome-hive"
-        onClick={[Function]}
-      >
-        <picture>
-          <source
-            media="(min-width: 576px)"
-          />
-          <img
-            alt=""
-            className="w-full"
-          />
-        </picture>
-      </a>
-    </div>
-    <div
       className="item-summary"
     >
       <a
@@ -1055,24 +1037,6 @@ exports[`(4) Nsfw with active user 1`] = `
       </div>
     </div>
     <div
-      className="item-image "
-    >
-      <a
-        href="/hive/@good-karma/awesome-hive"
-        onClick={[Function]}
-      >
-        <picture>
-          <source
-            media="(min-width: 576px)"
-          />
-          <img
-            alt=""
-            className="w-full"
-          />
-        </picture>
-      </a>
-    </div>
-    <div
       className="item-summary"
     >
       <a
@@ -1384,24 +1348,6 @@ exports[`(5) Nsfw but allowed 1`] = `
         />
         .
       </div>
-    </div>
-    <div
-      className="item-image "
-    >
-      <a
-        href="/hive/@good-karma/awesome-hive"
-        onClick={[Function]}
-      >
-        <picture>
-          <source
-            media="(min-width: 576px)"
-          />
-          <img
-            alt=""
-            className="w-full"
-          />
-        </picture>
-      </a>
     </div>
     <div
       className="item-summary"

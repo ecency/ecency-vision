@@ -9,21 +9,30 @@ exports[`(1) Default render 1`] = `
     className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
-      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
+      className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+      onClick={[Function]}
     >
-      <a
-        href="/"
-        onClick={[Function]}
+      <div
+        className="absolute flex gap-1 flex-col top-3.5 left-0"
       >
-        <img
-          alt="Logo"
-          className="h-[40px] w-[40px]"
-          src="logo-circle.svg"
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
-      </a>
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+      </div>
+      <img
+        alt="Logo"
+        className="logo relative min-w-[40px] max-w-[40px]"
+        src="logo-circle.svg"
+      />
     </div>
     <div
-      className="text-menu flex items-center justify-center h-full md:mr-2"
+      className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
     >
       <a
         className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -48,18 +57,44 @@ exports[`(1) Default render 1`] = `
       </a>
     </div>
     <div
-      className="cursor-pointer ml-4"
-      onClick={[Function]}
+      className="flex items-center ml-3"
     >
-      <span
-        className="user-avatar medium"
+      <a
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        href="/submit"
         onClick={[Function]}
-        style={
-          Object {
-            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        title="Create Post"
+      >
+        <div
+          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+        >
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
+            />
+          </svg>
+        </div>
+      </a>
+      <div
+        className="cursor-pointer ml-4"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   </div>
   <div
@@ -69,24 +104,33 @@ exports[`(1) Default render 1`] = `
       className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
-        className="h-[40px] min-w-[40px] cursor-pointer"
+        className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+        onClick={[Function]}
       >
-        <a
-          href="/"
-          onClick={[Function]}
+        <div
+          className="absolute flex gap-1 flex-col top-3.5 left-0"
         >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
-        </a>
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+        </div>
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="flex-1"
       />
       <div
-        className="text-menu flex items-center justify-center h-full md:mr-2"
+        className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
       >
         <a
           className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -117,7 +161,7 @@ exports[`(1) Default render 1`] = `
         className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion relative"
+          className="suggestion relative z-[11]"
         >
           <div
             className="search-box"
@@ -185,7 +229,7 @@ exports[`(1) Default render 1`] = `
         className="flex items-center ml-3"
       >
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold whitespace-nowrap text-sm"
           href="/perks"
           onClick={[Function]}
         >
@@ -193,7 +237,7 @@ exports[`(1) Default render 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -215,7 +259,7 @@ exports[`(1) Default render 1`] = `
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -245,7 +289,7 @@ exports[`(1) Default render 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <svg
                 fill="currentColor"
@@ -296,21 +340,30 @@ exports[`(2) Night Theme 1`] = `
     className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
-      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
+      className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+      onClick={[Function]}
     >
-      <a
-        href="/hot"
-        onClick={[Function]}
+      <div
+        className="absolute flex gap-1 flex-col top-3.5 left-0"
       >
-        <img
-          alt="Logo"
-          className="h-[40px] w-[40px]"
-          src="logo-circle.svg"
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
-      </a>
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+      </div>
+      <img
+        alt="Logo"
+        className="logo relative min-w-[40px] max-w-[40px]"
+        src="logo-circle.svg"
+      />
     </div>
     <div
-      className="text-menu flex items-center justify-center h-full md:mr-2"
+      className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
     >
       <a
         className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -335,18 +388,44 @@ exports[`(2) Night Theme 1`] = `
       </a>
     </div>
     <div
-      className="cursor-pointer ml-4"
-      onClick={[Function]}
+      className="flex items-center ml-3"
     >
-      <span
-        className="user-avatar medium"
+      <a
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        href="/submit"
         onClick={[Function]}
-        style={
-          Object {
-            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        title="Create Post"
+      >
+        <div
+          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+        >
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
+            />
+          </svg>
+        </div>
+      </a>
+      <div
+        className="cursor-pointer ml-4"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   </div>
   <div
@@ -356,24 +435,33 @@ exports[`(2) Night Theme 1`] = `
       className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
-        className="h-[40px] min-w-[40px] cursor-pointer"
+        className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+        onClick={[Function]}
       >
-        <a
-          href="/hot"
-          onClick={[Function]}
+        <div
+          className="absolute flex gap-1 flex-col top-3.5 left-0"
         >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
-        </a>
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+        </div>
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="flex-1"
       />
       <div
-        className="text-menu flex items-center justify-center h-full md:mr-2"
+        className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
       >
         <a
           className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -404,7 +492,7 @@ exports[`(2) Night Theme 1`] = `
         className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion relative"
+          className="suggestion relative z-[11]"
         >
           <div
             className="search-box"
@@ -472,7 +560,7 @@ exports[`(2) Night Theme 1`] = `
         className="flex items-center ml-3"
       >
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold whitespace-nowrap text-sm"
           href="/perks"
           onClick={[Function]}
         >
@@ -480,7 +568,7 @@ exports[`(2) Night Theme 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -502,7 +590,7 @@ exports[`(2) Night Theme 1`] = `
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -532,7 +620,7 @@ exports[`(2) Night Theme 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <svg
                 fill="currentColor"
@@ -583,21 +671,30 @@ exports[`(3) With active user 1`] = `
     className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
-      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
+      className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+      onClick={[Function]}
     >
-      <a
-        href="/"
-        onClick={[Function]}
+      <div
+        className="absolute flex gap-1 flex-col top-3.5 left-0"
       >
-        <img
-          alt="Logo"
-          className="h-[40px] w-[40px]"
-          src="logo-circle.svg"
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
-      </a>
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+      </div>
+      <img
+        alt="Logo"
+        className="logo relative min-w-[40px] max-w-[40px]"
+        src="logo-circle.svg"
+      />
     </div>
     <div
-      className="text-menu flex items-center justify-center h-full md:mr-2"
+      className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
     >
       <a
         className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -622,18 +719,44 @@ exports[`(3) With active user 1`] = `
       </a>
     </div>
     <div
-      className="cursor-pointer ml-4"
-      onClick={[Function]}
+      className="flex items-center ml-3"
     >
-      <span
-        className="user-avatar medium"
+      <a
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        href="/submit"
         onClick={[Function]}
-        style={
-          Object {
-            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        title="Create Post"
+      >
+        <div
+          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+        >
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
+            />
+          </svg>
+        </div>
+      </a>
+      <div
+        className="cursor-pointer ml-4"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   </div>
   <div
@@ -643,24 +766,33 @@ exports[`(3) With active user 1`] = `
       className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
-        className="h-[40px] min-w-[40px] cursor-pointer"
+        className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+        onClick={[Function]}
       >
-        <a
-          href="/"
-          onClick={[Function]}
+        <div
+          className="absolute flex gap-1 flex-col top-3.5 left-0"
         >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
-        </a>
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+        </div>
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="flex-1"
       />
       <div
-        className="text-menu flex items-center justify-center h-full md:mr-2"
+        className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
       >
         <a
           className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -691,7 +823,7 @@ exports[`(3) With active user 1`] = `
         className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion relative"
+          className="suggestion relative z-[11]"
         >
           <div
             className="search-box"
@@ -759,7 +891,7 @@ exports[`(3) With active user 1`] = `
         className="flex items-center ml-3"
       >
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold whitespace-nowrap text-sm"
           href="/perks"
           onClick={[Function]}
         >
@@ -767,7 +899,7 @@ exports[`(3) With active user 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -789,7 +921,7 @@ exports[`(3) With active user 1`] = `
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -819,7 +951,7 @@ exports[`(3) With active user 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <svg
                 fill="currentColor"
@@ -870,21 +1002,30 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     className="flex items-center justify-between bg-light-200 dark:bg-dark-200 md:hidden h-[64px] border-b border-[--border-color] px-3"
   >
     <div
-      className="h-[40px] w-[40px] shrink-0 cursor-pointer"
+      className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+      onClick={[Function]}
     >
-      <a
-        href="/hot"
-        onClick={[Function]}
+      <div
+        className="absolute flex gap-1 flex-col top-3.5 left-0"
       >
-        <img
-          alt="Logo"
-          className="h-[40px] w-[40px]"
-          src="logo-circle.svg"
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
-      </a>
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+        <span
+          className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+        />
+      </div>
+      <img
+        alt="Logo"
+        className="logo relative min-w-[40px] max-w-[40px]"
+        src="logo-circle.svg"
+      />
     </div>
     <div
-      className="text-menu flex items-center justify-center h-full md:mr-2"
+      className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
     >
       <a
         className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -909,18 +1050,44 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       </a>
     </div>
     <div
-      className="cursor-pointer ml-4"
-      onClick={[Function]}
+      className="flex items-center ml-3"
     >
-      <span
-        className="user-avatar medium"
+      <a
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        href="/submit"
         onClick={[Function]}
-        style={
-          Object {
-            "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+        title="Create Post"
+      >
+        <div
+          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+        >
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
+            />
+          </svg>
+        </div>
+      </a>
+      <div
+        className="cursor-pointer ml-4"
+        onClick={[Function]}
+      >
+        <span
+          className="user-avatar medium"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   </div>
   <div
@@ -930,24 +1097,33 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="max-w-[1600px] w-full mx-auto flex items-center justify-between px-4 py-3 border-b dark:border-gray-800 bg-white dark:bg-dark-700"
     >
       <div
-        className="h-[40px] min-w-[40px] cursor-pointer"
+        className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
+        onClick={[Function]}
       >
-        <a
-          href="/hot"
-          onClick={[Function]}
+        <div
+          className="absolute flex gap-1 flex-col top-3.5 left-0"
         >
-          <img
-            alt="Logo"
-            className="logo"
-            src="logo-circle.svg"
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
-        </a>
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+          <span
+            className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
+          />
+        </div>
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
       </div>
       <div
         className="flex-1"
       />
       <div
-        className="text-menu flex items-center justify-center h-full md:mr-2"
+        className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
       >
         <a
           className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
@@ -978,7 +1154,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="max-w-[400px] w-full"
       >
         <div
-          className="suggestion relative"
+          className="suggestion relative z-[11]"
         >
           <div
             className="search-box"
@@ -1046,7 +1222,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
         className="flex items-center ml-3"
       >
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold text-sm"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 font-semibold whitespace-nowrap text-sm"
           href="/perks"
           onClick={[Function]}
         >
@@ -1054,7 +1230,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -1076,7 +1252,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
           >
             <svg
               fill="currentColor"
@@ -1106,7 +1282,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <svg
                 fill="currentColor"

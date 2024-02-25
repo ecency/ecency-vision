@@ -11,14 +11,16 @@ import { walletIconSvg } from "../../decks/icons";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { NavbarNotificationsButton } from "../navbar-notifications-button";
 import { UilEditAlt } from "@iconscout/react-unicons";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   show: boolean;
   setShow: (v: boolean) => void;
   history: History;
+  placement?: "right" | "left";
 }
 
-export function NavbarSide({ show, setShow, history }: Props) {
+export function NavbarSide({ show, setShow, history, placement = "right" }: Props) {
   const { activeUser } = useMappedStore();
 
   const [showAnimated, setShowAnimated] = useState(false);
@@ -31,9 +33,14 @@ export function NavbarSide({ show, setShow, history }: Props) {
   return (
     <Modal animation={false} show={show} onHide={() => setShow(false)} className="navbar-side">
       <div
-        className="h-full-dynamic overflow-y-auto no-scrollbar bg-white dark:bg-dark-700 absolute right-0 w-[20rem] rounded-l-2xl top-0 bottom-0 duration-300"
+        className={classNameObject({
+          "h-full-dynamic overflow-y-auto no-scrollbar bg-white dark:bg-dark-700 absolute w-[20rem] top-0 bottom-0 duration-300":
+            true,
+          "right-0 rounded-l-2xl": placement === "right",
+          "left-0 rounded-r-2xl": placement === "left"
+        })}
         style={{
-          transform: `translateX(${showAnimated ? 0 : 100}%)`
+          transform: `translateX(${showAnimated ? 0 : 100 * (placement === "right" ? 1 : -1)}%)`
         }}
       >
         <div className="flex px-4 pt-4 pb-2 gap-4 items-center justify-between">

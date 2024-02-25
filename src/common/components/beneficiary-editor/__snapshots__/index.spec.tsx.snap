@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
     Set Beneficiaries
   </div>
   <div
-    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+    className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
   >
     <svg
       viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ exports[`(2) Default render with author 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+    className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
   >
     <svg
       viewBox="0 0 24 24"
@@ -76,7 +76,7 @@ exports[`(3) DialogBody 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+    className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
   >
     <svg
       viewBox="0 0 24 24"
@@ -106,7 +106,7 @@ exports[`(4) DialogBody with author 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+    className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
   >
     <svg
       viewBox="0 0 24 24"
