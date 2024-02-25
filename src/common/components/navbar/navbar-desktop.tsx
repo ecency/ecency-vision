@@ -3,7 +3,7 @@ import { _t } from "../../i18n";
 import { Button } from "@ui/button";
 import React, { useState } from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
-import Search from "../search";
+import { Searchbar } from "./search";
 import { History } from "history";
 import { NavbarTextMenu } from "./navbar-text-menu";
 import { classNameObject } from "../../helper/class-name-object";
@@ -59,7 +59,7 @@ export function NavbarDesktop({
         <div className="flex-spacer" />
         {(step !== 1 || transparentVerify) && (
           <div className="max-w-[400px] w-full">
-            <Search history={history} />
+            <Searchbar history={history} />
           </div>
         )}
         <div className="flex items-center ml-3">
