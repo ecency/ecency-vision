@@ -6,7 +6,6 @@ import { NavbarSideMainMenu } from "./navbar-side-main-menu";
 import { History } from "history";
 import { Button } from "@ui/button";
 import { closeSvg } from "../../../img/svg";
-import { NavbarSideThemeSwitcher } from "./navbar-side-theme-switcher";
 import { NavbarPerksButton } from "../navbar-perks-button";
 import { walletIconSvg } from "../../decks/icons";
 import { useMappedStore } from "../../../store/use-mapped-store";
@@ -42,7 +41,6 @@ export function NavbarSide({ show, setShow, history }: Props) {
           <Button icon={closeSvg} size="sm" appearance="gray-link" onClick={() => setShow(false)} />
         </div>
         <div className="px-4 justify-between pb-2 flex items-center">
-          <NavbarSideThemeSwitcher />
           <Button to="/submit" appearance="gray-link" icon={<UilEditAlt />} />
           <NavbarNotificationsButton onClick={() => setShow(false)} />
           <Button

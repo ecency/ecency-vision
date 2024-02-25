@@ -14,7 +14,7 @@ export function NavbarMainSidebarToggle({ onClick }: Props) {
       </div>
       <img
         src={require("../../img/logo-circle.svg")}
-        className="logo relative w-[40px]"
+        className="logo relative min-w-[40px] max-w-[40px]"
         alt="Logo"
       />
     </div>

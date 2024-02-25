@@ -5,7 +5,7 @@ import { _t } from "../../i18n";
 
 export function NavbarPerksButton() {
   return (
-    <Button to="/perks" icon={<UilFire />} className="font-semibold text-sm">
+    <Button to="/perks" icon={<UilFire />} className="font-semibold whitespace-nowrap text-sm">
       {_t("user-nav.perks")}
     </Button>
   );

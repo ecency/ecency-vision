@@ -18,6 +18,7 @@ import SwitchLang from "../switch-lang";
 import { NavbarSideThemeSwitcher } from "./sidebar/navbar-side-theme-switcher";
 import { closeSvg } from "../../img/svg";
 import { Button } from "@ui/button";
+import { Searchbar } from "./search";
 
 interface Props {
   show: boolean;
@@ -69,6 +70,8 @@ export function NavbarMainSidebar({ show, setShow, history, setStepOne }: Props)
           <Button icon={closeSvg} size="sm" appearance="gray-link" onClick={() => setShow(false)} />
         </div>
         <div className="px-4 py-6 flex flex-col gap-0.5">
+          <Searchbar history={history} />
+          <hr className="my-2" />
           <NavbarSideMainMenuItem
             label={_t("navbar.home")}
             onClick={() => {

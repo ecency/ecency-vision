@@ -8,6 +8,9 @@ import { _t } from "../../i18n";
 import { Button } from "@ui/button";
 import { NavbarMainSidebar } from "./navbar-main-sidebar";
 import { NavbarMainSidebarToggle } from "./navbar-main-sidebar-toggle";
+import { NavbarTextMenu } from "./navbar-text-menu";
+import ToolTip from "../tooltip";
+import { UilEditAlt } from "@iconscout/react-unicons";
 
 interface Props {
   step?: number;
@@ -43,17 +46,23 @@ export function NavbarMobile({
       })}
     >
       <NavbarMainSidebarToggle onClick={() => setMainBarExpanded(true)} />
+      <NavbarTextMenu />
 
-      {activeUser && (
-        <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>
-          <UserAvatar size="medium" username={activeUser.username} />
-        </div>
-      )}
-      {!activeUser && (
-        <Button className="btn-login" onClick={() => toggleUIProp("login")}>
-          {_t("g.login")}
-        </Button>
-      )}
+      <div className="flex items-center ml-3">
+        <ToolTip content={_t("navbar.post")}>
+          <Button to="/submit" appearance="gray-link" className="ml-3" icon={<UilEditAlt />} />
+        </ToolTip>
+        {activeUser && (
+          <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>
+            <UserAvatar size="medium" username={activeUser.username} />
+          </div>
+        )}
+        {!activeUser && (
+          <Button className="btn-login" onClick={() => toggleUIProp("login")}>
+            {_t("g.login")}
+          </Button>
+        )}
+      </div>
 
       {activeUser && <NavbarSide history={history} show={expanded} setShow={setExpanded} />}
       <NavbarMainSidebar
