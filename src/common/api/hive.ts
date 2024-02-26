@@ -292,11 +292,13 @@ export const getAccount = (username: string): Promise<FullAccount> =>
 export const getAccountFull = (username: string): Promise<FullAccount> =>
   getAccount(username).then(async (account) => {
     let follow_stats: AccountFollowStats | undefined;
+    let reps: Reputations[] | [{}];
     try {
       follow_stats = await getFollowCount(username);
+      reps = await getAccountReputations(username, 1);
     } catch (e) {}
 
-    return { ...account, follow_stats };
+    return { ...account, ...reps[0], follow_stats };
   });
 
 export const getFollowCount = (username: string): Promise<AccountFollowStats> =>
