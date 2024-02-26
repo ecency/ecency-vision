@@ -149,7 +149,7 @@
     "day-theme": "Modo diurno",
     "night-theme": "Modo nocturno",
     "address-placeholder": "introduce url o consulta de búsqueda",
-    "home": "Home"
+    "home": "Inicio"
   },
   "search": {
     "placeholder": "Buscar",
@@ -185,11 +185,11 @@
     "light": "claro",
     "dark": "oscuro",
     "switch-to": "Cambiar",
-    "vote-power": "Vote Power",
+    "vote-power": "Poder de voto",
     "boost": "Impulsar",
     "submit": "Crear una publicación",
     "chats": "Chats",
-    "perks": "Buy perks"
+    "perks": "Comprar ventajas (perks)"
   },
   "intro": {
     "title": "Aspira a la grandeza",
@@ -648,7 +648,7 @@
     "fee-free": "Gratis",
     "order-book-impact": "Impacto de la cartera de pedidos",
     "swap-title": "Intercambiar tus fondos",
-    "advanced-title": "Trade token",
+    "advanced-title": "Token de intercambio",
     "sign-title": "Firmar tu transacción",
     "fetching-market": "Obteniendo mercado...",
     "back": "Regresar",
@@ -2362,25 +2362,25 @@
     "report": "Reporte"
   },
   "perks": {
-    "page-title": "Welcome to Perks",
-    "title": "Meet Ecency perks",
-    "title-next": "unified, fast and simple way to boost your account",
-    "points-title": "Buy points",
-    "points-action": "Buy",
-    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
-    "account-boost-title": "Account boosting",
-    "account-boost-action": "Boost now!",
-    "account-boost-description": "Use Points or In-App purchase to acquire extra powers",
-    "promote-title": "Promote your post",
-    "promote-action": "Promote",
-    "promote-description": "Impressions boost that will increase eyeballs on your content",
-    "boost-plus-title": "Boost+",
-    "boost-plus-action": "Boost+",
-    "boost-plus-description": "Boost your account with your points in few clicks"
+    "page-title": "Bienvenido a las ventajas (Perks)",
+    "title": "Conoce las ventajas (perks) de Ecency",
+    "title-next": "una forma unificada, rápida y simple de optimizar tu cuenta",
+    "points-title": "Comprar puntos",
+    "points-action": "Comprar",
+    "points-description": "Empieza a mejorar el compromiso con tu contenido comprando Puntos con Ecency Móvil",
+    "account-boost-title": "Impulsar la cuenta",
+    "account-boost-action": "¡Impulsar ahora!",
+    "account-boost-description": "Usa Puntos o compras dentro de la aplicación para adquirir poderes adicionales",
+    "promote-title": "Promociona tu post",
+    "promote-action": "Promocionar",
+    "promote-description": "Impresiones optimizadas que incrementarán las visualizaciones de tu contenido",
+    "boost-plus-title": "Impulsar+",
+    "boost-plus-action": "Impulsar+",
+    "boost-plus-description": "Impulsa tu cuenta con tus puntos en pocos clics"
   },
   "boost-plus": {
-    "title": "Boost+",
-    "sub-title": "Boost your account using Ecency points",
-    "already-boosted-account": "This account boosted already"
+    "title": "Impulsar+",
+    "sub-title": "Impulsa tu cuenta usando puntos Ecency",
+    "already-boosted-account": "Esta cuenta ya ha sido impulsada"
   }
 }
