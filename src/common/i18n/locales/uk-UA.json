@@ -148,7 +148,8 @@
     "post": "Створити допис",
     "day-theme": "Світла тема",
     "night-theme": "Темна тема",
-    "address-placeholder": "введіть URL-адресу або пошуковий запит"
+    "address-placeholder": "введіть URL-адресу або пошуковий запит",
+    "home": "Home"
   },
   "search": {
     "placeholder": "Пошук",
@@ -184,10 +185,11 @@
     "light": "Світла",
     "dark": "Темна",
     "switch-to": "Перемикнути",
-    "vote-power": "Сила голосу:",
+    "vote-power": "Vote Power",
     "boost": "Підсилити",
     "submit": "Create a post",
-    "chats": "Chats"
+    "chats": "Chats",
+    "perks": "Buy perks"
   },
   "intro": {
     "title": "Прагніть до величі",
@@ -646,6 +648,7 @@
     "fee-free": "Безкоштовно",
     "order-book-impact": "Вплив на книгу замовлень",
     "swap-title": "Обміняйте свої кошти",
+    "advanced-title": "Trade token",
     "sign-title": "Підпишіть вашу транзакцію",
     "fetching-market": "Отримання ринку...",
     "back": "Назад",
@@ -2357,5 +2360,27 @@
     "insufficient-resource-buy-hive": "Придбати HIVE та збільшити його потужність",
     "insufficient-resource-wait": "Зачекайте кілька годин, щоб поповнити кредити ресурсів",
     "report": "Повідомити"
+  },
+  "perks": {
+    "page-title": "Welcome to Perks",
+    "title": "Meet Ecency perks",
+    "title-next": "unified, fast and simple way to boost your account",
+    "points-title": "Buy points",
+    "points-action": "Buy",
+    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
+    "account-boost-title": "Account boosting",
+    "account-boost-action": "Boost now!",
+    "account-boost-description": "Use Points or In-App purchase to acquire extra powers",
+    "promote-title": "Promote your post",
+    "promote-action": "Promote",
+    "promote-description": "Impressions boost that will increase eyeballs on your content",
+    "boost-plus-title": "Boost+",
+    "boost-plus-action": "Boost+",
+    "boost-plus-description": "Boost your account with your points in few clicks"
+  },
+  "boost-plus": {
+    "title": "Boost+",
+    "sub-title": "Boost your account using Ecency points",
+    "already-boosted-account": "This account boosted already"
   }
 }
