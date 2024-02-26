@@ -149,7 +149,7 @@
     "day-theme": "Päiväteema",
     "night-theme": "Yöteema",
     "address-placeholder": "syötä osoite tai hakusana",
-    "home": "Home"
+    "home": "Etusivu"
   },
   "search": {
     "placeholder": "Haku",
@@ -189,7 +189,7 @@
     "boost": "Tehosta",
     "submit": "Luo julkaisu",
     "chats": "Keskustelut",
-    "perks": "Buy perks"
+    "perks": "Osta etuisuuksia"
   },
   "intro": {
     "title": "Ajattele isosti",
@@ -228,7 +228,7 @@
     "validation-username": "Käyttäjätunnus vaaditaan.",
     "validation-email": "Sähköpostiosoite vaaditaan.",
     "success": "Olemme lähettäneet vahvistuksen sähköpostiin {{email}}.",
-    "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
+    "success-2": "Vahvista viimeistelläksesi kirjautumisprosessi. Huom: Tarkista roskapostikansiosi, jos et löydä sähköpostia.",
     "login-text-1": "Onko sinulla jo käyttäjätili?",
     "login-text-2": "Kirjaudu sisään",
     "free-account": "Ilmainen tili",
@@ -246,7 +246,7 @@
     "username-contains-symbols-error": "Pitäisi sisältää vain kirjaimia, numeroita ja tavuviivoja",
     "username-contains-double-hyphens": "Ei saa sisältää kaksinkertaisia tavuviivoja",
     "username-exists": "Tämä nimimerkki on jo käytössä! Kokeile toista",
-    "username-starts-number": "Should not start with Numbers",
+    "username-starts-number": "Älä aloita numeroilla",
     "referral-invalid": "Tämä suositus on virheellinen. Kokeile toista",
     "referral-min-length-error": "Käyttäjänimen pituuden on oltava vähintään 3 merkkiä",
     "referral-max-length-error": "Käyttäjänimen pituuden on oltava vähemmän kuin 16 merkkiä",
@@ -648,7 +648,7 @@
     "fee-free": "Ilmainen",
     "order-book-impact": "Vaikutus tilauskantaan",
     "swap-title": "Vaihda varojasi",
-    "advanced-title": "Trade token",
+    "advanced-title": "Vaihda merkkejä",
     "sign-title": "Allekirjoita tapahtuma",
     "fetching-market": "Haetaan markkinoita...",
     "back": "Takaisin",
@@ -2362,25 +2362,25 @@
     "report": "Raportoi"
   },
   "perks": {
-    "page-title": "Welcome to Perks",
-    "title": "Meet Ecency perks",
-    "title-next": "unified, fast and simple way to boost your account",
-    "points-title": "Buy points",
-    "points-action": "Buy",
-    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
-    "account-boost-title": "Account boosting",
-    "account-boost-action": "Boost now!",
-    "account-boost-description": "Use In-App purchase to acquire extra powers",
-    "promote-title": "Promote your post",
-    "promote-action": "Promote",
-    "promote-description": "Impressions boost that will increase eyeballs on your content",
-    "boost-plus-title": "Boost+",
-    "boost-plus-action": "Boost+",
-    "boost-plus-description": "Boost your account with your points in few clicks"
+    "page-title": "Tervetuloa Etuisuuksiin",
+    "title": "Kokeile Ecencyn etuisuuksia",
+    "title-next": "yhtenäinen, nopea ja yksinkertainen tapa tehostaa tiliäsi",
+    "points-title": "Osta pisteitä",
+    "points-action": "Osta",
+    "points-description": "Aloita parantamaan sisältöösi sitouttamista ostamalla Pisteitä Ecency Mobilella",
+    "account-boost-title": "Tilin tehostaminen",
+    "account-boost-action": "Tehosta nyt!",
+    "account-boost-description": "Käytä sovelluksen sisäistä ostoa hankkiaksesi lisää valtuuksia",
+    "promote-title": "Korosta julkaisuasi",
+    "promote-action": "Korosta",
+    "promote-description": "Vaikutelmat vahvistavat, että sisältöösi kohdistuu useammat silmäparit",
+    "boost-plus-title": "Tehosta+",
+    "boost-plus-action": "Tehosta+",
+    "boost-plus-description": "Tehosta tiliäsi pisteillä muutamalla klikkauksella"
   },
   "boost-plus": {
-    "title": "Boost+",
-    "sub-title": "Boost your account using Ecency points",
-    "already-boosted-account": "This account boosted already"
+    "title": "Tehosta+",
+    "sub-title": "Tehosta tiliäsi käyttämällä Ecency-pisteitä",
+    "already-boosted-account": "Tämä tili on jo tehostettu"
   }
 }
