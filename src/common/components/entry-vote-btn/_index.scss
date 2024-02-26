@@ -1,4 +1,5 @@
 @import "src/style/vars_mixins";
+@import "../decks/columns/helpers/helpers";
 
 .entry-vote-btn {
   margin-right: 10px;
@@ -254,6 +255,10 @@
 .tooltip-vote {
   position: relative;
   display: inline-block;
+}
+
+.tooltip-vote {
+  @include compact_vote_slider();
 }
 
 .tooltip-vote .tooltiptext {
