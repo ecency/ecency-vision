@@ -74,7 +74,11 @@ export const ChatPopUp = () => {
 
   // Show or hide the popup if current pathname was changed or user changed
   useEffect(() => {
-    setShow(!routerLocation.pathname.match("/chats") && !!activeUser);
+    setShow(
+      !routerLocation.pathname.match("/chats") &&
+        !routerLocation.pathname.match("/submit") &&
+        !!activeUser
+    );
   }, [routerLocation, activeUser]);
 
   useEffect(() => {
