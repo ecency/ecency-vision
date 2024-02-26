@@ -148,7 +148,8 @@
     "post": "पोस्ट बनाएँ",
     "day-theme": "दिवस थीम",
     "night-theme": "रात विषय",
-    "address-placeholder": "यूआरएल या खोज क्वेरी दर्ज करें"
+    "address-placeholder": "यूआरएल या खोज क्वेरी दर्ज करें",
+    "home": "Home"
   },
   "search": {
     "placeholder": "खोजें",
@@ -184,10 +185,11 @@
     "light": "लाइट",
     "dark": "डार्क",
     "switch-to": "स्विच",
-    "vote-power": "वोट पावर:",
+    "vote-power": "Vote Power",
     "boost": "बूस्ट",
     "submit": "Create a post",
-    "chats": "Chats"
+    "chats": "Chats",
+    "perks": "Buy perks"
   },
   "intro": {
     "title": "महाप्राण की आकांक्षा",
@@ -646,6 +648,7 @@
     "fee-free": "निःशुल्क",
     "order-book-impact": "Order book impact",
     "swap-title": "Swap your funds",
+    "advanced-title": "Trade token",
     "sign-title": "Sign your transaction",
     "fetching-market": "Fetching market...",
     "back": "Back",
@@ -2357,5 +2360,27 @@
     "insufficient-resource-buy-hive": "HIVE खरीदें और पावर अप करे",
     "insufficient-resource-wait": "आरसी फिर से भरना के लिए कुछ घंटे प्रतीक्षा करें",
     "report": "रिपोर्ट"
+  },
+  "perks": {
+    "page-title": "Welcome to Perks",
+    "title": "Meet Ecency perks",
+    "title-next": "unified, fast and simple way to boost your account",
+    "points-title": "Buy points",
+    "points-action": "Buy",
+    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
+    "account-boost-title": "Account boosting",
+    "account-boost-action": "Boost now!",
+    "account-boost-description": "Use Points or In-App purchase to acquire extra powers",
+    "promote-title": "Promote your post",
+    "promote-action": "Promote",
+    "promote-description": "Impressions boost that will increase eyeballs on your content",
+    "boost-plus-title": "Boost+",
+    "boost-plus-action": "Boost+",
+    "boost-plus-description": "Boost your account with your points in few clicks"
+  },
+  "boost-plus": {
+    "title": "Boost+",
+    "sub-title": "Boost your account using Ecency points",
+    "already-boosted-account": "This account boosted already"
   }
 }
