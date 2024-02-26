@@ -1,0 +1,17 @@
+.notifications {
+  @apply cursor-pointer relative;
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem !important;
+  }
+
+  .notifications-badge {
+    @apply bg-red-040 font-semibold text-white absolute rounded-full text-center flex items-center justify-center overflow-hidden z-[2];
+    font-size: 10px;
+    height: 1rem;
+    right: 0.5rem;
+    top: 0;
+    width: 1rem;
+  }
+}

@@ -69,7 +69,9 @@ module.exports = {
     backgroundSize: {
       auto: "auto",
       cover: "cover",
-      contain: "contain"
+      contain: "contain",
+      full: "100%",
+      scaled: "150%"
     },
     blur: {
       0: "0",

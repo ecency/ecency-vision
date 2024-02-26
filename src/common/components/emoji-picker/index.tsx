@@ -39,7 +39,6 @@ export function EmojiPicker({ anchor, onSelect, position, isDisabled }: Props) {
   const isMounted = useMountedState();
 
   useEffect(() => {
-    console.log(anchor);
     if (anchor) {
       anchor.addEventListener("click", () => {
         (anchor as HTMLElement).style.position = "relative !important";

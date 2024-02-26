@@ -1,25 +1,27 @@
 import { bellSvg, rocketSvg } from "../../../img/svg";
-import React from "react";
+import React, { useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { WalletBadge } from "../../user-nav";
+import { WalletBadge } from "../../navbar/user-nav";
 import { dotsMenuIconSvg, walletIconSvg } from "../icons";
-import { _t } from "../../../i18n";
-import Link from "../../alink";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { NavbarMainSidebar } from "../../navbar/navbar-main-sidebar";
 import { Button } from "@ui/button";
+import { History } from "history";
 
 interface Props {
   isExpanded: boolean;
   setShowPurchaseDialog: (v: boolean) => void;
   setIsExpanded: (v: boolean) => void;
+  history: History;
 }
 
 export const DeckToolbarBaseActions = ({
   setShowPurchaseDialog,
   isExpanded,
-  setIsExpanded
+  setIsExpanded,
+  history
 }: Props) => {
   const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
+  const [showMainSide, setShowMainSide] = useState(false);
 
   return (
     <div className="base-actions">
@@ -39,30 +41,10 @@ export const DeckToolbarBaseActions = ({
           <WalletBadge icon={walletIconSvg} />
         </>
       )}
-      {isExpanded || !activeUser ? (
-        <Dropdown>
-          <DropdownToggle onClick={() => setIsExpanded(true)}>
-            <Button appearance="link">{dotsMenuIconSvg}</Button>
-          </DropdownToggle>
-          <DropdownMenu align="right">
-            <DropdownItem>
-              <Link to="/">{_t("decks.back-to-feed")}</Link>
-            </DropdownItem>
-            <hr />
-            <DropdownItem>
-              <Link to="/fq">{_t("decks.faq")}</Link>
-            </DropdownItem>
-            <DropdownItem>
-              <Link to="/terms-of-service">{_t("decks.terms")}</Link>
-            </DropdownItem>
-            <DropdownItem>
-              <Link to="/market">{_t("decks.market")}</Link>
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      ) : (
-        <></>
-      )}
+      <Button appearance="link" onClick={() => setShowMainSide(true)} style={{ height: "56px" }}>
+        {dotsMenuIconSvg}
+      </Button>
+      <NavbarMainSidebar show={showMainSide} setShow={setShowMainSide} history={history} />
     </div>
   );
 };

@@ -78,7 +78,7 @@ exports[`(1) Hive Engine - Transfer (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -341,7 +341,7 @@ exports[`(1) Hive Engine - Transfer (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -490,7 +490,7 @@ exports[`(1) Hive Engine - Transfer (3) Step 3 1`] = `
               Sign with hivesigner
             </div>
             <div
-              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
+              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
             >
               <img
                 alt="hivesigner"
@@ -561,7 +561,7 @@ exports[`(1) Hive Engine - Transfer (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -675,7 +675,7 @@ exports[`(2) Hive Engine - Delegate (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -906,7 +906,7 @@ exports[`(2) Hive Engine - Delegate (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -989,7 +989,7 @@ exports[`(2) Hive Engine - Delegate (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1072,7 +1072,7 @@ exports[`(3) Hive Engine - Undelegate (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -1299,7 +1299,7 @@ exports[`(3) Hive Engine - Undelegate (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1382,7 +1382,7 @@ exports[`(3) Hive Engine - Undelegate (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -1496,7 +1496,7 @@ exports[`(4) Hive Engine - Stake (1) Step 1 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
@@ -1723,7 +1723,7 @@ exports[`(4) Hive Engine - Stake (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -1806,7 +1806,7 @@ exports[`(4) Hive Engine - Stake (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {
@@ -2082,7 +2082,7 @@ exports[`(5) Hive Engine - Unstake (2) Step 2 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -2165,7 +2165,7 @@ exports[`(5) Hive Engine - Unstake (4) Step 4 1`] = `
         className="flex justify-center"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
           onClick={[Function]}
           style={
             Object {

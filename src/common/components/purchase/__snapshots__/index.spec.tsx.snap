@@ -191,7 +191,7 @@ exports[`(2) Should switch to transfer 1`] = `
           className="col-span-12 sm:col-span-10"
         >
           <div
-            className="suggestion relative"
+            className="suggestion relative z-[11]"
           >
             <div
               className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"

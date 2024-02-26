@@ -11,7 +11,7 @@ export type ButtonAppearance =
   | "success"
   | "warning"
   | "info";
-export type ButtonSize = "xxs" | "xs" | "sm" | "md" | "lg";
+export type ButtonSize = "xxs" | "xs" | "sm" | "md" | "lg" | "display";
 
 interface RegularButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   appearance?: ButtonAppearance;

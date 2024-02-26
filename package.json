@@ -23,6 +23,7 @@
     "@firebase/messaging": "^0.9.16",
     "@hiveio/dhive": "^1.2.8",
     "@hiveio/hivescript": "^1.2.7",
+    "@iconscout/react-unicons": "^2.0.2",
     "@loadable/component": "^5.15.2",
     "@loadable/server": "^5.15.2",
     "@noble/secp256k1": "^1.7.1",

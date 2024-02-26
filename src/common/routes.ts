@@ -42,5 +42,6 @@ export default {
   PROPOSAL_DETAIL: `/proposals/:id(\\d+)`,
   PURCHASE: "/purchase",
   DECKS: "/decks",
-  CHATS: `/chats/:username?/:channel?`
+  CHATS: `/chats/:username?/:channel?`,
+  PERKS: "/perks"
 };

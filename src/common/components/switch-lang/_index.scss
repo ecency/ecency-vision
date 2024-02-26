@@ -1,10 +1,17 @@
 @import "src/style/vars_mixins";
 
 .switch-language {
+  @apply text-sm;
+
+  .label {
+    font-size: 0.875rem !important;
+  }
+
   .menu-list {
     max-height: 280px;
     overflow-y: auto;
   }
+
   .drop-down-menu-contributors {
     padding: 10px 0;
     text-align: center;

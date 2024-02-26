@@ -1,15 +1,16 @@
 import { UserAvatar } from "../../user-avatar";
 import { FullAccount } from "../../../store/accounts/types";
-import React from "react";
+import React, { useState } from "react";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { brightnessSvg } from "../../../img/svg";
-import { Theme } from "../../../store/global/types";
 import { _t } from "../../../i18n";
 import { Link } from "react-router-dom";
 import { Button } from "@ui/button";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { NavbarSideThemeSwitcher } from "../../navbar/sidebar/navbar-side-theme-switcher";
+import { NavbarSide } from "../../navbar/sidebar/navbar-side";
+import { History } from "history";
 
 interface Props {
+  history: History;
   isExpanded: boolean;
   setIsExpanded: (v: boolean) => void;
   items: {
@@ -18,17 +19,10 @@ interface Props {
   }[];
 }
 
-export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => {
+export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded, history }: Props) => {
   const { activeUser, global, toggleTheme, toggleUIProp } = useMappedStore();
 
-  const getThemeSwitcher = () => (
-    <div
-      className={"switch-theme " + (global.theme === Theme.night ? "switched" : "")}
-      onClick={() => toggleTheme()}
-    >
-      {brightnessSvg}
-    </div>
-  );
+  const [showUserSide, setShowUserSide] = useState(false);
 
   return (
     <div
@@ -37,18 +31,12 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
       }
     >
       {activeUser ? (
-        <Dropdown onClick={() => setIsExpanded(true)}>
-          <DropdownToggle>
-            <UserAvatar size="medium" global={global} username={activeUser?.username} />
-          </DropdownToggle>
-          <DropdownMenu>
-            {items.map(({ label, onClick }) => (
-              <DropdownItem onClick={() => onClick()} key={label}>
-                {label}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
+        <UserAvatar
+          size="medium"
+          global={global}
+          username={activeUser?.username}
+          onClick={() => setShowUserSide(true)}
+        />
       ) : (
         <Link to="/">
           <img className="user-avatar medium" src={require("../../../img/logo-circle.svg")} />
@@ -61,18 +49,27 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
               <div className="name">{(activeUser.data as FullAccount).name}</div>
               <div className="username">@{activeUser.username}</div>
             </div>
-            {getThemeSwitcher()}
+            <NavbarSideThemeSwitcher floatRight={true} />
           </>
         ) : (
           <>
             <Button className="w-full" outline={true} onClick={() => toggleUIProp("login")}>
               {_t("g.login")}
             </Button>
-            {getThemeSwitcher()}
+            <NavbarSideThemeSwitcher floatRight={true} />
           </>
         )
       ) : (
         <></>
+      )}
+
+      {activeUser && (
+        <NavbarSide
+          placement="left"
+          show={showUserSide}
+          setShow={setShowUserSide}
+          history={history}
+        />
       )}
     </div>
   );

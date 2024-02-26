@@ -8,7 +8,6 @@ import {
   linkVariantSvg,
   pencilOutlineSvg,
   pinSvg,
-  rocketLaunchSvg,
   shareVariantSvg,
   shuffleVariantSvg,
   volumeOffSvg
@@ -43,7 +42,6 @@ export function useMenuItemsGenerator(
   const [unpin, setUnpin] = useState(false);
   const [mute, setMute] = useState(false);
   const [promote, setPromote] = useState(false);
-  const [boost, setBoost] = useState(false);
   const [canMute, setCanMute] = useState(false);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
@@ -123,11 +121,6 @@ export function useMenuItemsGenerator(
               onClick:
                 activeUser !== null ? () => setPromote(!promote) : () => toggleUIProp("login"),
               icon: bullHornSvg
-            },
-            {
-              label: _t("entry-menu.boost"),
-              onClick: activeUser !== null ? () => setBoost(!boost) : () => toggleUIProp("login"),
-              icon: rocketLaunchSvg
             },
             {
               label: _t("entry.address-copy"),
@@ -243,8 +236,6 @@ export function useMenuItemsGenerator(
     mute,
     setMute,
     promote,
-    setPromote,
-    boost,
-    setBoost
+    setPromote
   };
 }

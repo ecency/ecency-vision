@@ -73,6 +73,7 @@ class EntryIndexPage extends Component<Props, State> {
       this.loadEntries();
     }
   }
+
   handleFilterReblog = () => {
     this.setState((prevState) => {
       return { ...prevState, noReblog: !prevState.noReblog };
@@ -156,7 +157,7 @@ class EntryIndexPage extends Component<Props, State> {
             {this.props.loading && entryList.length > 0 ? <LinearProgress /> : ""}
           </div>
           <div className="side-menu">
-            {!global.isMobile && <MarketData global={global} />}
+            {!global.isMobile && !this.props.activeUser && <MarketData global={global} />}
             {!global.isMobile && <TopCommunitiesWidget {...this.props} />}
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <div
-  className="suggestion relative"
+  className="suggestion relative z-[11]"
 >
   <a>
     Search

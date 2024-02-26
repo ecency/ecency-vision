@@ -11,7 +11,6 @@ import Transfer from "../transfer";
 import Tooltip from "../tooltip";
 import Purchase from "../purchase";
 import Promote from "../promote";
-import Boost from "../boost";
 
 import LinearProgress from "../linear-progress";
 import WalletMenu from "../wallet-menu";
@@ -186,6 +185,7 @@ interface State {
   estimatedPointsValue: number;
   estimatedPointsValueLoading: boolean;
 }
+
 export const WalletEcency = (props: Props) => {
   const [claiming, setClaiming] = useState(false);
   const [purchase, setPurchase] = useState(false);
@@ -347,10 +347,6 @@ export const WalletEcency = (props: Props) => {
                           {
                             label: _t("points.promote"),
                             onClick: togglePromote
-                          },
-                          {
-                            label: _t("points.boost"),
-                            onClick: toggleBoost
                           }
                         ]
                       };
@@ -524,7 +520,6 @@ export const WalletEcency = (props: Props) => {
 
         {purchase && <Purchase {...props} activeUser={activeUser!} onHide={togglePurchase} />}
         {promote && <Promote {...props} activeUser={activeUser!} onHide={togglePromote} />}
-        {boost && <Boost {...props} activeUser={activeUser!} onHide={toggleBoost} />}
         <PurchaseQrDialog
           type={PurchaseTypes.POINTS}
           show={showPurchaseDialog}

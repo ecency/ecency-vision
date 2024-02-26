@@ -42,7 +42,8 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLink
     const icon = props.icon ? (
       <div
         className={classNameObject({
-          "flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5": true,
+          "flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem]":
+            true,
           [props.iconClassName ?? ""]: true
         })}
       >

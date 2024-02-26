@@ -299,13 +299,15 @@ export function EntryListItem({
           </>
         ) : (
           <>
-            <EntryListItemThumbnail
-              entryProp={entryProp}
-              history={history}
-              isCrossPost={isCrossPost}
-              noImage={noImage}
-              entry={entry}
-            />
+            {(!nsfw || showNsfw) && (
+              <EntryListItemThumbnail
+                entryProp={entryProp}
+                history={history}
+                isCrossPost={isCrossPost}
+                noImage={noImage}
+                entry={entry}
+              />
+            )}
             <div className="item-summary">
               <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
                 <div className="item-title">{entry.title}</div>

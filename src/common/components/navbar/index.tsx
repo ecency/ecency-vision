@@ -1,7 +1,7 @@
 import { History } from "history";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import queryString from "query-string";
 import isCommunity from "../../helper/is-community";
@@ -33,11 +33,10 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
   const [themeText, setThemeText] = useState("");
   const [smVisible, setSmVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [mainBarExpanded, setMainBarExpanded] = useState(false);
 
   const previousLocation = usePrevious(location);
   const previousActiveUser = usePrevious(activeUser);
-
-  const navRef = useRef<any>();
 
   const logo = require("../../img/logo-circle.svg");
 
@@ -126,16 +125,17 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
       <NavbarMobile
         expanded={expanded}
         setExpanded={setExpanded}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         step={step}
         logoHref={logoHref}
         logo={logo}
         history={history}
       />
       <NavbarDesktop
-        themeText={themeText}
         transparentVerify={transparentVerify}
-        logoHref={logoHref}
-        logo={logo}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         step={step}
         setStepOne={setStepOne}
         history={history}

@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
-import { emojiIconSvg } from "../icons";
-import { _t } from "../../../i18n";
-import Tooltip from "../../tooltip";
 import { EmojiPicker } from "../../emoji-picker";
 import { Button } from "@ui/button";
+import { UilEmoji } from "@iconscout/react-unicons";
 
 interface Props {
   onPick: (v: string) => void;
@@ -14,10 +12,10 @@ export const DeckThreadsFormEmojiPicker = ({ onPick }: Props) => {
 
   return (
     <Button
-      appearance="link"
+      appearance="gray-link"
       className="deck-threads-form-emoji-picker"
       ref={anchorRef}
-      icon={<Tooltip content={_t("editor-toolbar.image")}>{emojiIconSvg}</Tooltip>}
+      icon={<UilEmoji />}
     >
       <EmojiPicker anchor={anchorRef.current} onSelect={(value) => onPick(value)} />
     </Button>

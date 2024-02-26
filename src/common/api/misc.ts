@@ -45,7 +45,8 @@ export const getCurrencyRate = (cur: string): Promise<number> => {
   return axios
     .get(u)
     .then((r) => r.data)
-    .then((r) => r.hive_dollar[cur]);
+    .then((r) => r.hive_dollar[cur])
+    .catch((e) => {});
 };
 
 export const GIPHY_API_KEY = "DQ7mV4VsZ749GcCBZEunztICJ5nA4Vef";
