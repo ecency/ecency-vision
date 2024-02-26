@@ -148,7 +148,8 @@
     "post": "Sukurti Įrašą",
     "day-theme": "Dienos Tema",
     "night-theme": "Nakties Tema",
-    "address-placeholder": "įveskite paieškos užklausą"
+    "address-placeholder": "įveskite paieškos užklausą",
+    "home": "Home"
   },
   "search": {
     "placeholder": "Paieška",
@@ -184,10 +185,11 @@
     "light": "šviesa",
     "dark": "tamsa",
     "switch-to": "Perjungti",
-    "vote-power": "Balsų galia:",
+    "vote-power": "Vote Power",
     "boost": "Boost",
     "submit": "Create a post",
-    "chats": "Chats"
+    "chats": "Chats",
+    "perks": "Buy perks"
   },
   "intro": {
     "title": "Siekite didybės",
@@ -646,6 +648,7 @@
     "fee-free": "Free",
     "order-book-impact": "Order book impact",
     "swap-title": "Swap your funds",
+    "advanced-title": "Trade token",
     "sign-title": "Sign your transaction",
     "fetching-market": "Fetching market...",
     "back": "Back",
@@ -2357,5 +2360,27 @@
     "insufficient-resource-buy-hive": "Buy HIVE and Power it up",
     "insufficient-resource-wait": "Wait few hours for RC refill",
     "report": "Report"
+  },
+  "perks": {
+    "page-title": "Welcome to Perks",
+    "title": "Meet Ecency perks",
+    "title-next": "unified, fast and simple way to boost your account",
+    "points-title": "Buy points",
+    "points-action": "Buy",
+    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
+    "account-boost-title": "Account boosting",
+    "account-boost-action": "Boost now!",
+    "account-boost-description": "Use Points or In-App purchase to acquire extra powers",
+    "promote-title": "Promote your post",
+    "promote-action": "Promote",
+    "promote-description": "Impressions boost that will increase eyeballs on your content",
+    "boost-plus-title": "Boost+",
+    "boost-plus-action": "Boost+",
+    "boost-plus-description": "Boost your account with your points in few clicks"
+  },
+  "boost-plus": {
+    "title": "Boost+",
+    "sub-title": "Boost your account using Ecency points",
+    "already-boosted-account": "This account boosted already"
   }
 }
