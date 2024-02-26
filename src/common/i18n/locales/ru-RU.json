@@ -149,7 +149,7 @@
     "day-theme": "Дневная тема",
     "night-theme": "Ночная тема",
     "address-placeholder": "введите url или поисковый запрос",
-    "home": "Home"
+    "home": "Главная"
   },
   "search": {
     "placeholder": "Поиск",
@@ -185,7 +185,7 @@
     "light": "светлая",
     "dark": "тёмная",
     "switch-to": "Переключатель",
-    "vote-power": "Vote Power",
+    "vote-power": "Сила голоса",
     "boost": "Усилить",
     "submit": "Создать пост",
     "chats": "Чаты",
@@ -2364,15 +2364,15 @@
   "perks": {
     "page-title": "Welcome to Perks",
     "title": "Meet Ecency perks",
-    "title-next": "unified, fast and simple way to boost your account",
-    "points-title": "Buy points",
-    "points-action": "Buy",
+    "title-next": "единый, быстрый и простой способ усилить ваш аккаунт",
+    "points-title": "Купить баллы",
+    "points-action": "Купить",
     "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
     "account-boost-title": "Account boosting",
-    "account-boost-action": "Boost now!",
+    "account-boost-action": "Усилить сейчас!",
     "account-boost-description": "Use In-App purchase to acquire extra powers",
-    "promote-title": "Promote your post",
-    "promote-action": "Promote",
+    "promote-title": "Продвижение вашего поста",
+    "promote-action": "Продвинуть",
     "promote-description": "Impressions boost that will increase eyeballs on your content",
     "boost-plus-title": "Boost+",
     "boost-plus-action": "Boost+",
@@ -2380,7 +2380,7 @@
   },
   "boost-plus": {
     "title": "Boost+",
-    "sub-title": "Boost your account using Ecency points",
-    "already-boosted-account": "This account boosted already"
+    "sub-title": "Усильте свой аккаунт, используя баллы Ecency",
+    "already-boosted-account": "Этот аккаунт уже усилен"
   }
 }
