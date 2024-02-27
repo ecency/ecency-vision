@@ -1,16 +1,18 @@
 .vote-svg {
-    width: 8px !important;
-    max-height: 6px !important;
+  min-width: 8px !important;
+  min-height: 6px !important;
+  max-width: 8px !important;
+  max-height: 6px !important;
 }
-  
+
 .slider-svg-up {
-    width: 12px !important;
-    max-height: 7px !important;
-    margin-bottom: 1px;
+  width: 12px !important;
+  max-height: 7px !important;
+  margin-bottom: 1px;
 }
-  
+
 .slider-svg-down {
-    width: 12px !important;
-    max-height: 7px !important;
-    margin-top: 1px;
+  width: 12px !important;
+  max-height: 7px !important;
+  margin-top: 1px;
 }

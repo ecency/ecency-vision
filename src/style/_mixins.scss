@@ -2,9 +2,9 @@
   @if $theme == "day" {
     @content;
   } @else if $theme == "night" {
-      .dark & {
-        @content;
-      }
+    .dark & {
+      @content;
+    }
   }
 }
 
@@ -280,6 +280,7 @@
         white-space: nowrap;
         @include multiLineEllipsis($lineHeight: 1.5em, $lineCount: 2);
       }
+
       .item-nsfw {
         margin-bottom: 9px;
 
@@ -356,8 +357,10 @@
   }
 
   svg {
-    width: 14px;
-    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
   }
 
   //animation for upvote in progress
