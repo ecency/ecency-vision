@@ -6,7 +6,6 @@ export type ButtonAppearance =
   | "secondary"
   | "gray-link"
   | "link"
-  | "gray-link"
   | "danger"
   | "success"
   | "warning"

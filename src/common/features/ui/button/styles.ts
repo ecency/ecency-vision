@@ -9,7 +9,7 @@ export const BUTTON_STYLES: Record<ButtonAppearance, string> = {
   success: "",
   warning: "",
   info: "bg-info-default hover:info-hover focus:bg-info-focus text-white disabled:opacity-50 disabled:hover:bg-info-default disabled:focus:bg-info-default",
-  "gray-link": "text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active"
+  "gray-link": "text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active"
 };
 
 export const BUTTON_OUTLINE_STYLES: Record<ButtonAppearance, string> = {

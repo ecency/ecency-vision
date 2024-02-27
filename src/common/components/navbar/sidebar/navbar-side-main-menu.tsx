@@ -18,7 +18,8 @@ import {
   UilSetting,
   UilSignin,
   UilSignout,
-  UilUser
+  UilUser,
+  UilWallet
 } from "@iconscout/react-unicons";
 import { NavbarSideMainMenuItem } from "./navbar-side-main-menu-item";
 
@@ -42,6 +43,12 @@ export function NavbarSideMainMenu({ history, onHide }: Props) {
         label: _t("user-nav.profile"),
         to: `/@${activeUser?.username}`,
         icon: <UilUser size={16} />,
+        onClick: () => onHide()
+      },
+      {
+        label: _t("user-nav.wallet"),
+        to: `/@${activeUser?.username}/wallet`,
+        icon: <UilWallet size={16} />,
         onClick: () => onHide()
       },
       ...(global.usePrivate
