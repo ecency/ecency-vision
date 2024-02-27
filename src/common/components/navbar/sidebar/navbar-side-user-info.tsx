@@ -16,7 +16,7 @@ export function NavbarSideUserInfo({ history }: { history: History }) {
       <ProfileLink history={history} username={activeUser!.username} addAccount={addAccount}>
         <UserAvatar username={activeUser!.username} size="medium" />
       </ProfileLink>
-      {activeUser!.data && (
+      {activeUser?.data.__loaded && (
         <div>
           <div className="font-semibold">{activeUser?.username}</div>
           <div className="flex flex-col text-xs">
