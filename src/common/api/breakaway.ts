@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios"
 import * as ls from "../util/local-storage";
 
-// const baUrl = "http://localhost:4000"
-const baUrl = "https://breakaway-points-system-api.onrender.com"
+const baUrl = "http://localhost:4000"
+// const baUrl = "https://breakaway-points-system-api.onrender.com"
 const accessToken = ls.get("ba_access_token")
 
 export const createBreakawayUser = async (username: string, community: string, referral: string, email: string)=> {
@@ -50,7 +50,7 @@ export const processLogin = async (username: string, ts: string, sig: string, co
     console.log('Login Successful', response);
     return response;
 
-  } catch (error) {
+  } catch (error) { 
     console.error('Login Failed: ', error);
   }
 };
@@ -89,13 +89,13 @@ export  const getBaUserPoints = async (username: string, community: string): Pro
 };
 
 export const updateUserPoints = async (username: string, community: string, pointType: string) => {
-  console.log(username)
   try {
     const requestData = {
       username,
       community,
       pointType,
     };
+    console.log(requestData)
 
     const response = await axios.post(`${baUrl}/points`, 
       requestData,

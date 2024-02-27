@@ -29,4 +29,13 @@
     cursor: pointer;
     z-index: 999;
   }
+
+  .operation-amount{
+    display: flex;
+    margin-bottom: 20px;
+    
+    .operations{
+      margin-left: 5px;
+    }
+  }
   

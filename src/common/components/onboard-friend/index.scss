@@ -23,3 +23,17 @@
       margin-top: 5px;
       gap: 10px;
     }
+
+    .delegate-rc{      
+      .check{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+  
+        .checkbox{
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+

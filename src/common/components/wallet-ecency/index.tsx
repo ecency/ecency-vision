@@ -32,6 +32,7 @@ import {_t} from "../../i18n";
 import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
 import { claimBaPoints} from "../../api/breakaway";
 import { dateToFullRelative } from "../../helper/parse-date";
+import { getCommunity } from "../../api/bridge";
 
 import {
     accountGroupSvg,
@@ -226,18 +227,18 @@ export const WalletEcency = (props: Props) => {
         user = user.replace('@','')
         global.isElectron && initiateOnElectron(user);
         getEstimatedPointsValue();
-        getCommunity(); 
-      
-        if (communityInfo?.profile && isMounted ) {
+        getCommunityInfo(); 
+      console.log(props.global)
+        if (communityInfo && isMounted ) {
             // console.log(communityInfo)
-          getPointsHistory(user, communityInfo?.profile?.name);
+          getPointsHistory(user, communityInfo?.title);
           getUserPoints();
         }
       
         return () => {
           setIsMounted(false);
         }
-      }, [claimed, communityInfo?.profile?.name]);      
+      }, [claimed, communityInfo?.title]);      
 
     const getEstimatedPointsValue = () => {
         const {global: {currency}} = props;
@@ -291,7 +292,7 @@ export const WalletEcency = (props: Props) => {
         console.log("Points")
        
         try {
-          const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.profile?.name);
+          const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.title);
           console.log(response)
           if (response.status === 200) {
               const userPoints = response.data.userPoints;
@@ -315,7 +316,7 @@ export const WalletEcency = (props: Props) => {
         setClaimed(false)
         setClaiming(true)
         try {
-          const response = await claimBaPoints(activeUser!.username, communityInfo?.profile?.name)
+          const response = await claimBaPoints(activeUser!.username, communityInfo?.title)
           console.log(response)
       
           if (response.status === 200) {
@@ -353,8 +354,9 @@ export const WalletEcency = (props: Props) => {
         }
       };
 
-      const getCommunity = async () => {
-        const communityData = await getAccount(props.global.hive_id)
+      const getCommunityInfo = async () => {
+        const communityData = await getCommunity(props.global.hive_id)
+        console.log(communityData)
         setCommunityInfo(communityData)
       }
       
@@ -398,6 +400,7 @@ export const WalletEcency = (props: Props) => {
     return (
         <>
             <div className="wallet-ecency">
+                <span>{communityInfo ? communityInfo.title : "test"}</span>
                 <div className="wallet-main">
                     {/* <Button className="" onClick={()=>ls.remove("ba_access_token")} >Test Verify</Button> */}
                     <div className="wallet-info">
@@ -439,7 +442,7 @@ export const WalletEcency = (props: Props) => {
 
                         <div className="balance-row alternative">
                             <div className="balance-info">
-                                <div className="title">{communityInfo?.profile?.name}</div>
+                                <div className="title">{communityInfo?.title}</div>
                                 <div className="description">{_t("points.main-description")}</div>
                             </div>
                             <div className="balance-values">
@@ -488,7 +491,7 @@ export const WalletEcency = (props: Props) => {
                                         </div>
                                     )} */}
 
-                                    <>{userPoints?.pointsBalance}.000 {"RALLY POINTS"}</>
+                                    <>{userPoints?.pointsBalance}.000 Points</>
                                 </div>
                             </div>
                         </div>
