@@ -142,7 +142,7 @@ function BoostDialog({ onHide }: Props) {
                 </div>
                 <div className="grid grid-cols-12 mb-4">
                   <div className="col-span-12 sm:col-span-2 flex items-center">
-                    <label>{_t("redeem-common.post")}</label>
+                    <label>{_t("redeem-common.account")}</label>
                   </div>
                   <div className="col-span-12 sm:col-span-10">
                     <SearchByUsername
