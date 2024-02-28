@@ -1204,7 +1204,8 @@
     "post-error": "Neteisingas įrašo adresas",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Jūsų prašymas priimtas. Aktyvuosis per kelias minutes."
+    "success-message": "Jūsų prašymas priimtas. Aktyvuosis per kelias minutes.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Pervesti į Paskyrą",
