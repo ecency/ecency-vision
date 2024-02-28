@@ -1,29 +1,32 @@
 @import "src/style/vars_mixins";
 
 .comment-engagement {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
-  
-    .icon {
-      padding: 14px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      @apply text-blue-dark-sky;
-      border: 2px solid;
-      @apply border-blue-dark-sky;
-      width: 54px;
-      height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
 
-      svg {
-        height: 24px;
-        margin-bottom: -2px;
-      }
-    }
-  
-    .label {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
+  .icon {
+    padding: 14px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    @apply text-blue-dark-sky;
+    border: 2px solid;
+    @apply border-blue-dark-sky;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      height: 24px;
+      margin-bottom: -2px;
     }
   }
+
+  .label {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+}
