@@ -24,7 +24,7 @@ const LandingPage = (props: any) => {
     return () => clearInterval(updateTimer);
   }, []);
 
-  return activeUser || (community && !time) ? (
+  return activeUser || (community && time <= 0) ? (
     <Redirect to={`/trending/${global.hive_id}`} />
   ) : (
     <div
