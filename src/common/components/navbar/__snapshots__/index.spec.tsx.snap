@@ -60,13 +60,13 @@ exports[`(1) Default render 1`] = `
       className="flex items-center ml-3"
     >
       <a
-        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
         href="/submit"
         onClick={[Function]}
         title="Create Post"
       >
         <div
-          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+          className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
         >
           <svg
             fill="currentColor"
@@ -237,7 +237,7 @@ exports[`(1) Default render 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -253,13 +253,13 @@ exports[`(1) Default render 1`] = `
           </div>
         </a>
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
           href="/submit"
           onClick={[Function]}
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -280,7 +280,7 @@ exports[`(1) Default render 1`] = `
           title="Notifications"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
             style={
               Object {
                 "outline": "none",
@@ -289,7 +289,7 @@ exports[`(1) Default render 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
               <svg
                 fill="currentColor"
@@ -391,13 +391,13 @@ exports[`(2) Night Theme 1`] = `
       className="flex items-center ml-3"
     >
       <a
-        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
         href="/submit"
         onClick={[Function]}
         title="Create Post"
       >
         <div
-          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+          className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
         >
           <svg
             fill="currentColor"
@@ -568,7 +568,7 @@ exports[`(2) Night Theme 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -584,13 +584,13 @@ exports[`(2) Night Theme 1`] = `
           </div>
         </a>
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
           href="/submit"
           onClick={[Function]}
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -611,7 +611,7 @@ exports[`(2) Night Theme 1`] = `
           title="Notifications"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
             style={
               Object {
                 "outline": "none",
@@ -620,7 +620,7 @@ exports[`(2) Night Theme 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
               <svg
                 fill="currentColor"
@@ -722,13 +722,13 @@ exports[`(3) With active user 1`] = `
       className="flex items-center ml-3"
     >
       <a
-        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
         href="/submit"
         onClick={[Function]}
         title="Create Post"
       >
         <div
-          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+          className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
         >
           <svg
             fill="currentColor"
@@ -899,7 +899,7 @@ exports[`(3) With active user 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -915,13 +915,13 @@ exports[`(3) With active user 1`] = `
           </div>
         </a>
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
           href="/submit"
           onClick={[Function]}
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -942,7 +942,7 @@ exports[`(3) With active user 1`] = `
           title="Notifications"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
             style={
               Object {
                 "outline": "none",
@@ -951,7 +951,7 @@ exports[`(3) With active user 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
               <svg
                 fill="currentColor"
@@ -1053,13 +1053,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
       className="flex items-center ml-3"
     >
       <a
-        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+        className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
         href="/submit"
         onClick={[Function]}
         title="Create Post"
       >
         <div
-          className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+          className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
         >
           <svg
             fill="currentColor"
@@ -1230,7 +1230,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             Buy perks
           </div>
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -1246,13 +1246,13 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           </div>
         </a>
         <a
-          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
+          className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-3"
           href="/submit"
           onClick={[Function]}
           title="Create Post"
         >
           <div
-            className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+            className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
           >
             <svg
               fill="currentColor"
@@ -1273,7 +1273,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           title="Notifications"
         >
           <button
-            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-500 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
+            className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active  h-[2.125rem] px-3"
             style={
               Object {
                 "outline": "none",
@@ -1282,7 +1282,7 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             type="button"
           >
             <div
-              className="flex justify-center items-center min-w-[1.25rem] min-h-[1.25rem] max-w-[1.25rem] max-h-[1.25rem] [&>svg]:min-w-[1.25rem] [&>svg]:min-h-[1.25rem] [&>svg]:max-w-[1.25rem] [&>svg]:max-h-[1.25rem] "
+              className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
             >
               <svg
                 fill="currentColor"
