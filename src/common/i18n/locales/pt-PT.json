@@ -1204,7 +1204,8 @@
     "post-error": "Endereço do post não é valido",
     "post-boosted-exists": "Este conteúdo já está promovido",
     "post-promoted-exists": "Este conteúdo já foi promovido",
-    "success-message": "Seu pedido foi enviado. Ele será ativado em alguns minutos."
+    "success-message": "Seu pedido foi enviado. Ele será ativado em alguns minutos.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Transferir para a conta",
