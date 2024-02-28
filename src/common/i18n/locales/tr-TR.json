@@ -1204,7 +1204,8 @@
     "post-error": "Gönderi adresi geçersizdir",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Talebiniz gönderildi. Birkaç dakika içinde etkinleştirilecektir."
+    "success-message": "Talebiniz gönderildi. Birkaç dakika içinde etkinleştirilecektir.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Hesaba Aktar",

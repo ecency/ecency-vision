@@ -1204,7 +1204,8 @@
     "post-error": "不是有效的帖子地址",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "您的请求已提交。它将在几分钟后激活。"
+    "success-message": "您的请求已提交。它将在几分钟后激活。",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "转入帐户",

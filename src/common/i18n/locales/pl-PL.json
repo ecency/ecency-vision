@@ -1204,7 +1204,8 @@
     "post-error": "Nie prawidłowy adres wpisu",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Twoje zapytanie zostało złożone. Zostanie ono aktywowane za kilka minut."
+    "success-message": "Twoje zapytanie zostało złożone. Zostanie ono aktywowane za kilka minut.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Transfer na Konto",

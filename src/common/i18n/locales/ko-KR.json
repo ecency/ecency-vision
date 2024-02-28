@@ -1204,7 +1204,8 @@
     "post-error": "유효한 글 주소가 아닙니다",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "요청이 제출되었으며 몇 분 안에 활성화될 것입니다."
+    "success-message": "요청이 제출되었으며 몇 분 안에 활성화될 것입니다.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "계정에게 송금",

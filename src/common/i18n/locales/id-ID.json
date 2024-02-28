@@ -1204,7 +1204,8 @@
     "post-error": "Bukan alamat postingan yang valid",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Permintaan Anda terkirim. Ia akan diaktifkan dalam beberapa menit."
+    "success-message": "Permintaan Anda terkirim. Ia akan diaktifkan dalam beberapa menit.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Transfer ke Akun",

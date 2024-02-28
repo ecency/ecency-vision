@@ -1204,7 +1204,8 @@
     "post-error": "Non è un indirizzo valido di un post",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "La tua richiesta è stata inviata. Sarà attivata in un paio di minuti."
+    "success-message": "La tua richiesta è stata inviata. Sarà attivata in un paio di minuti.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Trasferisci all'account",

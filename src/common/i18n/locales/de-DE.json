@@ -1204,7 +1204,8 @@
     "post-error": "Keine gültige Post Adresse",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Deine Anfrage wurde eingereicht. Diese wird in ein paar Minuten aktiviert."
+    "success-message": "Deine Anfrage wurde eingereicht. Diese wird in ein paar Minuten aktiviert.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Konto-Überweisung",
