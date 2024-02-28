@@ -1204,7 +1204,8 @@
     "post-error": "Няма такъв адрес на публикация",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Вашата заявка беше изпратена. Ще бъде активирана след няколко минути."
+    "success-message": "Вашата заявка беше изпратена. Ще бъде активирана след няколко минути.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Прехвърли към Акаунт",
