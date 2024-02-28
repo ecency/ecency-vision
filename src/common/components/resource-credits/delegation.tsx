@@ -13,8 +13,14 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { getRcOperationStats } from "../../api/hive";
 
 export const ResourceCreditsDelegation = (props: any) => {
-  const { resourceCredit, activeUser, hideDelegation, toFromList, amountFromList, delegateeData } =
-    props;
+  const {
+    resourceCredit,
+    activeUser,
+    hideDelegation,
+    toFromList,
+    amountFromList,
+    delegateeData,
+  } = props;
 
   const [to, setTo] = useState<string>(toFromList || "");
   const [amount, setAmount] = useState<any>(amountFromList || "");
@@ -38,16 +44,16 @@ export const ResourceCreditsDelegation = (props: any) => {
   const [convertedVal, setConvertedVal] = useState<any>(null);
 
   useEffect(() => {
-    rcOperationsCost()
-  }, [amount])
+    rcOperationsCost();
+  }, [amount]);
 
   const convertToBillions = (input: string) => {
     const inputNumber = parseFloat(input);
-    let  resultDivided: number;
+    let resultDivided: number;
 
     if (!isNaN(inputNumber)) {
-       resultDivided = inputNumber / 1e9;
-      console.log("resultDivided", resultDivided!.toFixed(2) + "B")
+      resultDivided = inputNumber / 1e9;
+      console.log("resultDivided", resultDivided!.toFixed(2) + "B");
     } else {
       setConvertedValue("null");
     }
@@ -63,17 +69,18 @@ export const ResourceCreditsDelegation = (props: any) => {
 
   const amountChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
-    console.log(Number(value))
+    console.log(Number(value));
 
-    const sonvertedAmount = (parseFloat(value) * 1e9).toFixed(2)
-    setConvertedVal(sonvertedAmount)
-    
+    const sonvertedAmount = (parseFloat(value) * 1e9).toFixed(2);
+    setConvertedVal(sonvertedAmount);
+
     setAmount(Number(value));
-    updateOnAmount(Number(value))
-    console.log(amount)
+    updateOnAmount(Number(value));
+    console.log(amount);
     if (
       sonvertedAmount === "" ||
-      (Number(sonvertedAmount) >= 5000000000 && Number(sonvertedAmount) < Number(resourceCredit)) ||
+      (Number(sonvertedAmount) >= 5000000000 &&
+        Number(sonvertedAmount) < Number(resourceCredit)) ||
       sonvertedAmount === "0"
     ) {
       setAmountError("");
@@ -96,9 +103,9 @@ export const ResourceCreditsDelegation = (props: any) => {
 
   const signTransaction = () => {
     const { activeUser } = props;
-    console.log(activeUser)
+    console.log(activeUser);
     const username = activeUser?.username!;
-    const max_rc = `${parseFloat(amount) * 1e9}` ;
+    const max_rc = `${parseFloat(amount) * 1e9}`;
     delegateRC(username, to, max_rc)
       .then((res: any) => {
         return res;
@@ -117,13 +124,21 @@ export const ResourceCreditsDelegation = (props: any) => {
     const commentCost = operationCosts.comment_operation.avg_cost;
     const transferCost = operationCosts.transfer_operation.avg_cost;
     const voteCost = operationCosts.vote_operation.avg_cost;
-    const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
-    const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
+    const customJsonOperationsCosts =
+      operationCosts.custom_json_operation.avg_cost;
+    const createClaimAccountCost = Number(
+      operationCosts.claim_account_operation.avg_cost
+    );
 
-    const commentCount: number = Math.ceil(Number(amount) * 1e9 / commentCost);
-    const votetCount: number = Math.ceil(Number(amount) * 1e9 / voteCost);
-    const transferCount: number = Math.ceil(Number(amount) * 1e9 / transferCost);
-    const customJsonCount: number = Math.ceil(Number(amount) * 1e9 / customJsonOperationsCosts
+    const commentCount: number = Math.ceil(
+      (Number(amount) * 1e9) / commentCost
+    );
+    const votetCount: number = Math.ceil((Number(amount) * 1e9) / voteCost);
+    const transferCount: number = Math.ceil(
+      (Number(amount) * 1e9) / transferCost
+    );
+    const customJsonCount: number = Math.ceil(
+      (Number(amount) * 1e9) / customJsonOperationsCosts
     );
     const createClaimAccountCount: number = Math.floor(
       Number(amount) / createClaimAccountCost
@@ -176,8 +191,8 @@ export const ResourceCreditsDelegation = (props: any) => {
           return resp;
         })
         .catch((err: any) => {
-        //   error(...formatError(err));
-        console.log(err)
+          //   error(...formatError(err));
+          console.log(err);
         })
         .finally(() => {
           setInProgress(false);
@@ -185,7 +200,10 @@ export const ResourceCreditsDelegation = (props: any) => {
     }
   };
 
-  const delayedSearch = useCallback(_.debounce(handleTo, 3000, { leading: true }), []);
+  const delayedSearch = useCallback(
+    _.debounce(handleTo, 3000, { leading: true }),
+    []
+  );
 
   const formHeader1 = (
     <div className="transaction-form-header">
@@ -207,33 +225,43 @@ export const ResourceCreditsDelegation = (props: any) => {
     </div>
   );
 
-  const handlePointClick = (event:any, index: number, percentage: number) => {
+  const handlePointClick = (event: any, index: number, percentage: number) => {
     event.stopPropagation();
     setFillWidth(percentage);
-    const formartInput = (((percentage / 100) * resourceCredit) / 1e9).toFixed(0)
-    console.log(percentage)
-    setAmount(formartInput)
+    const formartInput = (((percentage / 100) * resourceCredit) / 1e9).toFixed(
+      0
+    );
+    console.log(percentage);
+    setAmount(formartInput);
   };
 
   const handleProgressLineClick = (event: any) => {
-    const clickedPosition = (event.nativeEvent.offsetX / event.currentTarget.clientWidth) * 100;
-    console.log(clickedPosition)
-    event.stopPropagation()
+    const clickedPosition =
+      (event.nativeEvent.offsetX / event.currentTarget.clientWidth) * 100;
+    console.log(clickedPosition);
+    event.stopPropagation();
 
-    const formmattedInput = ((clickedPosition / 100) * resourceCredit / 1e9).toFixed(0);
+    const formmattedInput = (
+      ((clickedPosition / 100) * resourceCredit) /
+      1e9
+    ).toFixed(0);
     setFillWidth(clickedPosition);
     setAmount(formmattedInput);
   };
 
   const updateOnAmount = (a: number) => {
-    const rcPercent = (a * 1e9) / resourceCredit * 100
-    setFillWidth(rcPercent)
-  }
+    const rcPercent = ((a * 1e9) / resourceCredit) * 100;
+    setFillWidth(rcPercent);
+  };
 
   return (
     <div className="transfer-dialog-content">
       {step === 1 && (
-        <div className={`transaction-form ${inProgress ? "in-progress" : ""} d-flex flex-column`}>
+        <div
+          className={`transaction-form ${
+            inProgress ? "in-progress" : ""
+          } d-flex flex-column`}
+        >
           {formHeader1}
           {inProgress && <LinearProgress />}
           <Form className="transaction-form-body">
@@ -243,7 +271,11 @@ export const ResourceCreditsDelegation = (props: any) => {
               </div>
               <div className="col-span-12 sm:col-span-10">
                 <InputGroup>
-                  <FormControl type="text" value={activeUser?.username} readOnly={true} />
+                  <FormControl
+                    type="text"
+                    value={activeUser?.username}
+                    readOnly={true}
+                  />
                 </InputGroup>
               </div>
             </div>
@@ -267,15 +299,22 @@ export const ResourceCreditsDelegation = (props: any) => {
                 {/* </SuggestionList> */}
 
                 {toWarning && (
-                  <small className="text-warning-default tr-form-text">{toWarning}</small>
+                  <small className="text-warning-default tr-form-text">
+                    {toWarning}
+                  </small>
                 )}
-                {toError && <small className="text-red tr-form-text">{toError}</small>}
+                {toError && (
+                  <small className="text-red tr-form-text">{toError}</small>
+                )}
               </div>
             </div>
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 sm:col-span-2 mt-3">
-                <label>{_t("transfer.amount")} (Bn) Minimum Rc that can be delegated is 5Bn</label>
+                <label>
+                  {_t("transfer.amount")} (Bn) Minimum Rc that can be delegated
+                  is 5Bn
+                </label>
               </div>
               <div className="col-span-12 sm:col-span-10">
                 <InputGroup>
@@ -285,14 +324,18 @@ export const ResourceCreditsDelegation = (props: any) => {
                     value={amount}
                     onChange={amountChanged}
                     className={
-                      Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
+                      Number(amount) > Number(resourceCredit) && amountError
+                        ? "is-invalid"
+                        : ""
                     }
                   />
                 </InputGroup>
               </div>
             </div>
 
-            {amount < 5000000000 && <small className="text-red tr-form-text">{amountError}</small>}
+            {amount < 5000000000 && (
+              <small className="text-red tr-form-text">{amountError}</small>
+            )}
             {amount > Number(resourceCredit) && (
               <small className="text-red tr-form-text">{amountError}</small>
             )}
@@ -301,33 +344,45 @@ export const ResourceCreditsDelegation = (props: any) => {
               <span className="operations">Posts/Comment: {commentAmount}</span>
               <span className="operations">Votes: {voteAmount}</span>
               <span className="operations">Transfers: {transferAmount}</span>
-              <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+              <span className="operations">
+                Reblogs/ Follows: {customJsonAmount}
+              </span>
             </div>
 
-            <div className="d-flex rc-progress-line" onClick={handleProgressLineClick}>
+            <div
+              className="d-flex rc-progress-line"
+              onClick={handleProgressLineClick}
+            >
               <div className="rc-fill" style={{ width: `${fillWidth}%` }} />
 
-              <div className="rc-points" 
-              onClick={(e) => handlePointClick(e, 0, 0)}
-              ></div>
-              <div className="rc-points"
-              onClick={(e) => handlePointClick(e, 1, 25)}
-              ></div>
-              <div className="rc-points" 
-              onClick={(e) => handlePointClick(e, 2, 50)}
-              ></div>
-              <div className="rc-points"  
-              onClick={(e) => handlePointClick(e, 3, 75)}
-              ></div>
-              <div className="rc-points"  
-              onClick={(e) => handlePointClick(e, 4, 100)}
-              ></div>
+              <div
+                className="rc-points"
+                onClick={(e) => handlePointClick(e, 0, 0)}
+              />
+              <div
+                className="rc-points"
+                onClick={(e) => handlePointClick(e, 1, 25)}
+              />
+              <div
+                className="rc-points"
+                onClick={(e) => handlePointClick(e, 2, 50)}
+              />
+              <div
+                className="rc-points"
+                onClick={(e) => handlePointClick(e, 3, 75)}
+              />
+              <div
+                className="rc-points"
+                onClick={(e) => handlePointClick(e, 4, 100)}
+              />
             </div>
 
             <div className="grid grid-cols-12">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <div className="balance space-3">
-                  <span className="balance-label">{_t("transfer.balance")}</span>
+                  <span className="balance-label">
+                    {_t("transfer.balance")}
+                  </span>
                   <span>{`: ${convertToBillions(resourceCredit)}`}</span>
                 </div>
               </div>
@@ -368,7 +423,7 @@ export const ResourceCreditsDelegation = (props: any) => {
               <div className="amount">{amount}Bn RC</div>
             </div>
             <div className="flex justify-center">
-              <Button  disabled={inProgress} onClick={back}>
+              <Button disabled={inProgress} onClick={back}>
                 {_t("g.back")}
               </Button>
               <span className="hr-6px-btn-spacer" />
