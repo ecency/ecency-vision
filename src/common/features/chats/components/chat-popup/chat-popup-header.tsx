@@ -39,7 +39,7 @@ export function ChatPopupHeader({
   const { publicKey } = useKeysQuery();
 
   const isActiveUser = useMemo(
-    () => directContact?.pubkey === publicKey,
+    () => directContact?.pubkey === publicKey && publicKey,
     [publicKey, directContact]
   );
   const title = useMemo(() => {
