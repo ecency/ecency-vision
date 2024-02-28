@@ -1204,7 +1204,8 @@
     "post-error": "No es una dirección de una publicación válida",
     "post-boosted-exists": "Este contenido ya está impulsado",
     "post-promoted-exists": "Este contenido ya está promocionado",
-    "success-message": "Tu solicitud enviada. Será activada en un par de minutos."
+    "success-message": "Tu solicitud enviada. Será activada en un par de minutos.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Transferir a Cuenta",
