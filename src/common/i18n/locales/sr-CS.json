@@ -1204,7 +1204,8 @@
     "post-error": "Nevažeća adresa objave",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Vaš zahtev je podnet. Biće aktivirano za nekoliko minuta."
+    "success-message": "Vaš zahtev je podnet. Biće aktivirano za nekoliko minuta.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Prenesi u korisnički nalog",
