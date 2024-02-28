@@ -1204,7 +1204,8 @@
     "post-error": "Pochta manzili noto‘g‘ri",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Sizning so'rovingiz yuborildi. U bir necha daqiqada faollashadi."
+    "success-message": "Sizning so'rovingiz yuborildi. U bir necha daqiqada faollashadi.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Hisobga o'tkazish",

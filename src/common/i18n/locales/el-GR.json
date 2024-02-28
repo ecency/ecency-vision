@@ -1204,7 +1204,8 @@
     "post-error": "Μη έγκυρη διεύθυνση",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Το αίτημα σας καταχωρήθηκε. Θα ενεργοποιηθεί σε μερικά λεπτά."
+    "success-message": "Το αίτημα σας καταχωρήθηκε. Θα ενεργοποιηθεί σε μερικά λεπτά.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Μεταφορά σε λογαριασμό",

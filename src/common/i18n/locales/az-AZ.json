@@ -1204,7 +1204,8 @@
     "post-error": "Etibarlı bir göndəriş ünvanı deyil",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Tələbiniz göndərildi. Bir neçə dəqiqəyə aktivləşdiriləcək."
+    "success-message": "Tələbiniz göndərildi. Bir neçə dəqiqəyə aktivləşdiriləcək.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Hesaba Köçür",

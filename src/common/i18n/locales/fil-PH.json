@@ -1204,7 +1204,8 @@
     "post-error": "Hindi isang balidong address",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Naisumite na ang iyong hiling. Magiging aktibo ito sa ilang sandali."
+    "success-message": "Naisumite na ang iyong hiling. Magiging aktibo ito sa ilang sandali.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Ilipat sa Account",

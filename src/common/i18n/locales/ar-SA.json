@@ -1204,7 +1204,8 @@
     "post-error": "عنوان نشر غير صالح",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "تم إرسال طلبك. سيتم تفعيله في بضع دقائق."
+    "success-message": "تم إرسال طلبك. سيتم تفعيله في بضع دقائق.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "التحويل إلى الحساب",

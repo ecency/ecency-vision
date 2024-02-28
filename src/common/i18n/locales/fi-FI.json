@@ -1204,7 +1204,8 @@
     "post-error": "Osoite ei kelpaa",
     "post-boosted-exists": "Tämä sisältö on jo tehostettu",
     "post-promoted-exists": "Tämä sisältö on jo korostettu",
-    "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua."
+    "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Siirrä tilille",
