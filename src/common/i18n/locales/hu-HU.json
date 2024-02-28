@@ -1204,7 +1204,8 @@
     "post-error": "Nem érvényes bejegyzés cím",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Kérésed rögzítve. Néhány perc múlva aktiválódik."
+    "success-message": "Kérésed rögzítve. Néhány perc múlva aktiválódik.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Átutalás más fiókba",
