@@ -1204,7 +1204,8 @@
     "post-error": "Geen geldig e-mailadres",
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
-    "success-message": "Your request submitted. It will be activated in a couple minutes."
+    "success-message": "Your request submitted. It will be activated in a couple minutes.",
+    "account": "Account"
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
