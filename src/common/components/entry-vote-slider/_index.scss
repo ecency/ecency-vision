@@ -1,10 +1,10 @@
 @import "src/style/vars_mixins";
 
 .slide {
-  height: 50px;
+  height: 30px;
   width: 100%;
   cursor: pointer;
-  margin-top: 11px;
+  padding-top: 10px;
 }
 
 .slide-background-line{
@@ -59,11 +59,11 @@
   font-size: 12px;
   margin-left: 2px;
   position: relative;
-  top: -31px;
+  top: 0px;
 }
 
 .dots-negative{
-  top: 21.5px !important; 
+  top: 21.5px !important;
 }
 
 .no-select{
