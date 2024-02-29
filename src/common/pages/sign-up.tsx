@@ -17,7 +17,7 @@ import NavBar from "../components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import { getAccount } from "../api/hive";
+import { getAccounts } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
@@ -126,15 +126,15 @@ export const SignUp = (props: PageProps) => {
   useDebounce(
     () => {
       if (username?.length >= 3) {
-        getAccount(username).then((r) => {
-          if (r) {
+        getAccounts([username]).then((r) => {
+          if (r.length > 0) {
             setUsernameError(_t("sign-up.username-exists"));
             setIsDisabled(true);
           }
         });
       }
     },
-    200,
+    1000,
     [username]
   );
 
@@ -283,14 +283,14 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    const existingAccount = await getAccount(username);
-                    if (existingAccount) {
+                    const existingAccount = await getAccounts([username]);
+                    if (existingAccount.length > 0) {
                       setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
 
-                    const referralIsValid = await getAccount(referral);
-                    if (!referralIsValid && referral !== "") {
+                    const referralIsValid = await getAccounts([referral]);
+                    if (referralIsValid.length === 0 && referral !== "") {
                       setReferralError(_t("sign-up.referral-invalid"));
                       return;
                     }
