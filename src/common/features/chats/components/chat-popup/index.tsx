@@ -78,6 +78,7 @@ export const ChatPopUp = () => {
       !routerLocation.pathname.match("/chats") &&
         !routerLocation.pathname.match("/submit") &&
         !routerLocation.pathname.match("/draft") &&
+        !routerLocation.pathname.match("/edit") &&
         !!activeUser
     );
   }, [routerLocation, activeUser]);
