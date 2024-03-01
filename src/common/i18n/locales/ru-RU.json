@@ -189,7 +189,7 @@
     "boost": "Усилить",
     "submit": "Создать пост",
     "chats": "Чаты",
-    "perks": "Buy perks"
+    "perks": "Купить привилегии"
   },
   "intro": {
     "title": "Стремитесь к величию",
@@ -235,7 +235,7 @@
     "free-account-desc": "Получите полноценную учетную запись Hive, этот метод имеет базовые проверки, чтобы убедиться, что ботнет не злоупотребляет нашим сборщиком регистрации.",
     "register-free": "Зарегистрироваться бесплатно",
     "buy-account": "Купить аккаунт",
-    "buy-account-desc": "Получите полноценную учетную запись Hive без дополнительных проверок и нескольких привилегий, таких как:",
+    "buy-account-desc": "Получите полноценную учетную запись Hive без дополнительных проверок и с несколькими привилегиями, такими как:",
     "buy-account-li-1": "Мгновенное создание без дополнительных проверок и ожидания",
     "buy-account-li-2": "3x RC по сравнению с обычными новыми аккаунтами",
     "buy-account-li-3": "300 баллов, чтобы помочь вам начать",
@@ -648,7 +648,7 @@
     "fee-free": "Бесплатно",
     "order-book-impact": "Влияние книги ордеров",
     "swap-title": "Поменять свои средства",
-    "advanced-title": "Trade token",
+    "advanced-title": "Торговый токен",
     "sign-title": "Подпишите свою транзакцию",
     "fetching-market": "Извлечение рынка...",
     "back": "Назад",
@@ -2363,24 +2363,24 @@
     "report": "Пожаловаться"
   },
   "perks": {
-    "page-title": "Welcome to Perks",
-    "title": "Meet Ecency perks",
+    "page-title": "Добро пожаловать в Привилегии",
+    "title": "Знакомство с привилегиями Ecency",
     "title-next": "единый, быстрый и простой способ усилить ваш аккаунт",
     "points-title": "Купить баллы",
     "points-action": "Купить",
-    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
-    "account-boost-title": "Account boosting",
+    "points-description": "Начните улучшать взаимодействие с вашим контентом, приобретая баллы с помощью Ecency Mobile",
+    "account-boost-title": "Усиление аккаунта",
     "account-boost-action": "Усилить сейчас!",
-    "account-boost-description": "Use In-App purchase to acquire extra powers",
+    "account-boost-description": "Используйте покупки в приложении, чтобы получить дополнительные возможности",
     "promote-title": "Продвижение вашего поста",
     "promote-action": "Продвинуть",
-    "promote-description": "Impressions boost that will increase eyeballs on your content",
-    "boost-plus-title": "Boost+",
-    "boost-plus-action": "Boost+",
-    "boost-plus-description": "Boost your account with your points in few clicks"
+    "promote-description": "Увеличение количества показов, увеличит внимание к вашему контенту",
+    "boost-plus-title": "Усилить+",
+    "boost-plus-action": "Усилить+",
+    "boost-plus-description": "Усильте свой аккаунт баллами в несколько кликов"
   },
   "boost-plus": {
-    "title": "Boost+",
+    "title": "Усилить+",
     "sub-title": "Усильте свой аккаунт, используя баллы Ecency",
     "already-boosted-account": "Этот аккаунт уже усилен"
   }
