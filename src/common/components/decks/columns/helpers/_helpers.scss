@@ -58,6 +58,16 @@
       }
     }
 
+    .voting-controls-down {
+      .slider {
+        > div {
+          > div:first-child {
+            @apply bg-red;
+          }
+        }
+      }
+    }
+
     @media screen and (max-width: 560px) {
       width: calc(100vw - 67px - 24px);
       left: -12px;
