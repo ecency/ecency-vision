@@ -185,7 +185,7 @@
     "light": "vaalea",
     "dark": "tumma",
     "switch-to": "Vaihda",
-    "vote-power": "Vote Power",
+    "vote-power": "Äänivalta",
     "boost": "Tehosta",
     "submit": "Luo julkaisu",
     "chats": "Keskustelut",
@@ -606,10 +606,10 @@
     "title": "Merkkien vaihtopaikka",
     "description": "Hajautetussa vaihtoalustassa voit ostaa ja myydä merkkejä Hive-lohkoketjussa. Lue lisää <a href=\"/faq#how-exchange-work\">FAQ</a>.",
     "last-price": "Viimeinen Hinta",
-    "volume": "24h volyymi",
+    "volume": "24t volyymi",
     "bid": "Tarjous",
     "spread": "Hajonta",
-    "ask": "Kysy",
+    "ask": "Kysyntä",
     "buy": "Osta",
     "sell": "Myy",
     "available": "Saatavilla",
@@ -628,7 +628,7 @@
     "action": "Toiminta",
     "trade-history": "Kauppahistoria",
     "stock-params": "Parametrit",
-    "stock-info": "Osaketiedot",
+    "stock-info": "Vaihtotiedot",
     "barter": "Muunna merkkejä",
     "stock-values": "Arvot",
     "transaction-low": "Kokonaissumma ylittää käytettävissä olevan saldon. Lisää varoja tai yritä pienemmällä summalla.",
@@ -638,8 +638,8 @@
     "transaction-succeeded": "Tapahtuma lähetetty",
     "lowest-ask": "Matalin kysely",
     "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
-    "from": "Lähettäjä",
-    "to": "Vastaanottaja",
+    "from": "Merkistä",
+    "to": "Merkiksi",
     "sign": "Allekirjoita",
     "swapping": "Vaihdetaan...",
     "continue": "Jatka",
@@ -1049,8 +1049,8 @@
       "send": {
         "balance": "Saldo",
         "button": "Lähetä",
-        "from": "Lähettäjä",
-        "to": "Vastaanottaja",
+        "from": "Merkistä",
+        "to": "Merkiksi",
         "amount": "Määrä",
         "optional": "valinnainen",
         "title": "Lähetä SPK",
@@ -1205,7 +1205,7 @@
     "post-boosted-exists": "Tämä sisältö on jo tehostettu",
     "post-promoted-exists": "Tämä sisältö on jo korostettu",
     "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua.",
-    "account": "Account"
+    "account": "Tili"
   },
   "transfer": {
     "transfer-title": "Siirrä tilille",
@@ -1362,7 +1362,7 @@
   },
   "savings-withdraw": {
     "title": "Kotiuta säästöistä",
-    "to": "Vastaanottaja"
+    "to": "Merkiksi"
   },
   "open-orders-list": {
     "title": "Avoimet tilaukset",
