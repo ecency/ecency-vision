@@ -15,7 +15,6 @@ import LoginRequired from "../login-required";
 import { error } from "../feedback";
 import { getAccountFull, getActiveVotes, votingPower } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
-import VotingSlider from "../entry-vote-slider";
 import EntryTipBtn from "../entry-tip-btn";
 import parseAsset from "../../helper/parse-asset";
 import { formatError, vote } from "../../api/operations";
@@ -28,6 +27,7 @@ import { _t } from "../../i18n";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Button } from "@ui/button";
+import Slider from "react-input-slider";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -323,7 +323,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <div className="space" />
               <div className="slider slider-up">
-                <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
+                <Slider axis="x" x={upSliderVal} onChange={({ x }) => this.upSliderChanged(x)} />
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
               <Button
@@ -373,10 +373,10 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
-                <VotingSlider
-                  value={downSliderVal}
-                  setVoteValue={this.downSliderChanged}
-                  mode={mode}
+                <Slider
+                  axis="x"
+                  x={downSliderVal}
+                  onChange={({ x }) => this.downSliderChanged(x)}
                 />
               </div>
               <div className="space" />
