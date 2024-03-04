@@ -10,10 +10,10 @@ exports[`(1) Default render 1`] = `
   >
     <div
       className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-      onClick={[Function]}
     >
       <div
         className="absolute flex gap-1 flex-col top-3.5 left-0"
+        onClick={[Function]}
       >
         <span
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -25,11 +25,15 @@ exports[`(1) Default render 1`] = `
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
       </div>
-      <img
-        alt="Logo"
-        className="logo relative min-w-[40px] max-w-[40px]"
-        src="logo-circle.svg"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
@@ -105,10 +109,10 @@ exports[`(1) Default render 1`] = `
     >
       <div
         className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-        onClick={[Function]}
       >
         <div
           className="absolute flex gap-1 flex-col top-3.5 left-0"
+          onClick={[Function]}
         >
           <span
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -120,11 +124,15 @@ exports[`(1) Default render 1`] = `
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
         </div>
-        <img
-          alt="Logo"
-          className="logo relative min-w-[40px] max-w-[40px]"
-          src="logo-circle.svg"
-        />
+        <a
+          href="/"
+        >
+          <img
+            alt="Logo"
+            className="logo relative min-w-[40px] max-w-[40px]"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="flex-1"
@@ -341,10 +349,10 @@ exports[`(2) Night Theme 1`] = `
   >
     <div
       className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-      onClick={[Function]}
     >
       <div
         className="absolute flex gap-1 flex-col top-3.5 left-0"
+        onClick={[Function]}
       >
         <span
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -356,11 +364,15 @@ exports[`(2) Night Theme 1`] = `
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
       </div>
-      <img
-        alt="Logo"
-        className="logo relative min-w-[40px] max-w-[40px]"
-        src="logo-circle.svg"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
@@ -436,10 +448,10 @@ exports[`(2) Night Theme 1`] = `
     >
       <div
         className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-        onClick={[Function]}
       >
         <div
           className="absolute flex gap-1 flex-col top-3.5 left-0"
+          onClick={[Function]}
         >
           <span
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -451,11 +463,15 @@ exports[`(2) Night Theme 1`] = `
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
         </div>
-        <img
-          alt="Logo"
-          className="logo relative min-w-[40px] max-w-[40px]"
-          src="logo-circle.svg"
-        />
+        <a
+          href="/"
+        >
+          <img
+            alt="Logo"
+            className="logo relative min-w-[40px] max-w-[40px]"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="flex-1"
@@ -672,10 +688,10 @@ exports[`(3) With active user 1`] = `
   >
     <div
       className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-      onClick={[Function]}
     >
       <div
         className="absolute flex gap-1 flex-col top-3.5 left-0"
+        onClick={[Function]}
       >
         <span
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -687,11 +703,15 @@ exports[`(3) With active user 1`] = `
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
       </div>
-      <img
-        alt="Logo"
-        className="logo relative min-w-[40px] max-w-[40px]"
-        src="logo-circle.svg"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
@@ -767,10 +787,10 @@ exports[`(3) With active user 1`] = `
     >
       <div
         className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-        onClick={[Function]}
       >
         <div
           className="absolute flex gap-1 flex-col top-3.5 left-0"
+          onClick={[Function]}
         >
           <span
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -782,11 +802,15 @@ exports[`(3) With active user 1`] = `
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
         </div>
-        <img
-          alt="Logo"
-          className="logo relative min-w-[40px] max-w-[40px]"
-          src="logo-circle.svg"
-        />
+        <a
+          href="/"
+        >
+          <img
+            alt="Logo"
+            className="logo relative min-w-[40px] max-w-[40px]"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="flex-1"
@@ -1003,10 +1027,10 @@ exports[`(4) With active user && usePrivate = false 1`] = `
   >
     <div
       className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-      onClick={[Function]}
     >
       <div
         className="absolute flex gap-1 flex-col top-3.5 left-0"
+        onClick={[Function]}
       >
         <span
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -1018,11 +1042,15 @@ exports[`(4) With active user && usePrivate = false 1`] = `
           className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
         />
       </div>
-      <img
-        alt="Logo"
-        className="logo relative min-w-[40px] max-w-[40px]"
-        src="logo-circle.svg"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt="Logo"
+          className="logo relative min-w-[40px] max-w-[40px]"
+          src="logo-circle.svg"
+        />
+      </a>
     </div>
     <div
       className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3"
@@ -1098,10 +1126,10 @@ exports[`(4) With active user && usePrivate = false 1`] = `
     >
       <div
         className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative"
-        onClick={[Function]}
       >
         <div
           className="absolute flex gap-1 flex-col top-3.5 left-0"
+          onClick={[Function]}
         >
           <span
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
@@ -1113,11 +1141,15 @@ exports[`(4) With active user && usePrivate = false 1`] = `
             className="w-[20px] h-[2px] bg-gray-400 dark:bg-gray-700"
           />
         </div>
-        <img
-          alt="Logo"
-          className="logo relative min-w-[40px] max-w-[40px]"
-          src="logo-circle.svg"
-        />
+        <a
+          href="/"
+        >
+          <img
+            alt="Logo"
+            className="logo relative min-w-[40px] max-w-[40px]"
+            src="logo-circle.svg"
+          />
+        </a>
       </div>
       <div
         className="flex-1"
