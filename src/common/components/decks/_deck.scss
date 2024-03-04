@@ -249,7 +249,7 @@
       margin: 0;
     }
 
-    .btn, .entry-votes, .entry-vote-btn, .comments, .entry-payout {
+    .btn, .entry-votes, .entry-vote-btn, .comments, .entry-payout, .entry-reblog-btn {
       color: $secondary;
 
       @include padding(0);

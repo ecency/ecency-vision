@@ -20,7 +20,7 @@ export function useInviteViaPostComment(username: string) {
       const author = activeUser!!.username;
       const permlink = createReplyPermlink(author);
       await comment(author, parentAuthor, parentPermlink, permlink, "", text, {}, null, true);
-      addReply(
+      return addReply(
         tempEntry({
           author: activeUser!!.data as FullAccount,
           permlink,

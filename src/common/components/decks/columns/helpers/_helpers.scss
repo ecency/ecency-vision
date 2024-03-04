@@ -9,9 +9,10 @@
       display: grid;
       align-items: center;
       grid-template-areas:
-            "slider slider slider slider slider"
+            "btn-up slider slider slider btn-down"
             "btn-up price space percentage btn-down";
       grid-template-columns: min-content min-content 1fr min-content min-content;
+      grid-gap: 0 1rem;
 
       .btn-up-vote {
         grid-area: btn-up;
@@ -28,18 +29,42 @@
 
       .slider {
         grid-area: slider;
+
+        > div {
+          @apply w-full bg-gray-300 dark:bg-dark-default;
+
+          > div:first-child {
+            @apply bg-blue-dark-sky;
+          }
+        }
       }
 
       .estimated {
         grid-area: price;
+        text-align: left;
       }
 
       .percentage {
         grid-area: percentage;
+        text-align: right;
+      }
+
+      .estimated, .percentage {
+        @apply text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap;
       }
 
       .space {
         grid-area: space;
+      }
+    }
+
+    .voting-controls-down {
+      .slider {
+        > div {
+          > div:first-child {
+            @apply bg-red;
+          }
+        }
       }
     }
 

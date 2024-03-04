@@ -76,6 +76,7 @@
     "react-highcharts": "^16.1.0",
     "react-img-webp": "^2.0.2",
     "react-in-viewport": "^1.0.0-alpha.30",
+    "react-input-slider": "^6.0.1",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.0",
     "react-resize-detector": "^7.1.2",
