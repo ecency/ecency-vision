@@ -420,6 +420,7 @@ export function Submit(props: PageProps & MatchProps) {
               placeholder={_t("submit.title-placeholder")}
               autoFocus={true}
               value={title}
+              dir={"auto"}
               onChange={(e) => setTitle(e.target.value)}
               spellCheck={true}
             />
@@ -447,6 +448,7 @@ export function Submit(props: PageProps & MatchProps) {
               }}
               disableRows={true}
               maxrows={100}
+              dir={"auto"}
               spellCheck={true}
               activeUser={(activeUser && activeUser.username) || ""}
             />
