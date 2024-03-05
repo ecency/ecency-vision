@@ -263,8 +263,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       dynamicProps,
       entry: { post_id }
     } = this.props;
-    const { downSliderVal, initialVoteValues } = this.state;
+    const { downSliderVal: downSliderAbsoluteVal, initialVoteValues } = this.state;
     const { downVoted } = this.props.isVoted();
+    const downSliderVal = downSliderAbsoluteVal * -1;
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
@@ -274,7 +275,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       setVoteValue("downPrevious", `${activeUser?.username!}-${post_id}`, downSliderVal);
       ls.set(
         this.props.isPostSlider ? "post_downSlider_value" : "comment_downSlider_value",
-        downSliderVal
+        downSliderAbsoluteVal
       );
     } else if (downVoted && initialVoteValues.down === downSliderVal) {
       this.setState({ wrongValueDown: true, wrongValueUp: false });
