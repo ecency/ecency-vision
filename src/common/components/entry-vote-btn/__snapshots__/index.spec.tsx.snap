@@ -42,102 +42,34 @@ Array [
       className="slider slider-up"
     >
       <div
-        style={
-          Object {
-            "height": "40px",
-            "paddingRight": "13px",
-          }
-        }
+        className="css-yvszuv-Slider"
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
       >
         <div
-          className="slide"
+          className="css-3g5hux-Slider"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          onClick={[Function]}
           onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchMove={[Function]}
           onTouchStart={[Function]}
+          style={
+            Object {
+              "left": "100%",
+              "position": "absolute",
+              "top": "50%",
+              "transform": "translate(-50%, -50%)",
+            }
+          }
         >
           <div
-            className="slide-background-line"
-          >
-            <div
-              className="slider-line"
-              style={
-                Object {
-                  "background": "#357ce6",
-                  "width": "100%",
-                  "zIndex": 100,
-                }
-              }
-            />
-            <span
-              className="slider-dot pointer-dot"
-              style={
-                Object {
-                  "background": "#357ce6",
-                  "left": "100%",
-                }
-              }
-            />
-            <div
-              className="dots-container"
-            >
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              />
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-            </div>
-          </div>
+            className="css-1ldz52l-Slider"
+          />
         </div>
       </div>
     </div>
