@@ -2290,8 +2290,8 @@
     "welcome-text": "Ecency",
     "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
     "powered-by-hive": "possibilitado pela Hive",
-    "how-it-works": "HOW IT WORKS?",
-    "get-started": "JOIN NOW",
+    "how-it-works": "COMO FUNCIONA?",
+    "get-started": "INSCREVA-SE JÁ",
     "explore": "EXPLORE",
     "earn-money": "Ganhe dinheiro",
     "earn-money-block-chain-based": "Rede social baseada em Blockchain, ",
@@ -2366,11 +2366,11 @@
     "page-title": "Welcome to Perks",
     "title": "Meet Ecency perks",
     "title-next": "unified, fast and simple way to boost your account",
-    "points-title": "Buy points",
-    "points-action": "Buy",
+    "points-title": "Comprar pontos",
+    "points-action": "Comprar",
     "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
     "account-boost-title": "Account boosting",
-    "account-boost-action": "Boost now!",
+    "account-boost-action": "Impulsionar agora!",
     "account-boost-description": "Use In-App purchase to acquire extra powers",
     "promote-title": "Promote your post",
     "promote-action": "Promote",
@@ -2380,7 +2380,7 @@
     "boost-plus-description": "Boost your account with your points in few clicks"
   },
   "boost-plus": {
-    "title": "Boost+",
+    "title": "Impulso+",
     "sub-title": "Boost your account using Ecency points",
     "already-boosted-account": "This account boosted already"
   }
