@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios"
 import * as ls from "../util/local-storage";
 
-const baUrl = "http://localhost:4000"
-// const baUrl = "https://breakaway-points-system-api.onrender.com"
+// const baUrl = "http://localhost:4000"
+const baUrl = "https://breakaway-points-system-api.onrender.com"
 const accessToken = ls.get("ba_access_token")
 
 export const createBreakawayUser = async (username: string, community: string, referral: string, email: string)=> {

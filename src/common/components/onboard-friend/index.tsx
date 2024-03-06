@@ -11,7 +11,7 @@ import ScrollToTop from "../scroll-to-top";
 import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
-import { createHiveAccount, createAccountWithCredit } from "../../api/operations";
+import { createHiveAccount, createAccountWithCredit, delegateRcKc } from "../../api/operations";
 import { hexDec } from "../../util/b64";
 import { ActiveUser } from "../../store/active-user/types";
 import { Link } from "react-router-dom";
@@ -53,6 +53,8 @@ const OnboardFriend = (props: Props | any) => {
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
+  const [accountCreator, setAccountCreator] = useState("")
+  const [noACtiveUserStep, setNoActiveUserStep] = useState("who")
 
   useEffect(() => {
     let decodedObj;
@@ -104,15 +106,64 @@ const OnboardFriend = (props: Props | any) => {
     }
   }
 
+  const signAccountNoUserKc = async () => {
+    try {
+      const response: any = await createAccountWithCredit({
+        username: urlInfo?.username,
+        keys: urlInfo?.keys
+      }, 
+      urlInfo!.referral
+      )
+      if (response.success === true) {
+        if(isChecked){
+          delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount)
+        }
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        setStep("success");
+        setMsg("Account created successfully")
+      } else {
+        setStep("fail")
+        setMsg("Unable to create account")
+      }
+    } catch (error) {
+      
+    }
+  }  
+
   const createAccount = async ()=> {
     try {
       const response: any = await createHiveAccount({
         username: urlInfo?.username,
         keys: urlInfo?.keys
       }, 
-      activeUser?.username
+      activeUser?.username || null
       );
       if (response.success === true) {
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        setStep("success");
+        setMsg("Account created successfully")
+      } else {
+        setStep("fail")
+        setMsg("Unable to create acount")
+      }
+    } catch (error) {
+      console.log(error)
+    };
+  };
+
+  const createAccountNoUser = async ()=> {
+    try {
+      const response: any = await createHiveAccount({
+        username: urlInfo?.username,
+        keys: urlInfo?.keys
+      }, 
+      urlInfo!.referral
+      );
+      
+      if (response.success === true) {
+        if(isChecked){
+          delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount)
+        }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
@@ -171,7 +222,106 @@ const OnboardFriend = (props: Props | any) => {
           })
         : NavBar({ ...props })}
       <div className={`${containerClasses} mt-5`}>
-        { !activeUser ? <h3>{_t("onboard.login-warning")}</h3> : 
+        { !activeUser ? <div>
+          {/* <h3>{_t("onboard.login-warning")}</h3> */}
+          {/* {noACtiveUserStep === "who" && <div className="d-flex flex-column align-items-center">
+            <h3 className="mb-3">Who is creating this account?</h3>
+            <InputGroup>
+                <FormControl
+                  type="text"
+                  placeholder={"Enter creator's username"}
+                  // value={rcAmount}
+                  onChange={(e: any) => setAccountCreator(e.target.value)}
+                  // className={
+                    // Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
+                  // }
+                />
+            </InputGroup>
+            <Button 
+            className="mt-3"
+            onClick={()=> {
+              // console.log(accountCreator)
+              console.log(urlInfo)
+              setNoActiveUserStep("sign")
+              }}>Proceed to create account</Button>
+          </div>} */}
+
+          {<>
+          <div className="onboard">
+          {step=== "confirm" && <>
+            <h5>{_t("onboard.creating-for-a-friend")}</h5>
+            <div className="friend-details">
+            {urlInfo && (
+              <div className="friend-details">
+                <span>{_t("onboard.username")} {urlInfo.username}</span>
+                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
+                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
+                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
+                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
+              </div>
+            )}
+            </div>
+
+            <div className="delegate-rc">
+              <div className="col-span-12 sm:col-span-10">
+                <div className="check mb-2">
+                  <input 
+                    type="checkbox" 
+                    className="checkbox" 
+                    checked={isChecked} 
+                    onChange={() => {
+                      setChecked(!isChecked)
+                    }}
+                  />
+                  <span>Delegate some resource credits to @{urlInfo!?.username} (Minimum Rc is 5Bn)</span>
+                </div>
+                {isChecked &&
+                <div className="mt-3">
+                  <InputGroup>
+                    <FormControl
+                      type="text"
+                      placeholder={"Enter amount to delegate(Bn)"}
+                      // value={rcAmount}
+                      onChange={(e: any) => setRcAmount(Number(e.target.value) * 1e9)}
+                      // className={
+                        // Number(amount) > Number(resourceCredit) && amountError ? "is-invalid" : ""
+                      // }
+                    />
+                  </InputGroup>
+                  <div className="operation-amount d-flex mt-3">
+                    <span className="operations">Posts/Comment: {commentAmount} |</span>
+                    <span className="operations">Votes: {voteAmount} |</span>
+                    <span className="operations">Transfers: {transferAmount} |</span>
+                    <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+            <div className="create-buttons w-100">
+                <Button onClick={()=> createAccountNoUser()} className="w-100">Pay with (3Hive)</Button>   
+                <Button  
+                disabled={token <= 0}
+                onClick={()=> signAccountNoUserKc()} 
+                className="w-100"
+                >
+                  Pay with account token
+                </Button>   
+            </div>
+          </>} 
+          {step === "success" &&
+          <>
+            <h4 className="text-success">{msg}</h4>
+            <Link to={`/@${urlInfo?.username}`}>Visit @{urlInfo?.username}'s profile</Link>
+          </>
+          } 
+          {step === "fail" && <>
+            <h4 className="text-danger">{msg}</h4>
+            <Button onClick={()=> setStep("confirm")}>{_t("onboard.try-again")}</Button>
+          </>}
+        </div>
+          </>}
+        </div> :
         <div className="onboard">
           {step=== "confirm" && <>
             <h5>{_t("onboard.creating-for-a-friend")}</h5>

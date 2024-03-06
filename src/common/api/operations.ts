@@ -1165,7 +1165,6 @@ export const createAccountWithCredit = async (data: any, creator_account: string
       };
   
       let tokens: any = await hiveClient.database.getAccounts([creator_account]);
-      console.log(tokens)
       tokens = tokens[0]?.pending_claimed_accounts;
   
       let fee = null;
@@ -1290,3 +1289,24 @@ export const createAccountWithCredit = async (data: any, creator_account: string
     ],
     "Active"
   );
+
+  export const delegateRcKc = async (
+    delegator: string, 
+    delegatees: string, 
+    max_rc: string | number, 
+    ) => {
+        
+        const json = [
+            "delegate_rc",
+            {
+                from: delegator,
+                delegatees: delegatees.includes(",") ? delegatees.split(",") : [delegatees],
+                max_rc: max_rc
+            }
+        ];
+
+        console.log(json);
+        const data = await keychain.customJson(delegator, "delegate_rc", "Posting", JSON.stringify(json), "Delegated")
+        console.log(data)
+        return data
+};
