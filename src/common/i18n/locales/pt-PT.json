@@ -86,9 +86,9 @@
     "pin": "Fixar",
     "unpin": "Desafixar",
     "retry": "Tentar novamente",
-    "message": "Message",
-    "actions": "Actions",
-    "restore": "Restore"
+    "message": "Mensagem",
+    "actions": "Ações",
+    "restore": "Restaurar"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -149,7 +149,7 @@
     "day-theme": "Tema do dia",
     "night-theme": "Tema noturno",
     "address-placeholder": "inserir url ou pesquisar",
-    "home": "Home"
+    "home": "Início"
   },
   "search": {
     "placeholder": "Procurar",
@@ -185,11 +185,11 @@
     "light": "claro",
     "dark": "escuro",
     "switch-to": "Alternar",
-    "vote-power": "Vote Power",
+    "vote-power": "Poder de Voto",
     "boost": "Impulsionar",
     "submit": "Criar uma publicação",
     "chats": "Bate-papo",
-    "perks": "Buy perks"
+    "perks": "Comprar vantagens"
   },
   "intro": {
     "title": "Pense Grande",
@@ -1205,7 +1205,7 @@
     "post-boosted-exists": "Este conteúdo já está promovido",
     "post-promoted-exists": "Este conteúdo já foi promovido",
     "success-message": "Seu pedido foi enviado. Ele será ativado em alguns minutos.",
-    "account": "Account"
+    "account": "Conta"
   },
   "transfer": {
     "transfer-title": "Transferir para a conta",
@@ -1883,22 +1883,22 @@
     "enter-private-key": "Enter Chat private key",
     "enter-private-key-detail": "Enter chat private key to import all chats",
     "close": "Close",
-    "confirm": "Confirm",
+    "confirm": "Confirmar",
     "error-updating-community": "Error occurred while updating community",
-    "leave-channel": "Leave channel",
-    "leaving": "Leaving",
-    "edit-roles": "Edit Roles",
-    "manage-chat-key": "Credentials info",
-    "block": "Block",
-    "communities": "Communities",
+    "leave-channel": "Sair do canal",
+    "leaving": "Saindo",
+    "edit-roles": "Editar Papéis",
+    "manage-chat-key": "Informações das credenciais",
+    "block": "Bloco",
+    "communities": "Comunidades",
     "dms": "Direct messages",
-    "import-chat": "Import Chat",
+    "import-chat": "Importar Chat",
     "create-new-account": "Create New Account",
     "loading": "Loading...",
     "blocked-user-message": "You have been blocked from this community",
     "start-community-channel": "Start community channel",
     "view-community-channel": "View community channel",
-    "submit": "Submit",
+    "submit": "Enviar",
     "chat-priv-key": "Please, save Chat key by clicking on download button or scanning QR code to restore your conversations.",
     "public-key": "Public key",
     "private-key": "Private key",
@@ -1915,16 +1915,16 @@
     "create-pin-description": "Please, set PIN for getting access to your chats from any device",
     "logout": "Logout",
     "specify-invitation-message": "This invitation message will be sent as comment to latest user post",
-    "successfully-invited": "Successfully invited!",
+    "successfully-invited": "Convite enviado!",
     "invite-couldnt-be-sent": "Invite couldn't be sent due to user doesn't have any post yet",
     "no-posts-for-invite": "Unfortunately, User doesn't seem active and haven't made any posts.",
     "warn-key-saving": "Backup your Chat key to keep account secure and also have uninterrupted service!",
     "view-and-save": "Show keys and save",
     "blocked-users-management": "Blocked users management",
-    "unlock-the-section": "Please, enter your PIN to see your credentials information",
+    "unlock-the-section": "Por favor, insira seu PIN para ver suas informações de credenciais",
     "no-contacts-or-channels": "No conversations yet",
-    "upload-image": "Upload image",
-    "hidden-messages": "Hidden messages",
+    "upload-image": "Enviar imagem",
+    "hidden-messages": "Mensagens ocultas",
     "hidden-messages-management": "Hidden messages management",
     "saved-messages": "Saved messages",
     "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
@@ -2375,8 +2375,8 @@
     "promote-title": "Promote your post",
     "promote-action": "Promote",
     "promote-description": "Impressions boost that will increase eyeballs on your content",
-    "boost-plus-title": "Boost+",
-    "boost-plus-action": "Boost+",
+    "boost-plus-title": "Impulso+",
+    "boost-plus-action": "Impulso+",
     "boost-plus-description": "Boost your account with your points in few clicks"
   },
   "boost-plus": {
