@@ -145,7 +145,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   }
 
   upSliderChanged = (value: number) => {
-    const upSliderVal = Number(value);
+    const upSliderVal = Number(value.toFixed(1));
     const { initialVoteValues } = this.state;
     const { upVoted } = this.props;
     this.setState({
@@ -160,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   downSliderChanged = (value: number) => {
-    const downSliderVal = Number(value);
+    const downSliderVal = Number(value.toFixed(1));
     const { initialVoteValues } = this.state;
     const { upVoted, downVoted } = this.props;
     this.setState({
@@ -324,7 +324,12 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <div className="space" />
               <div className="slider slider-up">
-                <Slider axis="x" x={upSliderVal} onChange={({ x }) => this.upSliderChanged(x)} />
+                <Slider
+                  axis="x"
+                  xstep={0.1}
+                  x={upSliderVal}
+                  onChange={({ x }) => this.upSliderChanged(x)}
+                />
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
               <Button
@@ -376,6 +381,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               <div className="slider slider-down">
                 <Slider
                   axis="x"
+                  xstep={0.1}
                   x={downSliderVal}
                   onChange={({ x }) => this.downSliderChanged(x)}
                 />
