@@ -41,37 +41,44 @@ Array [
     <div
       className="slider slider-up"
     >
-      <div
-        className="css-yvszuv-Slider"
-        onMouseDown={[Function]}
-        onTouchStart={[Function]}
+      <span
+        className="w-full flex [&>div]:w-full"
+        onClick={[Function]}
+        onKeyUp={[Function]}
+        tabIndex={0}
       >
         <div
-          className="css-3g5hux-Slider"
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        />
-        <div
-          onClick={[Function]}
+          className="css-yvszuv-Slider"
           onMouseDown={[Function]}
           onTouchStart={[Function]}
-          style={
-            Object {
-              "left": "100%",
-              "position": "absolute",
-              "top": "50%",
-              "transform": "translate(-50%, -50%)",
-            }
-          }
         >
           <div
-            className="css-1ldz52l-Slider"
+            className="css-3g5hux-Slider"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
           />
+          <div
+            onClick={[Function]}
+            onMouseDown={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "left": "100%",
+                "position": "absolute",
+                "top": "50%",
+                "transform": "translate(-50%, -50%)",
+              }
+            }
+          >
+            <div
+              className="css-1ldz52l-Slider"
+            />
+          </div>
         </div>
-      </div>
+      </span>
     </div>
     <div
       className="percentage"
