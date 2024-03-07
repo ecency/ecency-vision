@@ -330,6 +330,7 @@ const SignUpPage = (props: Props | any) => {
                     })()}
                   </div>
                 </div>}
+                {/* TEST */}
                 {newUserKeys && step == 2 && <div className="success-wrapper">
                   <div className="success-info">
                     <h3>
@@ -338,13 +339,13 @@ const SignUpPage = (props: Props | any) => {
                     <p>Please make sure you have keychain installed as an extension on your browser 
                       (If you are a using the web browser, we recommend that you pin it to your browser.)
                     </p>
-                    <p>If you are on mobile, download the keychain mobile app</p>
-                    <div className="d-flex">
+                    {/* <p>If you are on mobile, download the keychain mobile app</p> */}
+                    {/* <div className="d-flex">
                       <span className="">Don't have keychain? download</span>
                       <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
                         here
                       </a>
-                    </div>
+                    </div> */}
                     <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
@@ -382,14 +383,25 @@ const SignUpPage = (props: Props | any) => {
                       </div>
                       <div className="account-password">
                       <h3>Step 3</h3>
-                      <span className="text-danger">{_t("onboard.copy-key")}</span>
+                      {/* <span className="text-danger">{_t("onboard.copy-key")}</span> */}
                       <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account</span>
-                      <div className="password">
-                        <strong>{accountPassword}...</strong>
-                        <span className="icon" onClick={()=> {
-                          clipboard(accountPassword)
-                          success(_t("onboard.key-copied"))
-                          }}>{copyContent}</span>
+                      {/* <span>If you are on mobile, download the keychain mobile app</span> */}
+                      <div className="d-flex">
+                        {/* <span className="">If you are on desktop</span> */}
+                        <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
+                          Download keychain extension here
+                        </a>
+                      </div>
+                      <div className="d-flex flex-column align-items-center">
+                        <h3>Step 4</h3>
+                        <h4 className="text-danger">Copy your account password below and paste to keychain to set up your account</h4>
+                        <div className="password">
+                          <strong>{accountPassword}...</strong>
+                          <span className="icon" onClick={()=> {
+                            clipboard(accountPassword)
+                            success(_t("onboard.key-copied"))
+                            }}>{copyContent}</span>
+                        </div>
                       </div>
                       </div>
                     </div>}
