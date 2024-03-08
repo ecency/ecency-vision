@@ -27,7 +27,7 @@ import { _t } from "../../i18n";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Button } from "@ui/button";
-import Slider from "react-input-slider";
+import { ReactInputSliderWrapper } from "../../features/packages-helpers";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -324,11 +324,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <div className="space" />
               <div className="slider slider-up">
-                <Slider
-                  axis="x"
-                  xstep={0.1}
-                  x={upSliderVal}
-                  onChange={({ x }) => this.upSliderChanged(x)}
+                <ReactInputSliderWrapper
+                  value={upSliderVal}
+                  onChange={(x) => this.upSliderChanged(x)}
                 />
               </div>
               <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
@@ -379,11 +377,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
-                <Slider
-                  axis="x"
-                  xstep={0.1}
-                  x={downSliderVal}
-                  onChange={({ x }) => this.downSliderChanged(x)}
+                <ReactInputSliderWrapper
+                  value={downSliderVal}
+                  onChange={(x) => this.downSliderChanged(x)}
                 />
               </div>
               <div className="space" />
