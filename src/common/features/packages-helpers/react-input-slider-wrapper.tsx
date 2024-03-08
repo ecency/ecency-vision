@@ -8,13 +8,14 @@ interface Props {
 
 export function ReactInputSliderWrapper({ value, onChange }: Props) {
   const rootRef = useRef<HTMLSpanElement | null>(null);
+  const step = 0.1;
 
   const handleKeyboard = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft" && value > 0) {
-      onChange(value - 1);
+      onChange(value - step);
     }
     if (e.key === "ArrowRight" && value < 100) {
-      onChange(value + 1);
+      onChange(value + step);
     }
   };
 
@@ -26,7 +27,7 @@ export function ReactInputSliderWrapper({ value, onChange }: Props) {
       onKeyUp={handleKeyboard}
       onClick={() => rootRef.current?.focus()}
     >
-      <Slider axis="x" xstep={0.1} x={value} onChange={({ x }) => onChange(x)} />
+      <Slider axis="x" xstep={step} x={value} onChange={({ x }) => onChange(x)} />
     </span>
   );
 }
