@@ -59,10 +59,10 @@ export function VideoGalleryItem({
       "ipfs://",
       "https://ipfs-3speak.b-cdn.net/ipfs/"
     )})</center>`;
-    const body = insertText("").innerHTML;
+    const body = insertText("")?.innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
-      .some((i) => body.includes(i));
+      .some((i) => body?.includes(i));
 
     if (!hup || video.status == "published") {
       setVideoMetadata?.(
@@ -78,10 +78,10 @@ export function VideoGalleryItem({
     let nextItem = item;
 
     embeddVideo(nextItem);
-    const body = insertText("").innerHTML;
+    const body = insertText("")?.innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
-      .some((i) => body.includes(i));
+      .some((i) => body?.includes(i));
 
     if (!hup && item.status !== "published") {
       setBeneficiary(nextItem);
@@ -127,7 +127,10 @@ export function VideoGalleryItem({
 
   return (
     <div className="video-list-body">
-      <div className="thumnail-wrapper">
+      <div className="thumnail-wrapper" onClick={()=> {
+        console.log("inser video")
+        insert()
+        }}>
         <img src={item.thumbUrl} alt="" />
       </div>
       <div className="list-details-wrapper">
