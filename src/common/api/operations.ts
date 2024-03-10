@@ -1295,18 +1295,16 @@ export const createAccountWithCredit = async (data: any, creator_account: string
     delegatees: string, 
     max_rc: string | number, 
     ) => {
-        
+
         const json = [
             "delegate_rc",
             {
-                from: delegator,
-                delegatees: delegatees.includes(",") ? delegatees.split(",") : [delegatees],
-                max_rc: max_rc
+               "from": delegator,
+               "delegatees": delegatees.includes(",") ? delegatees.split(",") : [delegatees],
+               "max_rc": max_rc
             }
-        ];
+         ]
 
-        console.log(json);
-        const data = await keychain.customJson(delegator, "delegate_rc", "Posting", JSON.stringify(json), "Delegated")
-        console.log(data)
+        const data = await keychain.customJson(delegator, "rc", "Posting", JSON.stringify(json), "RC Delegated")
         return data
 };

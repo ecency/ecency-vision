@@ -11,13 +11,12 @@ import ScrollToTop from "../scroll-to-top";
 import { _t } from "../../i18n";
 import { Global } from "../../store/global/types";
 import { Community } from "../../store/communities/types";
-import { createHiveAccount, createAccountWithCredit, delegateRcKc } from "../../api/operations";
+import { createHiveAccount, createAccountWithCredit, delegateRcKc, delegateRC } from "../../api/operations";
 import { hexDec } from "../../util/b64";
 import { ActiveUser } from "../../store/active-user/types";
 import { Link } from "react-router-dom";
 import { createBreakawayUser } from "../../api/breakaway";
 import { getAccounts } from "../../api/hive";
-import { delegateRC, formatError } from "../../api/operations";
 import { FormControl, InputGroup } from "react-bootstrap";
 import { getRcOperationStats } from "../../api/hive";
 
@@ -54,7 +53,6 @@ const OnboardFriend = (props: Props | any) => {
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
   const [rcError, setRcError] = useState("")
-  const [noACtiveUserStep, setNoActiveUserStep] = useState("who")
 
   useEffect(() => {
     let decodedObj;
@@ -98,7 +96,7 @@ const OnboardFriend = (props: Props | any) => {
       )
       if (response.success === true) {
         if(isChecked){
-          delegateRC(activeUser?.username, urlInfo!.username, rcAmount * 1e9)
+          await delegateRC(activeUser?.username, urlInfo!.username, rcAmount * 1e9)
         }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
@@ -112,7 +110,7 @@ const OnboardFriend = (props: Props | any) => {
     }
   }
 
-  const signAccountNoUserKc = async () => {
+  const createAccountNoUserKcCredit = async () => {
     try {
       const response: any = await createAccountWithCredit({
         username: urlInfo?.username,
@@ -122,7 +120,7 @@ const OnboardFriend = (props: Props | any) => {
       )
       if (response.success === true) {
         if(isChecked){
-          delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
+          await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
@@ -146,7 +144,7 @@ const OnboardFriend = (props: Props | any) => {
       );
       if (response.success === true) {
         if(isChecked){
-          delegateRC(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
+          await delegateRC(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
@@ -171,7 +169,7 @@ const OnboardFriend = (props: Props | any) => {
       
       if (response.success === true) {
         if(isChecked){
-          delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
+          await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
         await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
@@ -293,7 +291,7 @@ const OnboardFriend = (props: Props | any) => {
                 </Button>   
                 <Button  
                 disabled={token <= 0 || rcError !== ""}
-                onClick={()=> signAccountNoUserKc()} 
+                onClick={()=> createAccountNoUserKcCredit()} 
                 className="w-100"
                 >
                   Pay with account token
