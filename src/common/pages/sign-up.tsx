@@ -292,7 +292,7 @@ const SignUpPage = (props: Props | any) => {
                                 placeholder={_t("sign-up.referral")}
                                 value={referral}
                                 onChange={referralChanged}
-                                required={true}
+                                required={activeUser ? false : true}
                                 onInvalid={(e: any) =>
                                   handleInvalid(e, "sign-up.", "validation-referral")
                                 }
@@ -384,13 +384,14 @@ const SignUpPage = (props: Props | any) => {
                       <div className="account-password">
                       <h3>Step 3</h3>
                       {/* <span className="text-danger">{_t("onboard.copy-key")}</span> */}
-                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account</span>
-                      {/* <span>If you are on mobile, download the keychain mobile app</span> */}
-                      <div className="d-flex">
-                        {/* <span className="">If you are on desktop</span> */}
+                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account and
                         <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
-                          Download keychain extension here
+                          download keychain extension here
                         </a>
+                      </span>
+                      {/* <span>If you are on mobile, download the keychain mobile app</span> */}
+                      <div className="d-flex"> 
+                        {/* <span className="">If you are on desktop</span> */}
                       </div>
                       <div className="d-flex flex-column align-items-center">
                         <h3>Step 4</h3>
