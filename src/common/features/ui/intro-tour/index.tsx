@@ -8,6 +8,7 @@ import { Button } from "@ui/button";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import "./index.scss";
+import { DOMRect } from "sortablejs";
 
 interface Props {
   steps: IntroStep[];
@@ -26,6 +27,7 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
 
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
+  const [hostRect, setHostRect] = useState<DOMRect>();
 
   const isMounted = useMountedState();
   const popper = usePopper(host, popperElement, {
@@ -42,6 +44,19 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
     [currentStep]
   );
   const isLastStep = useMemo(() => steps.length - 1 === currentStep, [steps, currentStep]);
+  const clipPath = useMemo(
+    () =>
+      hostRect
+        ? `polygon(0% 0%, 0% 100%, ${hostRect.x}px 100%, ${hostRect.x}px ${hostRect.y}px, ${
+            hostRect.x + hostRect.width
+          }px ${hostRect.y}px, ${hostRect.x + hostRect.width}px ${
+            hostRect.y + hostRect.height
+          }px, ${hostRect.x}px ${hostRect.y + hostRect.height}px, ${
+            hostRect.x
+          }px 100%, 100% 100%, 100% 0%)`
+        : "unset",
+    [hostRect]
+  );
 
   // Detect enablement and set default step if there aren't any persistent step
   useEffect(() => {
@@ -68,6 +83,7 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
       setHost(nextHost);
 
       if (nextHost) {
+        setHostRect(nextHost.getBoundingClientRect());
         nextHost.classList.add("intro-tour-focused");
       }
     } else {
@@ -97,8 +113,9 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
       {createPortal(
         <div
           className={classNameObject({
-            "bg-black opacity-[0%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
+            "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
           })}
+          style={{ clipPath }}
           onClick={() => finish()}
         />,
         document.querySelector("#modal-overlay-container")!!
