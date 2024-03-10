@@ -291,7 +291,11 @@ export function EditorToolbar({
 
   return (
     <>
-      <div className={_c(`editor-toolbar ${sm ? "toolbar-sm" : ""}`)} ref={rootRef}>
+      <div
+        id="editor-toolbar"
+        className={_c(`editor-toolbar ${sm ? "toolbar-sm" : ""}`)}
+        ref={rootRef}
+      >
         <Tooltip content={_t("editor-toolbar.bold")}>
           <div className="editor-tool" onClick={bold}>
             {formatBoldSvg}

@@ -100,24 +100,41 @@ export function Submit(props: PageProps & MatchProps) {
   const introSteps = useMemo<IntroStep[]>(
     () => [
       {
-        title: "Title",
-        message: "My title",
+        title: "Post creating",
+        message: "You may to set any title for your post",
         targetSelector: "#submit-title"
       },
       {
-        title: "Tags selector",
-        message: "My tags selector",
+        title: "Post creating",
+        message: "Tags helps to find out your post by special keywords",
         targetSelector: "#submit-tags-selector"
       },
       {
-        title: "Post body",
-        message: "My post body",
+        title: "Post creating",
+        message: "Post body is rich text which may contain various of different components, styles",
         targetSelector: "#the-editor"
       },
       {
-        title: "Community",
-        message: "My community",
+        title: "Post creating",
+        message:
+          "Post may be attached to specific community which helps to promote your post within community members",
         targetSelector: "#community-picker"
+      },
+      {
+        title: "Post creating",
+        message:
+          "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
+        targetSelector: "#editor-toolbar"
+      },
+      {
+        title: "Post creating",
+        message: "Configure advanced settings such as scheduling, beneficiaries",
+        targetSelector: "#editor-advanced"
+      },
+      {
+        title: "Post creating",
+        message: "Have any questions? Check out help center",
+        targetSelector: "#editor-help"
       }
     ],
     []
@@ -504,6 +521,7 @@ export function Submit(props: PageProps & MatchProps) {
             )}
 
             <Button
+              id="editor-advanced"
               outline={true}
               onClick={() => setAdvanced(!advanced)}
               icon={getHasAdvanced && dotsMenuIconSvg}
@@ -551,6 +569,7 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="action-buttons">
                     <ClickAwayListener onClickAway={() => setShowHelp(false)}>
                       <Button
+                        id="editor-help"
                         className="help-button mr-[6px]"
                         onClick={() => setShowHelp(!showHelp)}
                         icon={helpIconSvg}

@@ -7,6 +7,7 @@ import { classNameObject } from "../../../helper/class-name-object";
 import { Button } from "@ui/button";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
+import "./index.scss";
 
 interface Props {
   steps: IntroStep[];
@@ -49,18 +50,16 @@ export function IntroTour({ steps, id, enabled }: Props) {
 
   // Re-attach host element based on host element
   useEffect(() => {
+    host?.classList.remove("intro-tour-focused");
+
     if (step) {
       const nextHost = document.querySelector(step.targetSelector);
       setHost(nextHost);
 
       if (nextHost) {
-        nextHost.classList.add("z-[1041]");
-        nextHost.classList.add("relative");
-        (nextHost as HTMLElement).focus();
+        nextHost.classList.add("intro-tour-focused");
       }
     } else {
-      host?.classList.remove("z-[1041]");
-      host?.classList.remove("relative");
       setHost(null);
     }
   }, [step]);
@@ -87,22 +86,28 @@ export function IntroTour({ steps, id, enabled }: Props) {
       {createPortal(
         <div
           className={classNameObject({
-            "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
+            "bg-black opacity-[0%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
           })}
+          onClick={() => finish()}
         />,
         document.querySelector("#modal-overlay-container")!!
       )}
       {step &&
         createPortal(
           <div
-            className="p-4 border border-[--border-color] bg-white rounded-2xl flex flex-col gap-4 z-[1041]"
+            className="p-3 border border-[--border-color] bg-white rounded-2xl flex flex-col gap-4 z-[1041] min-w-[200px] max-w-[400px]"
             style={popper.styles.popper}
             {...popper.attributes.popper}
             ref={setPopperElement}
           >
-            <div className="text-blue-dark-sky text-sm uppercase">{step?.title}</div>
+            <div className="text-blue-dark-sky text-sm uppercase flex justify-between">
+              <span className="text-xs text-gray-600 mr-3">
+                {currentStep! + 1} of {steps.length}
+              </span>
+              {step?.title}
+            </div>
             <div>{step?.message}</div>
-            <div className="flex gap-2 mt-4">
+            <div className="flex justify-end gap-2 border-t border-[--border-color] pt-3">
               {isFirstStep && (
                 <Button onClick={() => prevStep()} outline={true}>
                   Previous
