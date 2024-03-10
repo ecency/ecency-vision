@@ -60,6 +60,8 @@ import { Button } from "@ui/button";
 import { dotsMenuIconSvg } from "../../components/decks/icons";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { IntroTour } from "@ui/intro-tour";
+import { IntroStep } from "@ui/core";
 
 interface MatchProps {
   match: MatchType;
@@ -95,6 +97,31 @@ export function Submit(props: PageProps & MatchProps) {
   // Misc
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
+  const introSteps = useMemo<IntroStep[]>(
+    () => [
+      {
+        title: "Title",
+        message: "My title",
+        targetSelector: "#submit-title"
+      },
+      {
+        title: "Tags selector",
+        message: "My tags selector",
+        targetSelector: "#submit-tags-selector"
+      },
+      {
+        title: "Post body",
+        message: "My post body",
+        targetSelector: "#the-editor"
+      },
+      {
+        title: "Community",
+        message: "My community",
+        targetSelector: "#community-picker"
+      }
+    ],
+    []
+  );
 
   let _updateTimer: any; // todo think about it
 
@@ -381,6 +408,9 @@ export function Submit(props: PageProps & MatchProps) {
       <Feedback activeUser={props.activeUser} />
       {clearModal && <ModalConfirm onConfirm={clear} onCancel={() => setClearModal(false)} />}
       <NavBar history={props.history} />
+
+      <IntroTour steps={introSteps} id="submit" enabled={true} />
+
       <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
           {editingEntry === null && activeUser && (
@@ -414,6 +444,7 @@ export function Submit(props: PageProps & MatchProps) {
           />
           <div className="title-input">
             <FormControl
+              id="submit-title"
               noStyles={true}
               type="text"
               className="accepts-emoji form-control px-3 py-1 w-full outline-none shadow-0"

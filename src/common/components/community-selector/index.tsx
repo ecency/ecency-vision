@@ -256,6 +256,7 @@ export class CommunitySelector extends BaseComponent<Props, State> {
       <>
         <a
           href="#"
+          id="community-picker"
           className="community-selector"
           onClick={(e) => {
             e.preventDefault();

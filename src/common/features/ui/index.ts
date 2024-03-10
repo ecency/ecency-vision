@@ -10,3 +10,4 @@ export * from "./alert";
 export * from "./badge";
 export * from "./pagination";
 export * from "./core";
+export * from "./intro-tour";
