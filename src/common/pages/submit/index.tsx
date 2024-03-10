@@ -62,6 +62,7 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { IntroTour } from "@ui/intro-tour";
 import { IntroStep } from "@ui/core";
+import { UilStar } from "@iconscout/react-unicons";
 
 interface MatchProps {
   match: MatchType;
@@ -93,47 +94,48 @@ export function Submit(props: PageProps & MatchProps) {
   const [drafts, setDrafts] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [isDraftEmpty, setIsDraftEmpty] = useState(false);
+  const [forceReactivateTour, setForceReactivateTour] = useState(false);
 
   // Misc
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
+
+  const tourEnabled = useMemo(() => !activeUser, [activeUser]);
   const introSteps = useMemo<IntroStep[]>(
     () => [
       {
-        title: "Post creating",
-        message: "You may to set any title for your post",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.title-hint"),
         targetSelector: "#submit-title"
       },
       {
-        title: "Post creating",
-        message: "Tags helps to find out your post by special keywords",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.tags-hint"),
         targetSelector: "#submit-tags-selector"
       },
       {
-        title: "Post creating",
-        message: "Post body is rich text which may contain various of different components, styles",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.body-hint"),
         targetSelector: "#the-editor"
       },
       {
-        title: "Post creating",
-        message:
-          "Post may be attached to specific community which helps to promote your post within community members",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.community-hint"),
         targetSelector: "#community-picker"
       },
       {
-        title: "Post creating",
-        message:
-          "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.toolbar-hint"),
         targetSelector: "#editor-toolbar"
       },
       {
-        title: "Post creating",
-        message: "Configure advanced settings such as scheduling, beneficiaries",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.advanced-hint"),
         targetSelector: "#editor-advanced"
       },
       {
-        title: "Post creating",
-        message: "Have any questions? Check out help center",
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.help-hint"),
         targetSelector: "#editor-help"
       }
     ],
@@ -426,7 +428,13 @@ export function Submit(props: PageProps & MatchProps) {
       {clearModal && <ModalConfirm onConfirm={clear} onCancel={() => setClearModal(false)} />}
       <NavBar history={props.history} />
 
-      <IntroTour steps={introSteps} id="submit" enabled={true} />
+      <IntroTour
+        forceActivation={forceReactivateTour}
+        setForceActivation={setForceReactivateTour}
+        steps={introSteps}
+        id="submit"
+        enabled={tourEnabled}
+      />
 
       <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
@@ -520,14 +528,24 @@ export function Submit(props: PageProps & MatchProps) {
               </Button>
             )}
 
-            <Button
-              id="editor-advanced"
-              outline={true}
-              onClick={() => setAdvanced(!advanced)}
-              icon={getHasAdvanced && dotsMenuIconSvg}
-            >
-              {advanced ? _t("submit.preview") : _t("submit.advanced")}
-            </Button>
+            <div className="flex items-center gap-4">
+              <Button
+                appearance="info"
+                onClick={() => setForceReactivateTour(true)}
+                icon={<UilStar />}
+              >
+                Take a tour
+              </Button>
+              <Button
+                id="editor-advanced"
+                outline={true}
+                onClick={() => setAdvanced(!advanced)}
+                icon={getHasAdvanced && dotsMenuIconSvg}
+              >
+                {advanced ? _t("submit.preview") : _t("submit.advanced")}
+              </Button>
+              '
+            </div>
           </div>
         </div>
         <div className="flex-spacer" />

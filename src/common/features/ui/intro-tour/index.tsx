@@ -13,9 +13,11 @@ interface Props {
   steps: IntroStep[];
   id: string;
   enabled: boolean;
+  forceActivation: boolean;
+  setForceActivation: (v: boolean) => void;
 }
 
-export function IntroTour({ steps, id, enabled }: Props) {
+export function IntroTour({ steps, id, enabled, forceActivation, setForceActivation }: Props) {
   const [currentStep, setCurrentStep, clearCurrentStep] = useLocalStorage<number | undefined>(
     PREFIX + `_it_${id}`,
     undefined
@@ -47,6 +49,15 @@ export function IntroTour({ steps, id, enabled }: Props) {
       setCurrentStep(0);
     }
   }, [currentStep, enabled, isFinished]);
+
+  useEffect(() => {
+    if (forceActivation) {
+      setCurrentStep(0);
+      setIsFinished(false);
+
+      setForceActivation(false);
+    }
+  }, [forceActivation]);
 
   // Re-attach host element based on host element
   useEffect(() => {
