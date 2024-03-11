@@ -214,15 +214,15 @@ const SignUpPage = (props: Props | any) => {
               >
                <img
                     src={HiveLogo}
-                    alt="Solana"
-                    title="Solana"
+                    alt="Hive"
+                    title="Hive"
                 />
                 <span
                   className={accountType === "Hive" ? "underline" : ""}>
                   Hive
                 </span>
               </div>
-              <div 
+              {/* <div 
               className="account-type"
               onClick={() => handleAccountTypeClick("Solana")}
               >
@@ -235,7 +235,7 @@ const SignUpPage = (props: Props | any) => {
                   className={accountType === "Solana" ? "underline" : ""}>
                   Solana
                 </span>
-              </div>
+              </div> */}
             </div>}
             <div className="account-sign-up">
               {accountType === "Hive" && <>
@@ -292,9 +292,9 @@ const SignUpPage = (props: Props | any) => {
                                 placeholder={_t("sign-up.referral")}
                                 value={referral}
                                 onChange={referralChanged}
-                                // required={true}
+                                required={activeUser ? false : true}
                                 onInvalid={(e: any) =>
-                                  handleInvalid(e, "sign-up.", "validation-username")
+                                  handleInvalid(e, "sign-up.", "validation-referral")
                                 }
                                 onInput={handleOnInput}
                               />
@@ -330,43 +330,26 @@ const SignUpPage = (props: Props | any) => {
                     })()}
                   </div>
                 </div>}
+                {/* TEST */}
                 {newUserKeys && step == 2 && <div className="success-wrapper">
                   <div className="success-info">
                     <h3>
-                    {/* {_t("onboard.confirm-details")} */} Account creation steps
+                      Account creation steps
                     </h3>
                     <p>Please make sure you have keychain installed as an extension on your browser 
                       (If you are a using the web browser, we recommend that you pin it to your browser.)
                     </p>
-                    <p>If you are on mobile, download the keychain mobile app</p>
-                    <div className="d-flex">
+                    {/* <p>If you are on mobile, download the keychain mobile app</p> */}
+                    {/* <div className="d-flex">
                       <span className="">Don't have keychain? download</span>
                       <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
                         here
                       </a>
-                    </div>
+                    </div> */}
                     <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
                         </span>
-                        {/* <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.email")} <strong>{email}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.referral")} <strong>{referral}</strong>
-                        </span> */}
-                        {/* <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-active")} <strong>{newUserKeys?.activePubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-owner")} <strong>{newUserKeys?.ownerPubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-posting")} <strong>{newUserKeys?.postingPubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-memo")} <strong>{newUserKeys?.memoPubkey}</strong>
-                        </span> */}
                     </div>
                     <div className="account-link">
                       <h3>Step 1</h3>
@@ -380,9 +363,8 @@ const SignUpPage = (props: Props | any) => {
                       <div className="link-wrap">
                         <div>
                           {!activeUser ? <>
-                            {/* <h5>{_t("onboard.copy-info-message")}</h5> */}
                             <div className="link">
-                              <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
+                              <Link to={`/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
                               <span className="icon" onClick={() => {
                                 clipboard(`${window.origin}/onboard-friend/${urlHash}`);
                                 success(_t("onboard.copy-link"))
@@ -401,15 +383,26 @@ const SignUpPage = (props: Props | any) => {
                       </div>
                       <div className="account-password">
                       <h3>Step 3</h3>
-                      {/* <span>Make sure you copy your password</span> */}
-                      <span className="text-danger">{_t("onboard.copy-key")}</span>
-                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account</span>
-                      <div className="password">
-                        <strong>{accountPassword}...</strong>
-                        <span className="icon" onClick={()=> {
-                          clipboard(accountPassword)
-                          success(_t("onboard.key-copied"))
-                          }}>{copyContent}</span>
+                      {/* <span className="text-danger">{_t("onboard.copy-key")}</span> */}
+                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account and
+                        <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
+                          download keychain extension here
+                        </a>
+                      </span>
+                      {/* <span>If you are on mobile, download the keychain mobile app</span> */}
+                      <div className="d-flex"> 
+                        {/* <span className="">If you are on desktop</span> */}
+                      </div>
+                      <div className="d-flex flex-column align-items-center">
+                        <h3>Step 4</h3>
+                        <h4 className="text-danger">Copy your account password below and paste to keychain to set up your account</h4>
+                        <div className="password">
+                          <strong>{accountPassword}...</strong>
+                          <span className="icon" onClick={()=> {
+                            clipboard(accountPassword)
+                            success(_t("onboard.key-copied"))
+                            }}>{copyContent}</span>
+                        </div>
                       </div>
                       </div>
                     </div>}
