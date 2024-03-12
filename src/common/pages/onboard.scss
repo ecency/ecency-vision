@@ -112,3 +112,35 @@
     }
   }
 }
+
+
+.onboard-delegate-rc{      
+  .onboard-check{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .onboard-checkbox{
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.onboard-blinking-text {
+  color: rgb(179, 95, 26);
+  animation: blink 2s infinite;
+}
