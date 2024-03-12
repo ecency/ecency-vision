@@ -47,9 +47,10 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
 
     render() {
         const {list, author} = this.props;
+        console.log(list)
         const {username, percentage, inProgress} = this.state;
 
-        const used = list.reduce((a, b) => a + b.weight / 100, 0);
+        const used = list.reduce((a, b) => a + b?.weight / 100, 0);
         const available = 100 - used;
 
         return <Form ref={this.form} onSubmit={(e: React.FormEvent) => {
@@ -63,7 +64,7 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
             const {onAdd, list} = this.props;
             const {username, percentage} = this.state;
 
-            if (list.find(x => x.account === username) !== undefined) {
+            if (list.find(x => x?.account === username) !== undefined) {
                 error(_t("beneficiary-editor.user-exists-error", {n: username}));
                 return;
             }
@@ -141,13 +142,13 @@ export class DialogBody extends BaseComponent<Props, DialogBodyState> {
                         </td>
                         <td><Button disabled={inProgress || available < 1} size="sm" type="submit">{plusSvg}</Button></td>
                     </tr>
-                    {list.map(x => {
-                        return <tr key={x.account}>
-                            <td>{`@${x.account}`}</td>
-                            <td>{`${x.weight / 100}%`}</td>
+                    {list?.map((x, index) => {
+                        return <tr key={index}>
+                            <td>{`@${x?.account}`}</td>
+                            <td>{`${x?.weight / 100}%`}</td>
                             <td><Button onClick={() => {
                                 const {onDelete} = this.props;
-                                onDelete(x.account);
+                                onDelete(x?.account);
                             }} variant="danger" size="sm">{deleteForeverSvg}</Button></td>
                         </tr>
                     })}

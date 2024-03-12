@@ -9,12 +9,13 @@ import { VideoGalleryItem } from "./video-gallery-item";
 import { useThreeSpeakManager } from "../../util/ThreeSpeakProvider";
 import { ActiveUser } from "../../store/active-user/types";
 import "./_index.scss";
+import { BeneficiaryRoute } from "../../api/operations";
 
 interface Props {
   showGallery: boolean;
   setShowGallery: (val: boolean) => void;
   insertText: (before: string, after?: string) => any;
-  setVideoEncoderBeneficiary?: (video: any) => void;
+  setVideoEncoderBeneficiary?: (item: BeneficiaryRoute) => void;
   toggleNsfwC?: () => void;
   preFilter?: string;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;

@@ -206,7 +206,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             // delete active user from beneficiaries list
             if (activeUser) {
                 const {beneficiaries} = this.state;
-                if (beneficiaries.find(x => x.account === activeUser.username)) {
+                if (beneficiaries?.find(x => x?.account === activeUser.username)) {
                     const b = [...beneficiaries.filter(x => x.account !== activeUser.username)];
                     this.stateSet({beneficiaries: b});
                 }
@@ -406,17 +406,20 @@ class SubmitPage extends BaseComponent<Props, State> {
         const reward = e.target.value as RewardType;
         this.stateSet({reward}, this.saveAdvanced);
     };
-
+      
+    // here
     beneficiaryAdded = (item: BeneficiaryRoute) => {
         const {beneficiaries} = this.state;
-        const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
-        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+        const b = [...beneficiaries, item].sort((a, b) => a?.account < b?.account ? -1 : 1);
+        this.setState({beneficiaries: b}, this.saveAdvanced);
+        // console.log(beneficiaries)
     }
 
     beneficiaryDeleted = (username: string) => {
         const {beneficiaries} = this.state;
-        const b = [...beneficiaries.filter(x => x.account !== username)];
+        const b = [...beneficiaries.filter(x => x?.account !== username)];
         this.stateSet({beneficiaries: b}, this.saveAdvanced);
+        console.log(beneficiaries)
     }
 
     scheduleChanged = (d: Moment | null) => {
@@ -810,7 +813,10 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 }
                             })}
                         </div>}
-                        {EditorToolbar({...this.props})}
+                        {EditorToolbar({
+                            ...this.props,
+                            beneficiaryAdded: this.beneficiaryAdded
+                        })}
                         <div className="title-input">
                             <Form.Control
                                 className="accepts-emoji"

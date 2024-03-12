@@ -46,12 +46,14 @@ import {
 } from "../../img/svg";
 import VideoUpload from "../upload-video/upload-video";
 import VideoGallery from "../video-gallery";
+import { BeneficiaryRoute } from "../../api/operations";
 
 
 interface Props {
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
+    beneficiaryAdded: (item: BeneficiaryRoute) => void;
     sm?: boolean;
     showEmoji?: boolean;
 }
@@ -79,6 +81,7 @@ export class EditorToolbar extends Component<Props> {
 
     holder = React.createRef<HTMLDivElement>();
     fileInput = React.createRef<HTMLInputElement>();
+    beneficiaryAdded: ((video: any) => void) | undefined;
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
         return !isEqual(this.props.users, nextProps.users)
@@ -365,7 +368,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage, showVideo, showVideoGallery} = this.state;
-        const {global, sm, activeUser, showEmoji = true} = this.props;
+        const {global, sm, activeUser, showEmoji = true, beneficiaryAdded} = this.props;
 
         return (
             <>
@@ -551,7 +554,13 @@ export class EditorToolbar extends Component<Props> {
                     this.toggleImage();
                 }}/>}
                 {showVideo && activeUser && <VideoUpload setShowGallery={() => this.setState({ showVideoGallery: true })} global={global} show={showVideo} activeUser={activeUser} setShow={this.toggleVideo}  />}
-                {showVideoGallery && activeUser && <VideoGallery activeUser={activeUser} showGallery={showVideoGallery} setShowGallery={this.toggleVideoGallery} insertText={this.insertText} />}
+                {showVideoGallery && activeUser && <VideoGallery 
+                    activeUser={activeUser} 
+                    showGallery={showVideoGallery} 
+                    setShowGallery={this.toggleVideoGallery} 
+                    insertText={this.insertText} 
+                    setVideoEncoderBeneficiary={beneficiaryAdded}
+                />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
                     this.toggleLink();
@@ -589,6 +598,7 @@ export default (props: Props) => {
         activeUser: props.activeUser,
         sm: props.sm,
         showEmoji: props.showEmoji,
+        beneficiaryAdded: props.beneficiaryAdded,
     }
     return <EditorToolbar {...p} />
 }

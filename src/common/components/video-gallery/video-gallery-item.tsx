@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
 import { Button } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
+import { BeneficiaryRoute } from "../../api/operations";
 
 interface videoProps {
   status: string;
@@ -17,7 +18,7 @@ interface videoProps {
 interface Props {
   item: ThreeSpeakVideo;
   insertText: (before: string, after?: string) => any;
-  setVideoEncoderBeneficiary?: (video: any) => void;
+  setVideoEncoderBeneficiary?: (item: BeneficiaryRoute) => void;
   toggleNsfwC?: () => void;
   setShowGallery: (v: boolean) => void;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
@@ -45,8 +46,28 @@ export function VideoGalleryItem({
   }, [data]);
 
   const setBeneficiary = (video: any) => {
-    setVideoEncoderBeneficiary && setVideoEncoderBeneficiary(video);
-  };
+    if (video && video.beneficiaries) {
+        try {
+            const encoders = JSON.parse(video.beneficiaries) || [];
+            if (encoders.length === 1) {
+                const singleEncoder = encoders[0];
+                console.log(singleEncoder);
+                setVideoEncoderBeneficiary?.(singleEncoder);
+            } else {
+                const mappedEncoders = encoders.map((encoder: any) => ({
+                    account: encoder.account,
+                    weight: encoder.weight
+                }));
+                console.log(mappedEncoders);
+                setVideoEncoderBeneficiary?.(mappedEncoders);
+            }
+        } catch (error) {
+            console.error('Error parsing beneficiaries JSON:', error);
+        }
+    } else {
+        console.warn('Invalid video object or beneficiaries not found.');
+    }
+};
 
   const getHoveredItem = (item: any) => {
     setHoveredItem(item);
@@ -76,12 +97,14 @@ export function VideoGalleryItem({
 
   const insert = async (isNsfw = false) => {
     let nextItem = item;
+    console.log(nextItem)
 
     embeddVideo(nextItem);
     const body = insertText("")?.innerHTML;
     const hup = manualPublishSpeakVideos
       .map((i) => `[![](${i.thumbUrl})](${speakUrl}${i.owner}/${i.permlink})`)
       .some((i) => body?.includes(i));
+      console.log(JSON.parse(nextItem.beneficiaries))
 
     if (!hup && item.status !== "published") {
       setBeneficiary(nextItem);
