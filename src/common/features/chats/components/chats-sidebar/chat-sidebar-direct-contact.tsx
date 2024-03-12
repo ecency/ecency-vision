@@ -12,7 +12,7 @@ import {
 } from "@ecency/ns-query";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../../components/tooltip";
-import { informationOutlineSvg } from "../../../../img/svg";
+import { informationOutlineSvg, pinSvg } from "../../../../img/svg";
 import { Button } from "@ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@ui/badge";
@@ -75,8 +75,9 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
                 </Tooltip>
               </div>
             )}
-            <div className="font-semibold truncate dark:text-white">
+            <div className="font-semibold truncate dark:text-white flex items-center gap-2">
               {isActiveUser ? _t("chat.saved-messages") : contact.name}
+              {contact.pinned && <span className="rotate-45 opacity-25 w-3.5">{pinSvg}</span>}
             </div>
           </div>
           <div className="text-xs text-gray-500">{lastMessageDate}</div>

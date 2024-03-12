@@ -1,18 +1,32 @@
 import React from "react";
 import { History } from "history";
-import { chatKeySvg, chatLeaveSvg, extendedView, kebabMenuSvg, keySvg } from "../../../img/svg";
+import {
+  chatKeySvg,
+  chatLeaveSvg,
+  extendedView,
+  kebabMenuSvg,
+  keySvg,
+  pinSvg
+} from "../../../img/svg";
 import { _t } from "../../../i18n";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { Button } from "@ui/button";
 import { history } from "../../../store";
 import { useLocation } from "react-router";
-import { Channel, useLeaveCommunityChannel, useLogoutFromChats } from "@ecency/ns-query";
+import {
+  Channel,
+  DirectContact,
+  useLeaveCommunityChannel,
+  useLogoutFromChats,
+  usePinContact
+} from "@ecency/ns-query";
 
 interface Props {
   history: History | null;
   onManageChatKey?: () => void;
   currentUser?: string;
   channel?: Channel;
+  contact?: DirectContact;
 }
 
 const ChatsDropdownMenu = (props: Props) => {
@@ -22,6 +36,7 @@ const ChatsDropdownMenu = (props: Props) => {
   const { mutateAsync: leaveChannel, isLoading: isLeavingLoading } = useLeaveCommunityChannel(
     props.channel
   );
+  const { mutateAsync: pinContact, isLoading: isContactPinning } = usePinContact();
 
   const handleExtendedView = () => {
     history?.push("/chats");
@@ -34,6 +49,19 @@ const ChatsDropdownMenu = (props: Props) => {
           {kebabMenuSvg}
         </Button>
         <DropdownMenu align="right">
+          {props.contact && (
+            <DropdownItemWithIcon
+              icon={pinSvg}
+              label={props.contact.pinned ? _t("chat.unpin") : _t("chat.pin")}
+              disabled={isContactPinning}
+              onClick={(e: { stopPropagation: () => void }) => {
+                e.stopPropagation();
+                if (!isContactPinning) {
+                  pinContact({ contact: props.contact!, pinned: !props.contact!.pinned });
+                }
+              }}
+            />
+          )}
           {!location.pathname.startsWith("/chats") && (
             <DropdownItemWithIcon
               icon={extendedView}

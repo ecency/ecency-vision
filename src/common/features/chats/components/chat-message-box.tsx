@@ -67,6 +67,7 @@ export default function ChatsMessagesBox(props: Props) {
       }}
     >
       <ChatsMessagesHeader
+        contact={props.currentContact}
         channel={props.channel}
         username={props.community?.name ?? props.currentContact?.name ?? ""}
         history={props.history}

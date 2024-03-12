@@ -148,6 +148,7 @@ export function ChatPopupHeader({
             <ChatsDropdownMenu
               history={history!}
               channel={channel}
+              contact={directContact}
               onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
             />
           </div>
