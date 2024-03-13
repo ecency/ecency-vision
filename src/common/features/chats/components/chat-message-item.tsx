@@ -17,11 +17,14 @@ import {
   isSingleEmoji,
   Message,
   useKeysQuery,
+  useNostrGetUserProfileQuery,
   useResendMessage
 } from "@ecency/ns-query";
 import { format } from "date-fns";
 import { useInViewport } from "react-in-viewport";
 import "./_chat-message-item.scss";
+import { makePath } from "../../../components/profile-link";
+import { Link } from "react-router-dom";
 
 interface Props {
   type: "sender" | "receiver";
@@ -49,7 +52,7 @@ export function ChatMessageItem({
   className = ""
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { global } = useMappedStore();
+  const { global, activeUser } = useMappedStore();
   const { publicKey } = useKeysQuery();
 
   const [holdStarted, setHoldStarted] = useState(false);
@@ -69,6 +72,17 @@ export function ChatMessageItem({
 
   const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentContact);
   const { inViewport } = useInViewport(ref);
+
+  const { data: nostrUserProfiles } = useNostrGetUserProfileQuery(message.creator);
+
+  const profile = useMemo(
+    () => nostrUserProfiles?.find((p) => p.creator === message.creator),
+    [message, nostrUserProfiles]
+  );
+  const showUsername = useMemo(
+    () => profile && currentChannel && profile.name != activeUser?.username,
+    [profile, currentChannel, activeUser]
+  );
 
   useMount(() => onAppear?.());
 
@@ -132,15 +146,31 @@ export function ChatMessageItem({
           <div
             className={classNameObject({
               "duration-300 max-w-[340px]": true,
-              "text-sm p-2.5 rounded-b-2xl": !isGif && !isEmoji,
+              "text-sm px-2.5 pb-2.5 rounded-b-2xl": !isGif && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
               "same-user-message": isSameUser,
               "text-[4rem]": isEmoji,
-              "scale-90": holdStarted && !!onContextMenu
+              "scale-90": holdStarted && !!onContextMenu,
+              "pt-2.5": !showUsername,
+              "pt-1.5": showUsername
             })}
           >
+            {showUsername && (
+              <Link
+                className={classNameObject({
+                  "font-semibold text-sm mb-2 text-blue-dark-sky": true,
+                  "px-2.5": isGif || isEmoji
+                })}
+                style={{
+                  display: "inherit"
+                }}
+                to={makePath(profile!!.name)}
+              >
+                {profile!!.name}
+              </Link>
+            )}
             <div
               className="sender-message-content [&>img]:rounded-xl"
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
