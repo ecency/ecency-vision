@@ -494,5 +494,21 @@
   {
     "name": "gamingumar",
     "contributes": ["Developer (Mobile)"]
-  }
+  },
+   {
+    "name": "asgharali",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "aliakbar2",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "untilwelearn",
+    "contributes": ["Guest Curator"]
+  },
+   {
+    "name": "sirenahippie",
+    "contributes": ["Guest Curator"]
+  }  
 ]
