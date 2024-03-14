@@ -35,7 +35,13 @@ import _c from "../../util/fix-class-names";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
-import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../../img/svg";
+import {
+  checkSvg,
+  contentLoadSvg,
+  contentSaveSvg,
+  helpIconSvg,
+  informationSvg
+} from "../../img/svg";
 import { BeneficiaryEditorDialog } from "../../components/beneficiary-editor";
 import PostScheduler from "../../components/post-scheduler";
 import moment from "moment/moment";
@@ -57,12 +63,11 @@ import { SubmitVideoAttachments } from "./submit-video-attachments";
 import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
 import ModalConfirm from "@ui/modal-confirm";
 import { Button } from "@ui/button";
-import { dotsMenuIconSvg } from "../../components/decks/icons";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { IntroTour } from "@ui/intro-tour";
 import { IntroStep } from "@ui/core";
-import { UilStar } from "@iconscout/react-unicons";
+import { dotsMenuIconSvg } from "../../components/decks/icons";
 
 interface MatchProps {
   match: MatchType;
@@ -99,6 +104,7 @@ export function Submit(props: PageProps & MatchProps) {
   // Misc
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
+  const [isTourFinished] = useLocalStorage(PREFIX + `_itf_submit`, false);
 
   const tourEnabled = useMemo(() => !activeUser, [activeUser]);
   const introSteps = useMemo<IntroStep[]>(
@@ -439,7 +445,7 @@ export function Submit(props: PageProps & MatchProps) {
       <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
           {editingEntry === null && activeUser && (
-            <div className="community-input">
+            <div className="community-input whitespace-nowrap">
               <CommunitySelector
                 global={props.global}
                 activeUser={activeUser}
@@ -452,6 +458,17 @@ export function Submit(props: PageProps & MatchProps) {
                   tagsChanged(newTags);
                 }}
               />
+
+              <div className="flex justify-end w-full items-center gap-4">
+                <Button
+                  size="sm"
+                  appearance="gray-link"
+                  onClick={() => setForceReactivateTour(true)}
+                  icon={informationSvg}
+                >
+                  {!isTourFinished && _t("submit.take-tour")}
+                </Button>
+              </div>
             </div>
           )}
           <EditorToolbar
@@ -527,25 +544,14 @@ export function Submit(props: PageProps & MatchProps) {
                 {_t("submit.clear")}
               </Button>
             )}
-
-            <div className="flex items-center gap-4">
-              <Button
-                appearance="info"
-                onClick={() => setForceReactivateTour(true)}
-                icon={<UilStar />}
-              >
-                Take a tour
-              </Button>
-              <Button
-                id="editor-advanced"
-                outline={true}
-                onClick={() => setAdvanced(!advanced)}
-                icon={getHasAdvanced && dotsMenuIconSvg}
-              >
-                {advanced ? _t("submit.preview") : _t("submit.advanced")}
-              </Button>
-              '
-            </div>
+            <Button
+              id="editor-advanced"
+              outline={true}
+              onClick={() => setAdvanced(!advanced)}
+              icon={getHasAdvanced && dotsMenuIconSvg}
+            >
+              {advanced ? _t("submit.preview") : _t("submit.advanced")}
+            </Button>
           </div>
         </div>
         <div className="flex-spacer" />

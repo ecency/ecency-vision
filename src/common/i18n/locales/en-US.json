@@ -1436,6 +1436,7 @@
     "title-placeholder": "Title",
     "body-placeholder": "Tell your story...",
     "reward": "Reward",
+    "take-tour": "Take a tour",
     "reward-hint": "Set author reward ratio for liquid and staked tokens",
     "reward-default": "Default 50% / 50%",
     "reward-sp": "Power Up 100%",
