@@ -5,6 +5,8 @@ import UserAvatar from "../../../components/user-avatar";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { Channel, useNostrGetUserProfileQuery } from "@ecency/ns-query";
 import { useCommunityCache } from "../../../core";
+import { makePath } from "../../../components/profile-link";
+import { Link } from "react-router-dom";
 
 interface Props {
   currentChannel: Channel;
@@ -32,7 +34,9 @@ export function ChatMessageChannelItemExtension({
 
   return (
     <>
-      <UserAvatar username={profile?.name ?? ""} size="w-[2rem] h-[2rem]" />
+      <Link to={makePath(profile?.name ?? "")}>
+        <UserAvatar username={profile?.name ?? ""} size="w-[2rem] h-[2rem]" />
+      </Link>
       <Popover id="profile-popover" className="profile-popover">
         {children}
         <PopoverContent>
