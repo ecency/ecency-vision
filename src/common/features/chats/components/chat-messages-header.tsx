@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { History } from "history";
 import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
@@ -16,6 +16,7 @@ import {
 } from "@ecency/ns-query";
 import { ChatSidebarSavedMessagesAvatar } from "./chats-sidebar/chat-sidebar-saved-messages-avatar";
 import { _t } from "../../../i18n";
+import { error, success } from "../../../components/feedback";
 
 interface Props {
   username: string;
@@ -33,7 +34,24 @@ export default function ChatsMessagesHeader(props: Props) {
 
   const isActiveUser = useMemo(() => receiverPubKey === publicKey, [publicKey, receiverPubKey]);
 
-  const { mutateAsync: pinContact, isLoading: isContactPinning } = usePinContact();
+  const {
+    mutateAsync: pinContact,
+    isLoading: isContactPinning,
+    isSuccess: isPinned,
+    isError: isPinFailed
+  } = usePinContact();
+
+  useEffect(() => {
+    if (isPinned) {
+      success(_t("g.success"));
+    }
+  }, [isPinned]);
+
+  useEffect(() => {
+    if (isPinFailed) {
+      error(_t("g.error"));
+    }
+  }, [isPinFailed]);
 
   const formattedName = (username: string) => {
     if (username && !username.startsWith("@")) {

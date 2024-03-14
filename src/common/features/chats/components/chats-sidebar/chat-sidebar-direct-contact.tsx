@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import UserAvatar from "../../../../components/user-avatar";
 import { classNameObject } from "../../../../helper/class-name-object";
 import {
@@ -8,15 +8,19 @@ import {
   useGetPublicKeysQuery,
   useKeysQuery,
   useLastMessageQuery,
+  usePinContact,
   useUnreadCountQuery
 } from "@ecency/ns-query";
 import { _t } from "../../../../i18n";
 import Tooltip from "../../../../components/tooltip";
 import { informationOutlineSvg, pinSvg } from "../../../../img/svg";
 import { Button } from "@ui/button";
-import { Link } from "react-router-dom";
 import { Badge } from "@ui/badge";
 import { ChatSidebarSavedMessagesAvatar } from "./chat-sidebar-saved-messages-avatar";
+import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
+import { error, success } from "../../../../components/feedback";
+import { history } from "../../../../store";
+import useDebounce from "react-use/lib/useDebounce";
 
 interface Props {
   contact: DirectContact;
@@ -27,6 +31,9 @@ interface Props {
 export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Props) {
   const { receiverPubKey, setReceiverPubKey, revealPrivateKey, setRevealPrivateKey } =
     useContext(ChatContext);
+
+  const [holdStarted, setHoldStarted] = useState(false);
+  const [showContextMenu, setShowContextMenu] = useState(false);
 
   const { publicKey } = useKeysQuery();
   const { data: contactKeys, isLoading: isContactKeysLoading } = useGetPublicKeysQuery(
@@ -42,6 +49,36 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     [contactKeys, contact, isJoined]
   );
   const isActiveUser = useMemo(() => contact.pubkey === publicKey, [publicKey, contact]);
+
+  const {
+    mutateAsync: pinContact,
+    isLoading: isContactPinning,
+    isSuccess: isPinned,
+    isError: isPinFailed
+  } = usePinContact();
+
+  useEffect(() => {
+    if (isPinned) {
+      success(_t("g.success"));
+    }
+  }, [isPinned]);
+
+  useEffect(() => {
+    if (isPinFailed) {
+      error(_t("g.error"));
+    }
+  }, [isPinFailed]);
+
+  useDebounce(
+    () => {
+      if (holdStarted) {
+        setHoldStarted(false);
+        setShowContextMenu(true);
+      }
+    },
+    500,
+    [holdStarted]
+  );
 
   const content = (
     <>
@@ -95,40 +132,74 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
     </>
   );
 
-  return isLink ? (
-    <Link
-      to="/chats"
-      className={classNameObject({
-        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
-          true,
-        "bg-gray-100 dark:bg-gray-800": receiverPubKey === contact.pubkey
-      })}
-      onClick={() => {
-        setReceiverPubKey(contact.pubkey);
-        if (revealPrivateKey) {
-          setRevealPrivateKey(false);
-        }
-        onClick?.();
-      }}
+  return (
+    <Dropdown
+      closeOnClickOutside={true}
+      show={showContextMenu}
+      setShow={(v) => setShowContextMenu(v)}
     >
-      {content}
-    </Link>
-  ) : (
-    <div
-      className={classNameObject({
-        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
-          true,
-        "bg-gray-100 dark:bg-gray-800": receiverPubKey === contact.pubkey
-      })}
-      onClick={() => {
-        setReceiverPubKey(contact.pubkey);
-        if (revealPrivateKey) {
-          setRevealPrivateKey(false);
-        }
-        onClick?.();
-      }}
-    >
-      {content}
-    </div>
+      <div
+        onMouseDown={() => setHoldStarted(true)}
+        onMouseUp={() => {
+          setHoldStarted(false);
+
+          setTimeout(() => {
+            if (!holdStarted) {
+              return;
+            }
+
+            if (isLink) {
+              history?.push("/chats");
+            }
+
+            setReceiverPubKey(contact.pubkey);
+            if (revealPrivateKey) {
+              setRevealPrivateKey(false);
+            }
+            onClick?.();
+          }, 500);
+        }}
+        onTouchStart={() => setHoldStarted(true)}
+        onTouchEnd={() => {
+          setHoldStarted(false);
+          console.log("touch ended");
+
+          setTimeout(() => {
+            if (!holdStarted) {
+              return;
+            }
+
+            if (isLink) {
+              history?.push("/chats");
+            }
+
+            setReceiverPubKey(contact.pubkey);
+            if (revealPrivateKey) {
+              setRevealPrivateKey(false);
+            }
+            onClick?.();
+          }, 500);
+        }}
+        onContextMenu={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          setShowContextMenu(true);
+        }}
+        className={classNameObject({
+          "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
+            true,
+          "bg-gray-100 dark:bg-gray-800": receiverPubKey === contact.pubkey
+        })}
+      >
+        {content}
+      </div>
+      <DropdownMenu className="top-[70%]">
+        <DropdownItemWithIcon
+          icon={pinSvg}
+          label={contact.pinned ? _t("chat.unpin") : _t("chat.pin")}
+          onClick={() => pinContact({ contact, pinned: !contact.pinned })}
+        />
+      </DropdownMenu>
+    </Dropdown>
   );
 }

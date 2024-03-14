@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { History } from "history";
 import {
   chatKeySvg,
@@ -20,6 +20,7 @@ import {
   useLogoutFromChats,
   usePinContact
 } from "@ecency/ns-query";
+import { error, success } from "../../../components/feedback";
 
 interface Props {
   history: History | null;
@@ -36,7 +37,24 @@ const ChatsDropdownMenu = (props: Props) => {
   const { mutateAsync: leaveChannel, isLoading: isLeavingLoading } = useLeaveCommunityChannel(
     props.channel
   );
-  const { mutateAsync: pinContact, isLoading: isContactPinning } = usePinContact();
+  const {
+    mutateAsync: pinContact,
+    isLoading: isContactPinning,
+    isSuccess: isPinned,
+    isError: isPinFailed
+  } = usePinContact();
+
+  useEffect(() => {
+    if (isPinned) {
+      success(_t("g.success"));
+    }
+  }, [isPinned]);
+
+  useEffect(() => {
+    if (isPinFailed) {
+      error(_t("g.error"));
+    }
+  }, [isPinFailed]);
 
   const handleExtendedView = () => {
     history?.push("/chats");
