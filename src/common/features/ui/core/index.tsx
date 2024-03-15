@@ -1,6 +1,8 @@
 import React, { createContext, PropsWithChildren } from "react";
 import { useSet } from "react-use";
 
+export * from "./intro-step.interface";
+
 export const UIContext = createContext<{
   openPopovers: Set<string>;
   addOpenPopover: (v: string) => void;
@@ -17,7 +19,13 @@ export function UIManager({ children }: PropsWithChildren<unknown>) {
   );
 
   return (
-    <UIContext.Provider value={{ openPopovers, addOpenPopover, removeOpenPopover }}>
+    <UIContext.Provider
+      value={{
+        openPopovers,
+        addOpenPopover,
+        removeOpenPopover
+      }}
+    >
       {children}
     </UIContext.Provider>
   );
