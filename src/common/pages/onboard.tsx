@@ -20,7 +20,8 @@ import {
   createAccountKey,
   createAccountWithCreditHs,
   createAccountWithCreditKc,
-  createAccountWithCreditKey
+  createAccountWithCreditKey,
+  delegateRC
 } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
@@ -32,9 +33,8 @@ import { _t } from "../i18n";
 import "./onboard.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Button } from "@ui/button";
-import { InputGroup, FormControl } from "@ui/input";
+import { FormControl, InputGroup } from "@ui/input";
 import { getRcOperationStats } from "../api/hive";
-import { delegateRC } from "../api/operations";
 
 export interface AccountInfo {
   email: string;
@@ -98,14 +98,13 @@ const Onboard = (props: Props) => {
   const [onboardUrl, setOnboardUrl] = useState("");
   const [step, setStep] = useState<string | number>(0);
   const [inProgress, setInprogress] = useState(false);
-  const [rcAmount, setRcAmount] = useState(0)
+  const [rcAmount, setRcAmount] = useState(0);
   const [isChecked, setChecked] = useState(false);
-  const [rcError, setRcError] = useState("")
+  const [rcError, setRcError] = useState("");
   const [commentAmount, setCommentAmount] = useState(0);
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
-
 
   useEffect(() => {
     setOnboardUrl(`${window.location.origin}/onboard-friend/creating/`);
@@ -155,13 +154,13 @@ const Onboard = (props: Props) => {
 
   useEffect(() => {
     rcOperationsCost();
-  }, [rcAmount])
+  }, [rcAmount]);
 
   useEffect(() => {
     if (!isChecked) {
       setRcAmount(0);
     }
-  }, [isChecked])
+  }, [isChecked]);
 
   const handleResize = () => {
     setInnerWidth(window.innerWidth);
@@ -299,8 +298,12 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
           } else {
             setStep("failed");
@@ -317,8 +320,12 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
           } else {
             setStep("failed");
@@ -351,8 +358,12 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
           } else {
             setStep("failed");
@@ -370,8 +381,12 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
           } else {
             setStep("failed");
@@ -409,8 +424,12 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false);
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
             // sendMail();
           }
@@ -426,8 +445,12 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false);
-            if(isChecked){
-              await delegateRC(activeUser?.username, formatUsername(decodedInfo!.username), rcAmount * 1e9)
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
             }
             // sendMail();
           }
@@ -491,18 +514,18 @@ const Onboard = (props: Props) => {
     const voteCost = operationCosts.vote_operation.avg_cost;
     const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
     const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
-    if(Number(rcAmount * 1e9) < 5000000000) {
-      console.log("too low rc")
-      setRcError("You can not delegate below 5bn Rc")
+    if (Number(rcAmount * 1e9) < 5000000000) {
+      console.log("too low rc");
+      setRcError("You can not delegate below 5bn Rc");
     } else {
-      setRcError("")
+      setRcError("");
     }
 
     const commentCount: number = Math.ceil(Number(rcAmount * 1e9) / commentCost);
     const votetCount: number = Math.ceil(Number(rcAmount * 1e9) / voteCost);
     const transferCount: number = Math.ceil(Number(rcAmount * 1e9) / transferCost);
     const customJsonCount: number = Math.ceil(Number(rcAmount * 1e9) / customJsonOperationsCosts);
-   
+
     setCommentAmount(commentCount);
     setVoteAmount(votetCount);
     setTransferAmount(transferCount);
@@ -680,40 +703,47 @@ const Onboard = (props: Props) => {
                 </>
               )}
 
-            <div className="onboard-delegate-rc">
-              <div className="col-span-12 sm:col-span-10">
-                <div className="onboard-check mb-2">
-                  <input 
-                    type="checkbox" 
-                    className="onboard-checkbox" 
-                    checked={isChecked} 
-                    onChange={() => {
-                      setChecked(!isChecked)
-                    }}
-                  />
-                  <span className="onboard-blinking-text">Delegate some resource credits to {decodedInfo && decodedInfo!.username} (Minimum Rc is 5Bn)</span>
-                </div>
-                {isChecked &&
-                <div className="mt-3">
-                  {(rcAmount && rcError) ? <span className="text-danger mt-3">{rcError}</span> : ""}
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder={"Enter amount to delegate(Bn)"}
-                      value={rcAmount}
-                      onChange={(e: any) => setRcAmount(Number(e.target.value))}
+              <div className="onboard-delegate-rc">
+                <div className="col-span-12 sm:col-span-10">
+                  <div className="onboard-check mb-2">
+                    <input
+                      type="checkbox"
+                      className="onboard-checkbox"
+                      checked={isChecked}
+                      onChange={() => {
+                        setChecked(!isChecked);
+                      }}
                     />
-                  </InputGroup>
-                  <div className="operation-amount d-flex mt-3">
-                    <span className="operations">Posts/Comment: {commentAmount} |</span>
-                    <span className="operations">Votes: {voteAmount} |</span>
-                    <span className="operations">Transfers: {transferAmount} |</span>
-                    <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+                    <span className="onboard-blinking-text">
+                      Delegate some resource credits to {decodedInfo && decodedInfo!.username}{" "}
+                      (Minimum Rc is 5Bn)
+                    </span>
                   </div>
+                  {isChecked && (
+                    <div className="mt-3">
+                      {rcAmount && rcError ? (
+                        <span className="text-danger mt-3">{rcError}</span>
+                      ) : (
+                        ""
+                      )}
+                      <InputGroup>
+                        <FormControl
+                          type="text"
+                          placeholder={"Enter amount to delegate(Bn)"}
+                          value={rcAmount}
+                          onChange={(e: any) => setRcAmount(Number(e.target.value))}
+                        />
+                      </InputGroup>
+                      <div className="operation-amount d-flex mt-3">
+                        <span className="operations">Posts/Comment: {commentAmount} |</span>
+                        <span className="operations">Votes: {voteAmount} |</span>
+                        <span className="operations">Transfers: {transferAmount} |</span>
+                        <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                }
               </div>
-            </div>
 
               <div className="creating-confirm-bottom">
                 <span>{_t("onboard.pay-fee")}</span>
