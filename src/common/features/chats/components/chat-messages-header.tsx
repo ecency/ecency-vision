@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { History } from "history";
 import ChatsCommunityDropdownMenu from "./chats-community-actions";
 import UserAvatar from "../../../components/user-avatar";
@@ -8,16 +8,20 @@ import { Button } from "@ui/button";
 import {
   Channel,
   ChatContext,
+  DirectContact,
   formattedUserName,
   useChannelsQuery,
-  useKeysQuery
+  useKeysQuery,
+  usePinContact
 } from "@ecency/ns-query";
 import { ChatSidebarSavedMessagesAvatar } from "./chats-sidebar/chat-sidebar-saved-messages-avatar";
 import { _t } from "../../../i18n";
+import { error, success } from "../../../components/feedback";
 
 interface Props {
   username: string;
   channel?: Channel;
+  contact?: DirectContact;
   history: History;
 }
 
@@ -29,6 +33,25 @@ export default function ChatsMessagesHeader(props: Props) {
   const { data: channels } = useChannelsQuery();
 
   const isActiveUser = useMemo(() => receiverPubKey === publicKey, [publicKey, receiverPubKey]);
+
+  const {
+    mutateAsync: pinContact,
+    isLoading: isContactPinning,
+    isSuccess: isPinned,
+    isError: isPinFailed
+  } = usePinContact();
+
+  useEffect(() => {
+    if (isPinned) {
+      success(_t("g.success"));
+    }
+  }, [isPinned]);
+
+  useEffect(() => {
+    if (isPinFailed) {
+      error(_t("g.error"));
+    }
+  }, [isPinFailed]);
 
   const formattedName = (username: string) => {
     if (username && !username.startsWith("@")) {
@@ -68,6 +91,23 @@ export default function ChatsMessagesHeader(props: Props) {
       {props.channel && (
         <div className="flex items-center justify-center">
           <ChatsCommunityDropdownMenu channel={props.channel} />
+        </div>
+      )}
+      {props.contact && (
+        <div className="flex items-center justify-center">
+          <Button
+            size="sm"
+            appearance="gray-link"
+            disabled={isContactPinning}
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation();
+              if (!isContactPinning) {
+                pinContact({ contact: props.contact!, pinned: !props.contact!.pinned });
+              }
+            }}
+          >
+            {props.contact.pinned ? _t("chat.unpin") : _t("chat.pin")}
+          </Button>
         </div>
       )}
     </div>
