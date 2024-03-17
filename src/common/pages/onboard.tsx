@@ -35,6 +35,7 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Button } from "@ui/button";
 import { FormControl, InputGroup } from "@ui/input";
 import { getRcOperationStats } from "../api/hive";
+import { Alert } from "@ui/alert";
 
 export interface AccountInfo {
   email: string;
@@ -513,9 +514,7 @@ const Onboard = (props: Props) => {
     const transferCost = operationCosts.transfer_operation.avg_cost;
     const voteCost = operationCosts.vote_operation.avg_cost;
     const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
-    const createClaimAccountCost = Number(operationCosts.claim_account_operation.avg_cost);
     if (Number(rcAmount * 1e9) < 5000000000) {
-      console.log("too low rc");
       setRcError("You can not delegate below 5bn Rc");
     } else {
       setRcError("");
@@ -530,7 +529,6 @@ const Onboard = (props: Props) => {
     setVoteAmount(votetCount);
     setTransferAmount(transferCount);
     setCustomJsonAmount(customJsonCount);
-    // setClaimAccountAmount(createClaimAccountCount);
   };
 
   const successModalBody = () => {
@@ -606,7 +604,9 @@ const Onboard = (props: Props) => {
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
-              <h3 className="mb-3 self-center">{_t("onboard.confirm-details")}</h3>
+              <h3 className="mb-3 self-center text-2xl font-semibold text-blue-dark-sky">
+                {_t("onboard.confirm-details")}
+              </h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.username")} <strong>{accountInfo?.username}</strong>
@@ -651,7 +651,7 @@ const Onboard = (props: Props) => {
                 </Button>
 
                 {fileIsDownloaded && (
-                  <div className="flex flex-col self-center justify-center mt-3">
+                  <Alert className="flex flex-col self-center justify-center mt-3">
                     {!props.activeUser && (
                       <>
                         <h4>{_t("onboard.copy-info-message")}</h4>
@@ -677,7 +677,7 @@ const Onboard = (props: Props) => {
                         </span>
                       </>
                     )}
-                  </div>
+                  </Alert>
                 )}
               </div>
             </div>
@@ -688,8 +688,10 @@ const Onboard = (props: Props) => {
       {props.match.params.type === "creating" && props.match.params.secret && (
         <div className="onboard-container">
           {props.activeUser ? (
-            <div className="creating-confirm">
-              <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
+            <div className="creating-confirm asking asking-body p-4">
+              <h3 className="align-self-center text-2xl font-semibold text-blue-dark-sky">
+                {_t("onboard.confirm-details")}
+              </h3>
               {confirmDetails && (
                 <>
                   {confirmDetails.map((field, index) => (

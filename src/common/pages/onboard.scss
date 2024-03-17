@@ -3,31 +3,24 @@
 .onboard-container {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  padding: 20px;
-  margin-top: 70px;
-  width: 690px;
-  border-radius: 15px;
-
-  @media (max-width: $md-break) {
-    width: 490px;
-  }
-
-  @media (max-width: $sm-break) {
-    width: 340px;
-  }
-
-  @include themify(day) {
-    @apply bg-gray-steel-light-040;
-  }
-
-  @include themify(night) {
-    @apply bg-blue-dark-grey;
-  }
+  align-items: center;
+  margin: 8rem 0;
+  padding: 1rem;
 
   .asking {
+    max-width: 690px;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
+
+    @include themify(day) {
+      @apply bg-gray-100;
+    }
+
+    @include themify(night) {
+      @apply bg-gray-800;
+    }
 
     .reg-details {
       display: flex;
