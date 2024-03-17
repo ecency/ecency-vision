@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { User } from "../../store/users/types";
 import { Account } from "../../store/accounts/types";
 import { ActiveUser } from "../../store/active-user/types";
-import { UI, ToggleType } from "../../store/ui/types";
+import { ToggleType, UI } from "../../store/ui/types";
 
 interface Props {
   users: User[];
@@ -25,7 +25,7 @@ export class LoginRequired extends Component<Props> {
   render() {
     const { children, activeUser } = this.props;
 
-    if (activeUser) {
+    if (activeUser && activeUser.data.__loaded) {
       return children;
     }
 
