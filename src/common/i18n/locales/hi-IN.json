@@ -314,7 +314,14 @@
     "failed-message": "खाता बनाने में विफल",
     "try-again": "पुनः प्रयास करें",
     "sign-header-title": "लेनदेन पर हस्ताक्षर करें",
-    "sign-sub-title": "अपने लेन-देन पर हस्ताक्षर करें"
+    "sign-sub-title": "अपने लेन-देन पर हस्ताक्षर करें",
+    "rc-to-new-acc": "Delegate some resource credits to",
+    "minimum-rc": "(Minimum Rc is 5Bn)",
+    "posts-comments": "Posts/Comments:",
+    "votes": "Votes:",
+    "transfers": "Transfers:",
+    "reblogs-follows": "Reblogs/Follows:",
+    "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
     "title": "विषय"
