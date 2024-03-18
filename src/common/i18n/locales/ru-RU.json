@@ -314,7 +314,14 @@
     "failed-message": "Не удалось создать аккаунт",
     "try-again": "Повторить попытку",
     "sign-header-title": "Подписать транзакцию",
-    "sign-sub-title": "Подпишите транзакцию"
+    "sign-sub-title": "Подпишите транзакцию",
+    "rc-to-new-acc": "Delegate some resource credits to",
+    "minimum-rc": "(Minimum Rc is 5Bn)",
+    "posts-comments": "Posts/Comments:",
+    "votes": "Votes:",
+    "transfers": "Transfers:",
+    "reblogs-follows": "Reblogs/Follows:",
+    "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
     "title": "Темы"
