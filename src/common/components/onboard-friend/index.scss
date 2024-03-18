@@ -9,7 +9,12 @@
       padding: 2rem;
       border-radius: 1rem;
       color: $steel-grey;
-      word-break: break-all
+      word-break: break-all;
+      
+      @media (max-width: 470px) {
+        width: 90%;
+        margin-top: 100px;
+      }
     }
     
     .friend-details{
@@ -55,3 +60,11 @@
       animation: blink 2s infinite;
     }
     
+    .operation-amount{
+      display: flex;
+      margin-top: 3px;
+
+      @media (max-width: 470px) {
+        flex-wrap: wrap;
+      }
+    }

@@ -204,8 +204,8 @@ const SignUpPage = (props: Props | any) => {
             ...props,
           })
         : NavBar({ ...props })}
-      <div className={`sign-up-page-container ${containerClasses}`}>
-        <div className="wrapper">
+      <div className={`sign-up-page ${containerClasses}`}>
+        <div className="signup-wrapper">
            {step  === 1 && <div className="account-types align-self-center d-flex">
               <h3>Sign up with</h3>
               <div 
@@ -281,7 +281,7 @@ const SignUpPage = (props: Props | any) => {
                                 onChange={emailChanged}
                                 required={true}
                                 onInvalid={(e: any) =>
-                                  handleInvalid(e, "sign-up.", "validation-username")
+                                  handleInvalid(e, "sign-up.", "validation-email")
                                 }
                                 onInput={handleOnInput}
                               />
