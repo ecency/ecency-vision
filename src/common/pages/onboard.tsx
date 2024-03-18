@@ -20,7 +20,8 @@ import {
   createAccountKey,
   createAccountWithCreditHs,
   createAccountWithCreditKc,
-  createAccountWithCreditKey
+  createAccountWithCreditKey,
+  delegateRC
 } from "../api/operations";
 import { onboardEmail } from "../api/private-api";
 import { generatePassword, getPrivateKeys } from "../helper/onBoard-helper";
@@ -32,6 +33,9 @@ import { _t } from "../i18n";
 import "./onboard.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { Button } from "@ui/button";
+import { FormControl, InputGroup } from "@ui/input";
+import { getRcOperationStats } from "../api/hive";
+import { Alert } from "@ui/alert";
 
 export interface AccountInfo {
   email: string;
@@ -95,6 +99,13 @@ const Onboard = (props: Props) => {
   const [onboardUrl, setOnboardUrl] = useState("");
   const [step, setStep] = useState<string | number>(0);
   const [inProgress, setInprogress] = useState(false);
+  const [rcAmount, setRcAmount] = useState(0);
+  const [isChecked, setChecked] = useState(false);
+  const [rcError, setRcError] = useState("");
+  const [commentAmount, setCommentAmount] = useState(0);
+  const [voteAmount, setVoteAmount] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [customJsonAmount, setCustomJsonAmount] = useState(0);
 
   useEffect(() => {
     setOnboardUrl(`${window.location.origin}/onboard-friend/creating/`);
@@ -141,6 +152,16 @@ const Onboard = (props: Props) => {
       window.removeEventListener("resize", handleResize);
     };
   }, [masterPassword]);
+
+  useEffect(() => {
+    rcOperationsCost();
+  }, [rcAmount]);
+
+  useEffect(() => {
+    if (!isChecked) {
+      setRcAmount(0);
+    }
+  }, [isChecked]);
 
   const handleResize = () => {
     setInnerWidth(window.innerWidth);
@@ -278,6 +299,13 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
           } else {
             setStep("failed");
           }
@@ -293,6 +321,13 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
           } else {
             setStep("failed");
           }
@@ -324,6 +359,13 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
           } else {
             setStep("failed");
           }
@@ -340,6 +382,13 @@ const Onboard = (props: Props) => {
             setInprogress(false);
             setStep("success");
             sendMail();
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
           } else {
             setStep("failed");
           }
@@ -376,6 +425,13 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false);
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
             // sendMail();
           }
         } else {
@@ -390,6 +446,13 @@ const Onboard = (props: Props) => {
           if (resp) {
             setInprogress(false);
             setShowModal(false);
+            if (isChecked) {
+              await delegateRC(
+                activeUser?.username,
+                formatUsername(decodedInfo!.username),
+                rcAmount * 1e9
+              );
+            }
             // sendMail();
           }
         }
@@ -442,6 +505,30 @@ const Onboard = (props: Props) => {
         </p>
       </>
     );
+  };
+
+  const rcOperationsCost = async () => {
+    const rcStats: any = await getRcOperationStats();
+    const operationCosts = rcStats.rc_stats.ops;
+    const commentCost = operationCosts.comment_operation.avg_cost;
+    const transferCost = operationCosts.transfer_operation.avg_cost;
+    const voteCost = operationCosts.vote_operation.avg_cost;
+    const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
+    if (Number(rcAmount * 1e9) < 5000000000) {
+      setRcError(_t("onboard.rc-error"));
+    } else {
+      setRcError("");
+    }
+
+    const commentCount: number = Math.ceil(Number(rcAmount * 1e9) / commentCost);
+    const votetCount: number = Math.ceil(Number(rcAmount * 1e9) / voteCost);
+    const transferCount: number = Math.ceil(Number(rcAmount * 1e9) / transferCost);
+    const customJsonCount: number = Math.ceil(Number(rcAmount * 1e9) / customJsonOperationsCosts);
+
+    setCommentAmount(commentCount);
+    setVoteAmount(votetCount);
+    setTransferAmount(transferCount);
+    setCustomJsonAmount(customJsonCount);
   };
 
   const successModalBody = () => {
@@ -517,7 +604,9 @@ const Onboard = (props: Props) => {
                 innerWidth < 577 ? "p-3" : "p-5"
               }`}
             >
-              <h3 className="mb-3 self-center">{_t("onboard.confirm-details")}</h3>
+              <h3 className="mb-3 self-center text-2xl font-semibold text-blue-dark-sky">
+                {_t("onboard.confirm-details")}
+              </h3>
               <div className="reg-details">
                 <span style={{ lineHeight: 2 }}>
                   {_t("onboard.username")} <strong>{accountInfo?.username}</strong>
@@ -562,7 +651,7 @@ const Onboard = (props: Props) => {
                 </Button>
 
                 {fileIsDownloaded && (
-                  <div className="flex flex-col self-center justify-center mt-3">
+                  <Alert className="flex flex-col self-center justify-center mt-3">
                     {!props.activeUser && (
                       <>
                         <h4>{_t("onboard.copy-info-message")}</h4>
@@ -588,7 +677,7 @@ const Onboard = (props: Props) => {
                         </span>
                       </>
                     )}
-                  </div>
+                  </Alert>
                 )}
               </div>
             </div>
@@ -599,8 +688,10 @@ const Onboard = (props: Props) => {
       {props.match.params.type === "creating" && props.match.params.secret && (
         <div className="onboard-container">
           {props.activeUser ? (
-            <div className="creating-confirm">
-              <h3 className="align-self-center">{_t("onboard.confirm-details")}</h3>
+            <div className="creating-confirm asking asking-body p-4">
+              <h3 className="align-self-center text-2xl font-semibold text-blue-dark-sky">
+                {_t("onboard.confirm-details")}
+              </h3>
               {confirmDetails && (
                 <>
                   {confirmDetails.map((field, index) => (
@@ -613,6 +704,48 @@ const Onboard = (props: Props) => {
                   ))}
                 </>
               )}
+
+              <div className="onboard-delegate-rc">
+                <div className="col-span-12 sm:col-span-10">
+                  <div className="onboard-check mb-2">
+                    <input
+                      type="checkbox"
+                      className="onboard-checkbox"
+                      checked={isChecked}
+                      onChange={() => {
+                        setChecked(!isChecked);
+                      }}
+                    />
+                    <span className="onboard-blinking-text">
+                    {_t("onboard.rc-to-new-acc")} {decodedInfo && decodedInfo!.username}{" "}
+                    {_t("onboard.minimum-rc")}
+                    </span>
+                  </div>
+                  {isChecked && (
+                    <div className="mt-3">
+                      {rcAmount && rcError ? (
+                        <span className="text-danger mt-3">{rcError}</span>
+                      ) : (
+                        ""
+                      )}
+                      <InputGroup>
+                        <FormControl
+                          type="text"
+                          placeholder={"Enter amount to delegate(Bn)"}
+                          value={rcAmount}
+                          onChange={(e: any) => setRcAmount(Number(e.target.value))}
+                        />
+                      </InputGroup>
+                      <div className="operation-amount d-flex mt-3">
+                        <span className="operations">{_t("onboard.posts-comments")} {commentAmount} |</span>
+                        <span className="operations">{_t("onboard.votes")} {voteAmount} |</span>
+                        <span className="operations">{_t("onboard.transfers")} {transferAmount} |</span>
+                        <span className="operations">{_t("onboard.reblogs-follows")} {customJsonAmount}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
 
               <div className="creating-confirm-bottom">
                 <span>{_t("onboard.pay-fee")}</span>
@@ -629,7 +762,7 @@ const Onboard = (props: Props) => {
                   </Button>
                   <Button
                     className="align-self-center"
-                    disabled={accountCredit <= 0}
+                    disabled={accountCredit <= 0 || (isChecked && rcError !== "")}
                     onClick={() => {
                       setCreateOption("credit");
                       setShowModal(true);
