@@ -515,7 +515,7 @@ const Onboard = (props: Props) => {
     const voteCost = operationCosts.vote_operation.avg_cost;
     const customJsonOperationsCosts = operationCosts.custom_json_operation.avg_cost;
     if (Number(rcAmount * 1e9) < 5000000000) {
-      setRcError("You can not delegate below 5bn Rc");
+      setRcError(_t("onboard.rc-error"));
     } else {
       setRcError("");
     }
@@ -717,8 +717,8 @@ const Onboard = (props: Props) => {
                       }}
                     />
                     <span className="onboard-blinking-text">
-                      Delegate some resource credits to {decodedInfo && decodedInfo!.username}{" "}
-                      (Minimum Rc is 5Bn)
+                    {_t("onboard.rc-to-new-acc")} {decodedInfo && decodedInfo!.username}{" "}
+                    {_t("onboard.minimum-rc")}
                     </span>
                   </div>
                   {isChecked && (
@@ -737,10 +737,10 @@ const Onboard = (props: Props) => {
                         />
                       </InputGroup>
                       <div className="operation-amount d-flex mt-3">
-                        <span className="operations">Posts/Comment: {commentAmount} |</span>
-                        <span className="operations">Votes: {voteAmount} |</span>
-                        <span className="operations">Transfers: {transferAmount} |</span>
-                        <span className="operations">Reblogs/ Follows: {customJsonAmount}</span>
+                        <span className="operations">{_t("onboard.posts-comments")} {commentAmount} |</span>
+                        <span className="operations">{_t("onboard.votes")} {voteAmount} |</span>
+                        <span className="operations">{_t("onboard.transfers")} {transferAmount} |</span>
+                        <span className="operations">{_t("onboard.reblogs-follows")} {customJsonAmount}</span>
                       </div>
                     </div>
                   )}
