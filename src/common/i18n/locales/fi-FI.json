@@ -314,7 +314,14 @@
     "failed-message": "Tunnuksen luonti epäonnistui",
     "try-again": "Yritä uudelleen",
     "sign-header-title": "Allekirjoita tapahtuma",
-    "sign-sub-title": "Allekirjoita tapahtumasi"
+    "sign-sub-title": "Allekirjoita tapahtumasi",
+    "rc-to-new-acc": "Delegate some resource credits to",
+    "minimum-rc": "(Minimum Rc is 5Bn)",
+    "posts-comments": "Posts/Comments:",
+    "votes": "Votes:",
+    "transfers": "Transfers:",
+    "reblogs-follows": "Reblogs/Follows:",
+    "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
     "title": "Aiheet"
