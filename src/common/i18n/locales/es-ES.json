@@ -315,13 +315,13 @@
     "try-again": "Inténtalo de nuevo",
     "sign-header-title": "Firmar Transacción",
     "sign-sub-title": "Firmar tu transacción",
-    "rc-to-new-acc": "Delegate some resource credits to",
-    "minimum-rc": "(Minimum Rc is 5Bn)",
-    "posts-comments": "Posts/Comments:",
-    "votes": "Votes:",
-    "transfers": "Transfers:",
-    "reblogs-follows": "Reblogs/Follows:",
-    "rc-error": "You can not delegate below 5bn Rc"
+    "rc-to-new-acc": "Delegar algunos créditos de recursos a",
+    "minimum-rc": "(Rc mínimo es 5Bn)",
+    "posts-comments": "Publicaciones/Comentarios:",
+    "votes": "Votos:",
+    "transfers": "Transferencias:",
+    "reblogs-follows": "Reblogs / Seguidos:",
+    "rc-error": "No puede delegar menos de 5bn Rc"
   },
   "trending-tags": {
     "title": "Temas"
