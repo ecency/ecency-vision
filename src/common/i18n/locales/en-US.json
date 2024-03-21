@@ -1933,6 +1933,10 @@
     "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
     "pin": "Pin",
     "unpin": "Unpin",
+    "select-contact-or-channel": "Select contact or channel",
+    "message-forwarding": "Message forwarding",
+    "forward": "Forward message",
+    "forwarded-from": "Forwarded message",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",

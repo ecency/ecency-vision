@@ -5,6 +5,7 @@ import {
   checkContiguousMessage,
   DirectContact,
   DirectMessage,
+  Message,
   useDirectMessagesQuery,
   useKeysQuery
 } from "@ecency/ns-query";
@@ -12,6 +13,10 @@ import { ChatFloatingDate } from "../chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
 import { groupMessages } from "../../utils";
 import useDebounce from "react-use/lib/useDebounce";
+import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
+import { UilMessage } from "@iconscout/react-unicons";
+import { _t } from "../../../../i18n";
+import { ForwardMessageDialog } from "../forward-message-dialog";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -23,8 +28,13 @@ export default function ChatsDirectMessages(props: Props) {
   const { directMessages } = props;
 
   const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
+  const [forwardingMessage, setForwardingMessage] = useState<Message>();
+
   const { publicKey } = useKeysQuery();
   const directMessagesQuery = useDirectMessagesQuery(props.currentContact);
+
+  // Message where users interacted with context menu
+  const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
 
   const groupedDirectMessages = useMemo(() => groupMessages(directMessages), [directMessages]);
 
@@ -44,6 +54,8 @@ export default function ChatsDirectMessages(props: Props) {
     }
   }, [directMessages]);
 
+  console.log(groupedDirectMessages);
+
   return (
     <>
       <div className="direct-messages">
@@ -53,32 +65,57 @@ export default function ChatsDirectMessages(props: Props) {
             <React.Fragment key={date.getTime()}>
               {diff > 0 && <ChatFloatingDate currentDate={date} isPage={props.isPage} />}
               {messages.map((message, j) => (
-                <ChatMessageItem
-                  showDate={j === messages.length - 1}
+                <Dropdown
                   key={message.id}
-                  currentContact={props.currentContact}
-                  type={message.creator !== publicKey ? "receiver" : "sender"}
-                  message={message}
-                  isSameUser={checkContiguousMessage(message, i, directMessages)}
-                  onAppear={() =>
-                    setTimeout(
-                      () =>
-                        groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
-                          ? document
-                              .querySelector(`[data-message-id="${message.id}"]`)
-                              ?.scrollIntoView({ block: "nearest" })
-                          : {},
-                      300
-                    )
+                  closeOnClickOutside={true}
+                  show={currentInteractingMessageId === message.id}
+                  setShow={(v) =>
+                    setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
                   }
-                  onInViewport={(inViewport) =>
-                    i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
-                  }
-                />
+                >
+                  <ChatMessageItem
+                    showDate={j === messages.length - 1}
+                    key={message.id}
+                    currentContact={props.currentContact}
+                    type={message.creator !== publicKey ? "receiver" : "sender"}
+                    message={message}
+                    isSameUser={checkContiguousMessage(message, i, directMessages)}
+                    onContextMenu={() => setCurrentInteractingMessageId(message.id)}
+                    onAppear={() =>
+                      setTimeout(
+                        () =>
+                          groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
+                            ? document
+                                .querySelector(`[data-message-id="${message.id}"]`)
+                                ?.scrollIntoView({ block: "nearest" })
+                            : {},
+                        300
+                      )
+                    }
+                    onInViewport={(inViewport) =>
+                      i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
+                    }
+                  />
+                  <DropdownMenu
+                    className="top-[70%]"
+                    align={message.creator === publicKey ? "right" : "left"}
+                  >
+                    <DropdownItemWithIcon
+                      icon={<UilMessage />}
+                      label={_t("chat.forward")}
+                      onClick={() => setForwardingMessage(message)}
+                    />
+                  </DropdownMenu>
+                </Dropdown>
               ))}
             </React.Fragment>
           );
         })}
+        <ForwardMessageDialog
+          message={forwardingMessage!!}
+          show={!!forwardingMessage}
+          setShow={() => setForwardingMessage(undefined)}
+        />
       </div>
     </>
   );
