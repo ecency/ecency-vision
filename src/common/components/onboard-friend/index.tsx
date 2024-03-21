@@ -46,7 +46,7 @@ const OnboardFriend = (props: Props | any) => {
   const [step, setStep] = useState("confirm");
   const [msg, setMsg] = useState("");
   const [token, setToken] = useState(0)
-  const [rcAmount, setRcAmount] = useState(5)
+  const [rcAmount, setRcAmount] = useState(30)
   const [isChecked, setChecked] = useState(true);
   const [commentAmount, setCommentAmount] = useState(0);
   const [voteAmount, setVoteAmount] = useState(0);
@@ -229,12 +229,11 @@ const OnboardFriend = (props: Props | any) => {
             ...props,
           })
         : NavBar({ ...props })}
-      <div className={`${containerClasses} mt-5`}>
-        { !activeUser ? <div>
-          {<>
-          <div className="onboard">
+      <div className={`${containerClasses} d-flex align-items-center justify-content-center mt-5`}>
+        { !activeUser ? <div className="d-flex justify-content-center">
+          <div className="onboard w-100">
           {step=== "confirm" && <>
-            <h5>{_t("onboard.creating-for-a-friend")}</h5>
+            <h5 className="text-center">{_t("onboard.creating-for-a-friend")}</h5>
             <div className="friend-details">
             {urlInfo && (
               <div className="friend-details">
@@ -309,7 +308,6 @@ const OnboardFriend = (props: Props | any) => {
             <Button onClick={()=> setStep("confirm")}>{_t("onboard.try-again")}</Button>
           </>}
         </div>
-          </>}
         </div> :
         <div className="onboard">
           {step=== "confirm" && <>
@@ -350,7 +348,7 @@ const OnboardFriend = (props: Props | any) => {
                       onChange={(e: any) => setRcAmount(Number(e.target.value))}
                     />
                   </InputGroup>
-                  <div className="operation-amount d-flex mt-3">
+                  <div className="operation-amount">
                     <span className="operations">Posts/Comment: {commentAmount} |</span>
                     <span className="operations">Votes: {voteAmount} |</span>
                     <span className="operations">Transfers: {transferAmount} |</span>
