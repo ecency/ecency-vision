@@ -54,8 +54,6 @@ export default function ChatsDirectMessages(props: Props) {
     }
   }, [directMessages]);
 
-  console.log(groupedDirectMessages);
-
   return (
     <>
       <div className="direct-messages">
