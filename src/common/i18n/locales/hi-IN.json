@@ -88,7 +88,9 @@
     "retry": "Retry",
     "message": "Message",
     "actions": "Actions",
-    "restore": "Restore"
+    "restore": "Restore",
+    "success": "Success",
+    "error": "Error"
   },
   "confirm": {
     "title": "क्या आपको यकीन है?",
@@ -312,7 +314,14 @@
     "failed-message": "खाता बनाने में विफल",
     "try-again": "पुनः प्रयास करें",
     "sign-header-title": "लेनदेन पर हस्ताक्षर करें",
-    "sign-sub-title": "अपने लेन-देन पर हस्ताक्षर करें"
+    "sign-sub-title": "अपने लेन-देन पर हस्ताक्षर करें",
+    "rc-to-new-acc": "Delegate some resource credits to",
+    "minimum-rc": "(Minimum Rc is 5Bn)",
+    "posts-comments": "Posts/Comments:",
+    "votes": "Votes:",
+    "transfers": "Transfers:",
+    "reblogs-follows": "Reblogs/Follows:",
+    "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
     "title": "विषय"
@@ -1436,6 +1445,7 @@
     "title-placeholder": "शीर्षक",
     "body-placeholder": "अपनी कहानी सुनाएं...",
     "reward": "इनाम",
+    "take-tour": "Take a tour",
     "reward-hint": "तरल और पके हुए टोकन के लिए लेखक इनाम अनुपात सेट करें",
     "reward-default": "वितथ रूप से ५०%/५०%",
     "reward-sp": "१००% शक्तिप्रापक करें",
@@ -1928,6 +1938,12 @@
     "hidden-messages-management": "Hidden messages management",
     "saved-messages": "Saved messages",
     "fetch-error": "While you were away, network change detected. Reload page now to fetch new data",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "select-contact-or-channel": "Select contact or channel",
+    "message-forwarding": "Message forwarding",
+    "forward": "Forward message",
+    "forwarded-from": "Forwarded message",
     "welcome": {
       "title": "Welcome to Chats",
       "description": "Create or import an account start using Chats",
@@ -2012,13 +2028,11 @@
       "how-referrals-work-header": "रेफरल सिस्टम इसेंसी मै कैसे काम करता हैं?",
       "how-referrals-work-body": "<p>रेफरल प्रणाली सरल है, आप इस लिंक https://ecency.com/signup?referral=username में अपने उपयोगकर्ता नाम जोड़कर अपने दोस्तों को आमंत्रित कर सकते हैं और इसे अपने दोस्तों के साथ साझा कर सकते हैं। एक बार जब आपके दोस्त Ecency में शामिल हो जाते हैं और अपने पहले 250 अंक अर्जित करते हैं, तो आप 100 अंक अर्जित करेंगे। रेफरल और उसके इनाम पर कोई सीमा नहीं है।</p>",
       "what-is-points-header": "इसेंसी पॉइंट्स क्या हैं और कैसे इनका इस्तेमाल करें?",
-      "what-is-points-body": "<p> इसेंसी पॉइंट्स लगातार उन सभी उपयोगकर्ताओं के लिए पोषित और पुरस्कृत किए जाते हैं जो विभिन्न सामाजिक गतिविधियों के लिए वेबसाइट, मोबाइल या डेस्कटॉप ऐप पर काम करते हैं। अंकों का उपयोग आपकी सामग्री को बढ़ावा देने, बढ़ावा देने के लिए किया जा सकता है, यहां तक ​​कि किसी अन्य उपयोगकर्ता को स्थानांतरित या उपहार में भी दिया जा सकता है। आप हमारे मोबाइल ऐप्स के साथ पॉइंट्स भी खरीद सकते हैं। </p>",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, take Ecency delegation, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "टोकन कहाँ से आते हैं?",
       "where-tokens-come-body": "<p>हाइव नेटवर्क कंटेंट क्रिएटर्स और क्यूरेटर को पुरस्कृत करने के लिए लगातार नए डिजिटल टोकन बनाता है। कुछ नए बनाए गए टोकन उन उपयोगकर्ताओं को हस्तांतरित किए जाते हैं जो अन्य लोगों की पोस्ट पर पोस्टिंग, टिप्पणी और मतदान करके मंच के लिए मूल्य जोड़ते हैं। शेष को HIVE POWER धारकों और ब्लॉकचैन को सुरक्षित करने वाले गवाहों को वितरित किया जाता है।</p>",
       "how-promotion-work-header": "कंटेंट प्रमोशन कैसे काम करता है?",
       "how-promotion-work-body": "<p>इसेंसी पर सामग्री का प्रचार करना बहुत आसान और आसान है। अधिक प्रदर्शन प्राप्त करने के लिए 1, 2, 3, 7 या 14 दिनों के लिए सामग्री को बढ़ावा देने के लिए इसेंसी अंक का उपयोग किया जाता है। मोबाइल ऐप, डेस्कटॉप ऐप और वेबसाइट के सभी उपयोगकर्ताओं के लिए प्रचारित पोस्ट को सभी फ़ीड में शफ़ल कर दिया जाता है। कोई सीमा या प्रतिबंध नहीं है, अधिक प्रदर्शन और जुड़ाव पाने के लिए किसी भी पद का प्रचार किया जा सकता है। हम प्रचार सूची से पोस्ट को हटाने का अधिकार रखते हैं यदि यह कुछ इंटरनेट शिष्टाचार का उल्लंघन करती है।</p>",
-      "how-boosting-work-header": "कंटेंट बूस्टिंग कैसे काम करता है?",
-      "how-boosting-work-body": "<p> सामग्री (पोस्ट और टिप्पणियों) को बढ़ाने के लिए अंकों का उपयोग किया जा सकता है। बूस्टिंग अनुरोधों को हमारे मध्यस्थों और क्यूरेटरों द्वारा मैन्युअल रूप से समीक्षा की जाती है जो 24 घंटे तक ले सकते हैं। <p> गुणों की जाँच के भाग के रूप में, हम इस पर विचार कर सकते हैं: क) सामग्री मूल सामग्री है, बी) चीता, मैकबॉट, हाइववॉचर्स, या किसी अन्य ब्लैकलिस्ट इत्यादि द्वारा पता नहीं लगाया गया है ग) उपयोगकर्ता अपमानजनक व्यवहार के कारण ईकेंसी ब्लैकलिस्ट में नहीं है। </p> बूस्टिंग को क्यूरेशन की गारंटी नहीं दी जाती है, अगर सामग्री 24 घंटे के भीतर क्यूरेट नहीं की गई तो पॉइंट्स वापस कर दिए जाएंगे। </p>",
       "how-to-transfer-header": "ब्लॉकचैन टोकन कैसे ट्रांसफर करें?",
       "how-to-transfer-body": "<p> लॉगिन करने के बाद, आपको वेबसाइट और डेस्कटॉप ऐप पर टॉप हेडर में या मोबाइल ऐप पर प्रोफाइल पेज, नीचे नेविगेशन बार में वॉलेट पेज मिलेगा। वॉलेट पृष्ठ में आप किसी भी अन्य उपयोगकर्ता या एक्सचेंज खातों को होल्ड करने वाले किसी भी टोकन के हस्तांतरण को आरंभ कर सकते हैं, अपने बैलेंस के बगल में तीर पर क्लिक करें और ट्रांसफर ऑपरेशन खोजें। स्थानांतरण अपरिवर्तनीय हैं क्योंकि वे ब्लॉकचैन पर पंजीकृत हैं, सही प्राप्तकर्ता भेजना सुनिश्चित करें। </p>",
       "how-see-rewards-header": "मैं अपने पोस्ट रिवार्ड्स कैसे देख सकता हूँ?",
@@ -2041,16 +2055,12 @@
       "source-label-body": "<p>सामग्री स्रोत आपको यह समझने में मदद करता है कि सामग्री कैसे प्रकाशित की गई थी। कुछ मामलों में आप एक तृतीय-पक्ष क्लाइंट नाम देख सकते हैं, जो इंगित करता है कि सामग्री गैर-इसेंसी अनुप्रयोग से आई है। लेखक अपने ब्लॉग, समुदायों का प्रबंधन करने के लिए कभी-कभी तृतीय-पक्ष क्लाइंट एप्लिकेशन का उपयोग करते हैं। तृतीय-पक्ष क्लाइंट लेखकों द्वारा उपयोग किए जाने वाले सॉफ़्टवेयर उपकरण हैं और इसलिए इसके साथ संबद्ध नहीं हैं, और न ही वे सामग्री के विचारों को दर्शाते हैं। सामग्री सीधे मनुष्यों द्वारा बनाई जा सकती है या, कुछ परिस्थितियों में, किसी एप्लिकेशन द्वारा स्वचालित।</p>",
       "how-to-contribute-header": "इसेंसी में योगदान कैसे करें?",
       "how-to-contribute-body": "<p>हमारे<a href=\"/contributors\" class=\"push-link\">बहुत बढ़िया योगदानकर्ता</a>इसेंसी को आकार देने में हमारी मदद करना। हमारी अनुवाद टीम में शामिल होकर आप इस महान आंदोलन का हिस्सा बन सकते हैं: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">वेबसाइट</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">मोबाइल</a> या विचारों, विकास, डिजाइन, सामाजिक मीडिया आउटरीच कौशल के साथ योगदान करके। हम अपने योगदानकर्ताओं का समर्थन करने की पूरी कोशिश करते हैं!</p>",
-      "why-refund-points-header": "बूस्टिंग पर रिफंड क्यों होता है?",
-      "why-refund-points-body": "<p>हमारे क्यूरेटर द्वारा अपने पहले 24 घंटों में समीक्षा और मूल्यांकन की गई सामग्री को बढ़ावा देना। धनवापसी कई कारणों से हो सकती है, 24 घंटे के बाद यदि कोई क्यूरेटर समीक्षा/क्यूरेट सामग्री नहीं है, यदि सामग्री टेम्पलेट या कम प्रयास आधारित है, यदि लेखक के पास साहित्यिक चोरी, दुर्व्यवहार, फ़िशिंग या स्पैमिंग का इतिहास है, यदि सामग्री नई के रूप में क्यूरेट करने के लिए बहुत पुरानी है समीक्षा प्रक्रिया के दौरान सामग्री को अधिक प्राथमिकता मिलती है।</p>",
       "can-change-username-header": "क्या मेरे द्वारा मेरा यूजरनेम बदला जा सकता है?",
       "can-change-username-body": "<p>इसेंसी और हाइव ब्लॉकचैन पर खाता नाम नहीं बदला जा सकता है। यदि आप एक नया खाता नाम चाहते हैं, तो आप नया खाता बना सकते हैं।</p>",
       "can-delete-account-header": "क्या मैं अपना खाता हटा या निष्क्रिय कर सकता हूँ?",
       "can-delete-account-body": "<p> इसेंसी पर खातों को निष्क्रिय या हटाया नहीं जा सकता है। खाता अपनी सभी गतिविधियों के साथ हाइव ब्लॉकचैन में स्थायी रूप से संग्रहीत किया जाता है।</p>",
       "different-reward-choices-header": "इनाम के प्रकारों में क्या अंतर हैं?",
       "different-reward-choices-body": "<p>प्रकाशन सेटिंग अनुभाग में, आप 3 अलग-अलग पुरस्कार प्रकार/विकल्प देख सकते हैं।<ul><li>50%/50% - यह पुरस्कार आधा हाइव पावर और आधा तरल एचआईवीई / हाइव डॉलर में होता है। तरल एचआईवीई से पुरस्कृत हाइव डॉलर का अनुपात भुगतान के समय नेटवर्क स्थितियों पर आधारित है। यह डिफॉल्ट पेआउट विकल्प है।</li><li>पॉवर अप 100% - यह विकल्प पोस्ट को 100% हाइव पावर में पुरस्कृत करता है।</li><li>पेआउट अस्वीकार करें - इस विकल्प का उपयोग बिना पोस्ट रिवार्ड प्राप्त करने के लिए करें। वोट ट्रेंडिंग रैंकिंग पर पद की स्थिति को प्रभावित करेंगे लेकिन हाइव के रिवॉर्ड पूल से कोई पुरस्कार नहीं दिया जाता है। पोस्ट पर किए गए जवाब अब भी इनाम के लिए योग्य हैं.</li></ul></p>",
-      "boosting-vote-buying-header": "क्या बूस्टिंग को वोट खरीदना माना जाता है?",
-      "boosting-vote-buying-body": "<p>No! Because there is no guarantee of receiving a vote, there is no guarantee of exact amount of vote, boosting maximum amount is limited, each content reviewed by our curators, there is no profit in it. All curation rewards are sent back to delegators 100%. Only measurable success we seek is to see engagement and growth on entire ecosystem. Boosting is simply creating additional use case for Ecency Points to improve engagement on platform, so it is essentially same as any other curation guilds on Hive. Goal of those guilds ultimately to improve engagement on platform and grow activity, the way each measures that success is the different.</p>",
       "how-exchange-work-header": "टोकन एक्सचेंज कैसे काम करता है?",
       "how-exchange-work-body": "<p>Exchanging and trading tokens on Ecency is very simple. We utilize internal peer-to-peer, decentralized exchange built into Hive blockchain. Offer easy to use interface so you can exchange one token to another, completely decentralized manner. Create buy or sell order and wait for other people to fill your order. If you want to quickly swap tokens then you can fill someone else's open order for quick trade.</p>",
       "how-voting-works-header": "How voting content on Ecency?",
@@ -2383,5 +2393,15 @@
     "title": "Boost+",
     "sub-title": "Boost your account using Ecency points",
     "already-boosted-account": "This account boosted already"
+  },
+  "submit-tour": {
+    "title": "Post creating",
+    "title-hint": "You may to set any title for your post",
+    "tags-hint": "Tags helps to find out your post by special keywords",
+    "body-hint": "Post body is rich text which may contain various of different components, styles",
+    "community-hint": "Post may be attached to specific community which helps to promote your post within community members",
+    "toolbar-hint": "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
+    "advanced-hint": "Configure advanced settings such as scheduling, beneficiaries",
+    "help-hint": "Have any questions? Check out help center"
   }
 }

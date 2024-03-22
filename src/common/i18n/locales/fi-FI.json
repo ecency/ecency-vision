@@ -88,7 +88,9 @@
     "retry": "Yritä uudelleen",
     "message": "Viesti",
     "actions": "Toiminnot",
-    "restore": "Palauta"
+    "restore": "Palauta",
+    "success": "Onnistui",
+    "error": "Virhe"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -185,7 +187,7 @@
     "light": "vaalea",
     "dark": "tumma",
     "switch-to": "Vaihda",
-    "vote-power": "Vote Power",
+    "vote-power": "Äänivalta",
     "boost": "Tehosta",
     "submit": "Luo julkaisu",
     "chats": "Keskustelut",
@@ -312,7 +314,14 @@
     "failed-message": "Tunnuksen luonti epäonnistui",
     "try-again": "Yritä uudelleen",
     "sign-header-title": "Allekirjoita tapahtuma",
-    "sign-sub-title": "Allekirjoita tapahtumasi"
+    "sign-sub-title": "Allekirjoita tapahtumasi",
+    "rc-to-new-acc": "Delegate some resource credits to",
+    "minimum-rc": "(Minimum Rc is 5Bn)",
+    "posts-comments": "Posts/Comments:",
+    "votes": "Votes:",
+    "transfers": "Transfers:",
+    "reblogs-follows": "Reblogs/Follows:",
+    "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
     "title": "Aiheet"
@@ -606,10 +615,10 @@
     "title": "Merkkien vaihtopaikka",
     "description": "Hajautetussa vaihtoalustassa voit ostaa ja myydä merkkejä Hive-lohkoketjussa. Lue lisää <a href=\"/faq#how-exchange-work\">FAQ</a>.",
     "last-price": "Viimeinen Hinta",
-    "volume": "24h volyymi",
+    "volume": "24t volyymi",
     "bid": "Tarjous",
     "spread": "Hajonta",
-    "ask": "Kysy",
+    "ask": "Kysyntä",
     "buy": "Osta",
     "sell": "Myy",
     "available": "Saatavilla",
@@ -628,7 +637,7 @@
     "action": "Toiminta",
     "trade-history": "Kauppahistoria",
     "stock-params": "Parametrit",
-    "stock-info": "Osaketiedot",
+    "stock-info": "Vaihtotiedot",
     "barter": "Muunna merkkejä",
     "stock-values": "Arvot",
     "transaction-low": "Kokonaissumma ylittää käytettävissä olevan saldon. Lisää varoja tai yritä pienemmällä summalla.",
@@ -638,8 +647,8 @@
     "transaction-succeeded": "Tapahtuma lähetetty",
     "lowest-ask": "Matalin kysely",
     "decimal-error": "Vain {{decimals}} desimaaliluvut sallittu!",
-    "from": "Lähettäjä",
-    "to": "Vastaanottaja",
+    "from": "Merkistä",
+    "to": "Merkiksi",
     "sign": "Allekirjoita",
     "swapping": "Vaihdetaan...",
     "continue": "Jatka",
@@ -1049,8 +1058,8 @@
       "send": {
         "balance": "Saldo",
         "button": "Lähetä",
-        "from": "Lähettäjä",
-        "to": "Vastaanottaja",
+        "from": "Merkistä",
+        "to": "Merkiksi",
         "amount": "Määrä",
         "optional": "valinnainen",
         "title": "Lähetä SPK",
@@ -1205,7 +1214,7 @@
     "post-boosted-exists": "Tämä sisältö on jo tehostettu",
     "post-promoted-exists": "Tämä sisältö on jo korostettu",
     "success-message": "Pyyntösi lähetetty. Se aktivoituu muutaman minuutin kuluttua.",
-    "account": "Account"
+    "account": "Tili"
   },
   "transfer": {
     "transfer-title": "Siirrä tilille",
@@ -1362,7 +1371,7 @@
   },
   "savings-withdraw": {
     "title": "Kotiuta säästöistä",
-    "to": "Vastaanottaja"
+    "to": "Merkiksi"
   },
   "open-orders-list": {
     "title": "Avoimet tilaukset",
@@ -1436,6 +1445,7 @@
     "title-placeholder": "Otsikko",
     "body-placeholder": "Kirjoita tarinasi...",
     "reward": "Palkkio",
+    "take-tour": "Katso esittely",
     "reward-hint": "Aseta likvidien ja panostettujen merkkien tekijän palkkiosuhde",
     "reward-default": "Oletus 50 % / 50 %",
     "reward-sp": "Power Up 100%",
@@ -1928,6 +1938,12 @@
     "hidden-messages-management": "Piilotettujen viestien hallinta",
     "saved-messages": "Tallennetut viestit",
     "fetch-error": "Kun olit poissa, verkkomuutos on havaittu. Lataa sivu uudelleen saadaksesi uuden datan",
+    "pin": "Kiinnitä",
+    "unpin": "Irrota",
+    "select-contact-or-channel": "Select contact or channel",
+    "message-forwarding": "Message forwarding",
+    "forward": "Forward message",
+    "forwarded-from": "Forwarded message",
     "welcome": {
       "title": "Tervetuloa Keskusteluihin",
       "description": "Luo tai tuo tili käyttääksesi Keskusteluja",
@@ -2012,13 +2028,11 @@
       "how-referrals-work-header": "Kuinka suositusjärjestelmä toimii Ecencyssä?",
       "how-referrals-work-body": "<p>Suositusjärjestelmä on yksinkertainen, voit kutsua ystäviäsi lisäämällä käyttäjätunnuksesi tähän linkkiin https://ecency. om/signup?referral=käyttäjänimi ja jaa se ystäviesi kanssa. Kun ystäväsi liittyvät Ecencyn jäseniksi ja ansaitsevat ensimmäiset 250 pistettä, ansaitset 100 pistettä. Suosituksissa ja niiden palkkioissa ei ole rajoituksia.</p>",
       "what-is-points-header": "Mitä ovat Ecencyn Pisteet ja miten niitä käytetään?",
-      "what-is-points-body": "<p>Ecency Pisteitä luodaan ja palkitaan jatkuvasti kaikille käyttäjille erilaisista sosiaalisista toiminnoista, joita he suorittavat verkkosivuilla, mobiili- tai työpöytäsovelluksessa. Pisteitä voidaan käyttää korostamiseen, tehostamiseen, sekä voidaan jopa siirtää tai lahjoittaa toiselle käyttäjälle. Voit myös ostaa pisteitä mobiilisovelluksellamme.</p>",
+      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, take Ecency delegation, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
       "where-tokens-come-header": "Mistä nämä merkit tulevat?",
       "where-tokens-come-body": "<p>Hive-verkosto luo jatkuvasti uusia digitaalisia merkkejä palkitsemaan sisällönluojia ja valitsijoita. Osa vastikään luoduista merkeistä siirretään käyttäjille, jotka tuovat lisäarvoa alustalle lähettämällä, kommentoimalla ja äänestämällä muiden julkaisuja. Loput jaetaan HIVE POWER:n haltijoille ja todistajille, jotka varmistavat lohkoketjun turvallisuuden.</p>",
       "how-promotion-work-header": "Kuinka korostaminen toimii?",
       "how-promotion-work-body": "<p>Sisällön korostaminen Ecencyssä on hyvin yksinkertaista ja helppoa. Ecency Pisteitä käytetään korostamaan sisältöä 1, 2, 3, 7 tai 14 päiväksi saamaan enemmän näkyvyyttä. Mainostetut viestit sekoitetaan eri syötteisiin kaikille käyttäjille mobiilisovelluksessa, työpöytäsovelluksessa ja verkkosivuilla. Rajoituksia ei ole, mitä tahansa julkaisua voidaan edistää näkyvyyden ja sitoutumisen lisäämisellä. Meillä on oikeus poistaa viestejä edistämislistalta, jos se rikkoo tiettyjä internet-sääntöjä.</p>",
-      "how-boosting-work-header": "Kuinka tehostaminen toimii?",
-      "how-boosting-work-body": "<p>Pisteitä voidaan käyttää sisällön tehostamiseen (julkaisut ja kommentit). Moderaattorimme ja tarkastajamme tarkastavat pyyntöjen tehostamisen manuaalisesti, missä saattaa kestää jopa 24 tuntia. <p>Osana ominaisuuksien tarkistamista voimme harkita: a) Onko sisältö alkuperäistä, b) joita ei havaittu cheetalla, mackbot'lla, hivewatchereilla tai muilla mustalla listalla jne. c) käyttäjä ei ole Ecencyn mustalla listalla johtuen väärinkäytöksistä.</p>Tehostus ei takaa tarkastusta, jos sisältöä ei ole tarkastettu 24 tunnin kuluessa, pisteet palautetaan.</p>",
       "how-to-transfer-header": "Kuinka siirrän lohkoketjun merkkejä?",
       "how-to-transfer-body": "<p>Kirjautumisen jälkeen löydät lompakkosivun yläotsikossa sivuilla ja työpöytäsovelluksessa ja profiilisivulla, alaosan navigointipalkissa mobiilisovelluksessa. Lompakkosivulla voit aloittaa minkä tahansa merkin siirron toiselle käyttäjälle tai vaihtaa tilejä, klikkaa saldon vieressä olevaa nuolta ja löydä siirtotapahtumat. Siirrot ovat peruuttamattomia, koska ne on rekisteröity lohkoketjuun, varmista oikea vastaanottaja.</p>",
       "how-see-rewards-header": "Kuinka voin nähdä julkaisupalkkioni?",
@@ -2041,16 +2055,12 @@
       "source-label-body": "<p>Sisällön lähde auttaa sinua ymmärtämään, miten sisältö on julkaistu. Joissain tapauksissa saatat nähdä kolmannen osapuolen asiakkaan nimen, joka ilmaisee, että sisältö tuli Ecencyn ulkopuolelta. Tekijät joskus käyttävät kolmannen osapuolen asiakassovelluksia hallitsemaan blogeja ja yhteisöjä. Kolmannen osapuolen asiakkaat ovat julkaisijoiden käyttämiä ohjelmistotyökaluja, eivätkä ne näin ollen ole sidoksissa sisältöön, eivätkä kuvasta sen näkemyksiä. Sisältö voidaan luoda suoraan ihmisten toimesta tai joissain tapauksissa sovelluksen automatisoimana.</p>",
       "how-to-contribute-header": "Kuinka osallistua Ecencyn parantamiseen?",
       "how-to-contribute-body": "<p>Meidän <a href=\"/contributors\" class=\"push-link\">mahtavat jäsenemme</a> auttavat meitä muokkaamaan Ecencyä. Voit olla osana tätä hienoa liikettä, liittymällä Käännöstiimimme: <a href=\"https://translate-desktop.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Verkkosivusto</a>, <a href=\"https://translate-mobile.ecency.com\" target=\"_blank\" rel=\"noopener noreferrer\">Mobiili</a>, tai osallistumalla ideointiin, kehittämiseen, suunnitteluun ja sosiaalisen median tavoitettavuuteen. Teemme parhaamme tukeaksemme osallistujia!</p>",
-      "why-refund-points-header": "Miksi hyvitys tapahtuu tehostamisessa?",
-      "why-refund-points-body": "<p>Valitsijamme ovat arvioineet sisältöä ensimmäisten 24 tunnin aikana. Hyvitys voi johtua useista syistä, 24 tunnin kuluttua, jos valitsijaa ei tarkisteta/kuratoitu sisältö, jos sisältö on mallipohja tai on nähty vähän vaivaa, jos kirjoittajalla on ollut plagiointia, väärinkäyttöä, kalastelua tai roskapostia, jos sisältö on liian vanha valittavaksi, kun uusi sisältö saa enemmän painoarvoa tarkistusprosessin aikana.</p>",
       "can-change-username-header": "Voinko vaihtaa käyttäjänimeni?",
       "can-change-username-body": "<p>Ecencyssä ja Hive lohkoketjussa olevia tilin nimiä ei voi muuttaa. Jos haluat uuden tilin nimen, voit luoda uuden tilin.</p>",
       "can-delete-account-header": "Voinko poistaa tilini tai poistaa sen käytöstä?",
       "can-delete-account-body": "<p>Ecency-tilejä ei voi poistaa käytöstä tai poistaa. Tili ja kaikki sen toiminta on pysyvästi tallennettu Hive-lohkoketjuun</p>",
       "different-reward-choices-header": "Mitkä ovat Palkkiotyyppien erot?",
       "different-reward-choices-body": "<p>Julkaisuasetuksissa näet 3 erilaista Palkkiotyyppiä/valintaa.<ul><li>50%/50% - Tässä palkitaan puolet Hive Poweria ja puolet likvidiä HIVEä / Hive Dollaria. Likvidin HIVE:n suhde Hive Dollareiden palkkioon perustuu verkon olosuhteisiin maksun aikaan. Tämä on oletusvaihtoehto.</li><li>Power Up 100% - Tämä vaihtoehto palkitsee julkaisusta 100% Hive Powerilla.</li><li>Hylkää Palkkio - Käytä tätä vaihtoehtoa niin et saa palkkioita. Äänet vaikuttavat julkaisuun asemaan trendin mukaan sijoituksessa, mutta palkkioita ei makseta Hiven palkitsemispoolista. Julkaisuun lisätyt vastaukset ovat edelleen oikeutettuja palkkioihin.</li></ul></p>",
-      "boosting-vote-buying-header": "Katsotaanko korostus ääntenostamisen edistämiseksi?",
-      "boosting-vote-buying-body": "<p>Ei! Koska äänien saamisesta ei ole varmuutta, ei ole olemassa mitään takeita siitä, että äänimäärä olisi tarkka, tehostuksen enimmäismäärän nostaminen on rajallista, tarkastajien tarkastelema sisältö, eivät tee voittoa. Kaikki tarkastuspalkkiot lähetetään takaisin valtuuttajille 100 %. Vain mitattavissa oleva hakemamme menestys on pyrikimys näkemään osallistumista ja kasvua koko ekosysteemissä. Tehostus on yksinkertaisesti uuden käyttötavan luominen Ecency-pisteille parantaakseemme sitoutumista alustaan, joten se on pohjimmiltaan sama kuin mikä tahansa muu Hiven tarkastusyhteisö. Näiden yhteisöjen tavoite viime kädessä parantaa osallistumista alustalle ja lisätä toimintoja tavalla, jolla jokainen kokemus on erilainen.</p>",
       "how-exchange-work-header": "Kuinka merkkien vaihto toimii?",
       "how-exchange-work-body": "<p>Ecencyssä vaihdot ovat hyvin yksinkertaisia. Käytämme sisäistä vertaisyhteyttä ja hajautettua vaihtoa, joka on rakennettu Hive-lohkoketjuun. Tarjolla on helppokäyttöinen käyttöliittymä, jotta voit vaihtaa yhden merkin toiseen, täysin hajautetulla tavalla. Luo osto- tai myyntitilaus ja odota, että muut ihmiset täyttävät tilauksesi. Jos haluat vaihtaa merkkejä nopeasti, voit täyttää jonkun toisen avoimen tilauksen nopeaa kauppaa varten.</p>",
       "how-voting-works-header": "Miten Ecencyn sisällöstä äänestetään?",
@@ -2383,5 +2393,15 @@
     "title": "Tehosta+",
     "sub-title": "Tehosta tiliäsi käyttämällä Ecency-pisteitä",
     "already-boosted-account": "Tämä tili on jo tehostettu"
+  },
+  "submit-tour": {
+    "title": "Julkaisun luominen",
+    "title-hint": "Voit asettaa minkä tahansa otsikon julkaisuusi",
+    "tags-hint": "Tunnisteet auttaa löytämään viestisi erityisin avainsanoin",
+    "body-hint": "Julkaisun rungossa on rikasta tekstiä, joka voi sisältää erilaisia komponentteja ja tyylejä",
+    "community-hint": "Viesti voidaan liittää tiettyyn yhteisöön, joka auttaa edistämään viestiäsi yhteisön jäsenten kesken",
+    "toolbar-hint": "Työkalupalkin avulla voit lisätä eri komponentteja, soveltaa muotoilua, sekä lisätä kuvia, videoita ja linkkejä",
+    "advanced-hint": "Määritä lisäasetuksia, kuten ajastukset ja edunsaajat",
+    "help-hint": "Onko kysymyksiä? Tutustu apukeskukseen"
   }
 }
