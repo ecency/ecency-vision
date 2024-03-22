@@ -95,7 +95,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
     if (isDisabled || isSendMessageLoading || isFilesUploading || !nextMessage) {
       return;
     }
-    await sendMessage(nextMessage);
+    await sendMessage({ message: nextMessage });
     setFiles([]);
     setUploadedFileLinks([]);
     // Re-focus to input because when DOM changes and input position changes then
@@ -124,7 +124,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
               gifImagesStyle={GifImagesStyle}
               shGif={true}
               changeState={(gifState) => setShowGifPicker(gifState!)}
-              fallback={(e) => sendMessage(e)}
+              fallback={(e) => sendMessage({ message: e })}
             />
           )}
           {(files.length > 0 || uploadedFileLinks.length > 0) && !showGifPicker && (

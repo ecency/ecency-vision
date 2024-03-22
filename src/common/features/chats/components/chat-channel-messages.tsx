@@ -8,6 +8,7 @@ import { Spinner } from "@ui/spinner";
 import {
   Channel,
   checkContiguousMessage,
+  Message,
   PublicMessage,
   useHideMessageInChannel,
   useJoinedCommunityTeamQuery,
@@ -21,6 +22,8 @@ import { differenceInCalendarDays } from "date-fns";
 import useDebounce from "react-use/lib/useDebounce";
 import { useCommunityCache } from "../../../core";
 import { ROLES } from "../../../store/communities";
+import { ForwardMessageDialog } from "./forward-message-dialog";
+import { UilMessage } from "@iconscout/react-unicons";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -36,6 +39,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   // Message where users interacted with context menu
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
   const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
+  const [forwardingMessage, setForwardingMessage] = useState<Message>();
 
   const { data: community } = useCommunityCache(currentChannel?.communityName);
   const { data: joinedCommunityTeamKeys, isSuccess: isJoinedCommunityTeamKeysFetched } =
@@ -128,6 +132,11 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     align={message.creator === publicKey ? "right" : "left"}
                   >
                     <DropdownItemWithIcon
+                      icon={<UilMessage />}
+                      label={_t("chat.forward")}
+                      onClick={() => setForwardingMessage(message)}
+                    />
+                    <DropdownItemWithIcon
                       icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
                       label={_t("chat.hide-message")}
                       onClick={() => hideMessage({ messageId: message.id, status: 0 })}
@@ -147,6 +156,12 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
             ))}
           </React.Fragment>
         ))}
+
+        <ForwardMessageDialog
+          message={forwardingMessage!!}
+          show={!!forwardingMessage}
+          setShow={() => setForwardingMessage(undefined)}
+        />
       </div>
     </>
   );

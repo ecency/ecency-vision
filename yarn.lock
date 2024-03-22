@@ -1381,10 +1381,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@ecency/ns-query@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.1.7.tgz#9c7c6dacf858badf7d0651031170fcab6f9d2cd1"
-  integrity sha512-sNPdFd+hvWGftulBrryeCtxCXJ4LzoidRaWSnYcrjxknd7W3dUZoc1OubGBI8lo45i/9k/tXweqiEjDlQZXO2g==
+"@ecency/ns-query@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.1.8.tgz#5e224c5aa0116f143a0734fc3723916e10ca90f3"
+  integrity sha512-EEIEsPlKmHr3UyrOSk9/d8TbcrUeCdvqFYb+2TVdIJOQKYJA4YB2z4AWjUfIafbYpX/XAnP6aDH6ZqrPaKRSlA==
   dependencies:
     "@tanstack/react-query" "^4.29.7"
     axios "^0.21.2"
@@ -1413,10 +1413,10 @@
     xmldom "^0.5.0"
     xss "^1.0.8"
 
-"@ecency/render-helper@^2.2.30":
-  version "2.2.30"
-  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.30.tgz#33b890910dc90f77e84e7e6bfa6d14dd31371b9b"
-  integrity sha512-+JAPXFSHiquEMmerZe0t4k1gnHwouyba25v+cfIR3kL6KRToy1P5wcBhKyFr85uGx5VEBEFHDiK6Q8mtydNJfg==
+"@ecency/render-helper@^2.2.32":
+  version "2.2.32"
+  resolved "https://registry.yarnpkg.com/@ecency/render-helper/-/render-helper-2.2.32.tgz#46cce2bb370dfa3dfab8c2140d8fde4829b5edb0"
+  integrity sha512-ac17/bPssVOEv8jbdib6z/ZOtzh+ANDK64KS/uK4XX/Ohn64YZvqtEWSv+j9IAOVHcUcGSyGVfYNMpa2JKoehw==
   dependencies:
     he "^1.2.0"
     lolight "^1.4.0"

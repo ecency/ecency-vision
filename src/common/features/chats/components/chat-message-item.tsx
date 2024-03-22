@@ -23,8 +23,9 @@ import {
 import { format } from "date-fns";
 import { useInViewport } from "react-in-viewport";
 import "./_chat-message-item.scss";
-import { makePath } from "../../../components/profile-link";
+import ProfileLink, { makePath } from "../../../components/profile-link";
 import { Link } from "react-router-dom";
+import { history } from "../../../store";
 
 interface Props {
   type: "sender" | "receiver";
@@ -52,7 +53,7 @@ export function ChatMessageItem({
   className = ""
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { global, activeUser } = useMappedStore();
+  const { global, activeUser, addAccount } = useMappedStore();
   const { publicKey } = useKeysQuery();
 
   const [holdStarted, setHoldStarted] = useState(false);
@@ -74,6 +75,7 @@ export function ChatMessageItem({
   const { inViewport } = useInViewport(ref);
 
   const { data: nostrUserProfiles } = useNostrGetUserProfileQuery(message.creator);
+  const { data: nostrForwardedUserProfiles } = useNostrGetUserProfileQuery(message.forwardedFrom);
 
   const profile = useMemo(
     () => nostrUserProfiles?.find((p) => p.creator === message.creator),
@@ -170,6 +172,23 @@ export function ChatMessageItem({
               >
                 {profile!!.name}
               </Link>
+            )}
+            {message.forwardedFrom && (
+              <div className="text-xs text-gray-300 dark:text-gray-700">
+                {_t("chat.forwarded-from")}
+                {nostrForwardedUserProfiles?.[0]?.name && (
+                  <ProfileLink
+                    target="_blank"
+                    addAccount={addAccount}
+                    history={history!!}
+                    username={nostrForwardedUserProfiles?.[0]?.name}
+                  >
+                    <span className="text-gray-300 dark:text-gray-700">
+                      ({nostrForwardedUserProfiles[0].name})
+                    </span>
+                  </ProfileLink>
+                )}
+              </div>
             )}
             <div
               className="sender-message-content [&>img]:rounded-xl"
