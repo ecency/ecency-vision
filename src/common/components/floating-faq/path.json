@@ -36,13 +36,7 @@
     },
     {
       "path": "/@.+/(points)",
-      "suggestions": [
-        "what-is-points",
-        "where-tokens-come",
-        "how-promotion-work",
-        "how-boosting-work",
-        "why-refund-points"
-      ]
+      "suggestions": ["what-is-points", "where-tokens-come", "how-promotion-work"]
     },
     {
       "path": "/@.+/(engine)",
