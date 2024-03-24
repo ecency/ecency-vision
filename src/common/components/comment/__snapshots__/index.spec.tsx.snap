@@ -7,6 +7,7 @@ exports[`(1) Default render 1`] = `
 >
   <div
     className="editor-toolbar toolbar-sm"
+    id="editor-toolbar"
   >
     <div
       className="editor-tool"
@@ -219,7 +220,7 @@ exports[`(1) Default render 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-eb89ac22-2702-4311-9bb6-70a8f5e909f8"
+      id="editor-tool-emoji-picker-e5a42640-c9b5-428e-9d26-7a6fcab63b93"
       role="none"
       title="Emoji"
     >
@@ -372,6 +373,7 @@ exports[`(2) Cancellable, in progress 1`] = `
 >
   <div
     className="editor-toolbar toolbar-sm"
+    id="editor-toolbar"
   >
     <div
       className="editor-tool"
@@ -584,7 +586,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-01be801c-eb95-4ea8-b8cd-9a74f7a3ffac"
+      id="editor-tool-emoji-picker-4ccdcb56-8dff-4dfe-9898-dfdf7c3d7fc6"
       role="none"
       title="Emoji"
     >
