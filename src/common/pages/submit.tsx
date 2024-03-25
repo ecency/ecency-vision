@@ -71,6 +71,7 @@ import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import { ThreeSpeakManager } from "../util/ThreeSpeakProvider";
 import { updateUserPoints } from "../api/breakaway";
+import { useThreeSpeakManager } from "../util/ThreeSpeakProvider";
 
 interface PostBase {
     title: string;
@@ -83,6 +84,8 @@ interface Advanced {
     beneficiaries: BeneficiaryRoute[];
     schedule: string | null,
     reblogSwitch: boolean;
+    isThreeSpeak: boolean;
+    spkPermlink: string;
 }
 
 interface PreviewProps extends PostBase {
@@ -176,12 +179,15 @@ class SubmitPage extends BaseComponent<Props, State> {
             tags: [],
             body: "",
         },
-        disabled: true
+        disabled: true,
+        spkPermlink: "",
+        isThreeSpeak: false,
     };
 
     _updateTimer: any = null;
 
     componentDidMount = (): void => {
+        console.log(this.state.isThreeSpeak)
         this.loadLocalDraft();
 
         this.loadAdvanced();
@@ -347,22 +353,24 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     saveAdvanced = (): void => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, isThreeSpeak, spkPermlink} = this.state;
 
         const advanced: Advanced = {
             reward,
             beneficiaries,
             schedule,
-            reblogSwitch
+            reblogSwitch,
+            isThreeSpeak,
+            spkPermlink
         }
 
         ls.set("local_advanced", advanced);
     }
 
     hasAdvanced = (): boolean => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, isThreeSpeak, spkPermlink} = this.state;
 
-        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
+        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch || isThreeSpeak || spkPermlink !== "";
     }
 
     titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -412,7 +420,6 @@ class SubmitPage extends BaseComponent<Props, State> {
         const {beneficiaries} = this.state;
         const b = [...beneficiaries, item].sort((a, b) => a?.account < b?.account ? -1 : 1);
         this.setState({beneficiaries: b}, this.saveAdvanced);
-        // console.log(beneficiaries)
     }
 
     beneficiaryDeleted = (username: string) => {
@@ -445,9 +452,17 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     clearAdvanced = (): void => {
-        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
-            this.saveAdvanced();
-        });
+        this.stateSet({
+            advanced: false, 
+            reward: "default", 
+            beneficiaries: [], 
+            schedule: null, 
+            reblogSwitch: false,
+            isThreeSpeak: false,
+            spkPermlink: ""
+        }, () => {
+                this.saveAdvanced();
+            });
     }
 
     toggleAdvanced = (): void => {
@@ -521,6 +536,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         let authorData = activeUser.data as FullAccount;
 
         let permlink = createPermlink(title);
+        if(this.state.isThreeSpeak) {
+            permlink = this.state.spkPermlink
+        }
 
         // permlink duplication check
         let c;
@@ -766,6 +784,14 @@ class SubmitPage extends BaseComponent<Props, State> {
         ls.set('draft_selected_image', selectedThumbnail)
     }
 
+    toggleThreaspeak = (p: any) => {
+        this.setState(
+            {isThreeSpeak: true, spkPermlink: p}, 
+            )
+        console.log(this.state.isThreeSpeak)
+        console.log("spkPermlink",this.state.spkPermlink)
+    }
+
     render() {
         const {title, tags, body, reward, preview, posting, editingEntry, saving, editingDraft, advanced, beneficiaries, schedule, reblogSwitch, clearModal, selectedThumbnail, thumbnails, disabled} = this.state;
 
@@ -815,7 +841,8 @@ class SubmitPage extends BaseComponent<Props, State> {
                         </div>}
                         {EditorToolbar({
                             ...this.props,
-                            beneficiaryAdded: this.beneficiaryAdded
+                            beneficiaryAdded: this.beneficiaryAdded,
+                            toggleThreaspeak: this.toggleThreaspeak
                         })}
                         <div className="title-input">
                             <Form.Control
@@ -1040,6 +1067,9 @@ class SubmitPage extends BaseComponent<Props, State> {
 }
 
 const SubmitWithProviders = (props: Props) => {
+    const  speakPermlink = useThreeSpeakManager();
+    console.log(speakPermlink)
+
   return (
     <ThreeSpeakManager>
       <SubmitPage {...props} />

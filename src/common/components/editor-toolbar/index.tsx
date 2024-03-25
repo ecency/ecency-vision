@@ -56,6 +56,7 @@ interface Props {
     beneficiaryAdded: (item: BeneficiaryRoute) => void;
     sm?: boolean;
     showEmoji?: boolean;
+    toggleThreaspeak: any
 }
 
 interface State {
@@ -368,7 +369,7 @@ export class EditorToolbar extends Component<Props> {
 
     render() {
         const {gallery, fragments, image, link, mobileImage, showVideo, showVideoGallery} = this.state;
-        const {global, sm, activeUser, showEmoji = true, beneficiaryAdded} = this.props;
+        const {global, sm, activeUser, showEmoji = true, beneficiaryAdded, toggleThreaspeak} = this.props;
 
         return (
             <>
@@ -560,6 +561,7 @@ export class EditorToolbar extends Component<Props> {
                     setShowGallery={this.toggleVideoGallery} 
                     insertText={this.insertText} 
                     setVideoEncoderBeneficiary={beneficiaryAdded}
+                    toggleThreaspeak={toggleThreaspeak}
                 />}
                 {link && <AddLink onHide={this.toggleLink} onSubmit={(text: string, link: string) => {
                     this.link(text, link);
@@ -599,6 +601,7 @@ export default (props: Props) => {
         sm: props.sm,
         showEmoji: props.showEmoji,
         beneficiaryAdded: props.beneficiaryAdded,
+        toggleThreaspeak: props.toggleThreaspeak,
     }
     return <EditorToolbar {...p} />
 }

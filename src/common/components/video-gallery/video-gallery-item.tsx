@@ -3,9 +3,9 @@ import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import React, { useEffect, useState } from "react";
 import { ThreeSpeakVideo, useThreeSpeakVideo } from "../../api/threespeak";
-import { Button } from "react-bootstrap";
 import { ActiveUser } from "../../store/active-user/types";
 import { BeneficiaryRoute } from "../../api/operations";
+import { useThreeSpeakManager } from "../../util/ThreeSpeakProvider";
 
 interface videoProps {
   status: string;
@@ -23,6 +23,7 @@ interface Props {
   setShowGallery: (v: boolean) => void;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
   activeUser: ActiveUser;
+  toggleThreaspeak: any
 }
 
 export function VideoGalleryItem({
@@ -32,9 +33,12 @@ export function VideoGalleryItem({
   insertText,
   setShowGallery,
   setVideoMetadata,
-  activeUser
+  activeUser, 
+  toggleThreaspeak
 }: Props) {
   const { data } = useThreeSpeakVideo("all", activeUser);
+  const { setSpeakPermlink, speakPermlink } = useThreeSpeakManager();
+
 
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<any>(null);
@@ -97,7 +101,8 @@ export function VideoGalleryItem({
 
   const insert = async (isNsfw = false) => {
     let nextItem = item;
-    console.log(nextItem)
+    setSpeakPermlink(nextItem.permlink)
+    toggleThreaspeak(nextItem.permlink)
 
     embeddVideo(nextItem);
     const body = insertText("")?.innerHTML;

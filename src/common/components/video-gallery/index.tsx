@@ -20,6 +20,7 @@ interface Props {
   preFilter?: string;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
   activeUser: ActiveUser;
+  toggleThreaspeak: any;
 }
 
 const VideoGallery = ({
@@ -30,9 +31,10 @@ const VideoGallery = ({
   toggleNsfwC,
   preFilter,
   setVideoMetadata,
-  activeUser
+  activeUser,
+  toggleThreaspeak
 }: Props) => {
-  const { isEditing } = useThreeSpeakManager();
+  const { isEditing, setSpeakPermlink, speakPermlink } = useThreeSpeakManager();
 
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">(
@@ -42,6 +44,7 @@ const VideoGallery = ({
   const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, activeUser, showGallery);
 
   useEffect(() => {
+    // console.log(speakPermlink)
     if (isEditing) {
       setFilterStatus("published");
     }
@@ -147,6 +150,7 @@ const VideoGallery = ({
                   setShowGallery={setShowGallery}
                   setVideoMetadata={setVideoMetadata}
                   activeUser={activeUser}
+                  toggleThreaspeak={toggleThreaspeak}
                 />
               ))}
             </div>
