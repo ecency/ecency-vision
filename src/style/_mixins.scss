@@ -566,7 +566,9 @@
   .tag-list-item {
     border-radius: 25px;
     cursor: pointer;
-    display: table;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 8px;
     padding: 4px 8px;
     text-decoration: none;
