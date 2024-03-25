@@ -717,8 +717,8 @@ const Onboard = (props: Props) => {
                       }}
                     />
                     <span className="onboard-blinking-text">
-                    {_t("onboard.rc-to-new-acc")} {decodedInfo && decodedInfo!.username}{" "}
-                    {_t("onboard.minimum-rc")}
+                      {_t("onboard.rc-to-new-acc")} {decodedInfo && decodedInfo!.username}{" "}
+                      {_t("onboard.minimum-rc")}
                     </span>
                   </div>
                   {isChecked && (
@@ -737,10 +737,18 @@ const Onboard = (props: Props) => {
                         />
                       </InputGroup>
                       <div className="operation-amount d-flex mt-3">
-                        <span className="operations">{_t("onboard.posts-comments")} {commentAmount} |</span>
-                        <span className="operations">{_t("onboard.votes")} {voteAmount} |</span>
-                        <span className="operations">{_t("onboard.transfers")} {transferAmount} |</span>
-                        <span className="operations">{_t("onboard.reblogs-follows")} {customJsonAmount}</span>
+                        <span className="operations">
+                          {_t("onboard.posts-comments")} {commentAmount} |
+                        </span>
+                        <span className="operations">
+                          {_t("onboard.votes")} {voteAmount} |
+                        </span>
+                        <span className="operations">
+                          {_t("onboard.transfers")} {transferAmount} |
+                        </span>
+                        <span className="operations">
+                          {_t("onboard.reblogs-follows")} {customJsonAmount}
+                        </span>
                       </div>
                     </div>
                   )}

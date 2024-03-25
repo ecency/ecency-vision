@@ -153,7 +153,9 @@ Array [
 `;
 
 exports[`(2) Btn - No active user (1) Render 1`] = `
-<div>
+<div
+  onClick={[Function]}
+>
   <div>
     <div
       className="entry-vote-btn"
@@ -186,7 +188,9 @@ exports[`(2) Btn - No active user (1) Render 1`] = `
 `;
 
 exports[`(3) Btn - Up voted (1) Render 1`] = `
-<div>
+<div
+  onClick={[Function]}
+>
   <div>
     <div
       className="entry-vote-btn"

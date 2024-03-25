@@ -4,6 +4,7 @@ exports[`(1) Empty tags. 1`] = `
 <a
   className="community-selector"
   href="#"
+  id="community-picker"
   onClick={[Function]}
 >
   <span
@@ -27,6 +28,7 @@ exports[`(2) Tags with no community 1`] = `
 <a
   className="community-selector"
   href="#"
+  id="community-picker"
   onClick={[Function]}
 >
   <span
@@ -59,6 +61,7 @@ exports[`(3) Tags with community. but in the end 1`] = `
 <a
   className="community-selector"
   href="#"
+  id="community-picker"
   onClick={[Function]}
 >
   <span
@@ -91,6 +94,7 @@ exports[`(4) Tags with community. 1`] = `
 <a
   className="community-selector"
   href="#"
+  id="community-picker"
   onClick={[Function]}
 >
   <span
@@ -123,6 +127,7 @@ exports[`(5) Tags with community. But not valid 1`] = `
 <a
   className="community-selector"
   href="#"
+  id="community-picker"
   onClick={[Function]}
 >
   <span
