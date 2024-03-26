@@ -16,6 +16,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 200px;
+
+    @media (max-width: 470px) {
+      margin-top: 500px;
+    }
+
     .success-info {
         display: flex;
         flex-direction: column;
