@@ -339,40 +339,44 @@ const SignUpPage = (props: Props | any) => {
                     <p>Please make sure you have keychain installed as an extension on your browser 
                       (If you are a using the web browser, we recommend that you pin it to your browser.)
                     </p>
-                    {/* <p>If you are on mobile, download the keychain mobile app</p> */}
-                    {/* <div className="d-flex">
-                      <span className="">Don't have keychain? download</span>
-                      <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
-                        here
-                      </a>
-                    </div> */}
                     <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
                         </span>
                     </div>
-                    <div className="account-link">
+                    {/* <div className="account-link">
                       <h3>Step 1</h3>
                       <span>Download your keys to continue</span>
                       <Button className="mt-3" onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
-                    </div>
-                    {isDownloaded && <div className="account-link">
-                          <h3>Step 2</h3>
+                    </div> */}
+                    {/* {isDownloaded &&  */}
+                    <div className="account-link">
+                          <h3>Step 1</h3>
                             {!activeUser && <h5 className="text-danger">{_t("onboard.copy-info-message")}</h5>}
                             {activeUser && <h5 className="text-danger">Click link below or scan QR code</h5>}
                       <div className="link-wrap">
                         <div>
                           {!activeUser ? <>
                             <div className="link">
-                              <Link to={`/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
+                              {/* <Link to={`/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}</Link>
                               <span className="icon" onClick={() => {
                                 clipboard(`${window.origin}/onboard-friend/${urlHash}`);
                                 success(_t("onboard.copy-link"))
-                              }}>{copyContent}</span>
+                              }}>{copyContent}</span> */}
                             </div>
                           </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>{_t("onboard.click-link")}</a>}
                         </div>
-                        <div style={{ background: 'white', padding: '16px' }}>
+                        <div 
+                          onClick={() => {
+                            clipboard(`${window.origin}/onboard-friend/${urlHash}`);
+                            success(_t("onboard.copy-link"))
+                          }}
+                          style={{ 
+                            background: 'white', 
+                            padding: '16px',
+                            cursor: "pointer"
+                          }}
+                        >
                           <QRCode
                             size={256}
                             style={{ height: "auto", maxWidth: "100%", width: "100%" }}
@@ -382,30 +386,33 @@ const SignUpPage = (props: Props | any) => {
                         </div>
                       </div>
                       <div className="account-password">
-                      <h3>Step 3</h3>
-                      {/* <span className="text-danger">{_t("onboard.copy-key")}</span> */}
+                      <h3>Step 2</h3>
                       <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account and
                         <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
                           download keychain extension here
                         </a>
                       </span>
-                      {/* <span>If you are on mobile, download the keychain mobile app</span> */}
                       <div className="d-flex"> 
-                        {/* <span className="">If you are on desktop</span> */}
                       </div>
                       <div className="d-flex flex-column align-items-center">
-                        <h3>Step 4</h3>
+                        <h3>Step 3</h3>
                         <h4 className="text-danger">Copy your account password below and paste to keychain to set up your account</h4>
                         <div className="password">
-                          <strong>{accountPassword}...</strong>
+                          <strong>{accountPassword}</strong>
                           <span className="icon" onClick={()=> {
                             clipboard(accountPassword)
                             success(_t("onboard.key-copied"))
                             }}>{copyContent}</span>
                         </div>
                       </div>
+                      <div className="account-link">
+                        <h3>Step 4</h3>
+                        {/* <span>Download your keys to continue</span> */}
+                        <Button className="mt-3" onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
                       </div>
-                    </div>}
+                      </div>
+                    </div>
+                    {/* // } */}
                   </div>
                 </div>
                 }
