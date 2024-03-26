@@ -1,8 +1,9 @@
 import { Input } from "@ui/input/form-controls/input";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { UilArrowDown, UilArrowUp } from "@iconscout/react-unicons";
 import "./_input-vote.scss";
 import { InputGroup } from "@ui/input/input-group";
+import useInterval from "react-use/lib/useInterval";
 
 interface Props {
   value: number;
@@ -10,10 +11,18 @@ interface Props {
 }
 
 function ArrowButton({ children, onClick }: PropsWithChildren<{ onClick: () => void }>) {
+  const [fireInterval, setFireInterval] = useState(false);
+
+  useInterval(() => onClick(), fireInterval ? 300 : null);
+
   return (
     <div
       className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
-      onClick={onClick}
+      onClick={() => {
+        setFireInterval(false);
+        onClick();
+      }}
+      onMouseDown={() => setFireInterval(true)}
     >
       {children}
     </div>
