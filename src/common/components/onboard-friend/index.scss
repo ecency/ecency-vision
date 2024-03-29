@@ -3,7 +3,7 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      width: max-content;
+      // width: max-content;
       background-color: #161d26;
       // background-color: $dark-three;
       padding: 2rem;
@@ -19,6 +19,7 @@
     
     .friend-details{
         display: flex;
+        align-items: center;
         flex-direction: column;
         gap: 15px;
     }
@@ -27,6 +28,7 @@
       display: flex;
       margin-top: 5px;
       gap: 10px;
+      width: 100%;
     }
 
     .delegate-rc{      
@@ -68,3 +70,41 @@
         flex-wrap: wrap;
       }
     }
+    
+    .pay-wrapper{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      @media (max-width: 470px) {
+        width: 300px;      
+      }
+    }
+
+    .animation-container {
+      text-align: center;
+    }
+    
+    .animation-text {
+      animation: spin 2s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(8deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      75% {
+        transform: rotate(-8deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+    
+        
