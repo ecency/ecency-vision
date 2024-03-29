@@ -110,7 +110,7 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
 
   return isMounted() && !isFinished ? (
     <>
-      {enabled &&
+      {step &&
         createPortal(
           <div
             className={classNameObject({
