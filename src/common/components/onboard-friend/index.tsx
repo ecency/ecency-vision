@@ -52,9 +52,10 @@ const OnboardFriend = (props: Props | any) => {
   const [voteAmount, setVoteAmount] = useState(0);
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
-  const [rcError, setRcError] = useState("")
+  const [rcError, setRcError] = useState("");
 
   useEffect(() => {
+    console.log(global)
     let decodedObj;
     try {
       if (props.match.params.hash) {
@@ -87,6 +88,7 @@ const OnboardFriend = (props: Props | any) => {
   }
 
   const accountWithCredit = async () => {
+    setStep("creating")
     try {
       const response: any = await createAccountWithCredit({
         username: urlInfo?.username,
@@ -98,7 +100,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRC(activeUser?.username, urlInfo!.username, rcAmount * 1e9)
         }
-        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -111,6 +113,7 @@ const OnboardFriend = (props: Props | any) => {
   }
 
   const createAccountNoUserKcCredit = async () => {
+    setStep("creating")
     try {
       const response: any = await createAccountWithCredit({
         username: urlInfo?.username,
@@ -122,7 +125,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -135,6 +138,7 @@ const OnboardFriend = (props: Props | any) => {
   }  
 
   const createAccount = async ()=> {
+    setStep("creating")
     try {
       const response: any = await createHiveAccount({
         username: urlInfo?.username,
@@ -146,7 +150,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRC(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -159,6 +163,7 @@ const OnboardFriend = (props: Props | any) => {
   };
 
   const createAccountNoUser = async ()=> {
+    setStep("creating")
     try {
       const response: any = await createHiveAccount({
         username: urlInfo?.username,
@@ -171,7 +176,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -232,20 +237,21 @@ const OnboardFriend = (props: Props | any) => {
       <div className={`${containerClasses} d-flex align-items-center justify-content-center mt-5`}>
         { !activeUser ? <div className="d-flex justify-content-center">
           <div className="onboard w-100">
+          {step === "creating" &&
+            <div className="animation-container">
+              <h4>Creating Account</h4>
+              <h5 className="text-success animation-text">Please wait...</h5>
+            </div>
+          } 
           {step=== "confirm" && <>
             <h5 className="text-center">{_t("onboard.creating-for-a-friend")}</h5>
             <div className="friend-details">
             {urlInfo && (
               <div className="friend-details">
                 <span>{_t("onboard.username")} {urlInfo.username}</span>
-                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
-                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
-                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
-                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
               </div>
             )}
             </div>
-
             <div className="delegate-rc">
               <div className="col-span-12 sm:col-span-10">
                 <div className="check mb-2">
@@ -280,21 +286,35 @@ const OnboardFriend = (props: Props | any) => {
                 }
               </div>
             </div>
-            <div className="create-buttons w-100">
-                <Button
-                disabled={rcError !== ""} 
-                onClick={()=> createAccountNoUser()} 
-                className="w-100"
-                >
-                  Pay with (3Hive)
-                </Button>   
-                <Button  
-                disabled={token <= 0 || rcError !== ""}
-                onClick={()=> createAccountNoUserKcCredit()} 
-                className="w-100"
-                >
-                  Pay with account token
-                </Button>   
+            <div className="pay-wrapper">
+              <span>Pay with:</span>
+              <div className="create-buttons w-100">
+                  <Button
+                  disabled={rcError !== ""} 
+                  onClick={()=> createAccountNoUser()} 
+                  className="w-100"
+                  >
+                    3Hive
+                  </Button>   
+                  <Button  
+                  disabled={token <= 0 || rcError !== ""}
+                  onClick={()=> createAccountNoUserKcCredit()} 
+                  className="w-100"
+                  >
+                  Account token
+                  </Button>   
+              </div>
+            </div>
+            <div className="friend-details">
+            {urlInfo && (
+              <div className="friend-details">
+                <span>Account public keys</span>
+                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
+                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
+                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
+                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
+              </div>
+            )}
             </div>
           </>} 
           {step === "success" &&
@@ -310,16 +330,18 @@ const OnboardFriend = (props: Props | any) => {
         </div>
         </div> :
         <div className="onboard">
+          {step === "creating" &&
+            <div className="animation-container">
+              <h4>Creating Account</h4>
+              <span className="text-success animation-text">Please wait...</span>
+            </div>
+          } 
           {step=== "confirm" && <>
             <h5>{_t("onboard.creating-for-a-friend")}</h5>
             <div className="friend-details">
             {urlInfo && (
               <div className="friend-details">
                 <span>{_t("onboard.username")} {urlInfo.username}</span>
-                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
-                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
-                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
-                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
               </div>
             )}
             </div>
@@ -358,24 +380,39 @@ const OnboardFriend = (props: Props | any) => {
                 }
               </div>
             </div>
-
-            <div className="create-buttons w-100">
-                <Button 
-                disabled={rcError !== ""}
-                  onClick={()=> createAccount()} 
-                  className="w-100"
-                >
-                  Pay with (3Hive)
-                </Button>   
-                <Button  
-                  disabled={token <= 0 || rcError !== ""}
-                  onClick={()=> accountWithCredit()} 
-                  className="w-100"
-                >
-                  Pay with account token
-                </Button>   
+            
+            <div className="pay-wrapper">
+              <span>Pay With:</span>
+              <div className="create-buttons">
+                  <Button 
+                  disabled={rcError !== ""}
+                    onClick={()=> createAccount()} 
+                    className="w-100"
+                  >
+                    3Hive
+                  </Button>   
+                  <Button  
+                    disabled={token <= 0 || rcError !== ""}
+                    onClick={()=> accountWithCredit()} 
+                    className="w-100"
+                  >
+                    account token
+                  </Button>   
+              </div>
             </div>
-          </>} 
+            <div className="friend-details mt-3">
+            {urlInfo && (
+              <div className="friend-details">
+                <span>Account public keys</span>
+                <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>
+                <span>{_t("onboard.public-owner")} {urlInfo.keys.ownerPubKey}</span>
+                <span>{_t("onboard.public-active")} {urlInfo.keys.activePubKey}</span>
+                <span>{_t("onboard.public-memo")} {urlInfo.keys.memoPubKey}</span>
+              </div>
+            )}
+            </div>
+          </>}
+          
           {step === "success" &&
           <>
             <h4 className="text-success">{msg}</h4>
