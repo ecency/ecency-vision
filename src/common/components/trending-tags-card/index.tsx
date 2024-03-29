@@ -12,6 +12,7 @@ import { _t } from "../../i18n";
 import _c from "../../util/fix-class-names";
 import { ActiveUser } from "../../store/active-user/types";
 import "./_index.scss";
+import { UilMultiply } from "@iconscout/react-unicons";
 
 interface Props {
   history: History;
@@ -75,14 +76,14 @@ export class TrendingTagsCard extends Component<Props> {
                       {t}
                       {global.tag === t && (
                         <div
-                          className="text-gray-600 ml-4 pointer"
+                          className="text-gray-600 dark:text-gray-400 ml-2 pointer"
                           onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
                             this.handleUnselection();
                           }}
                         >
-                          ✖
+                          <UilMultiply size="16" />
                         </div>
                       )}
                     </a>

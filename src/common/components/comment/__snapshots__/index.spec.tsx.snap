@@ -220,7 +220,7 @@ exports[`(1) Default render 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-e5a42640-c9b5-428e-9d26-7a6fcab63b93"
+      id="editor-tool-emoji-picker-ad7f74fc-7d16-4049-a59a-3b2511f7738b"
       role="none"
       title="Emoji"
     >
