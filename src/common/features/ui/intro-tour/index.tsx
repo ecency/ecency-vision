@@ -60,7 +60,7 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
 
   // Detect enablement and set default step if there aren't any persistent step
   useEffect(() => {
-    if (typeof currentStep === "undefined" && !isFinished && enabled) {
+    if (currentStep == undefined && !isFinished && enabled) {
       setCurrentStep(0);
     }
   }, [currentStep, enabled, isFinished]);
@@ -110,16 +110,17 @@ export function IntroTour({ steps, id, enabled, forceActivation, setForceActivat
 
   return isMounted() && !isFinished ? (
     <>
-      {createPortal(
-        <div
-          className={classNameObject({
-            "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
-          })}
-          style={{ clipPath }}
-          onClick={() => finish()}
-        />,
-        document.querySelector("#modal-overlay-container")!!
-      )}
+      {step &&
+        createPortal(
+          <div
+            className={classNameObject({
+              "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true
+            })}
+            style={{ clipPath }}
+            onClick={() => finish()}
+          />,
+          document.querySelector("#modal-overlay-container")!!
+        )}
       {step &&
         createPortal(
           <div
