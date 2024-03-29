@@ -56,8 +56,10 @@ export function InputVote({ value, setValue }: Props) {
       onTouchStart={(e) => {
         setStartPosition(e.touches.item(0)?.clientX);
         setOriginalValue(value);
+        document.body.classList.add("overflow-hidden");
       }}
       onTouchMove={onTouchMove}
+      onTouchEnd={() => document.body.classList.remove("overflow-hidden")}
       onMouseDown={(e) => {
         mouseDownInitiatedRef.current = true;
         setStartPosition(e.clientX);
