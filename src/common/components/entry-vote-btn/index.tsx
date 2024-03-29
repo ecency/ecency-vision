@@ -27,7 +27,7 @@ import { _t } from "../../i18n";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { Button } from "@ui/button";
-import { ReactInputSliderWrapper } from "../../features/packages-helpers";
+import { InputVote } from "@ui/input";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -324,12 +324,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
               </div>
               <div className="space" />
               <div className="slider slider-up">
-                <ReactInputSliderWrapper
-                  value={upSliderVal}
-                  onChange={(x) => this.upSliderChanged(x)}
-                />
+                <InputVote value={upSliderVal} setValue={(x) => this.upSliderChanged(x)} />
               </div>
-              <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
+              <div className="percentage" />
               <Button
                 noPadding={true}
                 className="w-8"
@@ -377,13 +374,14 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
-                <ReactInputSliderWrapper
+                <InputVote
+                  mode="negative"
                   value={downSliderVal}
-                  onChange={(x) => this.downSliderChanged(x)}
+                  setValue={(x) => this.downSliderChanged(x)}
                 />
               </div>
               <div className="space" />
-              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
+              <div className="percentage" />
               <Button
                 noPadding={true}
                 className="w-8"

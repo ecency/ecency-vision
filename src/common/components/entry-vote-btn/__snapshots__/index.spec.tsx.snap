@@ -41,50 +41,67 @@ Array [
     <div
       className="slider slider-up"
     >
-      <span
-        className="w-full flex [&>div]:w-full"
-        onClick={[Function]}
-        onKeyUp={[Function]}
-        tabIndex={0}
+      <div
+        className="ecency-vote-input relative"
       >
         <div
-          className="css-yvszuv-Slider"
-          onMouseDown={[Function]}
-          onTouchStart={[Function]}
+          className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
         >
-          <div
-            className="css-3g5hux-Slider"
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
+          <input
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+            onChange={[Function]}
+            step="0.1"
+            type="number"
+            value={100}
           />
           <div
+            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full dark:border-gray-600 flex items-center justify-center px-2.5 border-2 bg-gray-200 dark:bg-gray-600"
             onClick={[Function]}
-            onMouseDown={[Function]}
-            onTouchStart={[Function]}
-            style={
-              Object {
-                "left": "100%",
-                "position": "absolute",
-                "top": "50%",
-                "transform": "translate(-50%, -50%)",
-              }
-            }
           >
-            <div
-              className="css-1ldz52l-Slider"
-            />
+            %
           </div>
         </div>
-      </span>
+        <div
+          className="absolute right-10 top-0 bottom-0 flex flex-col justify-center items-center"
+        >
+          <div
+            className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
+            onClick={[Function]}
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.71,11.29l-5-5a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-5,5a1,1,0,0,0,1.42,1.42L11,9.41V17a1,1,0,0,0,2,0V9.41l3.29,3.3a1,1,0,0,0,1.42,0A1,1,0,0,0,17.71,11.29Z"
+              />
+            </svg>
+          </div>
+          <div
+            className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
+            onClick={[Function]}
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.71,11.29a1,1,0,0,0-1.42,0L13,14.59V7a1,1,0,0,0-2,0v7.59l-3.29-3.3a1,1,0,0,0-1.42,1.42l5,5a1,1,0,0,0,.33.21.94.94,0,0,0,.76,0,1,1,0,0,0,.33-.21l5-5A1,1,0,0,0,17.71,11.29Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       className="percentage"
-    >
-      100.0%
-    </div>
+    />
     <button
       className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
