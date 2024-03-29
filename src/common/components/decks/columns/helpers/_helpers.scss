@@ -34,6 +34,11 @@
       .estimated {
         grid-area: price;
         text-align: left;
+        position: absolute;
+        top: 1.5rem;
+        right: 7.5rem;
+        z-index: 20;
+        font-size: .675rem;
       }
 
       .percentage {

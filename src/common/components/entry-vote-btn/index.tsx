@@ -374,7 +374,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
-                <InputVote value={downSliderVal} setValue={(x) => this.downSliderChanged(x)} />
+                <InputVote
+                  mode="negative"
+                  value={downSliderVal}
+                  setValue={(x) => this.downSliderChanged(x)}
+                />
               </div>
               <div className="space" />
               <div className="percentage" />

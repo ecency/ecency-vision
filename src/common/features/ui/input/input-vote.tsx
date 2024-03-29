@@ -1,13 +1,22 @@
 import { Input } from "@ui/input/form-controls/input";
-import React, { MouseEvent, PropsWithChildren, TouchEvent, useRef, useState } from "react";
+import React, {
+  MouseEvent,
+  PropsWithChildren,
+  TouchEvent,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import { UilArrowDown, UilArrowUp } from "@iconscout/react-unicons";
 import "./_input-vote.scss";
 import { InputGroup } from "@ui/input/input-group";
 import useInterval from "react-use/lib/useInterval";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   value: number;
   setValue: (v: number) => void;
+  mode?: "positive" | "negative";
 }
 
 function ArrowButton({ children, onClick }: PropsWithChildren<{ onClick: () => void }>) {
@@ -29,11 +38,21 @@ function ArrowButton({ children, onClick }: PropsWithChildren<{ onClick: () => v
   );
 }
 
-export function InputVote({ value, setValue }: Props) {
+export function InputVote({ value, setValue, mode = "positive" }: Props) {
   const mouseDownInitiatedRef = useRef(false);
 
   const [startPosition, setStartPosition] = useState(0);
   const [originalValue, setOriginalValue] = useState(0);
+
+  useEffect(() => {
+    if (value < 0) {
+      setValue(0);
+    } else if (value > 100) {
+      setValue(100);
+    } else {
+      setValue(value);
+    }
+  }, [value]);
 
   const onTouchMove = (e: TouchEvent) => {
     const touch = e.touches.item(0);
@@ -69,11 +88,22 @@ export function InputVote({ value, setValue }: Props) {
       onMouseUp={(e) => (mouseDownInitiatedRef.current = false)}
     >
       <InputGroup append="%" className="relative z-10">
-        <Input type="number" step="0.1" value={value} onChange={(e) => setValue(+e.target.value)} />
+        <Input
+          min={0}
+          max={100}
+          type="number"
+          step="0.1"
+          value={value}
+          onChange={(e) => setValue(+e.target.value)}
+        />
       </InputGroup>
 
       <div
-        className="absolute bg-blue-dark-sky bg-opacity-25 top-[1px] left-[1px] bottom-[1px]"
+        className={classNameObject({
+          "absolute bg-opacity-25 top-[1px] left-[1px] bottom-[1px]": true,
+          "bg-blue-dark-sky": mode === "positive",
+          "bg-red": mode === "negative"
+        })}
         style={{
           width: `${value * 0.86}%`
         }}
