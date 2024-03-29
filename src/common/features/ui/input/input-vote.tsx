@@ -1,5 +1,5 @@
 import { Input } from "@ui/input/form-controls/input";
-import React, { PropsWithChildren, TouchEvent, useState } from "react";
+import React, { MouseEvent, PropsWithChildren, TouchEvent, useRef, useState } from "react";
 import { UilArrowDown, UilArrowUp } from "@iconscout/react-unicons";
 import "./_input-vote.scss";
 import { InputGroup } from "@ui/input/input-group";
@@ -30,6 +30,8 @@ function ArrowButton({ children, onClick }: PropsWithChildren<{ onClick: () => v
 }
 
 export function InputVote({ value, setValue }: Props) {
+  const mouseDownInitiatedRef = useRef(false);
+
   const [startPosition, setStartPosition] = useState(0);
   const [originalValue, setOriginalValue] = useState(0);
 
@@ -37,6 +39,13 @@ export function InputVote({ value, setValue }: Props) {
     const touch = e.touches.item(0);
     if (touch) {
       const diff = Math.max(-200, Math.min(200, touch.clientX - startPosition));
+      setValue(Math.min(100, Math.max(0, originalValue + diff)));
+    }
+  };
+
+  const onMouseMove = (e: MouseEvent) => {
+    if (mouseDownInitiatedRef.current) {
+      const diff = Math.max(-200, Math.min(200, e.clientX - startPosition));
       setValue(Math.min(100, Math.max(0, originalValue + diff)));
     }
   };
@@ -49,6 +58,13 @@ export function InputVote({ value, setValue }: Props) {
         setOriginalValue(value);
       }}
       onTouchMove={onTouchMove}
+      onMouseDown={(e) => {
+        mouseDownInitiatedRef.current = true;
+        setStartPosition(e.clientX);
+        setOriginalValue(value);
+      }}
+      onMouseMove={onMouseMove}
+      onMouseUp={(e) => (mouseDownInitiatedRef.current = false)}
     >
       <InputGroup append="%" className="relative z-10">
         <Input type="number" step="0.1" value={value} onChange={(e) => setValue(+e.target.value)} />
