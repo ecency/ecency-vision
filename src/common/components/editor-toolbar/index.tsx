@@ -38,6 +38,8 @@ import Fragments from "../fragments";
 import AddImage from "../add-image";
 import AddLink from "../add-link";
 import "./_index.scss";
+import { PollsCreation } from "../../features/polls";
+import { UilQuestion } from "@iconscout/react-unicons";
 
 interface Props {
   sm?: boolean;
@@ -77,6 +79,7 @@ export function EditorToolbar({
   const [gif, setGif] = useState(false);
   const [showVideoUpload, setShowVideoUpload] = useState(false);
   const [showVideoGallery, setShowVideoGallery] = useState(false);
+  const [showPollsCreation, setShowPollsCreation] = useState(false);
 
   const toolbarId = useMemo(() => v4(), []);
   const headers = useMemo(() => [...Array(3).keys()], []);
@@ -481,6 +484,11 @@ export function EditorToolbar({
             {linkSvg}
           </div>
         </Tooltip>
+        <Tooltip content={_t("editor-toolbar.polls")}>
+          <div className="editor-tool" onClick={() => setShowPollsCreation(!showPollsCreation)}>
+            <UilQuestion />
+          </div>
+        </Tooltip>
       </div>
       <input
         onChange={fileInputChanged}
@@ -548,6 +556,7 @@ export function EditorToolbar({
           }}
         />
       )}
+      <PollsCreation show={showPollsCreation} setShow={(v) => setShowPollsCreation(v)} />
     </>
   );
 }

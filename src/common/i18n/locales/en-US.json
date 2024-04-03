@@ -1428,7 +1428,8 @@
     "image-error-size": "Image size is too large, try smaller size image again.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "Snippets",
-    "link-image": "Link"
+    "link-image": "Link",
+    "polls": "Polls"
   },
   "emoji-picker": {
     "filter-placeholder": "Filter",
@@ -2403,5 +2404,16 @@
     "toolbar-hint": "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
     "advanced-hint": "Configure advanced settings such as scheduling, beneficiaries",
     "help-hint": "Have any questions? Check out help center"
+  },
+  "polls": {
+    "title": "Create a poll",
+    "title-placeholder": "Poll question",
+    "choices": "Choices",
+    "choice-placeholder": "Choice {{n}}",
+    "add-choice": "Add choice",
+    "attach": "Attach to post",
+    "polls-form-hint": "To attach poll to post need to fill all choices without duplicates",
+    "options": "Options",
+    "account-age": "Account age for voting(in days)"
   }
 }
