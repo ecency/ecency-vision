@@ -1,9 +1,20 @@
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { addDays } from "date-fns";
+import { PollSnapshot } from "../components";
 
-export function usePollsCreationManagement() {
+export function usePollsCreationManagement(poll?: PollSnapshot) {
   const [title, setTitle, clearTitle] = useLocalStorage(PREFIX + "_plls_t", "");
+  const [endDate, setEndDate, clearEndDate] = useLocalStorage(
+    PREFIX + "_plls_ed",
+    addDays(new Date(), 1),
+    {
+      raw: false,
+      deserializer: (v: string) => new Date(v),
+      serializer: (v: Date) => v.toISOString()
+    }
+  );
   const [accountAge, setAccountAge, clearAccountAge] = useLocalStorage(PREFIX + "_plls_ag", 100);
   const [choices, setChoices, clearChoices] = useLocalStorage<string[]>(PREFIX + "_plls_ch", []);
 
@@ -15,6 +26,15 @@ export function usePollsCreationManagement() {
     const hasDuplicates = new Set(choices).size !== choices.length;
     return choices.some((c) => !c) || hasDuplicates;
   }, [choices]);
+
+  useEffect(() => {
+    if (poll) {
+      setTitle(poll.title);
+      setChoices(poll.choices);
+      setAccountAge(poll.filters.accountAge);
+      setEndDate(poll.endTime);
+    }
+  }, [poll]);
 
   const pushChoice = (choice: string) => setChoices([...(choices ?? []), choice]);
 
@@ -39,6 +59,8 @@ export function usePollsCreationManagement() {
     updateChoiceByIndex,
     hasEmptyOrDuplicatedChoices,
     accountAge,
-    setAccountAge
+    setAccountAge,
+    endDate,
+    setEndDate
   };
 }

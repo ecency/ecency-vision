@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "@ui/modal";
 import { _t } from "../../../i18n";
 import { usePollsCreationManagement } from "../hooks";
 import { FormControl, InputGroup } from "@ui/input";
-import { UilPanelAdd, UilPlus, UilQuestionCircle, UilTrash } from "@iconscout/react-unicons";
+import {
+  UilCalender,
+  UilPanelAdd,
+  UilPlus,
+  UilQuestionCircle,
+  UilSave,
+  UilTrash
+} from "@iconscout/react-unicons";
 import { Button } from "@ui/button";
+import { format } from "date-fns";
+
+export interface PollSnapshot {
+  title: string;
+  choices: string[];
+  filters: {
+    accountAge: number;
+  };
+  endTime: Date;
+}
 
 interface Props {
   show: boolean;
   setShow: (v: boolean) => void;
+  onAdd: (poll: PollSnapshot) => void;
+  existingPoll?: PollSnapshot;
 }
 
-export function PollsCreation({ show, setShow }: Props) {
+export function PollsCreation({ show, setShow, onAdd, existingPoll }: Props) {
   const {
     title,
     setTitle,
@@ -21,8 +40,12 @@ export function PollsCreation({ show, setShow }: Props) {
     updateChoiceByIndex,
     hasEmptyOrDuplicatedChoices,
     accountAge,
-    setAccountAge
-  } = usePollsCreationManagement();
+    setAccountAge,
+    endDate,
+    setEndDate
+  } = usePollsCreationManagement(existingPoll);
+
+  const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
 
   return (
     <Modal
@@ -32,7 +55,7 @@ export function PollsCreation({ show, setShow }: Props) {
       className="polls-creation-modal"
     >
       <ModalHeader closeButton={true}>
-        <ModalTitle>{_t("polls.title")}</ModalTitle>
+        <ModalTitle>{_t(existingPoll ? "polls.edit-title" : "polls.title")}</ModalTitle>
       </ModalHeader>
       <ModalBody>
         <div className="flex flex-col gap-6">
@@ -42,6 +65,14 @@ export function PollsCreation({ show, setShow }: Props) {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+            />
+          </InputGroup>
+          <InputGroup prepend={<UilCalender />}>
+            <FormControl
+              placeholder={_t("polls.title-placeholder")}
+              type="date"
+              value={formatDate}
+              onChange={(e: any) => setEndDate(new Date(e.target.value))}
             />
           </InputGroup>
 
@@ -103,12 +134,23 @@ export function PollsCreation({ show, setShow }: Props) {
             {_t("polls.add-choice")}
           </Button>
           <Button
-            icon={<UilPanelAdd />}
+            icon={existingPoll ? <UilSave /> : <UilPanelAdd />}
             disabled={hasEmptyOrDuplicatedChoices || !title || typeof accountAge !== "number"}
             iconPlacement="left"
-            onClick={() => pushChoice("")}
+            onClick={() => {
+              if (title && endDate && choices && typeof accountAge === "number")
+                onAdd({
+                  title,
+                  endTime: endDate,
+                  choices,
+                  filters: {
+                    accountAge
+                  }
+                });
+              setShow(false);
+            }}
           >
-            {_t("polls.attach")}
+            {existingPoll ? _t("polls.update") : _t("polls.attach")}
           </Button>
         </div>
       </ModalFooter>

@@ -2407,11 +2407,13 @@
   },
   "polls": {
     "title": "Create a poll",
+    "edit-title": "Edit a poll",
     "title-placeholder": "Poll question",
     "choices": "Choices",
     "choice-placeholder": "Choice {{n}}",
     "add-choice": "Add choice",
     "attach": "Attach to post",
+    "update": "Update",
     "polls-form-hint": "To attach poll to post need to fill all choices without duplicates",
     "options": "Options",
     "account-age": "Account age for voting(in days)"

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Entry } from "../../store/entries/types";
 import { Draft } from "../../api/private-api";
 import { MatchType, PostBase, VideoProps } from "./types";
@@ -68,6 +68,7 @@ import { FormControl } from "@ui/input";
 import { IntroTour } from "@ui/intro-tour";
 import { IntroStep } from "@ui/core";
 import { dotsMenuIconSvg } from "../../components/decks/icons";
+import { PollsContext, PollsManager } from "./hooks/polls-manager";
 
 interface MatchProps {
   match: MatchType;
@@ -76,6 +77,7 @@ interface MatchProps {
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
+  const { setActivePoll, activePoll } = useContext(PollsContext);
   const { body, setBody } = useBodyVersioningManager();
 
   const { activeUser } = useMappedStore();
@@ -478,11 +480,13 @@ export function Submit(props: PageProps & MatchProps) {
               threeSpeakManager.setIsNsfw(true);
             }}
             comment={false}
+            existingPoll={activePoll}
             setVideoMetadata={(v) => {
               threeSpeakManager.attach(v);
               // Attach videos as special token in a body and render it in a preview
               setBody(`${body}\n[3speak](${v._id})`);
             }}
+            onAddPoll={(v) => setActivePoll(v)}
           />
           <div className="title-input">
             <FormControl
@@ -907,7 +911,9 @@ const SubmitWithProviders = (props: PageProps & MatchProps) => {
   return (
     <BodyVersioningManager>
       <ThreeSpeakManager>
-        <Submit {...props} />
+        <PollsManager>
+          <Submit {...props} />
+        </PollsManager>
       </ThreeSpeakManager>
     </BodyVersioningManager>
   );

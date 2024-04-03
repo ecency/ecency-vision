@@ -4,7 +4,7 @@ import { INPUT_DARK_STYLES, INPUT_STYLES, INVALID_INPUT_STYLES } from "./input-s
 import { useFilteredProps } from "../../../../util/props-filter";
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
-  type: "text" | "password" | "number" | "email" | "range";
+  type: "text" | "password" | "number" | "email" | "range" | "date";
   noStyles?: boolean;
   // TODO: styles for that
   plaintext?: boolean;

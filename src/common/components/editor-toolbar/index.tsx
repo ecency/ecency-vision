@@ -38,8 +38,9 @@ import Fragments from "../fragments";
 import AddImage from "../add-image";
 import AddLink from "../add-link";
 import "./_index.scss";
-import { PollsCreation } from "../../features/polls";
+import { PollsCreation, PollSnapshot } from "../../features/polls";
 import { UilQuestion } from "@iconscout/react-unicons";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   sm?: boolean;
@@ -47,6 +48,8 @@ interface Props {
   toggleNsfwC?: () => void;
   comment: boolean;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
+  onAddPoll?: (poll: PollSnapshot) => void;
+  existingPoll?: PollSnapshot;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -64,7 +67,9 @@ export function EditorToolbar({
   comment,
   setVideoMetadata,
   setVideoEncoderBeneficiary,
-  toggleNsfwC
+  toggleNsfwC,
+  onAddPoll,
+  existingPoll
 }: Props) {
   const { global, activeUser, users } = useMappedStore();
 
@@ -485,7 +490,13 @@ export function EditorToolbar({
           </div>
         </Tooltip>
         <Tooltip content={_t("editor-toolbar.polls")}>
-          <div className="editor-tool" onClick={() => setShowPollsCreation(!showPollsCreation)}>
+          <div
+            className={classNameObject({
+              "editor-tool": true,
+              "bg-green bg-opacity-25": !!existingPoll
+            })}
+            onClick={() => setShowPollsCreation(!showPollsCreation)}
+          >
             <UilQuestion />
           </div>
         </Tooltip>
@@ -556,7 +567,12 @@ export function EditorToolbar({
           }}
         />
       )}
-      <PollsCreation show={showPollsCreation} setShow={(v) => setShowPollsCreation(v)} />
+      <PollsCreation
+        existingPoll={existingPoll}
+        show={showPollsCreation}
+        setShow={(v) => setShowPollsCreation(v)}
+        onAdd={(snap) => onAddPoll?.(snap)}
+      />
     </>
   );
 }
