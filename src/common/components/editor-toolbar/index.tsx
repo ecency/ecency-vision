@@ -50,6 +50,7 @@ interface Props {
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
   onAddPoll?: (poll: PollSnapshot) => void;
   existingPoll?: PollSnapshot;
+  onDeletePoll?: () => void;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -69,7 +70,8 @@ export function EditorToolbar({
   setVideoEncoderBeneficiary,
   toggleNsfwC,
   onAddPoll,
-  existingPoll
+  existingPoll,
+  onDeletePoll
 }: Props) {
   const { global, activeUser, users } = useMappedStore();
 
@@ -572,6 +574,7 @@ export function EditorToolbar({
         show={showPollsCreation}
         setShow={(v) => setShowPollsCreation(v)}
         onAdd={(snap) => onAddPoll?.(snap)}
+        onDeletePoll={() => onDeletePoll?.()}
       />
     </>
   );

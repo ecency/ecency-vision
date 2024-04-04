@@ -28,9 +28,10 @@ interface Props {
   setShow: (v: boolean) => void;
   onAdd: (poll: PollSnapshot) => void;
   existingPoll?: PollSnapshot;
+  onDeletePoll: () => void;
 }
 
-export function PollsCreation({ show, setShow, onAdd, existingPoll }: Props) {
+export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll }: Props) {
   const {
     title,
     setTitle,
@@ -133,25 +134,41 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll }: Props) {
           >
             {_t("polls.add-choice")}
           </Button>
-          <Button
-            icon={existingPoll ? <UilSave /> : <UilPanelAdd />}
-            disabled={hasEmptyOrDuplicatedChoices || !title || typeof accountAge !== "number"}
-            iconPlacement="left"
-            onClick={() => {
-              if (title && endDate && choices && typeof accountAge === "number")
-                onAdd({
-                  title,
-                  endTime: endDate,
-                  choices,
-                  filters: {
-                    accountAge
-                  }
-                });
-              setShow(false);
-            }}
-          >
-            {existingPoll ? _t("polls.update") : _t("polls.attach")}
-          </Button>
+          <div className="flex gap-2">
+            {existingPoll && (
+              <Button
+                appearance="danger"
+                icon={<UilTrash />}
+                iconPlacement="left"
+                onClick={() => {
+                  onDeletePoll();
+                  setShow(false);
+                }}
+                outline={true}
+              >
+                {_t("g.delete")}
+              </Button>
+            )}
+            <Button
+              icon={existingPoll ? <UilSave /> : <UilPanelAdd />}
+              disabled={hasEmptyOrDuplicatedChoices || !title || typeof accountAge !== "number"}
+              iconPlacement="left"
+              onClick={() => {
+                if (title && endDate && choices && typeof accountAge === "number")
+                  onAdd({
+                    title,
+                    endTime: endDate,
+                    choices,
+                    filters: {
+                      accountAge
+                    }
+                  });
+                setShow(false);
+              }}
+            >
+              {existingPoll ? _t("polls.update") : _t("polls.attach")}
+            </Button>
+          </div>
         </div>
       </ModalFooter>
     </Modal>

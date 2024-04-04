@@ -77,7 +77,7 @@ interface MatchProps {
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
-  const { setActivePoll, activePoll } = useContext(PollsContext);
+  const { setActivePoll, activePoll, clearActivePoll } = useContext(PollsContext);
   const { body, setBody } = useBodyVersioningManager();
 
   const { activeUser } = useMappedStore();
@@ -487,6 +487,7 @@ export function Submit(props: PageProps & MatchProps) {
               setBody(`${body}\n[3speak](${v._id})`);
             }}
             onAddPoll={(v) => setActivePoll(v)}
+            onDeletePoll={() => clearActivePoll()}
           />
           <div className="title-input">
             <FormControl
