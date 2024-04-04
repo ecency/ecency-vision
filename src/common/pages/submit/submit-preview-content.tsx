@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { History } from "history";
 import { useThreeSpeakManager } from "./hooks";
+import { SubmitPollPreview } from "./submit-poll-preview";
 
 interface Props {
   title: string;
@@ -34,7 +35,10 @@ export function SubmitPreviewContent({ title, tags, body, history }: Props) {
         })}
       </div>
 
-      <PostBodyLazyRenderer className="preview-body markdown-view" rawBody={modifiedBody} />
+      <div className="preview-body markdown-view">
+        <PostBodyLazyRenderer rawBody={modifiedBody} />
+        <SubmitPollPreview />
+      </div>
     </>
   );
 }

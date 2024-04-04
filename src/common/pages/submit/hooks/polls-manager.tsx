@@ -14,8 +14,21 @@ export const PollsContext = createContext<{
 });
 
 export function PollsManager(props: PropsWithChildren<unknown>) {
-  const [activePoll, setActivePoll, clearActivePoll] = useLocalStorage<PollSnapshot>(
-    PREFIX + "_sa_pll"
+  const [activePoll, setActivePoll, clearActivePoll] = useLocalStorage<PollSnapshot | undefined>(
+    PREFIX + "_sa_pll",
+    undefined,
+    {
+      raw: false,
+      deserializer: (value) => {
+        if (value) {
+          const parsedInstance = JSON.parse(value) as PollSnapshot;
+          parsedInstance.endTime = new Date(parsedInstance.endTime);
+          return parsedInstance;
+        }
+        return undefined;
+      },
+      serializer: (value) => (value ? JSON.stringify(value) : "")
+    }
   );
 
   return (
