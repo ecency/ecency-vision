@@ -76,6 +76,7 @@
       align-items: center;
       flex-direction: column;
       gap: 5px;
+      width: 100%;
       @media (max-width: 470px) {
         width: 300px;      
       }
