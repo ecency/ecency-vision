@@ -28,8 +28,8 @@ export function PollWidget({ poll, isReadOnly }: Props) {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2">
-      <div className="col-span-1 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
+    <div className="grid grid-cols-4">
+      <div className="col-span-4 sm:col-span-3 xl:col-span-2 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
         <div className="text-xs uppercase tracking-wide font-semibold opacity-50">
           {_t("polls.post-poll")}
           {isReadOnly && <span>({_t("polls.preview-mode")})</span>}

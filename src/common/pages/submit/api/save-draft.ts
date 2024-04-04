@@ -9,10 +9,13 @@ import { buildMetadata } from "../functions";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
 import { useThreeSpeakManager } from "../hooks";
 import { QueryIdentifiers } from "../../../core";
+import { useContext } from "react";
+import { PollsContext } from "../hooks/polls-manager";
 
 export function useSaveDraftApi(history: History) {
   const { activeUser } = useMappedStore();
   const { videos } = useThreeSpeakManager();
+  const { activePoll, clearActivePoll } = useContext(PollsContext);
 
   const queryClient = useQueryClient();
 
@@ -56,7 +59,8 @@ export function useSaveDraftApi(history: History) {
         ...meta,
         beneficiaries,
         rewardType: reward,
-        videos
+        videos,
+        poll: activePoll
       };
 
       try {
@@ -74,6 +78,8 @@ export function useSaveDraftApi(history: History) {
 
           history.push(`/draft/${draft._id}`);
         }
+
+        clearActivePoll();
       } catch (e) {
         error(_t("g.server-error"));
       }

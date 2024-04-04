@@ -15,6 +15,7 @@ import { AppWindow } from "../../client/window";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
 import { ThreeSpeakVideo } from "./threespeak";
+import { PollSnapshot } from "../features/polls";
 
 declare var window: AppWindow;
 
@@ -217,6 +218,7 @@ export interface DraftMetadata extends MetaData {
   beneficiaries: BeneficiaryRoute[];
   rewardType: RewardType;
   videos?: Record<string, ThreeSpeakVideo>;
+  poll?: PollSnapshot;
 }
 
 export interface Draft {
