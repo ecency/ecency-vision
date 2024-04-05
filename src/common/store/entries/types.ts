@@ -19,6 +19,17 @@ export interface EntryStat {
   is_pinned?: boolean;
 }
 
+export interface JsonPollMetadata {
+  content_type: "poll";
+  version: number;
+  question: string;
+  choices: string[];
+  preferred_interpretation: string;
+  token: string;
+  filters: { account_age: number };
+  end_time: number;
+}
+
 export interface JsonMetadata {
   tags?: string[];
   description?: string | null;

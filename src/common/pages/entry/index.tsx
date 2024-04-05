@@ -68,6 +68,8 @@ import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
 import { useCreateReply, useUpdateReply } from "../../api/mutations";
+import { useEntryPollExtractor } from "./utils";
+import { PollWidget } from "../../features/polls";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -137,6 +139,7 @@ const EntryComponent = (props: Props) => {
       reload();
     }
   );
+  const postPoll = useEntryPollExtractor(entry);
 
   useDistanceDetector(
     entryControlsRef,
@@ -721,6 +724,11 @@ const EntryComponent = (props: Props) => {
                                     className="entry-body markdown-view user-selectable"
                                     dangerouslySetInnerHTML={renderedBody}
                                   />
+                                  {postPoll && (
+                                    <div className="pb-6">
+                                      <PollWidget poll={postPoll} isReadOnly={false} />
+                                    </div>
+                                  )}
                                 </SelectionPopover>
                               </>
                             ) : (
@@ -753,7 +761,6 @@ const EntryComponent = (props: Props) => {
                       {showProfileBox && <AuthorInfoCard {...props} entry={entry} />}
                     </div>
                   )}
-
                   <div className="entry-footer">
                     <div className="entry-tags">
                       {tags &&
