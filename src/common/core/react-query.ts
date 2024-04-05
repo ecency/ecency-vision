@@ -33,5 +33,7 @@ export enum QueryIdentifiers {
   GET_POSTS = "get-posts",
   GET_BOTS = "get-bots",
   GET_BOOST_PLUS_PRICES = "get-boost-plus-prices",
-  GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts"
+  GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts",
+
+  POLL_DETAILS = "poll-details"
 }

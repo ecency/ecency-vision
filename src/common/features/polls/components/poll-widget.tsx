@@ -2,25 +2,24 @@ import React, { useMemo, useState } from "react";
 import { PollSnapshot } from "./polls-creation";
 import { dateToFullRelative } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
-import { UilCheck, UilPanelAdd } from "@iconscout/react-unicons";
+import { UilPanelAdd } from "@iconscout/react-unicons";
 import { Button } from "@ui/button";
-import { classNameObject } from "../../../helper/class-name-object";
+import { Entry } from "../../../store/entries/types";
+import { useGetPollDetailsQuery } from "../api";
+import { PollOption } from "./poll-option";
+import { PollOptionWithResults } from "./poll-option-with-results";
 
 interface Props {
   poll: PollSnapshot;
   isReadOnly: boolean;
+  entry?: Entry;
 }
 
-function PollCheck({ checked }: { checked: boolean }) {
-  return (
-    <div className="rounded-full w-[28px] h-[28px] flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-      {checked && <UilCheck size={16} className="text-blue-dark-sky" />}
-    </div>
-  );
-}
-
-export function PollWidget({ poll, isReadOnly }: Props) {
+export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const [activeChoice, setActiveChoice] = useState<string>();
+  const [resultsMode, setResultsMode] = useState(false);
+
+  const pollDetails = useGetPollDetailsQuery(entry);
 
   const endTimeFormat = useMemo(
     () => dateToFullRelative(poll.endTime.toISOString()),
@@ -47,32 +46,36 @@ export function PollWidget({ poll, isReadOnly }: Props) {
           </div>
         )}
         <div className="flex flex-col gap-3">
-          {poll.choices.map((choice, key) => (
-            <div
-              className={classNameObject({
-                "hover:bg-gray-300 flex items-center gap-4 dark:hover:bg-gray-900 duration-300 cursor-pointer text-sm px-4 py-3 rounded-2xl":
-                  true,
-                "bg-gray-200 dark:bg-dark-200": activeChoice !== choice,
-                "bg-blue-dark-sky bg-opacity-50": activeChoice === choice
-              })}
-              key={choice}
-              onClick={() =>
-                activeChoice === choice ? setActiveChoice(undefined) : setActiveChoice(choice)
-              }
-            >
-              <PollCheck checked={activeChoice === choice} />
-              {choice}
-            </div>
-          ))}
+          {poll.choices.map((choice) =>
+            resultsMode ? (
+              <PollOptionWithResults entry={entry} choice={choice} activeChoice={activeChoice} />
+            ) : (
+              <PollOption
+                choice={choice}
+                key={choice}
+                setActiveChoice={setActiveChoice}
+                activeChoice={activeChoice}
+              />
+            )
+          )}
         </div>
-        <Button
-          disabled={isReadOnly || !activeChoice}
-          icon={<UilPanelAdd />}
-          size="lg"
-          className="font-semibold text-sm px-4 mt-4"
-        >
-          {_t("polls.vote")}
-        </Button>
+        {pollDetails.data?.status === "Active" && (
+          <>
+            {!resultsMode && (
+              <Button
+                disabled={isReadOnly || !activeChoice}
+                icon={<UilPanelAdd />}
+                size="lg"
+                className="font-semibold text-sm px-4 mt-4"
+              >
+                {_t("polls.vote")}
+              </Button>
+            )}
+            <Button appearance="link" size="sm" onClick={() => setResultsMode(!resultsMode)}>
+              {_t(resultsMode ? "polls.back-to-vote" : "polls.view-votes")}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

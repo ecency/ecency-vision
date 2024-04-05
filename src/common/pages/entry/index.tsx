@@ -726,7 +726,11 @@ const EntryComponent = (props: Props) => {
                                   />
                                   {postPoll && (
                                     <div className="pb-6">
-                                      <PollWidget poll={postPoll} isReadOnly={false} />
+                                      <PollWidget
+                                        entry={entry}
+                                        poll={postPoll}
+                                        isReadOnly={false}
+                                      />
                                     </div>
                                   )}
                                 </SelectionPopover>
