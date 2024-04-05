@@ -1,6 +1,6 @@
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { addDays } from "date-fns";
 import { PollSnapshot } from "../components";
 
@@ -17,9 +17,11 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
   );
   const [accountAge, setAccountAge, clearAccountAge] = useLocalStorage(PREFIX + "_plls_ag", 100);
   const [choices, setChoices, clearChoices] = useLocalStorage<string[]>(PREFIX + "_plls_ch", []);
+  const [interpretation, setInterpretation] =
+    useState<PollSnapshot["interpretation"]>("number_of_votes");
 
   const hasEmptyOrDuplicatedChoices = useMemo(() => {
-    if (!choices || choices.length === 0) {
+    if (!choices || choices.length <= 1) {
       return true;
     }
 
@@ -61,6 +63,8 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     accountAge,
     setAccountAge,
     endDate,
-    setEndDate
+    setEndDate,
+    interpretation,
+    setInterpretation
   };
 }

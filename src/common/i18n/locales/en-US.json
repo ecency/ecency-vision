@@ -2422,6 +2422,9 @@
     "vote": "Vote",
     "account-age-hint": "Only accounts with {{n}} days age allowed",
     "preview-mode": "Preview mode",
-    "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them."
+    "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them.",
+    "number_of_votes": "By number of votes",
+    "tokens": "By tokens",
+    "temporary-unavailable": "Temporary unavailable, please select other interpretation method"
   }
 }

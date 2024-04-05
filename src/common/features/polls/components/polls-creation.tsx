@@ -21,6 +21,7 @@ export interface PollSnapshot {
     accountAge: number;
   };
   endTime: Date;
+  interpretation: "number_of_votes" | "tokens";
 }
 
 interface Props {
@@ -43,7 +44,9 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
     accountAge,
     setAccountAge,
     endDate,
-    setEndDate
+    setEndDate,
+    interpretation,
+    setInterpretation
   } = usePollsCreationManagement(existingPoll);
 
   const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
@@ -122,6 +125,21 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
               }
             }}
           />
+          <FormControl
+            type="select"
+            value={interpretation}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setInterpretation(e.target.value as PollSnapshot["interpretation"])
+            }
+          >
+            <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
+            <option value="tokens">{_t("polls.tokens")}</option>
+          </FormControl>
+          {interpretation === "tokens" && (
+            <div className="text-sm text-center py-3 text-red mx-auto">
+              {_t("polls.temporary-unavailable")}
+            </div>
+          )}
         </div>
       </ModalBody>
       <ModalFooter sticky={true}>
@@ -151,7 +169,12 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             )}
             <Button
               icon={existingPoll ? <UilSave /> : <UilPanelAdd />}
-              disabled={hasEmptyOrDuplicatedChoices || !title || typeof accountAge !== "number"}
+              disabled={
+                hasEmptyOrDuplicatedChoices ||
+                !title ||
+                typeof accountAge !== "number" ||
+                interpretation === "tokens"
+              }
               iconPlacement="left"
               onClick={() => {
                 if (title && endDate && choices && typeof accountAge === "number")
@@ -161,7 +184,8 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
                     choices,
                     filters: {
                       accountAge
-                    }
+                    },
+                    interpretation
                   });
                 setShow(false);
               }}
