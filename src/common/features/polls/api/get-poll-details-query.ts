@@ -15,7 +15,7 @@ interface GetPollDetailsQueryResponse {
   poll_choices: { choice_num: number; choice_text: string; votes?: { total_votes: number } }[];
   poll_stats: { total_voting_accounts_num: number };
   poll_trx_id: string;
-  poll_voters: { name: string; choice_num: number }[];
+  poll_voters?: { name: string; choice_num: number }[];
   post_body: string;
   post_title: string;
   preferred_interpretation: string;

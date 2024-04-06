@@ -36,24 +36,27 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
       queryClient.setQueryData<ReturnType<typeof useGetPollDetailsQuery>["data"]>(
         [QueryIdentifiers.POLL_DETAILS, poll?.author, poll?.permlink],
         (data) => {
+          console.log(data, resp);
           if (!data || !resp) {
             return data;
           }
 
+          const existingVote = data.poll_voters?.find((pv) => pv.name === activeUser!!.username);
           const previousUserChoice = data.poll_choices?.find(
-            (pc) =>
-              data.poll_voters.find((pv) => pv.name === activeUser!!.username)?.choice_num ===
-              pc.choice_num
+            (pc) => existingVote?.choice_num === pc.choice_num
           );
           const choice = data.poll_choices?.find((pc) => pc.choice_num === resp.choiceNum)!!;
+
+          const notTouchedChoices = data.poll_choices?.filter(
+            (pc) => ![previousUserChoice?.choice_num, choice?.choice_num].includes(pc.choice_num)
+          );
+          const otherVoters =
+            data.poll_voters?.filter((pv) => pv.name !== activeUser!!.username) ?? [];
+
           return {
             ...data,
             poll_choices: [
-              ...data.poll_choices?.filter((pc) =>
-                pc.choice_num !== choice.choice_num && previousUserChoice?.choice_num
-                  ? pc.choice_num !== previousUserChoice.choice_num
-                  : true
-              ),
+              ...notTouchedChoices,
               {
                 ...previousUserChoice,
                 votes: {
@@ -68,7 +71,7 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
               }
             ],
             poll_voters: [
-              ...data.poll_voters.filter((pv) => pv.name !== activeUser!!.username),
+              ...otherVoters,
               { name: activeUser?.username, choice_num: resp.choiceNum }
             ]
           } as ReturnType<typeof useGetPollDetailsQuery>["data"];
