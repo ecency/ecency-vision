@@ -310,7 +310,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       <>
         {mode === "up" && (
           <>
-            <div className={`voting-controls voting-controls-up ${days > 7.0 ? "disable" : ""}`}>
+            <div
+              className={`notranslate voting-controls voting-controls-up ${
+                days > 7.0 ? "disable" : ""
+              }`}
+            >
               <Button
                 noPadding={true}
                 className="w-8"
@@ -359,7 +363,11 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         {mode === "down" && (
           <>
-            <div className={`voting-controls voting-controls-down ${days > 7.0 ? "disable" : ""}`}>
+            <div
+              className={`notranslate voting-controls voting-controls-down ${
+                days > 7.0 ? "disable" : ""
+              }`}
+            >
               <Button
                 noPadding={true}
                 className="w-8"
