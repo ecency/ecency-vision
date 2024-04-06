@@ -51,7 +51,7 @@ export function PollVotesListDialog({ entry }: Props) {
                   )
                 }
               >
-                <span>{choice.votes?.total_votes ?? 0}</span>
+                <span className="pr-1.5">{choice.votes?.total_votes ?? 0}</span>
                 {choice.choice_text}
               </Badge>
             ))}

@@ -2430,6 +2430,10 @@
     "back-to-vote": "Back to vote",
     "votes": "Votes",
     "votes-list": "Votes list",
-    "show-voters": "Show voters"
+    "show-voters": "Show voters",
+    "vote-confirmation-and-sign": "Sign and confirm your vote",
+    "your-choice": "Your choice",
+    "not-found": "Poll not found",
+    "voting": "Voting..."
   }
 }

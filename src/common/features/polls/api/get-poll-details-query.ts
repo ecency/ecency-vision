@@ -38,7 +38,8 @@ export function useGetPollDetailsQuery(entry?: Entry) {
             }`
           )
           .then((resp) => resp.data[0]),
-      enabled: !!entry
+      enabled: !!entry,
+      refetchOnMount: false
     }
   );
 }
