@@ -310,11 +310,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       <>
         {mode === "up" && (
           <>
-            <div
-              className={`notranslate voting-controls voting-controls-up ${
-                days > 7.0 ? "disable" : ""
-              }`}
-            >
+            <div className={`voting-controls voting-controls-up ${days > 7.0 ? "disable" : ""}`}>
               <Button
                 noPadding={true}
                 className="w-8"
@@ -363,11 +359,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
 
         {mode === "down" && (
           <>
-            <div
-              className={`notranslate voting-controls voting-controls-down ${
-                days > 7.0 ? "disable" : ""
-              }`}
-            >
+            <div className={`voting-controls voting-controls-down ${days > 7.0 ? "disable" : ""}`}>
               <Button
                 noPadding={true}
                 className="w-8"
@@ -636,7 +628,10 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                   !tipDialog && dialog && this.setState({ dialog: false });
                 }}
               >
-                <div className="entry-vote-btn" onClick={async () => await this.toggleDialog()}>
+                <div
+                  className="notranslate entry-vote-btn"
+                  onClick={async () => await this.toggleDialog()}
+                >
                   <div className={cls}>
                     <div className={tooltipClass}>
                       <span className={voteBtnClass}>{chevronUpSvgForVote}</span>

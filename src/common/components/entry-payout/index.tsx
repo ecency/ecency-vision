@@ -178,7 +178,7 @@ export const EntryPayout = (props: Props) => {
   }
 
   return searchPayout <= 0 ? (
-    <div>
+    <div className="notranslate">
       <Popover show={showPopover} setShow={setShowPopover}>
         <PopoverContent>
           <EntryPayoutDetail {...props} />
@@ -191,7 +191,7 @@ export const EntryPayout = (props: Props) => {
         className={_c(
           `entry-payout ${isPayoutDeclined ? "payout-declined" : ""} ${
             payoutLimitHit ? "payout-limit-hit" : ""
-          } notranslate`
+          }`
         )}
       >
         <FormattedCurrency {...props} value={shownPayout} />
