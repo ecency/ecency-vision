@@ -628,10 +628,7 @@ export class EntryVoteBtn extends BaseComponent<Props, State> {
                   !tipDialog && dialog && this.setState({ dialog: false });
                 }}
               >
-                <div
-                  className="notranslate entry-vote-btn"
-                  onClick={async () => await this.toggleDialog()}
-                >
+                <div className="entry-vote-btn" onClick={async () => await this.toggleDialog()}>
                   <div className={cls}>
                     <div className={tooltipClass}>
                       <span className={voteBtnClass}>{chevronUpSvgForVote}</span>
