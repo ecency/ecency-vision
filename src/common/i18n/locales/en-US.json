@@ -2428,6 +2428,8 @@
     "temporary-unavailable": "Temporary unavailable, please select other interpretation method",
     "view-votes": "View votes",
     "back-to-vote": "Back to vote",
-    "votes": "Votes"
+    "votes": "Votes",
+    "votes-list": "Votes list",
+    "show-voters": "Show voters"
   }
 }

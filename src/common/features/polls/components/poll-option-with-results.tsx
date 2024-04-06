@@ -30,7 +30,7 @@ export function PollOptionWithResults({ choice, activeChoice, entry }: Props) {
       className={classNameObject({
         "min-h-[52px] relative overflow-hidden flex items-center gap-4 duration-300 cursor-pointer text-sm px-4 py-3 rounded-2xl":
           true,
-        "bg-gray-200 dark:bg-dark-200": activeChoice !== choice
+        "bg-gray-200 dark:bg-dark-200": true
       })}
     >
       <div

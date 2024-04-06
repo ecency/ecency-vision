@@ -8,6 +8,7 @@ import { Entry } from "../../../store/entries/types";
 import { useGetPollDetailsQuery } from "../api";
 import { PollOption } from "./poll-option";
 import { PollOptionWithResults } from "./poll-option-with-results";
+import { PollVotesListDialog } from "./poll-votes-list-dialog";
 
 interface Props {
   poll: PollSnapshot;
@@ -74,6 +75,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             <Button appearance="link" size="sm" onClick={() => setResultsMode(!resultsMode)}>
               {_t(resultsMode ? "polls.back-to-vote" : "polls.view-votes")}
             </Button>
+            {resultsMode && <PollVotesListDialog entry={entry} />}
           </>
         )}
       </div>
