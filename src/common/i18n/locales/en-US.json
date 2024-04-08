@@ -2406,6 +2406,7 @@
     "help-hint": "Have any questions? Check out help center"
   },
   "polls": {
+    "poll": "Poll",
     "title": "Create a poll",
     "edit-title": "Edit a poll",
     "title-placeholder": "Poll question",

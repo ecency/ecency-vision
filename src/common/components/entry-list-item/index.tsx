@@ -29,6 +29,7 @@ import useMount from "react-use/lib/useMount";
 import { useUnmount } from "react-use";
 import { Community } from "../../store/communities";
 import { EntryListItemThumbnail } from "./entry-list-item-thumbnail";
+import { Badge } from "@ui/badge";
 
 setProxyBase(defaults.imageServer);
 
@@ -207,6 +208,9 @@ export function EntryListItem({
             <Tooltip content={_t("entry-list-item.pinned")}>
               <span className="pinned">{pinSvg}</span>
             </Tooltip>
+          )}
+          {(entry.json_metadata as any).content_type === "poll" && (
+            <Badge appearance="secondary">{_t("polls.poll")}</Badge>
           )}
           {reBlogged && (
             <span className="reblogged">
