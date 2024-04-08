@@ -19,6 +19,8 @@ export interface PollSnapshot {
   choices: string[];
   filters: {
     accountAge: number;
+    voteChange: boolean;
+    currentStanding: boolean;
   };
   endTime: Date;
   interpretation: "number_of_votes" | "tokens";
@@ -46,7 +48,11 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
     endDate,
     setEndDate,
     interpretation,
-    setInterpretation
+    setInterpretation,
+    currentStanding,
+    setCurrentStanding,
+    voteChange,
+    setVoteChange
   } = usePollsCreationManagement(existingPoll);
 
   const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
@@ -135,6 +141,18 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
             <option value="tokens">{_t("polls.tokens")}</option>
           </FormControl>
+          <FormControl
+            type="checkbox"
+            label={_t("polls.vote-change")}
+            checked={!!voteChange}
+            onChange={(e: boolean) => setVoteChange(e)}
+          />
+          <FormControl
+            type="checkbox"
+            label={_t("polls.current-standing")}
+            checked={!!currentStanding}
+            onChange={(e: boolean) => setCurrentStanding(e)}
+          />
           {interpretation === "tokens" && (
             <div className="text-sm text-center py-3 text-red mx-auto">
               {_t("polls.temporary-unavailable")}
@@ -183,7 +201,9 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
                     endTime: endDate,
                     choices,
                     filters: {
-                      accountAge
+                      accountAge,
+                      voteChange: !!voteChange,
+                      currentStanding: !!currentStanding
                     },
                     interpretation
                   });

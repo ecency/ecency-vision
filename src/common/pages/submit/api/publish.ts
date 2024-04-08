@@ -28,7 +28,7 @@ import { buildPollJsonMetadata } from "../../../features/polls/utils";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
-  const { activePoll } = useContext(PollsContext);
+  const { activePoll, clearActivePoll } = useContext(PollsContext);
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
 
@@ -162,6 +162,7 @@ export function usePublishApi(history: History, onClear: () => void) {
 
         success(_t("submit.published"));
         onClear();
+        clearActivePoll();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
 

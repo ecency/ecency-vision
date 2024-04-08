@@ -2435,6 +2435,8 @@
     "vote-confirmation-and-sign": "Sign and confirm your vote",
     "your-choice": "Your choice",
     "not-found": "Poll not found",
-    "voting": "Voting..."
+    "voting": "Voting...",
+    "vote-change": "Allow users change a vote",
+    "current-standing": "Allow users view results before voting"
   }
 }

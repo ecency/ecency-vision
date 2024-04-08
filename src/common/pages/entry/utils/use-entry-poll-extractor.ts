@@ -15,7 +15,10 @@ export function useEntryPollExtractor(entry?: Entry) {
         endTime: new Date((entry.json_metadata as JsonPollMetadata)?.end_time * 1000),
         interpretation: (entry.json_metadata as JsonPollMetadata)?.preferred_interpretation,
         filters: {
-          accountAge: (entry.json_metadata as JsonPollMetadata)?.filters.account_age
+          accountAge: (entry.json_metadata as JsonPollMetadata)?.filters.account_age,
+          voteChange: (entry.json_metadata as JsonPollMetadata)?.filters.vote_change ?? true,
+          currentStanding:
+            (entry.json_metadata as JsonPollMetadata)?.filters.current_standing ?? true
         }
       } as PollSnapshot;
     }

@@ -115,9 +115,16 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
                 {_t(isVoting ? "polls.voting" : "polls.vote")}
               </Button>
             )}
-            <Button appearance="link" size="sm" onClick={() => setResultsMode(!resultsMode)}>
-              {_t(resultsMode ? "polls.back-to-vote" : "polls.view-votes")}
-            </Button>
+            {poll.filters.voteChange && resultsMode && (
+              <Button appearance="link" size="sm" onClick={() => setResultsMode(false)}>
+                {_t("polls.back-to-vote")}
+              </Button>
+            )}
+            {poll.filters.currentStanding && !resultsMode && (
+              <Button appearance="link" size="sm" onClick={() => setResultsMode(true)}>
+                {_t("polls.view-votes")}
+              </Button>
+            )}
             {resultsMode && <PollVotesListDialog entry={entry} />}
           </>
         )}
