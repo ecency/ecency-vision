@@ -2421,7 +2421,7 @@
     "account-age": "Account age for voting(in days)",
     "end-time": "End time",
     "vote": "Vote",
-    "account-age-hint": "Only accounts with {{n}} days age allowed",
+    "account-age-hint": "Only accounts older than {{n}} days allowed",
     "preview-mode": "Preview mode",
     "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them.",
     "number_of_votes": "By number of votes",

@@ -19,7 +19,10 @@ export function PollVotesListDialog({ entry }: Props) {
   const [show, setShow] = useState(false);
   const [chosenChoice, setChosenChoice] = useState<string>();
 
-  const pollChoices = useMemo(() => poll?.poll_choices ?? [], [poll?.poll_choices]);
+  const pollChoices = useMemo(
+    () => (poll?.poll_choices ?? []).filter((ch) => !!ch),
+    [poll?.poll_choices]
+  );
   const pollVotes = useMemo(
     () =>
       (poll?.poll_voters ?? []).filter((vote) =>

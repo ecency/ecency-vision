@@ -10,6 +10,8 @@ import { PollOptionWithResults } from "./poll-option-with-results";
 import { PollVotesListDialog } from "./poll-votes-list-dialog";
 import { UilPanelAdd } from "@iconscout/react-unicons";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { StyledTooltip } from "../../../components/tooltip";
+import { format } from "date-fns";
 
 interface Props {
   poll: PollSnapshot;
@@ -36,6 +38,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
     () => dateToFullRelative(poll.endTime.toISOString()),
     [poll.endTime]
   );
+  const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
 
   useEffect(() => {
     if (activeUserVote) {
@@ -56,17 +59,20 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   return (
     <div className="grid grid-cols-4">
-      <div className="col-span-4 sm:col-span-3 xl:col-span-2 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
-        <div className="text-xs uppercase tracking-wide font-semibold opacity-50">
-          {_t("polls.post-poll")}
-          {isReadOnly && <span>({_t("polls.preview-mode")})</span>}
-        </div>
-        <div className="mb-4">
-          <div>{poll.title}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            {_t("polls.end-time")}:
-            <span className="text-blue-dark-sky pl-1 font-semibold">{endTimeFormat}</span>
+      <div className="col-span-4 sm:col-span-3 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
+        {isReadOnly && (
+          <div className="text-xs uppercase tracking-wide font-semibold opacity-50">
+            {_t("polls.preview-mode")}
           </div>
+        )}
+        <div className="mb-4 flex items-start justify-between gap-4">
+          <div className="font-semibold text-lg">{poll.title}</div>
+          <StyledTooltip content={endTimeFullDate}>
+            <div className="text-sm text-gray-600 py-1 dark:text-gray-400 whitespace-nowrap">
+              {_t("polls.end-time")}:
+              <span className="text-blue-dark-sky pl-1 font-semibold">{endTimeFormat}</span>
+            </div>
+          </StyledTooltip>
         </div>
         {poll.filters.accountAge > 0 && (
           <div className="text-sm text-gray-600 dark:text-gray-400">

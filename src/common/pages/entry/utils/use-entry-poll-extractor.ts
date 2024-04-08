@@ -20,5 +20,5 @@ export function useEntryPollExtractor(entry?: Entry) {
       } as PollSnapshot;
     }
     return undefined;
-  }, []);
+  }, [entry]);
 }
