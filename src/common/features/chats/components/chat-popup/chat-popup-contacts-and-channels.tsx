@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { _t } from "../../../../i18n";
 import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
@@ -18,14 +18,32 @@ export function ChatPopupContactsAndChannels({
   setShowSearchUser
 }: Props) {
   const { privateKey } = useKeysQuery();
+
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
+
+  const nonPinnedDirectContacts = useMemo(
+    () => directContacts?.filter((dc) => !dc.pinned),
+    [directContacts]
+  );
+  const pinnedDirectContacts = useMemo(
+    () => directContacts?.filter((dc) => !!dc.pinned),
+    [directContacts]
+  );
 
   return (
     <>
       {(directContacts?.length !== 0 || (channels?.length !== 0 && channels?.length !== 0)) &&
       privateKey ? (
         <>
+          {pinnedDirectContacts?.map((contact) => (
+            <ChatSidebarDirectContact
+              isLink={false}
+              contact={contact}
+              onClick={() => userClicked(contact.name)}
+              key={contact.pubkey}
+            />
+          ))}
           {channels?.length !== 0 && (
             <>
               <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
@@ -48,7 +66,7 @@ export function ChatPopupContactsAndChannels({
               )}
             </>
           )}
-          {directContacts?.map((user) => (
+          {nonPinnedDirectContacts?.map((user) => (
             <ChatSidebarDirectContact
               isLink={false}
               contact={user}
