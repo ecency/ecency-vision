@@ -1,10 +1,11 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { _t } from "../../../../i18n";
 import { ChatsWelcome } from "../chats-welcome";
 import { Button } from "@ui/button";
 import { useChannelsQuery, useDirectContactsQuery, useKeysQuery } from "@ecency/ns-query";
 import { ChatSidebarDirectContact } from "../chats-sidebar/chat-sidebar-direct-contact";
 import { ChatSidebarChannel } from "../chats-sidebar/chat-sidebar-channel";
+import { useComposedContactsAndChannelsQuery } from "../../queries";
 
 interface Props {
   communityClicked: (v: string) => void;
@@ -21,59 +22,32 @@ export function ChatPopupContactsAndChannels({
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
-
-  const nonPinnedDirectContacts = useMemo(
-    () => directContacts?.filter((dc) => !dc.pinned),
-    [directContacts]
-  );
-  const pinnedDirectContacts = useMemo(
-    () => directContacts?.filter((dc) => !!dc.pinned),
-    [directContacts]
-  );
+  const composedContactsAndChannels = useComposedContactsAndChannelsQuery();
 
   return (
     <>
       {(directContacts?.length !== 0 || (channels?.length !== 0 && channels?.length !== 0)) &&
       privateKey ? (
         <>
-          {pinnedDirectContacts?.map((contact) => (
-            <ChatSidebarDirectContact
-              isLink={false}
-              contact={contact}
-              onClick={() => userClicked(contact.name)}
-              key={contact.pubkey}
-            />
-          ))}
-          {channels?.length !== 0 && (
-            <>
-              <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
-                {_t("chat.communities")}
-              </div>
-              {channels?.map((channel) => (
-                <ChatSidebarChannel
-                  isChannel={false}
-                  key={channel.id}
-                  channel={channel}
-                  username={channel.communityName!!}
-                  onClick={() => communityClicked(channel.communityName!)}
-                  isLink={false}
-                />
-              ))}
-              {directContacts?.length !== 0 && (
-                <div className="px-3 pt-3 pb-2 text-xs uppercase font-bold text-gray-500">
-                  {_t("chat.dms")}
-                </div>
-              )}
-            </>
+          {composedContactsAndChannels.map((contactOrChannel) =>
+            "id" in contactOrChannel ? (
+              <ChatSidebarChannel
+                isChannel={false}
+                key={contactOrChannel.id}
+                channel={contactOrChannel}
+                username={contactOrChannel.communityName!!}
+                onClick={() => communityClicked(contactOrChannel.communityName!)}
+                isLink={false}
+              />
+            ) : (
+              <ChatSidebarDirectContact
+                isLink={false}
+                contact={contactOrChannel}
+                onClick={() => userClicked(contactOrChannel.name)}
+                key={contactOrChannel.pubkey}
+              />
+            )
           )}
-          {nonPinnedDirectContacts?.map((user) => (
-            <ChatSidebarDirectContact
-              isLink={false}
-              contact={user}
-              onClick={() => userClicked(user.name)}
-              key={user.pubkey}
-            />
-          ))}
         </>
       ) : !privateKey ? (
         <ChatsWelcome />

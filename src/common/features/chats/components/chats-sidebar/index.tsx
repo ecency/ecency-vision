@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import { History } from "history";
 import { ChatSidebarHeader } from "./chat-sidebar-header";
 import { ChatSidebarSearch } from "./chat-sidebar-search";
@@ -12,7 +12,7 @@ import {
   useChannelsQuery,
   useDirectContactsQuery
 } from "@ecency/ns-query";
-import { useSearchUsersQuery } from "../../queries";
+import { useComposedContactsAndChannelsQuery, useSearchUsersQuery } from "../../queries";
 import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
 import { Community } from "../../../../store/communities";
 import { Reputations } from "../../../../api/hive";
@@ -32,6 +32,7 @@ export default function ChatsSideBar(props: Props) {
 
   const { data: directContacts } = useDirectContactsQuery();
   const { data: channels } = useChannelsQuery();
+  const composedContactsAndChannels = useComposedContactsAndChannelsQuery();
   const chatsSideBarRef = React.createRef<HTMLDivElement>();
 
   const [selectedAccount, setSelectedAccount] = useState("");
@@ -44,15 +45,6 @@ export default function ChatsSideBar(props: Props) {
 
   useCreateTemporaryContact(selectedAccount);
   useCreateTemporaryChannel(selectedCommunity);
-
-  const nonPinnedDirectContacts = useMemo(
-    () => directContacts?.filter((dc) => !dc.pinned),
-    [directContacts]
-  );
-  const pinnedDirectContacts = useMemo(
-    () => directContacts?.filter((dc) => !!dc.pinned),
-    [directContacts]
-  );
 
   return (
     <div className="flex flex-col md:h-full">
@@ -84,30 +76,22 @@ export default function ChatsSideBar(props: Props) {
           ))
         ) : (
           <>
-            {pinnedDirectContacts?.map((contact) => (
-              <ChatSidebarDirectContact isLink={true} key={contact.pubkey} contact={contact} />
-            ))}
-            {channels?.length !== 0 && (
-              <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
-                {_t("chat.communities")}
-              </div>
+            {composedContactsAndChannels.map((contactOrChannel) =>
+              "id" in contactOrChannel ? (
+                <ChatSidebarChannel
+                  isChannel={props.isChannel}
+                  key={contactOrChannel.id}
+                  channel={contactOrChannel}
+                  username={username}
+                />
+              ) : (
+                <ChatSidebarDirectContact
+                  isLink={true}
+                  key={contactOrChannel.pubkey}
+                  contact={contactOrChannel}
+                />
+              )
             )}
-            {channels?.map((channel) => (
-              <ChatSidebarChannel
-                isChannel={props.isChannel}
-                key={channel.id}
-                channel={channel}
-                username={username}
-              />
-            ))}
-            {nonPinnedDirectContacts?.length !== 0 && (
-              <div className="mt-4 mb-2 text-xs font-semibold text-gray-500 uppercase px-3">
-                {_t("chat.direct-messages")}
-              </div>
-            )}
-            {nonPinnedDirectContacts?.map((contact) => (
-              <ChatSidebarDirectContact isLink={true} key={contact.pubkey} contact={contact} />
-            ))}
           </>
         )}
       </div>
