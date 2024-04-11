@@ -121,6 +121,7 @@ const App = (props: any) => {
         <Tracker />
         <UserActivityRecorder />
         <ChatContextProvider
+          storage={localStorage}
           privateApiHost={defaults.base}
           activeUsername={activeUser?.username}
           activeUserData={activeUserAccount}
