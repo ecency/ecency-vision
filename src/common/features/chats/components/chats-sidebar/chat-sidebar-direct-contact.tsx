@@ -134,6 +134,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
 
   return (
     <Dropdown
+      className="border-b border-[--border-color] last:border-0"
       closeOnClickOutside={true}
       show={showContextMenu}
       setShow={(v) => setShowContextMenu(v)}
@@ -162,7 +163,6 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
         onTouchStart={() => setHoldStarted(true)}
         onTouchEnd={() => {
           setHoldStarted(false);
-          console.log("touch ended");
 
           setTimeout(() => {
             if (!holdStarted) {
@@ -186,7 +186,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
           setShowContextMenu(true);
         }}
         className={classNameObject({
-          "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
+          "flex items-center text-dark-200 gap-3 p-3 last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer":
             true,
           "bg-gray-100 dark:bg-gray-800": receiverPubKey === contact.pubkey
         })}
