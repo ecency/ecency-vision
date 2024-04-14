@@ -2437,6 +2437,7 @@
     "not-found": "Poll not found",
     "voting": "Voting...",
     "vote-change": "Allow users change a vote",
-    "current-standing": "Allow users view results before voting"
+    "current-standing": "Allow users view results before voting",
+    "finished": "Finished"
   }
 }

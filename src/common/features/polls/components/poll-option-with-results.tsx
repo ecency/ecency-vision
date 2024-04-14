@@ -38,14 +38,14 @@ export function PollOptionWithResults({ choice, activeChoice, entry }: Props) {
           "bg-blue-dark-sky bg-opacity-50 min-h-[52px] absolute top-0 left-0 bottom-0": true
         })}
         style={{
-          width: `${(votesCount * 100) / totalVotes}%`
+          width: `${((votesCount * 100) / totalVotes).toFixed(2)}%`
         }}
       />
       {activeChoice === choice && <PollCheck checked={activeChoice === choice} />}
       <div className="flex w-full gap-2 justify-between">
         <span>{choice}</span>
         <span className="text-xs whitespace-nowrap">
-          {(votesCount * 100) / totalVotes}% ({votesCount} {_t("polls.votes")})
+          {((votesCount * 100) / totalVotes).toFixed(2)}% ({votesCount} {_t("polls.votes")})
         </span>
       </div>
     </div>

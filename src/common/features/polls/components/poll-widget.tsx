@@ -11,7 +11,7 @@ import { PollVotesListDialog } from "./poll-votes-list-dialog";
 import { UilPanelAdd } from "@iconscout/react-unicons";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { StyledTooltip } from "../../../components/tooltip";
-import { format } from "date-fns";
+import { format, isBefore } from "date-fns";
 
 interface Props {
   poll: PollSnapshot;
@@ -39,6 +39,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
     [poll.endTime]
   );
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
+  const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
 
   useEffect(() => {
     if (activeUserVote) {
@@ -69,8 +70,14 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
           <div className="font-semibold text-lg">{poll.title}</div>
           <StyledTooltip content={endTimeFullDate}>
             <div className="text-sm text-gray-600 py-1 dark:text-gray-400 whitespace-nowrap">
-              {_t("polls.end-time")}:
-              <span className="text-blue-dark-sky pl-1 font-semibold">{endTimeFormat}</span>
+              {isFinished ? (
+                _t("polls.finished")
+              ) : (
+                <>
+                  {_t("polls.end-time")}:
+                  <span className="text-blue-dark-sky pl-1 font-semibold">{endTimeFormat}</span>
+                </>
+              )}
             </div>
           </StyledTooltip>
         </div>
