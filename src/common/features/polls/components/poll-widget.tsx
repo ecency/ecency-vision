@@ -51,8 +51,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   }, [activeUserVote, pollDetails.data]);
 
   useEffect(() => {
-    setResultsMode(isVotedAlready);
-  }, [isVotedAlready]);
+    setResultsMode(isVotedAlready || isFinished);
+  }, [isVotedAlready, isFinished]);
 
   useEffect(() => {
     setIsVotedAlready(!!activeUserVote);
