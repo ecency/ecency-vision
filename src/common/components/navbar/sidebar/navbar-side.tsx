@@ -7,11 +7,11 @@ import { History } from "history";
 import { Button } from "@ui/button";
 import { closeSvg } from "../../../img/svg";
 import { NavbarPerksButton } from "../navbar-perks-button";
-import { walletIconSvg } from "../../decks/icons";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { NavbarNotificationsButton } from "../navbar-notifications-button";
 import { UilEditAlt } from "@iconscout/react-unicons";
 import { classNameObject } from "../../../helper/class-name-object";
+import { walletIconSvg } from "../../../features/decks/icons";
 
 interface Props {
   show: boolean;

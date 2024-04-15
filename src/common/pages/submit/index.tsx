@@ -67,7 +67,7 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { IntroTour } from "@ui/intro-tour";
 import { IntroStep } from "@ui/core";
-import { dotsMenuIconSvg } from "../../components/decks/icons";
+import { dotsMenuIconSvg } from "../../features/decks/icons";
 
 interface MatchProps {
   match: MatchType;
