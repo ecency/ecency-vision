@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { renderPostBody } from "@ecency/render-helper";
 import { IdentifiableEntry } from "../deck-threads-manager";
@@ -14,6 +14,7 @@ import {
   renderTweets,
   renderVideos
 } from "./deck-thread-item-body-render-helper";
+import { renderLiketu } from "../helpers";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -50,13 +51,17 @@ export const DeckThreadItemBody = ({
     if (!renderInitiated) {
       renderBody();
     }
-  }, [height]);
+  }, [height, entry]);
 
   const renderBody = async () => {
     setRenderInitiated(true);
 
     if (renderAreaRef.current) {
       renderAreaRef.current.innerHTML = await renderCurrencies(renderAreaRef?.current?.innerHTML);
+    }
+
+    if (entry.parent_author === "liketu.moments") {
+      return;
     }
 
     renderTags(renderAreaRef);
@@ -71,12 +76,20 @@ export const DeckThreadItemBody = ({
     renderTweets(renderAreaRef);
   };
 
+  const renderContentBody = useCallback(() => {
+    if (entry.parent_author === "liketu.moments") {
+      return renderLiketu(entry);
+    }
+
+    return renderPostBody(entry, true, global.canUseWebp);
+  }, [entry, global.canUseWebp]);
+
   return (
     <div className="thread-item-body">
       <div
         ref={renderAreaRef}
         className="thread-render"
-        dangerouslySetInnerHTML={{ __html: renderPostBody(entry, true, global.canUseWebp) }}
+        dangerouslySetInnerHTML={{ __html: renderContentBody() }}
       />
       {currentViewingImage &&
         createPortal(

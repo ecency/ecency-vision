@@ -161,7 +161,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       data={data}
       newDataComingCondition={(newData) => newDataComingPaginatedCondition(newData, prevData)}
       isReloading={isReloading}
-      isVirtualScroll={false}
+      isVirtualScroll={["ecency.waves", "liketu.moments"].includes(settings.host)}
       isExpanded={!!currentViewingEntry}
       isFirstLoaded={isFirstLoaded}
       onReload={() => fetchData()}
