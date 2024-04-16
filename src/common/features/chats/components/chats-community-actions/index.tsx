@@ -13,8 +13,8 @@ import {
 import { BlockedUsersModal } from "./blocked-users-modal";
 import { useCommunityCache } from "../../../../core";
 import { useMappedStore } from "../../../../store/use-mapped-store";
-import { userIconSvg } from "../../../../components/decks/icons";
 import { HiddenMessagesModal } from "./hidden-messages-modal";
+import { userIconSvg } from "../../../decks/icons";
 
 interface Props {
   channel?: Channel;
