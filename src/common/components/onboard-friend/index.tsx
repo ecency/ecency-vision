@@ -333,7 +333,7 @@ const OnboardFriend = (props: Props | any) => {
           {step === "creating" &&
             <div className="animation-container">
               <h4>Creating Account</h4>
-              <span className="text-success animation-text">Please wait...</span>
+              <h5 className="text-success animation-text">Please wait...</h5>
             </div>
           } 
           {step=== "confirm" && <>
