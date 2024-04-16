@@ -14,6 +14,7 @@ import LoginRequired from "../login-required";
 import defaults from "../../constants/defaults.json";
 
 import {renderPostBody, setProxyBase} from "@ecency/render-helper";
+import { getCommunity } from "../../api/bridge";
 
 setProxyBase(defaults.imageServer);
 
@@ -72,14 +73,16 @@ interface Props {
 interface State {
     text: string,
     preview: string,
-    showEmoji: boolean
+    showEmoji: boolean,
+    communityData: any,
 }
 
 export class Comment extends Component<Props, State> {
     state: State = {
         text: '',
         preview: '',
-        showEmoji: false
+        showEmoji: false,
+        communityData: {}
     }
 
     _updateTimer: any = null;
@@ -87,6 +90,7 @@ export class Comment extends Component<Props, State> {
     componentDidMount(): void {
         const {defText} = this.props;
         this.setState({text: defText || "", preview: defText || ""});
+        this.getCommunityInfo()
     }
 
     componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -129,13 +133,11 @@ export class Comment extends Component<Props, State> {
     };
 
     submit = async () => {
-        const {text} = this.state;
+        const {text, communityData} = this.state;
         const {onSubmit, activeUser} = this.props;
         try {            
             onSubmit(text);
-            const res = await updateUserPoints(activeUser!.username, "Hive Rally", "comments")
-            console.log("commented")
-            console.log(res);
+            const res = await updateUserPoints(activeUser!.username, communityData.title, "comments")
         } catch (error) {
             
         }
@@ -145,6 +147,11 @@ export class Comment extends Component<Props, State> {
         const {onCancel} = this.props;
         if (onCancel) onCancel();
     }
+
+    getCommunityInfo = async () => {
+        const communityData = await getCommunity(this.props.global.hive_id)
+        this.setState({communityData})
+      }
 
     render() {
         const {inProgress, cancellable, autoFocus, submitText, inputRef} = this.props;

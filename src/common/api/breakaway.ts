@@ -47,7 +47,7 @@ export const processLogin = async (username: string, ts: string, sig: string, co
 
     const { token, ...user } = response.data.response;
 
-    console.log('Login Successful', response);
+    console.log('Login Successful...');
     return response;
 
   } catch (error) { 
@@ -67,7 +67,6 @@ export const claimBaPoints = async (username: string, community: string) => {
       },
     }
     );
-    console.log(response)
 
     return response;
 } catch (error) {
@@ -95,7 +94,6 @@ export const updateUserPoints = async (username: string, community: string, poin
       community,
       pointType,
     };
-    console.log(requestData)
 
     const response = await axios.post(`${baUrl}/points`, 
       requestData,
@@ -106,7 +104,6 @@ export const updateUserPoints = async (username: string, community: string, poin
       }
     );
 
-    console.log(response.data);
     return response;
   } catch (error) {
     console.log('Error updating user points:', error);

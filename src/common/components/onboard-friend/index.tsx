@@ -100,7 +100,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRC(activeUser?.username, urlInfo!.username, rcAmount * 1e9)
         }
-        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -125,7 +125,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -150,7 +150,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRC(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {
@@ -176,7 +176,7 @@ const OnboardFriend = (props: Props | any) => {
         if(isChecked){
           await delegateRcKc(urlInfo!.referral, urlInfo!.username, rcAmount * 1e9)
         }
-        // await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
+        await createBreakawayUser(urlInfo!.username, props.global.hive_id, urlInfo!.referral, urlInfo!.email)
         setStep("success");
         setMsg("Account created successfully")
       } else {

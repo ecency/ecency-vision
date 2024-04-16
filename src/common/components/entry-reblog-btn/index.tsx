@@ -21,6 +21,8 @@ import _c from "../../util/fix-class-names";
 
 import {repeatSvg} from "../../img/svg";
 import { updateUserPoints } from "../../api/breakaway";
+import { Global } from "../../store/global/types";
+import { getCommunity } from "../../api/bridge";
 
 interface Props {
     entry: Entry;
@@ -28,6 +30,7 @@ interface Props {
     activeUser: ActiveUser | null;
     reblogs: Reblogs;
     ui: UI;
+    global: Global;
     setActiveUser: (username: string | null) => void;
     updateActiveUser: (data?: Account) => void;
     deleteUser: (username: string) => void;
@@ -39,21 +42,24 @@ interface Props {
 
 interface State {
     inProgress: boolean;
+    communityData: any
 }
 
 export class EntryReblogBtn extends BaseComponent<Props> {
     state: State = {
         inProgress: false,
+        communityData: {}
     };
 
     componentDidMount() {
-        const {activeUser, reblogs, fetchReblogs} = this.props;
+        const {activeUser, reblogs, fetchReblogs, global} = this.props;
         if (activeUser && reblogs.canFetch) {
             // since @active-user/LOGIN resets reblogs reducer, wait 500 ms on first load
             // to clientStoreTasks (store/helper.ts) finish its job with logging active user in.
             // Otherwise condenser_api.get_blog_entries will be called 2 times on page load.
             setTimeout(fetchReblogs, 500);
         }
+        this.getCurrentCommunity()
     }
 
     componentDidUpdate(prevProps: Readonly<Props>) {
@@ -65,14 +71,13 @@ export class EntryReblogBtn extends BaseComponent<Props> {
 
     reblog = () => {
         const {entry, activeUser, addReblog} = this.props;
+        const { communityData } = this.state;
 
         this.stateSet({inProgress: true});
         reblog(activeUser?.username!, entry.author, entry.permlink)
             .then(async () => {
                 addReblog(entry.author, entry.permlink);
-                const baResponse = await updateUserPoints(activeUser!.username, "Hive Rally", "reblog")
-                console.log("Reblogged")
-                console.log(baResponse);
+                const baResponse = await updateUserPoints(activeUser!.username, communityData.title, "reblog")
                 success(_t("entry-reblog.success"));
             })
             .catch((e) => {
@@ -99,6 +104,14 @@ export class EntryReblogBtn extends BaseComponent<Props> {
                 this.stateSet({inProgress: false});
             });
     }
+
+    getCurrentCommunity = async () => {
+        const communityId = this.props.global.hive_id
+        const community = await getCommunity(communityId);
+        if (community) {
+          this.setState({communityData: community})
+        }
+      }
 
     render() {
         const {activeUser, entry, reblogs} = this.props;
@@ -163,7 +176,8 @@ export default (p: Props) => {
         fetchReblogs: p.fetchReblogs,
         addReblog: p.addReblog,
         deleteReblog: p.deleteReblog,
-        toggleUIProp: p.toggleUIProp
+        toggleUIProp: p.toggleUIProp,
+        global: p.global,
     }
 
     return <EntryReblogBtn {...props} />

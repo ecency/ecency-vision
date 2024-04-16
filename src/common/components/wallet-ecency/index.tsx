@@ -151,7 +151,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
             <div className="transaction-list-item">
                 <div className="transaction-icon">{icon}</div>
                 <div className="transaction-title">
-                    <div className="transaction-name" onClick={()=> console.log(this.props.pointsHistory)}>
+                    <div className="transaction-name">
                         {/* {tr.operationType} */}
                         {/* {lKey && _t(`points.${lKey}-list-desc`, {...lArgs})} */}
                         {`Point for ${tr.operationType}`}
@@ -228,9 +228,7 @@ export const WalletEcency = (props: Props) => {
         global.isElectron && initiateOnElectron(user);
         getEstimatedPointsValue();
         getCommunityInfo(); 
-      console.log(props.global)
         if (communityInfo && isMounted ) {
-            // console.log(communityInfo)
           getPointsHistory(user, communityInfo?.title);
           getUserPoints();
         }
@@ -289,14 +287,11 @@ export const WalletEcency = (props: Props) => {
     //BREAKAWAY COMMUNITY LOGICS
 
     const getUserPoints = async (): Promise<any[] | undefined> => {
-        console.log("Points")
        
         try {
           const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.title);
-          console.log(response)
           if (response.status === 200) {
               const userPoints = response.data.userPoints;
-              console.log(userPoints[0])
               setUserPoints(userPoints[0])
             return userPoints;
           } else if (response.status === 404) {
@@ -317,10 +312,8 @@ export const WalletEcency = (props: Props) => {
         setClaiming(true)
         try {
           const response = await claimBaPoints(activeUser!.username, communityInfo?.title)
-          console.log(response)
       
           if (response.status === 200) {
-            console.log('Unclaimed points claimed successfully:', response.data);
             success(_t('points.claim-ok'));
             setClaimed(true)
             setClaiming(false)
@@ -338,9 +331,8 @@ export const WalletEcency = (props: Props) => {
 
       const getPointsHistory = async (username: string, community: string) => {
         try {
-          const response = await axios.get(`http://localhost:4000/points-history/${username}/${community}`);
+          const response = await axios.get(`https://breakaway-points-system-api.onrender.com/points-history/${username}/${community}`);
       
-          console.log('Points fetched successfully:', response.data.data.pointsHistory);
           if (response.status === 200) {
             setPointsHistory(response.data.data.pointsHistory)
             return response.data;
@@ -356,7 +348,6 @@ export const WalletEcency = (props: Props) => {
 
       const getCommunityInfo = async () => {
         const communityData = await getCommunity(props.global.hive_id)
-        console.log(communityData)
         setCommunityInfo(communityData)
       }
       
@@ -385,7 +376,6 @@ export const WalletEcency = (props: Props) => {
             filter: event.target.value,
         });
        const filtered = pointsHistory.filter((item: any) => item.operationType === event.target.value.toLowerCase());
-       console.log(filtered)
        return filtered;
     };
 
@@ -400,7 +390,7 @@ export const WalletEcency = (props: Props) => {
     return (
         <>
             <div className="wallet-ecency">
-                <span>{communityInfo ? communityInfo.title : "test"}</span>
+                {/* <span>{communityInfo ? communityInfo.title : "tst"}</span> */}
                 <div className="wallet-main">
                     {/* <Button className="" onClick={()=>ls.remove("ba_access_token")} >Test Verify</Button> */}
                     <div className="wallet-info">
