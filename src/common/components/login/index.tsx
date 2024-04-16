@@ -80,7 +80,6 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     const community = await getCommunity(communityId);
     if (community) {
       this.setState({community})
-      console.log(community)
     }
   }
 
@@ -103,7 +102,7 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   };
 
   login = async () => {
-    const { username } = this.state;
+    const { username, community } = this.state;
     if (!username) {
       return;
     }
@@ -147,18 +146,14 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
     this.stateSet({ inProgress: true });
 
     const signer = async (message: string): Promise<string> =>  {
-      console.log("message", JSON.parse(message))
       const ts: any = Date.now();
       const sign = await signBuffer(username, message, "Active").then((r) => r.result);
-      console.log("testing...ba")
       const signBa = await signBuffer(username, `${username}${ts}`, "Active").then((r) => r.result);
-      console.log("signingBa", signBa)
       if (sign) {
         // Should login to community dynamically
-        const login = await processLogin(username, ts, signBa, "Hive Rally");
+        const login = await processLogin(username, ts, signBa, community.title);
         const baToken = login?.data?.response?.token
         ls.set("ba_access_token", baToken)
-        console.log(username, login?.data?.response?.token)
       }
       return sign;
     }
@@ -193,7 +188,6 @@ export class LoginKc extends BaseComponent<LoginKcProps, LoginKcState> {
   render() {
     const { username, inProgress } = this.state;
     const { global } = this.props;
-    console.log(global)
 
     const keyChainLogo = global.isElectron
       ? "./img/keychain.png"
@@ -357,7 +351,6 @@ export class Login extends BaseComponent<LoginProps, State> {
     const community = await getCommunity(communityId);
     if (community) {
       this.setState({community})
-      console.log(community)
     }
   }
 
@@ -369,9 +362,6 @@ export class Login extends BaseComponent<LoginProps, State> {
   signer = async (username: string): Promise<string> =>  {
     const ts: any = Date.now();
     const signBa = await signBuffer(username, `${username}${ts}`, "Active").then((r) => r.result);
-    console.log("signBa", signBa)
-    console.log("global",this.props.global)
-    console.log(username, ts, signBa, this.state.community)
     if (signBa) {
       const login = await processLogin(username, ts, signBa, this.state.community.title);
       const baToken = login?.data?.response?.token
