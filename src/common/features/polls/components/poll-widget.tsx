@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { PollSnapshot } from "./polls-creation";
-import { dateToFullRelative } from "../../../helper/parse-date";
 import { _t } from "../../../i18n";
 import { Button } from "@ui/button";
 import { Entry } from "../../../store/entries/types";
@@ -8,10 +7,11 @@ import { useGetPollDetailsQuery, useSignPollVoteByKey } from "../api";
 import { PollOption } from "./poll-option";
 import { PollOptionWithResults } from "./poll-option-with-results";
 import { PollVotesListDialog } from "./poll-votes-list-dialog";
-import { UilPanelAdd } from "@iconscout/react-unicons";
+import { UilClock, UilPanelAdd } from "@iconscout/react-unicons";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { StyledTooltip } from "../../../components/tooltip";
 import { format, isBefore } from "date-fns";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { PREFIX } from "../../../util/local-storage";
 
 interface Props {
   poll: PollSnapshot;
@@ -33,11 +33,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const [activeChoice, setActiveChoice] = useState<string>();
   const [resultsMode, setResultsMode] = useState(false);
   const [isVotedAlready, setIsVotedAlready] = useState(false);
+  const [showEndDate, setShowEndDate] = useLocalStorage(PREFIX + "_plls_set", false);
 
-  const endTimeFormat = useMemo(
-    () => dateToFullRelative(poll.endTime.toISOString()),
-    [poll.endTime]
-  );
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
 
@@ -68,18 +65,23 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         )}
         <div className="mb-4 flex items-start justify-between gap-4">
           <div className="font-semibold text-lg">{poll.title}</div>
-          <StyledTooltip content={endTimeFullDate}>
-            <div className="text-sm text-gray-600 py-1 dark:text-gray-400 whitespace-nowrap">
-              {isFinished ? (
+          <div className="text-sm flex items-start gap-3 text-gray-600 py-1 min-h-[3rem] dark:text-gray-400 whitespace-nowrap">
+            {showEndDate &&
+              (isFinished ? (
                 _t("polls.finished")
               ) : (
-                <>
-                  {_t("polls.end-time")}:
-                  <span className="text-blue-dark-sky pl-1 font-semibold">{endTimeFormat}</span>
-                </>
-              )}
-            </div>
-          </StyledTooltip>
+                <div className="flex flex-col">
+                  <span>{_t("polls.end-time")}</span>
+                  <span className="text-blue-dark-sky font-semibold">{endTimeFullDate}</span>
+                </div>
+              ))}
+            <Button
+              noPadding={true}
+              icon={<UilClock />}
+              onClick={() => setShowEndDate(!showEndDate)}
+              appearance="gray-link"
+            />
+          </div>
         </div>
         {poll.filters.accountAge > 0 && (
           <div className="text-sm text-gray-600 dark:text-gray-400">
