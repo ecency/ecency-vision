@@ -39,7 +39,7 @@ import AddImage from "../add-image";
 import AddLink from "../add-link";
 import "./_index.scss";
 import { PollsCreation, PollSnapshot } from "../../features/polls";
-import { UilQuestion } from "@iconscout/react-unicons";
+import { UilPanelAdd } from "@iconscout/react-unicons";
 import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
@@ -499,7 +499,7 @@ export function EditorToolbar({
             })}
             onClick={() => setShowPollsCreation(!showPollsCreation)}
           >
-            <UilQuestion />
+            <UilPanelAdd />
           </div>
         </Tooltip>
       </div>

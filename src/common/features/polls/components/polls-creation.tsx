@@ -52,7 +52,8 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
     currentStanding,
     setCurrentStanding,
     voteChange,
-    setVoteChange
+    setVoteChange,
+    isExpiredEndDate
   } = usePollsCreationManagement(existingPoll);
 
   const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
@@ -85,6 +86,12 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
               onChange={(e: any) => setEndDate(new Date(e.target.value))}
             />
           </InputGroup>
+
+          {isExpiredEndDate && (
+            <div className="text-sm text-center py-3 text-red mx-auto">
+              {_t("polls.expired-date")}
+            </div>
+          )}
 
           <div className="flex flex-col gap-4 items-start mb-6">
             <div>{_t("polls.choices")}</div>
@@ -141,6 +148,11 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
             <option value="tokens">{_t("polls.tokens")}</option>
           </FormControl>
+          {interpretation === "tokens" && (
+            <div className="text-sm text-center py-3 text-red mx-auto">
+              {_t("polls.temporary-unavailable")}
+            </div>
+          )}
           <FormControl
             type="checkbox"
             label={_t("polls.vote-change")}
@@ -153,11 +165,6 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             checked={!!currentStanding}
             onChange={(e: boolean) => setCurrentStanding(e)}
           />
-          {interpretation === "tokens" && (
-            <div className="text-sm text-center py-3 text-red mx-auto">
-              {_t("polls.temporary-unavailable")}
-            </div>
-          )}
         </div>
       </ModalBody>
       <ModalFooter sticky={true}>
@@ -191,7 +198,8 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
                 hasEmptyOrDuplicatedChoices ||
                 !title ||
                 typeof accountAge !== "number" ||
-                interpretation === "tokens"
+                interpretation === "tokens" ||
+                isExpiredEndDate
               }
               iconPlacement="left"
               onClick={() => {
