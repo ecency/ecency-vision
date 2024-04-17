@@ -1381,18 +1381,16 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@ecency/ns-query@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.1.8.tgz#5e224c5aa0116f143a0734fc3723916e10ca90f3"
-  integrity sha512-EEIEsPlKmHr3UyrOSk9/d8TbcrUeCdvqFYb+2TVdIJOQKYJA4YB2z4AWjUfIafbYpX/XAnP6aDH6ZqrPaKRSlA==
+"@ecency/ns-query@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.2.3.tgz#057ec5d77fc5b379d05743bcd95f44971e19d2b1"
+  integrity sha512-5WiEmOlDu50ceeBdQkphhhMOggtdU/v2LOb832qTwUG6hrCj0YecU37uxDpGKYW4zIk3u5D4BKBZZR8BxCHTuA==
   dependencies:
     "@tanstack/react-query" "^4.29.7"
     axios "^0.21.2"
     date-fns "^2.30.0"
     nostr-tools "^1.17.0"
     react "^16.8.6"
-    react-dom "^16.8.6"
-    react-use "^17.4.1"
 
 "@ecency/render-helper-amp@^1.1.0":
   version "1.1.0"
@@ -1893,7 +1891,7 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.13.tgz#b6461fb0c2964356c469e115f504c95ad97ab88c"
   integrity sha512-GryiOJmNcWbovBxTfZSF71V/mXbgcV3MewDe3kIMCLyIh5e7SKAeUZs+rMnJ8jkMolZ/4/VsdBmMrw3l+VdZ3w==
 
-"@jridgewell/sourcemap-codec@^1.4.14", "@jridgewell/sourcemap-codec@^1.4.15":
+"@jridgewell/sourcemap-codec@^1.4.14":
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
@@ -5003,11 +5001,6 @@ csstype@^3.0.6:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
-csstype@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
-  integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
-
 currency-symbol-map@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/currency-symbol-map/-/currency-symbol-map-4.0.4.tgz#3cfba625974dd3f86822d327ecbd10248695e95e"
@@ -7109,14 +7102,6 @@ inline-style-prefixer@^6.0.0:
     css-in-js-utils "^3.1.0"
     fast-loops "^1.1.3"
 
-inline-style-prefixer@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-7.0.0.tgz#991d550735d42069f528ac1bcdacd378d1305442"
-  integrity sha512-I7GEdScunP1dQ6IM2mQWh6v0mOYdYmH3Bp31UecKdrcUgcURTcctSe1IECdUznSHKSmsHtjrT3CwCPI1pyxfUQ==
-  dependencies:
-    css-in-js-utils "^3.1.0"
-    fast-loops "^1.1.3"
-
 inquirer@7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
@@ -8922,20 +8907,6 @@ nano-css@^5.3.1:
     sourcemap-codec "^1.4.8"
     stacktrace-js "^2.0.2"
     stylis "^4.0.6"
-
-nano-css@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/nano-css/-/nano-css-5.6.1.tgz#964120cb1af6cccaa6d0717a473ccd876b34c197"
-  integrity sha512-T2Mhc//CepkTa3X4pUhKgbEheJHYAxD0VptuqFhDbGMUWVV2m+lkNiW/Ieuj35wrfC8Zm0l7HvssQh7zcEttSw==
-  dependencies:
-    "@jridgewell/sourcemap-codec" "^1.4.15"
-    css-tree "^1.1.2"
-    csstype "^3.1.2"
-    fastest-stable-stringify "^2.0.2"
-    inline-style-prefixer "^7.0.0"
-    rtl-css-js "^1.16.1"
-    stacktrace-js "^2.0.2"
-    stylis "^4.3.0"
 
 nanoid@^3.1.22, nanoid@^3.3.6:
   version "3.3.6"
@@ -10969,26 +10940,6 @@ react-use@^17.4.0:
     ts-easing "^0.2.0"
     tslib "^2.1.0"
 
-react-use@^17.4.1:
-  version "17.4.2"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.4.2.tgz#26d43c774ccb733a17a87be62e12fbcbc5654173"
-  integrity sha512-1jPtmWLD8OJJNYCdYLJEH/HM+bPDfJuyGwCYeJFgPmWY8ttwpgZnW5QnzgM55CYUByUiTjHxsGOnEpLl6yQaoQ==
-  dependencies:
-    "@types/js-cookie" "^2.2.6"
-    "@xobotyi/scrollbar-width" "^1.9.5"
-    copy-to-clipboard "^3.3.1"
-    fast-deep-equal "^3.1.3"
-    fast-shallow-equal "^1.0.0"
-    js-cookie "^2.2.1"
-    nano-css "^5.6.1"
-    react-universal-interface "^0.6.2"
-    resize-observer-polyfill "^1.5.1"
-    screenfull "^5.1.0"
-    set-harmonic-interval "^1.0.1"
-    throttle-debounce "^3.0.1"
-    ts-easing "^0.2.0"
-    tslib "^2.1.0"
-
 react-virtualized@^9.22.3:
   version "9.22.3"
   resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.22.3.tgz#f430f16beb0a42db420dbd4d340403c0de334421"
@@ -11480,13 +11431,6 @@ rtl-css-js@^1.14.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.16.0.tgz#e8d682982441aadb63cabcb2f7385f3fb78ff26e"
   integrity sha512-Oc7PnzwIEU4M0K1J4h/7qUUaljXhQ0kCObRsZjxs2HjkpKsnoTMvSmvJ4sqgJZd0zBoEfAyTdnK/jMIYvrjySQ==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-
-rtl-css-js@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.16.1.tgz#4b48b4354b0ff917a30488d95100fbf7219a3e80"
-  integrity sha512-lRQgou1mu19e+Ya0LsTvKrVJ5TYUbqCVPAiImX3UfLTenarvPUl1QFdvu5Z3PYmHT9RCcwIfbjRQBntExyj3Zg==
   dependencies:
     "@babel/runtime" "^7.1.2"
 
@@ -12504,11 +12448,6 @@ stylis@^4.0.6:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.1.3.tgz#fd2fbe79f5fed17c55269e16ed8da14c84d069f7"
   integrity sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==
-
-stylis@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.3.0.tgz#abe305a669fc3d8777e10eefcfc73ad861c5588c"
-  integrity sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==
 
 sucrase@^3.32.0:
   version "3.34.0"

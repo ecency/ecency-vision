@@ -13,6 +13,7 @@ import {
 import { _t } from "../../../../i18n";
 import { Badge } from "@ui/badge";
 import { useCommunityCache } from "../../../../core";
+import { UilUsersAlt } from "@iconscout/react-unicons";
 
 interface Props {
   username: string;
@@ -42,6 +43,9 @@ export function ChatSidebarChannel({
   const content = (
     <>
       <UserAvatar username={channel.communityName!} size="medium" />
+      <div className="absolute bottom-2.5 left-2.5 w-5 h-5 text-blue-dark-sky flex items-center justify-center rounded-full bg-white">
+        <UilUsersAlt size={14} />
+      </div>
       <div className="flex flex-col w-[calc(100%-40px-0.75rem)]">
         <div className="flex justify-between w-full items-center">
           <div className="font-semibold truncate dark:text-white">{channel.name}</div>
@@ -63,7 +67,7 @@ export function ChatSidebarChannel({
   return isLink ? (
     <Link
       className={classNameObject({
-        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
+        "flex items-center relative text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
           true,
         "bg-gray-100 dark:bg-gray-800": rawUsername === channel.communityName && isChannel
       })}
@@ -81,7 +85,7 @@ export function ChatSidebarChannel({
   ) : (
     <div
       className={classNameObject({
-        "flex items-center text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
+        "flex items-center relative text-dark-200 gap-3 p-3 border-b border-[--border-color] last:border-0 hover:bg-gray-100 dark:hover:bg-gray-800":
           true,
         "bg-gray-100 dark:bg-gray-800": rawUsername === channel.communityName && isChannel
       })}

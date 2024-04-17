@@ -86,7 +86,7 @@ const EntryPage = (props: any) => {
 const PurchaseContainer = loadable(() => import("./pages/purchase"));
 const PurchasePage = (props: any) => <PurchaseContainer {...props} />;
 
-const DecksPage = loadable(() => import("./pages/decks"));
+const DecksPage = loadable(() => import("./features/decks/screens/decks"));
 const EcencyPerksPage = loadable(() => import("./features/perks/screens/main"));
 
 const App = (props: any) => {
@@ -122,6 +122,7 @@ const App = (props: any) => {
         <Tracker />
         <UserActivityRecorder />
         <ChatContextProvider
+          storage={typeof window !== "undefined" ? window.localStorage : undefined}
           privateApiHost={defaults.base}
           activeUsername={activeUser?.username}
           activeUserData={activeUserAccount}

@@ -4,8 +4,8 @@ import { copyContent } from "../../img/svg";
 import { success } from "../feedback";
 import "./_index.scss";
 import { FormControl, InputGroup } from "@ui/input";
-import { searchIconSvg } from "../decks/icons";
 import { Button } from "@ui/button";
+import { searchIconSvg } from "../../features/decks/icons";
 
 type Props = any;
 
