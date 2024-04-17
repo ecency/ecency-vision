@@ -11,7 +11,7 @@ import EntryVoteBtn from "../entry-vote-btn/index";
 import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
-import Tooltip from "../tooltip";
+import Tooltip, { StyledTooltip } from "../tooltip";
 import EntryMenu from "../entry-menu";
 import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
@@ -29,7 +29,7 @@ import useMount from "react-use/lib/useMount";
 import { useUnmount } from "react-use";
 import { Community } from "../../store/communities";
 import { EntryListItemThumbnail } from "./entry-list-item-thumbnail";
-import { Badge } from "@ui/badge";
+import { UilPanelAdd } from "@iconscout/react-unicons";
 
 setProxyBase(defaults.imageServer);
 
@@ -202,15 +202,18 @@ export function EntryListItem({
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>
+
+          {(entry.json_metadata as any).content_type === "poll" && (
+            <StyledTooltip className="flex" content={_t("polls.poll")}>
+              <UilPanelAdd className="text-gray-600 dark:text-gray-400" size={16} />
+            </StyledTooltip>
+          )}
         </div>
         <div className="item-header-features">
           {((community && !!entry.stats?.is_pinned) || entry.permlink === pinned) && (
             <Tooltip content={_t("entry-list-item.pinned")}>
               <span className="pinned">{pinSvg}</span>
             </Tooltip>
-          )}
-          {(entry.json_metadata as any).content_type === "poll" && (
-            <Badge appearance="secondary">{_t("polls.poll")}</Badge>
           )}
           {reBlogged && (
             <span className="reblogged">

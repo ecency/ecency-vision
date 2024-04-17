@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { useMountedState } from "react-use";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   content: string | JSX.Element;
@@ -16,9 +17,10 @@ export default function ({ content, children }: Props) {
 interface StyledProps {
   children: ReactNode;
   content: ReactNode;
+  className?: string;
 }
 
-export function StyledTooltip({ children, content }: StyledProps) {
+export function StyledTooltip({ children, content, className }: StyledProps) {
   const [ref, setRef] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const [show, setShow] = useState(false);
@@ -30,7 +32,10 @@ export function StyledTooltip({ children, content }: StyledProps) {
   return isMounted() ? (
     <div
       ref={setRef}
-      className="styled-tooltip"
+      className={classNameObject({
+        "styled-tooltip": true,
+        [className ?? ""]: true
+      })}
       onMouseEnter={() => {
         setShow(true);
         popper.update?.();
