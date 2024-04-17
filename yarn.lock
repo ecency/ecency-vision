@@ -1381,7 +1381,7 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@ecency/ns-query@^1.2.3":
+"@ecency/ns-query@1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.2.3.tgz#057ec5d77fc5b379d05743bcd95f44971e19d2b1"
   integrity sha512-5WiEmOlDu50ceeBdQkphhhMOggtdU/v2LOb832qTwUG6hrCj0YecU37uxDpGKYW4zIk3u5D4BKBZZR8BxCHTuA==
