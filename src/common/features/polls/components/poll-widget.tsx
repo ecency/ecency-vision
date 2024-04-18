@@ -37,6 +37,18 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
+  const showViewVotes = useMemo(
+    () => poll.currentStanding && !resultsMode,
+    [poll.currentStanding, resultsMode]
+  );
+  const showChangeVote = useMemo(
+    () => poll.voteChange && resultsMode && pollDetails.data?.status === "Active",
+    [resultsMode, poll.voteChange, pollDetails.data?.status]
+  );
+  const showVote = useMemo(
+    () => pollDetails.data?.status === "Active" && !resultsMode,
+    [pollDetails.data?.status, resultsMode]
+  );
 
   useEffect(() => {
     if (activeUserVote) {
@@ -65,7 +77,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         )}
         <div className="mb-4 flex items-start justify-between gap-4">
           <div className="font-semibold text-lg">{poll.title}</div>
-          <div className="text-sm flex items-start gap-3 text-gray-600 py-1 min-h-[3rem] dark:text-gray-400 whitespace-nowrap">
+          <div className="text-sm flex items-center gap-3 text-gray-600 py-1 min-h-[3rem] dark:text-gray-400 whitespace-nowrap">
             {showEndDate &&
               (isFinished ? (
                 _t("polls.finished")
@@ -107,36 +119,32 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             )
           )}
         </div>
-        {pollDetails.data?.status === "Active" && (
-          <>
-            {!resultsMode && (
-              <Button
-                disabled={isReadOnly || !activeChoice || isVoting}
-                icon={<UilPanelAdd />}
-                iconPlacement="left"
-                size="lg"
-                className="font-semibold text-sm px-4 mt-4"
-                onClick={() => {
-                  setIsVotedAlready(false);
-                  vote({ choice: activeChoice!! });
-                }}
-              >
-                {_t(isVoting ? "polls.voting" : "polls.vote")}
-              </Button>
-            )}
-            {poll.filters.voteChange && resultsMode && (
-              <Button appearance="link" size="sm" onClick={() => setResultsMode(false)}>
-                {_t("polls.back-to-vote")}
-              </Button>
-            )}
-            {poll.filters.currentStanding && !resultsMode && (
-              <Button appearance="link" size="sm" onClick={() => setResultsMode(true)}>
-                {_t("polls.view-votes")}
-              </Button>
-            )}
-            {resultsMode && <PollVotesListDialog entry={entry} />}
-          </>
+        {showVote && (
+          <Button
+            disabled={isReadOnly || !activeChoice || isVoting}
+            icon={<UilPanelAdd />}
+            iconPlacement="left"
+            size="lg"
+            className="font-semibold text-sm px-4 mt-4"
+            onClick={() => {
+              setIsVotedAlready(false);
+              vote({ choice: activeChoice!! });
+            }}
+          >
+            {_t(isVoting ? "polls.voting" : "polls.vote")}
+          </Button>
         )}
+        {showChangeVote && (
+          <Button appearance="link" size="sm" onClick={() => setResultsMode(false)}>
+            {_t("polls.back-to-vote")}
+          </Button>
+        )}
+        {showViewVotes && (
+          <Button appearance="link" size="sm" onClick={() => setResultsMode(true)}>
+            {_t("polls.view-votes")}
+          </Button>
+        )}
+        {resultsMode && <PollVotesListDialog entry={entry} />}
       </div>
     </div>
   );

@@ -17,10 +17,10 @@ import { format } from "date-fns";
 export interface PollSnapshot {
   title: string;
   choices: string[];
+  voteChange: boolean;
+  currentStanding: boolean;
   filters: {
     accountAge: number;
-    voteChange: boolean;
-    currentStanding: boolean;
   };
   endTime: Date;
   interpretation: "number_of_votes" | "tokens";
@@ -208,10 +208,10 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
                     title,
                     endTime: endDate,
                     choices,
+                    voteChange: !!voteChange,
+                    currentStanding: !!currentStanding,
                     filters: {
-                      accountAge,
-                      voteChange: !!voteChange,
-                      currentStanding: !!currentStanding
+                      accountAge
                     },
                     interpretation
                   });
