@@ -69,6 +69,7 @@ import { IntroTour } from "@ui/intro-tour";
 import { IntroStep } from "@ui/core";
 import { dotsMenuIconSvg } from "../../features/decks/icons";
 import { PollsContext, PollsManager } from "./hooks/polls-manager";
+import { useEntryPollExtractor } from "../entry/utils";
 
 interface MatchProps {
   match: MatchType;
@@ -107,6 +108,8 @@ export function Submit(props: PageProps & MatchProps) {
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
   const [isTourFinished] = useLocalStorage(PREFIX + `_itf_submit`, false);
+
+  const postPoll = useEntryPollExtractor(editingEntry);
 
   const tourEnabled = useMemo(() => !activeUser, [activeUser]);
   const introSteps = useMemo<IntroStep[]>(
@@ -256,6 +259,12 @@ export function Submit(props: PageProps & MatchProps) {
       window.removeEventListener("resize", handleResize);
     }
   });
+
+  useEffect(() => {
+    if (postPoll) {
+      setActivePoll(postPoll);
+    }
+  }, [postPoll]);
 
   useEffect(() => {
     if (postBodyRef.current) {
@@ -488,6 +497,7 @@ export function Submit(props: PageProps & MatchProps) {
             }}
             onAddPoll={(v) => setActivePoll(v)}
             onDeletePoll={() => clearActivePoll()}
+            readonlyPoll={!!editingEntry}
           />
           <div className="title-input">
             <FormControl

@@ -41,6 +41,9 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
       setChoices(poll.choices);
       setAccountAge(poll.filters.accountAge);
       setEndDate(poll.endTime);
+      setInterpretation(poll.interpretation);
+      setVoteChange(poll.voteChange);
+      setCurrentStanding(poll.currentStanding);
     }
   }, [poll]);
 

@@ -51,6 +51,7 @@ interface Props {
   onAddPoll?: (poll: PollSnapshot) => void;
   existingPoll?: PollSnapshot;
   onDeletePoll?: () => void;
+  readonlyPoll?: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -71,7 +72,8 @@ export function EditorToolbar({
   toggleNsfwC,
   onAddPoll,
   existingPoll,
-  onDeletePoll
+  onDeletePoll,
+  readonlyPoll
 }: Props) {
   const { global, activeUser, users } = useMappedStore();
 
@@ -491,17 +493,19 @@ export function EditorToolbar({
             {linkSvg}
           </div>
         </Tooltip>
-        <Tooltip content={_t("editor-toolbar.polls")}>
-          <div
-            className={classNameObject({
-              "editor-tool": true,
-              "bg-green bg-opacity-25": !!existingPoll
-            })}
-            onClick={() => setShowPollsCreation(!showPollsCreation)}
-          >
-            <UilPanelAdd />
-          </div>
-        </Tooltip>
+        {!comment && (
+          <Tooltip content={_t("editor-toolbar.polls")}>
+            <div
+              className={classNameObject({
+                "editor-tool": true,
+                "bg-green bg-opacity-25": !!existingPoll
+              })}
+              onClick={() => setShowPollsCreation(!showPollsCreation)}
+            >
+              <UilPanelAdd />
+            </div>
+          </Tooltip>
+        )}
       </div>
       <input
         onChange={fileInputChanged}
@@ -570,6 +574,7 @@ export function EditorToolbar({
         />
       )}
       <PollsCreation
+        readonly={readonlyPoll}
         existingPoll={existingPoll}
         show={showPollsCreation}
         setShow={(v) => setShowPollsCreation(v)}

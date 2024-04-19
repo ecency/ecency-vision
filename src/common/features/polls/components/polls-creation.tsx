@@ -32,9 +32,17 @@ interface Props {
   onAdd: (poll: PollSnapshot) => void;
   existingPoll?: PollSnapshot;
   onDeletePoll: () => void;
+  readonly?: boolean;
 }
 
-export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll }: Props) {
+export function PollsCreation({
+  show,
+  setShow,
+  onAdd,
+  existingPoll,
+  onDeletePoll,
+  readonly
+}: Props) {
   const {
     title,
     setTitle,
@@ -72,6 +80,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
         <div className="flex flex-col gap-6">
           <InputGroup prepend={<UilQuestionCircle />}>
             <FormControl
+              disabled={readonly}
               placeholder={_t("polls.title-placeholder")}
               type="text"
               value={title}
@@ -80,6 +89,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
           </InputGroup>
           <InputGroup prepend={<UilCalender />}>
             <FormControl
+              disabled={readonly}
               placeholder={_t("polls.title-placeholder")}
               type="date"
               value={formatDate}
@@ -87,7 +97,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             />
           </InputGroup>
 
-          {isExpiredEndDate && (
+          {isExpiredEndDate && !readonly && (
             <div className="text-sm text-center py-3 text-red mx-auto">
               {_t("polls.expired-date")}
             </div>
@@ -99,6 +109,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
               <div key={key} className="w-full flex items-center gap-4">
                 <InputGroup prepend={key + 1}>
                   <FormControl
+                    disabled={readonly}
                     placeholder={_t("polls.choice-placeholder", { n: key + 1 })}
                     type="text"
                     value={choice}
@@ -106,6 +117,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
                   />
                 </InputGroup>
                 <Button
+                  disabled={readonly}
                   size="sm"
                   onClick={() => deleteChoiceByIndex(key)}
                   appearance="gray-link"
@@ -114,7 +126,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
               </div>
             ))}
           </div>
-          {hasEmptyOrDuplicatedChoices && (
+          {hasEmptyOrDuplicatedChoices && !readonly && (
             <div className="text-sm opacity-75 text-center pb-4">{_t("polls.polls-form-hint")}</div>
           )}
         </div>
@@ -127,6 +139,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             min={0}
             max={200}
             value={accountAge}
+            disabled={readonly}
             onChange={(e) => {
               const value = +e.target.value;
               if (value >= 0 && value <= 200) {
@@ -139,6 +152,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             }}
           />
           <FormControl
+            disabled={readonly}
             type="select"
             value={interpretation}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -148,18 +162,20 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
             <option value="tokens">{_t("polls.tokens")}</option>
           </FormControl>
-          {interpretation === "tokens" && (
+          {interpretation === "tokens" && !readonly && (
             <div className="text-sm text-center py-3 text-red mx-auto">
               {_t("polls.temporary-unavailable")}
             </div>
           )}
           <FormControl
+            disabled={readonly}
             type="checkbox"
             label={_t("polls.vote-change")}
             checked={!!voteChange}
             onChange={(e: boolean) => setVoteChange(e)}
           />
           <FormControl
+            disabled={readonly}
             type="checkbox"
             label={_t("polls.current-standing")}
             checked={!!currentStanding}
@@ -170,6 +186,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
       <ModalFooter sticky={true}>
         <div className="flex justify-between">
           <Button
+            disabled={readonly}
             icon={<UilPlus />}
             iconPlacement="left"
             onClick={() => pushChoice("")}
@@ -180,6 +197,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
           <div className="flex gap-2">
             {existingPoll && (
               <Button
+                disabled={readonly}
                 appearance="danger"
                 icon={<UilTrash />}
                 iconPlacement="left"
@@ -195,6 +213,7 @@ export function PollsCreation({ show, setShow, onAdd, existingPoll, onDeletePoll
             <Button
               icon={existingPoll ? <UilSave /> : <UilPanelAdd />}
               disabled={
+                readonly ||
                 hasEmptyOrDuplicatedChoices ||
                 !title ||
                 typeof accountAge !== "number" ||

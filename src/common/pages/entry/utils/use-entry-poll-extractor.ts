@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Entry, JsonPollMetadata } from "../../../store/entries/types";
 import { PollSnapshot } from "../../../features/polls";
 
-export function useEntryPollExtractor(entry?: Entry) {
+export function useEntryPollExtractor(entry?: Entry | null) {
   return useMemo(() => {
     if (
       entry &&
