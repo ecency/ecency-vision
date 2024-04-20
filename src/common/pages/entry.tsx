@@ -1,5 +1,4 @@
 import React, { Fragment, Ref } from "react";
-
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { match } from "react-router";
@@ -85,6 +84,7 @@ import formattedNumber from "../util/formatted-number";
 
 import { ScotRewardsInformation, getScotRewardsInformation } from "../api/hive-engine";
 import EntryHEPayout from "../components/entry-he-payout";
+type Timeout = ReturnType<typeof setTimeout>;
 
 setProxyBase(defaults.imageServer);
 
@@ -115,6 +115,7 @@ interface State {
   isMounted: boolean;
   postIsDeleted: boolean;
   deletedEntry: { title: string; body: string; tags: any } | null;
+  reloadHandler: null | Timeout;
 }
 
 class EntryPage extends BaseComponent<Props, State> {
@@ -132,10 +133,12 @@ class EntryPage extends BaseComponent<Props, State> {
     isMounted: false,
     selection: "",
     postIsDeleted: false,
-    deletedEntry: null
+    deletedEntry: null,
+    reloadHandler: null
   };
 
   commentInput: Ref<HTMLInputElement>;
+
   constructor(props: Props) {
     super(props);
     this.commentInput = React.createRef();
@@ -178,6 +181,18 @@ class EntryPage extends BaseComponent<Props, State> {
         this.setState({ edit: false });
       }
     }
+    // Update if not editing.  New notifications may indicate new replies, or new votes.
+    if (prevProps.notifications.unread !== this.props.notifications.unread && !this.state.edit) {
+      if (this.state.reloadHandler) {
+        clearTimeout(this.state.reloadHandler);
+      }
+      this.setState({
+        reloadHandler: setTimeout(() => {
+          this.ensureEntry();
+          this.setState({ reloadHandler: null });
+        }, 25000)
+      });
+    } // if
   }
 
   componentWillUnmount() {
