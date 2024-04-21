@@ -53,10 +53,10 @@ interface Props {
     global: Global;
     users: User[];
     activeUser: ActiveUser | null;
-    beneficiaryAdded: (item: BeneficiaryRoute) => void;
+    beneficiaryAdded?: (item: BeneficiaryRoute) => void;
     sm?: boolean;
     showEmoji?: boolean;
-    toggleThreaspeak: any
+    toggleThreaspeak?: any
 }
 
 interface State {
