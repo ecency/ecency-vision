@@ -1172,12 +1172,14 @@ class EntryPage extends BaseComponent<Props, State> {
                                               />
                                             </span>
                                             <div className="app" title={app}>
-                                              <Tsx
+                                              {/* We should soww exact community */}
+                                              <span>Posted from spendHBD</span>
+                                              {/* <Tsx
                                                 k="entry.via-app"
                                                 args={{ app: appShort }}
                                               >
                                                 <a href="https://starterkit.tech/faqs#source-label" />
-                                              </Tsx>
+                                              </Tsx> */}
                                             </div>
                                           </>
                                         )}

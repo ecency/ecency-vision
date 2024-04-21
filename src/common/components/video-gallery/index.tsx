@@ -9,16 +9,18 @@ import { VideoGalleryItem } from "./video-gallery-item";
 import { useThreeSpeakManager } from "../../util/ThreeSpeakProvider";
 import { ActiveUser } from "../../store/active-user/types";
 import "./_index.scss";
+import { BeneficiaryRoute } from "../../api/operations";
 
 interface Props {
   showGallery: boolean;
   setShowGallery: (val: boolean) => void;
   insertText: (before: string, after?: string) => any;
-  setVideoEncoderBeneficiary?: (video: any) => void;
+  setVideoEncoderBeneficiary?: (item: BeneficiaryRoute) => void;
   toggleNsfwC?: () => void;
   preFilter?: string;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
   activeUser: ActiveUser;
+  toggleThreaspeak: any;
 }
 
 const VideoGallery = ({
@@ -29,9 +31,10 @@ const VideoGallery = ({
   toggleNsfwC,
   preFilter,
   setVideoMetadata,
-  activeUser
+  activeUser,
+  toggleThreaspeak
 }: Props) => {
-  const { isEditing } = useThreeSpeakManager();
+  const { isEditing, setSpeakPermlink, speakPermlink } = useThreeSpeakManager();
 
   const [label, setLabel] = useState("All");
   const [filterStatus, setFilterStatus] = useState<ThreeSpeakVideo["status"] | "all">(
@@ -41,6 +44,7 @@ const VideoGallery = ({
   const { data: items, isFetching, refresh } = useThreeSpeakVideo(filterStatus, activeUser, showGallery);
 
   useEffect(() => {
+    // console.log(speakPermlink)
     if (isEditing) {
       setFilterStatus("published");
     }
@@ -146,6 +150,7 @@ const VideoGallery = ({
                   setShowGallery={setShowGallery}
                   setVideoMetadata={setVideoMetadata}
                   activeUser={activeUser}
+                  toggleThreaspeak={toggleThreaspeak}
                 />
               ))}
             </div>

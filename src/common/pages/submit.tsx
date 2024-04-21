@@ -71,6 +71,7 @@ import ResizableTextarea from "../components/resizable-text-area";
 import TextareaAutocomplete from "../components/textarea-autocomplete";
 import { ThreeSpeakManager } from "../util/ThreeSpeakProvider";
 import { updateUserPoints } from "../api/breakaway";
+import { useThreeSpeakManager } from "../util/ThreeSpeakProvider";
 import { getCommunity } from "../api/bridge";
 
 interface PostBase {
@@ -84,6 +85,8 @@ interface Advanced {
     beneficiaries: BeneficiaryRoute[];
     schedule: string | null,
     reblogSwitch: boolean;
+    isThreeSpeak: boolean;
+    spkPermlink: string;
 }
 
 interface PreviewProps extends PostBase {
@@ -179,12 +182,15 @@ class SubmitPage extends BaseComponent<Props, State> {
             body: "",
         },
         disabled: true,
+        spkPermlink: "",
+        isThreeSpeak: false,
         communityData: {}
     };
 
     _updateTimer: any = null;
 
     componentDidMount = (): void => {
+        console.log(this.state.isThreeSpeak)
         this.loadLocalDraft();
 
         this.loadAdvanced();
@@ -210,7 +216,7 @@ class SubmitPage extends BaseComponent<Props, State> {
             // delete active user from beneficiaries list
             if (activeUser) {
                 const {beneficiaries} = this.state;
-                if (beneficiaries.find(x => x.account === activeUser.username)) {
+                if (beneficiaries?.find(x => x?.account === activeUser.username)) {
                     const b = [...beneficiaries.filter(x => x.account !== activeUser.username)];
                     this.stateSet({beneficiaries: b});
                 }
@@ -351,22 +357,24 @@ class SubmitPage extends BaseComponent<Props, State> {
     }
 
     saveAdvanced = (): void => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, isThreeSpeak, spkPermlink} = this.state;
 
         const advanced: Advanced = {
             reward,
             beneficiaries,
             schedule,
-            reblogSwitch
+            reblogSwitch,
+            isThreeSpeak,
+            spkPermlink
         }
 
         ls.set("local_advanced", advanced);
     }
 
     hasAdvanced = (): boolean => {
-        const {reward, beneficiaries, schedule, reblogSwitch} = this.state;
+        const {reward, beneficiaries, schedule, reblogSwitch, isThreeSpeak, spkPermlink} = this.state;
 
-        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch;
+        return reward !== "default" || beneficiaries.length > 0 || schedule !== null || reblogSwitch || isThreeSpeak || spkPermlink !== "";
     }
 
     titleChanged = (e: React.ChangeEvent<typeof FormControl & HTMLInputElement>): void => {
@@ -410,17 +418,19 @@ class SubmitPage extends BaseComponent<Props, State> {
         const reward = e.target.value as RewardType;
         this.stateSet({reward}, this.saveAdvanced);
     };
-
+      
+    // here
     beneficiaryAdded = (item: BeneficiaryRoute) => {
         const {beneficiaries} = this.state;
-        const b = [...beneficiaries, item].sort((a, b) => a.account < b.account ? -1 : 1);
-        this.stateSet({beneficiaries: b}, this.saveAdvanced);
+        const b = [...beneficiaries, item].sort((a, b) => a?.account < b?.account ? -1 : 1);
+        this.setState({beneficiaries: b}, this.saveAdvanced);
     }
 
     beneficiaryDeleted = (username: string) => {
         const {beneficiaries} = this.state;
-        const b = [...beneficiaries.filter(x => x.account !== username)];
+        const b = [...beneficiaries.filter(x => x?.account !== username)];
         this.stateSet({beneficiaries: b}, this.saveAdvanced);
+        console.log(beneficiaries)
     }
 
     scheduleChanged = (d: Moment | null) => {
@@ -446,9 +456,17 @@ class SubmitPage extends BaseComponent<Props, State> {
     };
 
     clearAdvanced = (): void => {
-        this.stateSet({advanced: false, reward: "default", beneficiaries: [], schedule: null, reblogSwitch: false}, () => {
-            this.saveAdvanced();
-        });
+        this.stateSet({
+            advanced: false, 
+            reward: "default", 
+            beneficiaries: [], 
+            schedule: null, 
+            reblogSwitch: false,
+            isThreeSpeak: false,
+            spkPermlink: ""
+        }, () => {
+                this.saveAdvanced();
+            });
     }
 
     toggleAdvanced = (): void => {
@@ -521,6 +539,9 @@ class SubmitPage extends BaseComponent<Props, State> {
         let authorData = activeUser.data as FullAccount;
 
         let permlink = createPermlink(title);
+        if(this.state.isThreeSpeak) {
+            permlink = this.state.spkPermlink
+        }
 
         // permlink duplication check
         let c;
@@ -764,6 +785,13 @@ class SubmitPage extends BaseComponent<Props, State> {
         ls.set('draft_selected_image', selectedThumbnail)
     }
 
+    toggleThreaspeak = (p: any) => {
+        this.setState(
+            {isThreeSpeak: true, spkPermlink: p}, 
+            )
+        console.log(this.state.isThreeSpeak)
+        console.log("spkPermlink",this.state.spkPermlink)
+    }
     getCommunityInfo = async () => {
         const communityData = await getCommunity(this.props.global.hive_id)
         this.setState({communityData})
@@ -816,7 +844,11 @@ class SubmitPage extends BaseComponent<Props, State> {
                                 }
                             })}
                         </div>}
-                        {EditorToolbar({...this.props})}
+                        {EditorToolbar({
+                            ...this.props,
+                            beneficiaryAdded: this.beneficiaryAdded,
+                            toggleThreaspeak: this.toggleThreaspeak
+                        })}
                         <div className="title-input">
                             <Form.Control
                                 className="accepts-emoji"
@@ -1040,6 +1072,9 @@ class SubmitPage extends BaseComponent<Props, State> {
 }
 
 const SubmitWithProviders = (props: Props) => {
+    const  speakPermlink = useThreeSpeakManager();
+    console.log(speakPermlink)
+
   return (
     <ThreeSpeakManager>
       <SubmitPage {...props} />
