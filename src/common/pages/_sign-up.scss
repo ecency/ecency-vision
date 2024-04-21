@@ -5,7 +5,7 @@
   align-items: center;
   margin: auto;
 
-  @media (max-width: $md-break) {
+  @media (max-width: 470px) {
     flex-direction: column;
     align-items: center;
   }
@@ -16,6 +16,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 200px;
+
+    @media (max-width: 470px) {
+      margin-top: 500px;
+    }
+
     .success-info {
         display: flex;
         flex-direction: column;
@@ -28,6 +34,12 @@
         border-radius: 1rem;
         color: $steel-grey;
         word-break: break-all;
+        // background-color: red;
+        
+        @media (max-width: 470px) {
+          margin-top: 100px;
+          width: 100%;
+        }
   
         .account-details{
           display: flex;
@@ -193,11 +205,16 @@
   }
 }
 
-.wrapper{
+.signup-wrapper{
   display: flex;
   justify-self: center;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 470px) {
+    flex-direction: column;
+    align-items: center;
+  }
   
   .account-types{
     flex: 1;
@@ -224,6 +241,10 @@
         padding: 10px;
         cursor: pointer;
 
+        @media (max-width: 470px) {
+          width: 300px;
+        }
+
         span{
           font-size: 18px;
           font-weight: bold;
@@ -238,9 +259,13 @@
 }
 
 .link-wrap{
-  // background-color: red;
   display: flex;
   align-items: center;
   flex-direction: row;
   gap: 30px;
+
+  @media (max-width: 470px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }

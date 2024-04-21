@@ -34,37 +34,37 @@ const solanaLogo = require("../img/solanaLogo.png");
 
 interface Props {
   activeUser: ActiveUser;
-  global: Global
-  communities: Community[]
+  global: Global;
+  communities: Community[];
 }
 
 const SignUpPage = (props: Props | any) => {
   const form = useRef(null);
   const { global, communities, activeUser } = props;
 
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [referral, setReferral] = useState("")
-  const [urlHash, setUrlHash] = useState("")
-  const [inProgress, setInProgress] = useState(false)
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [referral, setReferral] = useState("");
+  const [urlHash, setUrlHash] = useState("");
+  const [inProgress, setInProgress] = useState(false);
   const [community, setCommunity] = useState<Community | null>(null);
   const [newUserKeys, setNewUserKeys]: any = useState(null);
-  const [accountPassword, setAccountPassword] = useState("")
+  const [accountPassword, setAccountPassword] = useState("");
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
-  const [isDownloaded, setIsDownloaded] = useState(false)
+  const [isDownloaded, setIsDownloaded] = useState(false);
   const [accountType, setAccountType] = useState("Hive");
 
-  useEffect(()=> {
-    getCurrentCommunity()
-  }, [])
+  useEffect(() => {
+    getCurrentCommunity();
+  }, []);
 
-  useEffect(()=> {
-    initiateAccount()
-  }, [step])
+  useEffect(() => {
+    initiateAccount();
+  }, [step]);
 
   const initiateAccount = async () => {
-    if(!username || !email) {
+    if (!username || !email) {
       return;
     }
 
@@ -72,7 +72,7 @@ const SignUpPage = (props: Props | any) => {
       const password: string = await generatePassword(32);
       const keys: KeyTypes = getPrivateKeys(username, password);
       setNewUserKeys((prev: any) => ({ ...prev, ...keys }));
-      setAccountPassword(password)
+      setAccountPassword(password);
       const dataToEncode = {
         username,
         email,
@@ -81,48 +81,48 @@ const SignUpPage = (props: Props | any) => {
           activePubKey: keys.activePubkey,
           postingPubKey: keys.postingPubkey,
           ownerPubKey: keys.ownerPubkey,
-          memoPubKey: keys.memoPubkey
-        }
-      }
-  
-      const stringifiedData = JSON.stringify(dataToEncode);
-      const hash = hexEnc(stringifiedData)
-      setUrlHash(hash)
-    } catch (err) {
-        console.log(err)
-    }
-  }
+          memoPubKey: keys.memoPubkey,
+        },
+      };
 
-  const usernameChanged = async (e: { target: { value: any; }; }) => {
-    setInProgress(true)
-    const { value: username } = e.target;
-    setUsername(username.toLowerCase());
-    const existingAccount = await getAccount(username)
-    
-    if (existingAccount){
-      setError("username not available");
-    } else {
-      setError("")
+      const stringifiedData = JSON.stringify(dataToEncode);
+      const hash = hexEnc(stringifiedData);
+      setUrlHash(hash);
+    } catch (err) {
+      console.log(err);
     }
-    setInProgress(false)
   };
 
-  const emailChanged = (e: { target: { value: any; }; }) => {
+  const usernameChanged = async (e: { target: { value: any } }) => {
+    setInProgress(true);
+    const { value: username } = e.target;
+    setUsername(username.toLowerCase());
+    const existingAccount = await getAccount(username);
+
+    if (existingAccount) {
+      setError("username not available");
+    } else {
+      setError("");
+    }
+    setInProgress(false);
+  };
+
+  const emailChanged = (e: { target: { value: any } }) => {
     const { value: email } = e.target;
     setEmail(email.toLowerCase());
   };
 
-  const referralChanged = (e: { target: { value: any; }; }) => {
+  const referralChanged = (e: { target: { value: any } }) => {
     const { value: email } = e.target;
     setReferral(email.toLowerCase());
   };
 
   const getCurrentCommunity = () => {
     const currCommunity = communities.find(
-      (community: { name: any; }) => community.name === global.hive_id
+      (community: { name: any }) => community.name === global.hive_id
     );
-    setCommunity(currCommunity)
-  }
+    setCommunity(currCommunity);
+  };
 
   const splitUrl = (url: string) => {
     return url.slice(0, 50);
@@ -163,7 +163,7 @@ const SignUpPage = (props: Props | any) => {
           ${_t("onboard.memo")} ${_t("onboard.memo-use")}`;
 
       const file = new Blob([keysToFile.replace(/\n/g, "\r\n")], {
-        type: "text/plain"
+        type: "text/plain",
       });
       element.href = URL.createObjectURL(file);
       element.download = `${username}_hive_keys.txt`;
@@ -204,25 +204,21 @@ const SignUpPage = (props: Props | any) => {
             ...props,
           })
         : NavBar({ ...props })}
-      <div className={`sign-up-page-container ${containerClasses}`}>
-        <div className="wrapper">
-           {step  === 1 && <div className="account-types align-self-center d-flex">
+      <div className={`sign-up-page ${containerClasses}`}>
+        <div className="signup-wrapper">
+          {step === 1 && (
+            <div className="account-types align-self-center d-flex">
               <h3>Sign up with</h3>
-              <div 
-              className="account-type"
-              onClick={() => handleAccountTypeClick("Hive")}
+              <div
+                className="account-type"
+                onClick={() => handleAccountTypeClick("Hive")}
               >
-               <img
-                    src={HiveLogo}
-                    alt="Solana"
-                    title="Solana"
-                />
-                <span
-                  className={accountType === "Hive" ? "underline" : ""}>
+                <img src={HiveLogo} alt="Hive" title="Hive" />
+                <span className={accountType === "Hive" ? "underline" : ""}>
                   Hive
                 </span>
               </div>
-              <div 
+              {/* <div 
               className="account-type"
               onClick={() => handleAccountTypeClick("Solana")}
               >
@@ -235,201 +231,252 @@ const SignUpPage = (props: Props | any) => {
                   className={accountType === "Solana" ? "underline" : ""}>
                   Solana
                 </span>
-              </div>
-            </div>}
-            <div className="account-sign-up">
-              {accountType === "Hive" && <>
-                {step == 1 && <div className="sign-up">
-                  <div className="the-form">
-                    <div className="form-title">Create a Hive acoount</div>
-                    <div className="form-sub-title">{_t("sign-up.description")}</div>
-  
-                    {(() => {
-                      return (
-                        <div className="form-content">
-                          <Form
-                            ref={form}
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if(error){
-                                return;
-                              }
-                              setStep(2);
-                            }}
-                            >
-                            <Form.Group className="d-flex flex-column">
-                              {error && <span className="text-danger align-self-center mb-3">{error}</span>}
-                              <Form.Control
-                                type="text"
-                                placeholder={_t("sign-up.username")}
-                                value={username}
-                                onChange={usernameChanged}
-                                autoFocus={true}
-                                required={true}
-                                onInvalid={(e: any) =>
-                                  handleInvalid(e, "sign-up.", "validation-username")
-                                }
-                                onInput={handleOnInput}
-                              />
-                            </Form.Group>
-                            <Form.Group>
-                              <Form.Control
-                                type="email"
-                                placeholder={_t("sign-up.email")}
-                                value={email}
-                                onChange={emailChanged}
-                                required={true}
-                                onInvalid={(e: any) =>
-                                  handleInvalid(e, "sign-up.", "validation-username")
-                                }
-                                onInput={handleOnInput}
-                              />
-                            </Form.Group>
-                            <Form.Group>
-                              <Form.Control
-                                type="text"
-                                placeholder={_t("sign-up.referral")}
-                                value={referral}
-                                onChange={referralChanged}
-                                // required={true}
-                                onInvalid={(e: any) =>
-                                  handleInvalid(e, "sign-up.", "validation-username")
-                                }
-                                onInput={handleOnInput}
-                              />
-                            </Form.Group>
-                            <div className="d-flex justify-content-center">
-                              <Button
-                                variant="primary"
-                                block={true}
-                                type="submit"
-                                disabled={inProgress}
-                              >
-                                {inProgress && spinner} {_t("sign-up.submit")}
-                              </Button>
-                            </div>
-                          </Form>
+              </div> */}
+            </div>
+          )}
+          <div className="account-sign-up">
+            {accountType === "Hive" && (
+              <>
+                {step == 1 && (
+                  <div className="sign-up">
+                    <div className="the-form">
+                      <div className="form-title">Create a Hive acoount</div>
+                      <div className="form-sub-title">
+                        {_t("sign-up.description")}
+                      </div>
 
-                          <div className="text-center">
-                            {_t("sign-up.login-text-1")}
-                            <a
-                              href="#"
-                              onClick={(e) => {
+                      {(() => {
+                        return (
+                          <div className="form-content">
+                            <Form
+                              ref={form}
+                              onSubmit={(e) => {
                                 e.preventDefault();
-                                const { toggleUIProp } = props;
-                                toggleUIProp("login");
+                                e.stopPropagation();
+                                if (error) {
+                                  return;
+                                }
+                                setStep(2);
                               }}
                             >
-                              {" "}
-                              {_t("sign-up.login-text-2")}
-                            </a>
+                              <Form.Group className="d-flex flex-column">
+                                {error && (
+                                  <span className="text-danger align-self-center mb-3">
+                                    {error}
+                                  </span>
+                                )}
+                                <Form.Control
+                                  type="text"
+                                  placeholder={_t("sign-up.username")}
+                                  value={username}
+                                  onChange={usernameChanged}
+                                  // autoFocus={true}
+                                  required={true}
+                                  onInvalid={(e: any) =>
+                                    handleInvalid(
+                                      e,
+                                      "sign-up.",
+                                      "validation-username"
+                                    )
+                                  }
+                                  onInput={handleOnInput}
+                                />
+                              </Form.Group>
+                              <Form.Group>
+                                <Form.Control
+                                  type="email"
+                                  placeholder={_t("sign-up.email")}
+                                  value={email}
+                                  onChange={emailChanged}
+                                  required={true}
+                                  onInvalid={(e: any) =>
+                                    handleInvalid(
+                                      e,
+                                      "sign-up.",
+                                      "validation-email"
+                                    )
+                                  }
+                                  onInput={handleOnInput}
+                                />
+                              </Form.Group>
+                              <Form.Group>
+                                <Form.Control
+                                  type="text"
+                                  placeholder={_t("sign-up.referral")}
+                                  value={referral}
+                                  onChange={referralChanged}
+                                  required={activeUser ? false : true}
+                                  onInvalid={(e: any) =>
+                                    handleInvalid(
+                                      e,
+                                      "sign-up.",
+                                      "validation-referral"
+                                    )
+                                  }
+                                  onInput={handleOnInput}
+                                />
+                              </Form.Group>
+                              <div className="d-flex justify-content-center">
+                                <Button
+                                  variant="primary"
+                                  block={true}
+                                  type="submit"
+                                  disabled={inProgress}
+                                >
+                                  {inProgress && spinner} {_t("sign-up.submit")}
+                                </Button>
+                              </div>
+                            </Form>
+
+                            <div className="text-center">
+                              {_t("sign-up.login-text-1")}
+                              <a
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  const { toggleUIProp } = props;
+                                  toggleUIProp("login");
+                                }}
+                              >
+                                {" "}
+                                {_t("sign-up.login-text-2")}
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })()}
-                  </div>
-                </div>}
-                {newUserKeys && step == 2 && <div className="success-wrapper">
-                  <div className="success-info">
-                    <h3>
-                    {/* {_t("onboard.confirm-details")} */} Account creation steps
-                    </h3>
-                    <p>Please make sure you have keychain installed as an extension on your browser 
-                      (If you are a using the web browser, we recommend that you pin it to your browser.)
-                    </p>
-                    <p>If you are on mobile, download the keychain mobile app</p>
-                    <div className="d-flex">
-                      <span className="">Don't have keychain? download</span>
-                      <a className="ml-1" href="https://hive-keychain.com/" target="_blank" rel="noopener noreferrer">
-                        here
-                      </a>
+                        );
+                      })()}
                     </div>
-                    <div className="account-details">
+                  </div>
+                )}
+                {newUserKeys && step === 2 && (
+                  <div className="success-wrapper">
+                    <div className="success-info">
+                      <h3>Account creation steps</h3>
+                      <p>
+                        Please make sure you have keychain installed as an
+                        extension on your browser (If you are a using the web
+                        browser, we recommend that you pin it to your browser.)
+                      </p>
+                      <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
                         </span>
-                        {/* <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.email")} <strong>{email}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.referral")} <strong>{referral}</strong>
-                        </span> */}
-                        {/* <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-active")} <strong>{newUserKeys?.activePubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-owner")} <strong>{newUserKeys?.ownerPubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-posting")} <strong>{newUserKeys?.postingPubkey}</strong>
-                        </span>
-                        <span style={{ lineHeight: 2 }}>
-                          {_t("onboard.public-memo")} <strong>{newUserKeys?.memoPubkey}</strong>
-                        </span> */}
-                    </div>
-                    <div className="account-link">
-                      <h3>Step 1</h3>
-                      <span>Download your keys to continue</span>
-                      <Button className="mt-3" onClick={()=> downloadKeys()}>{_t("onboard.download-keys")} {downloadSvg}</Button>
-                    </div>
-                    {isDownloaded && <div className="account-link">
+                      </div>
+                      <div className="account-link">
+                        <h3>Step 1</h3>
+                        <span>Download your keys to continue</span>
+                        <Button className="mt-3" onClick={() => downloadKeys()}>
+                          {_t("onboard.download-keys")} {downloadSvg}
+                        </Button>
+                      </div>
+                      {isDownloaded && (
+                        <div className="account-link">
                           <h3>Step 2</h3>
-                            {!activeUser && <h5 className="text-danger">{_t("onboard.copy-info-message")}</h5>}
-                            {activeUser && <h5 className="text-danger">Click link below or scan QR code</h5>}
-                      <div className="link-wrap">
-                        <div>
-                          {!activeUser ? <>
-                            {/* <h5>{_t("onboard.copy-info-message")}</h5> */}
-                            <div className="link">
-                              <Link to={`${window.origin}/onboard-friend/${urlHash}`}>{splitUrl(`${window.origin}/onboard-friend/${urlHash}`)}...</Link>
-                              <span className="icon" onClick={() => {
-                                clipboard(`${window.origin}/onboard-friend/${urlHash}`);
-                                success(_t("onboard.copy-link"))
-                              }}>{copyContent}</span>
+                          {!activeUser && (
+                            <h5 className="text-danger">
+                              {_t("onboard.copy-info-message")}
+                            </h5>
+                          )}
+                          {activeUser && (
+                            <h5 className="text-danger">
+                              Click link below or scan QR code
+                            </h5>
+                          )}
+                          <div className="link-wrap">
+                            <div>
+                              {!activeUser ? (
+                                <></>
+                              ) : (
+                                <a
+                                  href={`${window.origin}/onboard-friend/${urlHash}`}
+                                >
+                                  {_t("onboard.click-link")}
+                                </a>
+                              )}
                             </div>
-                          </> : <a href={`${window.origin}/onboard-friend/${urlHash}`}>{_t("onboard.click-link")}</a>}
+                            <div
+                              onClick={() => {
+                                clipboard(
+                                  `${window.origin}/onboard-friend/${urlHash}`
+                                );
+                                success(_t("onboard.copy-link"));
+                              }}
+                              style={{
+                                background: "white",
+                                padding: "16px",
+                                cursor: "pointer",
+                              }}
+                            >
+                              <QRCode
+                                size={256}
+                                style={{
+                                  height: "auto",
+                                  maxWidth: "100%",
+                                  width: "100%",
+                                }}
+                                value={`${window.origin}/onboard-friend/${urlHash}`}
+                                viewBox={`0 0 256 256`}
+                              />
+                            </div>
+                          </div>
+                          <div className="account-password">
+                            <h3>Step 3</h3>
+                            <span>
+                              Confirm if your friend has created your account,
+                              then check your email for instructions on setting
+                              up your account and
+                              <a
+                                className="ml-1"
+                                href="https://hive-keychain.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                download keychain extension here
+                              </a>
+                            </span>
+                            <div className="d-flex" />
+                            <div className="d-flex flex-column align-items-center">
+                              <h3>Step 4</h3>
+                              <h4 className="text-danger">
+                                Copy your master password below and paste to
+                                keychain to set up your account
+                              </h4>
+                              <div className="password">
+                                <strong>{accountPassword}</strong>
+                                <span
+                                  className="icon"
+                                  onClick={() => {
+                                    clipboard(accountPassword);
+                                    success(_t("onboard.key-copied"));
+                                  }}
+                                >
+                                  {copyContent}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div style={{ background: 'white', padding: '16px' }}>
-                          <QRCode
-                            size={256}
-                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                            value={`${window.origin}/onboard-friend/${urlHash}`}
-                            viewBox={`0 0 256 256`}
-                          />
-                        </div>
-                      </div>
-                      <div className="account-password">
-                      <h3>Step 3</h3>
-                      {/* <span>Make sure you copy your password</span> */}
-                      <span className="text-danger">{_t("onboard.copy-key")}</span>
-                      <span>Confirm if your friend has created your account, then check your email for instructions on setting up your account</span>
-                      <div className="password">
-                        <strong>{accountPassword}...</strong>
-                        <span className="icon" onClick={()=> {
-                          clipboard(accountPassword)
-                          success(_t("onboard.key-copied"))
-                          }}>{copyContent}</span>
-                      </div>
-                      </div>
-                    </div>}
+                      )}
+                    </div>
                   </div>
-                </div>
-                }
-              </>}
-              {accountType === "Solana" && <>
-                <OffchainUser 
-                  inProgress={inProgress} 
-                  step={step} 
-                  setStep={setStep} 
+                )}
+              </>
+            )}
+            {accountType === "Solana" && (
+              <>
+                <OffchainUser
+                  inProgress={inProgress}
+                  step={step}
+                  setStep={setStep}
                   setInProgress={setInProgress}
                 />
-              </>}
-            </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default connect(pageMapStateToProps, pageMapDispatchToProps)(SignUpPage);

@@ -69,7 +69,14 @@ export const transfer = (account: string, to: string, amount: string, memo: stri
     })
 
 
-export const customJson = (account: string, id: string, key: AuthorityTypes, json: string, display_msg: string, rpc: string | null = null): Promise<TxResponse> =>
+export const customJson = (
+    account: string, 
+    id: string, 
+    key: AuthorityTypes, 
+    json: string, 
+    display_msg: string, 
+    rpc: string | null = null
+    ): Promise<TxResponse> =>
     new Promise<TxResponse>((resolve, reject) => {
         window.hive_keychain?.requestCustomJson(account, id, key, json, display_msg, (resp) => {
             if (!resp.success) {
