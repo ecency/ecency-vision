@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import { ChatMessageItem } from "../chat-message-item";
 import {
@@ -54,73 +54,77 @@ export default function ChatsDirectMessages(props: Props) {
     }
   }, [directMessages]);
 
+  const getDifferenceInCalendarDays = useCallback(
+    (i: number, date: Date) => {
+      return i > 0 ? differenceInCalendarDays(date, groupedDirectMessages[i - 1][0]) : 1;
+    },
+    [groupedDirectMessages]
+  );
+
   return (
-    <>
-      <div className="direct-messages">
-        {groupedDirectMessages?.map(([date, messages], i) => {
-          const diff = i > 0 ? differenceInCalendarDays(date, groupedDirectMessages[i - 1][0]) : 1;
-          return (
-            <React.Fragment key={date.getTime()}>
-              {diff > 0 && <ChatFloatingDate currentDate={date} isPage={props.isPage} />}
-              {messages.map((message, j) => (
-                <Dropdown
-                  key={message.id}
-                  closeOnClickOutside={true}
-                  show={currentInteractingMessageId === message.id}
-                  setShow={(v) =>
-                    setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
-                  }
-                >
-                  <ChatMessageItem
-                    showDate={j === messages.length - 1}
-                    key={message.id}
-                    currentContact={props.currentContact}
-                    type={message.creator !== publicKey ? "receiver" : "sender"}
-                    message={message}
-                    isSameUser={checkContiguousMessage(message, i, directMessages)}
-                    onContextMenu={() => setCurrentInteractingMessageId(message.id)}
-                    onAppear={() =>
-                      setTimeout(
-                        () =>
-                          groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
-                            ? document
-                                .querySelector(`[data-message-id="${message.id}"]`)
-                                ?.scrollIntoView({ block: "nearest" })
-                            : {},
-                        300
-                      )
-                    }
-                    onInViewport={(inViewport) =>
-                      i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
-                    }
-                  />
-                  <DropdownMenu
-                    size="small"
-                    className="top-[70%]"
-                    align={message.creator === publicKey ? "right" : "left"}
-                  >
-                    <DropdownItemWithIcon
-                      icon={<UilMessage />}
-                      label={_t("chat.forward")}
-                      onClick={() => setForwardingMessage(message)}
-                    />
-                    <DropdownItemWithIcon
-                      icon={<UilCommentAltMessage />}
-                      label={_t("chat.reply")}
-                      onClick={() => {}}
-                    />
-                  </DropdownMenu>
-                </Dropdown>
-              ))}
-            </React.Fragment>
-          );
-        })}
-        <ForwardMessageDialog
-          message={forwardingMessage!!}
-          show={!!forwardingMessage}
-          setShow={() => setForwardingMessage(undefined)}
-        />
-      </div>
-    </>
+    <div className="direct-messages">
+      {groupedDirectMessages?.map(([date, messages], i) => (
+        <div className="relative" key={date.getTime()}>
+          {getDifferenceInCalendarDays(i, date) > 0 && (
+            <ChatFloatingDate currentDate={date} isPage={props.isPage} />
+          )}
+          {messages.map((message, j) => (
+            <Dropdown
+              key={message.id}
+              closeOnClickOutside={true}
+              show={currentInteractingMessageId === message.id}
+              setShow={(v) =>
+                setCurrentInteractingMessageId(v ? currentInteractingMessageId : undefined)
+              }
+            >
+              <ChatMessageItem
+                showDate={j === messages.length - 1}
+                key={message.id}
+                currentContact={props.currentContact}
+                type={message.creator !== publicKey ? "receiver" : "sender"}
+                message={message}
+                isSameUser={checkContiguousMessage(message, i, messages as DirectMessage[])}
+                onContextMenu={() => setCurrentInteractingMessageId(message.id)}
+                onAppear={() =>
+                  setTimeout(
+                    () =>
+                      groupedDirectMessages?.length - 1 === i && messages.length - 1 === j
+                        ? document
+                            .querySelector(`[data-message-id="${message.id}"]`)
+                            ?.scrollIntoView({ block: "nearest" })
+                        : {},
+                    300
+                  )
+                }
+                onInViewport={(inViewport) =>
+                  i === 0 && j === 0 && setNeedFetchNextPage(inViewport)
+                }
+              />
+              <DropdownMenu
+                size="small"
+                className="top-[70%]"
+                align={message.creator === publicKey ? "right" : "left"}
+              >
+                <DropdownItemWithIcon
+                  icon={<UilMessage />}
+                  label={_t("chat.forward")}
+                  onClick={() => setForwardingMessage(message)}
+                />
+                <DropdownItemWithIcon
+                  icon={<UilCommentAltMessage />}
+                  label={_t("chat.reply")}
+                  onClick={() => {}}
+                />
+              </DropdownMenu>
+            </Dropdown>
+          ))}
+        </div>
+      ))}
+      <ForwardMessageDialog
+        message={forwardingMessage!!}
+        show={!!forwardingMessage}
+        setShow={() => setForwardingMessage(undefined)}
+      />
+    </div>
   );
 }
