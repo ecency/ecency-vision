@@ -2,15 +2,21 @@ import React, { HTMLProps, ReactNode, useContext } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { DropdownContext } from "@ui/dropdown/dropdown-context";
 
-export function DropdownItem(props: HTMLProps<HTMLDivElement>) {
+interface Props {
+  size?: "small" | "medium" | "large";
+}
+
+export function DropdownItem(props: HTMLProps<HTMLDivElement> & Props) {
   const { setShow } = useContext(DropdownContext);
 
   return (
     <div
       {...props}
       className={classNameObject({
-        "min-w-[80%] cursor-pointer px-3 py-2 text-dark-default dark:text-white hover:bg-blue-dark-sky-040 hover:text-blue-dark-sky dark:hover:bg-gray-900 rounded-tr-2xl rounded-br-2xl":
+        "min-w-[80%] cursor-pointer text-dark-default dark:text-white hover:bg-blue-dark-sky-040 hover:text-blue-dark-sky dark:hover:bg-gray-900 rounded-tr-2xl rounded-br-2xl":
           true,
+        "px-3 py-2": !props.size || props.size === "medium",
+        "px-2 py-1 text-sm": !props.size || props.size === "small",
         [props.className ?? ""]: !!props.className
       })}
       onClick={(e) => {
@@ -22,7 +28,7 @@ export function DropdownItem(props: HTMLProps<HTMLDivElement>) {
 }
 
 export function DropdownItemWithIcon(
-  props: Omit<HTMLProps<HTMLDivElement>, "label"> & { icon: ReactNode; label: any }
+  props: Omit<HTMLProps<HTMLDivElement>, "label"> & Props & { icon: ReactNode; label: any }
 ) {
   return (
     <DropdownItem {...props}>

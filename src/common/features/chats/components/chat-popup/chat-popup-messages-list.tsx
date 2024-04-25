@@ -25,7 +25,7 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
   const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
 
   const { publicKey } = useKeysQuery();
-  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
+  const messages = useMessagesQuery(currentContact, currentChannel);
   const { isSuccess: isDirectContactsLoaded } = useDirectContactsQuery();
 
   const updateDirectContactsLastSeenDate = useUpdateDirectContactsLastSeenDate();

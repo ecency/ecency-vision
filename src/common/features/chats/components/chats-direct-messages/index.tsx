@@ -14,7 +14,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { groupMessages } from "../../utils";
 import useDebounce from "react-use/lib/useDebounce";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
-import { UilMessage } from "@iconscout/react-unicons";
+import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
 import { _t } from "../../../../i18n";
 import { ForwardMessageDialog } from "../forward-message-dialog";
 
@@ -95,6 +95,7 @@ export default function ChatsDirectMessages(props: Props) {
                     }
                   />
                   <DropdownMenu
+                    size="small"
                     className="top-[70%]"
                     align={message.creator === publicKey ? "right" : "left"}
                   >
@@ -102,6 +103,11 @@ export default function ChatsDirectMessages(props: Props) {
                       icon={<UilMessage />}
                       label={_t("chat.forward")}
                       onClick={() => setForwardingMessage(message)}
+                    />
+                    <DropdownItemWithIcon
+                      icon={<UilCommentAltMessage />}
+                      label={_t("chat.reply")}
+                      onClick={() => {}}
                     />
                   </DropdownMenu>
                 </Dropdown>

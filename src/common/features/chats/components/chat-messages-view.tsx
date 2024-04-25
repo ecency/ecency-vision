@@ -25,7 +25,7 @@ export default function ChatsMessagesView({ currentContact, currentChannel }: Pr
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
   const { publicKey } = useKeysQuery();
-  const { data: messages } = useMessagesQuery(currentContact, currentChannel);
+  const messages = useMessagesQuery(currentContact, currentChannel);
   const { data: channels } = useOriginalJoinedChannelsQuery();
 
   const isJoinedToChannel = useMemo(
