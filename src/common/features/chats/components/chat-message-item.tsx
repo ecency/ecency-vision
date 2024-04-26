@@ -174,7 +174,12 @@ export function ChatMessageItem({
               </Link>
             )}
             {message.forwardedFrom && (
-              <div className="text-xs text-gray-300 dark:text-gray-700">
+              <div
+                className={classNameObject({
+                  "text-xs text-gray-300": true,
+                  "dark:text-gray-700": type === "receiver"
+                })}
+              >
                 {_t("chat.forwarded-from")}
                 {nostrForwardedUserProfiles?.[0]?.name && (
                   <ProfileLink
@@ -183,11 +188,29 @@ export function ChatMessageItem({
                     history={history!!}
                     username={nostrForwardedUserProfiles?.[0]?.name}
                   >
-                    <span className="text-gray-300 dark:text-gray-700">
+                    <span
+                      className={classNameObject({
+                        "text-xs text-gray-300": true,
+                        "dark:text-gray-700": type === "receiver"
+                      })}
+                    >
                       ({nostrForwardedUserProfiles[0].name})
                     </span>
                   </ProfileLink>
                 )}
+              </div>
+            )}
+            {message.parentMessage && currentContact && (
+              <div
+                className={classNameObject({
+                  "rounded-b-xl py-1 px-3 mb-1.5 truncate": true,
+                  "bg-blue-dark-sky-010 text-white rounded-tl-xl dark:blue-dark-sky-active":
+                    type === "sender",
+                  "bg-gray-300 dark:bg-gray-700 rounded-tr-xl": type === "receiver"
+                })}
+              >
+                <div className="text-xs font-semibold">{currentContact?.name}</div>
+                <div className="text-sm">{message.parentMessage.content}</div>
               </div>
             )}
             <div

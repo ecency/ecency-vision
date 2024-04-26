@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import LinearProgress from "../../../../components/linear-progress";
 import ManageChatKey from "../manage-chat-key";
-import ChatInput from "../chat-input";
+import { ChatInput } from "../chat-input";
 import { usePrevious } from "../../../../util/use-previous";
 import "./_index.scss";
 import { useMappedStore } from "../../../../store/use-mapped-store";

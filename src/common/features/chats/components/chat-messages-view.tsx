@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import ChatsProfileBox from "./chat-profile-box";
 import ChatsDirectMessages from "./chats-direct-messages";
-import ChatInput from "./chat-input";
+import { ChatInput } from "./chat-input";
 import { classNameObject } from "../../../helper/class-name-object";
 import { ChatsChannelMessages } from "./chat-channel-messages";
 import {
