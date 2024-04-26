@@ -17,6 +17,7 @@ import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
 import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
 import { _t } from "../../../../i18n";
 import { ForwardMessageDialog } from "../forward-message-dialog";
+import { usePersistentReplyToMessage } from "../../hooks";
 
 interface Props {
   directMessages: DirectMessage[];
@@ -32,6 +33,7 @@ export default function ChatsDirectMessages(props: Props) {
 
   const { publicKey } = useKeysQuery();
   const directMessagesQuery = useDirectMessagesQuery(props.currentContact);
+  const [_, setReply] = usePersistentReplyToMessage(undefined, props.currentContact);
 
   // Message where users interacted with context menu
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
@@ -113,7 +115,7 @@ export default function ChatsDirectMessages(props: Props) {
                 <DropdownItemWithIcon
                   icon={<UilCommentAltMessage />}
                   label={_t("chat.reply")}
-                  onClick={() => {}}
+                  onClick={() => setReply(message)}
                 />
               </DropdownMenu>
             </Dropdown>

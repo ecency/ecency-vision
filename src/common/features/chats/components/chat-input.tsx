@@ -31,6 +31,7 @@ import Gallery from "../../../components/gallery";
 import useWindowSize from "react-use/lib/useWindowSize";
 import "./_chats.scss";
 import { useMappedStore } from "../../../store/use-mapped-store";
+import { ChatReplyDirectMessage } from "./reply-to-messages";
 
 interface Props {
   currentChannel?: Channel;
@@ -117,6 +118,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
         </div>
       ) : (
         <>
+          {currentContact && <ChatReplyDirectMessage currentContact={currentContact} />}
           {showGifPicker && (
             <GifPicker
               rootRef={gifPickerRef}
