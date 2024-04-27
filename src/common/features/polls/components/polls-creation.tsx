@@ -162,11 +162,6 @@ export function PollsCreation({
             <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
             <option value="tokens">{_t("polls.tokens")}</option>
           </FormControl>
-          {interpretation === "tokens" && !readonly && (
-            <div className="text-sm text-center py-3 text-red mx-auto">
-              {_t("polls.temporary-unavailable")}
-            </div>
-          )}
           <FormControl
             disabled={readonly}
             type="checkbox"

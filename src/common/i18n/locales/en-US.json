@@ -2416,7 +2416,7 @@
     "add-choice": "Add choice",
     "attach": "Attach to post",
     "update": "Update",
-    "polls-form-hint": "To attach poll to post need to fill all choices without duplicates",
+    "polls-form-hint": "To attach poll to post, need to fill all choices without duplicates",
     "options": "Options",
     "account-age": "Account age for voting(in days)",
     "end-time": "End time",
@@ -2426,7 +2426,6 @@
     "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them.",
     "number_of_votes": "By number of votes",
     "tokens": "By tokens",
-    "temporary-unavailable": "Temporary unavailable, please select other interpretation method",
     "view-votes": "View votes",
     "back-to-vote": "Back to vote",
     "votes": "Votes",
@@ -2436,8 +2435,8 @@
     "your-choice": "Your choice",
     "not-found": "Poll not found",
     "voting": "Voting...",
-    "vote-change": "Allow users change a vote",
-    "current-standing": "Allow users view results before voting",
+    "vote-change": "Changing a vote",
+    "current-standing": "Hide votes",
     "finished": "Finished",
     "expired-date": "End date should be in present or future"
   }
