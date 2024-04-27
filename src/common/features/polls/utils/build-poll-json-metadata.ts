@@ -4,10 +4,10 @@ import { MetaData } from "../../../api/operations";
 export function buildPollJsonMetadata(poll: PollSnapshot) {
   return {
     content_type: "poll",
-    version: 0.1,
+    version: 0.6,
     question: poll.title,
     choices: poll.choices,
-    preferred_interpretation: "number_of_votes",
+    preferred_interpretation: poll.interpretation,
     token: null,
     hide_votes: poll.hide_votes,
     vote_change: poll.voteChange,
