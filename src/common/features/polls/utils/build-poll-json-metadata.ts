@@ -9,7 +9,7 @@ export function buildPollJsonMetadata(poll: PollSnapshot) {
     choices: poll.choices,
     preferred_interpretation: poll.interpretation,
     token: null,
-    hide_votes: poll.hide_votes,
+    hide_votes: poll.hideVotes,
     vote_change: poll.voteChange,
     filters: {
       account_age: poll.filters.accountAge

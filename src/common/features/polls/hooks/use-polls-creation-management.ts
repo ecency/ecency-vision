@@ -43,7 +43,7 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
       setEndDate(poll.endTime);
       setInterpretation(poll.interpretation);
       setVoteChange(poll.voteChange);
-      setHideVotes(poll.hide_votes);
+      setHideVotes(poll.hideVotes);
     }
   }, [poll]);
 
@@ -75,7 +75,7 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     setEndDate,
     interpretation,
     setInterpretation,
-    hide_votes,
+    hideVotes,
     setHideVotes,
     voteChange,
     setVoteChange,

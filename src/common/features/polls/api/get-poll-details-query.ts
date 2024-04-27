@@ -33,7 +33,7 @@ export function useGetPollDetailsQuery(entry?: Entry) {
       queryFn: () =>
         axios
           .get(
-            `https://polls.hivehub.dev/rpc/poll?author=eq.${entry!!.author}&permlink=eq.${
+            `https://polls.ecency.com/rpc/poll?author=eq.${entry!!.author}&permlink=eq.${
               entry!!.permlink
             }`
           )

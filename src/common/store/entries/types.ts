@@ -27,7 +27,7 @@ export interface JsonPollMetadata {
   preferred_interpretation: string;
   token: string;
   vote_change: boolean;
-  current_standing: boolean;
+  hide_votes: boolean;
   filters: { account_age: number };
   end_time: number;
 }
