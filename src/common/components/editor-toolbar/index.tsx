@@ -38,6 +38,9 @@ import Fragments from "../fragments";
 import AddImage from "../add-image";
 import AddLink from "../add-link";
 import "./_index.scss";
+import { PollsCreation, PollSnapshot } from "../../features/polls";
+import { UilPanelAdd } from "@iconscout/react-unicons";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   sm?: boolean;
@@ -45,6 +48,10 @@ interface Props {
   toggleNsfwC?: () => void;
   comment: boolean;
   setVideoMetadata?: (v: ThreeSpeakVideo) => void;
+  onAddPoll?: (poll: PollSnapshot) => void;
+  existingPoll?: PollSnapshot;
+  onDeletePoll?: () => void;
+  readonlyPoll?: boolean;
 }
 
 export const detectEvent = (eventType: string) => {
@@ -62,7 +69,11 @@ export function EditorToolbar({
   comment,
   setVideoMetadata,
   setVideoEncoderBeneficiary,
-  toggleNsfwC
+  toggleNsfwC,
+  onAddPoll,
+  existingPoll,
+  onDeletePoll,
+  readonlyPoll
 }: Props) {
   const { global, activeUser, users } = useMappedStore();
 
@@ -77,6 +88,7 @@ export function EditorToolbar({
   const [gif, setGif] = useState(false);
   const [showVideoUpload, setShowVideoUpload] = useState(false);
   const [showVideoGallery, setShowVideoGallery] = useState(false);
+  const [showPollsCreation, setShowPollsCreation] = useState(false);
 
   const toolbarId = useMemo(() => v4(), []);
   const headers = useMemo(() => [...Array(3).keys()], []);
@@ -481,6 +493,19 @@ export function EditorToolbar({
             {linkSvg}
           </div>
         </Tooltip>
+        {!comment && (
+          <Tooltip content={_t("editor-toolbar.polls")}>
+            <div
+              className={classNameObject({
+                "editor-tool": true,
+                "bg-green bg-opacity-25": !!existingPoll
+              })}
+              onClick={() => setShowPollsCreation(!showPollsCreation)}
+            >
+              <UilPanelAdd />
+            </div>
+          </Tooltip>
+        )}
       </div>
       <input
         onChange={fileInputChanged}
@@ -548,6 +573,14 @@ export function EditorToolbar({
           }}
         />
       )}
+      <PollsCreation
+        readonly={readonlyPoll}
+        existingPoll={existingPoll}
+        show={showPollsCreation}
+        setShow={(v) => setShowPollsCreation(v)}
+        onAdd={(snap) => onAddPoll?.(snap)}
+        onDeletePoll={() => onDeletePoll?.()}
+      />
     </>
   );
 }

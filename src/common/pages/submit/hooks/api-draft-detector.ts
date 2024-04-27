@@ -3,9 +3,10 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../../../core";
 import { Draft, getDrafts } from "../../../api/private-api";
 import { useMappedStore } from "../../../store/use-mapped-store";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Location } from "history";
 import usePrevious from "react-use/lib/usePrevious";
+import { PollsContext } from "./polls-manager";
 
 export function useApiDraftDetector(
   match: MatchType,
@@ -13,6 +14,7 @@ export function useApiDraftDetector(
   onDraftLoaded: (draft: Draft) => void,
   onInvalidDraft: () => void
 ) {
+  const { setActivePoll } = useContext(PollsContext);
   const { activeUser } = useMappedStore();
   const queryClient = useQueryClient();
 
@@ -56,6 +58,7 @@ export function useApiDraftDetector(
   useEffect(() => {
     if (draftQuery.data) {
       onDraftLoaded(draftQuery.data);
+      setActivePoll(draftQuery.data.meta?.poll);
     }
   }, [draftQuery.data]);
 
