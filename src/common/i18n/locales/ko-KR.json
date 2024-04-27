@@ -1428,7 +1428,8 @@
     "image-error-size": "이미지 사이즈가 너무 큽니다. 더 작은 크기의 이미지를 다시 시도하세요.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
     "fragments": "스니펫",
-    "link-image": "Link"
+    "link-image": "Link",
+    "polls": "Polls"
   },
   "emoji-picker": {
     "filter-placeholder": "필터",
@@ -2403,5 +2404,40 @@
     "toolbar-hint": "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
     "advanced-hint": "Configure advanced settings such as scheduling, beneficiaries",
     "help-hint": "Have any questions? Check out help center"
+  },
+  "polls": {
+    "poll": "Poll",
+    "title": "Create a poll",
+    "edit-title": "Edit a poll",
+    "title-placeholder": "Poll question",
+    "choices": "Choices",
+    "post-poll": "Post's poll",
+    "choice-placeholder": "Choice {{n}}",
+    "add-choice": "Add choice",
+    "attach": "Attach to post",
+    "update": "Update",
+    "polls-form-hint": "To attach poll to post, need to fill all choices without duplicates",
+    "options": "Options",
+    "account-age": "Account age for voting(in days)",
+    "end-time": "End time",
+    "vote": "Vote",
+    "account-age-hint": "Only accounts older than {{n}} days allowed",
+    "preview-mode": "Preview mode",
+    "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them.",
+    "number_of_votes": "By number of votes",
+    "tokens": "By tokens",
+    "view-votes": "View votes",
+    "back-to-vote": "Back to vote",
+    "votes": "Votes",
+    "votes-list": "Votes list",
+    "show-voters": "Show voters",
+    "vote-confirmation-and-sign": "Sign and confirm your vote",
+    "your-choice": "Your choice",
+    "not-found": "Poll not found",
+    "voting": "Voting...",
+    "vote-change": "Changing a vote",
+    "current-standing": "Hide votes",
+    "finished": "Finished",
+    "expired-date": "End date should be in present or future"
   }
 }
