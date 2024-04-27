@@ -1429,7 +1429,7 @@
     "image-error-conflict-name": "Ya tienes una imagen con este nombre de archivo. Selecciónala en la galería.",
     "fragments": "Fragmentos de código",
     "link-image": "Enlace",
-    "polls": "Polls"
+    "polls": "Encuestas"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -2406,12 +2406,12 @@
     "help-hint": "¿Tienes alguna pregunta? Revisa el centro de ayuda"
   },
   "polls": {
-    "poll": "Poll",
-    "title": "Create a poll",
-    "edit-title": "Edit a poll",
-    "title-placeholder": "Poll question",
-    "choices": "Choices",
-    "post-poll": "Post's poll",
+    "poll": "Encuesta",
+    "title": "Crear una encuesta",
+    "edit-title": "Editar una encuesta",
+    "title-placeholder": "Pregunta de encuesta",
+    "choices": "Opciones",
+    "post-poll": "Encuesta del post",
     "choice-placeholder": "Choice {{n}}",
     "add-choice": "Add choice",
     "attach": "Attach to post",
