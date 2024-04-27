@@ -18,7 +18,7 @@ export interface PollSnapshot {
   title: string;
   choices: string[];
   voteChange: boolean;
-  currentStanding: boolean;
+  hide_votes: boolean;
   filters: {
     accountAge: number;
   };
@@ -57,8 +57,8 @@ export function PollsCreation({
     setEndDate,
     interpretation,
     setInterpretation,
-    currentStanding,
-    setCurrentStanding,
+    hide_votes,
+    setHideVotes,
     voteChange,
     setVoteChange,
     isExpiredEndDate
@@ -178,8 +178,8 @@ export function PollsCreation({
             disabled={readonly}
             type="checkbox"
             label={_t("polls.current-standing")}
-            checked={!!currentStanding}
-            onChange={(e: boolean) => setCurrentStanding(e)}
+            checked={!!hide_votes}
+            onChange={(e: boolean) => setHideVotes(e)}
           />
         </div>
       </ModalBody>
@@ -228,7 +228,7 @@ export function PollsCreation({
                     endTime: endDate,
                     choices,
                     voteChange: !!voteChange,
-                    currentStanding: !!currentStanding,
+                    hide_votes: !!hide_votes,
                     filters: {
                       accountAge
                     },

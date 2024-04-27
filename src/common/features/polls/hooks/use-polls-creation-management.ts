@@ -20,7 +20,7 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
   const [interpretation, setInterpretation] =
     useState<PollSnapshot["interpretation"]>("number_of_votes");
   const [voteChange, setVoteChange] = useLocalStorage(PREFIX + "_plls_vc", true);
-  const [currentStanding, setCurrentStanding] = useLocalStorage(PREFIX + "_plls_cs", true);
+  const [hideVotes, setHideVotes] = useLocalStorage(PREFIX + "_plls_cs", false);
 
   const hasEmptyOrDuplicatedChoices = useMemo(() => {
     if (!choices || choices.length <= 1) {
@@ -43,7 +43,7 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
       setEndDate(poll.endTime);
       setInterpretation(poll.interpretation);
       setVoteChange(poll.voteChange);
-      setCurrentStanding(poll.currentStanding);
+      setHideVotes(poll.hide_votes);
     }
   }, [poll]);
 
@@ -75,8 +75,8 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     setEndDate,
     interpretation,
     setInterpretation,
-    currentStanding,
-    setCurrentStanding,
+    hide_votes,
+    setHideVotes,
     voteChange,
     setVoteChange,
     isExpiredEndDate

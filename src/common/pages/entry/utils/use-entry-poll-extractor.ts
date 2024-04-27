@@ -15,7 +15,7 @@ export function useEntryPollExtractor(entry?: Entry | null) {
         endTime: new Date((entry.json_metadata as JsonPollMetadata)?.end_time * 1000),
         interpretation: (entry.json_metadata as JsonPollMetadata)?.preferred_interpretation,
         voteChange: (entry.json_metadata as JsonPollMetadata)?.vote_change ?? true,
-        currentStanding: (entry.json_metadata as JsonPollMetadata)?.current_standing ?? true,
+        hide_votes: (entry.json_metadata as JsonPollMetadata)?.hide_votes ?? false,
         filters: {
           accountAge: (entry.json_metadata as JsonPollMetadata)?.filters.account_age
         }

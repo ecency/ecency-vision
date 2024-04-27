@@ -38,8 +38,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
   const showViewVotes = useMemo(
-    () => poll.currentStanding && !resultsMode,
-    [poll.currentStanding, resultsMode]
+    () => poll.hide_votes && !resultsMode,
+    [poll.hide_votes, resultsMode]
   );
   const showChangeVote = useMemo(
     () => poll.voteChange && resultsMode && pollDetails.data?.status === "Active",
