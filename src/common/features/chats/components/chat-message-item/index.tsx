@@ -95,7 +95,7 @@ export function ChatMessageItem({
   useDebounce(() => onInViewport?.(inViewport), 500, [inViewport]);
 
   return (
-    <div key={message.id} data-message-id={message.id} ref={ref}>
+    <div key={message.id} data-message-id={message.id} ref={ref} className="duration-500">
       <div
         className={classNameObject({
           "chat-message-item flex gap-1 px-4 w-full": true,
@@ -107,8 +107,8 @@ export function ChatMessageItem({
           "mb-1": !showDate,
           [className]: !!className
         })}
-        onMouseDown={() => setHoldStarted(true)}
-        onMouseUp={() => setHoldStarted(false)}
+        // onMouseDown={() => setHoldStarted(true)}
+        // onMouseUp={() => setHoldStarted(false)}
         onTouchStart={() => setHoldStarted(true)}
         onTouchEnd={() => setHoldStarted(false)}
         onContextMenu={(e) => {
