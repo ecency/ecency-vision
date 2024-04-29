@@ -5,7 +5,7 @@ import { Input, InputProps } from "./input";
 import { Checkbox, CheckboxProps } from "./checkbox";
 import { Toggle } from "@ui/input/form-controls/toggle";
 
-type Props = InputProps | TextareaProps | SelectProps | CheckboxProps;
+type Props = InputProps | TextareaProps | SelectProps | CheckboxProps | { type: "date" };
 
 export const FormControl = forwardRef<any, Props>((props, ref) => {
   switch (props.type) {

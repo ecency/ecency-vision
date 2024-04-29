@@ -23,9 +23,12 @@ import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
 import { version } from "../../../../../package.json";
+import { PollsContext } from "../hooks/polls-manager";
+import { buildPollJsonMetadata } from "../../../features/polls/utils";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
+  const { activePoll, clearActivePoll } = useContext(PollsContext);
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
 
@@ -98,6 +101,10 @@ export function usePublishApi(history: History, onClear: () => void) {
         );
       }
 
+      if (activePoll) {
+        jsonMeta = { ...jsonMeta, ...buildPollJsonMetadata(activePoll) };
+      }
+
       // If post have one unpublished video need to modify
       //    json metadata which matches to 3Speak
       if (unpublished3SpeakVideo) {
@@ -115,6 +122,10 @@ export function usePublishApi(history: History, onClear: () => void) {
         // set specific metadata for 3speak
         jsonMeta.app = makeApp(version);
         jsonMeta.type = "video";
+      }
+
+      if (jsonMeta.type === "video" && activePoll) {
+        throw new Error(_t("polls.videos-collision-error"));
       }
 
       const options = makeCommentOptions(author, permlink, reward, beneficiaries);
@@ -151,6 +162,7 @@ export function usePublishApi(history: History, onClear: () => void) {
 
         success(_t("submit.published"));
         onClear();
+        clearActivePoll();
         const newLoc = makePathEntry(parentPermlink, author, permlink);
         history.push(newLoc);
 

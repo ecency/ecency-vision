@@ -13,10 +13,14 @@ import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { version } from "../../../../../package.json";
 import { useThreeSpeakManager } from "../hooks";
+import { buildPollJsonMetadata } from "../../../features/polls/utils";
+import { useContext } from "react";
+import { PollsContext } from "../hooks/polls-manager";
 
 export function useScheduleApi(onClear: () => void) {
   const { activeUser } = useMappedStore();
   const { buildBody } = useThreeSpeakManager();
+  const { activePoll, clearActivePoll } = useContext(PollsContext);
 
   return useMutation(
     ["schedule"],
@@ -51,7 +55,10 @@ export function useScheduleApi(onClear: () => void) {
       }
 
       const meta = extractMetaData(body);
-      const jsonMeta = makeJsonMetaData(meta, tags, description, version);
+      let jsonMeta = makeJsonMetaData(meta, tags, description, version);
+      if (activePoll) {
+        jsonMeta = { ...jsonMeta, ...buildPollJsonMetadata(activePoll) };
+      }
       const options = makeCommentOptions(author, permlink, reward, beneficiaries);
 
       const reblog = isCommunity(tags[0]) && reblogSwitch;
@@ -68,6 +75,7 @@ export function useScheduleApi(onClear: () => void) {
           reblog
         );
         onClear();
+        clearActivePoll();
       } catch (e) {
         if (e.response?.data?.message) {
           error(e.response?.data?.message);

@@ -8,13 +8,14 @@ export interface CheckboxProps extends Omit<HTMLProps<HTMLElement>, "onChange"> 
   checked: boolean;
   onChange: (e: boolean) => void;
   label?: string;
+  disabled?: boolean;
 }
 
 export function Checkbox({ checked, onChange, label, disabled }: CheckboxProps) {
   return (
     <div
       className="ecency-checkbox cursor-pointer flex items-center justify-center gap-3"
-      onClick={() => onChange(!checked)}
+      onClick={() => !disabled && onChange(!checked)}
     >
       <div
         className={classNameObject({

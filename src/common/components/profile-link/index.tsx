@@ -7,7 +7,7 @@ export const makePath = (username: string) => `/@${username}`;
 
 interface Props {
   history: History;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   username: string;
   addAccount: (data: Account) => void;
   afterClick?: () => void;
