@@ -1963,7 +1963,9 @@
       "description": "Ole hyvä ja kirjoita julkinen ja yksityinen avainpari tuodaksesi nykyisen tilisi",
       "button": "Tuonti",
       "iv": "Alkuvektorin arvo"
-    }
+    },
+    "reply": "Reply",
+    "reply-to": "Replying to {{account}}"
   },
   "add-image": {
     "title": "Lisää kuva",
