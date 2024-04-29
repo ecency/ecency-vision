@@ -1964,8 +1964,8 @@
       "button": "Importar",
       "iv": "Valor inicial del vector"
     },
-    "reply": "Reply",
-    "reply-to": "Replying to {{account}}"
+    "reply": "Responder",
+    "reply-to": "Respondiendo a {{account}}"
   },
   "add-image": {
     "title": "Añadir imagen",
