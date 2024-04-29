@@ -1963,7 +1963,9 @@
       "description": "Please, enter public and private key pair to import your existing account",
       "button": "Import",
       "iv": "Initial vector value"
-    }
+    },
+    "reply": "Reply",
+    "reply-to": "Replying to {{account}}"
   },
   "add-image": {
     "title": "Adicionar imagem",
