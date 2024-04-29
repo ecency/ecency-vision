@@ -1963,7 +1963,9 @@
       "description": "Por favor, introduzca un par de claves públicas y privadas para importar su cuenta existente",
       "button": "Importar",
       "iv": "Valor inicial del vector"
-    }
+    },
+    "reply": "Reply",
+    "reply-to": "Replying to {{account}}"
   },
   "add-image": {
     "title": "Añadir imagen",
