@@ -30,7 +30,7 @@ export function ChatFloatingDate({
         "top-[180px] md:top-[57px]": isPage
       })}
     >
-      <div className="bg-gray-200 my-3 dark:bg-gray-800 rounded-full p-1 max-w-[100px] min-w-[100px] truncate">
+      <div className="bg-gray-900 dark:bg-gray-200 text-white bg-opacity-30 dark:bg-opacity-20 font-semibold backdrop-blur-2xl my-3 rounded-full px-1.5 py-0.5 max-w-[100px] truncate">
         {currentFormattedDate}
       </div>
     </div>

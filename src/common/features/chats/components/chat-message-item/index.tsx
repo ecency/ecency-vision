@@ -1,14 +1,10 @@
-import { isMessageGif } from "../utils";
-import { Spinner } from "@ui/spinner";
+import { isMessageGif } from "../../utils";
 import React, { useMemo, useRef, useState } from "react";
-import { classNameObject } from "../../../helper/class-name-object";
+import { classNameObject } from "../../../../helper/class-name-object";
 import { renderPostBody } from "@ecency/render-helper";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { _t } from "../../../i18n";
-import { ChatMessageChannelItemExtension } from "./chat-message-channel-item-extension";
+import { useMappedStore } from "../../../../store/use-mapped-store";
+import { ChatMessageChannelItemExtension } from "../chat-message-channel-item-extension";
 import useMount from "react-use/lib/useMount";
-import { Button } from "@ui/button";
-import { failedMessageSvg } from "../../../img/svg";
 import useDebounce from "react-use/lib/useDebounce";
 import {
   Channel,
@@ -17,15 +13,14 @@ import {
   isSingleEmoji,
   Message,
   useKeysQuery,
-  useNostrGetUserProfileQuery,
-  useResendMessage
+  useNostrGetUserProfileQuery
 } from "@ecency/ns-query";
-import { format } from "date-fns";
 import { useInViewport } from "react-in-viewport";
 import "./_chat-message-item.scss";
-import ProfileLink, { makePath } from "../../../components/profile-link";
-import { Link } from "react-router-dom";
-import { history } from "../../../store";
+import { ChatMessageStatus } from "./chat-message-status";
+import { ChatMessageForwardingLabel } from "./chat-message-forwarding-label";
+import { ChatMessageRepliedLabel } from "./chat-message-replied-label";
+import { ChatMessageUsernameLabel } from "./chat-message-username-label";
 
 interface Props {
   type: "sender" | "receiver";
@@ -68,22 +63,20 @@ export function ChatMessageItem({
       renderPostBody(message.content, false, global.canUseWebp)
         .replace(/<p[^>]*>/g, "")
         .replace(/<\/p>/g, ""),
-    [message]
+    [message, global.canUseWebp]
   );
 
-  const { mutateAsync: resendMessage } = useResendMessage(currentChannel, currentContact);
   const { inViewport } = useInViewport(ref);
 
   const { data: nostrUserProfiles } = useNostrGetUserProfileQuery(message.creator);
-  const { data: nostrForwardedUserProfiles } = useNostrGetUserProfileQuery(message.forwardedFrom);
 
   const profile = useMemo(
     () => nostrUserProfiles?.find((p) => p.creator === message.creator),
-    [message, nostrUserProfiles]
+    [nostrUserProfiles, message.creator]
   );
   const showUsername = useMemo(
     () => profile && currentChannel && profile.name != activeUser?.username,
-    [profile, currentChannel, activeUser]
+    [profile, currentChannel, activeUser?.username]
   );
 
   useMount(() => onAppear?.());
@@ -99,16 +92,10 @@ export function ChatMessageItem({
     [holdStarted]
   );
 
-  useDebounce(
-    () => {
-      onInViewport?.(inViewport);
-    },
-    500,
-    [inViewport]
-  );
+  useDebounce(() => onInViewport?.(inViewport), 500, [inViewport]);
 
   return (
-    <div key={message.id} data-message-id={message.id} ref={ref}>
+    <div key={message.id} data-message-id={message.id} ref={ref} className="duration-500">
       <div
         className={classNameObject({
           "chat-message-item flex gap-1 px-4 w-full": true,
@@ -120,8 +107,8 @@ export function ChatMessageItem({
           "mb-1": !showDate,
           [className]: !!className
         })}
-        onMouseDown={() => setHoldStarted(true)}
-        onMouseUp={() => setHoldStarted(false)}
+        // onMouseDown={() => setHoldStarted(true)}
+        // onMouseUp={() => setHoldStarted(false)}
         onTouchStart={() => setHoldStarted(true)}
         onTouchEnd={() => setHoldStarted(false)}
         onContextMenu={(e) => {
@@ -148,73 +135,40 @@ export function ChatMessageItem({
           <div
             className={classNameObject({
               "duration-300 max-w-[340px]": true,
-              "text-sm px-2.5 pb-2.5 rounded-b-2xl": !isGif && !isEmoji,
+              "text-sm px-2 pb-2 rounded-b-2xl": !isGif && !isEmoji,
               "bg-blue-dark-sky text-white rounded-tl-2xl": type === "sender" && !isEmoji,
               "bg-gray-200 dark:bg-gray-800 rounded-tr-2xl": type === "receiver" && !isEmoji,
               "max-w-[300px] rounded-2xl overflow-hidden": isGif || isImage || isEmoji,
               "same-user-message": isSameUser,
               "text-[4rem]": isEmoji,
               "scale-90": holdStarted && !!onContextMenu,
-              "pt-2.5": !showUsername,
-              "pt-1.5": showUsername
+              "pt-2": !showUsername,
+              "pt-1": showUsername
             })}
           >
-            {showUsername && (
-              <Link
-                className={classNameObject({
-                  "font-semibold text-sm mb-2 text-blue-dark-sky": true,
-                  "px-2.5": isGif || isEmoji
-                })}
-                style={{
-                  display: "inherit"
-                }}
-                to={makePath(profile!!.name)}
-              >
-                {profile!!.name}
-              </Link>
-            )}
-            {message.forwardedFrom && (
-              <div className="text-xs text-gray-300 dark:text-gray-700">
-                {_t("chat.forwarded-from")}
-                {nostrForwardedUserProfiles?.[0]?.name && (
-                  <ProfileLink
-                    target="_blank"
-                    addAccount={addAccount}
-                    history={history!!}
-                    username={nostrForwardedUserProfiles?.[0]?.name}
-                  >
-                    <span className="text-gray-300 dark:text-gray-700">
-                      ({nostrForwardedUserProfiles[0].name})
-                    </span>
-                  </ProfileLink>
-                )}
-              </div>
-            )}
+            <ChatMessageUsernameLabel
+              profile={profile}
+              showUsername={showUsername}
+              isGif={isGif}
+              isEmoji={isEmoji}
+            />
+            <ChatMessageForwardingLabel message={message} type={type} />
+            <ChatMessageRepliedLabel
+              message={message}
+              type={type}
+              currentContact={currentContact}
+            />
             <div
               className="sender-message-content [&>img]:rounded-xl"
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
             />
           </div>
-          {message.sent == 1 && showDate && (
-            <div className="text-gray-600 dark:text-gray-400 text-xs px-2">
-              {format(new Date(message.created * 1000), "HH:mm")}
-            </div>
-          )}
-          {message.sent === 0 && <Spinner className="w-3 h-3 mx-2" />}
-          {message.sent === 2 && (
-            <div className="flex items-center gap-1">
-              {failedMessageSvg}
-              <Button
-                size="xs"
-                className="text-xs"
-                appearance="link"
-                noPadding={true}
-                onClick={() => resendMessage(message)}
-              >
-                {_t("g.resend")}
-              </Button>
-            </div>
-          )}
+          <ChatMessageStatus
+            message={message}
+            showDate={showDate}
+            currentChannel={currentChannel}
+            currentContact={currentContact}
+          />
         </div>
       </div>
     </div>

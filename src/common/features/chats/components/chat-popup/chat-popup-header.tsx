@@ -72,7 +72,10 @@ export function ChatPopupHeader({
 
   return (
     <div
-      className="flex items-center justify-between border-b border-[--border-color] px-2 py-2 gap-2 cursor-pointer"
+      className={classNameObject({
+        "flex items-center justify-between px-2 py-2 gap-2 cursor-pointer": true,
+        "border-b border-[--border-color]": !!directContact || !!channel
+      })}
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-center">

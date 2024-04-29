@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { EmojiPicker } from "../../../components/emoji-picker";
+import { EmojiPicker } from "../../../../components/emoji-picker";
 import {
   attachFileSvg,
   chatBoxImageSvg,
@@ -8,36 +8,32 @@ import {
   imageSvg,
   informationOutlineSvg,
   messageSendSvg
-} from "../../../img/svg";
-import { GifImagesStyle } from "./chat-popup/chat-constants";
-import { _t } from "../../../i18n";
+} from "../../../../img/svg";
+import { GifImagesStyle } from "../chat-popup/chat-constants";
+import { _t } from "../../../../i18n";
 import { Form } from "@ui/form";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
-import GifPicker from "../../../components/gif-picker";
+import GifPicker from "../../../../components/gif-picker";
 import useClickAway from "react-use/lib/useClickAway";
 import { Spinner } from "@ui/spinner";
-import {
-  Channel,
-  ChatContext,
-  DirectContact,
-  useGetPublicKeysQuery,
-  useSendMessage
-} from "@ecency/ns-query";
-import Tooltip from "../../../components/tooltip";
-import { ChatInputFiles } from "./chat-input-files";
-import Gallery from "../../../components/gallery";
+import { Channel, ChatContext, DirectContact, useGetPublicKeysQuery } from "@ecency/ns-query";
+import Tooltip from "../../../../components/tooltip";
+import { ChatInputFiles } from "../chat-input-files";
+import Gallery from "../../../../components/gallery";
 import useWindowSize from "react-use/lib/useWindowSize";
 import "./_chats.scss";
-import { useMappedStore } from "../../../store/use-mapped-store";
+import { useMappedStore } from "../../../../store/use-mapped-store";
+import { ChatReplyDirectMessage } from "../reply-to-messages";
+import { useChatInputSubmit } from "./hooks";
 
 interface Props {
   currentChannel?: Channel;
   currentContact?: DirectContact;
 }
 
-export default function ChatInput({ currentChannel, currentContact }: Props) {
+export function ChatInput({ currentChannel, currentContact }: Props) {
   const size = useWindowSize();
   const { global } = useMappedStore();
 
@@ -57,13 +53,6 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   const { data: contactKeys, isLoading: isContactKeysLoading } = useGetPublicKeysQuery(
     currentContact?.name
   );
-  const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
-    currentChannel,
-    currentContact,
-    () => {
-      setMessage("");
-    }
-  );
 
   const isCurrentUser = useMemo(() => !!currentContact, [currentContact]);
   const isCommunity = useMemo(() => !!currentChannel, [currentChannel]);
@@ -75,11 +64,11 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
   const isJoined = useMemo(() => (contactKeys ? contactKeys.pubkey : false), [contactKeys]);
   const isReadOnly = useMemo(
     () => (contactKeys && isJoined ? currentContact?.pubkey !== contactKeys.pubkey : false),
-    [contactKeys, currentContact, isJoined]
+    [contactKeys, isJoined, currentContact?.pubkey]
   );
   const isFilesUploading = useMemo(
     () => (files.length > 0 ? files.length !== uploadedFileLinks.length : false),
-    [files, uploadedFileLinks]
+    [files.length, uploadedFileLinks.length]
   );
 
   useClickAway(gifPickerRef, () => setShowGifPicker(false));
@@ -90,21 +79,18 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
     }
   }, [isCommunity, isCurrentUser]);
 
-  const submit = async () => {
-    const nextMessage = buildImages(message);
-    if (isDisabled || isSendMessageLoading || isFilesUploading || !nextMessage) {
-      return;
-    }
-    await sendMessage({ message: nextMessage });
-    setFiles([]);
-    setUploadedFileLinks([]);
-    // Re-focus to input because when DOM changes and input position changes then
-    //  focus is lost
-    setTimeout(() => inputRef.current?.focus(), 1);
-  };
-
-  const buildImages = (message: string) =>
-    `${message}${uploadedFileLinks.map((link) => `\n![](${link})`)}`;
+  const { submit, sendMessage, isSendMessageLoading } = useChatInputSubmit({
+    currentChannel,
+    currentContact,
+    inputRef,
+    message,
+    setMessage,
+    uploadedFileLinks,
+    setUploadedFileLinks,
+    setFiles,
+    isDisabled,
+    isFilesUploading
+  });
 
   return (
     <div className="chat-input">
@@ -117,6 +103,7 @@ export default function ChatInput({ currentChannel, currentContact }: Props) {
         </div>
       ) : (
         <>
+          {currentContact && <ChatReplyDirectMessage currentContact={currentContact} />}
           {showGifPicker && (
             <GifPicker
               rootRef={gifPickerRef}

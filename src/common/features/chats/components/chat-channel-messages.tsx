@@ -86,7 +86,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
     <>
       <div className="channel-messages" ref={channelMessagesRef}>
         {groupedMessages.map(([date, group], i) => (
-          <React.Fragment key={date.getTime()}>
+          <div className="relative" key={date.getTime()}>
             {(i > 0 ? differenceInCalendarDays(date, groupedMessages[i - 1][0]) : 1) ? (
               <ChatFloatingDate key={date.getTime()} currentDate={date} isPage={isPage} />
             ) : (
@@ -154,7 +154,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                 </Dropdown>
               </>
             ))}
-          </React.Fragment>
+          </div>
         ))}
 
         <ForwardMessageDialog
