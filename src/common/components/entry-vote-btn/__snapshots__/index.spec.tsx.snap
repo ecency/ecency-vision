@@ -42,13 +42,21 @@ Array [
       className="slider slider-up"
     >
       <div
-        className="ecency-vote-input relative"
+        className="ecency-vote-input rounded-full overflow-hidden relative"
+        onMouseDown={[Function]}
+        onMouseMove={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
         <div
-          className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
+          className="ecency-input-group flex items-stretch w-full relative z-10 [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
         >
           <input
             className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+            max={100}
+            min={0}
             onChange={[Function]}
             step="0.1"
             type="number"
@@ -62,11 +70,20 @@ Array [
           </div>
         </div>
         <div
-          className="absolute right-10 top-0 bottom-0 flex flex-col justify-center items-center"
+          className="absolute bg-opacity-25 top-[1px] left-[1px] bottom-[1px] bg-blue-dark-sky"
+          style={
+            Object {
+              "width": "86%",
+            }
+          }
+        />
+        <div
+          className="absolute z-[11] right-10 top-0 bottom-0 flex flex-col justify-center items-center"
         >
           <div
             className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
             onClick={[Function]}
+            onMouseDown={[Function]}
           >
             <svg
               fill="currentColor"
@@ -83,6 +100,7 @@ Array [
           <div
             className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
             onClick={[Function]}
+            onMouseDown={[Function]}
           >
             <svg
               fill="currentColor"

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(1) Default render 1`] = `
-<div>
+<div
+  className="noselection"
+>
   <div />
   <div
     className="entry-payout notranslate"
@@ -236,7 +238,9 @@ exports[`(4) Detail render with max payout 1`] = `
 `;
 
 exports[`(5) Default with max payout 1`] = `
-<div>
+<div
+  className="noselection"
+>
   <div />
   <div
     className="entry-payout payout-limit-hit notranslate"

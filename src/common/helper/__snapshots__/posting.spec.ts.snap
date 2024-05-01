@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createPatch (1)  1`] = `
-"@@ -6,16 +6,17 @@
-  ipsum d
-+o
- lor sit 
-"
-`;
-
 exports[`createPermlink (1)  1`] = `"lorem-ipsum-dolor-sit-amet"`;
 
 exports[`createPermlink non-latin chars (1)  1`] = `"f38c58113ff7e"`;
@@ -113,22 +105,6 @@ Object {
   "max_accepted_payout": "1000000.000 HBD",
   "percent_hbd": 10000,
   "permlink": "lorem-ipsum-1",
-}
-`;
-
-exports[`makeJsonMetaData (1)  1`] = `
-Object {
-  "app": "ecency/2.0.0-vision",
-  "description": "",
-  "format": "markdown+html",
-  "image": Array [
-    "http://www.xx.com/a.png",
-    "https://img.esteem.ws/h74zrad2fh.jpg",
-  ],
-  "tags": Array [
-    "esteem",
-    "art",
-  ],
 }
 `;
 
