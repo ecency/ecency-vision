@@ -175,7 +175,9 @@ exports[`(1) Default render 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
@@ -463,7 +465,9 @@ exports[`(2) Grid view 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
@@ -776,7 +780,9 @@ exports[`(3) Nsfw 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
@@ -1089,7 +1095,9 @@ exports[`(4) Nsfw with active user 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
@@ -1402,7 +1410,9 @@ exports[`(5) Nsfw but allowed 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
@@ -1725,7 +1735,9 @@ exports[`(6) Cross post. Bottom menu 1`] = `
           </div>
         </div>
       </div>
-      <div>
+      <div
+        className="noselection"
+      >
         <div />
         <div
           className="entry-payout notranslate"
