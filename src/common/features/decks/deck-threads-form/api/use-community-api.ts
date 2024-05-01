@@ -1,15 +1,10 @@
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { FullAccount } from "../../../../store/accounts/types";
-import {
-  createPermlink,
-  extractMetaData,
-  makeCommentOptions,
-  makeJsonMetaData
-} from "../../../../helper/posting";
+import { createPermlink, makeCommentOptions } from "../../../../helper/posting";
 import { comment } from "../../../../api/operations";
-import { version } from "../../../../../../package.json";
 import tempEntry from "../../../../helper/temp-entry";
 import { Entry } from "../../../../store/entries/types";
+import { EntryMetadataManagement } from "../../../entry-management";
 
 export function useCommunityApi() {
   const { activeUser, addEntry } = useMappedStore();
@@ -32,9 +27,15 @@ export function useCommunityApi() {
     const permlink = editingEntry?.permlink ?? createPermlink("", true);
     const options = makeCommentOptions(author, permlink, "default");
 
-    const { thumbnails, ...meta } = extractMetaData(raw);
-    const tags = raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"];
-    const jsonMeta = makeJsonMetaData(meta, [hostTag, ...tags], null, version);
+    const jsonMeta = EntryMetadataManagement.EntryMetadataManager.shared
+      .builder()
+      .default()
+      .extractFromBody(raw)
+      .withTags([
+        hostTag,
+        ...(raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"])
+      ])
+      .build();
 
     await comment(author, "", hostTag, permlink, "", cleanedRaw, jsonMeta, options, true);
 

@@ -1,7 +1,5 @@
 import getSlug from "speakingurl";
 
-import { diff_match_patch } from "diff-match-patch";
-
 import { BeneficiaryRoute, CommentOptions, MetaData, RewardType } from "../api/operations";
 
 const permlinkRnd = () => (Math.random() + 1).toString(16).substring(2);
@@ -64,19 +62,6 @@ export const extractMetaData = (body: string): MetaData => {
 
 export const makeApp = (appVer: string) => `ecency/${appVer}-vision`;
 
-export const makeJsonMetaData = (
-  meta: MetaData,
-  tags: string[],
-  description: string | null,
-  appVer: string
-): MetaData =>
-  Object.assign({}, meta, {
-    tags,
-    description,
-    app: makeApp(appVer),
-    format: "markdown+html"
-  });
-
 export const makeJsonMetaDataReply = (tags: string[], appVer: string) => ({
   tags,
   app: makeApp(appVer),
@@ -131,12 +116,4 @@ export const createReplyPermlink = (toAuthor: string) => {
     .toString()}${t.getMilliseconds().toString()}z`;
 
   return `re-${toAuthor.replace(/\./g, "")}-${timeFormat}`;
-};
-
-export const createPatch = (text1: string, text2: string): string | undefined => {
-  const dmp = new diff_match_patch();
-  if (text1 === "") return undefined;
-  const patches = dmp.patch_make(text1, text2);
-  const patch = dmp.patch_toText(patches);
-  return patch;
 };

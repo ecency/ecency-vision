@@ -2,7 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import { FullAccount } from "../../../store/accounts/types";
 import { createPermlink, makeApp, makeCommentOptions } from "../../../helper/posting";
 import * as bridgeApi from "../../../api/bridge";
-import { proxifyImageSrc } from "@ecency/render-helper";
 import { markAsPublished, updateSpeakVideoInfo } from "../../../api/threespeak";
 import {
   BeneficiaryRoute,
@@ -19,12 +18,11 @@ import isCommunity from "../../../helper/is-community";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useThreeSpeakManager } from "../hooks";
-import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
 import { version } from "../../../../../package.json";
 import { PollsContext } from "../hooks/polls-manager";
-import { buildPollJsonMetadata } from "../../../features/polls/utils";
+import { EntryBodyManagement, EntryMetadataManagement } from "../../../features/entry-management";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
@@ -58,8 +56,7 @@ export function usePublishApi(history: History, onClear: () => void) {
       const unpublished3SpeakVideo = Object.values(videos).find(
         (v) => v.status === "publish_manual"
       );
-      // clean body
-      const cbody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
+      const cbody = EntryBodyManagement.EntryBodyManager.shared.builder().buildClearBody(body);
 
       // make sure active user fully loaded
       if (!activeUser || !activeUser.data.__loaded) {
@@ -83,27 +80,17 @@ export function usePublishApi(history: History, onClear: () => void) {
       }
 
       const [parentPermlink] = tags;
-      let jsonMeta = buildMetadata({
-        title,
-        body,
-        tags,
-        description,
-        videoMetadata: unpublished3SpeakVideo,
-        selectionTouched,
-        selectedThumbnail
-      });
-
-      if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
-        jsonMeta.image_ratios = await Promise.all(
-          jsonMeta.image
-            .slice(0, 5)
-            .map((element: string) => getDimensionsFromDataUrl(proxifyImageSrc(element)))
-        );
-      }
-
-      if (activePoll) {
-        jsonMeta = { ...jsonMeta, ...buildPollJsonMetadata(activePoll) };
-      }
+      const metaBuilder = await EntryMetadataManagement.EntryMetadataManager.shared
+        .builder()
+        .default()
+        .extractFromBody(body)
+        .withSummary(description ?? body)
+        .withTags(tags)
+        .withImages(selectedThumbnail, selectionTouched);
+      const jsonMeta = metaBuilder
+        .withVideo(title, description, unpublished3SpeakVideo)
+        .withPoll(activePoll)
+        .build();
 
       // If post have one unpublished video need to modify
       //    json metadata which matches to 3Speak

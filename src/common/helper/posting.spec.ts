@@ -1,11 +1,9 @@
 import {
   createPermlink,
-  extractMetaData,
-  makeJsonMetaData,
-  makeCommentOptions,
-  makeJsonMetaDataReply,
   createReplyPermlink,
-  createPatch
+  extractMetaData,
+  makeCommentOptions,
+  makeJsonMetaDataReply
 } from "./posting";
 
 describe("createPermlink", () => {
@@ -50,17 +48,6 @@ describe("extractMetadata", () => {
   });
 });
 
-describe("makeJsonMetaData", () => {
-  it("(1) ", () => {
-    const meta = {
-      image: ["http://www.xx.com/a.png", "https://img.esteem.ws/h74zrad2fh.jpg"]
-    };
-    const tags = ["esteem", "art"];
-
-    expect(makeJsonMetaData(meta, tags, "", "2.0.0")).toMatchSnapshot();
-  });
-});
-
 describe("makeCommentOptions", () => {
   it("(1) Default 50% / 50%", () => {
     expect(makeCommentOptions("talhasch", "lorem-ipsum-1", "default")).toMatchSnapshot();
@@ -102,13 +89,5 @@ describe("createReplyPermlink", () => {
 
   it("(1) ", () => {
     expect(createReplyPermlink("good-karma")).toMatchSnapshot();
-  });
-});
-
-describe("createPatch", () => {
-  it("(1) ", () => {
-    expect(
-      createPatch("lorem ipsum dlor sit amet", "lorem ipsum dolor sit amet")
-    ).toMatchSnapshot();
   });
 });

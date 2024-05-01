@@ -15,7 +15,7 @@ export function usePinReply(reply: Entry, parent: Entry) {
       jsonMeta: EntryMetadataManagement.EntryMetadataManager.shared
         .builder()
         .extend(parent)
-        .setPinnedReply(reply, pin)
+        .withPinnedReply(reply, pin)
         .build()
     });
   });
