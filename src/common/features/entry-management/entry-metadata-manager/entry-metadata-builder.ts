@@ -69,9 +69,9 @@ export class EntryMetadataBuilder {
 
     if (nextImages) {
       if (selectionTouched && selectedThumbnail) {
-        nextImages = [selectedThumbnail, ...image!.splice(0, 9)];
+        nextImages = [selectedThumbnail, ...(image?.splice(0, 9) ?? [])];
       } else {
-        nextImages = [...image!.splice(0, 9)];
+        nextImages = [...(image?.splice(0, 9) ?? [])];
       }
     } else if (selectedThumbnail === localThumbnail) {
       ls.remove("draft_selected_image");
