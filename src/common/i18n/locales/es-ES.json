@@ -2265,7 +2265,17 @@
       "can-comment-boost-header": "¿Se pueden impulsar los comentarios?",
       "can-comment-boost-body": "<p>Puedes impulsar los comentarios que te gusten. Por supuesto, el comentario debe cumplir con algunos de los criterios de selección para impulso.</p>",
       "what-information-available-header": "¿Qué información tengo disponible en la página de respuestas?",
-      "what-information-available-body": "<p>En la página de Respuestas puedes ver todas las respuestas que otros usuarios han hecho a tus publicaciones y comentarios.</p>"
+      "what-information-available-body": "<p>En la página de Respuestas puedes ver todas las respuestas que otros usuarios han hecho a tus publicaciones y comentarios.</p>",
+      "what-is-waves-header": "What is Waves?",
+      "what-is-waves-body": "<p>Waves is a new way of engaging through microblogging on Web3, where one can publish anything at any moment and still get rewarded for it. Waves can contain words up to 250 characters long, links, photographs, and GIFs. You can share your thoughts, opinions, updates, or information in brief and clear messages.</p>",
+      "what-is-boost-body": "What is Boost+?",
+      "what-is-boost-header": "<p>The Boost+ feature allows users to take HP delegation from Ecency.This feature has been introduced, allowing users to use their points to get delegation for 7, 30, or 90 days. Approximately 350,000 VESTS, equivalent to 200+ HP, have been allocated for this purpose.</p>",
+      "can-pin-comments-header": "Can I pin comments on my post?",
+      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
+      "what-are-snippets-header": "What are Snippets?",
+      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
+      "can-upload-video-header": "Can I upload a video on Ecency?",
+      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
     }
   },
   "contributors": {
