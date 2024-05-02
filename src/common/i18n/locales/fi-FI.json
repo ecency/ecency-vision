@@ -315,13 +315,13 @@
     "try-again": "Yritä uudelleen",
     "sign-header-title": "Allekirjoita tapahtuma",
     "sign-sub-title": "Allekirjoita tapahtumasi",
-    "rc-to-new-acc": "Delegate some resource credits to",
-    "minimum-rc": "(Minimum Rc is 5Bn)",
-    "posts-comments": "Posts/Comments:",
-    "votes": "Votes:",
-    "transfers": "Transfers:",
-    "reblogs-follows": "Reblogs/Follows:",
-    "rc-error": "You can not delegate below 5bn Rc"
+    "rc-to-new-acc": "Valtuuta resurssihyvityksiä käyttäjälle",
+    "minimum-rc": "(Minimi Rc on 5Bn)",
+    "posts-comments": "Julkaisut/Kommentit:",
+    "votes": "Äänet:",
+    "transfers": "Siirrot:",
+    "reblogs-follows": "Uudelleenjaot/Seuratut:",
+    "rc-error": "Et voi valtuuttaa alle 5bn Rc"
   },
   "trending-tags": {
     "title": "Aiheet"
@@ -1428,7 +1428,8 @@
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
     "image-error-conflict-name": "Sinulla on jo kuva tällä tiedostonimellä. Valitse se sen sijaan galleriasta.",
     "fragments": "Katkelmat",
-    "link-image": "Linkki"
+    "link-image": "Linkki",
+    "polls": "Kyselyt"
   },
   "emoji-picker": {
     "filter-placeholder": "Suodata",
@@ -1940,10 +1941,10 @@
     "fetch-error": "Kun olit poissa, verkkomuutos on havaittu. Lataa sivu uudelleen saadaksesi uuden datan",
     "pin": "Kiinnitä",
     "unpin": "Irrota",
-    "select-contact-or-channel": "Select contact or channel",
-    "message-forwarding": "Message forwarding",
-    "forward": "Forward message",
-    "forwarded-from": "Forwarded message",
+    "select-contact-or-channel": "Valitse yhteystieto tai kanava",
+    "message-forwarding": "Viestin edelleenlähetys",
+    "forward": "Lähetä viesti edelleen",
+    "forwarded-from": "Edelleenlähetetty viesti",
     "welcome": {
       "title": "Tervetuloa Keskusteluihin",
       "description": "Luo tai tuo tili käyttääksesi Keskusteluja",
@@ -1962,7 +1963,9 @@
       "description": "Ole hyvä ja kirjoita julkinen ja yksityinen avainpari tuodaksesi nykyisen tilisi",
       "button": "Tuonti",
       "iv": "Alkuvektorin arvo"
-    }
+    },
+    "reply": "Vastaa",
+    "reply-to": "Vastataan käyttäjälle {{account}}"
   },
   "add-image": {
     "title": "Lisää kuva",
@@ -2028,7 +2031,7 @@
       "how-referrals-work-header": "Kuinka suositusjärjestelmä toimii Ecencyssä?",
       "how-referrals-work-body": "<p>Suositusjärjestelmä on yksinkertainen, voit kutsua ystäviäsi lisäämällä käyttäjätunnuksesi tähän linkkiin https://ecency. om/signup?referral=käyttäjänimi ja jaa se ystäviesi kanssa. Kun ystäväsi liittyvät Ecencyn jäseniksi ja ansaitsevat ensimmäiset 250 pistettä, ansaitset 100 pistettä. Suosituksissa ja niiden palkkioissa ei ole rajoituksia.</p>",
       "what-is-points-header": "Mitä ovat Ecencyn Pisteet ja miten niitä käytetään?",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, take Ecency delegation, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "what-is-points-body": "<p>Ecency Pisteitä luodaan ja jaetaan jatkuvasti kaikille käyttäjille erilaisista sosiaalisista toiminnoista, joita he suorittavat verkkosivuilla, kännykkä- tai työpöytäsovelluksessa. Pisteitä voidaan käyttää korostamiseen, valtuuttamiseen, sekä niitä voidaan siirtää tai lahjoittaa toiselle käyttäjälle. Voit myös ostaa pisteitä mobiilisovelluksellamme.</p>",
       "where-tokens-come-header": "Mistä nämä merkit tulevat?",
       "where-tokens-come-body": "<p>Hive-verkosto luo jatkuvasti uusia digitaalisia merkkejä palkitsemaan sisällönluojia ja valitsijoita. Osa vastikään luoduista merkeistä siirretään käyttäjille, jotka tuovat lisäarvoa alustalle lähettämällä, kommentoimalla ja äänestämällä muiden julkaisuja. Loput jaetaan HIVE POWER:n haltijoille ja todistajille, jotka varmistavat lohkoketjun turvallisuuden.</p>",
       "how-promotion-work-header": "Kuinka korostaminen toimii?",
@@ -2262,7 +2265,17 @@
       "can-comment-boost-header": "Voidaanko kommentteja tehostaa?",
       "can-comment-boost-body": "<p>Voit tehostaa haluamiasi kommentteja. Kommentin on sovittava joihinkin tehostuskriteereihin.</p>",
       "what-information-available-header": "Mitä tietoja vastaussivulla on saatavilla?",
-      "what-information-available-body": "<p>Vastaussivulla näet kaikki vastaukset, jotka muut käyttäjät ovat antaneet julkaisuihisi ja kommentteihisi.</p>"
+      "what-information-available-body": "<p>Vastaussivulla näet kaikki vastaukset, jotka muut käyttäjät ovat antaneet julkaisuihisi ja kommentteihisi.</p>",
+      "what-is-waves-header": "What is Waves?",
+      "what-is-waves-body": "<p>Waves is a new way of engaging through microblogging on Web3, where one can publish anything at any moment and still get rewarded for it. Waves can contain words up to 250 characters long, links, photographs, and GIFs. You can share your thoughts, opinions, updates, or information in brief and clear messages.</p>",
+      "what-is-boost-body": "What is Boost+?",
+      "what-is-boost-header": "<p>The Boost+ feature allows users to take HP delegation from Ecency.This feature has been introduced, allowing users to use their points to get delegation for 7, 30, or 90 days. Approximately 350,000 VESTS, equivalent to 200+ HP, have been allocated for this purpose.</p>",
+      "can-pin-comments-header": "Can I pin comments on my post?",
+      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
+      "what-are-snippets-header": "What are Snippets?",
+      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
+      "can-upload-video-header": "Can I upload a video on Ecency?",
+      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
     }
   },
   "contributors": {
@@ -2403,5 +2416,40 @@
     "toolbar-hint": "Työkalupalkin avulla voit lisätä eri komponentteja, soveltaa muotoilua, sekä lisätä kuvia, videoita ja linkkejä",
     "advanced-hint": "Määritä lisäasetuksia, kuten ajastukset ja edunsaajat",
     "help-hint": "Onko kysymyksiä? Tutustu apukeskukseen"
+  },
+  "polls": {
+    "poll": "Kysely",
+    "title": "Luo äänestys",
+    "edit-title": "Muokkaa äänestystä",
+    "title-placeholder": "Tee kysymys",
+    "choices": "Vaihtoehdot",
+    "post-poll": "Julkaisun kysely",
+    "choice-placeholder": "Valinta {{n}}",
+    "add-choice": "Lisää vaihtoehto",
+    "attach": "Lisää julkaisuun",
+    "update": "Päivitä",
+    "polls-form-hint": "Liittääksesi kyselyn julkaisuun sinun täytyy täyttää kaikki valinnat ilman toistoa",
+    "options": "Vaihtoehdot",
+    "account-age": "Tilin ikä (päivissä)",
+    "end-time": "Päättymisaika",
+    "vote": "Äänestys",
+    "account-age-hint": "Sallitut tilit, jotka ovat {{n}} päivää vanhempia",
+    "preview-mode": "Esikatselutila",
+    "videos-collision-error": "Kyselyjä ja 3speak-videoita ei voi julkaista samassa julkaisussa, koska ne ovat erityylisiä. Valitse jompi kumpi.",
+    "number_of_votes": "Äänten määrän mukaan",
+    "tokens": "Merkkien mukaan",
+    "view-votes": "Näytä äänet",
+    "back-to-vote": "Takaisin äänestykseen",
+    "votes": "Äänet",
+    "votes-list": "Äänestysluettelo",
+    "show-voters": "Näytä äänestäjät",
+    "vote-confirmation-and-sign": "Allekirjoita ja vahvista äänesi",
+    "your-choice": "Valintasi",
+    "not-found": "Kyselyä ei löytynyt",
+    "voting": "Äänestetään...",
+    "vote-change": "Vaihdetaan ääntä",
+    "current-standing": "Piilota äänet",
+    "finished": "Valmis",
+    "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva"
   }
 }

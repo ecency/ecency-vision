@@ -1428,7 +1428,8 @@
     "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño.",
     "image-error-conflict-name": "Ya tienes una imagen con este nombre de archivo. Selecciónala en la galería.",
     "fragments": "Fragmentos de código",
-    "link-image": "Enlace"
+    "link-image": "Enlace",
+    "polls": "Encuestas"
   },
   "emoji-picker": {
     "filter-placeholder": "Filtro",
@@ -1940,10 +1941,10 @@
     "fetch-error": "Mientras estabas ausente, hemos detectado el cambio de red. Recarga la página ahora para recuperar nuevos datos",
     "pin": "Anclar arriba",
     "unpin": "Desanclar",
-    "select-contact-or-channel": "Select contact or channel",
-    "message-forwarding": "Message forwarding",
-    "forward": "Forward message",
-    "forwarded-from": "Forwarded message",
+    "select-contact-or-channel": "Seleccionar contacto o canal",
+    "message-forwarding": "Reenviando mensaje",
+    "forward": "Reenviar mensaje",
+    "forwarded-from": "Mensaje reenviado",
     "welcome": {
       "title": "Bienvenido a Chats",
       "description": "Crear o importar una cuenta empieza a usar Chats",
@@ -1962,7 +1963,9 @@
       "description": "Por favor, introduzca un par de claves públicas y privadas para importar su cuenta existente",
       "button": "Importar",
       "iv": "Valor inicial del vector"
-    }
+    },
+    "reply": "Responder",
+    "reply-to": "Respondiendo a {{account}}"
   },
   "add-image": {
     "title": "Añadir imagen",
@@ -2028,7 +2031,7 @@
       "how-referrals-work-header": "¿Cómo funciona el sistema de referencia en Ecency?",
       "how-referrals-work-body": "<p>El sistema de referidos es simple, puedes invitar a tus amigos agregando tu nombre de usuario en este enlace https://ecency.com/signup?referral=username y compartirlo con tus amigos. Una vez que sus amigos se unan a Ecency y ganen sus primeros 250 puntos, usted ganará 100 puntos. No hay límites en las referencias y su recompensa.</p>",
       "what-is-points-header": "¿Qué son los Puntos de Ecency y cómo utilizarlos?",
-      "what-is-points-body": "<p>Ecency Points are continually minted and rewarded for all users for various social activities they perform on website, mobile or desktop app. Points can be used for promoting, take Ecency delegation, can even be transferred or gifted to another user. You can also purchase Points with our mobile apps.</p>",
+      "what-is-points-body": "<p>Los Puntos Ecency continuamente se generan, y recompensan, para todos los usuarios por diversas actividades sociales que realizan en el sitio web, la aplicación móvil o de escritorio. Los Puntos se pueden utilizar para promocionar, recibir delegación de Ecency, e incluso se pueden transferir o regalar a otro usuario. También puedes comprar Puntos con nuestras aplicaciones móviles.</p>",
       "where-tokens-come-header": "¿De dónde vienen las fichas?",
       "where-tokens-come-body": "<p>La red de HIVE crea continuamente nuevas fichas digitales para recompensar a los creadores y curadores de contenido. Algunos de los tokens recién generados son transferidos a usuarios que agregan valor a la plataforma publicando, comentando y votando en las publicaciones de otras personas. El resto se distribuye a los titulares de HIVE POWER y a los testigos que aseguran la cadena de bloques.</p>",
       "how-promotion-work-header": "¿Cómo funciona la promoción de contenido?",
@@ -2262,7 +2265,17 @@
       "can-comment-boost-header": "¿Se pueden impulsar los comentarios?",
       "can-comment-boost-body": "<p>Puedes impulsar los comentarios que te gusten. Por supuesto, el comentario debe cumplir con algunos de los criterios de selección para impulso.</p>",
       "what-information-available-header": "¿Qué información tengo disponible en la página de respuestas?",
-      "what-information-available-body": "<p>En la página de Respuestas puedes ver todas las respuestas que otros usuarios han hecho a tus publicaciones y comentarios.</p>"
+      "what-information-available-body": "<p>En la página de Respuestas puedes ver todas las respuestas que otros usuarios han hecho a tus publicaciones y comentarios.</p>",
+      "what-is-waves-header": "What is Waves?",
+      "what-is-waves-body": "<p>Waves is a new way of engaging through microblogging on Web3, where one can publish anything at any moment and still get rewarded for it. Waves can contain words up to 250 characters long, links, photographs, and GIFs. You can share your thoughts, opinions, updates, or information in brief and clear messages.</p>",
+      "what-is-boost-body": "What is Boost+?",
+      "what-is-boost-header": "<p>The Boost+ feature allows users to take HP delegation from Ecency.This feature has been introduced, allowing users to use their points to get delegation for 7, 30, or 90 days. Approximately 350,000 VESTS, equivalent to 200+ HP, have been allocated for this purpose.</p>",
+      "can-pin-comments-header": "Can I pin comments on my post?",
+      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
+      "what-are-snippets-header": "What are Snippets?",
+      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
+      "can-upload-video-header": "Can I upload a video on Ecency?",
+      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
     }
   },
   "contributors": {
@@ -2403,5 +2416,40 @@
     "toolbar-hint": "La barra de herramientas permite insertar un montón de componentes diferentes, aplicar formato, insertar imágenes, vídeos y enlaces",
     "advanced-hint": "Configurar ajustes avanzados como programación, beneficiarios",
     "help-hint": "¿Tienes alguna pregunta? Revisa el centro de ayuda"
+  },
+  "polls": {
+    "poll": "Encuesta",
+    "title": "Crear una encuesta",
+    "edit-title": "Editar una encuesta",
+    "title-placeholder": "Pregunta de encuesta",
+    "choices": "Opciones",
+    "post-poll": "Encuesta del post",
+    "choice-placeholder": "Opción {{n}}",
+    "add-choice": "Añadir opción",
+    "attach": "Adjuntar al mensaje",
+    "update": "Actualizar",
+    "polls-form-hint": "Para adjuntar la encuesta para publicar, tiene que llenar todas las opciones sin duplicados",
+    "options": "Opciones",
+    "account-age": "Edad de la cuenta para votar (en días)",
+    "end-time": "Tiempo para finalizar",
+    "vote": "Votar",
+    "account-age-hint": "Solo se permiten cuentas con más de {{n}} días",
+    "preview-mode": "Modo de vista previa",
+    "videos-collision-error": "Las encuestas y los vídeos de 3speak no pueden publicarse en el mismo post ya que hay diferentes tipos de mensajes. Por favor, elija sólo uno de ellos.",
+    "number_of_votes": "Por número de votos",
+    "tokens": "Por tokens",
+    "view-votes": "Ver votos",
+    "back-to-vote": "Volver al voto",
+    "votes": "Votos",
+    "votes-list": "Lista de votos",
+    "show-voters": "Mostrar votantes",
+    "vote-confirmation-and-sign": "Firma y confirma tu voto",
+    "your-choice": "Tu elección",
+    "not-found": "Encuesta no encontrada",
+    "voting": "Votando...",
+    "vote-change": "Cambiando un voto",
+    "current-standing": "Ocultar votos",
+    "finished": "Finalizado",
+    "expired-date": "La fecha de fin debe ser del presente o futuro"
   }
 }
