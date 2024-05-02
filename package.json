@@ -21,7 +21,7 @@
     "@firebase/analytics": "^0.8.0",
     "@firebase/app": "^0.7.28",
     "@firebase/messaging": "^0.9.16",
-    "@hiveio/dhive": "^1.2.8",
+    "@hiveio/dhive": "^1.2.9",
     "@hiveio/hivescript": "^1.2.7",
     "@iconscout/react-unicons": "^2.0.2",
     "@loadable/component": "^5.15.2",
