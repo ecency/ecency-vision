@@ -1429,7 +1429,7 @@
     "image-error-conflict-name": "У вас уже есть изображение с таким именем. Выберите его из галереи.",
     "fragments": "Фрагменты",
     "link-image": "Ссылка",
-    "polls": "Polls"
+    "polls": "Опросы"
   },
   "emoji-picker": {
     "filter-placeholder": "Фильтр",
@@ -1964,7 +1964,7 @@
       "button": "Импорт",
       "iv": "Начальное значение вектора"
     },
-    "reply": "Reply",
+    "reply": "Ответить",
     "reply-to": "Replying to {{account}}"
   },
   "add-image": {
@@ -2418,38 +2418,38 @@
     "help-hint": "Есть вопросы? Загляните в центр помощи"
   },
   "polls": {
-    "poll": "Poll",
-    "title": "Create a poll",
-    "edit-title": "Edit a poll",
+    "poll": "Опрос",
+    "title": "Создать опрос",
+    "edit-title": "Редактировать опрос",
     "title-placeholder": "Poll question",
     "choices": "Choices",
     "post-poll": "Post's poll",
     "choice-placeholder": "Choice {{n}}",
     "add-choice": "Add choice",
     "attach": "Attach to post",
-    "update": "Update",
+    "update": "Обновить",
     "polls-form-hint": "To attach poll to post, need to fill all choices without duplicates",
-    "options": "Options",
+    "options": "Параметры",
     "account-age": "Account age for voting(in days)",
-    "end-time": "End time",
+    "end-time": "Время завершения",
     "vote": "Vote",
     "account-age-hint": "Only accounts older than {{n}} days allowed",
-    "preview-mode": "Preview mode",
+    "preview-mode": "Режим предпросмотра",
     "videos-collision-error": "Polls and 3speak videos cannot be published in same post since there are different kind of posts. Please choose only one of them.",
     "number_of_votes": "By number of votes",
     "tokens": "By tokens",
     "view-votes": "View votes",
-    "back-to-vote": "Back to vote",
-    "votes": "Votes",
-    "votes-list": "Votes list",
-    "show-voters": "Show voters",
+    "back-to-vote": "Назад к голосованию",
+    "votes": "Голоса",
+    "votes-list": "Список голосов",
+    "show-voters": "Показать проголосовавших",
     "vote-confirmation-and-sign": "Sign and confirm your vote",
-    "your-choice": "Your choice",
-    "not-found": "Poll not found",
-    "voting": "Voting...",
+    "your-choice": "Ваш выбор",
+    "not-found": "Опрос не найден",
+    "voting": "Голосую...",
     "vote-change": "Changing a vote",
-    "current-standing": "Hide votes",
-    "finished": "Finished",
+    "current-standing": "Скрыть голоса",
+    "finished": "Завершено",
     "expired-date": "End date should be in present or future"
   }
 }
