@@ -9,7 +9,8 @@ import {
   UilPlus,
   UilQuestionCircle,
   UilSave,
-  UilTrash
+  UilTrash,
+  UilTrashAlt
 } from "@iconscout/react-unicons";
 import { Button } from "@ui/button";
 import { format } from "date-fns";
@@ -61,7 +62,8 @@ export function PollsCreation({
     setHideVotes,
     voteChange,
     setVoteChange,
-    isExpiredEndDate
+    isExpiredEndDate,
+    clearAll
   } = usePollsCreationManagement(existingPoll);
 
   const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
@@ -176,6 +178,15 @@ export function PollsCreation({
             checked={!!hideVotes}
             onChange={(e: boolean) => setHideVotes(e)}
           />
+          <Button
+            onClick={() => clearAll()}
+            outline={true}
+            size="sm"
+            icon={<UilTrashAlt />}
+            className="mt-4"
+          >
+            {_t("g.reset-form")}
+          </Button>
         </div>
       </ModalBody>
       <ModalFooter sticky={true}>
@@ -212,7 +223,6 @@ export function PollsCreation({
                 hasEmptyOrDuplicatedChoices ||
                 !title ||
                 typeof accountAge !== "number" ||
-                interpretation === "tokens" ||
                 isExpiredEndDate
               }
               iconPlacement="left"
