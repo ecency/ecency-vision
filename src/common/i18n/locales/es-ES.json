@@ -90,7 +90,8 @@
     "actions": "Acciones",
     "restore": "Restaurar",
     "success": "Éxito",
-    "error": "Error"
+    "error": "Error",
+    "reset-form": "Reset form"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -2450,6 +2451,7 @@
     "vote-change": "Cambiando un voto",
     "current-standing": "Ocultar votos",
     "finished": "Finalizado",
-    "expired-date": "La fecha de fin debe ser del presente o futuro"
+    "expired-date": "La fecha de fin debe ser del presente o futuro",
+    "interpretation": "Interpretation"
   }
 }
