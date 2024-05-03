@@ -91,7 +91,7 @@
     "restore": "Restaurar",
     "success": "Éxito",
     "error": "Error",
-    "reset-form": "Reset form"
+    "reset-form": "Reiniciar formulario"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -2452,6 +2452,6 @@
     "current-standing": "Ocultar votos",
     "finished": "Finalizado",
     "expired-date": "La fecha de fin debe ser del presente o futuro",
-    "interpretation": "Interpretation"
+    "interpretation": "Interpretación"
   }
 }
