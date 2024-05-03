@@ -2193,7 +2193,7 @@
       "how-post-community-body": "<p>Oikean yhteisön valitseminen on aivan yhtä tärkeää, kuin oikean otsikon valitseminen, kun aloitat julkaisusi kirjoittamisen. Kun olet valinnut otsikon, otsikon alla sinulla on nappi valitaksesi, julkaisetko viesti blogiisi vai johonkin liittymääsi yhteisöän. Valitsemasi yhteisön tunnistenumero on ensimmäinen tunnisteesi. Älä unohda lukea yhteisön säännöt ennen, kuin julkaiset missään yhteisössä.</p>",
       "leave-community-header": "Kuinka poistua yhteisöstä Ecencyssä?",
       "leave-community-body": "<p>Syötteestä klikkaa Yhteisöjä vasemmassa valikossa ja valitse ryhmäsi. Liittynyt-napista löydät jättämisen vaihtoehdon, valitse Lähde. Yhteisöstä lähtemisen jälkeen sinut poistetaan yhteisön luettelosta ja et enää näe julkaisuja syötteessäsi.</p>",
-      "how-schedule-header": "How to schedule a post?",
+      "how-schedule-header": "Kuinka ajoittaa julkaisu?",
       "how-schedule-body": "<p>Voit ajoittaa julkaisusi tietyn ajan kuluttua. <ul><li>Klikkaa kynäkuvaketta ja kirjoita viesti. Sitten klikkaa Lisäasetukset oikealla alapuolella. </li><li>Valitse aikataulu-vaihtoehto.</li><li>Valitse päivämäärä ja aika, jonka haluat julkaisuun.</li><li>Napsauta Käytä ja sitten Ajasta -painiketta.</li></ul></p>",
       "how-delete-scheduled-header": "Miten muokata tai poistaa ajoitettu viesti?",
       "how-delete-scheduled-body": "<p>Päävalikossa valitse Ajoitus. Näin voit tehdä luettelon ajoitetuista viesteistä. Viestien alla on 2 vaihtoehtoa: Siirrä luonnoksiin(siellä voit uudelleenajoittaa ja muokata) tai poistaa ajoitetun julkaisun.</p>",
@@ -2267,16 +2267,16 @@
       "can-comment-boost-body": "<p>Voit tehostaa haluamiasi kommentteja. Kommentin on sovittava joihinkin tehostuskriteereihin.</p>",
       "what-information-available-header": "Mitä tietoja vastaussivulla on saatavilla?",
       "what-information-available-body": "<p>Vastaussivulla näet kaikki vastaukset, jotka muut käyttäjät ovat antaneet julkaisuihisi ja kommentteihisi.</p>",
-      "what-is-waves-header": "What is Waves?",
-      "what-is-waves-body": "<p>Waves is a new way of engaging through microblogging on Web3, where one can publish anything at any moment and still get rewarded for it. Waves can contain words up to 250 characters long, links, photographs, and GIFs. You can share your thoughts, opinions, updates, or information in brief and clear messages.</p>",
-      "what-is-boost-body": "What is Boost+?",
-      "what-is-boost-header": "<p>The Boost+ feature allows users to take HP delegation from Ecency.This feature has been introduced, allowing users to use their points to get delegation for 7, 30, or 90 days. Approximately 350,000 VESTS, equivalent to 200+ HP, have been allocated for this purpose.</p>",
-      "can-pin-comments-header": "Can I pin comments on my post?",
-      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
-      "what-are-snippets-header": "What are Snippets?",
-      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
-      "can-upload-video-header": "Can I upload a video on Ecency?",
-      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
+      "what-is-waves-header": "Mitä Aallot ovat?",
+      "what-is-waves-body": "<p>Aallot on uusi tapa harjoittaa Web3-mikrobloggausta. Voit julkaista mitä tahansa milloin tahansa ja saada siitä palkkioita. Aallot voivat sisältää enintään 250 merkkiä pitkiä viestejä, linkkejä, valokuvia ja GIF:jä. Voit jakaa ajatuksia, mielipiteitä, päivityksiä tai tietoja lyhyissä ja selkeissä viesteissä.</p>",
+      "what-is-boost-body": "Mitä Tehostus+ on?",
+      "what-is-boost-header": "<p>Tehostus+ -ominaisuuden avulla käyttäjät voivat ottaa vastaan HP-valtuutuksia Ecencyssä. Tämä ominaisuus on otettu käyttöön, jotta käyttäjät voivat käyttää pisteitään saadakseen valtuutuksen 7, 30 tai 90 päivän ajaksi. Tätä tarkoitusta varten on osoitettu noin 350 000 VEST:a, joka vastaa yli 200 HP:tä.</p>",
+      "can-pin-comments-header": "Voinko kiinnittää kommentteja viestiini?",
+      "can-pin-comments-body": "<p>Kyllä, sinulla on mahdollisuus kiinnittää kommentteja klikkaamalla kolmen pisteen kuvaketta kommentin vieressä valitsemalla Pin-vaihtoehto.</p>",
+      "what-are-snippets-header": "Mitä Katkelmat ovat?",
+      "what-are-snippets-body": "<p>Snippets ovat pieniä muistiinpanoja, alaviitteitä sekä lauseita, joita voit muotoilla ja lisätä julkaisuihin ja kommentteihin milloin tahansa. Ne ovat erittäin hyödyllisiä, jos sinulla on alaviitteitä tai iskulauseita, joita käytät usein.</p>",
+      "can-upload-video-header": "Voinko ladata videon Ecencyssä?",
+      "can-upload-video-body": "Sinulla on mahdollisuus ladata video sekä kännykkäsovelluksella ja ecency.com klikkaamalla videon kuvaketta muokaussivulla, kun luot sisältöä."
     }
   },
   "contributors": {
@@ -2452,6 +2452,6 @@
     "current-standing": "Piilota äänet",
     "finished": "Valmis",
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
-    "interpretation": "Interpretation"
+    "interpretation": "Tulkinta"
   }
 }
