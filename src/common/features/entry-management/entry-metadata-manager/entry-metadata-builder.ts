@@ -146,7 +146,7 @@ export class EntryMetadataBuilder {
             question: poll.title,
             choices: poll.choices,
             preferred_interpretation: poll.interpretation,
-            token: null,
+            token: poll.interpretation === "tokens" ? "HIVE:HP" : null,
             hide_votes: poll.hideVotes,
             vote_change: poll.voteChange,
             filters: {

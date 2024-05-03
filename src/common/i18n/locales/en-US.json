@@ -2451,6 +2451,7 @@
     "vote-change": "Changing a vote",
     "current-standing": "Hide votes",
     "finished": "Finished",
-    "expired-date": "End date should be in present or future"
+    "expired-date": "End date should be in present or future",
+    "interpretation": "Interpretation"
   }
 }

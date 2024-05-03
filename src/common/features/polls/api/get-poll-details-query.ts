@@ -12,8 +12,12 @@ interface GetPollDetailsQueryResponse {
   parent_permlink: string;
   permlink: string;
   platform: null;
-  poll_choices: { choice_num: number; choice_text: string; votes?: { total_votes: number } }[];
-  poll_stats: { total_voting_accounts_num: number };
+  poll_choices: {
+    choice_num: number;
+    choice_text: string;
+    votes?: { total_votes: number; hive_hp_incl_proxied: number | null };
+  }[];
+  poll_stats: { total_voting_accounts_num: number; total_hive_hp_incl_proxied: number | null };
   poll_trx_id: string;
   poll_voters?: { name: string; choice_num: number }[];
   post_body: string;
