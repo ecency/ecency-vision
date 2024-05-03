@@ -15,7 +15,6 @@ import LoginRequired from "../login-required";
 import { error } from "../feedback";
 import { getAccountFull, getActiveVotes, votingPower } from "../../api/hive";
 import { prepareVotes } from "../entry-votes";
-import VotingSlider from "../entry-vote-slider";
 import EntryTipBtn from "../entry-tip-btn";
 import parseAsset from "../../helper/parse-asset";
 import { formatError, vote } from "../../api/operations";
@@ -27,6 +26,8 @@ import ClickAwayListener from "../clickaway-listener";
 import { _t } from "../../i18n";
 import "./_index.scss";
 import { useMappedStore } from "../../store/use-mapped-store";
+import { Button } from "@ui/button";
+import { InputVote } from "@ui/input";
 
 const setVoteValue = (
   type: "up" | "down" | "downPrevious" | "upPrevious",
@@ -144,7 +145,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   }
 
   upSliderChanged = (value: number) => {
-    const upSliderVal = Number(value);
+    const upSliderVal = Number(value.toFixed(1));
     const { initialVoteValues } = this.state;
     const { upVoted } = this.props;
     this.setState({
@@ -159,7 +160,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
   };
 
   downSliderChanged = (value: number) => {
-    const downSliderVal = Number(value);
+    const downSliderVal = Number(value.toFixed(1));
     const { initialVoteValues } = this.state;
     const { upVoted, downVoted } = this.props;
     this.setState({
@@ -262,8 +263,9 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       dynamicProps,
       entry: { post_id }
     } = this.props;
-    const { downSliderVal, initialVoteValues } = this.state;
+    const { downSliderVal: downSliderAbsoluteVal, initialVoteValues } = this.state;
     const { downVoted } = this.props.isVoted();
+    const downSliderVal = downSliderAbsoluteVal * -1;
 
     if (!downVoted || (downVoted && initialVoteValues.down !== downSliderVal)) {
       const estimated = Number(this.estimate(downSliderVal).toFixed(3));
@@ -273,7 +275,7 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
       setVoteValue("downPrevious", `${activeUser?.username!}-${post_id}`, downSliderVal);
       ls.set(
         this.props.isPostSlider ? "post_downSlider_value" : "comment_downSlider_value",
-        downSliderVal
+        downSliderAbsoluteVal
       );
     } else if (downVoted && initialVoteValues.down === downSliderVal) {
       this.setState({ wrongValueDown: true, wrongValueUp: false });
@@ -309,28 +311,33 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         {mode === "up" && (
           <>
             <div className={`voting-controls voting-controls-up ${days > 7.0 ? "disable" : ""}`}>
-              <div
-                className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+              <Button
+                noPadding={true}
+                className="w-8"
+                size="xs"
+                icon={chevronUpSvgForSlider}
                 onClick={this.upVoteClicked}
-              >
-                <span className="btn-inner">{chevronUpSvgForSlider}</span>
-              </div>
+                outline={true}
+              />
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(upSliderVal)} fixAt={3} />
               </div>
               <div className="space" />
               <div className="slider slider-up">
-                <VotingSlider value={upSliderVal} setVoteValue={this.upSliderChanged} mode={mode} />
+                <InputVote value={upSliderVal} setValue={(x) => this.upSliderChanged(x)} />
               </div>
-              <div className="percentage">{`${upSliderVal && upSliderVal.toFixed(1)}%`}</div>
-              <div
-                className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+              <div className="percentage" />
+              <Button
+                noPadding={true}
+                className="w-8"
+                appearance="danger"
+                outline={true}
+                size="xs"
+                icon={chevronDownSvgForSlider}
                 onClick={() => {
                   this.changeMode("down");
                 }}
-              >
-                <span className="btn-inner">{chevronDownSvgForSlider}</span>
-              </div>
+              />
             </div>
             {wrongValueUp && (
               <div className="vote-error">
@@ -353,32 +360,37 @@ export class VoteDialog extends Component<VoteDialogProps, VoteDialogState> {
         {mode === "down" && (
           <>
             <div className={`voting-controls voting-controls-down ${days > 7.0 ? "disable" : ""}`}>
-              <div
-                className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+              <Button
+                noPadding={true}
+                className="w-8"
+                size="xs"
+                icon={chevronUpSvgForSlider}
                 onClick={() => {
                   this.changeMode("up");
                 }}
-              >
-                <span className="btn-inner no-rotate">{chevronUpSvgForSlider}</span>
-              </div>
+                outline={true}
+              />
               <div className="estimated">
                 <FormattedCurrency {...this.props} value={this.estimate(downSliderVal)} fixAt={3} />
               </div>
               <div className="slider slider-down">
-                <VotingSlider
+                <InputVote
+                  mode="negative"
                   value={downSliderVal}
-                  setVoteValue={this.downSliderChanged}
-                  mode={mode}
+                  setValue={(x) => this.downSliderChanged(x)}
                 />
               </div>
               <div className="space" />
-              <div className="percentage">{`${downSliderVal.toFixed(1)}%`}</div>
-              <div
-                className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+              <div className="percentage" />
+              <Button
+                noPadding={true}
+                className="w-8"
+                size="xs"
+                appearance="danger"
+                outline={true}
+                icon={chevronDownSvgForSlider}
                 onClick={this.downVoteClicked}
-              >
-                <span className="btn-inner">{chevronDownSvgForSlider}</span>
-              </div>
+              />
             </div>
 
             {wrongValueDown && (

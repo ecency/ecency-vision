@@ -2,7 +2,7 @@
 
 exports[`(1) Default render 1`] = `
 <button
-  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
   size="sm"
   style={
@@ -16,7 +16,7 @@ exports[`(1) Default render 1`] = `
     Set Beneficiaries
   </div>
   <div
-    className="flex items-center w-5 h-5 undefined"
+    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
   >
     <svg
       viewBox="0 0 24 24"
@@ -32,7 +32,7 @@ exports[`(1) Default render 1`] = `
 
 exports[`(2) Default render with author 1`] = `
 <button
-  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
   size="sm"
   style={
@@ -46,7 +46,7 @@ exports[`(2) Default render with author 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex items-center w-5 h-5 undefined"
+    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
   >
     <svg
       viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ exports[`(2) Default render with author 1`] = `
 
 exports[`(3) DialogBody 1`] = `
 <button
-  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
   size="sm"
   style={
@@ -76,7 +76,7 @@ exports[`(3) DialogBody 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex items-center w-5 h-5 undefined"
+    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
   >
     <svg
       viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ exports[`(3) DialogBody 1`] = `
 
 exports[`(4) DialogBody with author 1`] = `
 <button
-  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+  className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
   onClick={[Function]}
   size="sm"
   style={
@@ -106,7 +106,7 @@ exports[`(4) DialogBody with author 1`] = `
     Set Beneficiaries (1)
   </div>
   <div
-    className="flex items-center w-5 h-5 undefined"
+    className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
   >
     <svg
       viewBox="0 0 24 24"

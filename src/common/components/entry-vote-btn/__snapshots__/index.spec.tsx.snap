@@ -5,12 +5,19 @@ Array [
   <div
     className="voting-controls voting-controls-up disable"
   >
-    <div
-      className="btn-vote btn-up-vote vote-btn-lg primary-btn-vote"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
+      size="xs"
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <span
-        className="btn-inner"
+      <div
+        className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
       >
         <svg
           className="slider-svg-up"
@@ -21,8 +28,8 @@ Array [
             fill="currentColor"
           />
         </svg>
-      </span>
-    </div>
+      </div>
+    </button>
     <div
       className="estimated"
     >
@@ -35,116 +42,97 @@ Array [
       className="slider slider-up"
     >
       <div
-        style={
-          Object {
-            "height": "40px",
-            "paddingRight": "13px",
-          }
-        }
+        className="ecency-vote-input rounded-full overflow-hidden relative"
+        onMouseDown={[Function]}
+        onMouseMove={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
         <div
-          className="slide"
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
+          className="ecency-input-group flex items-stretch w-full relative z-10 [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
+        >
+          <input
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+            max={100}
+            min={0}
+            onChange={[Function]}
+            step="0.1"
+            type="number"
+            value={100}
+          />
+          <div
+            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full dark:border-gray-600 flex items-center justify-center px-2.5 border-2 bg-gray-200 dark:bg-gray-600"
+            onClick={[Function]}
+          >
+            %
+          </div>
+        </div>
+        <div
+          className="absolute bg-opacity-25 top-[1px] left-[1px] bottom-[1px] bg-blue-dark-sky"
+          style={
+            Object {
+              "width": "86%",
+            }
+          }
+        />
+        <div
+          className="absolute z-[11] right-10 top-0 bottom-0 flex flex-col justify-center items-center"
         >
           <div
-            className="slide-background-line"
+            className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
+            onClick={[Function]}
+            onMouseDown={[Function]}
           >
-            <div
-              className="slider-line"
-              style={
-                Object {
-                  "background": "#357ce6",
-                  "width": "100%",
-                  "zIndex": 100,
-                }
-              }
-            />
-            <span
-              className="slider-dot pointer-dot"
-              style={
-                Object {
-                  "background": "#357ce6",
-                  "left": "100%",
-                }
-              }
-            />
-            <div
-              className="dots-container"
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
+              <path
+                d="M17.71,11.29l-5-5a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-5,5a1,1,0,0,0,1.42,1.42L11,9.41V17a1,1,0,0,0,2,0V9.41l3.29,3.3a1,1,0,0,0,1.42,0A1,1,0,0,0,17.71,11.29Z"
               />
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-              <div
-                style={
-                  Object {
-                    "width": "25%",
-                  }
-                }
-              >
-                <span
-                  className="slider-dot"
-                  style={
-                    Object {
-                      "background": "#357ce6",
-                    }
-                  }
-                />
-              </div>
-            </div>
+            </svg>
+          </div>
+          <div
+            className="cursor-pointer h-4 flex items-center text-blue-dark-sky opacity-75 hover:opacity-100"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.71,11.29a1,1,0,0,0-1.42,0L13,14.59V7a1,1,0,0,0-2,0v7.59l-3.29-3.3a1,1,0,0,0-1.42,1.42l5,5a1,1,0,0,0,.33.21.94.94,0,0,0,.76,0,1,1,0,0,0,.33-.21l5-5A1,1,0,0,0,17.71,11.29Z"
+              />
+            </svg>
           </div>
         </div>
       </div>
     </div>
     <div
       className="percentage"
-    >
-      100.0%
-    </div>
-    <div
-      className="btn-vote btn-down-vote vote-btn-lg secondary-btn-vote"
+    />
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
+      size="xs"
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      <span
-        className="btn-inner"
+      <div
+        className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
       >
         <svg
           className="slider-svg-down"
@@ -159,8 +147,8 @@ Array [
             fill="currentColor"
           />
         </svg>
-      </span>
-    </div>
+      </div>
+    </button>
   </div>,
   <div
     className="vote-error error-message"
@@ -200,7 +188,9 @@ Array [
 `;
 
 exports[`(2) Btn - No active user (1) Render 1`] = `
-<div>
+<div
+  onClick={[Function]}
+>
   <div>
     <div
       className="entry-vote-btn"
@@ -233,7 +223,9 @@ exports[`(2) Btn - No active user (1) Render 1`] = `
 `;
 
 exports[`(3) Btn - Up voted (1) Render 1`] = `
-<div>
+<div
+  onClick={[Function]}
+>
   <div>
     <div
       className="entry-vote-btn"

@@ -1,7 +1,7 @@
 import { History } from "history";
 import { useMappedStore } from "../../store/use-mapped-store";
 import { useLocation } from "react-router";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePrevious from "react-use/lib/usePrevious";
 import queryString from "query-string";
 import isCommunity from "../../helper/is-community";
@@ -14,6 +14,7 @@ import "./_index.scss";
 import { NavbarMobile } from "./navbar-mobile";
 import { NavbarDesktop } from "./navbar-desktop";
 import Login from "../login";
+import NotificationHandler from "../notification-handler";
 
 interface Props {
   match?: any;
@@ -32,16 +33,12 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
   const [themeText, setThemeText] = useState("");
   const [smVisible, setSmVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [mainBarExpanded, setMainBarExpanded] = useState(false);
 
   const previousLocation = usePrevious(location);
   const previousActiveUser = usePrevious(activeUser);
 
-  const navRef = useRef<any>();
-
-  const logo = useMemo(
-    () => (global.isElectron ? "./img/logo-circle.svg" : require("../../img/logo-circle.svg")),
-    []
-  );
+  const logo = require("../../img/logo-circle.svg");
 
   useMount(() => {
     // referral check / redirect
@@ -122,30 +119,30 @@ export function Navbar({ match, history, setStepOne, setStepTwo, step }: Props) 
 
   return (
     <div
-      className="fixed z-10 top-0 left-0 right-0 flex flex-col justify-start"
+      className="fixed z-20 top-0 left-0 right-0 flex flex-col justify-start"
       id="sticky-container"
     >
       <NavbarMobile
-        transparentVerify={transparentVerify}
-        themeText={themeText}
         expanded={expanded}
         setExpanded={setExpanded}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         step={step}
         logoHref={logoHref}
         logo={logo}
         history={history}
       />
       <NavbarDesktop
-        themeText={themeText}
         transparentVerify={transparentVerify}
-        logoHref={logoHref}
-        logo={logo}
+        mainBarExpanded={mainBarExpanded}
+        setMainBarExpanded={setMainBarExpanded}
         step={step}
         setStepOne={setStepOne}
         history={history}
         setSmVisible={setSmVisible}
       />
       {ui.login && <Login history={history} />}
+      {global.usePrivate && <NotificationHandler />}
     </div>
   );
 }

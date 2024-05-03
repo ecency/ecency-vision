@@ -36,15 +36,15 @@ interface State {
 }
 
 export class TagSelector extends Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-  }
-
   state: State = {
     hasFocus: false,
     value: "",
     warning: ""
   };
+
+  constructor(props: any) {
+    super(props);
+  }
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>): boolean {
     return !isEqual(this.props.tags, nextProps.tags) || !isEqual(this.state, nextState);
@@ -195,7 +195,10 @@ export class TagSelector extends Component<Props, State> {
 
     return (
       <>
-        <div className={_c(`tag-selector ${tags.length > 0 ? "has-tags" : ""}`)}>
+        <div
+          id="submit-tags-selector"
+          className={_c(`tag-selector ${tags.length > 0 ? "has-tags" : ""}`)}
+        >
           <SuggestionList
             renderer={(x: string) => {
               return (
@@ -205,6 +208,9 @@ export class TagSelector extends Component<Props, State> {
               );
             }}
             items={suggestions}
+            listStyle={{
+              top: "0"
+            }}
             header={_t("tag-selector.suggestion-header")}
             onSelect={(value: string) => {
               if (this.add(value)) {

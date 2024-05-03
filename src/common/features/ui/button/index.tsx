@@ -3,10 +3,11 @@ import { ButtonProps } from "./props";
 import { classNameObject } from "../../../helper/class-name-object";
 import { BUTTON_OUTLINE_STYLES, BUTTON_SIZES, BUTTON_STYLES } from "./styles";
 import { useFilteredProps } from "../../../util/props-filter";
+import { Link, NavLinkProps } from "react-router-dom";
 
 export * from "./props";
 
-export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | NavLinkProps, ButtonProps>(
   (props, ref) => {
     const nativeProps = useFilteredProps<typeof props, Required<ButtonProps>>(props, [
       "appearance",
@@ -21,9 +22,10 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       // Basic
       "cursor-pointer rounded-full duration-300 no-wrap": true,
       // Outline basics
-      "border-[1.5px] border-solid": props.outline ?? false,
+      "border-[1.25px] border-solid": props.outline ?? false,
       // With icon
-      "flex items-center justify-center gap-2": !!props.icon,
+      "flex items-center justify-center gap-2":
+        !!props.icon || ("to" in props ? !!props.to : false),
       "flex-row-reverse": props.iconPlacement === "left",
 
       // Styles
@@ -38,7 +40,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     });
 
     const icon = props.icon ? (
-      <div className={"flex items-center w-5 h-5 " + props.iconClassName}>{props.icon}</div>
+      <div
+        className={classNameObject({
+          "flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5": true,
+          [props.iconClassName ?? ""]: true
+        })}
+      >
+        {props.icon}
+      </div>
     ) : (
       <></>
     );
@@ -49,6 +58,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         {children}
         {icon}
       </a>
+    ) : "to" in props ? (
+      <Link to={(props as NavLinkProps).to} {...nativeProps} className={className} ref={ref as any}>
+        {children}
+        {icon}
+      </Link>
     ) : (
       <button
         {...nativeProps}

@@ -284,9 +284,6 @@ export class Promote extends BaseComponent<Props, State> {
                     />
                   </SuggestionList>
                   {postError && <small className="pl-3 text-red">{postError}</small>}
-                  {!postError && (
-                    <small className="text-gray-600">{_t("redeem-common.post-hint")}</small>
-                  )}
                 </div>
               </div>
               <div className="grid grid-cols-12 mb-4">

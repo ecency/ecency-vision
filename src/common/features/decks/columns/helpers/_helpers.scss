@@ -1,0 +1,65 @@
+@import "src/style/vars_mixins";
+
+@mixin compact_vote_slider() {
+  .tooltiptext {
+    max-width: 380px;
+    width: 100vw;
+
+    .voting-controls {
+      display: grid;
+      align-items: center;
+      grid-template-areas:
+            "btn-up slider slider slider btn-down"
+            "btn-up price space percentage btn-down";
+      grid-template-columns: min-content min-content 1fr min-content min-content;
+      grid-gap: 0 1rem;
+
+      .btn-up-vote {
+        grid-area: btn-up;
+        position: relative;
+        z-index: 9;
+      }
+
+      .btn-vote-down {
+        grid-area: btn-down;
+        justify-self: end;
+        position: relative;
+        z-index: 9;
+      }
+
+      .slider {
+        grid-area: slider;
+      }
+
+      .estimated {
+        grid-area: price;
+        text-align: left;
+        position: absolute;
+        top: 1.5rem;
+        right: 7.5rem;
+        z-index: 20;
+        font-size: .675rem;
+      }
+
+      .percentage {
+        grid-area: percentage;
+        text-align: right;
+      }
+
+      .estimated, .percentage {
+        @apply text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap;
+      }
+
+      .space {
+        grid-area: space;
+      }
+    }
+
+    @media screen and (max-width: 560px) {
+      width: calc(100vw - 67px - 24px);
+      left: -12px;
+      right: auto;
+      top: -23px;
+    }
+  }
+}

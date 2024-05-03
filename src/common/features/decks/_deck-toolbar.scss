@@ -1,0 +1,197 @@
+@import "src/style/vars_mixins";
+
+.deck-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  height: 100dvh;
+  @apply bg-white;
+  position: relative;
+  border-right: 4px solid;
+  z-index: 201;
+  overflow-y: auto;
+
+  @include padding-top(0.75rem);
+
+  @include themify(day) {
+    @apply bg-white border-gray-300;
+  }
+
+  @include themify(night) {
+    @apply bg-dark-200 border-gray-800;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .deck-toolbar-content {
+    width: 100%;
+
+    .base-actions {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+
+      @include margin-top(0.75rem);
+
+      > *:not(.dropdown), > .dropdown > .dropdown-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid $border-color;
+        width: 4.5rem;
+        outline: none;
+        box-shadow: none;
+
+        @include border-radius(0);
+        @include padding(1rem);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &:hover {
+          @include themify(day) {
+            @apply bg-gray-100;
+          }
+
+          @include themify(night) {
+            @apply bg-dark-default;
+          }
+
+          svg {
+            color: $primary;
+
+            @include transition(0.3s);
+          }
+        }
+
+        svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          @apply text-gray-500;
+        }
+      }
+
+      .notifications {
+        position: relative;
+
+        > .notifications-badge {
+          position: absolute;
+          top: 0.75rem;
+          right: 1rem;
+          background-color: $danger;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @apply text-white;
+          font-weight: bold;
+
+          @include padding(0.2rem);
+          @include border-radius(1rem);
+          @include font-size(0.6rem);
+        }
+      }
+    }
+  }
+
+  .deck-toolbar-toggle {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    width: 100%;
+    border-top: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @apply text-gray-400;
+    min-height: 65px;
+
+    @include themify(day) {
+      @apply bg-white;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200;
+    }
+
+    &:hover {
+      @include themify(day) {
+        @apply bg-gray-100 text-gray-600;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-default text-gray-500;
+      }
+    }
+
+    svg {
+      width: 24px;
+    }
+  }
+
+  .user {
+    width: 100%;
+    gap: 1rem;
+
+    @include padding-left(1rem);
+    @include padding-right(1rem);
+
+    .name {
+      font-weight: bold;
+    }
+
+    .username {
+      opacity: 0.5;
+      @include font-size(0.875rem);
+    }
+  }
+
+  .deck-toolbar-create {
+    @include padding-top(1rem);
+    @include padding-bottom(1rem);
+    @include padding-left(0.6rem);
+    @include padding-right(0.6rem);
+
+    > button {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &.expanded {
+    .base-actions {
+      flex-wrap: nowrap;
+
+      > *, button {
+        border-bottom: 0 !important;
+        border-right: 1px solid $border-color;
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+
+    .deck-toolbar-create {
+      @include padding-left(1rem);
+      @include padding-right(1rem);
+
+      > button {
+        width: 100%;
+        height: 3rem;
+
+        > svg {
+          @include margin-right(0.5rem);
+        }
+      }
+    }
+  }
+}

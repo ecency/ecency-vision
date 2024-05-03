@@ -12,7 +12,6 @@ import Meta from "../components/meta";
 import Theme from "../components/theme";
 import Feedback from "../components/feedback";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress/index";
 import EntryListLoadingItem from "../components/entry-list-loading-item";
 import DetectBottom from "../components/detect-bottom";
@@ -308,12 +307,10 @@ export const Profile = (props: Props) => {
       const { global } = props;
       setSearchDataLoading(true);
 
-      let query = `${value} author:${global.tag.substring(1)}`;
+      let query = `${value} author:${global.tag.substring(1)} type:post`;
 
-      if (global.filter === "posts") {
-        query += ` type:post`;
-      } else if (global.filter === "comments") {
-        query += ` type:comment`;
+      if (global.filter === "comments") {
+        query.replace("type:post", "type:comment");
       }
       let data: any;
       try {
@@ -334,17 +331,6 @@ export const Profile = (props: Props) => {
 
   const delayedSearch = useCallback(_.debounce(handleInputChange, 3000, { leading: true }), []);
 
-  const getNavBar = () => {
-    return props.global.isElectron ? (
-      NavBarElectron({
-        ...props,
-        reloadFn: reload,
-        reloading: loading
-      })
-    ) : (
-      <NavBar history={props.history} />
-    );
-  };
   const getMetaProps = () => {
     const username = props.match.params.username.replace("@", "");
     const account = props.accounts.find((x) => x.name === username);
@@ -419,15 +405,9 @@ export const Profile = (props: Props) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {getNavBar()}
+      <NavBar history={props.history} />
 
-      <div
-        className={
-          props.global.isElectron
-            ? "app-content profile-page mt-0 pt-6"
-            : "app-content profile-page"
-        }
-      >
+      <div className="app-content profile-page">
         <div className="profile-side">{ProfileCard({ ...props, account, section })}</div>
         <span itemScope={true} itemType="http://schema.org/Person">
           {account?.__loaded && (
@@ -442,7 +422,9 @@ export const Profile = (props: Props) => {
 
           {data &&
             data.entries.length > 0 &&
-            (props.global.filter === "posts" || props.global.filter === "comments") &&
+            (props.global.filter === "blog" ||
+              props.global.filter === "posts" ||
+              props.global.filter === "comments") &&
             section === props.global.filter && (
               <div className="searchProfile">
                 <SearchBox

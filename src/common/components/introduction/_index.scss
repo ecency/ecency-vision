@@ -12,7 +12,7 @@
   height: 55vh;
   width: 55vw;
   @apply bg-white;
-  @include themify(night){
+  @include themify(night) {
     @apply bg-dark-default;
   }
   left: 50%;
@@ -60,23 +60,6 @@
   top: -70px;
   margin-left: 5%;
   transform: rotateZ(-15deg);
-
-  @media screen and (max-width: $sm-break) {
-    border-left: 0px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 40px solid;
-    @apply border-white;
-    @include themify(night) {
-      @apply border-b-dark-default;
-    }
-    content: "";
-    position: absolute;
-    top: -32px;
-    margin-left: 0%;
-    -webkit-transform: rotateZ(-15deg);
-    transform: rotateZ(11deg);
-    
-  }
 }
 
 .paragraph {

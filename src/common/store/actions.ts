@@ -14,14 +14,6 @@ import {
 import { fetchTrendingTags } from "./trending-tags";
 import { updateSubscriptions } from "./subscriptions";
 import { addEntry, fetchEntries, invalidateEntries, updateEntry } from "./entries";
-import {
-  addReply,
-  deleteReply,
-  fetchDiscussion,
-  resetDiscussion,
-  sortDiscussion,
-  updateReply
-} from "./discussion";
 import { addAccount } from "./accounts";
 import { fetchTransactions, resetTransactions } from "./transactions";
 import { addUser, deleteUser } from "./users";
@@ -58,12 +50,6 @@ export const ACTIONS = {
   addEntry,
   updateEntry,
   invalidateEntries,
-  fetchDiscussion,
-  sortDiscussion,
-  resetDiscussion,
-  updateReply,
-  addReply,
-  deleteReply,
   addAccount,
   fetchTransactions,
   resetTransactions,

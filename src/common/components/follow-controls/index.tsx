@@ -140,14 +140,19 @@ export default class FollowControls extends BaseComponent<Props, State> {
     const muteMsg = _t("follow-controls.mute");
     const unMuteMsg = _t("follow-controls.unMute");
 
-    const btnFollow = LoginRequired({
-      ...this.props,
-      children: (
-        <Button style={{ marginRight: "5px" }} disabled={inProgress} onClick={this.follow}>
-          {followMsg}
-        </Button>
-      )
-    });
+    const btnFollow =
+      this.props.activeUser?.username !== this.props.targetUsername ? (
+        LoginRequired({
+          ...this.props,
+          children: (
+            <Button style={{ marginRight: "5px" }} disabled={inProgress} onClick={this.follow}>
+              {followMsg}
+            </Button>
+          )
+        })
+      ) : (
+        <></>
+      );
 
     const btnUnfollow = LoginRequired({
       ...this.props,
@@ -175,6 +180,14 @@ export default class FollowControls extends BaseComponent<Props, State> {
         </Button>
       )
     });
+
+    if (where && where === "chat-box" && following) {
+      return <>{btnUnfollow}</>;
+    }
+
+    if (where && where === "chat-box" && !following) {
+      return <>{btnFollow}</>;
+    }
 
     if (fetching) {
       return (

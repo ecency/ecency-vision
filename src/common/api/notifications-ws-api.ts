@@ -12,7 +12,6 @@ declare var window: Window & {
 
 export class NotificationsWebSocket {
   private activeUser: ActiveUser | null = null;
-  private isElectron = false;
   private hasNotifications = false;
   private hasUiNotifications = false;
   private onSuccessCallbacks: Function[] = [];
@@ -55,11 +54,11 @@ export class NotificationsWebSocket {
     const permission = await requestNotificationPermission();
     if (permission !== "granted") return;
 
-    playNotificationSound(this.isElectron);
+    playNotificationSound();
   }
 
   private async onMessageReceive(evt: MessageEvent) {
-    const logo = this.isElectron ? "./img/logo-circle.svg" : require("../img/logo-circle.svg");
+    const logo = require("../img/logo-circle.svg");
 
     const data = JSON.parse(evt.data);
     const msg = NotificationsWebSocket.getBody(data);
@@ -106,18 +105,18 @@ export class NotificationsWebSocket {
 
     window.nws = new WebSocket(`${defaults.nwsServer}/ws?user=${this.activeUser.username}`);
     window.nws.onopen = () => {
-      console.log("nws connected");
+      console.debug("nws connected");
       this.isConnected = true;
     };
     window.nws.onmessage = (e) => this.onMessageReceive(e);
     window.nws.onclose = (evt: CloseEvent) => {
-      console.log("nws disconnected");
+      console.debug("nws disconnected");
 
       window.nws = undefined;
 
       if (!evt.wasClean) {
         // Disconnected due connection error
-        console.log("nws trying to reconnect");
+        console.debug("nws trying to reconnect");
 
         setTimeout(() => {
           this.connect();
@@ -136,11 +135,6 @@ export class NotificationsWebSocket {
 
   public withActiveUser(activeUser: ActiveUser | null) {
     this.activeUser = activeUser;
-    return this;
-  }
-
-  public withElectron(isElectron: boolean) {
-    this.isElectron = isElectron;
     return this;
   }
 

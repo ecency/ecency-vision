@@ -1,6 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { createPatch } from "../../../helper/posting";
-import { proxifyImageSrc } from "@ecency/render-helper";
 import { comment, formatError } from "../../../api/operations";
 import { Entry } from "../../../store/entries/types";
 import { correctIsoDate } from "../../../helper/temp-entry";
@@ -10,10 +8,10 @@ import { _t } from "../../../i18n";
 import { makePath as makePathEntry } from "../../../components/entry-link";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { History } from "history";
-import { buildMetadata, getDimensionsFromDataUrl } from "../functions";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../core";
 import { useThreeSpeakManager } from "../hooks";
+import { EntryBodyManagement, EntryMetadataManagement } from "../../../features/entry-management";
 
 export function useUpdateApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
@@ -43,37 +41,18 @@ export function useUpdateApi(history: History, onClear: () => void) {
         return;
       }
 
-      const { body: oldBody, author, permlink, category, json_metadata } = editingEntry;
-      // clean and copy body
-      let newBody = body.replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, "");
-      const patch = createPatch(oldBody, newBody.trim());
-      if (patch && patch.length < Buffer.from(editingEntry.body, "utf-8").length) {
-        newBody = patch;
-      }
+      const { author, permlink, category, json_metadata } = editingEntry;
+      const newBody = EntryBodyManagement.EntryBodyManager.shared
+        .builder()
+        .buildPatchFrom(editingEntry, body);
+      const metaBuilder = await EntryMetadataManagement.EntryMetadataManager.shared
+        .builder()
+        .extend(editingEntry)
+        .withSummary(description ?? newBody)
+        .withTags(tags)
+        .withImages(selectedThumbnail, selectionTouched, json_metadata.image);
 
-      let jsonMeta = Object.assign(
-        {},
-        json_metadata,
-        buildMetadata({
-          title,
-          body,
-          tags,
-          description,
-          selectionTouched,
-          selectedThumbnail,
-          images: json_metadata.image
-        }),
-        { tags },
-        { description }
-      );
-
-      if (jsonMeta && jsonMeta.image && jsonMeta.image.length > 0) {
-        jsonMeta.image_ratios = await Promise.all(
-          jsonMeta.image
-            .slice(0, 5)
-            .map((element: string) => getDimensionsFromDataUrl(proxifyImageSrc(element)))
-        );
-      }
+      const jsonMeta = metaBuilder.build();
 
       try {
         await comment(

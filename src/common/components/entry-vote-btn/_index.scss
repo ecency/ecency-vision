@@ -1,4 +1,5 @@
 @import "src/style/vars_mixins";
+@import "../../features/decks/columns/helpers/helpers";
 
 .entry-vote-btn {
   margin-right: 10px;
@@ -6,52 +7,9 @@
   @media (max-width: $xxsm-break) {
     margin-right: 5px;
   }
+
   .btn-vote {
     @include btn-vote;
-  }
-}
-
-.voting-controls {
-  display: flex;
-  align-items: center;
-
-  .estimated,
-  .percentage {
-    white-space: nowrap;
-    width: 60px;
-
-    @media (max-width: ($sm-break - 1px)) {
-      font-size: 13px;
-    }
-  }
-
-  .btn-vote {
-    flex-shrink: 0;
-  }
-
-  .btn-up-vote,
-  .estimated,
-  .slider,
-  .percentage {
-    margin-right: 8px;
-  }
-
-  .estimated,
-  .slider,
-  .percentage {
-    display: flex;
-    // align-items: center;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .slider {
-    flex-grow: 1;
-    margin-right: 0px !important;
-
-    input[type="range"] {
-      width: 100%;
-    }
   }
 }
 
@@ -63,195 +21,13 @@
   }
 }
 
-// Custom range input styles
-
-.voting-controls-up,
-.voting-controls-down {
-  &.disable {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-  .btn-vote {
-    @include btn-vote;
-  }
-
-  input[type="range"] {
-    width: 100%;
-    margin: 5.5px 0;
-    @apply bg-transparent;
-    -webkit-appearance: none;
-  }
-
-  input[type="range"]:focus {
-    outline: none;
-  }
-
-  input[type="range"]::-webkit-slider-runnable-track {
-    border: 0;
-    border-radius: 20px;
-    width: 100%;
-    height: 9px;
-    cursor: pointer;
-
-    @include themify(day) {
-      @apply bg-light-400;
-    }
-
-    @include themify(night) {
-      @apply bg-gunmetal;
-    }
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    margin-top: -5.5px;
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    -webkit-appearance: none;
-
-    @include themify(day) {
-      border: 2px solid;
-      @apply border-white;
-    }
-
-    @include themify(night) {
-      border: 2px solid;
-      @apply border-silver;
-    }
-  }
-
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-    @include themify(day) {
-      @apply bg-light-400;
-    }
-
-    @include themify(night) {
-      @apply bg-gunmetal;
-    }
-  }
-
-  input[type="range"]::-moz-range-track {
-    border: 0;
-    border-radius: 20px;
-    width: 100%;
-    height: 9px;
-    cursor: pointer;
-
-    @include themify(day) {
-      @apply bg-light-400;
-    }
-
-    @include themify(night) {
-      @apply bg-gunmetal;
-    }
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-
-    @include themify(day) {
-      border: 2px solid;
-      @apply border-white;
-    }
-
-    @include themify(night) {
-      border: 2px solid;
-      @apply border-silver;
-    }
-  }
-
-  input[type="range"]::-ms-track {
-    @apply bg-transparent;
-    @apply border-transparent;
-    @apply text-transparent;
-    border-width: 6.4px 0;
-    width: 100%;
-    height: 9px;
-    cursor: pointer;
-  }
-
-  input[type="range"]::-ms-fill-lower {
-    border: 0;
-    border-radius: 40px;
-
-    @include themify(day) {
-      @apply bg-light-400;
-    }
-
-    @include themify(night) {
-      @apply bg-gunmetal;
-    }
-  }
-
-  input[type="range"]::-ms-fill-upper {
-    border: 0;
-    border-radius: 40px;
-
-    @include themify(day) {
-      @apply bg-light-400;
-    }
-
-    @include themify(night) {
-      @apply bg-gunmetal;
-    }
-  }
-
-  input[type="range"]::-ms-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 0px;
-
-    @include themify(day) {
-      border: 2px solid;
-      @apply border-white;
-    }
-
-    @include themify(night) {
-      border: 2px solid;
-      @apply border-silver;
-    }
-
-    /*Needed to keep the Edge thumb centred*/
-  }
-}
-
-.voting-controls-up {
-  input[type="range"]::-webkit-slider-thumb {
-    @apply bg-blue-dark-sky;
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    @apply bg-blue-dark-sky;
-  }
-
-  input[type="range"]::-ms-thumb {
-    @apply bg-blue-dark-sky;
-  }
-}
-
-.voting-controls-down {
-  input[type="range"]::-webkit-slider-thumb {
-    @apply bg-red-040;
-  }
-
-  input[type="range"]::-moz-range-thumb {
-    @apply bg-red-040;
-  }
-
-  input[type="range"]::-ms-thumb {
-    @apply bg-red-040;
-  }
-}
-
 .tooltip-vote {
   position: relative;
   display: inline-block;
+}
+
+.tooltip-vote {
+  @include compact_vote_slider();
 }
 
 .tooltip-vote .tooltiptext {
@@ -264,6 +40,7 @@
   z-index: 2;
   left: -12px;
   top: -19px;
+  white-space: pre-wrap;
 
   @media screen and (max-width: 1700px) {
     width: 50vw;
@@ -312,40 +89,6 @@
   @apply bg-transparent;
 }
 
-.primary-btn-vote {
-  @include themify(night) {
-    @apply text-blue-dark-sky;
-    @apply bg-transparent;
-  }
-
-  @include themify(day) {
-    @apply text-blue-dark-sky;
-    @apply bg-white;
-  }
-
-  .btn-inner {
-    @include themify(night) {
-      @apply text-blue-dark-sky;
-      @apply bg-transparent;
-    }
-
-    @include themify(day) {
-      @apply text-blue-dark-sky;
-      @apply bg-white;
-    }
-  }
-
-  &:hover {
-    @apply bg-blue-dark-sky;
-    @apply text-white;
-
-    .btn-inner {
-      @apply text-white;
-      @apply bg-blue-dark-sky;
-    }
-  }
-}
-
 .primary-btn-done {
   @include themify(night) {
     @apply text-white;
@@ -370,54 +113,13 @@
   }
 }
 
-.secondary-btn-vote {
-  @apply text-red-020;
-
-  @include themify(night) {
-    @apply bg-transparent;
-  }
-
-  @include themify(day) {
-    @apply bg-white;
-  }
-
-  svg {
-    @apply fill-red-020;
-    transform: none !important;
-  }
-
-  .btn-inner {
-    @apply text-red-020;
-
-    @include themify(night) {
-      @apply bg-transparent;
-    }
-    @include themify(day) {
-      @apply bg-white;
-    }
-  }
-
-  &:hover {
-    @apply bg-red-020;
-    @apply text-white;
-
-    .btn-inner {
-      @apply text-white;
-      @apply bg-red-020;
-
-      svg {
-        @apply fill-white;
-      }
-    }
-  }
-}
-
 .vote-error {
   font-size: 12px;
   @apply text-red;
   display: flex;
   justify-content: center;
   margin-top: 10px;
+
   p {
     margin: 0px;
   }
@@ -441,6 +143,7 @@
   display: flex;
   justify-content: center;
   margin-top: 8px;
+
   p {
     margin: 0px;
   }
@@ -460,6 +163,7 @@
   display: flex;
   justify-content: center;
   margin-top: 8px;
+
   p {
     margin: 0px;
   }

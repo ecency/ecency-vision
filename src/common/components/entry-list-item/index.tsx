@@ -11,7 +11,7 @@ import EntryVoteBtn from "../entry-vote-btn/index";
 import EntryReblogBtn from "../entry-reblog-btn/index";
 import EntryPayout from "../entry-payout/index";
 import EntryVotes from "../entry-votes";
-import Tooltip from "../tooltip";
+import Tooltip, { StyledTooltip } from "../tooltip";
 import EntryMenu from "../entry-menu";
 import { dateToFormatted, dateToRelative } from "../../helper/parse-date";
 import { _t } from "../../i18n";
@@ -24,12 +24,12 @@ import { ProfilePopover } from "../profile-popover";
 import { match } from "react-router-dom";
 import { getPost } from "../../api/bridge";
 import "./_index.scss";
-import useMountedState from "react-use/lib/useMountedState";
 import { useMappedStore } from "../../store/use-mapped-store";
 import useMount from "react-use/lib/useMount";
 import { useUnmount } from "react-use";
 import { Community } from "../../store/communities";
 import { EntryListItemThumbnail } from "./entry-list-item-thumbnail";
+import { UilPanelAdd } from "@iconscout/react-unicons";
 
 setProxyBase(defaults.imageServer);
 
@@ -67,8 +67,6 @@ export function EntryListItem({
   const [showModMuted, setShowModMuted] = useState(false);
 
   const { global, activeUser, addAccount, updateEntry } = useMappedStore();
-
-  const isMounted = useMountedState();
 
   useMount(() => {
     document.getElementsByTagName("html")[0].style.position = "relative";
@@ -116,14 +114,10 @@ export function EntryListItem({
   };
 
   const pinned = useMemo(() => pageAccount?.profile?.pinned, [pageAccount]);
-  const noImage = useMemo(
-    () => (global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg")),
-    []
-  );
-  const nsfwImage = useMemo(
-    () => (global.isElectron ? "./img/nsfw.png" : require("../../img/nsfw.png")),
-    []
-  );
+  const noImage = require("../../img/noimage.svg");
+
+  const nsfwImage = require("../../img/nsfw.png");
+
   const isCrossPost = useMemo(() => !!entryProp.original_entry, [entryProp]);
   const entry = useMemo(() => entryProp.original_entry || entryProp, [entryProp]);
   const dateRelative = useMemo(() => dateToRelative(entry.created), [entry]);
@@ -208,14 +202,19 @@ export function EntryListItem({
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>
+
+          {(entry.json_metadata as any).content_type === "poll" && (
+            <StyledTooltip className="flex" content={_t("polls.poll")}>
+              <UilPanelAdd className="text-gray-600 dark:text-gray-400" size={16} />
+            </StyledTooltip>
+          )}
         </div>
         <div className="item-header-features">
-          {(community && !!entry.stats?.is_pinned) ||
-            (entry.permlink === pinned && (
-              <Tooltip content={_t("entry-list-item.pinned")}>
-                <span className="pinned">{pinSvg}</span>
-              </Tooltip>
-            ))}
+          {((community && !!entry.stats?.is_pinned) || entry.permlink === pinned) && (
+            <Tooltip content={_t("entry-list-item.pinned")}>
+              <span className="pinned">{pinSvg}</span>
+            </Tooltip>
+          )}
           {reBlogged && (
             <span className="reblogged">
               {repeatSvg} {_t("entry-list-item.reblogged", { n: reBlogged })}
@@ -235,7 +234,7 @@ export function EntryListItem({
         {nsfw && !showNsfw && !global.nsfw ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img src={nsfwImage} alt={entry.title} />
+              <img className="w-full" src={nsfwImage} alt={entry.title} />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
@@ -284,11 +283,11 @@ export function EntryListItem({
         {showModMuted && showMuted ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img src={nsfwImage} alt={entry.title} />
+              <img className="w-full" src={nsfwImage} alt={entry.title} />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
-                <span className="nsfw-badge text-capitalize d-inline-flex align-items-center">
+                <span className="nsfw-badge text-capitalize d-inline-flex items-center">
                   <div className="mute-icon">{volumeOffSvg}</div> <div>{_t("g.muted")}</div>
                 </span>
               </div>
@@ -307,13 +306,15 @@ export function EntryListItem({
           </>
         ) : (
           <>
-            <EntryListItemThumbnail
-              entryProp={entryProp}
-              history={history}
-              isCrossPost={isCrossPost}
-              noImage={noImage}
-              entry={entry}
-            />
+            {(!nsfw || showNsfw) && (
+              <EntryListItemThumbnail
+                entryProp={entryProp}
+                history={history}
+                isCrossPost={isCrossPost}
+                noImage={noImage}
+                entry={entry}
+              />
+            )}
             <div className="item-summary">
               <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
                 <div className="item-title">{entry.title}</div>
@@ -337,23 +338,25 @@ export function EntryListItem({
           />
           <EntryPayout entry={entry} />
           <EntryVotes entry={entry} history={history} />
-          <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
-            <a className="replies notranslate">
-              <Tooltip
-                content={
-                  entry.children > 0
-                    ? entry.children === 1
-                      ? _t("entry-list-item.replies")
-                      : _t("entry-list-item.replies-n", { n: entry.children })
-                    : _t("entry-list-item.no-replies")
-                }
-              >
-                <span className="inner">
-                  {commentSvg} {entry.children}
-                </span>
-              </Tooltip>
-            </a>
-          </EntryLink>
+          {(entry.children > 0 || entryProp.children > 0) && (
+            <EntryLink entry={isCrossPost ? entryProp : entry} history={history}>
+              <a className="replies notranslate">
+                <Tooltip
+                  content={
+                    entry.children > 0
+                      ? entry.children === 1
+                        ? _t("entry-list-item.replies")
+                        : _t("entry-list-item.replies-n", { n: entry.children })
+                      : _t("entry-list-item.no-replies")
+                  }
+                >
+                  <span className="inner">
+                    {commentSvg} {entry.children}
+                  </span>
+                </Tooltip>
+              </a>
+            </EntryLink>
+          )}
           <EntryReblogBtn entry={entry} />
           <EntryMenu history={history} alignBottom={order >= 1} entry={entry} />
         </div>

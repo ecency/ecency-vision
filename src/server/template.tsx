@@ -56,9 +56,92 @@ export const render = (req: express.Request, state: AppState) => {
                 ${headHelmet}
                 ${linkTags}
                 ${styleTags}
+                <style>
+                  *::before, *::after {
+                    box-sizing: border-box;
+                  }
+                  
+                  .ecency-global-loader {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 100%;
+                    width: 100%;
+                    z-index: 100;
+                    position: fixed;
+                    background-color: #fff;
+                    top: 0;
+                    left: 0;
+                    transition: 0.4s;
+                  }
+                  
+                  .dark .ecency-global-loader {
+                    background: #161d26;
+                  }
+                  
+                  .ecency-global-loader.ecency-global-loader-hidden {
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: scale(2);
+                  }
+                  
+                  .ecency-global-loader-spinner {
+                     position: relative;
+                     height: 112px;
+                     width: 112px;
+                  }
+                  
+                  .ecency-global-loader-spinner:before,
+                  .ecency-global-loader-spinner:after {
+                     border-radius: 50%;
+                     content: '';
+                     position: absolute;
+                  }
+                  
+                  .ecency-global-loader-spinner:before {
+                     background: #474bff;
+                     height: 22.4px;
+                     width: 22.4px;
+                     top: 50%;
+                     left: 50%;
+                     transform: translate(-50%, -50%);
+                  }
+                  
+                  .ecency-global-loader-spinner:after {
+                     animation: pulse-t3pv1p 1.5s infinite;
+                     border: 11.2px solid #474bff;
+                     height: 100%;
+                     width: 100%;
+                  }
+                  
+                  @keyframes pulse-t3pv1p {
+                     from {
+                        opacity: 1;
+                        transform: scale(0);
+                     }
+                  
+                     to {
+                        opacity: 0;
+                        transform: scale(1);
+                     }
+                  }
+                 
+                  .ecency-global-loader-title {
+                    font-family: -apple-system, Helvetica, "Segoe UI", sans-serif;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5rem;
+                    color: #404f66;
+                  }
+                </style>
             </head>
-            <body class="${`theme-${state.global.theme}`}" style="display: none;">
+            <body class="${state.global.theme === "night" ? "dark" : ""}">
                 <div id="root">${markup}</div>
+                <div class="ecency-global-loader">
+                  <div class="ecency-global-loader-spinner"></div>
+                  <div class="ecency-global-loader-title">Ecency</div>
+                </div>
                 <script>
                   window.__PRELOADED_STATE__ = ${serialize(finalState)}
                   window.__REACT_QUERY_STATE__ = ${serialize(dehydratedState)}

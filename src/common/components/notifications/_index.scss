@@ -15,6 +15,8 @@
 
   .ecency-modal-body {
     padding: 0 !important;
+    overflow: hidden;
+    height: 100%;
   }
 }
 
@@ -124,6 +126,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .select-svg {
         cursor: pointer;
         border: 1px solid;
@@ -144,9 +147,11 @@
           }
         }
       }
+
       .mark-svg {
         cursor: pointer;
         margin-right: 10px;
+
         svg {
           display: block;
           height: 22px;
@@ -364,72 +369,84 @@
     }
   }
 }
+
 @media (min-width: 700px) {
   .modal-content {
     top: 10% !important;
     height: 90% !important;
   }
 }
+
 @media (min-width: 800px) {
   .modal-content {
     top: 7.5% !important;
     height: 90% !important;
   }
 }
+
 @media (min-width: 1000px) {
   .modal-content {
     top: 6% !important;
     height: 90% !important;
   }
 }
+
 @media (min-width: 1100px) {
   .modal-content {
     top: 5% !important;
     height: 90% !important;
   }
 }
+
 @media (min-width: 1300px) {
   .modal-content {
     top: 4.5% !important;
     height: 91.5% !important;
   }
 }
+
 @media (min-width: 1400px) {
   .modal-content {
     top: 4% !important;
     height: 92.5% !important;
   }
 }
+
 @media (min-width: 1600px) {
   .modal-content {
     top: 3.5% !important;
     height: 93.5% !important;
   }
 }
+
 @media (min-width: 1800px) {
   .modal-content {
     top: 3.2% !important;
     height: 93.5% !important;
   }
 }
+
 @media (min-width: 2000px) {
   .modal-content {
     top: 3% !important;
     height: 94% !important;
   }
 }
+
 @media (min-width: 2500px) {
   .modal-content {
     top: 2.2% !important;
     height: 96% !important;
   }
 }
+
 @media (min-width: 4000px) {
   .modal-content {
     top: 1.5% !important;
     height: 97% !important;
   }
 }
+
 @media (min-width: 5000px) {
   .modal-content {
     top: 1% !important;

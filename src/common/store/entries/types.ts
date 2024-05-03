@@ -19,6 +19,19 @@ export interface EntryStat {
   is_pinned?: boolean;
 }
 
+export interface JsonPollMetadata {
+  content_type: "poll";
+  version: number;
+  question: string;
+  choices: string[];
+  preferred_interpretation: string;
+  token: string;
+  vote_change: boolean;
+  hide_votes: boolean;
+  filters: { account_age: number };
+  end_time: number;
+}
+
 export interface JsonMetadata {
   tags?: string[];
   description?: string | null;
@@ -28,6 +41,7 @@ export interface JsonMetadata {
   original_author?: string;
   original_permlink?: string;
   image?: string[];
+  pinned_reply?: string; // author/permlink
 }
 
 export interface Entry {
@@ -62,6 +76,7 @@ export interface Entry {
   post_id: any;
   id?: number;
   num?: number;
+  reblogs?: number;
   promoted: string;
   reblogged_by?: string[] | any;
   replies: any[];

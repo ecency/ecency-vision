@@ -14,11 +14,10 @@ import Meta from "../components/meta";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "../img/svg";
 import { Tsx } from "../i18n/helper";
 import { handleInvalid, handleOnInput } from "../util/input-util";
-import { getAccount } from "../api/hive";
+import { getAccounts } from "../api/hive";
 import "./sign-up.scss";
 import { Link } from "react-router-dom";
 import { b64uEnc } from "../util/b64";
@@ -26,6 +25,7 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
+import useDebounce from "react-use/lib/useDebounce";
 
 enum Stage {
   FORM = "form",
@@ -58,16 +58,11 @@ export const SignUp = (props: PageProps) => {
   const form = useRef<any>();
   const qrCodeRef = useRef<any>();
 
-  const signupSvg = props.global.isElectron ? "./img/signup.png" : require("../img/signup.png");
-  const logoCircle = props.global.isElectron
-    ? "./img/logo-circle.svg"
-    : require("../img/logo-circle.svg");
+  const signupSvg = require("../img/signup.png");
+  const logoCircle = require("../img/logo-circle.svg");
 
   useEffect(() => {
     const { referral } = queryString.parse(props.location.search);
-    if (props.global.isElectron) {
-      setIsVerified(true);
-    }
     if (referral && typeof referral === "string") {
       setReferral(referral);
       setLockReferral(true);
@@ -120,10 +115,28 @@ export const SignUp = (props: PageProps) => {
         } else if (item.includes("--")) {
           setUsernameError(_t("sign-up.username-contains-double-hyphens"));
           setIsDisabled(true);
+        } else if (/^\d/.test(item)) {
+          setUsernameError(_t("sign-up.username-starts-number"));
+          setIsDisabled(true);
         }
       });
     }
   }, [username, usernameTouched]);
+
+  useDebounce(
+    () => {
+      if (username?.length >= 3) {
+        getAccounts([username]).then((r) => {
+          if (r.length > 0) {
+            setUsernameError(_t("sign-up.username-exists"));
+            setIsDisabled(true);
+          }
+        });
+      }
+    },
+    1000,
+    [username]
+  );
 
   useEffect(() => {
     if (email.length > 72) {
@@ -166,6 +179,7 @@ export const SignUp = (props: PageProps) => {
       } else {
         setDone(true);
         setLsReferral(undefined);
+        setStage(Stage.FORM);
       }
     } catch (e) {
       if (axios.isAxiosError(e) && e.response?.data?.message) {
@@ -209,31 +223,34 @@ export const SignUp = (props: PageProps) => {
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {props.global.isElectron ? NavBarElectron({ ...props }) : <NavBar history={props.history} />}
-      <div
-        className={
-          props.global.isElectron
-            ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
-            : "app-content sign-up-page mb-lg-0"
-        }
-      >
+      <NavBar history={props.history} />
+      <div className="app-content sign-up-page mb-lg-0">
         <div className="sign-up">
           <div className={"left-image " + stage}>
             <img src={signupSvg} alt="Signup" />
           </div>
           <div className="the-form">
-            {!done && stage === Stage.FORM ? (
+            {stage === Stage.FORM ? (
               <>
                 <div className="form-title">{_t("sign-up.header")}</div>
                 <div className="form-sub-title">{_t("sign-up.description")}</div>
-                <div className="form-icons">
+                <div className="flex items-center justify-center form-icons">
                   <img src={logoCircle} alt="Ecency" title="Ecency" />
                   <span title="Hive">{hiveSvg}</span>
                 </div>
 
-                <div className="form-image">
+                <div className="flex items-center justify-center form-image">
                   <img src={signupSvg} alt="Signup" />
                 </div>
+
+                <div className="bottom-description text-center">
+                  {_t("sign-up.bottom-description")}
+                </div>
+
+                <Tsx k="sign-up.learn-more">
+                  <div className="form-faq" />
+                </Tsx>
+
                 {done ? (
                   <div className="form-done">
                     <div className="done-icon">{checkSvg}</div>
@@ -251,11 +268,8 @@ export const SignUp = (props: PageProps) => {
             )}
             {!done && stage === Stage.FORM ? (
               <div className="form-content">
-                <Tsx k="sign-up.learn-more">
-                  <div className="form-faq" />
-                </Tsx>
-
                 <Form
+                  className="form-content"
                   ref={form}
                   onSubmit={async (e: React.FormEvent) => {
                     e.preventDefault();
@@ -269,14 +283,14 @@ export const SignUp = (props: PageProps) => {
                       return;
                     }
 
-                    const existingAccount = await getAccount(username);
-                    if (existingAccount) {
+                    const existingAccount = await getAccounts([username]);
+                    if (existingAccount.length > 0) {
                       setUsernameError(_t("sign-up.username-exists"));
                       return;
                     }
 
-                    const referralIsValid = await getAccount(referral);
-                    if (!referralIsValid && referral !== "") {
+                    const referralIsValid = await getAccounts([referral]);
+                    if (referralIsValid.length === 0 && referral !== "") {
                       setReferralError(_t("sign-up.referral-invalid"));
                       return;
                     }
@@ -330,15 +344,13 @@ export const SignUp = (props: PageProps) => {
                     />
                     <small className="text-red pl-3">{referralError}</small>
                   </div>
-                  {!props.global.isElectron && (
-                    <div style={{ marginTop: "16px", marginBottom: "16px" }}>
-                      <ReCAPTCHA
-                        sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
-                        onChange={captchaCheck}
-                        size="normal"
-                      />
-                    </div>
-                  )}
+                  <div style={{ marginTop: "16px", marginBottom: "16px" }}>
+                    <ReCAPTCHA
+                      sitekey="6LdEi_4iAAAAAO_PD6H4SubH5Jd2JjgbIq8VGwKR"
+                      onChange={captchaCheck}
+                      size="normal"
+                    />
+                  </div>
                   {stage === Stage.FORM ? (
                     <>
                       <div className="flex justify-center">
@@ -363,10 +375,6 @@ export const SignUp = (props: PageProps) => {
                     {_t("sign-up.login-text-2")}
                   </a>
                 </div>
-
-                <div className="form-bottom-description text-center">
-                  {_t("sign-up.bottom-description")}
-                </div>
               </div>
             ) : (
               <></>
@@ -374,15 +382,19 @@ export const SignUp = (props: PageProps) => {
 
             {stage === Stage.REGISTER_TYPE ? (
               <div className="form-content">
-                <div className="card border bg-white rounded mb-3 mt-5">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border border-[--border-color] bg-white rounded mb-3 mt-5">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>{_t("sign-up.free-account")}</b>
                   </div>
                   <div className="p-3">
                     <div>{_t("sign-up.free-account-desc")}</div>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
-                    <Button className="w-full" onClick={regularRegister}>
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
+                    <Button
+                      className="w-full"
+                      onClick={regularRegister}
+                      icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+                    >
                       {_t("sign-up.register-free")}
                     </Button>
                   </div>
@@ -392,8 +404,8 @@ export const SignUp = (props: PageProps) => {
                     </div>
                   )}
                 </div>
-                <div className="card border bg-white rounded mb-3">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border bg-white border-[--border-color] rounded mb-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>{_t("sign-up.buy-account")}</b>
                   </div>
                   <div className="p-3">
@@ -404,15 +416,15 @@ export const SignUp = (props: PageProps) => {
                       <li>{_t("sign-up.buy-account-li-3")}</li>
                     </ul>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
                     <Button className="w-full" onClick={() => setStage(Stage.BUY_ACCOUNT)}>
                       {_t("sign-up.buy-account")} – $2.99
                     </Button>
                   </div>
                 </div>
 
-                <div className="card border bg-white rounded mb-3">
-                  <div className="bg-gray-100 border-b p-3">
+                <div className="card border bg-white border-[--border-color] rounded mb-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-b border-[--border-color] p-3">
                     <b>
                       {props.activeUser
                         ? _t("onboard.title-active-user")
@@ -430,7 +442,7 @@ export const SignUp = (props: PageProps) => {
                       {!props.activeUser && <li>{_t("onboard.asking-description")}</li>}
                     </ul>
                   </div>
-                  <div className="bg-gray-100 border-t py-2 px-3">
+                  <div className="bg-gray-100 dark:bg-gray-800 border-t border-[--border-color] py-2 px-3">
                     <Link to={`/onboard-friend/asking/${urlHash}`}>
                       <Button className="w-full">
                         {props.activeUser ? _t("onboard.creating") : _t("onboard.asking")}
@@ -449,17 +461,13 @@ export const SignUp = (props: PageProps) => {
                 <a href={url}>
                   <img ref={qrCodeRef} />
                 </a>
-                <div className="flex flex-col flex-sm-row">
-                  <a
-                    href="https://ios.ecency.com"
-                    className="btn app-btn mb-2 sm:mb-0 mr-sm-2"
-                    target="_blank"
-                  >
+                <div className="flex flex-col my-4 mb-16 gap-4 sm:flex-row">
+                  <a href="https://ios.ecency.com" className="app-btn" target="_blank">
                     <i className="icon">{appleSvg}</i>
                     <span className="text">Download on the</span>
                     <span className="headline">AppStore</span>
                   </a>
-                  <a href="https://android.ecency.com" className="btn app-btn" target="_blank">
+                  <a href="https://android.ecency.com" className="app-btn" target="_blank">
                     <i className="icon">{googleSvg}</i>
                     <span className="text">Get it on</span>
                     <span className="headline">GooglePlay</span>

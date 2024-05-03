@@ -1,7 +1,8 @@
 import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
-import useMountedState from "react-use/lib/useMountedState";
+import { useMountedState } from "react-use";
+import { classNameObject } from "../../helper/class-name-object";
 
 interface Props {
   content: string | JSX.Element;
@@ -16,27 +17,35 @@ export default function ({ content, children }: Props) {
 interface StyledProps {
   children: ReactNode;
   content: ReactNode;
+  className?: string;
 }
 
-export function StyledTooltip({ children, content }: StyledProps) {
+export function StyledTooltip({ children, content, className }: StyledProps) {
   const [ref, setRef] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const [show, setShow] = useState(false);
 
-  const popper = usePopper(ref, popperElement);
-
   const isMounted = useMountedState();
 
-  return (
+  const popper = usePopper(ref, popperElement);
+
+  return isMounted() ? (
     <div
       ref={setRef}
-      className="styled-tooltip"
+      className={classNameObject({
+        "styled-tooltip": true,
+        [className ?? ""]: true
+      })}
       onMouseEnter={() => {
         setShow(true);
         popper.update?.();
       }}
       onMouseLeave={() => {
         setShow(false);
+        popper.update?.();
+      }}
+      onClick={() => {
+        setShow(!show);
         popper.update?.();
       }}
     >
@@ -56,5 +65,7 @@ export function StyledTooltip({ children, content }: StyledProps) {
         document.querySelector("#popper-container") ?? document.createElement("div")
       )}
     </div>
+  ) : (
+    <></>
   );
 }

@@ -12,11 +12,13 @@ exports[`(1) Default render 1`] = `
       className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
     >
       <div
-        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2"
+        className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
         onClick={[Function]}
       >
         <svg
+          height="18"
           viewBox="0 0 24 24"
+          width="18"
         >
           <path
             d="M7,14A2,2 0 0,1 5,12A2,2 0 0,1 7,10A2,2 0 0,1 9,12A2,2 0 0,1 7,14M12.65,10C11.83,7.67 9.61,6 7,6A6,6 0 0,0 1,12A6,6 0 0,0 7,18C9.61,18 11.83,16.33 12.65,14H17V18H21V14H23V10H12.65Z"
@@ -34,11 +36,11 @@ exports[`(1) Default render 1`] = `
         value="aprivatesigningkey"
       />
       <div
-        className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600"
+        className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full dark:border-gray-600 bg-gray-200 dark:bg-gray-600"
         onClick={[Function]}
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
           disabled={false}
           onClick={[Function]}
           style={
@@ -64,7 +66,7 @@ exports[`(1) Default render 1`] = `
     className="hs-sign"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 flex-row-reverse border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
       onClick={[Function]}
       style={
         Object {
@@ -77,7 +79,7 @@ exports[`(1) Default render 1`] = `
         Sign with hivesigner
       </div>
       <div
-        className="flex items-center w-5 h-5 undefined"
+        className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
       >
         <img
           alt="hivesigner"

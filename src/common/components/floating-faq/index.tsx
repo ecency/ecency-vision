@@ -16,16 +16,15 @@ import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
+import { classNameObject } from "../../helper/class-name-object";
 
 export interface FaqObject {
   show: boolean;
-  className: string;
 }
 
-export const handleFloatingContainer = (show: boolean, className: string) => {
+export const handleFloatingContainer = (show: boolean) => {
   const detail: FaqObject = {
-    show: show,
-    className: className
+    show: show
   };
   const ev = new CustomEvent("handleShow", { detail });
   window.dispatchEvent(ev);
@@ -45,7 +44,6 @@ const FloatingFAQ = () => {
   const [datatoShow, setDatatoShow] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
   const [isSubmitPage, setIsSubmitPage] = useState(false);
-  const [className, setClassName] = useState("");
 
   useEffect(() => {
     window.addEventListener("handleShow", onHandleShow);
@@ -113,13 +111,14 @@ const FloatingFAQ = () => {
   const onHandleShow = (e: Event) => {
     const detail = (e as CustomEvent).detail as FaqObject;
     setShow(detail.show);
-    setClassName(detail.className);
   };
 
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
-    setIsSubmitPage(!!routerLocation.pathname.match("submit"));
+    setIsSubmitPage(
+      !!routerLocation.pathname.match("submit") || !!routerLocation.pathname.match("edit")
+    );
     for (const p of data.faqPaths) {
       if (routerLocation.pathname.match(p.path)) {
         setDisplay(true);
@@ -139,182 +138,168 @@ const FloatingFAQ = () => {
   };
   return (
     <>
-      {
-        <>
-          <ClickAwayListener
-            className="floating-faq-button"
-            onClickAway={() => show && setShow(false)}
+      <ClickAwayListener className="floating-faq-button" onClickAway={() => show && setShow(false)}>
+        {display && !isSubmitPage && (
+          <Button
+            noPadding={innerWidth < 768}
+            className="fixed bottom-[4rem] md:bottom-4 right-4 w-[40px] h-[40px] md:w-auto md:h-[40px]"
+            onClick={handleShow}
+            icon={helpIconSvg}
+            iconPlacement="left"
           >
-            {display && !isSubmitPage && (
+            {innerWidth >= 768 ? _t("floating-faq.help") : ""}
+          </Button>
+        )}
+
+        {show && display ? (
+          <div className={`floating-container ${isSubmitPage ? "r-[10rem]" : ""}`}>
+            <div className="faq-welcome">
+              <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
               <Button
-                className="help-btn"
-                onClick={handleShow}
-                icon={helpIconSvg}
-                iconPlacement="left"
-                size="sm"
-              >
-                {innerWidth >= 792 ? _t("floating-faq.help") : ""}
-              </Button>
-            )}
+                className={classNameObject({
+                  "absolute top-7 right-4": true,
+                  "right-4": !isSubmitPage,
+                  "right-[10rem]": isSubmitPage
+                })}
+                appearance="gray-link"
+                onClick={() => setShow(false)}
+                icon={closeSvg}
+              />
+            </div>
+            <div className="faq-content-list">
+              <div className="faq-content-list-item">
+                <Accordion defaultActiveKey="0">
+                  <AccordionToggle eventKey="0">
+                    <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
+                      <div className="flex justify-between items-center section-card relative">
+                        <div className="flex items-center">
+                          <div className="flex items-center ml-3">
+                            <div className="section-title">{_t("floating-faq.need-help")}</div>
+                          </div>
+                        </div>
 
-            {show && display ? (
-              <div className={`floating-container ${isSubmitPage ? className : ""}`}>
-                <div className="faq-welcome">
-                  <h3 className="faq-welcome-message">{_t("floating-faq.welcome")}</h3>
-                  <Button
-                    appearance="link"
-                    className="close-btn"
-                    onClick={() => {
-                      setShow(false);
-                    }}
-                    icon={closeSvg}
-                  />
-                </div>
-                <div className="faq-content-list">
-                  <div className="faq-content-list-item">
-                    <Accordion defaultActiveKey="0">
-                      <AccordionToggle eventKey="0">
-                        <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
-                          <div className="flex justify-between items-center section-card relative">
-                            <div className="flex items-center">
-                              <div className="flex items-center ml-3">
-                                <div className="section-title">{_t("floating-faq.need-help")}</div>
-                              </div>
-                            </div>
+                        <Tooltip content={_t("floating-faq.toggle-icon-info")}>
+                          <AccordionToggle
+                            as={Button}
+                            appearance="link"
+                            noPadding={true}
+                            eventKey="0"
+                            onClick={() => {
+                              setExpandedHelp(!expandedHelp);
+                            }}
+                            icon={expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                          />
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </AccordionToggle>
 
-                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
-                              <AccordionToggle
-                                as={Button}
-                                appearance="link"
-                                noPadding={true}
-                                eventKey="0"
-                                onClick={() => {
-                                  setExpandedHelp(!expandedHelp);
-                                }}
-                                icon={
-                                  expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider
-                                }
-                              />
-                            </Tooltip>
-                          </div>
+                  <AccordionCollapse eventKey="0">
+                    <div className="help-content">
+                      <div className="card-body p-3">
+                        <div className="mb-3 search-bar w-full">
+                          <FormControl
+                            type="text"
+                            placeholder={_t("floating-faq.search-placeholder")}
+                            value={searchText}
+                            onChange={(e) => {
+                              setSearchText(e.target.value);
+                            }}
+                          />
                         </div>
-                      </AccordionToggle>
-
-                      <AccordionCollapse eventKey="0">
-                        <div className="help-content">
-                          <div className="card-body p-3">
-                            <div className="mb-3 search-bar w-full">
-                              <FormControl
-                                type="text"
-                                placeholder={_t("floating-faq.search-placeholder")}
-                                value={searchText}
-                                onChange={(e) => {
-                                  setSearchText(e.target.value);
-                                }}
-                              />
-                            </div>
-                            {!searchText ? (
-                              <p className="user-info">{_t("floating-faq.suggestion")}</p>
-                            ) : !datatoShow.length ? (
-                              <p className="user-info">{_t("floating-faq.no-results")}</p>
-                            ) : (
-                              ""
-                            )}
-                            {datatoShow.map((x) => {
-                              return (
-                                <a
-                                  className="faq-article"
-                                  href={`/faq#${x}`}
-                                  target="_blank"
-                                  key={x}
-                                >
-                                  <div className="faq-image">{articleSvg}</div>
-                                  {_t(`static.faq.${x}-header`)}
-                                </a>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </AccordionCollapse>
-                    </Accordion>
-                  </div>
-                  <div className="faq-content-list-item contact-us">
-                    <Accordion>
-                      <AccordionToggle eventKey="1">
-                        <div
-                          className={contactClass}
-                          onClick={() => setExpandedContact(!expandedContact)}
-                        >
-                          <div className="flex justify-between items-center section-card relative">
-                            <div className="flex items-center">
-                              <div className="flex items-center ml-3">
-                                <div className="section-title">{_t("floating-faq.contact")}</div>
-                              </div>
-                            </div>
-                            <Tooltip content={_t("floating-faq.toggle-icon-info")}>
-                              <AccordionToggle
-                                as={Button}
-                                appearance="link"
-                                eventKey="1"
-                                noPadding={true}
-                                onClick={() => {
-                                  setExpandedContact(!expandedContact);
-                                }}
-                                icon={
-                                  expandedContact ? chevronUpSvgForSlider : chevronDownSvgForSlider
-                                }
-                              />
-                            </Tooltip>
-                          </div>
-                        </div>
-                      </AccordionToggle>
-                      <AccordionCollapse eventKey="1">
-                        <div className="card-body p-3">
-                          <div className="mb-3">
-                            <InputGroup className="username" prepend="@">
-                              <FormControl
-                                type="text"
-                                autoFocus={true}
-                                required={true}
-                                placeholder={_t("floating-faq.username")}
-                              />
-                            </InputGroup>
-                          </div>
-                          <div className="mb-3">
-                            <InputGroup className="message">
-                              <FormControl
-                                type="textarea"
-                                autoFocus={true}
-                                required={true}
-                                maxLength={1000}
-                                placeholder={_t("floating-faq.message")}
-                              />
-                            </InputGroup>
-                          </div>
-                          <Button
-                            className="submit-btn"
-                            type="submit"
-                            onClick={() =>
-                              window.open(
-                                "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                                "_blank"
-                              )
-                            }
-                          >
-                            {_t("floating-faq.submit")}
-                          </Button>
-                        </div>
-                      </AccordionCollapse>
-                    </Accordion>
-                  </div>
-                </div>
+                        {!searchText ? (
+                          <p className="user-info">{_t("floating-faq.suggestion")}</p>
+                        ) : !datatoShow.length ? (
+                          <p className="user-info">{_t("floating-faq.no-results")}</p>
+                        ) : (
+                          ""
+                        )}
+                        {datatoShow.map((x) => {
+                          return (
+                            <a className="faq-article" href={`/faq#${x}`} target="_blank" key={x}>
+                              <div className="faq-image">{articleSvg}</div>
+                              {_t(`static.faq.${x}-header`)}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </AccordionCollapse>
+                </Accordion>
               </div>
-            ) : (
-              ""
-            )}
-          </ClickAwayListener>
-        </>
-      }
+              <div className="faq-content-list-item contact-us">
+                <Accordion>
+                  <AccordionToggle eventKey="1">
+                    <div
+                      className={contactClass}
+                      onClick={() => setExpandedContact(!expandedContact)}
+                    >
+                      <div className="flex justify-between items-center section-card relative">
+                        <div className="flex items-center">
+                          <div className="flex items-center ml-3">
+                            <div className="section-title">{_t("floating-faq.contact")}</div>
+                          </div>
+                        </div>
+                        <Tooltip content={_t("floating-faq.toggle-icon-info")}>
+                          <AccordionToggle
+                            as={Button}
+                            appearance="link"
+                            eventKey="1"
+                            noPadding={true}
+                            onClick={() => {
+                              setExpandedContact(!expandedContact);
+                            }}
+                            icon={expandedContact ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                          />
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </AccordionToggle>
+                  <AccordionCollapse eventKey="1">
+                    <div className="card-body p-3">
+                      <div className="mb-3">
+                        <InputGroup className="username" prepend="@">
+                          <FormControl
+                            type="text"
+                            autoFocus={true}
+                            required={true}
+                            placeholder={_t("floating-faq.username")}
+                          />
+                        </InputGroup>
+                      </div>
+                      <div className="mb-3">
+                        <InputGroup className="message">
+                          <FormControl
+                            type="textarea"
+                            autoFocus={true}
+                            required={true}
+                            maxLength={1000}
+                            placeholder={_t("floating-faq.message")}
+                          />
+                        </InputGroup>
+                      </div>
+                      <Button
+                        className="submit-btn"
+                        type="submit"
+                        onClick={() =>
+                          window.open(
+                            "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
+                            "_blank"
+                          )
+                        }
+                      >
+                        {_t("floating-faq.submit")}
+                      </Button>
+                    </div>
+                  </AccordionCollapse>
+                </Accordion>
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </ClickAwayListener>
     </>
   );
 };

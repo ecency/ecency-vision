@@ -72,9 +72,9 @@
         background: transparent;
         border: none;
 
-        &:focus {
+        &:focus, &.intro-tour-focused {
           @include themify(day) {
-            background: lighten($yellow, 46);
+            @apply bg-warning-046;
           }
 
           @include themify(night) {
@@ -153,6 +153,10 @@
 
       @include themify(day) {
         @apply text-tundora;
+      }
+
+      @include themify(night) {
+        @apply text-white;
       }
     }
 

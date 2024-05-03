@@ -56,7 +56,7 @@ export const SwapMode = ({ inline = false }: Props) => {
     <div className={"swap-form-container " + (inline ? "inline" : "")}>{form}</div>
   ) : (
     <div className="grid grid-cols-12 pb-5">
-      <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6">
+      <div className="col-span-12 md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 relative">
         {form}
       </div>
     </div>

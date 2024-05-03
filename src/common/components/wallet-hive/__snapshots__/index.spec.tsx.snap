@@ -267,6 +267,7 @@ exports[`(1) Default Render 1`] = `
       </div>
       <div
         className="next-power-down"
+        title="0h"
       >
         The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>
@@ -762,6 +763,7 @@ exports[`(2) Render with converting HBD 1`] = `
       </div>
       <div
         className="next-power-down"
+        title="0h"
       >
         The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>
@@ -1256,6 +1258,7 @@ exports[`(3) usePrivate = false 1`] = `
       </div>
       <div
         className="next-power-down"
+        title="0h"
       >
         The next power down is in 5 days, (~3,626.559 HIVE, 5 weeks remaining)
       </div>

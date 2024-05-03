@@ -13,6 +13,7 @@ import { useMappedStore } from "../../store/use-mapped-store";
 import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
 import { classNameObject } from "../../helper/class-name-object";
+import { useCommunityCache } from "../../core";
 
 interface Props {
   history: History;
@@ -25,14 +26,9 @@ interface Props {
 export function DraftListItem({ history, draft, editFn, deleteFn, cloneFn }: Props) {
   const { activeUser, global } = useMappedStore();
 
-  const fallbackImage = useMemo(
-    () => (global.isElectron ? "./img/fallback.png" : require("../../img/fallback.png")),
-    [global.isElectron]
-  );
-  const noImage = useMemo(
-    () => (global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg")),
-    [global.isElectron]
-  );
+  const fallbackImage = require("../../img/fallback.png");
+
+  const noImage = require("../../img/noimage.svg");
 
   const account = useMemo(() => activeUser?.data as FullAccount, [activeUser]);
 
@@ -43,6 +39,8 @@ export function DraftListItem({ history, draft, editFn, deleteFn, cloneFn }: Pro
   const tag = tags[0] || "";
   const img = catchPostImage(draft.body, 600, 500, global.canUseWebp ? "webp" : "match") || noImage;
   const summary = postBodySummary(draft.body, 200);
+
+  const { data: community } = useCommunityCache(tag);
 
   const dateRelative = useMemo(() => dateToFullRelative(draft.created), [draft]);
   const dateFormatted = useMemo(() => dateToFormatted(draft.created), [draft]);
@@ -57,7 +55,7 @@ export function DraftListItem({ history, draft, editFn, deleteFn, cloneFn }: Pro
             <div className="text-gray-600 pl-1">({accountReputation(reputation)})</div>
           </div>
         </div>
-        <Badge>{tag}</Badge>
+        <Badge>{community?.title ?? tag}</Badge>
         <div className="text-sm text-gray-600" title={dateFormatted}>
           {dateRelative}
         </div>

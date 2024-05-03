@@ -3,9 +3,10 @@
 exports[`(1) No tags 1`] = `
 <div
   className="tag-selector"
+  id="submit-tags-selector"
 >
   <div
-    className="suggestion relative"
+    className="suggestion relative z-[11]"
   >
     <input
       autoComplete="off"
@@ -32,9 +33,10 @@ exports[`(1) No tags 1`] = `
 exports[`(2) With tags 1`] = `
 <div
   className="tag-selector has-tags"
+  id="submit-tags-selector"
 >
   <div
-    className="suggestion relative"
+    className="suggestion relative z-[11]"
   >
     <input
       autoComplete="off"
@@ -115,9 +117,10 @@ exports[`(2) With tags 1`] = `
 exports[`(3) No tags with focus 1`] = `
 <div
   className="tag-selector"
+  id="submit-tags-selector"
 >
   <div
-    className="suggestion relative"
+    className="suggestion relative z-[11]"
   >
     <input
       autoComplete="off"

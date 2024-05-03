@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Popover, PopoverContent, PopoverTitle } from "@ui/popover";
 import { _t } from "../../../i18n";
 import { Button } from "@ui/button";
@@ -16,88 +16,72 @@ interface Props {
   containerRef?: React.RefObject<HTMLInputElement>;
 }
 
-interface State {
-  show: boolean;
-}
+function PopoverConfirm(props: Props) {
+  const [show, setShow] = useState(false);
 
-export default class PopoverConfirm extends Component<Props> {
-  state: State = {
-    show: false
-  };
-
-  toggle = (e?: React.MouseEvent) => {
+  const toggle = (e?: React.MouseEvent) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
 
-    const { show } = this.state;
-    this.setState({ show: !show });
+    setShow(!show);
   };
 
-  confirm = () => {
-    this.toggle();
+  const confirm = () => {
+    toggle();
 
-    const { onConfirm } = this.props;
-    if (onConfirm) {
-      onConfirm();
+    if (props.onConfirm) {
+      props.onConfirm();
     }
   };
 
-  cancel = () => {
-    this.toggle();
+  const cancel = () => {
+    toggle();
 
-    const { onCancel } = this.props;
-    if (onCancel) {
-      onCancel();
+    if (props.onCancel) {
+      props.onCancel();
     }
   };
 
-  render() {
-    const { titleText, okText, okVariant, cancelText, children, trigger, containerRef, placement } =
-      this.props;
-    const { show } = this.state;
-
-    const clonedChildren = React.cloneElement(children, {
-      onClick: this.toggle
+  if (!show) {
+    return React.cloneElement(props.children, {
+      onClick: toggle
     });
+  }
 
-    const popover = (
+  return (
+    <>
       <Popover
+        show={show}
+        setShow={setShow}
         id="popover-confirm"
         onClick={(e) => {
           // Prevent to trigger hide event on modal dialog
           e.stopPropagation();
         }}
       >
-        <PopoverTitle>{titleText || _t("confirm.title")}</PopoverTitle>
+        <PopoverTitle>{props.titleText || _t("confirm.title")}</PopoverTitle>
         <PopoverContent>
           <div style={{ textAlign: "center" }}>
             <Button
+              id="popover-confirm-ok"
               size="sm"
-              appearance={okVariant || "primary"}
+              appearance={props.okVariant || "primary"}
               style={{ marginRight: "10px" }}
-              onClick={this.confirm}
+              onClick={confirm}
             >
-              {okText || _t("confirm.ok")}
+              {props.okText || _t("confirm.ok")}
             </Button>
-            <Button size="sm" appearance="secondary" onClick={this.cancel}>
-              {cancelText || _t("confirm.cancel")}
+            <Button id="popover-confirm-cancel" size="sm" appearance="secondary" onClick={cancel}>
+              {props.cancelText || _t("confirm.cancel")}
             </Button>
           </div>
         </PopoverContent>
       </Popover>
-    );
-
-    if (!show) {
-      return clonedChildren;
-    }
-
-    return (
-      <>
-        {popover}
-        {children}
-      </>
-    );
-  }
+      {props.children}
+    </>
+  );
 }
+
+export default PopoverConfirm;

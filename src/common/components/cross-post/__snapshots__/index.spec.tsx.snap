@@ -6,7 +6,7 @@ Array [
     className="mb-4"
   >
     <div
-      className="suggestion relative"
+      className="suggestion relative z-[11]"
     >
       <input
         className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
@@ -39,7 +39,7 @@ Array [
     className="flex justify-between"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -54,7 +54,7 @@ Array [
       </div>
     </button>
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={true}
       onClick={[Function]}
       style={
@@ -80,7 +80,7 @@ Array [
     className="mb-4"
   >
     <div
-      className="suggestion relative"
+      className="suggestion relative z-[11]"
     >
       <input
         className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
@@ -113,7 +113,7 @@ Array [
     className="flex justify-between"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-gray-600 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-gray-400 hover:border-gray-700 focus:border-gray-800 text-gray-600 hover:text-gray-700 focus:gray-800 h-[2.125rem] px-3 "
       disabled={false}
       onClick={[Function]}
       style={
@@ -128,7 +128,7 @@ Array [
       </div>
     </button>
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={true}
       onClick={[Function]}
       style={

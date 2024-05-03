@@ -2,9 +2,9 @@
   @if $theme == "day" {
     @content;
   } @else if $theme == "night" {
-      .dark & {
-        @content;
-      }
+    .dark & {
+      @content;
+    }
   }
 }
 
@@ -280,6 +280,7 @@
         white-space: nowrap;
         @include multiLineEllipsis($lineHeight: 1.5em, $lineCount: 2);
       }
+
       .item-nsfw {
         margin-bottom: 9px;
 
@@ -356,8 +357,10 @@
   }
 
   svg {
-    width: 14px;
-    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
   }
 
   //animation for upvote in progress
@@ -397,6 +400,10 @@
 
     .btn-inner {
       @apply text-red-020-50;
+
+      svg {
+        transform: rotate(180deg);
+      }
     }
 
     &:hover,
@@ -406,10 +413,6 @@
       .btn-inner {
         @apply text-white;
       }
-    }
-
-    svg {
-      transform: rotate(180deg);
     }
   }
 
@@ -563,7 +566,9 @@
   .tag-list-item {
     border-radius: 25px;
     cursor: pointer;
-    display: table;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 8px;
     padding: 4px 8px;
     text-decoration: none;

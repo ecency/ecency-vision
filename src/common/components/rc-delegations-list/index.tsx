@@ -90,7 +90,7 @@ export const RcDelegationsList = (props: any) => {
         {listMode === "out" && (
           <>
             {outGoingList.length > 0 ? (
-              <List defer={true} inline={true}>
+              <List scrollable={true} defer={true} inline={true}>
                 {outGoingList
                   ?.slice(0, loadList)
                   .filter(
@@ -210,16 +210,7 @@ export const ConfirmDelete = (props: any) => {
   const { to, activeUser, hideConfirmDelete } = props;
   return (
     <>
-      <div
-        className="container"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "25%",
-          flexDirection: "column"
-        }}
-      >
+      <div className="container">
         <h5 className="text" style={{ width: "350px", alignSelf: "center" }}>
           {_t("rc-info.confirm-delete")}
         </h5>

@@ -3,6 +3,7 @@ import HiveEngineToken from "../helper/hive-engine-wallet";
 import { TransactionConfirmation } from "@hiveio/dhive";
 import { broadcastPostingJSON } from "./operations";
 import engine from "../constants/engine.json";
+import { apiBase } from "./helper";
 
 interface TokenBalance {
   symbol: string;
@@ -43,8 +44,6 @@ export interface TokenStatus {
   precision: number;
 }
 
-const HIVE_ENGINE_RPC_URL = engine.engineRpcUrl;
-
 export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   const data = {
     jsonrpc: "2.0",
@@ -60,7 +59,7 @@ export const getTokenBalances = (account: string): Promise<TokenBalance[]> => {
   };
 
   return axios
-    .post(HIVE_ENGINE_RPC_URL, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
@@ -84,7 +83,7 @@ const getTokens = (tokens: string[]): Promise<Token[]> => {
   };
 
   return axios
-    .post(HIVE_ENGINE_RPC_URL, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
@@ -108,10 +107,9 @@ export const getHiveEngineTokenBalances = async (account: string): Promise<HiveE
 };
 
 export const getUnclaimedRewards = async (account: string): Promise<TokenStatus[]> => {
-  const rewardsUrl = engine.engineRewardsUrl;
   return (
     axios
-      .get(`${rewardsUrl}/@${account}?hive=1`)
+      .get(apiBase(`${engine.rewardAPI}/${account}?hive=1`))
       .then((r) => r.data)
       .then((r) => Object.values(r))
       .then((r) => r.filter((t) => (t as TokenStatus).pending_token > 0)) as any
@@ -172,7 +170,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
   //     })
   //     return result;
   return axios
-    .post(HIVE_ENGINE_RPC_URL, data, {
+    .post(apiBase(engine.API), data, {
       headers: { "Content-type": "application/json" }
     })
     .then((r) => r.data.result)
@@ -182,8 +180,7 @@ export const getMetrics: any = async (symbol?: any, account?: any) => {
 };
 
 export const getMarketData = async (symbol: any) => {
-  const url: any = engine.chartApi;
-  const { data: history } = await axios.get(`${url}`, {
+  const { data: history } = await axios.get(apiBase(`${engine.chartAPI}`), {
     params: { symbol, interval: "daily" }
   });
   return history;

@@ -2,6 +2,8 @@ import { createPortal } from "react-dom";
 import React, { createContext, HTMLProps, useEffect, useState } from "react";
 import { classNameObject } from "../../../helper/class-name-object";
 import { useFilteredProps } from "../../../util/props-filter";
+import useMount from "react-use/lib/useMount";
+import useUnmount from "react-use/lib/useUnmount";
 
 interface Props {
   show: boolean;
@@ -10,6 +12,7 @@ interface Props {
   animation?: boolean;
   size?: "md" | "lg";
   dialogClassName?: string;
+  overlayClassName?: string;
 }
 
 export const ModalContext = createContext<{
@@ -32,6 +35,9 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     "dialogClassName"
   ]);
 
+  useMount(() => document.addEventListener("keyup", onKeyUp));
+  useUnmount(() => document.removeEventListener("keyup", onKeyUp));
+
   useEffect(() => {
     setShow(props.show);
   }, [props.show]);
@@ -44,11 +50,22 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
     }
   }, [show]);
 
+  const onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setShow(false);
+    }
+  };
+
   return (
     <ModalContext.Provider value={{ show, setShow }}>
       {show &&
         createPortal(
-          <div className="bg-black dark:bg-white opacity-[50%] dark:opacity-[25%] z-[1040] fixed top-0 left-0 right-0 bottom-0" />,
+          <div
+            className={classNameObject({
+              "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true,
+              [props.overlayClassName ?? ""]: !!props.overlayClassName
+            })}
+          />,
           document.querySelector("#modal-overlay-container")!!
         )}
       {show &&

@@ -79,7 +79,7 @@ exports[`(1) Default render 1`] = `
       className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
     >
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
         size="sm"
         style={
           Object {
@@ -177,7 +177,7 @@ Array [
         className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
           size="sm"
           style={
             Object {
@@ -197,29 +197,29 @@ Array [
     className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
     <table
-      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full route-table"
+      className="table-auto border-collapse text-xs sm:text-sm md:text-base w-full route-table"
     >
       <thead>
         <tr
           className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-2"
           >
             Account
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-2"
           >
             Percent
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-2"
           >
             Automatically power up
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 border p-2"
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 border p-2"
           />
         </tr>
       </thead>

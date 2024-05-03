@@ -38,8 +38,7 @@
     "**/*.spec.tsx",
     "jest",
     "razzle.config.js",
-    "healthCheck.js",
-    "src/desktop/**/*.js"
+    "healthCheck.js"
   ],
   "types": ["typePatches", "node", "jest", "webpack-env", "resize-observer-browser"]
 }

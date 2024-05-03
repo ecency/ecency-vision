@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, CSSProperties } from "react";
 import { History, Location } from "history";
 import { _t } from "../../i18n";
-import ClickAwayListener from "../clickaway-listener";
 import "./_index.scss";
 import { classNameObject } from "../../helper/class-name-object";
+import ClickAwayListener from "../clickaway-listener";
 
 interface Props {
   history?: History;
@@ -17,6 +17,7 @@ interface Props {
   children: JSX.Element;
   searchValue?: string;
   ignoreFirstInputFocus?: boolean;
+  listStyle?: CSSProperties;
 }
 
 interface State {
@@ -202,7 +203,7 @@ export default class SuggestionList extends Component<Props> {
       <>
         <div
           className={classNameObject({
-            "suggestion relative": true,
+            "suggestion relative z-[11]": true,
             [containerClassName ?? ""]: !!containerClassName
           })}
           ref={this.parent}
@@ -211,7 +212,10 @@ export default class SuggestionList extends Component<Props> {
           <ClickAwayListener onClickAway={() => this.setState({ showList: false })}>
             {showList && modeItems && modeItems?.length > 0 ? modeItemsUI : <></>}
             {showList && !modeItems && items.length > 0 ? (
-              <div className="modal-suggestion-list rounded-3xl -top-[44px] absolute">
+              <div
+                className="modal-suggestion-list rounded-3xl absolute"
+                style={this.props.listStyle}
+              >
                 {header && (
                   <div className="list-header bg-gray-100 dark:bg-gray-700 text-sm font-semibold text-gray-600 px-2 pb-2 pt-12">
                     {header}

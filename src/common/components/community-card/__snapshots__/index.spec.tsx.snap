@@ -61,10 +61,10 @@ exports[`(1) Default render 1`] = `
           className="preview-body markdown-view"
           dangerouslySetInnerHTML={
             Object {
-              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
-<p>You can post in languages other than English.</p>
-<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
-<p>Join our discord group to keep yourself updated:<br />
+              "__html": "<p dir=\\"auto\\"><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p dir=\\"auto\\">You can post in languages other than English.</p>
+<p dir=\\"auto\\">There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p dir=\\"auto\\">Join our discord group to keep yourself updated:<br />
 <a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
             }
           }
@@ -214,10 +214,10 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
           className="preview-body markdown-view"
           dangerouslySetInnerHTML={
             Object {
-              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
-<p>You can post in languages other than English.</p>
-<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
-<p>Join our discord group to keep yourself updated:<br />
+              "__html": "<p dir=\\"auto\\"><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p dir=\\"auto\\">You can post in languages other than English.</p>
+<p dir=\\"auto\\">There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p dir=\\"auto\\">Join our discord group to keep yourself updated:<br />
 <a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
             }
           }
@@ -306,7 +306,7 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
       onClick={[Function]}
     >
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
         size="sm"
         style={
           Object {
@@ -328,7 +328,7 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
         onClick={[Function]}
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
           size="sm"
           style={
             Object {
@@ -347,12 +347,21 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
   <p
     className="community-rewards"
   >
-    <a
-      href="#"
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2rem] text-sm font-[500] px-2 "
       onClick={[Function]}
+      size="sm"
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
     >
-      Community Rewards
-    </a>
+      <div>
+        Community Rewards
+      </div>
+    </button>
   </p>
 </div>
 `;
@@ -423,10 +432,10 @@ exports[`(3) usePrivate = false 1`] = `
           className="preview-body markdown-view"
           dangerouslySetInnerHTML={
             Object {
-              "__html": "<p><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
-<p>You can post in languages other than English.</p>
-<p>There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
-<p>Join our discord group to keep yourself updated:<br />
+              "__html": "<p dir=\\"auto\\"><span>This is a collective curation community formed by <a class=\\"markdown-author-link\\" data-author=\\"appreciator\\">@appreciator</a>, <a class=\\"markdown-author-link\\" data-author=\\"rocky1\\">@rocky1</a> and <a class=\\"markdown-author-link\\" data-author=\\"upmewhale\\">@upmewhale</a>. You can post your genuine and creative content in this community to get more support.</span></p>
+<p dir=\\"auto\\">You can post in languages other than English.</p>
+<p dir=\\"auto\\">There are not many restrictions but just few simple ones and we expect you to adhere to them</p>
+<p dir=\\"auto\\">Join our discord group to keep yourself updated:<br />
 <a class=\\"markdown-external-link\\" data-href=\\"https://discord.gg/n98Kpmm\\">https://discord.gg/n98Kpmm</a></p>",
             }
           }
@@ -515,7 +524,7 @@ exports[`(3) usePrivate = false 1`] = `
       onClick={[Function]}
     >
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
         size="sm"
         style={
           Object {
@@ -537,7 +546,7 @@ exports[`(3) usePrivate = false 1`] = `
         onClick={[Function]}
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
           size="sm"
           style={
             Object {

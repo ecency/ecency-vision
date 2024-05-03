@@ -325,11 +325,11 @@ exports[`(1) Default render 1`] = `
             value="https://ecency.com/signup?referral=foo"
           />
           <div
-            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full bg-gray-200 dark:bg-gray-600 dark:border-gray-600"
+            className="ecency-input-group-part ecency-input-group-append border-l-0 rounded-tr-full rounded-br-full dark:border-gray-600 bg-gray-200 dark:bg-gray-600"
             onClick={[Function]}
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 copy-to-clipboard"
+              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 copy-to-clipboard"
               onClick={[Function]}
               style={
                 Object {
@@ -339,7 +339,7 @@ exports[`(1) Default render 1`] = `
               type="button"
             >
               <div
-                className="flex items-center w-5 h-5 undefined"
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
                 <svg
                   fill="currentColor"

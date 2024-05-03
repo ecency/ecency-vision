@@ -1,7 +1,93 @@
 {
   "faqPaths": [
     {
-      "path": "/hot$",
+      "path": "/discover",
+      "suggestions": ["find-friends", "accounts-included-leaderboard"]
+    },
+    {
+      "path": "/@.+/(blog|posts|wallet|points|engine|permissions|spk)",
+      "suggestions": [
+        "what-are-hd",
+        "what-delegated-hp",
+        "what-powering-up",
+        "what-powering-down",
+        "what-are-rc"
+      ]
+    },
+    {
+      "path": "/community",
+      "suggestions": [
+        "find-communities",
+        "what-communities",
+        "how-post-community",
+        "leave-community",
+        "how-create-community"
+      ]
+    },
+    {
+      "path": "/@.+/(wallet)",
+      "suggestions": [
+        "what-ecency-wallet",
+        "what-are-hd",
+        "what-delegated-hp",
+        "what-powering-up",
+        "what-powering-down"
+      ]
+    },
+    {
+      "path": "/@.+/(points)",
+      "suggestions": ["what-is-points", "where-tokens-come", "how-promotion-work"]
+    },
+    {
+      "path": "/@.+/(engine)",
+      "suggestions": ["what-engine-tokens", "what-staking", "how-to-stake", "how-to-transfer"]
+    },
+    {
+      "path": "/@.+/(posts)",
+      "suggestions": [
+        "what-can-post",
+        "how-see-rewards",
+        "when-claim-rewards",
+        "what-curation",
+        "who-are-curators"
+      ]
+    },
+    {
+      "path": "/submit",
+      "suggestions": [
+        "how-set-beneficiaries",
+        "what-are-tags",
+        "how-use-tags",
+        "add-images-videos",
+        "what-thumbnail-image"
+      ]
+    },
+    {
+      "path": "/feed",
+      "suggestions": [
+        "what-friends-feed",
+        "what-is-reblog",
+        "how-to-reblog",
+        "how-sort-feed",
+        "what-dollar-amount"
+      ]
+    },
+    {
+      "path": "/settings",
+      "suggestions": ["can-change-username", "can-delete-account", "why-different-keys"]
+    },
+    {
+      "path": "/trending",
+      "suggestions": [
+        "what-trending-feed",
+        "how-sort-trending",
+        "what-are-tags",
+        "how-use-tags",
+        "how-search-tags"
+      ]
+    },
+    {
+      "path": "/hot",
       "suggestions": [
         "what-hot-feed",
         "what-information-feed",
@@ -11,27 +97,17 @@
       ]
     },
     {
-      "path": "/created$",
+      "path": "/created",
       "suggestions": [
-        "what-information-profile",
-        "why-score-going-down",
         "what-new-feed",
         "what-mean-promoted",
-        "how-change-design"
+        "how-change-design",
+        "what-is-deck",
+        "what-deck-types"
       ]
     },
     {
-      "path": "/trending$",
-      "suggestions": [
-        "what-trending-feed",
-        "how-to-sort-feed",
-        "what-links-show",
-        "what-are-tags",
-        "how-use-tags"
-      ]
-    },
-    {
-      "path": "/rising$",
+      "path": "/rising",
       "suggestions": [
         "what-rising-feed",
         "how-sort-rising",
@@ -41,7 +117,7 @@
       ]
     },
     {
-      "path": "/controversial$",
+      "path": "/controversial",
       "suggestions": [
         "what-controversial-feed",
         "how-sort-controversial",
@@ -50,21 +126,7 @@
       ]
     },
     {
-      "path": "/discover$",
-      "suggestions": ["find-friends", "accounts-included-leaderboard"]
-    },
-    {
-      "path": "/communities$",
-      "suggestions": [
-        "find-communities",
-        "what-communities",
-        "how-create-community",
-        "how-post-community",
-        "leave-community"
-      ]
-    },
-    {
-      "path": "/witnesses$",
+      "path": "/witnesses",
       "suggestions": [
         "what-hive-witnesses",
         "how-vote-witnesses",
@@ -73,81 +135,11 @@
       ]
     },
     {
-      "path": "/proposals$",
+      "path": "/proposals",
       "suggestions": ["how-dhf-work", "how-vote-proposals"]
     },
     {
-      "path": "/submit",
-      "suggestions": [
-        "what-are-tags",
-        "how-use-tags",
-        "add-images-videos",
-        "what-thumbnail-image",
-        "how-set-beneficiaries"
-      ]
-    },
-    {
-      "path": "/search$",
-      "suggestions": ["how-to-search", "what-appears-search"]
-    },
-    {
-      "path": "/market$",
-      "suggestions": ["how-market-works", "how-to-swap-header"]
-    },
-    {
-      "path": "/@.+/wallet",
-      "suggestions": [
-        "what-are-hive",
-        "what-are-hd",
-        "what-are-hive-power",
-        "what-powering-up",
-        "what-powering-down",
-        "what-delegated-hp"
-      ]
-    },
-    {
-      "path": "/@.+/points",
-      "suggestions": [
-        "what-is-points",
-        "where-tokens-come",
-        "how-promotion-work",
-        "how-boosting-work",
-        "why-refund-points"
-      ]
-    },
-    {
-      "path": "/@.+/engine",
-      "suggestions": ["what-engine-tokens", "what-staking", "how-to-stake", "how-to-transfer"]
-    },
-    {
-      "path": "/@.+/posts",
-      "suggestions": ["what-can-post", "how-see-rewards", "when-claim-rewards", "who-are-curators"]
-    },
-    {
-      "path": "/@.+/feed",
-      "suggestions": [
-        "how-to-sort-feed",
-        "what-mean-promoted",
-        "what-is-reblogging",
-        "exclude-reblogs-feed",
-        "what-dollar-amount"
-      ]
-    },
-    {
-      "path": "/@.+/settings",
-      "suggestions": ["can-change-username", "can-delete-account"]
-    },
-    {
-      "path": "/@.+/referrals",
-      "suggestions": ["what-are-referrals", "how-referrals-work"]
-    },
-    {
-      "path": "/.+/@.+/.+",
-      "suggestions": ["how-voting-works", "how-to-bookmark", "how-to-favorite"]
-    },
-
-    {
-      "path": "/@.+/blog",
+      "path": "/@.+/",
       "suggestions": [
         "what-my-blog",
         "what-information-profile",
@@ -157,7 +149,7 @@
       ]
     },
     {
-      "path": "/@.+/comments",
+      "path": "/@.+/(comments)",
       "suggestions": [
         "how-find-comments",
         "how-often-comment",
@@ -166,7 +158,7 @@
       ]
     },
     {
-      "path": "/@.+/replies",
+      "path": "/@.+/(replies)",
       "suggestions": [
         "what-information-available",
         "how-to-search",
@@ -174,6 +166,10 @@
         "how-to-follow",
         "how-find-information-followers"
       ]
+    },
+    {
+      "path": "/market",
+      "suggestions": ["how-market-works", "how-to-swap-header"]
     }
   ]
 }

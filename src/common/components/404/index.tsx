@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 import Meta from "../meta";
 import { Global } from "../../store/global/types";
-import isElectron from "../../util/is-electron";
 
 const logoCircle = require("../../img/logo-circle.svg");
 import "./_index.scss";
@@ -58,11 +57,7 @@ export class NotFound extends Component<Props, State> {
       <>
         <Meta {...metaProps} />
         <div className="not-found-404">
-          <img
-            src={isElectron() ? "./img/logo-circle.svg" : logoCircle}
-            className="logo"
-            alt="Ecency"
-          />
+          <img src={logoCircle} className="logo" alt="Ecency" />
           <h1>This page doesn't exist.</h1>
           <p className="links">
             {canGoBack && (

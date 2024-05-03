@@ -7,7 +7,6 @@ import EditHistory from "../edit-history";
 import EntryShare, { shareFacebook, shareReddit, shareTwitter } from "../entry-share";
 import MuteBtn from "../mute-btn";
 import Promote from "../promote";
-import Boost from "../boost";
 import ModalConfirm from "@ui/modal-confirm";
 import { error, success } from "../feedback";
 import DropDown from "../dropdown";
@@ -73,9 +72,7 @@ const EntryMenu = ({
     mute,
     setMute,
     promote,
-    setPromote,
-    boost,
-    setBoost
+    setPromote
   } = useMenuItemsGenerator(
     entry,
     community,
@@ -300,18 +297,6 @@ const EntryMenu = ({
           signingKey={signingKey}
           setSigningKey={setSigningKey}
           updateActiveUser={updateActiveUser}
-        />
-      )}
-      {activeUser && boost && (
-        <Boost
-          activeUser={activeUser}
-          entry={entry}
-          onHide={() => setBoost(false)}
-          dynamicProps={dynamicProps}
-          updateActiveUser={updateActiveUser}
-          signingKey={signingKey}
-          setSigningKey={setSigningKey}
-          global={global}
         />
       )}
     </div>

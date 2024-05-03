@@ -127,10 +127,8 @@ export class SimilarEntries extends BaseComponent<Props, State> {
   render() {
     const { global, display } = this.props;
     const { entries } = this.state;
-    const fallbackImage = global.isElectron
-      ? "./img/fallback.png"
-      : require("../../img/fallback.png");
-    const noImage = global.isElectron ? "./img/noimage.svg" : require("../../img/noimage.svg");
+    const fallbackImage = require("../../img/fallback.png");
+    const noImage = require("../../img/noimage.svg");
     if (entries.length !== 3) {
       return null;
     }

@@ -17,6 +17,9 @@ exports[`(1) No active user 1`] = `
         fill="currentColor"
       />
     </svg>
+    <span>
+      
+    </span>
   </a>
 </div>
 `;
@@ -38,6 +41,9 @@ exports[`(2) Active user. Not reblogged 1`] = `
         fill="currentColor"
       />
     </svg>
+    <span>
+      
+    </span>
   </a>
 </div>
 `;
@@ -59,6 +65,9 @@ exports[`(3) Active user. Reblogged 1`] = `
         fill="currentColor"
       />
     </svg>
+    <span>
+      
+    </span>
   </a>
 </div>
 `;
@@ -80,6 +89,9 @@ exports[`(4) Reblogging 1`] = `
         fill="currentColor"
       />
     </svg>
+    <span>
+      
+    </span>
   </a>
 </div>
 `;

@@ -1,0 +1,33 @@
+@import "src/style/vars_mixins";
+
+.scroller {
+  position: sticky;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  float: right;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  @include themify(day) {
+    background: #e4e6eb;
+    @apply border border-light-500;
+  }
+  @include themify(night) {
+    background: #0f223a;
+  }
+
+  svg {
+    @include themify(day) {
+      @apply text-blue-dark-sky;
+    }
+    @include themify(night) {
+      @apply text-white;
+    }
+
+    width: 20px;
+    height: 20px;
+  }
+}

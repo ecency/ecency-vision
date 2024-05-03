@@ -7,7 +7,7 @@ export function NavbarTextMenu() {
   const { global } = useMappedStore();
 
   return (
-    <div className="text-menu flex items-center justify-center h-full md:mr-2">
+    <div className="text-menu hidden sm:flex items-center justify-center h-full md:mr-2 ml-3">
       <Link
         className="menu-item text-gunmetal hover:text-gray-warm dark:text-blue-duck-egg mt-0"
         to="/discover"

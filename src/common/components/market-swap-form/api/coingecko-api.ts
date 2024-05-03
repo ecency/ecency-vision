@@ -1,6 +1,5 @@
 import axios from "axios";
 import { MarketAsset } from "../market-pair";
-import isElectron from "../../../util/is-electron";
 
 interface CoinGeckoApiResponse {
   [key: string]: {
@@ -9,23 +8,13 @@ interface CoinGeckoApiResponse {
 }
 
 export const getCGMarketApi = async (ids: string, vs: string): Promise<CoinGeckoApiResponse> => {
-  let resp;
-  if (isElectron()) {
-    resp = await axios.get<CoinGeckoApiResponse>("https://api.coingecko.com/api/v3/simple/price", {
-      params: {
-        ids,
-        vs_currencies: vs,
-        include_24hr_change: false
-      }
-    });
-  } else {
-    resp = await axios.get<CoinGeckoApiResponse>("/coingecko/api/v3/simple/price", {
-      params: {
-        ids,
-        vs_currencies: vs
-      }
-    });
-  }
+  const resp = await axios.get<CoinGeckoApiResponse>("/coingecko/api/v3/simple/price", {
+    params: {
+      ids,
+      vs_currencies: vs
+    }
+  });
+
   return resp.data;
 };
 

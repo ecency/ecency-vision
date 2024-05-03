@@ -178,7 +178,7 @@ export const EntryPayout = (props: Props) => {
   }
 
   return searchPayout <= 0 ? (
-    <div>
+    <div className="noselection">
       <Popover show={showPopover} setShow={setShowPopover}>
         <PopoverContent>
           <EntryPayoutDetail {...props} />

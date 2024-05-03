@@ -1,5 +1,3 @@
-import { PrivateKey } from "@hiveio/dhive";
-
 export interface UserKeys {
   owner?: string;
   active?: string;

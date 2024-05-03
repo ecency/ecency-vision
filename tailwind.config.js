@@ -69,7 +69,9 @@ module.exports = {
     backgroundSize: {
       auto: "auto",
       cover: "cover",
-      contain: "contain"
+      contain: "contain",
+      full: "100%",
+      scaled: "150%"
     },
     blur: {
       0: "0",
@@ -251,6 +253,7 @@ module.exports = {
       "green-040": "#e3fceb",
       warning: {
         default: "#fcc920",
+        "020": "#c39f2a",
         "030": "#ffe08a",
         "040": "#fff0c7",
         "046": "#fffcf2"

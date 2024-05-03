@@ -857,7 +857,10 @@ export class WalletHive extends BaseComponent<Props, State> {
             </div>
 
             {w.isPoweringDown && (
-              <div className="next-power-down">
+              <div
+                className="next-power-down"
+                title={`${hourDiff(w.nextVestingWithdrawalDate.toString())}h`}
+              >
                 {_t("wallet.next-power-down", {
                   time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                   amount: formattedNumber(w.nextVestingSharesWithdrawalHive, { suffix: "HIVE" }),

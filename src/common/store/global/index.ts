@@ -42,7 +42,6 @@ export const initialState: Global = {
   searchIndexCount: 0,
   canUseWebp: false,
   hasKeyChain: false,
-  isElectron: false,
   newVersion: null,
   notifications: true,
   nsfw: false,
@@ -138,8 +137,11 @@ export const toggleTheme =
     let body: any = document.getElementsByTagName("body");
     if (!body) return;
     body = body[0];
-    body.classList.remove(`theme-${theme}`);
-    body.classList.add(`theme-${newTheme}`);
+    if (theme === "night") {
+      body.classList.remove("dark");
+    } else {
+      body.classList.add("dark");
+    }
   };
 
 export const toggleListStyle =

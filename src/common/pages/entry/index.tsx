@@ -9,7 +9,7 @@ import { Entry, EntryVote } from "../../store/entries/types";
 import Meta from "../../components/meta";
 import ScrollToTop from "../../components/scroll-to-top";
 import Theme from "../../components/theme";
-import Feedback, { error } from "../../components/feedback";
+import Feedback from "../../components/feedback";
 import MdHandler from "../../components/md-handler";
 import truncate from "../../util/truncate";
 import { catchPostImage, postBodySummary, renderPostBody } from "@ecency/render-helper";
@@ -18,7 +18,6 @@ import moment from "moment/moment";
 import parseDate from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import defaults from "../../constants/defaults.json";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import EditHistory from "../../components/edit-history";
 import EntryBodyExtra from "../../components/entry-body-extra";
@@ -46,18 +45,16 @@ import * as ls from "../../util/local-storage";
 import Comment from "../../components/comment";
 import SimilarEntries from "../../components/similar-entries";
 import { createReplyPermlink, makeJsonMetaDataReply } from "../../helper/posting";
-import { comment as commentApi, formatError } from "../../api/operations";
 import * as ss from "../../util/session-storage";
 import { version } from "../../../../package.json";
 import appName from "../../helper/app-name";
 import EntryVoteBtn from "../../components/entry-vote-btn/index";
 import EntryPayout from "../../components/entry-payout/index";
 import EntryVotes from "../../components/entry-votes";
-import Discussion from "../../components/discussion";
+import { Discussion } from "../../components/discussion";
 import EntryReblogBtn from "../../components/entry-reblog-btn/index";
 import EntryTipBtn from "../../components/entry-tip-btn";
-import { BaseAccount, FullAccount } from "../../store/accounts/types";
-import tempEntry from "../../helper/temp-entry";
+import { BaseAccount } from "../../store/accounts/types";
 import {
   EntriesCacheContext,
   useCommunityCache,
@@ -70,10 +67,12 @@ import { getFollowing } from "../../api/hive";
 import { useDistanceDetector } from "./distance-detector";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
+import { useCreateReply, useUpdateReply } from "../../api/mutations";
+import { useEntryPollExtractor } from "./utils";
+import { PollWidget } from "../../features/polls";
 
 const EntryComponent = (props: Props) => {
   const [loading, setLoading] = useState(false);
-  const [replying, setReplying] = useState(false);
   const [edit, setEdit] = useState(false);
   const [showIfNsfw, setShowIfNsfw] = useState(false);
   const [editHistory, setEditHistory] = useState(false);
@@ -109,12 +108,13 @@ const EntryComponent = (props: Props) => {
   const commentsInputRef = useRef(null);
   const entryControlsRef = useRef<HTMLDivElement | null>(null);
 
-  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
+  const { updateVotes } = useContext(EntriesCacheContext);
   const { data: entry, error: entryError } = useEntryCache(
     "",
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
+
   const { mutateAsync: reFetch } = useEntryReFetch(entry);
   const { data: community } = useCommunityCache(props.match.params.category);
   const {
@@ -125,6 +125,21 @@ const EntryComponent = (props: Props) => {
     props.match.params.username.replace("@", ""),
     props.match.params.permlink
   );
+  const { mutateAsync: createReply, isLoading: isCreateReplyLoading } = useCreateReply(
+    entry,
+    undefined,
+    () => {
+      setIsCommented(true);
+    }
+  );
+  const { mutateAsync: updateReplyApi, isLoading: isUpdateReplyLoading } = useUpdateReply(
+    entry,
+    () => {
+      setEdit(false);
+      reload();
+    }
+  );
+  const postPoll = useEntryPollExtractor(entry);
 
   useDistanceDetector(
     entryControlsRef,
@@ -249,49 +264,19 @@ const EntryComponent = (props: Props) => {
   };
 
   const deleted = async () => {
-    const { deleteReply } = props;
-    entry && deleteReply(entry);
     ls.set(`deletedComment`, entry?.post_id);
     props.history?.goBack();
   };
 
   const updateReply = async (text: string) => {
-    const { activeUser, updateReply } = props;
-
     if (entry) {
-      const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
-      const jsonMeta = makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version);
-
-      setReplying(true);
-
-      try {
-        await commentApi(
-          activeUser?.username!,
-          parentAuthor!,
-          parentPermlink!,
-          permlink,
-          "",
-          text,
-          jsonMeta,
-          null
-        );
-
-        setComment(text);
-        setIsCommented(true);
-        ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-        updateReply({
-          ...entry,
-          body: text
-        }); // update store
-        setEdit(false);
-        reload();
-      } catch (e) {
-        error(...formatError(e));
-      } finally {
-        setReplying(false);
-        setIsCommented(false);
-      }
+      return updateReplyApi({
+        text,
+        point: true,
+        jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version)
+      });
     }
+    return;
   };
 
   const afterVote = async (votes: EntryVote[], estimated: number) => {
@@ -303,66 +288,15 @@ const EntryComponent = (props: Props) => {
   };
 
   const replySubmitted = async (text: string) => {
-    const { activeUser, addReply, updateEntry } = props;
-
-    if (!activeUser || !activeUser.data.__loaded) {
-      return;
-    }
-
-    const { author: parentAuthor, permlink: parentPermlink } = entry!!;
-    const author = activeUser.username;
     const permlink = createReplyPermlink(entry!.author);
     const tags = entry!.json_metadata.tags || ["ecency"];
 
-    const jsonMeta = makeJsonMetaDataReply(tags, version);
-
-    setReplying(true);
-    try {
-      await commentApi(
-        author,
-        parentAuthor,
-        parentPermlink,
-        permlink,
-        "",
-        text,
-        jsonMeta,
-        null,
-        true
-      );
-
-      const nReply = tempEntry({
-        author: activeUser.data as FullAccount,
-        permlink,
-        parentAuthor,
-        parentPermlink,
-        title: "",
-        body: text,
-        tags,
-        description: null
-      });
-
-      // add new reply to store
-      addReply(nReply);
-
-      // remove reply draft
-      ss.remove(`reply_draft_${entry!.author}_${entry!.permlink}`);
-      setIsCommented(true);
-
-      if (entry!.children === 0) {
-        // Activate discussion section with first comment.
-        updateCache([
-          {
-            ...entry!!,
-            children: 1
-          }
-        ]);
-      }
-    } catch (e) {
-      error(...formatError(e));
-    } finally {
-      setReplying(false);
-      setIsCommented(false);
-    }
+    return createReply({
+      jsonMeta: makeJsonMetaDataReply(tags, version),
+      text,
+      permlink,
+      point: true
+    });
   };
 
   const notificationsCount =
@@ -404,19 +338,11 @@ const EntryComponent = (props: Props) => {
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       <MdHandler global={props.global} history={props.history} />
-      {props.global.isElectron ? (
-        NavBarElectron({
-          ...props,
-          reloadFn: reload,
-          reloading: loading
-        })
-      ) : (
-        <NavBar history={props.history} match={props.match} />
-      )}
+      <NavBar history={props.history} match={props.match} />
+
       <div
         className={classNameObject({
-          "app-content entry-page": true,
-          "mt-0 pt-6": props.global.isElectron
+          "app-content entry-page": true
         })}
       >
         <ReadTime global={props.global} entry={entry} isVisible={showWordCount} />
@@ -798,6 +724,15 @@ const EntryComponent = (props: Props) => {
                                     className="entry-body markdown-view user-selectable"
                                     dangerouslySetInnerHTML={renderedBody}
                                   />
+                                  {postPoll && (
+                                    <div className="pb-6">
+                                      <PollWidget
+                                        entry={entry}
+                                        poll={postPoll}
+                                        isReadOnly={false}
+                                      />
+                                    </div>
+                                  )}
                                 </SelectionPopover>
                               </>
                             ) : (
@@ -808,7 +743,7 @@ const EntryComponent = (props: Props) => {
                                 cancellable: true,
                                 onSubmit: updateReply,
                                 onCancel: () => setEdit(!edit),
-                                inProgress: replying,
+                                inProgress: isCreateReplyLoading || isUpdateReplyLoading,
                                 autoFocus: true,
                                 inputRef: commentsInputRef,
                                 entry
@@ -830,7 +765,6 @@ const EntryComponent = (props: Props) => {
                       {showProfileBox && <AuthorInfoCard {...props} entry={entry} />}
                     </div>
                   )}
-
                   <div className="entry-footer">
                     <div className="entry-tags">
                       {tags &&
@@ -962,7 +896,7 @@ const EntryComponent = (props: Props) => {
                     submitText: _t("g.reply"),
                     resetSelection: () => setSelection(""),
                     onSubmit: replySubmitted,
-                    inProgress: replying,
+                    inProgress: isCreateReplyLoading || isUpdateReplyLoading,
                     isCommented: isCommented,
                     inputRef: commentsInputRef,
                     entry: entry
@@ -979,13 +913,11 @@ const EntryComponent = (props: Props) => {
                   {props.activeUser && entry.children === 0 && <CommentEngagement />}
 
                   <Discussion
-                    {...{
-                      ...props,
-                      parent: entry,
-                      community,
-                      hideControls: false,
-                      isRawContent: isRawContent
-                    }}
+                    parent={entry}
+                    community={community}
+                    hideControls={false}
+                    isRawContent={isRawContent}
+                    history={props.history}
                   />
                 </>
               );

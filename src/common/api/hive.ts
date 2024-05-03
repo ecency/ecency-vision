@@ -1,4 +1,4 @@
-import { Client, RCAPI, utils } from "@hiveio/dhive";
+import { Client, RCAPI, SMTAsset, utils } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
@@ -286,8 +286,11 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
   );
 };
 
-export const getAccount = (username: string): Promise<FullAccount> =>
-  getAccounts([username]).then((resp) => resp[0]);
+export const getAccount = async (username: string): Promise<FullAccount> => {
+  let aa = await getAccounts([username]).then((resp) => resp[0]);
+  let rp = await getAccountReputations(username, 1);
+  return { ...aa, ...rp[0] };
+};
 
 export const getAccountFull = (username: string): Promise<FullAccount> =>
   getAccount(username).then(async (account) => {
@@ -447,11 +450,7 @@ export const getWitnessesByVote = (from: string, limit: number): Promise<Witness
 
 export interface Proposal {
   creator: string;
-  daily_pay: {
-    amount: string;
-    nai: string;
-    precision: number;
-  };
+  daily_pay: string | SMTAsset;
   end_date: string;
   id: number;
   permlink: string;
@@ -467,12 +466,15 @@ export const getProposals = (): Promise<Proposal[]> =>
   client
     .call("database_api", "list_proposals", {
       start: [-1],
-      limit: 200,
+      limit: 500,
       order: "by_total_votes",
       order_direction: "descending",
       status: "all"
     })
     .then((r) => r.proposals);
+
+export const findProposals = (id: number): Promise<Proposal> =>
+  client.call("condenser_api", "find_proposals", [[id]]).then((r) => r[0]);
 
 export interface ProposalVote {
   id: number;

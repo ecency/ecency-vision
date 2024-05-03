@@ -86,7 +86,7 @@ exports[`(3) Add 1`] = `
       className="flex justify-between"
     >
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
         disabled={false}
         onClick={[Function]}
         style={
@@ -101,7 +101,7 @@ exports[`(3) Add 1`] = `
         </div>
       </button>
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
         disabled={false}
         style={
           Object {
@@ -169,7 +169,7 @@ exports[`(4) Edit 1`] = `
   >
     <div>
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2.125rem] px-3 "
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-red hover:border-red-020 focus:border-red-030 text-red hover:text-red-020 focus:text-red-030 h-[2.125rem] px-3 "
         disabled={false}
         onClick={[Function]}
         style={
@@ -185,7 +185,7 @@ exports[`(4) Edit 1`] = `
         </div>
       </button>
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
+        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.125rem] px-3 "
         disabled={false}
         onClick={[Function]}
         style={
@@ -201,7 +201,7 @@ exports[`(4) Edit 1`] = `
       </button>
     </div>
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      className="cursor-pointer rounded-full duration-300 no-wrap flex-row-reverse bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
       disabled={false}
       style={
         Object {

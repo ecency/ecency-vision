@@ -9,8 +9,10 @@ interface BaseTransaction {
 
 export interface CurationReward extends BaseTransaction {
   type: "curation_reward";
-  comment_author: string;
-  comment_permlink: string;
+  comment_author?: string;
+  comment_permlink?: string;
+  author?: string;
+  permlink?: string;
   curator: string;
   reward: string;
 }

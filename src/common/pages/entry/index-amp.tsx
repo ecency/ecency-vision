@@ -214,14 +214,12 @@ const EntryAmpComponent = (props: Props) => {
   };
 
   const deleted = async () => {
-    const { deleteReply } = props;
-    entry && deleteReply(entry);
     ls.set(`deletedComment`, entry?.post_id);
     props.history?.goBack();
   };
 
   const updateReply = async (text: string) => {
-    const { activeUser, updateReply } = props;
+    const { activeUser } = props;
 
     if (entry) {
       const { permlink, parent_author: parentAuthor, parent_permlink: parentPermlink } = entry;
@@ -244,10 +242,6 @@ const EntryAmpComponent = (props: Props) => {
         setComment(text);
         setIsCommented(true);
         ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
-        updateReply({
-          ...entry,
-          body: text
-        }); // update store
         setEdit(false);
         reload();
       } catch (e) {
@@ -304,8 +298,7 @@ const EntryAmpComponent = (props: Props) => {
       <StaticNavbar fullVersionUrl={entry?.url || ""} />
       <div
         className={classNameObject({
-          "app-content entry-page": true,
-          "mt-0 pt-6": props.global.isElectron
+          "app-content entry-page": true
         })}
       >
         <div className="the-entry">

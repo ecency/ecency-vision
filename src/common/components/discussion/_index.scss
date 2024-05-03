@@ -4,6 +4,7 @@
   margin: 10px 0 30px 0;
   position: relative;
   min-height: 200px;
+  @apply font-sans;
 
   @include themify(day) {
     border-top: 1px solid;
@@ -160,7 +161,6 @@
 
             .author {
               align-items: center;
-              display: inline-flex;
               padding: 2px;
 
               .author-name {
@@ -188,6 +188,7 @@
                   content: ")";
                 }
               }
+
               &:hover {
                 @include themify(day) {
                   @apply bg-blue-duck-egg;
@@ -207,6 +208,7 @@
 
             .date {
               opacity: 0.7;
+              @apply text-sm;
             }
           }
 
@@ -216,9 +218,14 @@
 
           .item-body {
             margin: 10px 0 14px 0;
+            font-family: Lora, Georgia, serif;
 
             @include themify(day) {
               @apply text-tundora;
+            }
+
+            @include themify(night) {
+              @apply text-white;
             }
           }
 
@@ -227,8 +234,12 @@
             display: flex;
             width: 100%;
 
+            .entry-payout, .entry-votes {
+              @apply text-sm;
+            }
+
             .reply-btn, .edit-btn, .delete-btn, .mute-btn {
-              @apply text-gray-steel-010;
+              @apply text-gray-steel-010 text-sm;
               cursor: pointer;
 
               &:hover {
@@ -311,6 +322,7 @@
       }
     }
   }
+
   .profile-container-top {
     @media (min-width: $md-break) {
       width: 45%;
@@ -318,6 +330,7 @@
       left: -20px
     }
   }
+
   .profile-container-bottom {
     @media (min-width: $md-break) {
       width: 45%;
@@ -346,7 +359,7 @@
   flex: 1
 }
 
-.dropdown-container{
+.dropdown-container {
   .dropdown-btn {
     color: #939a9f !important
   }

@@ -4,7 +4,7 @@ import { ActiveUser } from "../../store/active-user/types";
 import { Account } from "../../store/accounts/types";
 import { ToggleType, UI } from "../../store/ui/types";
 import { Entry } from "../../store/entries/types";
-import EditorToolbar, { detectEvent, toolbarEventListener } from "../editor-toolbar";
+import { detectEvent, EditorToolbar, toolbarEventListener } from "../editor-toolbar";
 import LoginRequired from "../login-required";
 import defaults from "../../constants/defaults.json";
 import { renderPostBody, setProxyBase } from "@ecency/render-helper";
@@ -38,8 +38,10 @@ export class CommentPreview extends Component<PreviewProps> {
     }
 
     return (
-      <div className="comment-preview">
-        <div className="comment-preview-header">{_t("comment.preview")}</div>
+      <div className="comment-preview mt-4 rounded-2xl bg-gray-100 dark:bg-dark-200 p-4">
+        <div className="uppercase tracking-wider text-xs font-bold opacity-50 mb-4">
+          {_t("comment.preview")}
+        </div>
         <div
           className="preview-body markdown-view"
           dangerouslySetInnerHTML={{ __html: renderPostBody(text, false, global.canUseWebp) }}
@@ -66,7 +68,7 @@ interface Props {
   updateActiveUser: (data?: Account) => void;
   deleteUser: (username: string) => void;
   toggleUIProp: (what: ToggleType) => void;
-  onSubmit: (text: string) => void;
+  onSubmit: (text: string) => Promise<any>;
   resetSelection?: () => void;
   onCancel?: () => void;
   inputRef?: Ref<any>;
@@ -82,10 +84,6 @@ interface State {
 
 export class Comment extends Component<Props, State> {
   commentBodyRef: React.RefObject<HTMLDivElement>;
-  constructor(props: Props) {
-    super(props);
-    this.commentBodyRef = React.createRef();
-  }
   state: State = {
     text: "",
     preview: "",
@@ -93,9 +91,13 @@ export class Comment extends Component<Props, State> {
     showGif: false,
     inputHeight: 0
   };
-
   timer: any = null;
   _updateTimer: any = null;
+
+  constructor(props: Props) {
+    super(props);
+    this.commentBodyRef = React.createRef();
+  }
 
   componentDidMount(): void {
     const { defText } = this.props;
@@ -152,10 +154,11 @@ export class Comment extends Component<Props, State> {
     }, 50);
   };
 
-  submit = () => {
+  submit = async () => {
     const { text } = this.state;
     const { onSubmit } = this.props;
-    onSubmit(text);
+    await onSubmit(text);
+    this.setState({ text: "" });
   };
 
   cancel = () => {
@@ -235,7 +238,7 @@ export class Comment extends Component<Props, State> {
             !showEmoji && !showGif && this.setState({ showEmoji: true, showGif: true })
           }
         >
-          {EditorToolbar({ ...this.props, sm: true, showEmoji, comment: true })}
+          <EditorToolbar comment={true} {...this.props} sm={true} />
           <div className="comment-body" onKeyDown={this.handleShortcuts} ref={this.commentBodyRef}>
             <TextareaAutocomplete
               className={`the-editor accepts-emoji ${text?.length > 20 ? "expanded" : ""}`}

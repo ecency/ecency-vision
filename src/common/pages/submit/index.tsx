@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Entry } from "../../store/entries/types";
 import { Draft } from "../../api/private-api";
 import { MatchType, PostBase, VideoProps } from "./types";
@@ -18,7 +18,7 @@ import {
 import { postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../util/local-storage";
-import EditorToolbar, { toolbarEventListener } from "../../components/editor-toolbar";
+import { EditorToolbar, toolbarEventListener } from "../../components/editor-toolbar";
 import useMount from "react-use/lib/useMount";
 import { handleFloatingContainer } from "../../components/floating-faq";
 import { useUnmount } from "react-use";
@@ -30,14 +30,18 @@ import FullHeight from "../../components/full-height";
 import Theme from "../../components/theme";
 import Feedback, { error } from "../../components/feedback";
 import { _t } from "../../i18n";
-import MdHandler from "../../components/md-handler";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import _c from "../../util/fix-class-names";
 import TextareaAutocomplete from "../../components/textarea-autocomplete";
 import { AvailableCredits } from "../../components/available-credits";
 import ClickAwayListener from "../../components/clickaway-listener";
-import { checkSvg, contentLoadSvg, contentSaveSvg, helpIconSvg } from "../../img/svg";
+import {
+  checkSvg,
+  contentLoadSvg,
+  contentSaveSvg,
+  helpIconSvg,
+  informationSvg
+} from "../../img/svg";
 import { BeneficiaryEditorDialog } from "../../components/beneficiary-editor";
 import PostScheduler from "../../components/post-scheduler";
 import moment from "moment/moment";
@@ -59,9 +63,13 @@ import { SubmitVideoAttachments } from "./submit-video-attachments";
 import { useThreeSpeakMigrationAdapter } from "./hooks/three-speak-migration-adapter";
 import ModalConfirm from "@ui/modal-confirm";
 import { Button } from "@ui/button";
-import { dotsMenuIconSvg } from "../../components/decks/icons";
 import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
+import { IntroTour } from "@ui/intro-tour";
+import { IntroStep } from "@ui/core";
+import { dotsMenuIconSvg } from "../../features/decks/icons";
+import { PollsContext, PollsManager } from "./hooks/polls-manager";
+import { useEntryPollExtractor } from "../entry/utils";
 
 interface MatchProps {
   match: MatchType;
@@ -70,8 +78,8 @@ interface MatchProps {
 export function Submit(props: PageProps & MatchProps) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
+  const { setActivePoll, activePoll, clearActivePoll } = useContext(PollsContext);
   const { body, setBody } = useBodyVersioningManager();
-  const previousBody = usePrevious(body);
 
   const { activeUser } = useMappedStore();
   const previousActiveUser = usePrevious(activeUser);
@@ -94,12 +102,63 @@ export function Submit(props: PageProps & MatchProps) {
   const [drafts, setDrafts] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [isDraftEmpty, setIsDraftEmpty] = useState(false);
+  const [forceReactivateTour, setForceReactivateTour] = useState(false);
 
   // Misc
   const [editingEntry, setEditingEntry] = useState<Entry | null>(null);
   const [editingDraft, setEditingDraft] = useState<Draft | null>(null);
+  const [isTourFinished] = useLocalStorage(PREFIX + `_itf_submit`, false);
+
+  const postPoll = useEntryPollExtractor(editingEntry);
+
+  const tourEnabled = useMemo(() => !activeUser, [activeUser]);
+  const introSteps = useMemo<IntroStep[]>(
+    () => [
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.title-hint"),
+        targetSelector: "#submit-title"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.tags-hint"),
+        targetSelector: "#submit-tags-selector"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.body-hint"),
+        targetSelector: "#the-editor"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.community-hint"),
+        targetSelector: "#community-picker"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.toolbar-hint"),
+        targetSelector: "#editor-toolbar"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.advanced-hint"),
+        targetSelector: "#editor-advanced"
+      },
+      {
+        title: _t("submit-tour.title"),
+        message: _t("submit-tour.help-hint"),
+        targetSelector: "#editor-help"
+      }
+    ],
+    []
+  );
 
   let _updateTimer: any; // todo think about it
+
+  const pageTitle = useMemo(() => {
+    const notifications = props.notifications.unread ? `(${props.notifications.unread}) ` : "";
+    return notifications + _t("submit.page-title");
+  }, [props.notifications.unread]);
 
   const { setLocalDraft } = useLocalDraftManager(
     props.match,
@@ -202,6 +261,12 @@ export function Submit(props: PageProps & MatchProps) {
   });
 
   useEffect(() => {
+    if (postPoll) {
+      setActivePoll(postPoll);
+    }
+  }, [postPoll]);
+
+  useEffect(() => {
     if (postBodyRef.current) {
       postBodyRef.current.addEventListener("paste", (event) =>
         toolbarEventListener(event, "paste")
@@ -228,7 +293,7 @@ export function Submit(props: PageProps & MatchProps) {
   }, [tags, title, body]);
 
   useEffect(() => {
-    handleFloatingContainer(showHelp, "submit");
+    handleFloatingContainer(showHelp);
   }, [showHelp]);
 
   useEffect(() => {
@@ -262,7 +327,7 @@ export function Submit(props: PageProps & MatchProps) {
   const handleResize = () => {
     if (typeof window !== "undefined" && window.innerWidth < 992) {
       setShowHelp(false);
-      handleFloatingContainer(false, "submit");
+      handleFloatingContainer(false);
     }
   };
 
@@ -373,26 +438,25 @@ export function Submit(props: PageProps & MatchProps) {
 
   return (
     <>
-      <Meta
-        title={`(${props.notifications.unread || ""}) ` + _t("submit.page-title")}
-        description={_t("submit.page-description")}
-      />
+      <Meta title={pageTitle} description={_t("submit.page-description")} />
       <FullHeight />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
       {clearModal && <ModalConfirm onConfirm={clear} onCancel={() => setClearModal(false)} />}
-      {props.global.isElectron && <MdHandler global={props.global} history={props.history} />}
-      {props.global.isElectron ? <NavBarElectron {...props} /> : <NavBar history={props.history} />}
-      <div
-        className={_c(
-          `app-content submit-page ${editingEntry !== null ? "editing" : ""} ${
-            props.global.isElectron ? " mt-0 pt-6" : ""
-          }`
-        )}
-      >
+      <NavBar history={props.history} />
+
+      <IntroTour
+        forceActivation={forceReactivateTour}
+        setForceActivation={setForceReactivateTour}
+        steps={introSteps}
+        id="submit"
+        enabled={tourEnabled}
+      />
+
+      <div className={_c(`app-content submit-page ${editingEntry !== null ? "editing" : ""}`)}>
         <div className="editor-panel">
           {editingEntry === null && activeUser && (
-            <div className="community-input">
+            <div className="community-input whitespace-nowrap">
               <CommunitySelector
                 global={props.global}
                 activeUser={activeUser}
@@ -405,6 +469,17 @@ export function Submit(props: PageProps & MatchProps) {
                   tagsChanged(newTags);
                 }}
               />
+
+              <div className="flex justify-end w-full items-center gap-4">
+                <Button
+                  size="sm"
+                  appearance="gray-link"
+                  onClick={() => setForceReactivateTour(true)}
+                  icon={informationSvg}
+                >
+                  {!isTourFinished && _t("submit.take-tour")}
+                </Button>
+              </div>
             </div>
           )}
           <EditorToolbar
@@ -414,20 +489,26 @@ export function Submit(props: PageProps & MatchProps) {
               threeSpeakManager.setIsNsfw(true);
             }}
             comment={false}
+            existingPoll={activePoll}
             setVideoMetadata={(v) => {
               threeSpeakManager.attach(v);
               // Attach videos as special token in a body and render it in a preview
               setBody(`${body}\n[3speak](${v._id})`);
             }}
+            onAddPoll={(v) => setActivePoll(v)}
+            onDeletePoll={() => clearActivePoll()}
+            readonlyPoll={!!editingEntry}
           />
           <div className="title-input">
             <FormControl
+              id="submit-title"
               noStyles={true}
               type="text"
               className="accepts-emoji form-control px-3 py-1 w-full outline-none shadow-0"
               placeholder={_t("submit.title-placeholder")}
               autoFocus={true}
               value={title}
+              dir={"auto"}
               onChange={(e) => setTitle(e.target.value)}
               spellCheck={true}
             />
@@ -455,6 +536,7 @@ export function Submit(props: PageProps & MatchProps) {
               }}
               disableRows={true}
               maxrows={100}
+              dir={"auto"}
               spellCheck={true}
               activeUser={(activeUser && activeUser.username) || ""}
             />
@@ -477,8 +559,8 @@ export function Submit(props: PageProps & MatchProps) {
                 {_t("submit.clear")}
               </Button>
             )}
-
             <Button
+              id="editor-advanced"
               outline={true}
               onClick={() => setAdvanced(!advanced)}
               icon={getHasAdvanced && dotsMenuIconSvg}
@@ -526,6 +608,7 @@ export function Submit(props: PageProps & MatchProps) {
                   <div className="action-buttons">
                     <ClickAwayListener onClickAway={() => setShowHelp(false)}>
                       <Button
+                        id="editor-help"
                         className="help-button mr-[6px]"
                         onClick={() => setShowHelp(!showHelp)}
                         icon={helpIconSvg}
@@ -668,7 +751,9 @@ export function Submit(props: PageProps & MatchProps) {
                               <option value="sp">{_t("submit.reward-sp")}</option>
                               <option value="dp">{_t("submit.reward-dp")}</option>
                             </FormControl>
-                            <small className="text-gray-600">{_t("submit.reward-hint")}</small>
+                            <small className="text-gray-600 dark:text-gray-400">
+                              {_t("submit.reward-hint")}
+                            </small>
                           </div>
                         </div>
                         <div className="grid grid-cols-12 mb-4">
@@ -695,7 +780,7 @@ export function Submit(props: PageProps & MatchProps) {
                                 setBeneficiaries(b);
                               }}
                             />
-                            <small className="text-gray-600">
+                            <small className="text-gray-600 dark:text-gray-400">
                               {_t("submit.beneficiaries-hint")}
                             </small>
                           </div>
@@ -716,7 +801,7 @@ export function Submit(props: PageProps & MatchProps) {
                           rows={3}
                           maxLength={200}
                         />
-                        <small className="text-gray-600">
+                        <small className="text-gray-600 dark:text-gray-400">
                           {description !== "" ? description : postBodySummary(body, 200)}
                         </small>
                       </div>
@@ -735,7 +820,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   setSchedule(d ? d.toISOString(true) : null);
                                 }}
                               />
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-gray-600 dark:text-gray-400">
                                 {_t("submit.schedule-hint")}
                               </div>
                             </div>
@@ -757,7 +842,9 @@ export function Submit(props: PageProps & MatchProps) {
                               setReblogSwitch(v);
                             }}
                           />
-                          <small className="text-gray-600">{_t("submit.reblog-hint")}</small>
+                          <small className="text-gray-600 dark:text-gray-400">
+                            {_t("submit.reblog-hint")}
+                          </small>
                         </div>
                       </div>
                     )}
@@ -793,7 +880,7 @@ export function Submit(props: PageProps & MatchProps) {
                                   key={item}
                                 />
                                 {selectedItem === item && (
-                                  <div className="text-green check absolute bg-white rounded-circle flex justify-center items-center">
+                                  <div className="text-green check absolute bg-white rounded-full p-1 flex justify-center items-center">
                                     {checkSvg}
                                   </div>
                                 )}
@@ -835,7 +922,9 @@ const SubmitWithProviders = (props: PageProps & MatchProps) => {
   return (
     <BodyVersioningManager>
       <ThreeSpeakManager>
-        <Submit {...props} />
+        <PollsManager>
+          <Submit {...props} />
+        </PollsManager>
       </ThreeSpeakManager>
     </BodyVersioningManager>
   );

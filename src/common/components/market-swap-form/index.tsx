@@ -163,7 +163,7 @@ export const MarketSwapForm = ({
   return (
     <div
       className={classNameObject({
-        "market-swap-form": true,
+        "market-swap-form relative": true,
         [padding]: true
       })}
     >
@@ -205,7 +205,7 @@ export const MarketSwapForm = ({
           showBalance={[MarketSwapFormStep.FORM, MarketSwapFormStep.SIGN].includes(step)}
           elementAfterBalance={
             isAmountMoreThanBalance && step === MarketSwapFormStep.FORM ? (
-              <small className="usd-balance bold text-secondary block text-red mt-3">
+              <small className="usd-balance bold text-gray-600 block text-red mt-3">
                 {_t("market.more-than-balance")}
               </small>
             ) : (

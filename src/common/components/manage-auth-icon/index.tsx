@@ -5,7 +5,7 @@ import { PrivateKey, PublicKey } from "@hiveio/dhive";
 import { actionType } from "../manage-authority/types";
 import DropDown, { MenuItem } from "../dropdown";
 
-import { KebabMenu, revokeSvg, copyOutlinSvg, keyOutlineSvg } from "../../img/svg";
+import { copyOutlinSvg, kebabMenuSvg, keyOutlineSvg, revokeSvg } from "../../img/svg";
 import { _t } from "../../i18n";
 import "./index.scss";
 
@@ -79,7 +79,7 @@ const ManageAuthIcon = (props: Props) => {
   const menuConfig = {
     history: props.history,
     label: "",
-    icon: KebabMenu,
+    icon: kebabMenuSvg,
     items: menuItems
   };
 

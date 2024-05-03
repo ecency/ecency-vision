@@ -7,7 +7,6 @@ import Feedback from "../components/feedback";
 import ScrollToTop from "../components/scroll-to-top";
 import Theme from "../components/theme";
 import NavBar from "../components/navbar";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import LinearProgress from "../components/linear-progress";
 import ProfileLink from "../components/profile-link";
 import UserAvatar from "../components/user-avatar";
@@ -313,7 +312,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       title: _t("witnesses.page-title"),
       description: _t("witnesses.page-description")
     };
-
     const { global, activeUser, location } = this.props;
     let params = location.search.split("=")[1];
     const {
@@ -325,7 +323,8 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
       sort,
       searchText,
       originalWitnesses,
-      spinner
+      spinner,
+      proxyVotes
     } = this.state;
     const extraWitnesses = witnessVotes.filter((w) => !witnesses.find((y) => y.name === w));
     const pageSize = 30;
@@ -361,7 +360,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
               return (
                 <Tr
                   key={`${row.name}-${row.rank}${i}`}
-                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
+                  className={`${proxyVotes?.includes(row.name) ? "voted-by-voter" : ""}`}
                 >
                   <Td className="border p-2">
                     <div className="witness-rank">
@@ -448,9 +447,7 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
           {witnesses.map((row, i) => {
             return (
               <span key={`${row.name}${i}`}>
-                <div
-                  className={`${this.state.proxyVotes.includes(row.name) ? "voted-by-voter" : ""}`}
-                >
+                <div className={`${proxyVotes?.includes(row.name) ? "voted-by-voter" : ""}`}>
                   <WitnessCard
                     voted={witnessVotes.includes(row.name)}
                     witness={row.name}
@@ -499,7 +496,6 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         />
       </div>
     );
-    let containerClasses = global.isElectron ? " mt-0 pt-6" : "";
 
     return (
       <>
@@ -507,16 +503,9 @@ class WitnessesPage extends BaseComponent<PageProps, State> {
         <ScrollToTop />
         <Theme global={this.props.global} />
         <Feedback activeUser={this.props.activeUser} />
-        {global.isElectron ? (
-          NavBarElectron({
-            ...this.props,
-            reloadFn: this.load,
-            reloading: loading
-          })
-        ) : (
-          <NavBar history={this.props.history} />
-        )}
-        <div className={"app-content witnesses-page" + containerClasses}>
+        <NavBar history={this.props.history} />
+
+        <div className="app-content witnesses-page">
           {(() => {
             if (loading && !originalWitnesses.length) {
               return (

@@ -84,6 +84,7 @@ exports[`(2) Separated sharing buttons 1`] = `
       
       <div
         className="menu-down"
+        style={Object {}}
       >
         <svg
           viewBox="0 0 24 24"

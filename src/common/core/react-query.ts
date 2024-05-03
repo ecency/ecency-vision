@@ -26,5 +26,14 @@ export enum QueryIdentifiers {
   THREE_SPEAK_VIDEO_LIST = "three-speak-video-list",
   THREE_SPEAK_VIDEO_LIST_FILTERED = "three-speak-video-list-filtered",
   DRAFTS = "drafts",
-  BY_DRAFT_ID = "by-draft-id"
+  BY_DRAFT_ID = "by-draft-id",
+  FETCH_DISCUSSIONS = "fetch-discussions",
+  FETCH_MUTED_USERS = "fetch-muted-users",
+  GET_ACCOUNT_FULL = "get-account-full",
+  GET_POSTS = "get-posts",
+  GET_BOTS = "get-bots",
+  GET_BOOST_PLUS_PRICES = "get-boost-plus-prices",
+  GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts",
+
+  POLL_DETAILS = "poll-details"
 }

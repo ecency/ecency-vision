@@ -9,12 +9,13 @@ import { Account } from "../../store/accounts/types";
 import ProfileCard from "./index";
 
 import {
-  globalInstance,
   activeUserMaker,
+  allOver,
   fullAccountInstance,
-  allOver
+  globalInstance
 } from "../../helper/test-helper";
 import { withStore } from "../../tests/with-store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 jest.mock("../../constants/defaults.json", () => ({
   imageServer: "https://images.ecency.com",
@@ -58,9 +59,11 @@ const defProps = {
 
 it("(1) Render with not loaded data", async () => {
   const component = withStore(
-    <StaticRouter location="/" context={{}}>
-      <ProfileCard {...defProps} />
-    </StaticRouter>
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location="/" context={{}}>
+        <ProfileCard {...defProps} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
@@ -73,9 +76,11 @@ it("(2) Render with loaded data", async () => {
   };
 
   const component = withStore(
-    <StaticRouter location="/" context={{}}>
-      <ProfileCard {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location="/" context={{}}>
+        <ProfileCard {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();
@@ -96,9 +101,11 @@ it("(3) Should show profile edits", async () => {
   };
 
   const component = withStore(
-    <StaticRouter location="/" context={{}}>
-      <ProfileCard {...props} />
-    </StaticRouter>
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location="/" context={{}}>
+        <ProfileCard {...props} />
+      </StaticRouter>
+    </QueryClientProvider>
   );
   await allOver();
   expect(component.toJSON()).toMatchSnapshot();

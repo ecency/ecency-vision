@@ -13,13 +13,18 @@
   svg {
     height: 16px;
     opacity: 0.8;
-    margin-top: 2px;
+  }
+  span {
+    margin-top: -1px;
   }
 
   .inner-btn {
     align-items: center;
     @apply text-gray-steel;
     display: flex;
+    span {
+      padding-left: 3px;
+    }
   }
 
   &:hover,

@@ -12,10 +12,10 @@ import { getAccessToken } from "../helper/user-token";
 
 import { apiBase } from "./helper";
 import { AppWindow } from "../../client/window";
-import isElectron from "../util/is-electron";
 import { NotifyTypes } from "../enums";
 import { BeneficiaryRoute, MetaData, RewardType } from "./operations";
 import { ThreeSpeakVideo } from "./threespeak";
+import { PollSnapshot } from "../features/polls";
 
 declare var window: AppWindow;
 
@@ -218,6 +218,7 @@ export interface DraftMetadata extends MetaData {
   beneficiaries: BeneficiaryRoute[];
   rewardType: RewardType;
   videos?: Record<string, ThreeSpeakVideo>;
+  poll?: PollSnapshot;
 }
 
 export interface Draft {
@@ -465,6 +466,22 @@ export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
   return axios.post(apiBase(`/private-api/promote-price`), data).then((resp) => resp.data);
 };
 
+export const getBoostPlusPrice = (username: string): Promise<PromotePrice[]> => {
+  const data = { code: getAccessToken(username) };
+  return axios.post(apiBase(`/private-api/boost-plus-price`), data).then((resp) => resp.data);
+};
+
+export const getBoostPlusAccounts = (
+  username: string,
+  account: string
+): Promise<{
+  expires: string;
+  account: string;
+}> => {
+  const data = { code: getAccessToken(username), account };
+  return axios.post(apiBase("/private-api/boosted-plus-account"), data).then((resp) => resp.data);
+};
+
 export const getPromotedPost = (
   username: string,
   author: string,
@@ -528,7 +545,7 @@ export const saveNotificationsSettings = (
 ) => {
   return saveNotificationSetting(
     username,
-    isElectron() ? "desktop" : "web",
+    "web",
     Number(isEnabled),
     notifyTypes as number[],
     token
@@ -602,6 +619,7 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
     throw error;
   }
 };
+
 export interface Recoveries {
   username: string;
   email: string;

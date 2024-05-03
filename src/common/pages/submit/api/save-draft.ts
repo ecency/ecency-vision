@@ -5,14 +5,17 @@ import { _t } from "../../../i18n";
 import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { BeneficiaryRoute, RewardType } from "../../../api/operations";
-import { buildMetadata } from "../functions";
 import { ThreeSpeakVideo } from "../../../api/threespeak";
 import { useThreeSpeakManager } from "../hooks";
 import { QueryIdentifiers } from "../../../core";
+import { useContext } from "react";
+import { PollsContext } from "../hooks/polls-manager";
+import { EntryMetadataManagement } from "../../../features/entry-management";
 
 export function useSaveDraftApi(history: History) {
   const { activeUser } = useMappedStore();
   const { videos } = useThreeSpeakManager();
+  const { activePoll, clearActivePoll } = useContext(PollsContext);
 
   const queryClient = useQueryClient();
 
@@ -43,20 +46,21 @@ export function useSaveDraftApi(history: History) {
     }) => {
       const tagJ = tags.join(" ");
 
-      const meta = buildMetadata({
-        title,
-        body,
-        tags,
-        selectedThumbnail,
-        selectionTouched,
-        videoMetadata,
-        description
-      });
+      const metaBuilder = await EntryMetadataManagement.EntryMetadataManager.shared
+        .builder()
+        .default()
+        .extractFromBody(body)
+        .withTags(tags)
+        .withSummary(description ?? body)
+        .withImages(selectedThumbnail, selectionTouched);
+
+      const meta = metaBuilder.build();
       const draftMeta: DraftMetadata = {
         ...meta,
         beneficiaries,
         rewardType: reward,
-        videos
+        videos,
+        poll: activePoll
       };
 
       try {
@@ -74,6 +78,8 @@ export function useSaveDraftApi(history: History) {
 
           history.push(`/draft/${draft._id}`);
         }
+
+        clearActivePoll();
       } catch (e) {
         error(_t("g.server-error"));
       }

@@ -7,35 +7,27 @@ import * as ls from "../../util/local-storage";
 import Feedback from "../../components/feedback";
 import { _t } from "../../i18n";
 import { Tsx } from "../../i18n/helper";
-import NavBarElectron from "../../../desktop/app/components/navbar";
 import NavBar from "../../components/navbar";
 import Meta from "../../components/meta";
 import { ModeSelector } from "./mode-selector";
 import { AdvancedMode } from "./advanced-mode";
 import "./index.scss";
 import { SwapMode } from "../../components/market-swap-form/swap-mode";
+import { useLocation } from "react-router";
 
 const MarketPage = (props: PageProps) => {
   const [mode, setMode] = useState<MarketMode>(MarketMode.SWAP);
   const [title, setTitle] = useState(_t("market.title"));
   const [description, setDescription] = useState(_t("market.description"));
 
+  const location = useLocation();
+
   useEffect(() => {
     const hash = props.location.hash;
     if (hash === "#swap") setMode(MarketMode.SWAP);
     if (hash === "#limit") setMode(MarketMode.LIMIT);
     if (hash === "#advanced") setMode(MarketMode.ADVANCED);
-  }, []);
-
-  const navbar = props.global.isElectron ? (
-    NavBarElectron({
-      ...props,
-      reloadFn: () => {},
-      reloading: false
-    })
-  ) : (
-    <NavBar {...props} />
-  );
+  }, [location.hash]);
 
   return (
     <>
@@ -43,7 +35,9 @@ const MarketPage = (props: PageProps) => {
       <Feedback activeUser={props.activeUser} />
       <div className={"flex justify-center market-page " + mode}>
         <div className={mode !== MarketMode.ADVANCED ? "sm:w-[75%] p-3 sm:p-0" : "w-full"}>
-          <div style={{ marginBottom: "6rem" }}>{navbar}</div>
+          <div style={{ marginBottom: "6rem" }}>
+            <NavBar {...props} />
+          </div>
           {mode !== MarketMode.ADVANCED ? (
             <div className="mb-5 flex flex-col gap-3 text-center">
               <h2 className="text-3xl font-bold">{_t("market.title")}</h2>

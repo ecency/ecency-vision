@@ -1,6 +1,41 @@
 @tailwind base;
 @tailwind components;
 
+@layer utilities {
+  .w-full-dynamic {
+    width: 100vw;
+    @media screen and (max-width: 768px) {
+      width: 100vw;
+      width: 100dvw;
+    }
+  }
+
+  .h-full-dynamic {
+    min-height: 100vh;
+    max-height: 100vh;
+
+    @media screen and (max-width: 768px) {
+      min-height: 100vh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      min-height: 100dvh;
+    }
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 @import "./variables";
 @import "./mixins";
 

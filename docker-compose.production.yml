@@ -12,7 +12,7 @@ services:
     command:
       - /bin/sh
       - -c
-      - redis-server --save 20 1 --loglevel warning --requirepass "$${REDIS_HOST_PASSWORD:?REDIS_HOST_PASSWORD variable is not set}"
+      - redis-server --save 20 1 --appendonly no --maxmemory 16gb --maxmemory-policy allkeys-lru --loglevel warning --requirepass "$${REDIS_HOST_PASSWORD:?REDIS_HOST_PASSWORD variable is not set}"
     volumes:
       - redis:/data
     networks:

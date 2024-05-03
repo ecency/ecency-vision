@@ -1,10 +1,11 @@
 import { pageMapDispatchToProps, pageMapStateToProps, PageProps } from "./common";
 import { match } from "react-router";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { search as searchApi, SearchResult } from "../api/search-api";
 import { getSubscriptions } from "../api/bridge";
 import { EntryFilter, ListStyle } from "../store/global/types";
 import { usePrevious } from "../util/use-previous";
+
 import { makeGroupKey } from "../store/entries";
 import _ from "lodash";
 import Meta from "../components/meta";
@@ -26,7 +27,6 @@ import { Account } from "../store/accounts/types";
 import { CommunityMenu } from "../components/community-menu";
 import { CommunityCover } from "../components/community-cover";
 import { NotFound } from "../components/404";
-import NavBarElectron from "../../desktop/app/components/navbar";
 import NavBar from "../components/navbar";
 import { CommunityCard } from "../components/community-card";
 import { CommunityRoles } from "../components/community-roles";
@@ -34,8 +34,16 @@ import { EntryListContent } from "../components/entry-list";
 import { connect } from "react-redux";
 import { withPersistentScroll } from "../components/with-persistent-scroll";
 import "./community.scss";
+import LoginRequired from "../components/login-required";
 import { QueryIdentifiers, useCommunityCache } from "../core";
 import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@ui/button";
+import { Modal, ModalBody, ModalHeader } from "@ui/modal";
+import {
+  getJoinedCommunities,
+  useChannelsQuery,
+  useLeftCommunityChannelsQuery
+} from "@ecency/ns-query";
 
 interface MatchParams {
   filter: string;
@@ -48,11 +56,18 @@ interface Props extends PageProps {
 
 export const CommunityPage = (props: Props) => {
   const getSearchParam = () => {
-    return props.location.search.replace("?", "").replace("q", "").replace("=", "");
+    const updatedLocation = props.location.search.replace(/communityid=.*?(?=&|$)/, "");
+    return updatedLocation.replace("?", "").replace("q", "").replace("=", "").replace("&", "");
   };
-
   const queryClient = useQueryClient();
   const { data: community } = useCommunityCache(props.match.params.name);
+  const { data: channels } = useChannelsQuery();
+  const { data: leftChannelsIds } = useLeftCommunityChannelsQuery();
+
+  const currentChannel = useMemo(
+    () => channels?.find((channel) => channel.communityName === community?.name),
+    [channels, community]
+  );
 
   const [account, setAccount] = useState<Account | undefined>(
     props.accounts.find(({ name }) => [props.match.params.name])
@@ -61,10 +76,20 @@ export const CommunityPage = (props: Props) => {
   const [search, setSearch] = useState(getSearchParam());
   const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
   const [searchData, setSearchData] = useState<SearchResult[]>([]);
+  const [isJoinCommunity, setIsJoinCommunity] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const prevMatch = usePrevious(props.match);
   const prevActiveUser = usePrevious(props.activeUser);
+
+  const isCommunityAlreadyJoined = useMemo(
+    () =>
+      getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
+        (community) => community.name === currentChannel?.communityName
+      ),
+    [channels, leftChannelsIds]
+  );
 
   useEffect(() => {
     setIsLoading(true);
@@ -75,6 +100,11 @@ export const CommunityPage = (props: Props) => {
     const { filter, name } = match.params;
     // fetch blog posts.
     if (EntryFilter[filter]) fetchEntries(filter, name, false);
+    const urlParams = new URLSearchParams(location.search);
+    const communityId = urlParams.get("communityid");
+    if (communityId) {
+      setIsJoinCommunity(true);
+    }
 
     fetchSubscriptions();
   }, []);
@@ -184,26 +214,71 @@ export const CommunityPage = (props: Props) => {
     return { title, description, url, rss, image, canonical };
   };
 
-  const navBar = props.global.isElectron ? (
-    <NavBarElectron {...props} reloading={isLoading} reloadFn={reload} />
-  ) : (
-    <NavBar {...props} />
-  );
+  const joinCommunityModal = () => {
+    if (isCommunityAlreadyJoined) {
+      return (
+        <>
+          <div>
+            <h4>{_t("community.already-joined-community")}</h4>
+          </div>
+          <p className="mt-5 text-right">
+            <Button outline={true} onClick={() => setIsJoinCommunity(false)}>
+              {_t("g.ok")}
+            </Button>
+          </p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="border-bottom">
+            <div className="join-community-dialog-titles">
+              <h2 className="join-community-main-title">Confirmaton</h2>
+            </div>
+            {inProgress && <LinearProgress />}
+          </div>
+          <div
+            className="join-community-dialog-body"
+            style={{ fontSize: "18px", marginTop: "12px" }}
+          >
+            {_t("confirm.title")}
+          </div>
+          <p className="join-community-confirm-buttons" style={{ textAlign: "right" }}>
+            <Button outline={true} className="mr-4" onClick={() => setIsJoinCommunity(false)}>
+              {_t("g.close")}
+            </Button>
+            <Button outline={true} className="confirm-btn" to={`/chats/${community?.name}`}>
+              {_t("g.join")}
+            </Button>
+          </p>
+        </>
+      );
+    }
+  };
 
   return community && account ? (
     <>
+      {isJoinCommunity && (
+        <LoginRequired {...props}>
+          <Modal
+            animation={false}
+            show={true}
+            centered={true}
+            onHide={() => setIsJoinCommunity(false)}
+            className="authorities-dialog"
+            size="lg"
+          >
+            <ModalHeader thin={true} closeButton={true} />
+            <ModalBody>{joinCommunityModal()}</ModalBody>
+          </Modal>
+        </LoginRequired>
+      )}
       <Meta {...getMetaProps()} />
       <ScrollToTop />
       <Theme global={props.global} />
       <Feedback activeUser={props.activeUser} />
-      {navBar}
-      <div
-        className={
-          props.global.isElectron
-            ? "app-content community-page mt-0 pt-6"
-            : "app-content community-page"
-        }
-      >
+      <NavBar {...props} />
+      <div className="app-content community-page">
         <div className="profile-side">
           <CommunityCard {...props} account={account} community={community} />
         </div>
@@ -305,7 +380,7 @@ export const CommunityPage = (props: Props) => {
     </>
   ) : isLoading ? (
     <>
-      {navBar}
+      <NavBar {...props} />
       <LinearProgress />
     </>
   ) : (

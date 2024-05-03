@@ -79,7 +79,7 @@ exports[`(1) No active user. Default filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -245,7 +245,7 @@ exports[`(2) No active user. Trending filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -353,7 +353,7 @@ exports[`(3) Active user. Trending filter 1`] = `
         >
           <li>
             <a
-              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 active"
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
               href="/@foo/feed"
               id="feed"
               onClick={[Function]}
@@ -405,7 +405,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                   className="col-span-12 md:col-span-5 p-0 md:px-3"
                 >
                   <div
-                    className="text-4xl mb-2 md:mb-4 text-dark font-bold"
+                    className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
                   >
                     Friends
                   </div>
@@ -433,7 +433,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     className="flex flex-col md:flex-row"
                   >
                     <button
-                      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                       onClick={[Function]}
                       size="lg"
                       style={
@@ -448,7 +448,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       </div>
                     </button>
                     <button
-                      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
                       onClick={[Function]}
                       size="lg"
                       style={
@@ -535,7 +535,7 @@ exports[`(3) Active user. Trending filter 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -588,7 +588,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                     className="col-span-12 md:col-span-5 p-0 md:px-3"
                   >
                     <div
-                      className="text-4xl mb-2 md:mb-4 text-dark font-bold"
+                      className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
                     >
                       Friends
                     </div>
@@ -616,7 +616,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                       className="flex flex-col md:flex-row"
                     >
                       <button
-                        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.5px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
                         onClick={[Function]}
                         size="lg"
                         style={
@@ -631,7 +631,7 @@ exports[`(3) Active user. Trending filter 1`] = `
                         </div>
                       </button>
                       <button
-                        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
                         onClick={[Function]}
                         size="lg"
                         style={
@@ -768,7 +768,7 @@ exports[`(4) Active user. Friends 1`] = `
         >
           <li>
             <a
-              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 active"
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
               href="/@foo/feed"
               id="feed"
               onClick={[Function]}
@@ -844,7 +844,7 @@ exports[`(4) Active user. Friends 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -1046,7 +1046,7 @@ exports[`(5) Active user. Communities 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div
@@ -1230,7 +1230,7 @@ exports[`(6) No active user. Communities 1`] = `
             </ul>
           </div>
           <div
-            className="kebab-icon"
+            className="kebab-icon flex"
           />
         </div>
         <div

@@ -18,9 +18,6 @@ jobs:
     - name: npm install, lint and/or test
       run: |
         yarn
-        cd src/desktop
-        yarn
-        cd ../../
         yarn test --runInBand --updateSnapshot
       env:
         CI: true

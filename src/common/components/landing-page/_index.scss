@@ -261,12 +261,9 @@
       }
     }
     .get-started {
-      width: 170.24px;
-      height: 57.48px;
+      width: 140px;
+      height: 56px;
       background-color: $blue;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
       -webkit-box-pack: center;
       -ms-flex-pack: center;
       justify-content: center;
@@ -277,6 +274,9 @@
       border-radius: 30px;
       border: none;
       outline: none;
+    }
+    .link-btn {
+      @apply text-white;
     }
     .scroll-down {
       height: 46px;
@@ -1239,7 +1239,7 @@
         @media (max-width: 766px) {
           display: none !important;
         }
-        
+
       }
 
       .bubble-bg {
@@ -1282,13 +1282,13 @@
           background: rgb(23,30,38);
           background: -o-linear-gradient(273deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
           background: linear-gradient(177deg, rgba(23,30,38,1) 0%, rgba(71,77,84,1) 100%);
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1); 
-          
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#171e26",endColorstr="#474d54",GradientType=1);
+
           @media (max-width: $sm-break) {
             background: -o-linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
             background: linear-gradient(180deg, #A6ACAF 0%, #17283D 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#A6ACAF",endColorstr="#17283D",GradientType=1);  
-            }       
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#A6ACAF",endColorstr="#17283D",GradientType=1);
+            }
         }
         @include themify(day) {
           background: rgb(196,219,235);
@@ -1432,7 +1432,7 @@
             a {
               margin-top: 1rem;
             }
-           
+
           }
         }
         @media (max-width: $lg-break) {
@@ -1476,11 +1476,11 @@
           padding-left: unset;
           .text-group {
             width: 100%;
-           
+
             -webkit-box-pack: center;
-           
+
                 -ms-flex-pack: center;
-           
+
                     justify-content: center;
             text-align: center;
             -webkit-box-align: center;
@@ -1633,7 +1633,7 @@
             @media (max-width: $sm-break) {
               margin: 2rem 1rem 22rem;
             }
-            
+
           }
           .our-history {
             width: 250px;
@@ -1673,7 +1673,7 @@
             -webkit-box-align: center;
                 -ms-flex-align: center;
                     align-items: center;
-            text-align: center;            
+            text-align: center;
           }
 
           @media (max-width: $md-break) and (min-width: $sm-break) {
@@ -1684,7 +1684,7 @@
             }
             .text-group {
               margin: 0;
-              margin-top: 2rem;     
+              margin-top: 2rem;
             }
           }
         }
@@ -2189,7 +2189,7 @@
             }
           }
           height: auto;
-        
+
       }
     }
 

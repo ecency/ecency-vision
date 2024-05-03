@@ -13,39 +13,39 @@ exports[`(1) Open orders render default 1`] = `
     className="border dark:border-gray-700 overflow-hidden rounded-xl w-full"
   >
     <table
-      className="table-auto border-collapse text-xs sm:text-sm md:text-md w-full"
+      className="table-auto border-collapse text-xs sm:text-sm md:text-base w-full"
     >
       <thead>
         <tr
           className="[&:last-child>td]:border-b-0 [&:nth-child(even)]:bg-light-200 dark:[&:nth-child(even)]:bg-dark-300"
         >
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             Date
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             Type
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             Price
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             HIVE
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             HBD ($)
           </th>
           <th
-            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-sm text-gray-700 dark:text-white border-r last:border-r-0 p-2 text-xs sm:text-sm md:text-md p-1 sm:p-2 "
+            className="border-b dark:border-gray-700 text-left font-[500] bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-white border-r last:border-r-0 text-xs sm:text-sm md:text-base p-1 sm:p-2 "
           >
             Action
           </th>
@@ -85,7 +85,7 @@ exports[`(1) Open orders render default 1`] = `
             className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 p-2"
           >
             <button
-              className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+              className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
               onClick={[Function]}
               size="sm"
               style={
