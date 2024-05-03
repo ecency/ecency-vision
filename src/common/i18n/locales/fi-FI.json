@@ -90,7 +90,8 @@
     "actions": "Toiminnot",
     "restore": "Palauta",
     "success": "Onnistui",
-    "error": "Virhe"
+    "error": "Virhe",
+    "reset-form": "Reset form"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -2450,6 +2451,7 @@
     "vote-change": "Vaihdetaan ääntä",
     "current-standing": "Piilota äänet",
     "finished": "Valmis",
-    "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva"
+    "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
+    "interpretation": "Interpretation"
   }
 }
