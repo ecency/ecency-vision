@@ -69,9 +69,9 @@ export class EntryMetadataBuilder {
 
     if (nextImages) {
       if (selectionTouched && selectedThumbnail) {
-        nextImages = [selectedThumbnail, ...image!.splice(0, 9)];
+        nextImages = [selectedThumbnail, ...(image?.splice(0, 9) ?? [])];
       } else {
-        nextImages = [...image!.splice(0, 9)];
+        nextImages = [...(image?.splice(0, 9) ?? [])];
       }
     } else if (selectedThumbnail === localThumbnail) {
       ls.remove("draft_selected_image");
@@ -146,7 +146,7 @@ export class EntryMetadataBuilder {
             question: poll.title,
             choices: poll.choices,
             preferred_interpretation: poll.interpretation,
-            token: null,
+            token: poll.interpretation === "tokens" ? "HIVE:HP" : null,
             hide_votes: poll.hideVotes,
             vote_change: poll.voteChange,
             filters: {

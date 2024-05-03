@@ -12,6 +12,7 @@ import { useMappedStore } from "../../../store/use-mapped-store";
 import { format, isBefore } from "date-fns";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
+import { FormControl } from "@ui/input";
 
 interface Props {
   poll: PollSnapshot;
@@ -34,6 +35,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const [resultsMode, setResultsMode] = useState(false);
   const [isVotedAlready, setIsVotedAlready] = useState(false);
   const [showEndDate, setShowEndDate] = useLocalStorage(PREFIX + "_plls_set", false);
+  const [interpretation, setInterpretation] =
+    useState<PollSnapshot["interpretation"]>("number_of_votes");
 
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
@@ -48,6 +51,10 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const showVote = useMemo(
     () => pollDetails.data?.status === "Active" && !resultsMode,
     [pollDetails.data?.status, resultsMode]
+  );
+  const isInterpretationSelectionDisabled = useMemo(
+    () => pollDetails.data?.poll_stats.total_hive_hp_incl_proxied === null,
+    [pollDetails.data?.poll_stats.total_hive_hp_incl_proxied]
   );
 
   useEffect(() => {
@@ -66,6 +73,17 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   useEffect(() => {
     setIsVotedAlready(!!activeUserVote);
   }, [activeUserVote]);
+
+  useEffect(() => {
+    if (isInterpretationSelectionDisabled) {
+      setInterpretation("number_of_votes");
+    } else {
+      setInterpretation(
+        (pollDetails.data?.preferred_interpretation ??
+          "number_of_votes") as PollSnapshot["interpretation"]
+      );
+    }
+  }, [pollDetails.data, isInterpretationSelectionDisabled]);
 
   return (
     <div className="grid grid-cols-4">
@@ -104,6 +122,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
           {poll.choices.map((choice) =>
             resultsMode ? (
               <PollOptionWithResults
+                interpretation={interpretation}
                 key={choice}
                 entry={entry}
                 choice={choice}
@@ -117,6 +136,24 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
                 activeChoice={activeChoice}
               />
             )
+          )}
+          {resultsMode && (
+            <div className="flex items-center gap-2 flex-wrap">
+              <div>{_t("polls.interpretation")}</div>
+              <FormControl
+                full={false}
+                disabled={isInterpretationSelectionDisabled}
+                type="select"
+                size="xs"
+                value={interpretation}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setInterpretation(e.target.value as PollSnapshot["interpretation"])
+                }
+              >
+                <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
+                <option value="tokens">{_t("polls.tokens")}</option>
+              </FormControl>
+            </div>
           )}
         </div>
         {showVote && (

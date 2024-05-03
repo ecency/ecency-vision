@@ -56,7 +56,7 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
             ...data,
             poll_choices: [
               ...notTouchedChoices,
-              previousUserChoice
+              previousUserChoice && previousUserChoice.choice_text !== choice.choice_text
                 ? {
                     ...previousUserChoice,
                     votes: {
@@ -67,7 +67,9 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
               {
                 ...choice,
                 votes: {
-                  total_votes: (choice?.votes?.total_votes ?? 0) + 1
+                  total_votes:
+                    (choice?.votes?.total_votes ?? 0) +
+                    (previousUserChoice?.choice_text !== choice.choice_text ? 1 : 0)
                 }
               }
             ].filter((el) => !!el),

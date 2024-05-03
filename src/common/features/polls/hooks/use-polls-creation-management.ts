@@ -79,6 +79,12 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     setHideVotes,
     voteChange,
     setVoteChange,
-    isExpiredEndDate
+    isExpiredEndDate,
+    clearAll: () => {
+      clearTitle();
+      clearChoices();
+      clearAccountAge();
+      clearEndDate();
+    }
   };
 }
