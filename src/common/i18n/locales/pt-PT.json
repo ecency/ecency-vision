@@ -90,7 +90,8 @@
     "actions": "Ações",
     "restore": "Restaurar",
     "success": "Success",
-    "error": "Error"
+    "error": "Error",
+    "reset-form": "Reset form"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -2450,6 +2451,7 @@
     "vote-change": "Changing a vote",
     "current-standing": "Hide votes",
     "finished": "Finished",
-    "expired-date": "End date should be in present or future"
+    "expired-date": "End date should be in present or future",
+    "interpretation": "Interpretation"
   }
 }
