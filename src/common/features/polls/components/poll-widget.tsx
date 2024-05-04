@@ -41,7 +41,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
   const showViewVotes = useMemo(
-    () => poll.hideVotes && !resultsMode,
+    () => !poll.hideVotes && !resultsMode,
     [poll.hideVotes, resultsMode]
   );
   const showChangeVote = useMemo(
@@ -49,8 +49,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
     [resultsMode, poll.voteChange, pollDetails.data?.status]
   );
   const showVote = useMemo(
-    () => pollDetails.data?.status === "Active" && !resultsMode,
-    [pollDetails.data?.status, resultsMode]
+    () => pollDetails.data?.status === "Active" && !resultsMode && pollDetails.data?.poll_trx_id,
+    [pollDetails.data?.status, resultsMode, pollDetails.data?.poll_trx_id]
   );
   const isInterpretationSelectionDisabled = useMemo(
     () => pollDetails.data?.poll_stats.total_hive_hp_incl_proxied === null,
@@ -84,6 +84,12 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
       );
     }
   }, [pollDetails.data, isInterpretationSelectionDisabled]);
+
+  useEffect(() => {
+    if (!pollDetails.data?.poll_trx_id) {
+      setTimeout(() => pollDetails.refetch(), 5000);
+    }
+  }, [pollDetails.data?.poll_trx_id]);
 
   return (
     <div className="grid grid-cols-4">
@@ -137,24 +143,25 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
               />
             )
           )}
-          {resultsMode && (
-            <div className="flex items-center gap-2 flex-wrap">
-              <div>{_t("polls.interpretation")}</div>
-              <FormControl
-                full={false}
-                disabled={isInterpretationSelectionDisabled}
-                type="select"
-                size="xs"
-                value={interpretation}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setInterpretation(e.target.value as PollSnapshot["interpretation"])
-                }
-              >
-                <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
-                <option value="tokens">{_t("polls.tokens")}</option>
-              </FormControl>
-            </div>
-          )}
+          {resultsMode &&
+            activeUser?.username === entry?.author &&
+            !isInterpretationSelectionDisabled && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <div>{_t("polls.interpretation")}</div>
+                <FormControl
+                  full={false}
+                  type="select"
+                  size="xs"
+                  value={interpretation}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setInterpretation(e.target.value as PollSnapshot["interpretation"])
+                  }
+                >
+                  <option value="number_of_votes">{_t("polls.number_of_votes")}</option>
+                  <option value="tokens">{_t("polls.tokens")}</option>
+                </FormControl>
+              </div>
+            )}
         </div>
         {showVote && (
           <Button
@@ -171,17 +178,22 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             {_t(isVoting ? "polls.voting" : "polls.vote")}
           </Button>
         )}
+        {!pollDetails.data?.poll_trx_id && !isReadOnly && (
+          <Button size="sm" disabled={true}>
+            {_t("polls.creating-in-progress")}
+          </Button>
+        )}
         {showChangeVote && (
           <Button appearance="link" size="sm" onClick={() => setResultsMode(false)}>
             {_t("polls.back-to-vote")}
           </Button>
         )}
-        {showViewVotes && (
+        {!resultsMode && (
           <Button appearance="link" size="sm" onClick={() => setResultsMode(true)}>
             {_t("polls.view-votes")}
           </Button>
         )}
-        {resultsMode && <PollVotesListDialog entry={entry} />}
+        {resultsMode && showViewVotes && <PollVotesListDialog entry={entry} />}
       </div>
     </div>
   );

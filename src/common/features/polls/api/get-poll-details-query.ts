@@ -3,7 +3,7 @@ import { QueryIdentifiers } from "../../../core";
 import { Entry } from "../../../store/entries/types";
 import axios from "axios";
 
-interface GetPollDetailsQueryResponse {
+export interface GetPollDetailsQueryResponse {
   author: string;
   created: string;
   end_time: string;

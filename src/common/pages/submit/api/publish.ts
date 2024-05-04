@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FullAccount } from "../../../store/accounts/types";
 import { createPermlink, makeApp, makeCommentOptions } from "../../../helper/posting";
 import * as bridgeApi from "../../../api/bridge";
@@ -19,16 +19,19 @@ import { History } from "history";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { useThreeSpeakManager } from "../hooks";
 import { useContext } from "react";
-import { EntriesCacheContext } from "../../../core";
+import { EntriesCacheContext, QueryIdentifiers } from "../../../core";
 import { version } from "../../../../../package.json";
 import { PollsContext } from "../hooks/polls-manager";
 import { EntryBodyManagement, EntryMetadataManagement } from "../../../features/entry-management";
+import { Entry } from "../../../store/entries/types";
+import { GetPollDetailsQueryResponse } from "../../../features/polls/api";
 
 export function usePublishApi(history: History, onClear: () => void) {
   const { activeUser } = useMappedStore();
   const { activePoll, clearActivePoll } = useContext(PollsContext);
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
+  const queryClient = useQueryClient();
 
   return useMutation(
     ["publish"],
@@ -60,7 +63,7 @@ export function usePublishApi(history: History, onClear: () => void) {
 
       // make sure active user fully loaded
       if (!activeUser || !activeUser.data.__loaded) {
-        return;
+        return [];
       }
 
       const author = activeUser.username;
@@ -140,7 +143,8 @@ export function usePublishApi(history: History, onClear: () => void) {
             title,
             body: buildBody(body),
             tags,
-            description
+            description,
+            jsonMeta
           }),
           max_accepted_payout: options.max_accepted_payout,
           percent_hbd: options.percent_hbd
@@ -163,8 +167,44 @@ export function usePublishApi(history: History, onClear: () => void) {
         if (isCommunity(tags[0]) && reblogSwitch) {
           await reblog(author, author, permlink);
         }
+
+        return [entry as Entry, activePoll] as const;
       } catch (e) {
         error(...formatError(e));
+        throw e;
+      }
+    },
+    {
+      onSuccess([entry, poll]) {
+        queryClient.setQueryData<GetPollDetailsQueryResponse | undefined>(
+          [QueryIdentifiers.POLL_DETAILS, entry?.author, entry?.permlink],
+          (data) => {
+            if (!data) {
+              return data;
+            }
+
+            return {
+              author: entry.author,
+              created: new Date().toISOString(),
+              end_time: poll?.endTime.toISOString(),
+              filter_account_age_days: poll?.filters.accountAge,
+              permlink: entry.permlink,
+              poll_choices: poll?.choices.map((c, i) => ({
+                choice_num: i,
+                choice_text: c,
+                votes: null
+              })),
+              poll_stats: { total_voting_accounts_num: 0, total_hive_hp_incl_proxied: null },
+              poll_trx_id: undefined,
+              poll_voters: undefined,
+              preferred_interpretation: poll?.interpretation,
+              question: poll?.title,
+              status: "active",
+              tags: [],
+              token: null
+            } as unknown as GetPollDetailsQueryResponse;
+          }
+        );
       }
     }
   );
