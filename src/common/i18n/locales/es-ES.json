@@ -90,7 +90,8 @@
     "actions": "Acciones",
     "restore": "Restaurar",
     "success": "Éxito",
-    "error": "Error"
+    "error": "Error",
+    "reset-form": "Reiniciar formulario"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -2192,7 +2193,7 @@
       "how-post-community-body": "<p>Elegir la comunidad correcta es tan importante como elegir el título correcto cuando comienzas a escribir tu mensaje. Después de elegir un título, bajo el título tienes un botón para elegir si quieres publicar el post en tu blog o en una de las comunidades en la que participas. El número de identificación de la comunidad que elijas será tu primera etiqueta. No te olvides de leer las reglas de la Comunidad antes de publicar un post en cualquier comunidad.</p>",
       "leave-community-header": "¿Cómo salir de una Comunidad en Ecency?",
       "leave-community-body": "<p>Desde tu Muro, haz clic en Comunidades en el menú de la izquierda y selecciona tu grupo. Ve al botón Unirse donde puedes ver la opción Salir, selecciona Salir. Después de salir de la Comunidad se eliminará de tu lista de Comunidades y ya no las verás en tu Muro.</p>",
-      "how-schedule-post": "¿Cómo programar una publicación?",
+      "how-schedule-header": "¿Cómo programar una publicación?",
       "how-schedule-body": "<p>Puedes programar una publicación para publicar en un momento determinado. <ul><li>Has clic en el icono del lápiz y escribe una publicación. Luego has clic en la derecha, ícono 'Avanzada' debajo de tu mensaje. </li><li>Selecciona la opción Programación.</li><li>Selecciona la fecha y hora que deseas que la publicación se publique.</li><li>Has clic en Aplicar y luego en Programar.</li></ul></p>",
       "how-delete-scheduled-header": "¿Cómo editar o eliminar una publicación programada?",
       "how-delete-scheduled-body": "<p>Desde el menú principal selecciona Programar. Verás una lista de publicaciones programadas. Debajo de los mensajes hay 2 opciones: Mover a borradores (allí puedes reprogramar, y editarlo) o borrar publicación programada.</p>",
@@ -2266,16 +2267,16 @@
       "can-comment-boost-body": "<p>Puedes impulsar los comentarios que te gusten. Por supuesto, el comentario debe cumplir con algunos de los criterios de selección para impulso.</p>",
       "what-information-available-header": "¿Qué información tengo disponible en la página de respuestas?",
       "what-information-available-body": "<p>En la página de Respuestas puedes ver todas las respuestas que otros usuarios han hecho a tus publicaciones y comentarios.</p>",
-      "what-is-waves-header": "What is Waves?",
-      "what-is-waves-body": "<p>Waves is a new way of engaging through microblogging on Web3, where one can publish anything at any moment and still get rewarded for it. Waves can contain words up to 250 characters long, links, photographs, and GIFs. You can share your thoughts, opinions, updates, or information in brief and clear messages.</p>",
-      "what-is-boost-body": "What is Boost+?",
-      "what-is-boost-header": "<p>The Boost+ feature allows users to take HP delegation from Ecency.This feature has been introduced, allowing users to use their points to get delegation for 7, 30, or 90 days. Approximately 350,000 VESTS, equivalent to 200+ HP, have been allocated for this purpose.</p>",
-      "can-pin-comments-header": "Can I pin comments on my post?",
-      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
-      "what-are-snippets-header": "What are Snippets?",
-      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
-      "can-upload-video-header": "Can I upload a video on Ecency?",
-      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
+      "what-is-waves-header": "¿Qué son las olas?",
+      "what-is-waves-body": "<p>Olas es una nueva forma de involucrarse a través de microblogs en la Web 3, donde uno puede publicar cualquier cosa en cualquier momento y todavía obtener premios por ello. Las ondas pueden contener palabras de hasta 250 caracteres de largo, enlaces, fotografías y GIF. Puedes compartir tus pensamientos, opiniones, actualizaciones o información en mensajes breves y claros.</p>",
+      "what-is-boost-body": "¿Qué es Boost+ (Impulso+)?",
+      "what-is-boost-header": "<p>La función Boost+ (Impulso+) permite a los usuarios tomar una delegación de HP de Ecency. Esta característica fue introducida para permitir a los usuarios utilizar sus puntos y conseguir una delegación durante 7, 30 ó 90 días. Aproximadamente 350.000 VESTS, equivalente a 200+ HP, han sido asignados para este propósito.</p>",
+      "can-pin-comments-header": "¿Puedo anclar comentarios en mi publicación?",
+      "can-pin-comments-body": "<p>Sí, tienes la posibilidad de fijar los comentarios que desees seleccionando los tres puntos ubicados cerca del comentario y eligiendo la opción Fijar (Pin).</p>",
+      "what-are-snippets-header": "¿Qué son los Fragmentos?",
+      "what-are-snippets-body": "<p>Los fragmentos son pequeños segmentos de caracteres, que pueden ser notas, notas al pie de página, frases, sentencias que puedes formatear e insertar en tus publicaciones y comentarios en cualquier momento. Son muy útiles si tienes notas al pie de página en tus publicaciones o si tienes frases claves que utilizas a menudo.</p>",
+      "can-upload-video-header": "¿Puedo subir un vídeo en Ecency?",
+      "can-upload-video-body": "Tienes la opción de subir un vídeo tanto en la aplicación móvil como en la web Ecency.com, haciendo clic en el icono del video en la página del editor al crear contenido."
     }
   },
   "contributors": {
@@ -2450,6 +2451,7 @@
     "vote-change": "Cambiando un voto",
     "current-standing": "Ocultar votos",
     "finished": "Finalizado",
-    "expired-date": "La fecha de fin debe ser del presente o futuro"
+    "expired-date": "La fecha de fin debe ser del presente o futuro",
+    "interpretation": "Interpretación"
   }
 }

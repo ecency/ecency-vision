@@ -90,7 +90,8 @@
     "actions": "Actions",
     "restore": "Restore",
     "success": "Success",
-    "error": "Error"
+    "error": "Error",
+    "reset-form": "Reset form"
   },
   "confirm": {
     "title": "정말 진행하시겠습니까?",
@@ -2192,7 +2193,7 @@
       "how-post-community-body": "<p>Choosing the right Community is just as important as choosing the right Title when you start writing your Post. After choosing a title, under title you have a button to choose whether to publish the post on your blog or in one of the Communities joined. The Community ID number you choose will be your first tag. Don't forget to introduce with the rules of the Community before publishing a post in any Community.</p>",
       "leave-community-header": "How to leave Community on Ecency?",
       "leave-community-body": "<p>From your Feed, click Communities in the left menu and select your group. Go to the Joined button where you can see Leave option, select Leave.After leaving Community will be removed from your list of Communities and you will no longer see them in your Feed.</p>",
-      "how-schedule-post": "How to schedule a post?",
+      "how-schedule-header": "How to schedule a post?",
       "how-schedule-body": "<p>You can schedule a post to publish at a specific time. <ul><li>Click on the pen icon and write a post.Then Click on the Advanced right under your post. </li><li>Choose Schedule option.</li><li>Select the date and time that you want the post to publish.</li><li>Click Apply then Schedule button.</li></ul></p>",
       "how-delete-scheduled-header": "How to edit or delete a scheduled post?",
       "how-delete-scheduled-body": "<p>From the main Menu choose Schedule. Thee you will se a list of scheduled posts. Under posts there are 2 options: Move to drafts(there you can reschedule, edit)or delete scheduled post.</p>",
@@ -2450,6 +2451,7 @@
     "vote-change": "Changing a vote",
     "current-standing": "Hide votes",
     "finished": "Finished",
-    "expired-date": "End date should be in present or future"
+    "expired-date": "End date should be in present or future",
+    "interpretation": "Interpretation"
   }
 }
