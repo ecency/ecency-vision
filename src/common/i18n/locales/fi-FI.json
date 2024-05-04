@@ -2452,6 +2452,7 @@
     "current-standing": "Piilota äänet",
     "finished": "Valmis",
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
-    "interpretation": "Tulkinta"
+    "interpretation": "Tulkinta",
+    "creating-in-progress": "Creating in progress..."
   }
 }

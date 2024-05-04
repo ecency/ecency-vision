@@ -2452,6 +2452,7 @@
     "current-standing": "Hide votes",
     "finished": "Finished",
     "expired-date": "End date should be in present or future",
-    "interpretation": "Interpretation"
+    "interpretation": "Interpretation",
+    "creating-in-progress": "Creating in progress..."
   }
 }
