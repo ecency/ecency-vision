@@ -41,8 +41,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
   const endTimeFullDate = useMemo(() => format(poll.endTime, "dd.MM.yyyy HH:mm"), [poll.endTime]);
   const isFinished = useMemo(() => isBefore(poll.endTime, new Date()), [poll.endTime]);
   const showViewVotes = useMemo(
-    () => !poll.hideVotes && !resultsMode,
-    [poll.hideVotes, resultsMode]
+    () => (!poll.hideVotes && !resultsMode) || activeUser?.username === entry?.author,
+    [poll.hideVotes, resultsMode, activeUser?.username, entry?.author]
   );
   const showChangeVote = useMemo(
     () => poll.voteChange && resultsMode && pollDetails.data?.status === "Active",
@@ -178,7 +178,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             {_t(isVoting ? "polls.voting" : "polls.vote")}
           </Button>
         )}
-        {!pollDetails.data?.poll_trx_id && !isReadOnly && (
+        {pollDetails.data && !pollDetails.data.poll_trx_id && !isReadOnly && (
           <Button size="sm" disabled={true}>
             {_t("polls.creating-in-progress")}
           </Button>
