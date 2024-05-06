@@ -23,7 +23,8 @@ import useDebounce from "react-use/lib/useDebounce";
 import { useCommunityCache } from "../../../core";
 import { ROLES } from "../../../store/communities";
 import { ForwardMessageDialog } from "./forward-message-dialog";
-import { UilMessage } from "@iconscout/react-unicons";
+import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
+import { usePersistentReplyToMessage } from "../hooks";
 
 interface Props {
   publicMessages: PublicMessage[];
@@ -40,6 +41,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   const [currentInteractingMessageId, setCurrentInteractingMessageId] = useState<string>();
   const [needFetchNextPage, setNeedFetchNextPage] = useState(false);
   const [forwardingMessage, setForwardingMessage] = useState<Message>();
+  const [_, setReply] = usePersistentReplyToMessage(currentChannel);
 
   const { data: community } = useCommunityCache(currentChannel?.communityName);
   const { data: joinedCommunityTeamKeys, isSuccess: isJoinedCommunityTeamKeysFetched } =
@@ -107,11 +109,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                     type={message.creator !== publicKey ? "receiver" : "sender"}
                     message={message}
                     isSameUser={checkContiguousMessage(message, i, publicMessages)}
-                    onContextMenu={() => {
-                      if (isCommunityTeamMember) {
-                        setCurrentInteractingMessageId(message.id);
-                      }
-                    }}
+                    onContextMenu={() => setCurrentInteractingMessageId(message.id)}
                     onAppear={() =>
                       setTimeout(
                         () =>
@@ -137,18 +135,35 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
                       onClick={() => setForwardingMessage(message)}
                     />
                     <DropdownItemWithIcon
-                      icon={isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg}
-                      label={_t("chat.hide-message")}
-                      onClick={() => hideMessage({ messageId: message.id, status: 0 })}
+                      icon={<UilCommentAltMessage />}
+                      label={_t("chat.reply")}
+                      onClick={() => setReply(message)}
                     />
-                    {message.creator !== publicKey && (
-                      <DropdownItemWithIcon
-                        icon={
-                          isUserMutingLoading ? <Spinner className="w-3.5 h-3.5" /> : removeUserSvg
-                        }
-                        label={_t("chat.block-author")}
-                        onClick={() => muteUserInChannel({ pubkey: message.creator, status: 0 })}
-                      />
+                    {isCommunityTeamMember && (
+                      <>
+                        <DropdownItemWithIcon
+                          icon={
+                            isHideMessageLoading ? <Spinner className="w-3.5 h-3.5" /> : hideSvg
+                          }
+                          label={_t("chat.hide-message")}
+                          onClick={() => hideMessage({ messageId: message.id, status: 0 })}
+                        />
+                        {message.creator !== publicKey && (
+                          <DropdownItemWithIcon
+                            icon={
+                              isUserMutingLoading ? (
+                                <Spinner className="w-3.5 h-3.5" />
+                              ) : (
+                                removeUserSvg
+                              )
+                            }
+                            label={_t("chat.block-author")}
+                            onClick={() =>
+                              muteUserInChannel({ pubkey: message.creator, status: 0 })
+                            }
+                          />
+                        )}
+                      </>
                     )}
                   </DropdownMenu>
                 </Dropdown>
