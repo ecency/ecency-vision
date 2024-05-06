@@ -82,9 +82,9 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     isExpiredEndDate,
     clearAll: () => {
       clearTitle();
-      clearChoices();
-      clearAccountAge();
       clearEndDate();
+      clearAccountAge();
+      clearChoices();
     }
   };
 }

@@ -25,13 +25,17 @@ import { PollsContext } from "../hooks/polls-manager";
 import { EntryBodyManagement, EntryMetadataManagement } from "../../../features/entry-management";
 import { Entry } from "../../../store/entries/types";
 import { GetPollDetailsQueryResponse } from "../../../features/polls/api";
+import { usePollsCreationManagement } from "../../../features/polls/hooks";
 
 export function usePublishApi(history: History, onClear: () => void) {
+  const queryClient = useQueryClient();
+
   const { activeUser } = useMappedStore();
   const { activePoll, clearActivePoll } = useContext(PollsContext);
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
   const { updateCache } = useContext(EntriesCacheContext);
-  const queryClient = useQueryClient();
+
+  const { clearAll } = usePollsCreationManagement();
 
   return useMutation(
     ["publish"],
@@ -176,6 +180,8 @@ export function usePublishApi(history: History, onClear: () => void) {
     },
     {
       onSuccess([entry, poll]) {
+        clearAll();
+
         queryClient.setQueryData<GetPollDetailsQueryResponse | undefined>(
           [QueryIdentifiers.POLL_DETAILS, entry?.author, entry?.permlink],
           (data) => {
