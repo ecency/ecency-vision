@@ -10,11 +10,14 @@ import { useThreeSpeakManager } from "../hooks";
 import { useContext } from "react";
 import { PollsContext } from "../hooks/polls-manager";
 import { EntryMetadataManagement } from "../../../features/entry-management";
+import { usePollsCreationManagement } from "../../../features/polls/hooks";
 
 export function useScheduleApi(onClear: () => void) {
   const { activeUser } = useMappedStore();
   const { buildBody } = useThreeSpeakManager();
   const { activePoll, clearActivePoll } = useContext(PollsContext);
+
+  const { clearAll } = usePollsCreationManagement();
 
   return useMutation(
     ["schedule"],
@@ -78,6 +81,11 @@ export function useScheduleApi(onClear: () => void) {
         } else {
           error(_t("g.server-error"));
         }
+      }
+    },
+    {
+      onSuccess: () => {
+        clearAll();
       }
     }
   );

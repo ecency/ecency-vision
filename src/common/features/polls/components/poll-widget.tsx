@@ -45,8 +45,9 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
     [poll.hideVotes, resultsMode, activeUser?.username, entry?.author]
   );
   const showChangeVote = useMemo(
-    () => poll.voteChange && resultsMode && pollDetails.data?.status === "Active",
-    [resultsMode, poll.voteChange, pollDetails.data?.status]
+    () =>
+      (poll.voteChange || !activeUserVote) && resultsMode && pollDetails.data?.status === "Active",
+    [resultsMode, poll.voteChange, pollDetails.data?.status, activeUserVote]
   );
   const showVote = useMemo(
     () => pollDetails.data?.status === "Active" && !resultsMode && pollDetails.data?.poll_trx_id,

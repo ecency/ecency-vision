@@ -76,7 +76,13 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
             poll_voters: [
               ...otherVoters,
               { name: activeUser?.username, choice_num: resp.choiceNum }
-            ]
+            ],
+            poll_stats: {
+              ...data.poll_stats,
+              total_voting_accounts_num: existingVote
+                ? data.poll_stats.total_voting_accounts_num
+                : data.poll_stats.total_voting_accounts_num + 1
+            }
           } as ReturnType<typeof useGetPollDetailsQuery>["data"];
         }
       )
