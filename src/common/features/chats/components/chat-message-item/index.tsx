@@ -153,11 +153,7 @@ export function ChatMessageItem({
               isEmoji={isEmoji}
             />
             <ChatMessageForwardingLabel message={message} type={type} />
-            <ChatMessageRepliedLabel
-              message={message}
-              type={type}
-              currentContact={currentContact}
-            />
+            <ChatMessageRepliedLabel message={message} type={type} />
             <div
               className="sender-message-content [&>img]:rounded-xl"
               dangerouslySetInnerHTML={{ __html: renderedPreview }}
