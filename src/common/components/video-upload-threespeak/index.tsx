@@ -208,7 +208,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
               videoUrl,
               thumbUrl,
               activeUser: activeUser!.username,
-              duration: durationForApiCall,
+              duration: durationForApiCall
             });
             props.setShow(false);
             setStep("upload");
