@@ -46,6 +46,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
   const [videoUrl, setVideoUrl] = useState("");
   const [thumbUrl, setThumbUrl] = useState("");
   const [duration, setDuration] = useState("");
+  const [durationForApiCall, setDurationForApiCall] = useState(0);
   const [showRecorder, setShowRecorder] = useState(false);
 
   const canUpload = videoUrl;
@@ -68,6 +69,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       setVideoPercentage(0);
       setThumbnailPercentage(0);
       setShowRecorder(false);
+      setDurationForApiCall(0);
     }
   }, [props.show]);
 
@@ -78,6 +80,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       const seconds = Math.floor(duration % 60);
       const videoDuration = `${minutes}:${seconds}`;
       setDuration(videoDuration);
+      setDurationForApiCall(duration);
     }
   };
 
@@ -205,7 +208,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
               videoUrl,
               thumbUrl,
               activeUser: activeUser!.username,
-              duration
+              duration: durationForApiCall,
             });
             props.setShow(false);
             setStep("upload");
