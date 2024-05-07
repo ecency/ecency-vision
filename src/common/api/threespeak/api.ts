@@ -53,7 +53,7 @@ export const uploadVideoInfo = async (
   videoUrl: string,
   thumbnailUrl: string,
   username: string,
-  duration: string
+  duration: string | number
 ) => {
   const token = await threespeakAuth(username);
   try {
