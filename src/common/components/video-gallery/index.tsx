@@ -58,7 +58,7 @@ const VideoGallery = ({
         <ModalHeader closeButton={true}>
           <ModalTitle>{_t("video-gallery.title")}</ModalTitle>
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="min-h-[400px]">
           <div className="video-status-picker">
             {!isEditing ? (
               <DropDown

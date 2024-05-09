@@ -1497,7 +1497,10 @@
     "confirm-and-upload": "Confirm and upload to 3Speak",
     "uploading": "Uploading..{{n}}/{{total}}",
     "uploaded": "Uploaded!",
-    "reset": "Reset"
+    "reset": "Reset",
+    "source": "Video source",
+    "thumbnail": "Thumbnail",
+    "min-duration-alert": "Video with less than 15 seconds duration will be ignored by 3Speak."
   },
   "video-gallery": {
     "all": "All",
