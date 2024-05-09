@@ -15,6 +15,7 @@ import config from "../config";
 import { getSearchIndexCount, getDynamicProps } from "./helper";
 
 import { getOperatingSystem } from "../common/util/platform";
+import { getCommunity } from "../common/api/bridge";
 
 export const makePreloadedState = async (
   req: express.Request
@@ -22,6 +23,8 @@ export const makePreloadedState = async (
   const _c = (k: string): any => req.cookies[k];
 
   const activeUser = _c("active_user") || null;
+
+  const communityData = await getCommunity(config.hive_id)
 
   const theme =
     _c("theme") && Object.values(Theme).includes(_c("theme"))
@@ -53,6 +56,7 @@ export const makePreloadedState = async (
     ctheme: config.theme,
     tags: [...config.tags],
     baseApiUrl: config.baseApiUrl,
+    communityTitle: communityData!.title
   };
 
   const dynamicProps = await getDynamicProps();

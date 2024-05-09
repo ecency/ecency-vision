@@ -33,6 +33,7 @@ import {claimPoints, getCurrencyTokenRate} from "../../api/private-api";
 import { claimBaPoints} from "../../api/breakaway";
 import { dateToFullRelative } from "../../helper/parse-date";
 import { getCommunity } from "../../api/bridge";
+import { Community } from "../../store/communities/types";
 
 import {
     accountGroupSvg,
@@ -173,6 +174,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
 
 interface Props {
     global: Global;
+    myCommunity: Community
     dynamicProps: DynamicProps
     history: History;
     activeUser: ActiveUser | null;
@@ -222,6 +224,7 @@ export const WalletEcency = (props: Props) => {
     const {global, activeUser, account, points, history, fetchPoints, updateActiveUser} = props;
 
     useEffect(() => {
+        console.log(props)
         setIsMounted(true);
         let user = history.location.pathname.split("/")[1];
         user = user.replace('@','')
@@ -229,7 +232,7 @@ export const WalletEcency = (props: Props) => {
         getEstimatedPointsValue();
         getCommunityInfo(); 
         if (communityInfo && isMounted ) {
-          getPointsHistory(user, communityInfo?.title);
+          getPointsHistory(account.name, communityInfo?.title);
           getUserPoints();
         }
       
@@ -289,7 +292,7 @@ export const WalletEcency = (props: Props) => {
     const getUserPoints = async (): Promise<any[] | undefined> => {
        
         try {
-          const response: AxiosResponse | any = await getBaUserPoints(activeUser!.username, communityInfo?.title);
+          const response: AxiosResponse | any = await getBaUserPoints(account!?.name, communityInfo?.title);
           if (response.status === 200) {
               const userPoints = response.data.userPoints;
               setUserPoints(userPoints[0])
@@ -418,7 +421,7 @@ export const WalletEcency = (props: Props) => {
                             </>
                          )}
 
-                            <div className="balance-row estimated alternative">
+                        {/* <div className="balance-row estimated alternative">
                             <div className="balance-info">
                                 <div className="title">{_t("wallet.estimated-points")}</div>
                                 <div className="description">{_t("wallet.estimated-description-points")}</div>
@@ -428,7 +431,7 @@ export const WalletEcency = (props: Props) => {
                                     {estimatedPointsValueLoading ? `${_t("wallet.calculating")}...` : <FormattedCurrency {...props} value={estimatedPointsValue*parseFloat(userPoints?.pointsBalance)} fixAt={3} />}
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="balance-row alternative">
                             <div className="balance-info">
@@ -438,7 +441,7 @@ export const WalletEcency = (props: Props) => {
                             <div className="balance-values">
                                 <div className="amount">
 
-                                {
+                                {/* {
                                         (() => {
                                             let dropDownConfig: any
                                             if(isMyPage) {
@@ -472,7 +475,7 @@ export const WalletEcency = (props: Props) => {
                                         </div>
                                             )
                                         })()
-                                    }
+                                    } */}
 
 
                                     {/* {isMyPage && (
@@ -481,7 +484,7 @@ export const WalletEcency = (props: Props) => {
                                         </div>
                                     )} */}
 
-                                    <>{userPoints?.pointsBalance}.000 Points</>
+                                    <>{!userPoints ? "Fetching Point..." : userPoints?.pointsBalance + ".000 Points"}</>
                                 </div>
                             </div>
                         </div>
@@ -514,12 +517,12 @@ export const WalletEcency = (props: Props) => {
                                             <span className="reward-num">1</span>
                                         </div>
                                     </Tooltip>
-                                    <Tooltip content={_t('points.checkin-desc')}>
+                                    {/* <Tooltip content={_t('points.checkin-desc')}>
                                         <div className="point-reward-type">
                                             {starOutlineSvg}
                                             <span className="reward-num">0.25</span>
                                         </div>
-                                    </Tooltip>
+                                    </Tooltip> */}
                                     <Tooltip content={_t('points.login-desc')}>
                                         <div className="point-reward-type">
                                             {accountOutlineSvg}
@@ -532,18 +535,18 @@ export const WalletEcency = (props: Props) => {
                                             <span className="reward-num">10</span>
                                         </div>
                                     </Tooltip>
-                                    <Tooltip content={_t('points.delegation-desc')}>
+                                    {/* <Tooltip content={_t('points.delegation-desc')}>
                                         <div className="point-reward-type">
                                             {ticketSvg}
                                             <span className="reward-num">10</span>
                                         </div>
-                                    </Tooltip>
-                                    <Tooltip content={_t('points.community-desc')}>
+                                    </Tooltip> */}
+                                    {/* <Tooltip content={_t('points.community-desc')}>
                                         <div className="point-reward-type">
                                             {accountGroupSvg}
                                             <span className="reward-num">20</span>
                                         </div>
-                                    </Tooltip>
+                                    </Tooltip> */}
                                 </div>
                             </div>
                             {/* {isMyPage && (
@@ -601,6 +604,7 @@ export const WalletEcency = (props: Props) => {
 export default (p: Props) => {
     const props = {
         global: p.global,
+        myCommunity: p.myCommunity,
         dynamicProps: p.dynamicProps,
         history: p.history,
         activeUser: p.activeUser,
