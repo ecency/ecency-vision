@@ -10,6 +10,7 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { recordVideoSvg } from "../../img/svg";
 import { VideoUploadRecorder } from "./video-upload-recorder";
 import useMountedState from "react-use/lib/useMountedState";
+import { Alert } from "@ui/alert";
 
 const DEFAULT_THUMBNAIL = require("./assets/thumbnail-play.jpg");
 
@@ -120,7 +121,10 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
   const uploadVideoModal = (
     <div className="dialog-content ">
       <div className="three-speak-video-uploading position-relative">
-        <p className="font-weight-bold">Video source</p>
+        <Alert appearance="primary" className="mb-4">
+          {_t("video-upload.min-duration-alert")}
+        </Alert>
+        <p className="font-weight-bold mb-2">{_t("video-upload.source")}</p>
         {showRecorder ? (
           <VideoUploadRecorder
             setVideoUrl={setVideoUrl}
@@ -151,7 +155,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
             />
           </div>
         )}
-        <p className="font-weight-bold mt-5">Thumbnail</p>
+        <p className="font-weight-bold mt-5">{_t("video-upload.thumbnail")}</p>
         <VideoUploadItem
           label={_t("video-upload.choose-thumbnail")}
           onFileChange={handleThumbnailChange}
