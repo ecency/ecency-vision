@@ -91,7 +91,7 @@
     "restore": "Palauta",
     "success": "Onnistui",
     "error": "Virhe",
-    "reset-form": "Reset form"
+    "reset-form": "Tyhjennä lomake"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -1498,9 +1498,9 @@
     "uploading": "Lähetetään..{{n}}/{{total}}",
     "uploaded": "Lähetetty!",
     "reset": "Tyhjennä",
-    "source": "Video source",
-    "thumbnail": "Thumbnail",
-    "min-duration-alert": "Video less than 15 seconds in duration will be ignored by 3Speak."
+    "source": "Videon lähde",
+    "thumbnail": "Pikkukuva",
+    "min-duration-alert": "Alle 15 sekuntia pitkät videot hylätään 3Speak:ssa."
   },
   "video-gallery": {
     "all": "Kaikki",
