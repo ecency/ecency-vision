@@ -4,11 +4,83 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated notifications pt.3">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixups">
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/_navbar-notifications-button.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar-toggle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-notifications-button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-perks-button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/_navbar-side-theme-switcher.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-theme-switcher.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-user-info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shims/icons.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/pin-reply.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/pin-reply.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servers.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/servers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/temp-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/temp-entry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ac-ace.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ac-ace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ar-SA.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ar-SA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/az-AZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/az-AZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/bg-BG.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/bg-BG.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/bn-BD.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/bn-BD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/da-DK.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/da-DK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/de-DE.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/de-DE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/el-GR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/el-GR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/es-ES.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/es-ES.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/et-EE.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/et-EE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/fa-IR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/fa-IR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/fi-FI.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/fi-FI.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/fil-PH.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/fil-PH.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/fr-FR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/fr-FR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/he-IL.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/he-IL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/hi-IN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/hi-IN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/hr-HR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/hr-HR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/hu-HU.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/hu-HU.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/id-ID.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/id-ID.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/it-IT.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/it-IT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ja-JP.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ja-JP.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ka-GE.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ka-GE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/kk-KZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/kk-KZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ko-KR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ko-KR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ku-TR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ku-TR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ky-KG.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ky-KG.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/lt-LT.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/lt-LT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/lv-LV.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/lv-LV.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ms-MY.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ms-MY.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ne-NP.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ne-NP.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/nl-NL.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/nl-NL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/no-NO.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/no-NO.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/pa-IN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/pa-IN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/pcm-NG.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/pcm-NG.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/pl-PL.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/pl-PL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/pt-PT.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/pt-PT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ro-RO.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ro-RO.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ru-RU.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ru-RU.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/sk-SK.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/sk-SK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/sl-SI.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/sl-SI.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/sr-CS.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/sr-CS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/sv-SE.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/sv-SE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ta-IN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ta-IN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/th-TH.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/th-TH.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/tr-TR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/tr-TR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/uk-UA.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/uk-UA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ur-IN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ur-IN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/ur-PK.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/ur-PK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/uz-UZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/uz-UZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/vi-VN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/vi-VN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/yo-NG.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/yo-NG.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/zh-TW.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/zh-TW.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-default.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-desktop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-desktop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-mobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-toggle.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/no-ssr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/no-ssr.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,36 +118,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared/notifications/notification-types&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "feature/nextjs-migration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/i18n/locales",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -86,11 +158,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/i18n/locales" />
+      <recent name="$PROJECT_DIR$/src/features/shared/navbar" />
+      <recent name="$PROJECT_DIR$/src/features/shared/navbar/sidebar" />
+      <recent name="$PROJECT_DIR$/src/shims" />
       <recent name="$PROJECT_DIR$/src/features/shared/notifications/notification-types" />
-      <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
-      <recent name="$PROJECT_DIR$/src/api" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
@@ -220,7 +292,7 @@
       <workItem from="1705249313313" duration="7258000" />
       <workItem from="1705325978760" duration="1449000" />
       <workItem from="1705327511500" duration="3546000" />
-      <workItem from="1715265197883" duration="423000" />
+      <workItem from="1715265197883" duration="3510000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -430,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705330784755</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fixups">
+      <option name="closed" value="true" />
+      <created>1715265623110</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715265623110</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +552,8 @@
     <MESSAGE value="Migrated notifications pt.1" />
     <MESSAGE value="Migrated notifications pt.2" />
     <MESSAGE value="Migrated notifications pt.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated notifications pt.3" />
+    <MESSAGE value="Fixups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixups" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
