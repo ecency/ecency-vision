@@ -1497,7 +1497,10 @@
     "confirm-and-upload": "Подтвердить и загрузить в 3Speak",
     "uploading": "Загрузка...{{n}}/{{total}}",
     "uploaded": "Загружено!",
-    "reset": "Сбросить"
+    "reset": "Сбросить",
+    "source": "Video source",
+    "thumbnail": "Thumbnail",
+    "min-duration-alert": "Video less than 15 seconds in duration will be ignored by 3Speak."
   },
   "video-gallery": {
     "all": "Все",
