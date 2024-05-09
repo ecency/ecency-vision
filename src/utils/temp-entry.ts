@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Entry, FullAccount } from "@/entities";
-import * as pack from "../../package.json";
+import pack from "../../package.json";
 
 export interface TempEntryProps {
   author: FullAccount;

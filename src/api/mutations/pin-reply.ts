@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import * as pack from "../../../package.json";
+import pack from "../../../package.json";
 import { useUpdateReply } from "./update-reply";
 import { makeJsonMetaDataReply } from "@/utils";
 import { Entry, MetaData } from "@/entities";
