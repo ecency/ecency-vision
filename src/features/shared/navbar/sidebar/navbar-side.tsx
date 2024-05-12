@@ -46,7 +46,11 @@ export function NavbarSide({ show, setShow, placement = "right" }: Props) {
           <Button icon={closeSvg} size="sm" appearance="gray-link" onClick={() => setShow(false)} />
         </div>
         <div className="px-4 justify-between pb-2 flex items-center">
-          <Button href="/submit" appearance="gray-link" icon={<UilEditAlt />} />
+          <Button
+            href="/submit"
+            appearance="gray-link"
+            icon={<UilEditAlt width={20} height={20} />}
+          />
           <NavbarNotificationsButton onClick={() => setShow(false)} />
           <Button
             icon={walletIconSvg}

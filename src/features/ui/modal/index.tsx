@@ -4,7 +4,6 @@ import useMount from "react-use/lib/useMount";
 import useUnmount from "react-use/lib/useUnmount";
 import { classNameObject, useFilteredProps } from "@/features/ui/util";
 import { animated, Transition, TransitionFrom, TransitionTo } from "@react-spring/web";
-import NoSSR from "@/utils/no-ssr";
 
 interface Props {
   show: boolean;
@@ -63,8 +62,8 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
 
   return (
     <ModalContext.Provider value={{ show, setShow }}>
-      <NoSSR>
-        {createPortal(
+      {typeof document !== "undefined" &&
+        createPortal(
           <Transition
             items={transitionsTriggers}
             keys={Array.from(transitionsTriggers.keys())}
@@ -82,7 +81,8 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
           </Transition>,
           document.querySelector("#modal-overlay-container") ?? document.createElement("div")
         )}
-        {createPortal(
+      {typeof document !== "undefined" &&
+        createPortal(
           <Transition
             items={transitionsTriggers}
             keys={Array.from(transitionsTriggers.keys())}
@@ -140,7 +140,6 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
           </Transition>,
           document.querySelector("#modal-dialog-container") ?? document.createElement("div")
         )}
-      </NoSSR>
     </ModalContext.Provider>
   );
 }

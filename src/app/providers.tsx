@@ -36,9 +36,6 @@ export default function Providers({ children }: PropsWithChildren) {
     >
       <PushNotificationsProvider>{children}</PushNotificationsProvider>
       <ReactQueryDevtools initialIsOpen={false} />
-      <div id="modal-overlay-container" />
-      <div id="modal-dialog-container" />
-      <div id="popper-container" />
     </QueryClientProvider>
   );
 }

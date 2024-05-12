@@ -44,7 +44,12 @@ export function NavbarMobile({
 
       <div className="flex items-center ml-3">
         <Tooltip content={i18next.t("navbar.post")}>
-          <Button href="/submit" appearance="gray-link" className="ml-3" icon={<UilEditAlt />} />
+          <Button
+            href="/submit"
+            appearance="gray-link"
+            className="ml-3"
+            icon={<UilEditAlt width={20} height={20} />}
+          />
         </Tooltip>
         {activeUser && (
           <div className="cursor-pointer ml-4" onClick={() => setExpanded(true)}>

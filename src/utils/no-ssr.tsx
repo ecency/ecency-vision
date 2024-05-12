@@ -1,10 +1,5 @@
-// components/NoSsr.jsx
+import { PropsWithChildren } from "react";
 
-import dynamic from "next/dynamic";
-import React, { PropsWithChildren } from "react";
-
-const NoSsr = (props: PropsWithChildren) => <React.Fragment>{props.children}</React.Fragment>;
-
-export default dynamic(() => Promise.resolve(NoSsr), {
-  ssr: false
-});
+export function SSRSafe(props: PropsWithChildren) {
+  return typeof window !== "undefined" && typeof document !== "undefined" ? props.children : null;
+}

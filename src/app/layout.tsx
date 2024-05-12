@@ -15,6 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <Providers>{children}</Providers>
+        <div id="modal-overlay-container" />
+        <div id="modal-dialog-container" />
+        <div id="popper-container" />
       </body>
     </html>
   );

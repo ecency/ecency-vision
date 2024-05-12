@@ -11,7 +11,7 @@ import {
   UilUserSquare
 } from "@iconscout/react-unicons";
 import { NavbarSideMainMenuItem } from "./sidebar/navbar-side-main-menu-item";
-import * as pack from "../../../../package.json";
+import pack from "../../../../package.json";
 import { NavbarSideThemeSwitcher } from "./sidebar/navbar-side-theme-switcher";
 import { Button } from "@ui/button";
 import i18next from "i18next";
