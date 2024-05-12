@@ -348,7 +348,7 @@ exports[`(2) Should show edit buttons with nsfw label 1`] = `
     className="community-rewards"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2rem] text-sm font-[500] px-2 "
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active disabled:opacity-50 h-[2rem] text-sm font-[500] px-2 "
       onClick={[Function]}
       size="sm"
       style={

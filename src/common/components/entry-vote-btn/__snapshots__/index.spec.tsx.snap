@@ -6,7 +6,7 @@ Array [
     className="voting-controls voting-controls-up disable"
   >
     <button
-      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
+      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid flex items-center justify-center gap-2 border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active disabled:opacity-50 h-[2rem] text-sm font-[500] px-2 text-xs w-8 !p-0"
       onClick={[Function]}
       size="xs"
       style={
