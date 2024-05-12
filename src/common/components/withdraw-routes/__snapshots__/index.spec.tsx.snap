@@ -29,7 +29,7 @@ exports[`(1) Default render 1`] = `
     />
   </div>
   <div
-    className="grid grid-cols-12"
+    className="grid grid-cols-12 gap-4"
   >
     <div
       className="col-span-12 md:col-span-3 mb-4"
@@ -76,11 +76,10 @@ exports[`(1) Default render 1`] = `
       </select>
     </div>
     <div
-      className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
+      className="col-span-12 md:col-span-2 flex items-end mb-4"
     >
       <button
-        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
-        size="sm"
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 !h-[2.75rem]"
         style={
           Object {
             "outline": "none",
@@ -127,7 +126,7 @@ Array [
       />
     </div>
     <div
-      className="grid grid-cols-12"
+      className="grid grid-cols-12 gap-4"
     >
       <div
         className="col-span-12 md:col-span-3 mb-4"
@@ -174,11 +173,10 @@ Array [
         </select>
       </div>
       <div
-        className="col-span-12 md:col-span-2 flex items-end justify-center mb-4"
+        className="col-span-12 md:col-span-2 flex items-end mb-4"
       >
         <button
-          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
-          size="sm"
+          className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 !h-[2.75rem]"
           style={
             Object {
               "outline": "none",
@@ -245,20 +243,30 @@ Array [
           <td
             className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
           >
-            <a
-              href="#"
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-2 !p-0"
               onClick={[Function]}
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
               title="Delete"
+              type="button"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
-                <path
-                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </button>
           </td>
         </tr>
         <tr
@@ -282,20 +290,30 @@ Array [
           <td
             className="border-b border-r dark:border-gray-700 last:border-r-0 p-1 sm:p-2 border p-2"
           >
-            <a
-              href="#"
+            <button
+              className="cursor-pointer rounded-full duration-300 no-wrap flex items-center justify-center gap-2 text-gray-600 hover:text-blue-dark-sky focus:text-blue-dark-sky-active h-[2.125rem] px-3 ml-2 !p-0"
               onClick={[Function]}
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
               title="Delete"
+              type="button"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <div
+                className="flex justify-center items-center w-5 h-5 [&>svg]:w-5 [&>svg]:h-5 "
               >
-                <path
-                  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </button>
           </td>
         </tr>
       </tbody>

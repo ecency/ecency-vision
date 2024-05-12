@@ -183,7 +183,7 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
               onInput={handleOnInput}
             />
           </div>
-          <div className="grid grid-cols-12">
+          <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-3 mb-4">
               <label>{_t("withdraw-routes.percent")}</label>
               <FormControl
@@ -205,8 +205,8 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                 <option value="no">{_t("g.no")}</option>
               </FormControl>
             </div>
-            <div className="col-span-12 md:col-span-2 flex items-end justify-center mb-4">
-              <Button type="submit" size="sm">
+            <div className="col-span-12 md:col-span-2 flex items-end mb-4">
+              <Button className="!h-[2.75rem]" type="submit">
                 {_t("g.add")}
               </Button>
             </div>
@@ -232,11 +232,11 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                     <Td className="border p-2">{r.auto_vest ? _t("g.yes") : _t("g.no")}</Td>
                     <Td className="border p-2">
                       <Tooltip content={_t("g.delete")}>
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-
+                        <Button
+                          className="ml-2"
+                          noPadding={true}
+                          appearance="gray-link"
+                          onClick={() => {
                             this.stateSet({
                               account: r.to_account,
                               percent: "0",
@@ -244,9 +244,8 @@ export class WithdrawRoutes extends BaseComponent<Props, State> {
                               mode: "sign"
                             });
                           }}
-                        >
-                          {deleteForeverSvg}
-                        </a>
+                          icon={deleteForeverSvg}
+                        />
                       </Tooltip>
                     </Td>
                   </Tr>
