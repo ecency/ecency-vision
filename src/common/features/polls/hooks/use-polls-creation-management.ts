@@ -6,6 +6,7 @@ import { PollSnapshot } from "../components";
 
 export function usePollsCreationManagement(poll?: PollSnapshot) {
   const [title, setTitle, clearTitle] = useLocalStorage(PREFIX + "_plls_t", "");
+  const [endTime, setEndTime, clearEndTime] = useLocalStorage(PREFIX + "_plls_et", "00:00");
   const [endDate, setEndDate, clearEndDate] = useLocalStorage(
     PREFIX + "_plls_ed",
     addDays(new Date(), 7),
@@ -80,11 +81,14 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
     voteChange,
     setVoteChange,
     isExpiredEndDate,
+    endTime,
+    setEndTime,
     clearAll: () => {
       clearTitle();
       clearEndDate();
       clearAccountAge();
       clearChoices();
+      clearEndTime();
     }
   };
 }

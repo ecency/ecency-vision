@@ -5,6 +5,7 @@ import { usePollsCreationManagement } from "../hooks";
 import { FormControl, InputGroup } from "@ui/input";
 import {
   UilCalender,
+  UilClock,
   UilPanelAdd,
   UilPlus,
   UilQuestionCircle,
@@ -13,7 +14,7 @@ import {
   UilTrashAlt
 } from "@iconscout/react-unicons";
 import { Button } from "@ui/button";
-import { format } from "date-fns";
+import { format, setHours, setMinutes } from "date-fns";
 
 export interface PollSnapshot {
   title: string;
@@ -63,10 +64,16 @@ export function PollsCreation({
     voteChange,
     setVoteChange,
     isExpiredEndDate,
+    endTime,
+    setEndTime,
     clearAll
   } = usePollsCreationManagement(existingPoll);
 
   const formatDate = useMemo(() => format(endDate ?? new Date(), "yyyy-MM-dd"), [endDate]);
+  const isInvalidEndTime = useMemo(
+    () => !/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(endTime ?? ""),
+    [endTime]
+  );
 
   return (
     <Modal
@@ -89,20 +96,34 @@ export function PollsCreation({
               onChange={(e) => setTitle(e.target.value)}
             />
           </InputGroup>
-          <InputGroup prepend={<UilCalender />}>
-            <FormControl
-              disabled={readonly}
-              placeholder={_t("polls.title-placeholder")}
-              type="date"
-              value={formatDate}
-              onChange={(e: any) => setEndDate(new Date(e.target.value))}
-            />
-          </InputGroup>
+          <div className="grid grid-cols-2 items-start gap-4">
+            <InputGroup prepend={<UilCalender />}>
+              <FormControl
+                disabled={readonly}
+                placeholder={_t("polls.title-placeholder")}
+                type="date"
+                value={formatDate}
+                onChange={(e: any) => setEndDate(new Date(e.target.value))}
+              />
+            </InputGroup>
 
-          {isExpiredEndDate && !readonly && (
-            <div className="text-sm text-center py-3 text-red mx-auto">
-              {_t("polls.expired-date")}
+            <div>
+              <InputGroup prepend={<UilClock />}>
+                <FormControl
+                  disabled={readonly}
+                  placeholder="00:00"
+                  type="text"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                />
+              </InputGroup>
+              {isInvalidEndTime && (
+                <div className="text-xs pt-1 px-3 text-red mx-auto">{_t("polls.invalid-time")}</div>
+              )}
             </div>
+          </div>
+          {isExpiredEndDate && !readonly && (
+            <div className="text-xs pt-1 px-3 text-red mx-auto">{_t("polls.expired-date")}</div>
           )}
 
           <div className="flex flex-col gap-4 items-start mb-6">
@@ -223,14 +244,17 @@ export function PollsCreation({
                 hasEmptyOrDuplicatedChoices ||
                 !title ||
                 typeof accountAge !== "number" ||
-                isExpiredEndDate
+                isExpiredEndDate ||
+                isInvalidEndTime
               }
               iconPlacement="left"
               onClick={() => {
-                if (title && endDate && choices && typeof accountAge === "number")
+                if (title && endDate && choices && typeof accountAge === "number") {
+                  const [hours, mins] = endTime?.split(":") ?? "00:00";
+
                   onAdd({
                     title,
-                    endTime: endDate,
+                    endTime: setMinutes(setHours(endDate, +hours), +mins),
                     choices,
                     voteChange: !!voteChange,
                     hideVotes: !!hideVotes,
@@ -239,6 +263,7 @@ export function PollsCreation({
                     },
                     interpretation
                   });
+                }
                 setShow(false);
               }}
             >
