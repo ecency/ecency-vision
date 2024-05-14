@@ -2456,6 +2456,7 @@
     "finished": "Valmis",
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
     "interpretation": "Tulkinta",
-    "creating-in-progress": "Luonti käynnissä..."
+    "creating-in-progress": "Luonti käynnissä...",
+    "invalid-time": "Invalid time format. Use HH:MM"
   }
 }
