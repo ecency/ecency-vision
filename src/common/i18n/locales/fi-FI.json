@@ -91,7 +91,7 @@
     "restore": "Palauta",
     "success": "Onnistui",
     "error": "Virhe",
-    "reset-form": "Reset form"
+    "reset-form": "Tyhjennä lomake"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -1498,9 +1498,9 @@
     "uploading": "Lähetetään..{{n}}/{{total}}",
     "uploaded": "Lähetetty!",
     "reset": "Tyhjennä",
-    "source": "Video source",
-    "thumbnail": "Thumbnail",
-    "min-duration-alert": "Video less than 15 seconds in duration will be ignored by 3Speak."
+    "source": "Videon lähde",
+    "thumbnail": "Pikkukuva",
+    "min-duration-alert": "Alle 15 sekuntia pitkät videot hylätään 3Speak:ssa."
   },
   "video-gallery": {
     "all": "Kaikki",
@@ -2456,6 +2456,7 @@
     "finished": "Valmis",
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
     "interpretation": "Tulkinta",
-    "creating-in-progress": "Luonti käynnissä..."
+    "creating-in-progress": "Luonti käynnissä...",
+    "invalid-time": "Invalid time format. Use HH:MM"
   }
 }

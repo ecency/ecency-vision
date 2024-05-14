@@ -1498,9 +1498,9 @@
     "uploading": "Subiendo...{{n}}/{{total}}",
     "uploaded": "¡Vídeo subido!",
     "reset": "Reiniciar",
-    "source": "Video source",
-    "thumbnail": "Thumbnail",
-    "min-duration-alert": "Video less than 15 seconds in duration will be ignored by 3Speak."
+    "source": "Fuente de vídeo",
+    "thumbnail": "Miniatura",
+    "min-duration-alert": "Un vídeo de menos de 15 segundos de duración será ignorado por 3Speak."
   },
   "video-gallery": {
     "all": "Todos",
@@ -2456,6 +2456,7 @@
     "finished": "Finalizado",
     "expired-date": "La fecha de fin debe ser del presente o futuro",
     "interpretation": "Interpretación",
-    "creating-in-progress": "Creación en progreso..."
+    "creating-in-progress": "Creación en progreso...",
+    "invalid-time": "Invalid time format. Use HH:MM"
   }
 }

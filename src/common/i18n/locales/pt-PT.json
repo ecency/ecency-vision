@@ -2456,6 +2456,7 @@
     "finished": "Finished",
     "expired-date": "End date should be in present or future",
     "interpretation": "Interpretation",
-    "creating-in-progress": "Criação em andamento..."
+    "creating-in-progress": "Criação em andamento...",
+    "invalid-time": "Invalid time format. Use HH:MM"
   }
 }
