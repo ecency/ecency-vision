@@ -70,7 +70,6 @@ export function EmojiPicker({ anchor, onSelect, position, isDisabled }: Props) {
           onSelect(e.native);
         }}
         previewPosition="none"
-        set="apple"
         theme={global.theme === "day" ? "light" : "dark"}
       />
     </div>
