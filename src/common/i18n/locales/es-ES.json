@@ -2457,6 +2457,6 @@
     "expired-date": "La fecha de fin debe ser del presente o futuro",
     "interpretation": "Interpretación",
     "creating-in-progress": "Creación en progreso...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Formato de hora inválido. Use HH:MM"
   }
 }
