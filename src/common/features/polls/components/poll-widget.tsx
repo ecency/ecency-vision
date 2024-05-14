@@ -103,15 +103,14 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         <div className="mb-4 flex items-start justify-between gap-4">
           <div className="font-semibold text-lg">{poll.title}</div>
           <div className="text-sm flex items-center gap-3 text-gray-600 py-1 min-h-[3rem] dark:text-gray-400 whitespace-nowrap">
-            {showEndDate &&
-              (isFinished ? (
-                _t("polls.finished")
-              ) : (
+            {showEndDate && (
+              <>
                 <div className="flex flex-col">
-                  <span>{_t("polls.end-time")}</span>
+                  <span>{isFinished ? _t("polls.finished") : _t("polls.end-time")}</span>
                   <span className="text-blue-dark-sky font-semibold">{endTimeFullDate}</span>
                 </div>
-              ))}
+              </>
+            )}
             <Button
               noPadding={true}
               icon={<UilClock />}
