@@ -1,6 +1,6 @@
 import React, { HTMLProps } from "react";
-import { BADGE_STYLES, BadgeAppearance } from "@/features/ui/badge/badge-styles";
-import { classNameObject, useFilteredProps } from "@/features/ui/util";
+import { BADGE_STYLES, BadgeAppearance } from "@ui/badge/badge-styles";
+import { classNameObject, useFilteredProps } from "@ui/util";
 
 interface Props {
   appearance?: BadgeAppearance;

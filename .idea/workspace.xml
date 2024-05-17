@@ -4,21 +4,132 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated sidebars">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated sidebars pt.2">
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/account-following.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-relationship-btw-accounts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/chat-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/chats/[...params]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/chats/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-channel-messages.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-channel-not-joined.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-floating-date.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input-files.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input/_chats.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input/chat-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input/hooks/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input/hooks/use-chat-input-submit.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-input/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-invitation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-box.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-channel-item-extension.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/_chat-message-item.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/chat-message-forwarding-label.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/chat-message-replied-label.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/chat-message-status.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/chat-message-username-label.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/hooks/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/hooks/use-focus-on-message-by-id.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-message-item/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-messages-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-messages-view.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/chat-constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/chat-popup-contacts-and-channels.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/chat-popup-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/chat-popup-messages-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/chat-popup-search-user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chat-profile-box.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/blocked-users-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/hidden-messages-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-confirmation-modal/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-confirmation-modal/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-default-screen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-direct-messages/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-direct-messages/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-dropdown-menu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-import.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-scroller/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-scroller/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-channel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-direct-contact.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-saved-messages-avatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-search-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-search.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/chats-welcome.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/create-an-account.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/forward-message-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/join-community-chat-btn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/manage-chat-key.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/network-error.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/reply-to-messages/_chat-reply-message.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/reply-to-messages/chat-reply-direct-message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/reply-to-messages/chat-reply-public-message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/reply-to-messages/chat-reply-to-message-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/components/reply-to-messages/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/hooks/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/hooks/use-create-temporary-contact-from-param.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/hooks/use-create-temporary-contact.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/hooks/use-persistent-reply-to-message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/hooks/user-create-temporary-channel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/mutations/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/mutations/invite-via-post-comment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/mutations/upload.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/queries/composed-contacts-and-channels-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/queries/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/queries/search-communities-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/queries/search-users-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/screens/chats-manage-key-section.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/screens/chats-user-not-joined-section.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/screens/chats.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/screens/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/utils/get-date-fns-locale.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/utils/group-messages.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/utils/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/utils/is-message-gif.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chats/utils/upload-chat-keys.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/common-details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/insufficient-resource-credits-details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/follow-controls/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/core/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/core/intro-step.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/emoji-picker/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/emoji-picker/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/gif-picker/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/gif-picker/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/code-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/use-synchronized-local-storage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/bridge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/misc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/misc.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-desktop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-desktop.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-mobile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/_index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.spec.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/user-nav/wallet-badge.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/no-ssr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/no-ssr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/feedback/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/badge/badge-styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/badge/badge-styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/button/props.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/button/props.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/button/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/button/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/input/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +175,7 @@
     &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/i18n/locales&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/@ecency/ns-query&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -97,11 +208,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/features/i18n/locales" />
-      <recent name="$PROJECT_DIR$/src/features/shared/navbar" />
-      <recent name="$PROJECT_DIR$/src/features/shared/navbar/sidebar" />
-      <recent name="$PROJECT_DIR$/src/shims" />
-      <recent name="$PROJECT_DIR$/src/features/shared/notifications/notification-types" />
+      <recent name="$PROJECT_DIR$/node_modules/@ecency/ns-query" />
+      <recent name="$PROJECT_DIR$/src/app/chats/[username]" />
+      <recent name="$PROJECT_DIR$/src/features/shared/feedback" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/src/features/chats/screens" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
@@ -233,7 +344,8 @@
       <workItem from="1705327511500" duration="3546000" />
       <workItem from="1715265197883" duration="5085000" />
       <workItem from="1715330605286" duration="17000" />
-      <workItem from="1715511697516" duration="1698000" />
+      <workItem from="1715511697516" duration="14576000" />
+      <workItem from="1715873229990" duration="4584000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -459,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715272026572</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Migrated sidebars pt.2">
+      <option name="closed" value="true" />
+      <created>1715525403092</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1715525403092</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved common styles" />
     <MESSAGE value="Migrated APIs" />
     <MESSAGE value="Migrated all dependencies for communities page" />
     <MESSAGE value="Fixed utils imports" />
@@ -502,7 +621,8 @@
     <MESSAGE value="Migrated notifications pt.3" />
     <MESSAGE value="Fixups" />
     <MESSAGE value="Migrated sidebars" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated sidebars" />
+    <MESSAGE value="Migrated sidebars pt.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated sidebars pt.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

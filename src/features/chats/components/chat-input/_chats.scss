@@ -1,0 +1,24 @@
+.chat-input {
+  .gif-picker {
+    max-height: 300px;
+    overflow-y: auto;
+    @apply bg-white dark:bg-dark-200 border-b border-[--border-color] w-[calc(100%+0.75rem)] flex flex-col gap-3 mb-4 -mx-3;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gif-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      @apply p-3;
+    }
+
+    .search-box {
+      position: sticky;
+      top: 0;
+      @apply bg-white dark:bg-dark-200 border-b border-[--border-color] p-3;
+    }
+  }
+}

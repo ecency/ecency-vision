@@ -1,40 +1,45 @@
-import React, { HTMLProps, useContext } from "react";
-import { DropdownContext } from "@/features/ui/dropdown/dropdown-context";
-import { classNameObject } from "@/features/ui/util";
-import { useFilteredProps } from "@/utils/props-filter";
+import React, { HTMLProps, PropsWithChildren, ReactNode, useContext } from "react";
+import { DropdownContext } from "@ui/dropdown/dropdown-context";
+import { classNameObject } from "@ui/util";
 
-interface DropdownItemProps {
-  hideOnClick?: boolean;
+interface Props {
+  size?: "small" | "medium" | "large";
 }
 
-export function DropdownItem(props: HTMLProps<HTMLDivElement> & DropdownItemProps) {
+export function DropdownItem(props: HTMLProps<HTMLDivElement> & Props) {
   const { setShow } = useContext(DropdownContext);
-
-  const nativeProps = useFilteredProps(props, ["hideOnClick"]);
 
   return (
     <div
-      {...nativeProps}
+      {...props}
       className={classNameObject({
-        "min-w-[80%] cursor-pointer px-3 py-2 text-dark-default dark:text-white hover:bg-blue-dark-sky-040 hover:text-blue-dark-sky dark:hover:bg-gray-900 rounded-tr-2xl rounded-br-2xl":
+        "min-w-[80%] cursor-pointer text-dark-default dark:text-white hover:bg-blue-dark-sky-040 hover:text-blue-dark-sky dark:hover:bg-gray-900 rounded-tr-2xl rounded-br-2xl":
           true,
+        "px-3 py-2": !props.size || props.size === "medium",
+        "px-2 py-1 text-sm": !props.size || props.size === "small",
         [props.className ?? ""]: !!props.className
       })}
       onClick={(e) => {
-        if (props.hideOnClick ?? true) {
-          setShow(false);
-        }
+        setShow(false);
         props.onClick?.(e);
       }}
     />
   );
 }
 
-export function DropdownItemHeader(props: HTMLProps<HTMLDivElement>) {
+export function DropdownItemWithIcon(
+  props: Omit<HTMLProps<HTMLDivElement>, "label"> & Props & { icon: ReactNode; label: any }
+) {
   return (
-    <div
-      className="bg-gray-200 rounded-t-xl p-2 text-sm font-semibold -mt-2 w-[calc(100%+1rem)] text-gray-600 dark:bg-dark-200 dark:text-white"
-      {...props}
-    />
+    <DropdownItem {...props}>
+      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-dark-sky [&>div>svg]:w-4">
+        <div>{props.icon}</div>
+        <div className="text-sm font-semibold">{props.label}</div>
+      </div>
+    </DropdownItem>
   );
+}
+
+export function DropdownItemHeader(props: PropsWithChildren<HTMLProps<HTMLDivElement>>) {
+  return <div {...props} />;
 }

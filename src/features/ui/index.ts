@@ -10,3 +10,4 @@ export * from "./alert";
 export * from "./badge";
 export * from "./pagination";
 export * from "./tooltip";
+export * from "./emoji-picker";

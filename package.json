@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ecency/ns-query": "1.2.6-next",
     "@ecency/render-helper": "^2.2.29",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@firebase/analytics": "^0.10.0",
     "@firebase/app": "^0.9.24",
     "@firebase/messaging": "^0.12.5",
@@ -24,6 +27,7 @@
     "currency-symbol-map": "^5.1.0",
     "date-fns": "^2.30.0",
     "diff-match-patch": "^1.0.5",
+    "emoji-mart": "^5.5.2",
     "hive-uri": "^0.2.5",
     "hivesigner": "^3.3.4",
     "html-react-parser": "^5.0.7",
@@ -45,6 +49,7 @@
     "react-use": "^17.4.2",
     "speakingurl": "^14.0.1",
     "tus-js-client": "^3.1.1",
+    "uuid": "^9.0.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
@@ -62,6 +67,7 @@
     "@types/react-google-recaptcha": "^2.1.8",
     "@types/speakingurl": "^13.0.6",
     "@types/tus-js-client": "^2.1.0",
+    "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",

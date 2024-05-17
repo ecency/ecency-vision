@@ -5,21 +5,23 @@ import { useEffect } from "react";
 import { Community } from "@/entities";
 import { isCommunity } from "@/utils";
 
-export function useCommunityCache(category: string, invalidate?: boolean, enabled = true) {
+export function useCommunityCache(category?: string, invalidate?: boolean) {
   const client = useQueryClient();
 
   const query = useQuery<Community | null>({
     queryKey: [QueryIdentifiers.COMMUNITY, category],
-    queryFn: () => (isCommunity(category) ? bridgeApi.getCommunity(category) : null),
+    queryFn: () => (isCommunity(category ?? "") ? bridgeApi.getCommunity(category!!) : null),
     initialData: null,
-    enabled
+    enabled: !!category
   });
 
   useEffect(() => {
     if (invalidate) {
-      client.invalidateQueries({ queryKey: [QueryIdentifiers.COMMUNITY, category] });
+      client.invalidateQueries({
+        queryKey: [QueryIdentifiers.COMMUNITY, category]
+      });
     }
-  }, []);
+  }, [category, client, invalidate]);
 
   return query;
 }

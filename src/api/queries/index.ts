@@ -14,3 +14,5 @@ export * from "./favourites-query";
 export * from "./gallery-images-query";
 export * from "./drafts-query";
 export * from "./notifications";
+export * from "./get-account-posts-query";
+export * from "./get-relationship-btw-accounts";

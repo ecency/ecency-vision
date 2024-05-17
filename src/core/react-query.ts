@@ -19,19 +19,15 @@ export enum QueryIdentifiers {
   BY_DRAFT_ID = "by-draft-id",
   FETCH_DISCUSSIONS = "fetch-discussions",
   FETCH_MUTED_USERS = "fetch-muted-users",
+  GET_ACCOUNT_FULL = "get-account-full",
+  GET_POSTS = "get-posts",
+  GET_BOTS = "get-bots",
+  GET_BOOST_PLUS_PRICES = "get-boost-plus-prices",
+  GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts",
+
+  POLL_DETAILS = "poll-details",
+  GET_RELATIONSHIP_BETWEEN_ACCOUNTS = "get-relationship-between-accounts",
   COMMUNITIES = "communities",
   WITNESSES = "witnesses",
-  POST_HEADER = "post-header",
-  GET_ACCOUNTS = "get-accounts",
-  GET_ACCOUNT_FULL = "get-account-full",
-  TRENDING_TAGS = "trending-tags",
-  FRAGMENTS = "fragments",
-  SCHEDULES = "schedules",
-  BOOKMARKS = "bookmarks",
-  FAVOURITES = "favourites",
-  GALLERY_IMAGES = "gallery-images",
-  DYNAMIC_PROPS = "dynamic-props",
-  NOTIFICATIONS = "notifications",
-  NOTIFICATIONS_SETTINGS = "notifications-settings",
-  NOTIFICATIONS_UNREAD_COUNT = "notifications-unread-count"
+  GALLERY_IMAGES = "gallery-images"
 }

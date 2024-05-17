@@ -8,6 +8,8 @@ import * as ls from "@/utils/local-storage";
 import Cookies from "js-cookie";
 import { useGlobalStore } from "@/core/global-store";
 import { PushNotificationsProvider } from "@/features/push-notifications";
+import { UIManager } from "@ui/core";
+import { ChatProvider } from "@/app/chat-provider";
 
 export default function Providers({ children }: PropsWithChildren) {
   const setActiveUser = useGlobalStore((state) => state.setActiveUser);
@@ -34,7 +36,11 @@ export default function Providers({ children }: PropsWithChildren) {
         })
       }
     >
-      <PushNotificationsProvider>{children}</PushNotificationsProvider>
+      <UIManager>
+        <ChatProvider>
+          <PushNotificationsProvider>{children}</PushNotificationsProvider>
+        </ChatProvider>
+      </UIManager>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

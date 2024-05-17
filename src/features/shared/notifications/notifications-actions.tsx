@@ -181,46 +181,46 @@ export function NotificationsActions({ filter }: Props) {
               </Tooltip>
             </DropdownItem>
           )}
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(i18next.t(`notifications.type-rvotes`), NotifyTypes.VOTE)}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-replies`),
               NotifyTypes.COMMENT
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-mentions`),
               NotifyTypes.MENTION
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-nfavorites`),
               NotifyTypes.FAVORITES
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-nbookmarks`),
               NotifyTypes.BOOKMARKS
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-reblogs`),
               NotifyTypes.RE_BLOG
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-follows`),
               NotifyTypes.FOLLOW
             )}
           </DropdownItem>
-          <DropdownItem hideOnClick={false}>
+          <DropdownItem>
             {getNotificationSettingsItem(
               i18next.t(`notifications.type-transfers`),
               NotifyTypes.TRANSFERS

@@ -9,7 +9,7 @@ export const bridgeServer = new Client(SERVERS, {
 });
 export const dataLimit = typeof window !== "undefined" && window.screen.width < 540 ? 5 : 20 || 20;
 
-const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
+export const bridgeApiCall = <T>(endpoint: string, params: {}): Promise<T> =>
   bridgeServer.call("bridge", endpoint, params);
 
 export const resolvePost = (post: Entry, observer: string, num?: number): Promise<Entry> => {
@@ -199,12 +199,3 @@ export interface AccountRelationship {
   is_blacklisted: boolean;
   follows_blacklists: boolean;
 }
-
-export const getRelationshipBetweenAccounts = (
-  follower: string,
-  following: string
-): Promise<AccountRelationship | null> =>
-  bridgeApiCall<AccountRelationship | null>("get_relationship_between_accounts", [
-    follower,
-    following
-  ]);
