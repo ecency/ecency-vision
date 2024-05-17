@@ -124,3 +124,5 @@ i18n.init({
 i18n.on("languageChanged", function (lang) {
   moment.locale(lang);
 });
+
+export * from "./navigation-locale-watcher";

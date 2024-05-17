@@ -26,13 +26,6 @@ interface Props {
   userListRef?: any;
 }
 
-interface State {
-  username: string;
-  key: string;
-  inProgress: boolean;
-  isVerified: boolean;
-}
-
 export function Login({ doLogin, userListRef }: Props) {
   const hsClientId = useGlobalStore((state) => state.hsClientId);
   const activeUser = useGlobalStore((state) => state.activeUser);

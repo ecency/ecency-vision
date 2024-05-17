@@ -1,0 +1,38 @@
+@import "src/styles/vars_mixins";
+
+.contributors {
+  padding: 0 10px;
+
+  .contributors-list {
+    @include user-grid-list(1, 2, 3);
+
+    .list-header {
+      margin-bottom: 20px;
+
+      @include themify(day) {
+        border-bottom: 1px solid;
+        @apply border-blue-dark-sky-030;
+      }
+
+      @include themify(night) {
+        border-bottom: 1px solid;
+        @apply border-dark-default-010-light;
+      }
+
+      .list-title {
+        @apply text-blue-dark-sky;
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 4rem;
+        @media(max-width: $md-break) {
+          font-size: 2rem;
+        }
+      }
+
+      .list-description {
+        opacity: 0.7;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

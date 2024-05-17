@@ -47,6 +47,7 @@
     "react-popper": "^2.3.0",
     "react-resizable": "^3.0.5",
     "react-use": "^17.4.2",
+    "remeda": "^1.61.0",
     "speakingurl": "^14.0.1",
     "tus-js-client": "^3.1.1",
     "uuid": "^9.0.0",
