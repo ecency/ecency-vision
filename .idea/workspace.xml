@@ -4,39 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated chats pt.1">
-      <change afterPath="$PROJECT_DIR$/src/app/about/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contribute/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contributors/page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contributors/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar-result-info.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-search-result.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/utils/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/faq/utils/search-within-faq.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/guest-post/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/privacy-policy/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/terms-of-service/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/whitepaper/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/consts/contributors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/consts/faq-keys-general.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/consts/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/navigation-locale-watcher-client.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/static-pages.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.scss" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated static pages">
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +221,7 @@
       <workItem from="1715265197883" duration="5085000" />
       <workItem from="1715330605286" duration="17000" />
       <workItem from="1715511697516" duration="14576000" />
-      <workItem from="1715873229990" duration="8208000" />
+      <workItem from="1715873229990" duration="8294000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -494,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715918188617</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Migrated static pages">
+      <option name="closed" value="true" />
+      <created>1715921832425</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1715921832425</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated all dependencies for communities page" />
     <MESSAGE value="Fixed utils imports" />
     <MESSAGE value="Fixed CSS imports and ts imports" />
     <MESSAGE value="Completed communities migration" />
@@ -537,7 +513,8 @@
     <MESSAGE value="Migrated sidebars" />
     <MESSAGE value="Migrated sidebars pt.2" />
     <MESSAGE value="Migrated chats pt.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated chats pt.1" />
+    <MESSAGE value="Migrated static pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated static pages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
