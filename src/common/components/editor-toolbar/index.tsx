@@ -29,11 +29,6 @@ import GifPicker from "../gif-picker";
 import AddImageMobile from "../add-image-mobile";
 import { insertOrReplace, replace } from "../../util/input-util";
 import Gallery from "../gallery";
-import { getAccessToken } from "../../helper/user-token";
-import { uploadImage } from "../../api/misc";
-import { addImage } from "../../api/private-api";
-import { error } from "../feedback";
-import axios from "axios";
 import Fragments from "../fragments";
 import AddImage from "../add-image";
 import AddLink from "../add-link";
@@ -41,6 +36,7 @@ import "./_index.scss";
 import { PollsCreation, PollSnapshot } from "../../features/polls";
 import { UilPanelAdd } from "@iconscout/react-unicons";
 import { classNameObject } from "../../helper/class-name-object";
+import { useUploadPostImage } from "../../api/mutations";
 
 interface Props {
   sm?: boolean;
@@ -93,6 +89,7 @@ export function EditorToolbar({
   const toolbarId = useMemo(() => v4(), []);
   const headers = useMemo(() => [...Array(3).keys()], []);
 
+  const uploadImage = useUploadPostImage();
   const isMounted = useMountedState();
 
   useEffect(() => {
@@ -191,36 +188,12 @@ export function EditorToolbar({
   };
 
   const upload = async (file: File) => {
-    const username = activeUser?.username!;
-
     const tempImgTag = `![Uploading ${file.name} #${Math.floor(Math.random() * 99)}]()\n\n`;
     insertText(tempImgTag);
 
-    let imageUrl: string;
-    try {
-      let token = getAccessToken(username);
-      if (token) {
-        const resp = await uploadImage(file, token);
-        imageUrl = resp.url;
-
-        if (global.usePrivate && imageUrl.length > 0) {
-          addImage(username, imageUrl).then();
-        }
-
-        const imgTag = imageUrl.length > 0 && `![](${imageUrl})\n\n`;
-
-        imgTag && replaceText(tempImgTag, imgTag);
-      } else {
-        error(_t("editor-toolbar.image-error-cache"));
-      }
-    } catch (e) {
-      if (axios.isAxiosError(e) && e.response?.status === 413) {
-        error(_t("editor-toolbar.image-error-size"));
-      } else {
-        error(_t("editor-toolbar.image-error"));
-      }
-      return;
-    }
+    const { url } = await uploadImage.mutateAsync({ file });
+    const imgTag = url.length > 0 && `![](${url})\n\n`;
+    imgTag && replaceText(tempImgTag, imgTag);
   };
 
   const checkFile = (filename: string) =>
