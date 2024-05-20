@@ -639,11 +639,11 @@ export class Login extends BaseComponent<LoginProps, State> {
                 })}
               </div>
             </div>
-            <OrDivider />
+            {/* <OrDivider /> */}
           </>
         )}
 
-        <Form
+        {/* <Form
           className="login-form"
           onSubmit={(e: React.FormEvent) => {
             e.preventDefault();
@@ -680,9 +680,9 @@ export class Login extends BaseComponent<LoginProps, State> {
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
-        </Form>
+        </Form> */}
         <OrDivider />
-        <div className="hs-login">
+        {/* <div className="hs-login">
           <a
             className={_c(
               `btn btn-outline-primary ${inProgress ? "disabled" : ""}`
@@ -696,7 +696,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             />{" "}
             {_t("login.with-hive-signer")}
           </a>
-        </div>
+        </div> */}
         {global.hasKeyChain && (
           <div className="kc-login">
             <a
