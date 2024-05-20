@@ -1428,6 +1428,8 @@
     "image-error-cache": "Kan de afbeelding niet uploaden. Je lijkt te zijn afgemeld. Probeer je opnieuw aan te melden.",
     "image-error-size": "Je afbeelding is te groot, probeer een kleinere afbeelding.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Tekstfragmenten",
     "link-image": "Link",
     "polls": "Polls"
