@@ -1428,6 +1428,8 @@
     "image-error-cache": "Не вдалося завантажити зображення. Здається, ви вийшли з системи. Спробуйте увійти знову.",
     "image-error-size": "Зображення завелике. Спробуйте зменшити його розмір.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Фрагменти",
     "link-image": "Посилання на зображення",
     "polls": "Polls"
