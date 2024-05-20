@@ -208,7 +208,7 @@ const SignUpPage = (props: Props | any) => {
         <div className="signup-wrapper">
           {step === 1 && (
             <div className="account-types align-self-center d-flex">
-              <h3>Sign up with</h3>
+              {/* <h3>Sign up with</h3> */}
               <div
                 className="account-type"
                 onClick={() => handleAccountTypeClick("Hive")}
