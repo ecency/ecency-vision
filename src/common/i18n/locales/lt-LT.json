@@ -1428,6 +1428,8 @@
     "image-error-cache": "Nepavyko įkelti vaizdo. Atrodo, kad esate atsijungęs. Pabandykite prisijungti dar kartą.",
     "image-error-size": "Nuotraukos dydis per didelis, bandykite mažesnį nuotraukos dydį.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Fragmentai",
     "link-image": "Link",
     "polls": "Polls"
