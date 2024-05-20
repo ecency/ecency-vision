@@ -1428,6 +1428,8 @@
     "image-error-cache": "Resim yüklenemedi. Çıkış yapmış görünüyorsunuz. Yeniden oturum açmayı deneyin.",
     "image-error-size": "Görüntü boyutu çok büyük, daha küçük boyutlu görsel yüklemeyi deneyin.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Snippet",
     "link-image": "Link",
     "polls": "Polls"
