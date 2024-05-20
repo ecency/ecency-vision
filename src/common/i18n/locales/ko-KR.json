@@ -1428,6 +1428,8 @@
     "image-error-cache": "이미지를 업로드할 수 없습니다. 로그아웃한 것 같습니다. 다시 로그인해 보세요.",
     "image-error-size": "이미지 사이즈가 너무 큽니다. 더 작은 크기의 이미지를 다시 시도하세요.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "스니펫",
     "link-image": "Link",
     "polls": "Polls"
