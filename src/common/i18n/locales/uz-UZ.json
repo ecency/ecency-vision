@@ -1428,6 +1428,8 @@
     "image-error-cache": "Rasmni yuklab bo‘lmadi. Siz tizimdan chiqqanga o'xshaysiz. Qaytadan kiring.",
     "image-error-size": "Rasm oʻlchami juda katta, kichikroq oʻlchamdagi rasmni sinab koʻring.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Fragmentlar",
     "link-image": "Link",
     "polls": "Polls"
