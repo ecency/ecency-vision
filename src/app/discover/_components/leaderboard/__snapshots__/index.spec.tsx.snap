@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render with data. 1`] = `
+<div
+  className="leaderboard-list"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="list-filter"
+    >
+      Most active
+       
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+            style={Object {}}
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="list-title"
+    >
+      Daily leaders
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-body-header"
+    >
+      <span />
+      <div
+        className="flex items-center"
+        title="Post + comments made by a user for selected period"
+      >
+        <span
+          className="info-icon mr-1"
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span
+          className="score"
+        >
+          Activities
+        </span>
+      </div>
+      <span
+        className="points"
+      >
+        Reward
+      </span>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        1
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <span>
+            <span
+              className="user-avatar medium"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/medium)",
+                }
+              }
+            />
+          </span>
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@foo"
+          onClick={[Function]}
+        >
+          <span>
+            foo
+          </span>
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        42
+      </div>
+      <div
+        className="points"
+      >
+        121.325 POINTS
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        2
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@bar"
+          onClick={[Function]}
+        >
+          <span>
+            <span
+              className="user-avatar medium"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/bar/avatar/medium)",
+                }
+              }
+            />
+          </span>
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@bar"
+          onClick={[Function]}
+        >
+          <span>
+            bar
+          </span>
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        40
+      </div>
+      <div
+        className="points"
+      >
+        60.040 POINTS
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        3
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@baz"
+          onClick={[Function]}
+        >
+          <span>
+            <span
+              className="user-avatar medium"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/baz/avatar/medium)",
+                }
+              }
+            />
+          </span>
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@baz"
+          onClick={[Function]}
+        >
+          <span>
+            baz
+          </span>
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        26
+      </div>
+      <div
+        className="points"
+      >
+        44.707 POINTS
+      </div>
+    </div>
+    <div
+      className="list-item"
+    >
+      <div
+        className="index"
+      >
+        4
+      </div>
+      <div
+        className="avatar"
+      >
+        <a
+          href="/@zoo"
+          onClick={[Function]}
+        >
+          <span>
+            <span
+              className="user-avatar medium"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/zoo/avatar/medium)",
+                }
+              }
+            />
+          </span>
+        </a>
+      </div>
+      <div
+        className="username"
+      >
+        <a
+          href="/@zoo"
+          onClick={[Function]}
+        >
+          <span>
+            zoo
+          </span>
+        </a>
+      </div>
+      <div
+        className="score"
+      >
+        22
+      </div>
+      <div
+        className="points"
+      >
+        55.040 POINTS
+      </div>
+    </div>
+  </div>
+</div>
+`;

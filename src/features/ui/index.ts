@@ -11,3 +11,4 @@ export * from "./badge";
 export * from "./pagination";
 export * from "./tooltip";
 export * from "./emoji-picker";
+export * from "./full-height";

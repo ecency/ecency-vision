@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render with data. 1`] = `
+<div
+  className="leaderboard-list loading"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="list-filter"
+    >
+      Curators
+       
+      
+    </div>
+    <div
+      className="list-title"
+    >
+      Daily leaders
+    </div>
+  </div>
+  <div
+    className="linear-progress"
+  >
+    <div
+      className="bar bar1"
+    />
+    <div
+      className="bar bar2"
+    />
+  </div>
+</div>
+`;

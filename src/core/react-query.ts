@@ -31,5 +31,16 @@ export enum QueryIdentifiers {
   WITNESSES = "witnesses",
   GALLERY_IMAGES = "gallery-images",
   NOTIFICATIONS_UNREAD_COUNT = "notifications-unread-count",
-  NOTIFICATIONS_SETTINGS = "notifications-settings"
+  NOTIFICATIONS_SETTINGS = "notifications-settings",
+  GET_ACCOUNTS = "get-accounts",
+  FRAGMENTS = "fragments",
+  FAVOURITES = "favourites",
+  DYNAMIC_PROPS = "dynamic-props",
+  BOOKMARKS = "bookmarks",
+  POST_HEADER = "post-header",
+  SCHEDULES = "schedules",
+  TRENDING_TAGS = "trending-tags",
+  DISCOVER_LEADERBOARD = "discover-leaderboard",
+  DISCOVER_CURATION = "discover-curation",
+  CONTRIBUTORS = "contributors"
 }

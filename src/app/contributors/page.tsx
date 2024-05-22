@@ -3,15 +3,17 @@ import { Metadata } from "next";
 import i18next from "i18next";
 import "./_index.scss";
 import { Tsx } from "@/features/i18n/helper";
-import contributors from "@/consts/contributors.json";
-import { shuffle } from "remeda";
+import { prefetchContributorsQuery, useContributorsQuery } from "@/api/queries";
+import { QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: i18next.t("contributors.title")
 };
 
-export default function Contributors() {
-  const shuffledContributors = shuffle(contributors);
+export default async function Contributors() {
+  await prefetchContributorsQuery(new QueryClient());
+
+  const { data } = useContributorsQuery();
   return (
     <>
       <ScrollToTop />
@@ -28,7 +30,7 @@ export default function Contributors() {
               </Tsx>
             </div>
             <div className="list-body">
-              {shuffledContributors.map((c) => {
+              {data?.map((c) => {
                 const username = c.name;
                 return (
                   <div className="list-item" key={username}>
