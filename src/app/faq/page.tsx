@@ -5,7 +5,6 @@ import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import Image from "next/image";
 import { FaqSearchBar, FaqSearchBarResultInfo } from "@/app/faq/_components";
-import { useSearchParams } from "next/navigation";
 import { searchWithinFaq } from "@/app/faq/utils";
 import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
@@ -14,12 +13,15 @@ export const metadata: Metadata = {
   title: i18next.t("static.faq.page-title")
 };
 
-export default function FAQ() {
+interface Props {
+  searchParams: Record<string, string | undefined>;
+}
+
+export default function FAQ({ searchParams }: Props) {
   const canUseWebp = useGlobalStore((state) => state.canUseWebp);
   const faqImage = apiBase(`/assets/ecency-faq.${canUseWebp ? "webp" : "jpg"}`);
 
-  const params = useSearchParams();
-  const searchResult = searchWithinFaq(params.get("q") ?? "");
+  const searchResult = searchWithinFaq(searchParams["q"] ?? "");
 
   return (
     <>
@@ -27,7 +29,7 @@ export default function FAQ() {
       <Feedback />
       <Theme />
       <Navbar />
-      <NavigationLocaleWatcher />
+      <NavigationLocaleWatcher searchParams={searchParams} />
 
       <div
         className="app-content static-page faq-page"

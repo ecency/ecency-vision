@@ -42,9 +42,7 @@ export function FaqSearchBar() {
           type="text"
           placeholder={`${i18next.t("static.faq.search-placeholder")}`}
           className="w-[75%]"
-          onChange={(e) => {
-            router.push("", { params: { q: e.target.value } });
-          }}
+          onChange={(e) => router.push(`?q=${e.target.value}`)}
           value={search}
           autoFocus={true}
         />

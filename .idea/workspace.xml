@@ -4,29 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated discover page">
-      <change afterPath="$PROJECT_DIR$/src/app/client-init.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/client-providers.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated chat providers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chat-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chat-provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client-providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chat-channel-not-joined.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chat-channel-not-joined.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chat-messages-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chat-messages-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chat-popup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chat-popup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/blocked-users-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/blocked-users-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/hidden-messages-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chats-community-actions/hidden-messages-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chats-dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chats-dropdown-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-direct-contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chats-sidebar/chat-sidebar-direct-contact.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/chats-welcome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/chats-welcome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/forward-message-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/forward-message-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/components/join-community-chat-btn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/components/join-community-chat-btn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/screens/chats-manage-key-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/screens/chats-manage-key-section.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/screens/chats-user-not-joined-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chats/screens/chats-user-not-joined-section.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chats/utils/upload-chat-keys.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/core/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/core/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/code-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/code-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/helper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/no-ssr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/no-ssr.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +238,7 @@
       <workItem from="1715922039230" duration="2725000" />
       <workItem from="1716389747585" duration="4101000" />
       <workItem from="1716477148768" duration="117000" />
-      <workItem from="1716552217757" duration="845000" />
+      <workItem from="1716552217757" duration="5247000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -512,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716390953280</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Updated chat providers">
+      <option name="closed" value="true" />
+      <created>1716553255308</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1716553255308</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +530,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed communities migration" />
     <MESSAGE value="Added working SSR example" />
     <MESSAGE value="Added PWA and fix build" />
     <MESSAGE value="Updated to react query 5" />
@@ -555,7 +554,8 @@
     <MESSAGE value="Migrated static pages" />
     <MESSAGE value="Fixed typos" />
     <MESSAGE value="Migrated discover page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated discover page" />
+    <MESSAGE value="Updated chat providers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated chat providers" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

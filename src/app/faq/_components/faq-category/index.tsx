@@ -1,6 +1,7 @@
 import "./index.scss";
 import { FaqCategoryStateless } from "@/app/faq/_components/faq-category/faq-category-stateless";
 import { FaqCategoryClient } from "@/app/faq/_components/faq-category/faq-category-client";
+import { SSRSafe } from "@/utils/no-ssr";
 
 interface Props {
   categoryTitle: string;
@@ -8,13 +9,17 @@ interface Props {
 }
 
 export function FaqCategory({ contentList, categoryTitle }: Props) {
-  return typeof window !== "undefined" ? (
-    <FaqCategoryClient categoryTitle={categoryTitle} contentList={contentList} />
-  ) : (
-    <FaqCategoryStateless
-      categoryTitle={categoryTitle}
-      contentList={contentList}
-      expanded={false}
-    />
+  return (
+    <SSRSafe
+      fallback={
+        <FaqCategoryStateless
+          categoryTitle={categoryTitle}
+          contentList={contentList}
+          expanded={false}
+        />
+      }
+    >
+      <FaqCategoryClient categoryTitle={categoryTitle} contentList={contentList} />
+    </SSRSafe>
   );
 }

@@ -30,14 +30,8 @@ interface Props {
   children: JSX.Element;
 }
 
-export class Tsx extends React.Component<Props> {
-  render() {
-    const { k, args } = this.props;
-
-    const { children } = this.props;
-
-    const html = safeHtml(i18next.t(k, args));
-
-    return React.cloneElement(children, { dangerouslySetInnerHTML: { __html: html } });
-  }
+export function Tsx({ children, k, args }: Props) {
+  return React.cloneElement(children, {
+    dangerouslySetInnerHTML: { __html: safeHtml(i18next.t(k, args)) }
+  });
 }
