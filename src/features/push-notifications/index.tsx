@@ -1,3 +1,5 @@
+"use client";
+
 import { PropsWithChildren, useEffect } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { isSupported } from "@firebase/messaging";

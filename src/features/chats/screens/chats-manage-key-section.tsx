@@ -1,9 +1,9 @@
 import { Button } from "@ui/button";
-import { arrowBackSvg } from "../../../img/svg";
-import { _t } from "../../../i18n";
 import ManageChatKey from "../components/manage-chat-key";
 import React, { useContext } from "react";
 import { ChatContext } from "@ecency/ns-query";
+import { arrowBackSvg } from "@/assets/img/svg";
+import i18next from "i18next";
 
 export function ChatsManageKeySection() {
   const { setRevealPrivateKey } = useContext(ChatContext);
@@ -17,7 +17,7 @@ export function ChatsManageKeySection() {
           icon={arrowBackSvg}
           onClick={() => setRevealPrivateKey(false)}
         />
-        {_t("chat.manage-chat-key")}
+        {i18next.t("chat.manage-chat-key")}
       </div>
       <div className="max-w-[400px] mx-auto my-6 bg-gray-100 dark:bg-gray-900 w-full rounded-2xl border border-[--border-color] p-4">
         <ManageChatKey />

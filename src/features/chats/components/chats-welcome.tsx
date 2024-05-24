@@ -16,7 +16,7 @@ export function ChatsWelcome() {
   const {
     mutateAsync: restoreByPin,
     isError: isRestoreFailed,
-    isLoading: isRestoreLoading
+    isPending: isRestoreLoading
   } = useRestoreChatByPin();
 
   const isAlreadyRegisteredInChats = useMemo(() => !!publicKey, [publicKey]);

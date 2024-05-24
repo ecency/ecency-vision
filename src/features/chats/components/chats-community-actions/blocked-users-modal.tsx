@@ -24,7 +24,7 @@ export function BlockedUsersModal({ channel, setShow, show }: Props) {
   const { data: mutedUsersIds } = useChannelMutedUsersQuery(channel, community ?? undefined);
   const { data: mutedUsersProfiles } = useNostrGetUserProfilesQuery(mutedUsersIds ?? []);
 
-  const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
+  const { mutateAsync: muteUserInChannel, isPending: isUserMutingLoading } =
     useMuteUserInChannel(channel);
 
   return (

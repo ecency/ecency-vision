@@ -33,7 +33,7 @@ export default function ChatsMessagesHeader(props: Props) {
 
   const {
     mutateAsync: pinContact,
-    isLoading: isContactPinning,
+    isPending: isContactPinning,
     isSuccess: isPinned,
     isError: isPinFailed
   } = usePinContact();

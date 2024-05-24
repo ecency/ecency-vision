@@ -51,12 +51,7 @@ export function ChatSidebarDirectContact({ contact, onClick, isLink = true }: Pr
 
   const router = useRouter();
 
-  const {
-    mutateAsync: pinContact,
-    isLoading: isContactPinning,
-    isSuccess: isPinned,
-    isError: isPinFailed
-  } = usePinContact();
+  const { mutateAsync: pinContact, isSuccess: isPinned, isError: isPinFailed } = usePinContact();
 
   useEffect(() => {
     if (isPinned) {

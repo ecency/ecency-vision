@@ -29,7 +29,7 @@ export function HiddenMessagesModal({ channel, setShow, show }: Props) {
   );
 
   const { data: profiles } = useNostrGetUserProfilesQuery(uniqueAuthors);
-  const { mutateAsync: hideInChannel, isLoading: isHidingLoading } =
+  const { mutateAsync: hideInChannel, isPending: isHidingLoading } =
     useHideMessageInChannel(channel);
 
   return (

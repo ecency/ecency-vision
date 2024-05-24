@@ -27,12 +27,12 @@ const ChatsDropdownMenu = (props: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const { mutateAsync: leaveChannel, isLoading: isLeavingLoading } = useLeaveCommunityChannel(
+  const { mutateAsync: leaveChannel, isPending: isLeavingLoading } = useLeaveCommunityChannel(
     props.channel
   );
   const {
     mutateAsync: pinContact,
-    isLoading: isContactPinning,
+    isPending: isContactPinning,
     isSuccess: isPinned,
     isError: isPinFailed
   } = usePinContact();

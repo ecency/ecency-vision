@@ -1,7 +1,7 @@
-import { _t } from "../../../i18n";
 import ChatsProfileBox from "../components/chat-profile-box";
 import React, { HTMLProps } from "react";
-import { classNameObject } from "../../../helper/class-name-object";
+import { classNameObject } from "@ui/util";
+import i18next from "i18next";
 
 export function ChatsUserNotJoinedSection({
   username,
@@ -14,9 +14,9 @@ export function ChatsUserNotJoinedSection({
         [className ?? ""]: !!className
       })}
     >
-      <div className="font-bold">{_t("chat.welcome.oops")}</div>
+      <div className="font-bold">{i18next.t("chat.welcome.oops")}</div>
       <div className="text-gray-600 text-center dark:text-gray-400 mb-4">
-        {_t("chat.welcome.user-not-joined-yet")}
+        {i18next.t("chat.welcome.user-not-joined-yet")}
       </div>
       <ChatsProfileBox currentUser={username} />
     </div>

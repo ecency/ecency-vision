@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function ChatChannelNotJoined({ channel }: Props) {
-  const { mutateAsync: addCommunityChannel, isLoading: isAddCommunityChannelLoading } =
+  const { mutateAsync: addCommunityChannel, isPending: isAddCommunityChannelLoading } =
     useAddCommunityChannel(channel);
   return (
     <div className="h-[56px] flex items-center justify-between px-3 gap-4">

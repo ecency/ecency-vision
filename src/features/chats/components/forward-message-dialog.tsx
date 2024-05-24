@@ -30,7 +30,7 @@ export function ForwardMessageDialog({ show, setShow, message }: Props) {
 
   const {
     mutateAsync: forwardMessage,
-    isLoading: isMessageForwarding,
+    isPending: isMessageForwarding,
     isSuccess: isMessageForwardSuccess,
     isError: isMessageForwardError
   } = useSendMessage(selectedChannel, selectedContact);

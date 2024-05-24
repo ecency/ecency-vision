@@ -17,7 +17,7 @@ export default function JoinCommunityChatBtn(props: Props) {
     props.community
   );
 
-  const { mutateAsync: createCommunityChat, isLoading: isCreateCommunityChatLoading } =
+  const { mutateAsync: createCommunityChat, isPending: isCreateCommunityChatLoading } =
     useCreateCommunityChat(props.community);
   const isCommunityChannelCreated = useMemo(() => !!currentChannel, [currentChannel]);
 

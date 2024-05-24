@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ManageChatKey from "../manage-chat-key";
 import { ChatInput } from "../chat-input";
@@ -32,7 +34,7 @@ export const ChatPopUp = () => {
 
   const { receiverPubKey, revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } =
     useContext(ChatContext);
-  const { isLoading: isJoinChatLoading } = useJoinChat();
+  const { isPending: isJoinChatLoading } = useJoinChat();
 
   const { privateKey } = useKeysQuery();
   const { data: directContacts } = useDirectContactsQuery();
