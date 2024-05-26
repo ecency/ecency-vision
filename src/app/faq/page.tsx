@@ -8,6 +8,7 @@ import { FaqSearchBar, FaqSearchBarResultInfo } from "@/app/faq/_components";
 import { searchWithinFaq } from "@/app/faq/utils";
 import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
+import { FaqSearchResult } from "@/app/faq/_components/faq-search-result";
 
 export const metadata: Metadata = {
   title: i18next.t("static.faq.page-title")
@@ -47,6 +48,7 @@ export default function FAQ({ searchParams }: Props) {
               <FaqSearchBarResultInfo />
             </div>
           </div>
+          <FaqSearchResult />
 
           <div className="faq-list">
             {searchResult.map((x) => {

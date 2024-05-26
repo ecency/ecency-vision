@@ -1,4 +1,4 @@
-import { isMessageGif } from "../../utils";
+import { isMessageGif } from "../../_utils";
 import React, { useMemo, useRef, useState } from "react";
 import { renderPostBody } from "@ecency/render-helper";
 import { ChatMessageChannelItemExtension } from "../chat-message-channel-item-extension";

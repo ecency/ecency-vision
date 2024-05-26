@@ -11,8 +11,10 @@ export function useContributorsQuery() {
 }
 
 export async function prefetchContributorsQuery(queryClient: QueryClient) {
-  return queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: [QueryIdentifiers.CONTRIBUTORS],
     queryFn: () => shuffle(contributors)
   });
+
+  return queryClient.getQueryData<typeof contributors>([QueryIdentifiers.CONTRIBUTORS]);
 }

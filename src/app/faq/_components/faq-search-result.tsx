@@ -1,3 +1,5 @@
+"use client";
+
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { searchWithinFaq } from "@/app/faq/utils";

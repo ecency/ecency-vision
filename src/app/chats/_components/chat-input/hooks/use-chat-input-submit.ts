@@ -1,5 +1,5 @@
 import { MutableRefObject, useCallback } from "react";
-import { usePersistentReplyToMessage } from "../../../hooks";
+import { usePersistentReplyToMessage } from "../../../_hooks";
 import { Channel, DirectContact, useSendMessage } from "@ecency/ns-query";
 
 interface Props {
@@ -29,7 +29,7 @@ export function useChatInputSubmit({
 }: Props) {
   const [reply, _, clearReply] = usePersistentReplyToMessage(currentChannel, currentContact);
 
-  const { mutateAsync: sendMessage, isLoading: isSendMessageLoading } = useSendMessage(
+  const { mutateAsync: sendMessage, isPending: isSendMessageLoading } = useSendMessage(
     currentChannel,
     currentContact,
     () => {

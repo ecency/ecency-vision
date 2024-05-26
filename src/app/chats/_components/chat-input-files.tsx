@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useMemo } from "react";
-import { useChatFileUpload } from "../mutations";
+import { useChatFileUpload } from "../_mutations";
 import { CHAT_FILE_CONTENT_TYPES } from "./chat-popup/chat-constants";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";

@@ -2,13 +2,13 @@
 
 import React, { PropsWithChildren, useState } from "react";
 import { PrivateKey } from "@hiveio/dhive";
-import PopoverConfirm from "@ui/popover-confirm";
+import { PopoverConfirm } from "@ui/popover-confirm";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { KeyOrHot } from "@/features/shared/key-or-hot";
 
 interface Props {
   popOver?: boolean;
-  onKey: (key: PrivateKey) => void;
+  onKey?: (key: PrivateKey) => void;
   onHot?: () => void;
   onKc?: () => void;
   onToggle?: () => void;
@@ -54,7 +54,7 @@ export function KeyOrHotDialog({
             <KeyOrHot
               onKey={(key) => {
                 toggleKeyDialog();
-                onKey(key);
+                onKey?.(key);
               }}
               onHot={() => {
                 toggleKeyDialog();

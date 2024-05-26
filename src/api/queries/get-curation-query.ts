@@ -1,6 +1,6 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
-import { CurationDuration, CurationItem, LeaderBoardDuration } from "@/entities";
+import { CurationDuration, CurationItem } from "@/entities";
 import axios from "axios";
 import { apiBase } from "@/api/helper";
 import { getAccounts } from "@/api/hive";
@@ -23,31 +23,19 @@ async function fetch(duration: CurationDuration) {
     curator.efficiency = curator.vests / effectiveVest;
   }
   data.sort((a: CurationItem, b: CurationItem) => b.efficiency - a.efficiency);
+  return data;
 }
 
 export async function prefetchDiscoverCurationQuery(
   queryClient: QueryClient,
-  duration: LeaderBoardDuration
+  duration: CurationDuration
 ) {
   await queryClient.prefetchQuery({
     queryKey: [QueryIdentifiers.DISCOVER_CURATION, duration],
-    queryFn: () =>
-      axios
-        .get<CurationItem[]>(apiBase(`/private-api/curation/${duration}`))
-        .then((resp) => resp.data)
+    queryFn: () => fetch(duration)
   });
 
-  const curationData =
-    queryClient.getQueryData<CurationItem[]>([QueryIdentifiers.DISCOVER_CURATION, duration]) ?? [];
-}
-
-export function useDiscoverCurationQuery(duration: LeaderBoardDuration) {
-  return useQuery({
-    queryKey: [QueryIdentifiers.DISCOVER_CURATION, duration],
-    queryFn: () =>
-      axios
-        .get<CurationItem[]>(apiBase(`/private-api/curation/${duration}`))
-        .then((resp) => resp.data),
-    initialData: []
-  });
+  return (
+    queryClient.getQueryData<CurationItem[]>([QueryIdentifiers.DISCOVER_CURATION, duration]) ?? []
+  );
 }

@@ -4,7 +4,7 @@ import { Button } from "@ui/button";
 import { useChannelsQuery, useDirectContactsQuery, useKeysQuery } from "@ecency/ns-query";
 import { ChatSidebarDirectContact } from "../chats-sidebar/chat-sidebar-direct-contact";
 import { ChatSidebarChannel } from "../chats-sidebar/chat-sidebar-channel";
-import { useComposedContactsAndChannelsQuery } from "../../queries";
+import { useComposedContactsAndChannelsQuery } from "../../_queries";
 import i18next from "i18next";
 
 interface Props {

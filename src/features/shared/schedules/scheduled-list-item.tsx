@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { catchPostImage, postBodySummary } from "@ecency/render-helper";
-import PopoverConfirm from "@ui/popover-confirm";
+import { PopoverConfirm } from "@ui/popover-confirm";
 import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
 import { FullAccount, Schedule } from "@/entities";

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useSearchUsersQuery } from "../../queries";
+import { useSearchUsersQuery } from "../../_queries";
 import { ChatSidebarSearch } from "../chats-sidebar/chat-sidebar-search";
-import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
+import { useSearchCommunitiesQuery } from "@/app/chats/_queries/search-communities-query";
 import { ChatSidebarSearchItem } from "../chats-sidebar/chat-sidebar-search-item";
-import { useCreateTemporaryContact } from "../../hooks";
+import { useCreateTemporaryContact } from "../../_hooks";
 import { isCommunity } from "@ecency/ns-query";
-import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
+import { useCreateTemporaryChannel } from "@/app/chats/_hooks/user-create-temporary-channel";
 import useDebounce from "react-use/lib/useDebounce";
 import { Community, Reputations } from "@/entities";
 

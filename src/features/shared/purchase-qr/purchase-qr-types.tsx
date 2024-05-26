@@ -8,7 +8,7 @@ import i18next from "i18next";
 interface Props {
   className: string;
   value: string;
-  setValue: (value: string) => void;
+  setValue?: (value: string) => void;
 }
 
 interface Item {
@@ -33,7 +33,7 @@ export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
   useEffect(() => {
     const existing = items.find((item) => item.value === input);
     if (existing) {
-      setValue(existing.value);
+      setValue?.(existing.value);
     }
   }, [input]);
 
@@ -42,7 +42,7 @@ export const PurchaseQrTypes = ({ value, setValue, className }: Props) => {
       return <span>{i.title}</span>;
     },
     onSelect: (selected: Item) => {
-      setValue(selected.value);
+      setValue?.(selected.value);
     },
     ignoreFirstInputFocus: true
   };

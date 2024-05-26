@@ -1,19 +1,19 @@
 import { Navbar, ProfileLink, ScrollToTop, Theme, UserAvatar } from "@/features/shared";
 import { Metadata } from "next";
 import i18next from "i18next";
-import "./_index.scss";
+import "./page.scss";
 import { Tsx } from "@/features/i18n/helper";
-import { prefetchContributorsQuery, useContributorsQuery } from "@/api/queries";
-import { QueryClient } from "@tanstack/react-query";
+import { prefetchContributorsQuery } from "@/api/queries";
+import { getPristineQueryClient } from "@/core/react-query";
 
 export const metadata: Metadata = {
   title: i18next.t("contributors.title")
 };
 
 export default async function Contributors() {
-  await prefetchContributorsQuery(new QueryClient());
+  const client = getPristineQueryClient();
+  const data = await prefetchContributorsQuery(client);
 
-  const { data } = useContributorsQuery();
   return (
     <>
       <ScrollToTop />
@@ -30,25 +30,22 @@ export default async function Contributors() {
               </Tsx>
             </div>
             <div className="list-body">
-              {data?.map((c) => {
-                const username = c.name;
-                return (
-                  <div className="list-item" key={username}>
-                    <div className="item-main">
-                      <ProfileLink username={username}>
-                        <UserAvatar username={username} size="small" />
-                      </ProfileLink>
+              {data?.map((c) => (
+                <div className="list-item" key={c.name}>
+                  <div className="item-main">
+                    <ProfileLink username={c.name}>
+                      <UserAvatar username={c.name} size="small" />
+                    </ProfileLink>
 
-                      <div className="item-info">
-                        <ProfileLink username={username}>
-                          <span className="item-name notranslate">{username}</span>
-                        </ProfileLink>
-                      </div>
+                    <div className="item-info">
+                      <ProfileLink username={c.name}>
+                        <span className="item-name notranslate">{c.name}</span>
+                      </ProfileLink>
                     </div>
-                    <div className="item-extra">{c.contributes.join(", ")}</div>
                   </div>
-                );
-              })}
+                  <div className="item-extra">{c.contributes.join(", ")}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

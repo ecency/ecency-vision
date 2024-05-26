@@ -1,11 +1,11 @@
 "use client";
 
 import { useContext, useEffect, useMemo } from "react";
-import ChatsSideBar from "../components/chats-sidebar";
-import ChatsMessagesBox from "../components/chat-message-box";
-import { ChatsWelcome } from "../components/chats-welcome";
+import ChatsSideBar from "@/app/chats/_components/chats-sidebar";
+import ChatsMessagesBox from "@/app/chats/_components/chat-message-box";
+import { ChatsWelcome } from "@/app/chats/_components/chats-welcome";
 import useMountedState from "react-use/lib/useMountedState";
-import { ChatsDefaultScreen } from "../components/chats-default-screen";
+import { ChatsDefaultScreen } from "@/app/chats/_components/chats-default-screen";
 import { ChatsManageKeySection } from "./chats-manage-key-section";
 import { ChatsUserNotJoinedSection } from "./chats-user-not-joined-section";
 import {
@@ -16,7 +16,7 @@ import {
   useKeysQuery
 } from "@ecency/ns-query";
 import { useUnmount } from "react-use";
-import { useCreateTemporaryContactFromParam } from "../hooks";
+import { useCreateTemporaryContactFromParam } from "../_hooks";
 import { useGlobalStore } from "@/core/global-store";
 import { useCommunityCache } from "@/core/caches";
 import { useParams } from "next/navigation";

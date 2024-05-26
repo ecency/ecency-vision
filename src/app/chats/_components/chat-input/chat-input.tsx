@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import {
   attachFileSvg,

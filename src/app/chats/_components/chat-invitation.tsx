@@ -3,7 +3,7 @@ import { FormControl } from "@ui/input";
 import React, { useState } from "react";
 import { Button } from "@ui/button";
 import { DirectContact } from "@ecency/ns-query";
-import { useInviteViaPostComment } from "../mutations";
+import { useInviteViaPostComment } from "../_mutations";
 import i18next from "i18next";
 
 interface Props {

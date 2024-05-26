@@ -8,9 +8,9 @@ import { useGlobalStore } from "@/core/global-store";
 export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
   const [completed, setCompleted] = useState<number>(0);
 
-  const mutation = useMutation(
-    ["threeSpeakVideoUpload", type],
-    async ({ file }: { file: File }) => {
+  const mutation = useMutation({
+    mutationKey: ["threeSpeakVideoUpload", type],
+    mutationFn: async ({ file }: { file: File }) => {
       try {
         return uploadFile(file, type, (percentage) => setCompleted(percentage));
       } catch (e) {
@@ -20,7 +20,7 @@ export function useThreeSpeakVideoUpload(type: "video" | "thumbnail") {
       }
       return null;
     }
-  );
+  });
 
   return { ...mutation, completed, setCompleted };
 }
@@ -30,9 +30,9 @@ export function useUploadVideoInfo() {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const { data, refetch } = useThreeSpeakVideo("all");
 
-  return useMutation(
-    ["threeSpeakVideoUploadInfo"],
-    async ({
+  return useMutation({
+    mutationKey: ["threeSpeakVideoUploadInfo"],
+    mutationFn: async ({
       fileName,
       fileSize,
       videoUrl,
@@ -54,23 +54,20 @@ export function useUploadVideoInfo() {
       }
       return null;
     },
-
-    {
-      onSuccess: async (response) => {
-        if (response) {
-          let current = data;
-          if (current.length === 0) {
-            const response = await refetch();
-            current = response.data ?? [];
-          }
-
-          const next = [response, ...current];
-          queryClient.setQueryData(
-            [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
-            next
-          );
+    onSuccess: async (response) => {
+      if (response) {
+        let current = data;
+        if (current.length === 0) {
+          const response = await refetch();
+          current = response.data ?? [];
         }
+
+        const next = [response, ...current];
+        queryClient.setQueryData(
+          [QueryIdentifiers.THREE_SPEAK_VIDEO_LIST, activeUser?.username ?? ""],
+          next
+        );
       }
     }
-  );
+  });
 }

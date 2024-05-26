@@ -1,4 +1,6 @@
-import React, { ReactNode, useState } from "react";
+"use client";
+
+import { cloneElement, ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 
@@ -8,7 +10,7 @@ interface Props {
 }
 
 export function Tooltip({ content, children }: Props) {
-  return React.cloneElement(children, { title: content });
+  return cloneElement(children, { title: content });
 }
 
 interface StyledProps {

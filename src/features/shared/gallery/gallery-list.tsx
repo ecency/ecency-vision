@@ -1,6 +1,5 @@
 import { useGalleryImagesQuery } from "@/api/queries";
 import { proxifyImageSrc } from "@ecency/render-helper";
-import PopoverConfirm from "@ui/popover-confirm";
 import React, { useMemo } from "react";
 import { LinearProgress, success } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
@@ -11,6 +10,7 @@ import { UserImage } from "@/api/private-api";
 import { clipboard } from "@/utils/clipboard";
 import { useDeleteGalleryImage } from "@/api/mutations";
 import useMount from "react-use/lib/useMount";
+import { PopoverConfirm } from "@ui/popover-confirm";
 
 interface Props {
   onPick?: (image: string) => void;

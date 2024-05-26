@@ -24,13 +24,13 @@ export function UserAvatar({ username, size, src, onClick }: Props) {
   const imageSrc = useMemo(
     () =>
       proxifyImageSrc(src, 0, 0, canUseWebp ? "webp" : "match") ||
-      `"https://images.ecency.com"${canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`,
+      `https://images.ecency.com${canUseWebp ? "/webp" : ""}/u/${username}/avatar/${imgSize}`,
     [imgSize, src, canUseWebp, username]
   );
 
   return (
     <span
-      onClick={onClick ?? (() => {})}
+      onClick={onClick}
       className={`user-avatar ${size}`}
       style={{ backgroundImage: `url(${imageSrc})` }}
     />

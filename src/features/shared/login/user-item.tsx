@@ -1,6 +1,6 @@
 import React from "react";
 import { UserAvatar } from "@/features/shared";
-import PopoverConfirm from "@ui/popover-confirm";
+import { PopoverConfirm } from "@ui/popover-confirm";
 import { Tooltip } from "@ui/tooltip";
 import { classNameObject } from "@ui/util";
 import { User } from "@/entities";

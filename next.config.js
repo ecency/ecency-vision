@@ -24,6 +24,11 @@ const config = {
         protocol: "https",
         hostname: "images.ecency.com",
         port: ""
+      },
+      {
+        protocol: "https",
+        hostname: "ecency.com",
+        port: ""
       }
     ]
   }

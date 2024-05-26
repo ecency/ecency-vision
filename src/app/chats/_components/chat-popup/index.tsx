@@ -20,7 +20,7 @@ import {
 } from "@ecency/ns-query";
 import { ChatInvitation } from "../chat-invitation";
 import { ChatChannelNotJoined } from "../chat-channel-not-joined";
-import { ChatsUserNotJoinedSection } from "../../screens/chats-user-not-joined-section";
+import { ChatsUserNotJoinedSection } from "@/app/chats/_screens/chats-user-not-joined-section";
 import { NetworkError } from "../network-error";
 import { useGlobalStore } from "@/core/global-store";
 import usePrevious from "react-use/lib/usePrevious";

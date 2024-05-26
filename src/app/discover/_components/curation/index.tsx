@@ -1,33 +1,26 @@
 import React from "react";
 import "./_index.scss";
 import { formattedNumber, vestsToHp } from "@/utils";
-import { LinearProgress, ProfileLink, UserAvatar } from "@/features/shared";
+import { ProfileLink, UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import { informationVariantSvg } from "@ui/svg";
 import { Tooltip } from "@ui/tooltip";
-import { DiscoverPeriodDropdown } from "@/app/discover/_components/discover-period-dropdown";
-import { useDiscoverCurationQuery, useDynamicPropsQuery } from "@/api/queries";
-import { useSearchParams } from "next/navigation";
-import { CurationDuration } from "@/entities";
+import { CurationDuration, CurationItem, DynamicProps } from "@/entities";
 
-export function DiscoverCuration() {
-  const { data: dynamicProps } = useDynamicPropsQuery();
+interface Props {
+  data?: CurationItem[];
+  period?: CurationDuration;
+  dynamicProps?: DynamicProps;
+}
 
-  const params = useSearchParams();
-  const { data, isLoading } = useDiscoverCurationQuery(
-    (params.get("period") as CurationDuration) ?? "day"
-  );
-
+export async function DiscoverCuration({ data, period, dynamicProps }: Props) {
   return (
-    <div className={i18next.t(`leaderboard-list ${isLoading ? "loading" : ""}`)}>
+    <div className="leaderboard-list">
       <div className="list-header">
-        <div className="list-filter">
-          {i18next.t("leaderboard.title-curators")} {!isLoading && <DiscoverPeriodDropdown />}
-        </div>
-        <div className="list-title">{i18next.t(`leaderboard.title-${params.get("period")}`)}</div>
+        <div className="list-filter">{i18next.t("leaderboard.title-curators")}</div>
+        <div className="list-title">{i18next.t(`leaderboard.title-${period ?? "day"}`)}</div>
       </div>
-      {isLoading && <LinearProgress />}
-      {data.length > 0 && (
+      {data && data.length > 0 && (
         <div className="list-body">
           <div className="list-body-header">
             <span />
@@ -57,7 +50,7 @@ export function DiscoverCuration() {
               </div>
               <div className="score">{r.votes}</div>
               <div className="points">
-                {formattedNumber(vestsToHp(r.vests, dynamicProps.hivePerMVests), {
+                {formattedNumber(vestsToHp(r.vests, dynamicProps?.hivePerMVests ?? 1), {
                   suffix: "HP"
                 })}
               </div>

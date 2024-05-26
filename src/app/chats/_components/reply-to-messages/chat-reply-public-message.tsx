@@ -1,7 +1,7 @@
 import { Button } from "@ui/button";
 import { UilMessage, UilMultiply } from "@iconscout/react-unicons";
 import React, { useMemo } from "react";
-import { usePersistentReplyToMessage } from "../../hooks";
+import { usePersistentReplyToMessage } from "../../_hooks";
 import { Channel, useNostrGetUserProfileQuery } from "@ecency/ns-query";
 import { ChatReplyToMessageLayout } from "./chat-reply-to-message-layout";
 import i18next from "i18next";

@@ -4,11 +4,11 @@ import Link from "next/link";
 import "./page.scss";
 import { CommunitiesList } from "./_components";
 import { getCommunities } from "@/api/bridge";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getPristineQueryClient, QueryIdentifiers } from "@/core/react-query";
 
 export default async function Communities() {
-  const queryClient = new QueryClient();
+  const queryClient = getPristineQueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: [QueryIdentifiers.COMMUNITIES, "rank", undefined],

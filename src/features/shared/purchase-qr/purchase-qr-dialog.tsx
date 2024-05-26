@@ -7,7 +7,7 @@ import i18next from "i18next";
 
 interface Props {
   show: boolean;
-  setShow: (val: boolean) => void;
+  setShow?: (val: boolean) => void;
   type?: PurchaseTypes;
 }
 
@@ -17,7 +17,7 @@ export const PurchaseQrDialog = ({ show, setShow, type }: Props) => {
       animation={false}
       show={show}
       centered={true}
-      onHide={() => setShow(false)}
+      onHide={() => setShow?.(false)}
       className="purchase-qr-dialog"
     >
       <ModalHeader closeButton={true}>

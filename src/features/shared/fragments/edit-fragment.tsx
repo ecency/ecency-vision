@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Fragment } from "@/entities";
 import { FormControl } from "@ui/input";
-import PopoverConfirm from "@ui/popover-confirm";
 import { Button } from "@ui/button";
 import { Spinner } from "@ui/spinner";
 import { Form } from "@ui/form";
 import { handleInvalid, handleOnInput } from "@/utils/input-util";
 import { useDeleteFragment, useUpdateFragment } from "@/api/mutations";
 import i18next from "i18next";
+import { PopoverConfirm } from "@ui/popover-confirm";
 
 interface Props {
   item: Fragment;

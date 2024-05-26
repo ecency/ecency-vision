@@ -1,4 +1,6 @@
-import React, { Component, ReactElement } from "react";
+"use client";
+
+import { cloneElement, Component, ReactElement } from "react";
 import { Popover, PopoverContent, PopoverTitle } from "@ui/popover";
 import { Button } from "@ui/button";
 import i18next from "i18next";
@@ -20,7 +22,7 @@ interface State {
   show: boolean;
 }
 
-export default class PopoverConfirm extends Component<Props> {
+export class PopoverConfirm extends Component<Props> {
   state: State = {
     show: false
   };
@@ -58,7 +60,7 @@ export default class PopoverConfirm extends Component<Props> {
       this.props;
     const { show } = this.state;
 
-    const clonedChildren = React.cloneElement(children, {
+    const clonedChildren = cloneElement(children, {
       onClick: this.toggle
     });
 

@@ -1,8 +1,8 @@
 import { FormControl } from "@ui/input";
 import React, { useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
-import { useSearchUsersQuery } from "../../queries";
-import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
+import { useSearchUsersQuery } from "../../_queries";
+import { useSearchCommunitiesQuery } from "@/app/chats/_queries/search-communities-query";
 import { LinearProgress } from "@/features/shared";
 import i18next from "i18next";
 

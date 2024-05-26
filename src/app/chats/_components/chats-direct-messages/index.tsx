@@ -11,12 +11,12 @@ import {
 } from "@ecency/ns-query";
 import { ChatFloatingDate } from "../chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
-import { groupMessages } from "../../utils";
+import { groupMessages } from "../../_utils";
 import useDebounce from "react-use/lib/useDebounce";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu } from "@ui/dropdown";
 import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
 import { ForwardMessageDialog } from "../forward-message-dialog";
-import { usePersistentReplyToMessage } from "../../hooks";
+import { usePersistentReplyToMessage } from "../../_hooks";
 import i18next from "i18next";
 
 interface Props {

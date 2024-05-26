@@ -1,4 +1,6 @@
-import React, { HTMLAttributes, ReactNode, useEffect, useState } from "react";
+"use client";
+
+import { HTMLAttributes, ReactNode, useEffect, useState } from "react";
 import { useMountedState } from "react-use";
 import { usePopper } from "react-popper";
 import { createPortal } from "react-dom";

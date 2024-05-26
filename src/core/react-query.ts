@@ -1,3 +1,5 @@
+import { QueryClient } from "@tanstack/react-query";
+
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
   THREADS = "threads",
@@ -42,5 +44,18 @@ export enum QueryIdentifiers {
   TRENDING_TAGS = "trending-tags",
   DISCOVER_LEADERBOARD = "discover-leaderboard",
   DISCOVER_CURATION = "discover-curation",
-  CONTRIBUTORS = "contributors"
+  CONTRIBUTORS = "contributors",
+  GIFS = "GIFS",
+  NOTIFICATIONS = "NOTIFICATIONS"
+}
+
+export function getPristineQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false
+      }
+    }
+  });
 }

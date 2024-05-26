@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 interface Props {
   codeSize?: number;
   value: string;
-  setValue: (v: string) => void;
+  setValue?: (v: string) => void;
   disabled?: boolean;
 }
 
@@ -16,7 +16,7 @@ export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
   const [code, setCode] = useState(new Array(codeSize).fill(""));
 
   useEffect(() => {
-    setValue(code.join(""));
+    setValue?.(code.join(""));
   }, [code]);
 
   useEffect(() => {

@@ -1,10 +1,6 @@
-import React, {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  ReactNode,
-  useEffect,
-  useState
-} from "react";
+"use client";
+
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useEffect, useState } from "react";
 import "./index.css";
 import { useIsMobile } from "@/features/ui/util/use-is-mobile";
 import { classNameObject } from "@/features/ui/util";
@@ -42,7 +38,7 @@ interface Props {
   showLastNo?: boolean;
 }
 
-const MyPagination = ({
+export function Pagination({
   dataLength,
   maxItems,
   onPageChange,
@@ -50,7 +46,7 @@ const MyPagination = ({
   className,
   page: pageFromProps,
   showLastNo = true
-}: Props) => {
+}: Props) {
   const [page, setPage] = useState<number>(pageFromProps || 1);
 
   const isMobile = useIsMobile();
@@ -105,6 +101,4 @@ const MyPagination = ({
       )}
     </div>
   );
-};
-
-export default MyPagination;
+}

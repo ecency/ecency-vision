@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
 import useMountedState from "react-use/lib/useMountedState";
 import "./_index.scss";
 import { v4 } from "uuid";

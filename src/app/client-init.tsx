@@ -1,5 +1,3 @@
-"use client";
-
 import { useGlobalStore } from "@/core/global-store";
 import useMount from "react-use/lib/useMount";
 import * as ls from "@/utils/local-storage";

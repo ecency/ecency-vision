@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { format } from "date-fns";
-import { getDateFnsLocale } from "../utils";
+import { getDateFnsLocale } from "../_utils";
 import { useGlobalStore } from "@/core/global-store";
 import { classNameObject } from "@ui/util";
 

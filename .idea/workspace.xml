@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated chat providers">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chat-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chat-provider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client-providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/helper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/no-ssr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/no-ssr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/contributors/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +39,9 @@
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -56,36 +52,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/@ecency/ns-query",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "editor.preferences.completion",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/@ecency/ns-query&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -104,11 +100,11 @@
       <recent name="$PROJECT_DIR$/src/app/whitepaper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/chats" />
       <recent name="$PROJECT_DIR$/src/app/witnesses/_components" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/features/i18n" />
-      <recent name="$PROJECT_DIR$/src/features/shared/navbar" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -239,6 +235,8 @@
       <workItem from="1716389747585" duration="4101000" />
       <workItem from="1716477148768" duration="117000" />
       <workItem from="1716552217757" duration="5247000" />
+      <workItem from="1716561292809" duration="9000" />
+      <workItem from="1716648866260" duration="11219000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -512,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716553255308</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Updated build">
+      <option name="closed" value="true" />
+      <created>1716738909406</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1716738909406</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added working SSR example" />
     <MESSAGE value="Added PWA and fix build" />
     <MESSAGE value="Updated to react query 5" />
     <MESSAGE value="N" />
@@ -555,7 +560,8 @@
     <MESSAGE value="Fixed typos" />
     <MESSAGE value="Migrated discover page" />
     <MESSAGE value="Updated chat providers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated chat providers" />
+    <MESSAGE value="Updated build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated build" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

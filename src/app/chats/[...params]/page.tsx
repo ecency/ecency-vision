@@ -1,5 +1,5 @@
 import { Feedback, Navbar } from "@/features/shared";
-import { ChatsScreen } from "@/features/chats/screens";
+import { ChatsScreen } from "@/app/chats/_screens";
 
 export default function Chats() {
   return (

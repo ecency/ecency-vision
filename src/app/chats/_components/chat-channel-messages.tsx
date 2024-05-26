@@ -13,13 +13,13 @@ import {
   useMuteUserInChannel,
   usePublicMessagesQuery
 } from "@ecency/ns-query";
-import { groupMessages } from "../utils";
+import { groupMessages } from "../_utils";
 import { ChatFloatingDate } from "./chat-floating-date";
 import { differenceInCalendarDays } from "date-fns";
 import useDebounce from "react-use/lib/useDebounce";
 import { ForwardMessageDialog } from "./forward-message-dialog";
 import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
-import { usePersistentReplyToMessage } from "../hooks";
+import { usePersistentReplyToMessage } from "../_hooks";
 import { useGlobalStore } from "@/core/global-store";
 import { useCommunityCache } from "@/core/caches";
 import { ROLES } from "@/entities";
@@ -52,9 +52,9 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
     joinedCommunityTeamKeys.map(({ pubkey }) => pubkey)
   );
 
-  const { mutateAsync: muteUserInChannel, isLoading: isUserMutingLoading } =
+  const { mutateAsync: muteUserInChannel, isPending: isUserMutingLoading } =
     useMuteUserInChannel(currentChannel);
-  const { mutateAsync: hideMessage, isLoading: isHideMessageLoading } =
+  const { mutateAsync: hideMessage, isPending: isHideMessageLoading } =
     useHideMessageInChannel(currentChannel);
 
   const isCommunityTeamMember = useMemo(

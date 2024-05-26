@@ -1,5 +1,3 @@
-"use client";
-
 import { PropsWithChildren } from "react";
 import { PushNotificationsProvider } from "@/features/push-notifications";
 import { ClientProviders } from "@/app/client-providers";

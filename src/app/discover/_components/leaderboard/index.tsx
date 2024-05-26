@@ -1,37 +1,32 @@
 import React from "react";
 import "./_index.scss";
 import i18next from "i18next";
-import { useDiscoverLeaderboardQuery } from "@/api/queries";
-import { useSearchParams } from "next/navigation";
 import { classNameObject } from "@ui/util";
-import { LinearProgress, ProfileLink, UserAvatar } from "@/features/shared";
+import { ProfileLink, UserAvatar } from "@/features/shared";
 import { Tooltip } from "@ui/tooltip";
 import { informationVariantSvg } from "@ui/svg";
 import { DiscoverPeriodDropdown } from "@/app/discover/_components/discover-period-dropdown";
-import { LeaderBoardDuration } from "@/entities";
+import { LeaderBoardDuration, LeaderBoardItem } from "@/entities";
 
-export function DiscoverLeaderboard() {
-  const params = useSearchParams();
+interface Props {
+  data?: LeaderBoardItem[];
+  period?: LeaderBoardDuration;
+}
 
-  const { data, isLoading } = useDiscoverLeaderboardQuery(
-    (params.get("period") as LeaderBoardDuration) ?? "day"
-  );
-
+export function DiscoverLeaderboard({ data, period }: Props) {
   return (
     <div
       className={classNameObject({
-        "leaderboard-list": true,
-        loading: isLoading
+        "leaderboard-list": true
       })}
     >
       <div className="list-header">
         <div className="list-filter">
           <DiscoverPeriodDropdown />
         </div>
-        <div className="list-title">{i18next.t(`leaderboard.title-${params.get("period")}`)}</div>
+        <div className="list-title">{i18next.t(`leaderboard.title-${period ?? "day"}`)}</div>
       </div>
-      {isLoading && <LinearProgress />}
-      {data.length > 0 && (
+      {data && data.length > 0 && (
         <div className="list-body">
           <div className="list-body-header">
             <span />

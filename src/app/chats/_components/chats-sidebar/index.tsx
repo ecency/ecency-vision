@@ -10,10 +10,10 @@ import {
   useChannelsQuery,
   useDirectContactsQuery
 } from "@ecency/ns-query";
-import { useComposedContactsAndChannelsQuery, useSearchUsersQuery } from "../../queries";
-import { useSearchCommunitiesQuery } from "../../queries/search-communities-query";
-import { useCreateTemporaryContact } from "../../hooks";
-import { useCreateTemporaryChannel } from "../../hooks/user-create-temporary-channel";
+import { useComposedContactsAndChannelsQuery, useSearchUsersQuery } from "../../_queries";
+import { useSearchCommunitiesQuery } from "@/app/chats/_queries/search-communities-query";
+import { useCreateTemporaryContact } from "../../_hooks";
+import { useCreateTemporaryChannel } from "@/app/chats/_hooks/user-create-temporary-channel";
 import { NetworkError } from "../network-error";
 import { Community, Reputations } from "@/entities";
 import { useRouter } from "next/navigation";

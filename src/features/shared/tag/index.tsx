@@ -42,7 +42,7 @@ export function TagLink({ tag, type, children }: Props) {
     [tag, filter]
   );
 
-  const { data: community } = useCommunityCache(tag as string, false, isTagCommunity);
+  const { data: community } = useCommunityCache(tag as string, false);
 
   if (type === "link") {
     const props = Object.assign({}, children.props, {
