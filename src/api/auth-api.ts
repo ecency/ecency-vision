@@ -1,6 +1,5 @@
-import axios from "axios";
-
 import { apiBase } from "./helper";
+import { appAxios } from "@/api/axios";
 
 export const hsTokenRenew = (
   code: string
@@ -10,7 +9,7 @@ export const hsTokenRenew = (
   refresh_token: string;
   expires_in: number;
 }> =>
-  axios
+  appAxios
     .post(apiBase(`/auth-api/hs-token-refresh`), {
       code
     })

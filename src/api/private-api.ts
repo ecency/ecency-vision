@@ -1,4 +1,3 @@
-import axios from "axios";
 import { apiBase } from "./helper";
 import { NotificationFilter, NotifyTypes } from "@/enums";
 import { AppWindow } from "@/types";
@@ -28,25 +27,26 @@ import {
   Schedule
 } from "@/entities";
 import { getAccessToken } from "@/utils";
+import { appAxios } from "@/api/axios";
 
 declare var window: AppWindow;
 
 export const getReceivedVestingShares = (username: string): Promise<ReceivedVestingShare[]> =>
-  axios.get(apiBase(`/private-api/received-vesting/${username}`)).then((resp) => resp.data.list);
+  appAxios.get(apiBase(`/private-api/received-vesting/${username}`)).then((resp) => resp.data.list);
 
 export const getRewardedCommunities = (): Promise<RewardedCommunity[]> =>
-  axios.get(apiBase(`/private-api/rewarded-communities`)).then((resp) => resp.data);
+  appAxios.get(apiBase(`/private-api/rewarded-communities`)).then((resp) => resp.data);
 
 export const getLeaderboard = (duration: LeaderBoardDuration): Promise<LeaderBoardItem[]> => {
-  return axios.get(apiBase(`/private-api/leaderboard/${duration}`)).then((resp) => resp.data);
+  return appAxios.get(apiBase(`/private-api/leaderboard/${duration}`)).then((resp) => resp.data);
 };
 
 export const getCuration = (duration: CurationDuration): Promise<CurationItem[]> => {
-  return axios.get(apiBase(`/private-api/curation/${duration}`)).then((resp) => resp.data);
+  return appAxios.get(apiBase(`/private-api/curation/${duration}`)).then((resp) => resp.data);
 };
 
 export const signUp = (username: string, email: string, referral: string): Promise<any> =>
-  axios
+  appAxios
     .post(apiBase(`/private-api/account-create`), {
       username: username,
       email: email,
@@ -57,7 +57,7 @@ export const signUp = (username: string, email: string, referral: string): Promi
     });
 
 export const subscribeEmail = (email: string): Promise<any> =>
-  axios
+  appAxios
     .post(apiBase(`/private-api/subscribe`), {
       email: email
     })
@@ -85,7 +85,7 @@ export const usrActivity = (
   if (bl) params.bl = bl;
   if (tx) params.tx = tx;
 
-  return axios.post(apiBase(`/private-api/usr-activity`), params);
+  return appAxios.post(apiBase(`/private-api/usr-activity`), params);
 };
 
 export const getNotifications = (
@@ -110,7 +110,7 @@ export const getNotifications = (
     data.user = user;
   }
 
-  return axios.post(apiBase(`/private-api/notifications`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/notifications`), data).then((resp) => resp.data);
 };
 
 export const saveNotificationSetting = (
@@ -128,7 +128,7 @@ export const saveNotificationSetting = (
     allows_notify,
     notify_types
   };
-  return axios.post(apiBase(`/private-api/register-device`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/register-device`), data).then((resp) => resp.data);
 };
 
 export const getNotificationSetting = (
@@ -136,11 +136,11 @@ export const getNotificationSetting = (
   token: string
 ): Promise<ApiNotificationSetting> => {
   const data = { code: getAccessToken(username), username, token };
-  return axios.post(apiBase(`/private-api/detail-device`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/detail-device`), data).then((resp) => resp.data);
 };
 
 export const getCurrencyTokenRate = (currency: string, token: string): Promise<number> =>
-  axios
+  appAxios
     .get(apiBase(`/private-api/market-data/${currency === "hbd" ? "usd" : currency}/${token}`))
     .then((resp: any) => resp.data);
 
@@ -154,13 +154,15 @@ export const getCurrencyRates = (): Promise<{
       };
     };
   };
-}> => axios.get(apiBase("/private-api/market-data/latest")).then((resp: any) => resp.data);
+}> => appAxios.get(apiBase("/private-api/market-data/latest")).then((resp: any) => resp.data);
 
 export const getUnreadNotificationCount = (username: string): Promise<number> => {
   const data = { code: getAccessToken(username) };
 
   return data.code
-    ? axios.post(apiBase(`/private-api/notifications/unread`), data).then((resp) => resp.data.count)
+    ? appAxios
+        .post(apiBase(`/private-api/notifications/unread`), data)
+        .then((resp) => resp.data.count)
     : Promise.resolve(0);
 };
 
@@ -170,7 +172,7 @@ export const markNotifications = (username: string, id: string | null = null) =>
     data.id = id;
   }
 
-  return axios.post(apiBase(`/private-api/notifications/mark`), data);
+  return appAxios.post(apiBase(`/private-api/notifications/mark`), data);
 };
 
 export interface UserImage {
@@ -182,22 +184,22 @@ export interface UserImage {
 
 export const getImages = (username: string): Promise<UserImage[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/images`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/images`), data).then((resp) => resp.data);
 };
 
 export const deleteImage = (username: string, imageID: string): Promise<any> => {
   const data = { code: getAccessToken(username), id: imageID };
-  return axios.post(apiBase(`/private-api/images-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/images-delete`), data).then((resp) => resp.data);
 };
 
 export const addImage = (username: string, url: string): Promise<any> => {
   const data = { code: getAccessToken(username), url: url };
-  return axios.post(apiBase(`/private-api/images-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/images-add`), data).then((resp) => resp.data);
 };
 
 export const getDrafts = (username: string): Promise<Draft[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/drafts`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/drafts`), data).then((resp) => resp.data);
 };
 
 export const addDraft = (
@@ -208,7 +210,7 @@ export const addDraft = (
   meta: DraftMetadata
 ): Promise<{ drafts: Draft[] }> => {
   const data = { code: getAccessToken(username), title, body, tags, meta };
-  return axios.post(apiBase(`/private-api/drafts-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/drafts-add`), data).then((resp) => resp.data);
 };
 
 export const updateDraft = (
@@ -220,17 +222,17 @@ export const updateDraft = (
   meta: DraftMetadata
 ): Promise<any> => {
   const data = { code: getAccessToken(username), id: draftId, title, body, tags, meta };
-  return axios.post(apiBase(`/private-api/drafts-update`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/drafts-update`), data).then((resp) => resp.data);
 };
 
 export const deleteDraft = (username: string, draftId: string): Promise<any> => {
   const data = { code: getAccessToken(username), id: draftId };
-  return axios.post(apiBase(`/private-api/drafts-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/drafts-delete`), data).then((resp) => resp.data);
 };
 
 export const getSchedules = (username: string): Promise<Schedule[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/schedules`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/schedules`), data).then((resp) => resp.data);
 };
 
 export const addSchedule = (
@@ -253,22 +255,22 @@ export const addSchedule = (
     schedule,
     reblog
   };
-  return axios.post(apiBase(`/private-api/schedules-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/schedules-add`), data).then((resp) => resp.data);
 };
 
 export const deleteSchedule = (username: string, id: string): Promise<any> => {
   const data = { code: getAccessToken(username), id };
-  return axios.post(apiBase(`/private-api/schedules-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/schedules-delete`), data).then((resp) => resp.data);
 };
 
 export const moveSchedule = (username: string, id: string): Promise<Schedule[]> => {
   const data = { code: getAccessToken(username), id };
-  return axios.post(apiBase(`/private-api/schedules-move`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/schedules-move`), data).then((resp) => resp.data);
 };
 
 export const getBookmarks = (username: string): Promise<Bookmark[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/bookmarks`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/bookmarks`), data).then((resp) => resp.data);
 };
 
 export const addBookmark = (
@@ -277,22 +279,22 @@ export const addBookmark = (
   permlink: string
 ): Promise<{ bookmarks: Bookmark[] }> => {
   const data = { code: getAccessToken(username), author, permlink };
-  return axios.post(apiBase(`/private-api/bookmarks-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/bookmarks-add`), data).then((resp) => resp.data);
 };
 
 export const deleteBookmark = (username: string, bookmarkId: string): Promise<any> => {
   const data = { code: getAccessToken(username), id: bookmarkId };
-  return axios.post(apiBase(`/private-api/bookmarks-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/bookmarks-delete`), data).then((resp) => resp.data);
 };
 
 export const getFavorites = (username: string): Promise<Favorite[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/favorites`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/favorites`), data).then((resp) => resp.data);
 };
 
 export const checkFavorite = (username: string, account: string): Promise<boolean> => {
   const data = { code: getAccessToken(username), account };
-  return axios.post(apiBase(`/private-api/favorites-check`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/favorites-check`), data).then((resp) => resp.data);
 };
 
 export const addFavorite = (
@@ -300,17 +302,17 @@ export const addFavorite = (
   account: string
 ): Promise<{ favorites: Favorite[] }> => {
   const data = { code: getAccessToken(username), account };
-  return axios.post(apiBase(`/private-api/favorites-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/favorites-add`), data).then((resp) => resp.data);
 };
 
 export const deleteFavorite = (username: string, account: string): Promise<any> => {
   const data = { code: getAccessToken(username), account };
-  return axios.post(apiBase(`/private-api/favorites-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/favorites-delete`), data).then((resp) => resp.data);
 };
 
 export const getFragments = (username: string): Promise<Fragment[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/fragments`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/fragments`), data).then((resp) => resp.data);
 };
 
 export const addFragment = (
@@ -319,7 +321,7 @@ export const addFragment = (
   body: string
 ): Promise<{ fragments: Fragment[] }> => {
   const data = { code: getAccessToken(username), title, body };
-  return axios.post(apiBase(`/private-api/fragments-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/fragments-add`), data).then((resp) => resp.data);
 };
 
 export const updateFragment = (
@@ -329,12 +331,12 @@ export const updateFragment = (
   body: string
 ): Promise<Fragment[]> => {
   const data = { code: getAccessToken(username), id: fragmentId, title, body };
-  return axios.post(apiBase(`/private-api/fragments-update`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/fragments-update`), data).then((resp) => resp.data);
 };
 
 export const deleteFragment = (username: string, fragmentId: string): Promise<Fragment[]> => {
   const data = { code: getAccessToken(username), id: fragmentId };
-  return axios.post(apiBase(`/private-api/fragments-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/fragments-delete`), data).then((resp) => resp.data);
 };
 
 export const getPoints = async (
@@ -346,7 +348,7 @@ export const getPoints = async (
 }> => {
   if (usePrivate ?? window.usePrivate) {
     const data = { username };
-    return axios.post(apiBase(`/private-api/points`), data).then((resp) => resp.data);
+    return appAxios.post(apiBase(`/private-api/points`), data).then((resp) => resp.data);
   }
   return {
     points: "0.000",
@@ -360,7 +362,7 @@ export const getPointTransactions = (
 ): Promise<PointTransaction[]> => {
   if (window.usePrivate) {
     const data = { username, type };
-    return axios.post(apiBase(`/private-api/point-list`), data).then((resp) => resp.data);
+    return appAxios.post(apiBase(`/private-api/point-list`), data).then((resp) => resp.data);
   }
 
   return new Promise((resolve) => {
@@ -370,7 +372,7 @@ export const getPointTransactions = (
 
 export const claimPoints = (username: string): Promise<any> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/points-claim`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/points-claim`), data).then((resp) => resp.data);
 };
 
 export const calcPoints = (
@@ -378,12 +380,12 @@ export const calcPoints = (
   amount: string
 ): Promise<{ usd: number; estm: number }> => {
   const data = { code: getAccessToken(username), amount };
-  return axios.post(apiBase(`/private-api/points-calc`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/points-calc`), data).then((resp) => resp.data);
 };
 
 export const getPromotePrice = (username: string): Promise<PromotePrice[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/promote-price`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/promote-price`), data).then((resp) => resp.data);
 };
 
 export const getPromotedPost = (
@@ -392,12 +394,12 @@ export const getPromotedPost = (
   permlink: string
 ): Promise<{ author: string; permlink: string } | ""> => {
   const data = { code: getAccessToken(username), author, permlink };
-  return axios.post(apiBase(`/private-api/promoted-post`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/promoted-post`), data).then((resp) => resp.data);
 };
 
 export const getBoostOptions = (username: string): Promise<number[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/boost-options`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/boost-options`), data).then((resp) => resp.data);
 };
 
 export const getBoostedPost = (
@@ -406,7 +408,7 @@ export const getBoostedPost = (
   permlink: string
 ): Promise<{ author: string; permlink: string } | ""> => {
   const data = { code: getAccessToken(username), author, permlink };
-  return axios.post(apiBase(`/private-api/boosted-post`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/boosted-post`), data).then((resp) => resp.data);
 };
 
 export const commentHistory = (
@@ -415,12 +417,12 @@ export const commentHistory = (
   onlyMeta: boolean = false
 ): Promise<CommentHistory> => {
   const data = { author, permlink, onlyMeta: onlyMeta ? "1" : "" };
-  return axios.post(apiBase(`/private-api/comment-history`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/comment-history`), data).then((resp) => resp.data);
 };
 
 export const getPromotedEntries = (): Promise<Entry[]> => {
   if (window.usePrivate) {
-    return axios.get(apiBase(`/private-api/promoted-entries`)).then((resp) => resp.data);
+    return appAxios.get(apiBase(`/private-api/promoted-entries`)).then((resp) => resp.data);
   }
 
   return new Promise((resolve) => resolve([]));
@@ -442,7 +444,7 @@ export const saveNotificationsSettings = (
 };
 
 export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> => {
-  return axios.get(apiBase(`/private-api/referrals/${username}`), {
+  return appAxios.get(apiBase(`/private-api/referrals/${username}`), {
     params: {
       max_id: maxId
     }
@@ -451,7 +453,7 @@ export const getReferrals = (username: any, maxId: any): Promise<ReferralItems> 
 
 export const getReferralsStats = async (username: any): Promise<ReferralStat> => {
   try {
-    const res = await axios.get(apiBase(`/private-api/referrals/${username}/stats`));
+    const res = await appAxios.get(apiBase(`/private-api/referrals/${username}/stats`));
     if (!res.data) {
       throw new Error("No Referrals for this user!");
     }
@@ -470,7 +472,7 @@ export const getReferralsStats = async (username: any): Promise<ReferralStat> =>
 
 export const getAnnouncementsData = async (): Promise<Announcement[]> => {
   try {
-    const res = await axios.get<Announcement[]>(apiBase(`/private-api/announcements`));
+    const res = await appAxios.get<Announcement[]>(apiBase(`/private-api/announcements`));
     if (!res.data) {
       return [];
     }
@@ -483,7 +485,7 @@ export const getAnnouncementsData = async (): Promise<Announcement[]> => {
 
 export const getRecoveries = (username: string): Promise<GetRecoveriesEmailResponse[]> => {
   const data = { code: getAccessToken(username) };
-  return axios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/recoveries`), data).then((resp) => resp.data);
 };
 
 export const addRecoveries = (
@@ -492,12 +494,12 @@ export const addRecoveries = (
   publicKeys: Object
 ): Promise<{ recoveries: Recoveries }> => {
   const data = { code: getAccessToken(username), email, publicKeys };
-  return axios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/recoveries-add`), data).then((resp) => resp.data);
 };
 
 export const deleteRecoveries = (username: string, recoveryId: string): Promise<any> => {
   const data = { code: getAccessToken(username), id: recoveryId };
-  return axios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
+  return appAxios.post(apiBase(`/private-api/recoveries-delete`), data).then((resp) => resp.data);
 };
 
 export const onboardEmail = (username: string, email: string, friend: string): Promise<any> => {
@@ -506,7 +508,7 @@ export const onboardEmail = (username: string, email: string, friend: string): P
     email,
     friend
   };
-  return axios
+  return appAxios
     .post(apiBase(`/private-api/account-create-friend`), dataBody)
     .then((resp) => resp.data);
 };

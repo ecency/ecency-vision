@@ -1,10 +1,10 @@
-import axios from "axios";
 import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
 import { client as hiveClient } from "./hive";
 import * as keychain from "@/utils/keychain";
 import { broadcastPostingJSON } from "./operations";
 import { hotSign } from "@/utils";
 import { HivePrice, Markets, SpkApiWallet, SpkMarkets } from "@/entities";
+import { appAxios } from "@/api/axios";
 
 const spkNodes = [
   "https://spk.good-karma.xyz",
@@ -52,12 +52,12 @@ export function rewardSpk(data: SpkApiWallet, sstats: any) {
 }
 
 export const getSpkWallet = async (username: string): Promise<SpkApiWallet> => {
-  const resp = await axios.get<SpkApiWallet>(`${spkNode}/@${username}`);
+  const resp = await appAxios.get<SpkApiWallet>(`${spkNode}/@${username}`);
   return resp.data;
 };
 
 export const getMarkets = async (): Promise<Markets> => {
-  const resp = await axios.get<SpkMarkets>(`${spkNode}/markets`);
+  const resp = await appAxios.get<SpkMarkets>(`${spkNode}/markets`);
   return {
     list: Object.entries(resp.data.markets.node).map(([name, node]) => ({
       name,
@@ -74,7 +74,7 @@ export const getMarkets = async (): Promise<Markets> => {
 
 export const getHivePrice = async (): Promise<HivePrice> => {
   try {
-    const resp = await axios.get<HivePrice>("https://api.coingecko.com/api/v3/simple/price", {
+    const resp = await appAxios.get<HivePrice>("https://api.coingecko.com/api/v3/simple/price", {
       params: {
         ids: "hive",
         vs_currencies: "usd"

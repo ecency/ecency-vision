@@ -1,8 +1,8 @@
 import { QueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
 import { LeaderBoardDuration, LeaderBoardItem } from "@/entities";
-import axios from "axios";
 import { apiBase } from "@/api/helper";
+import { appAxios } from "@/api/axios";
 
 export async function prefetchDiscoverLeaderboardQuery(
   queryClient: QueryClient,
@@ -11,7 +11,7 @@ export async function prefetchDiscoverLeaderboardQuery(
   await queryClient.prefetchQuery({
     queryKey: [QueryIdentifiers.DISCOVER_LEADERBOARD, duration],
     queryFn: () =>
-      axios
+      appAxios
         .get<LeaderBoardItem[]>(apiBase(`/private-api/leaderboard/${duration}`))
         .then((resp) => resp.data)
   });

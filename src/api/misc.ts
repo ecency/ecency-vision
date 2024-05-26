@@ -1,8 +1,8 @@
-import axios from "axios";
 import defaults from "@/defaults.json";
 import { apiBase } from "./helper";
 import { InfiniteData, QueryKey, useInfiniteQuery } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
+import { appAxios } from "@/api/axios";
 
 export const getEmojiData = () => fetch(apiBase("/emoji.json")).then((response) => response.json());
 
@@ -17,7 +17,7 @@ export const uploadImage = async (
 
   const postUrl = `${defaults.imageServer}/hs/${token}`;
 
-  return axios
+  return appAxios
     .post(postUrl, fData, {
       headers: {
         "Content-Type": "multipart/form-data"

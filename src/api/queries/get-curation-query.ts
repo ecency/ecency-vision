@@ -1,12 +1,12 @@
 import { QueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
 import { CurationDuration, CurationItem } from "@/entities";
-import axios from "axios";
 import { apiBase } from "@/api/helper";
 import { getAccounts } from "@/api/hive";
+import { appAxios } from "@/api/axios";
 
 async function fetch(duration: CurationDuration) {
-  const resp = await axios.get<CurationItem[]>(apiBase(`/private-api/curation/${duration}`));
+  const resp = await appAxios.get<CurationItem[]>(apiBase(`/private-api/curation/${duration}`));
   const data = resp.data;
 
   const accounts = data.map((item) => item.account);

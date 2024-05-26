@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated build">
+      <change afterPath="$PROJECT_DIR$/src/api/axios/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client-providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/contributors/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/hive-engine.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hive-engine.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/misc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/misc.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/private-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/private-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/image-downloader-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/image-downloader-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/search-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/search-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/spk-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/spk-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/threespeak/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +241,7 @@
       <workItem from="1716477148768" duration="117000" />
       <workItem from="1716552217757" duration="5247000" />
       <workItem from="1716561292809" duration="9000" />
-      <workItem from="1716648866260" duration="11219000" />
+      <workItem from="1716648866260" duration="11513000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -518,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716738909406</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Updated build">
+      <option name="closed" value="true" />
+      <created>1716739119881</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1716739119881</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

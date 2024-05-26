@@ -2,8 +2,8 @@ import { Entry } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import { useQuery } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
-import axios from "axios";
 import { catchPostImage } from "@ecency/render-helper";
+import { appAxios } from "@/api/axios";
 
 export function useImageDownloader(
   entry: Entry,
@@ -34,7 +34,7 @@ export function useImageDownloader(
     queryKey: [QueryIdentifiers.ENTRY_THUMB, entry.author, entry.permlink, width, height],
     queryFn: async () => {
       try {
-        const response = await axios.get(
+        const response = await appAxios.get(
           canUseWebp
             ? catchPostImage(entry, width, height, "webp")
             : catchPostImage(entry, width, height) || noImage,
