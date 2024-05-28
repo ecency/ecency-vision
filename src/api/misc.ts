@@ -33,7 +33,7 @@ export const getMarketData = (
   toTs: string
 ): Promise<{ prices?: [number, number] }> => {
   const u = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=${vsCurrency}&from=${fromTs}&to=${toTs}`;
-  return axios.get(u).then((r) => r.data);
+  return appAxios.get(u).then((r) => r.data);
 };
 
 export const getCurrencyRate = (cur: string): Promise<number> => {
@@ -42,7 +42,7 @@ export const getCurrencyRate = (cur: string): Promise<number> => {
   }
 
   const u = `https://api.coingecko.com/api/v3/simple/price?ids=hive_dollar&vs_currencies=${cur}`;
-  return axios
+  return appAxios
     .get(u)
     .then((r) => r.data)
     .then((r) => r.hive_dollar[cur]);
@@ -62,7 +62,7 @@ export function useFetchGifQuery(query: string, limit: number) {
       params.set("limit", limit.toString());
       params.set("offset", pageParam.toString());
 
-      return axios(`https://api.giphy.com/v1/gifs/search?${params.toString()}`);
+      return appAxios(`https://api.giphy.com/v1/gifs/search?${params.toString()}`);
     },
     initialPageParam: 0,
     initialData: { pages: [], pageParams: [] },

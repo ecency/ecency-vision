@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @apply bg-blue-dark-sky-040 dark:bg-dark-default top-0 sticky z-10;
 
     @include themify(day) {
       border-bottom: 1px solid;
@@ -16,7 +17,7 @@
 
     @include themify(night) {
       border-bottom: 1px solid;
-      @apply border-dark-default-010-light
+      @apply border-dark-default-010-light;
     }
 
     .list-filter {

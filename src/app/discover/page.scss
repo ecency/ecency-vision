@@ -7,7 +7,6 @@
 
   @media (min-width: $lg-break) {
     flex-direction: row;
-    height: calc(100% - 104px) !important;
   }
 
   .top-users,
@@ -19,8 +18,9 @@
     margin-bottom: 20px;
 
     @media (min-width: $lg-break) {
-      height: 100%;
-      margin-bottom: 0;
+      min-height: 400px;
+      max-height: calc(100vh - 104px) !important;
+      @apply overflow-y-auto h-full;
     }
   }
 

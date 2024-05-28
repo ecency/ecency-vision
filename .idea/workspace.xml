@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated build">
-      <change afterPath="$PROJECT_DIR$/src/api/axios/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/hive-engine.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hive-engine.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/misc.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/misc.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/private-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/private-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/image-downloader-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/image-downloader-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/search-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/search-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/spk-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/spk-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/threespeak/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/api.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated discover page styles">
+      <change beforePath="$PROJECT_DIR$/src/app/discover/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +230,8 @@
       <workItem from="1716477148768" duration="117000" />
       <workItem from="1716552217757" duration="5247000" />
       <workItem from="1716561292809" duration="9000" />
-      <workItem from="1716648866260" duration="11513000" />
+      <workItem from="1716648866260" duration="12641000" />
+      <workItem from="1716873646986" duration="720000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -531,7 +521,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716739119881</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Moved from global axios to local">
+      <option name="closed" value="true" />
+      <created>1716739384067</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1716739384067</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Updated discover page styles">
+      <option name="closed" value="true" />
+      <created>1716874296121</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1716874296121</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,8 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added PWA and fix build" />
-    <MESSAGE value="Updated to react query 5" />
     <MESSAGE value="N" />
     <MESSAGE value="Migrated witnesses list and header, migrate witnesses to queries" />
     <MESSAGE value="Migrated witnesses controls" />
@@ -574,7 +578,9 @@
     <MESSAGE value="Migrated discover page" />
     <MESSAGE value="Updated chat providers" />
     <MESSAGE value="Updated build" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated build" />
+    <MESSAGE value="Moved from global axios to local" />
+    <MESSAGE value="Updated discover page styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated discover page styles" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

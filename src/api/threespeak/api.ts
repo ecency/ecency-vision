@@ -1,4 +1,4 @@
-import * as tus from "tus-js-appAxios";
+import * as tus from "tus-js-axios";
 import { ThreeSpeakVideo } from "./types";
 import { getDecodedMemo } from "@/utils";
 import { appAxios } from "@/api/axios";
