@@ -10,6 +10,7 @@ export enum QueryIdentifiers {
   ENTRY_PIN_TRACK = "entry-pin-track",
   COMMUNITY = "community",
   COMMUNITY_RANKED_POSTS = "community-ranked-posts",
+  REWARDED_COMMUNITIES = "rewarded-communities",
   DECK_USER = "deck-user",
   DECK_COMMUNITY = "deck-community",
 

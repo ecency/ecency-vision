@@ -17,3 +17,4 @@ export * from "./key-or-hot-dialog";
 export * from "./entry-link";
 export * from "./purchase-qr";
 export * from "./follow-controls";
+export * from "./image-upload-button";

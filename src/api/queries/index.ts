@@ -19,3 +19,4 @@ export * from "./get-relationship-btw-accounts";
 export * from "./get-discover-leaderboard-query";
 export * from "./get-curation-query";
 export * from "./contributors-query";
+export * from "./get-rewarded-communities";

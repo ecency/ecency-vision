@@ -1,0 +1,233 @@
+@import "src/styles/vars_mixins";
+
+.community-card {
+  position: relative;
+
+  @media (min-width: $md-break) {
+    padding-top: 16px;
+  }
+
+  .community-avatar {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 26px auto;
+    position: relative;
+
+    @media (min-width: $md-break) {
+      float: none;
+      margin: 0 0 26px 0;
+    }
+
+    .edit-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @apply bg-blue-dark-sky;
+      @apply text-white;
+      position: absolute;
+      z-index: 1;
+      bottom: 10px;
+      right: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: $box-shadow;
+      }
+
+      svg {
+        height: 16px;
+      }
+    }
+
+    .user-avatar {
+      height: 160px;
+      width: 160px;
+      background-color: transparent;
+      @apply border-blue-duck-egg;
+    }
+  }
+
+  .community-info {
+    text-align: center;
+    margin-bottom: 18px;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      @apply text-blue-dark-sky;
+    }
+
+    .about {
+      font-weight: 300;
+      @apply text-blue-dark-sky;
+    }
+
+    .nsfw {
+      display: inline-flex;
+      margin-top: 10px;
+      border: 1px solid;
+      @apply border-red-020;
+      @apply text-red-020;
+      border-radius: 6px;
+      padding: 1px 4px;
+      font-size: 90%;
+    }
+  }
+
+  .community-sections {
+    overflow-x: hidden;
+    @media (max-width: ($md-break - 1px)) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .community-section {
+      margin-bottom: 16px;
+
+      @media (max-width: ($md-break - 1px)) {
+        &:not(:last-child) {
+          margin-right: 4px;
+        }
+      }
+
+      .section-header {
+        padding: 10px;
+        border-radius: 18px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        @include themify(day) {
+          @apply bg-light-300;
+          @apply text-gray-steel;
+        }
+
+        @include themify(night) {
+          @apply bg-dark-200;
+          @apply text-silver;
+        }
+
+        svg {
+          height: 16px;
+          margin-right: 10px;
+        }
+
+        @media (max-width: ($md-break - 1px)) {
+          cursor: pointer;
+          font-size: 96%;
+          padding: 6px;
+
+          svg {
+            height: 14px;
+            margin-right: 6px;
+          }
+        }
+
+        @media (min-width: $md-break) {
+          border-radius: 0 18px 18px 0;
+          pointer-events: none;
+        }
+      }
+
+      .section-content {
+        @media (max-width: ($md-break - 1px)) {
+          display: none;
+        }
+
+        font-size: 90%;
+        @apply text-gray-steel;
+        max-width: 95%;
+
+        p {
+          word-break: break-all;
+        }
+      }
+    }
+  }
+
+  .community-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    @media (min-width: $md-break) {
+      justify-content: flex-start;
+      padding-top: 16px;
+      @include themify(day) {
+        border-top: 1px solid;
+        @apply border-light-300;
+      }
+
+      @include themify(night) {
+        border-top: 1px solid;
+        @apply border-dark-200;
+      }
+    }
+
+    .community-control {
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .community-rewards {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    @media (min-width: $md-break) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.community-card .section-team, .community-info-dialog {
+  .team-member {
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    @apply text-gray-steel;
+    margin-bottom: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 95%;
+
+    .username {
+      margin-right: 6px;
+    }
+
+    .role {
+      margin-right: 6px;
+      text-transform: uppercase;
+    }
+
+    .extra {
+      border: 1px solid;
+      @apply border-green;
+      padding: 0 2px;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+  }
+
+  .description-wrapper {
+    height: auto;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+}
