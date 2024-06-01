@@ -14,3 +14,4 @@ export * from "./image-upload";
 export * from "./update-profile";
 export * from "./update-community";
 export * from "./community-rewards-register";
+export * from "./community-set-user-role";

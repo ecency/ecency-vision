@@ -9,10 +9,12 @@ export enum QueryIdentifiers {
   DELETED_ENTRY = "deleted-entry",
   ENTRY_PIN_TRACK = "entry-pin-track",
   COMMUNITY = "community",
+  COMMUNITY_SUBSCRIBERS = "community-subscribers",
   COMMUNITY_RANKED_POSTS = "community-ranked-posts",
   REWARDED_COMMUNITIES = "rewarded-communities",
   DECK_USER = "deck-user",
   DECK_COMMUNITY = "deck-community",
+  ACCOUNT_NOTIFICATIONS = "account-notifications",
 
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
   POINTS = "points",

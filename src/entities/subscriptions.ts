@@ -1,1 +1,1 @@
-export type Subscription = Array<string>;
+export type Subscription = string[];

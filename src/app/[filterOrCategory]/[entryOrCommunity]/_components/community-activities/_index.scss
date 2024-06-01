@@ -1,0 +1,51 @@
+@import "src/styles/vars_mixins";
+
+.community-activities {
+  .activity-list {
+    .activity-list-body {
+      margin-top: 10px;
+
+      .activity-list-item {
+        margin-bottom: 16px;
+        display: flex;
+        padding: 10px;
+        border-radius: 8px;
+
+        &:nth-child(odd) {
+          @include themify(day) {
+            @apply bg-light-300;
+          }
+
+          @include themify(night) {
+            @apply bg-dark-200;
+          }
+        }
+
+        .activity-user {
+          display: flex;
+          align-items: center;
+          width: 50px;
+          flex-shrink: 0;
+          margin-right: 6px;
+        }
+
+        .activity-content {
+          flex-grow: 1;
+
+          .activity-msg {
+            margin-bottom: 8px;
+          }
+
+          .activity-date {
+            font-size: 90%;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+
+  .load-more {
+    text-align: center;
+  }
+}

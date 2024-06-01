@@ -66,6 +66,11 @@ export function createGlobalActions(set: (state: Partial<State>) => void, getSta
       set({
         lang
       });
+    },
+    setListStyle: (listStyle: ListStyle) => {
+      set({
+        listStyle
+      });
     }
   };
 }

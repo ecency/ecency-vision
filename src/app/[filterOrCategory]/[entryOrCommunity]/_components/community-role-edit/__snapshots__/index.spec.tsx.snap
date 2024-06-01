@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="community-role-edit-dialog-content"
+>
+  <div
+    className="user-role-form "
+  >
+    <div
+      className="flex mb-4"
+    >
+      <div
+        className="w-full sm:w-2/12"
+      >
+        <label>
+          Username
+        </label>
+      </div>
+      <div
+        className="w-full sm:w-10/12"
+      >
+        <div
+          className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
+        >
+          <div
+            className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
+            onClick={[Function]}
+          >
+            @
+          </div>
+          <input
+            autoFocus={false}
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+            onChange={[Function]}
+            placeholder="username"
+            type="text"
+            value="foo"
+          />
+        </div>
+        
+      </div>
+    </div>
+    <div
+      className="flex mb-4"
+    >
+      <div
+        className="w-full sm:w-2/12"
+      >
+        <label>
+          Role
+        </label>
+      </div>
+      <div
+        className="w-full sm:w-10/12"
+      >
+        <select
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
+          onChange={[Function]}
+          type="select"
+          value="mod"
+        >
+          <option
+            value="admin"
+          >
+            admin
+          </option>
+          <option
+            value="mod"
+          >
+            mod
+          </option>
+          <option
+            value="member"
+          >
+            member
+          </option>
+          <option
+            value="guest"
+          >
+            guest
+          </option>
+          <option
+            value="muted"
+          >
+            muted
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="flex justify-end"
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Save
+        </div>
+      </button>
+    </div>
+  </div>
+  <div
+    className="explanations"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<h3>Role Permissions</h3><p><strong>Owner</strong> - assign admins</p><p><strong>Admin</strong> - edit settings, assign mods</p><p><strong>Moderator</strong> - mute, pin, set user titles</p><p><strong>Member</strong> - listed on leadership team</p><p><strong>Guest</strong> - default; can post and comment</p><p><strong>Muted</strong> - new posts automatically muted</p>",
+      }
+    }
+  />
+</div>
+`;

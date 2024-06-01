@@ -4,9 +4,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useCommunityCache } from "@/core/caches";
 import { Feedback, LinearProgress, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import {
+  CommunityActivities,
   CommunityCard,
+  CommunityCover,
+  CommunityMenu,
+  CommunitySubscribers,
   JoinCommunityModal
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components";
+import defaults from "@/defaults.json";
 
 interface Props {
   communityName: string;
@@ -179,16 +184,16 @@ export const CommunityPage = ({ communityName }: Props) => {
           <meta itemProp="url" content={`${defaults.base}${getMetaProps().url}`} />
         </span>
         <div className="content-side">
-          <CommunityMenu {...props} community={community} />
-          <CommunityCover {...props} account={account!!} community={community} />
+          <CommunityMenu community={community} />
+          <CommunityCover account={account!!} community={community} />
 
           {(() => {
             if (props.match.params.filter === "subscribers") {
-              return <CommunitySubscribers {...props} community={community} />;
+              return <CommunitySubscribers community={community} />;
             }
 
             if (props.match.params.filter === "activities") {
-              return <CommunityActivities {...props} community={community} />;
+              return <CommunityActivities community={community} />;
             }
 
             if (props.match.params.filter === "roles") {
