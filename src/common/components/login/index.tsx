@@ -697,7 +697,12 @@ export class Login extends BaseComponent<LoginProps, State> {
             {_t("login.with-hive-signer")}
           </a>
         </div> */}
-        {global.hasKeyChain && (
+        {/* {global.hasKeyChain && ( */}
+        <div className="d-flex flex-column align-items-center">
+          <div className="mb-3 d-flex flex-column align-items-center">
+            <span>Make sure you have keychain installed!</span>
+            <span className="mt-3">Don't have keychain? download <a href="https://hive-keychain.com/">here</a></span>
+          </div>
           <div className="kc-login">
             <a
               className={_c(
@@ -709,7 +714,8 @@ export class Login extends BaseComponent<LoginProps, State> {
               {_t("login.with-keychain")}
             </a>
           </div>
-        )}
+        </div>
+        {/* )} */}
         {activeUser === null && (
           <p>
             {_t("login.sign-up-text-1")}
