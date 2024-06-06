@@ -22,6 +22,7 @@ export interface GetPollDetailsQueryResponse {
   poll_voters?: { name: string; choice_num: number }[];
   post_body: string;
   post_title: string;
+  max_choices_voted?: number;
   preferred_interpretation: string;
   protocol_version: number;
   question: string;

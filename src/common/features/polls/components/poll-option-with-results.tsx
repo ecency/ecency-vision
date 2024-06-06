@@ -7,13 +7,13 @@ import { PollSnapshot } from "./polls-creation";
 import { _t } from "../../../i18n";
 
 export interface Props {
-  activeChoice?: string;
+  activeChoices: Set<string>;
   choice: string;
   entry?: Entry;
   interpretation: PollSnapshot["interpretation"];
 }
 
-export function PollOptionWithResults({ choice, activeChoice, entry, interpretation }: Props) {
+export function PollOptionWithResults({ choice, activeChoices, entry, interpretation }: Props) {
   const pollDetails = useGetPollDetailsQuery(entry);
 
   const votesCount = useMemo(
@@ -61,7 +61,7 @@ export function PollOptionWithResults({ choice, activeChoice, entry, interpretat
           width: `${progress}%`
         }}
       />
-      {activeChoice === choice && <PollCheck checked={activeChoice === choice} />}
+      {activeChoices.has(choice) && <PollCheck checked={activeChoices.has(choice)} />}
       <div className="flex w-full gap-2 justify-between">
         <span>{choice}</span>
         <span className="text-xs whitespace-nowrap">

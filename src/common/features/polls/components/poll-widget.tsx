@@ -13,6 +13,7 @@ import { format, isBefore } from "date-fns";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { FormControl } from "@ui/input";
+import { useSet } from "react-use";
 
 interface Props {
   poll: PollSnapshot;
@@ -31,7 +32,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   const { mutateAsync: vote, isLoading: isVoting } = useSignPollVoteByKey(pollDetails.data);
 
-  const [activeChoice, setActiveChoice] = useState<string>();
+  const [activeChoices, { add: addActiveChoice, remove: removeActiveChoice }] = useSet<string>();
   const [resultsMode, setResultsMode] = useState(false);
   const [isVotedAlready, setIsVotedAlready] = useState(false);
   const [showEndDate, setShowEndDate] = useLocalStorage(PREFIX + "_plls_set", false);
@@ -63,7 +64,9 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
       const choice = pollDetails.data?.poll_choices.find(
         (pc) => pc.choice_num === activeUserVote.choice_num
       );
-      setActiveChoice(choice?.choice_text);
+      if (choice) {
+        addActiveChoice(choice?.choice_text);
+      }
     }
   }, [activeUserVote, pollDetails.data]);
 
@@ -132,14 +135,19 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
                 key={choice}
                 entry={entry}
                 choice={choice}
-                activeChoice={activeChoice}
+                activeChoices={activeChoices}
               />
             ) : (
               <PollOption
                 choice={choice}
                 key={choice}
-                setActiveChoice={setActiveChoice}
-                activeChoice={activeChoice}
+                addActiveChoice={(v) => {
+                  if (activeChoices.size < (pollDetails.data?.max_choices_voted ?? 1)) {
+                    addActiveChoice(v);
+                  }
+                }}
+                removeActiveChoice={removeActiveChoice}
+                activeChoices={activeChoices}
               />
             )
           )}
@@ -165,14 +173,14 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         </div>
         {showVote && (
           <Button
-            disabled={isReadOnly || !activeChoice || isVoting}
+            disabled={isReadOnly || !activeChoices || isVoting}
             icon={<UilPanelAdd />}
             iconPlacement="left"
             size="lg"
             className="font-semibold text-sm px-4 mt-4"
             onClick={() => {
               setIsVotedAlready(false);
-              vote({ choice: activeChoice!! });
+              vote({ choices: activeChoices!! });
             }}
           >
             {_t(isVoting ? "polls.voting" : "polls.vote")}
