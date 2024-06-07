@@ -55,9 +55,9 @@ export namespace PollsVotesManagement {
         ...choiceNums.map((num) => ({ name: activeUser!.username, choice_num: num }))
       ],
       poll_stats: {
-        ...data.poll_stats,
+        total_hive_hp_incl_proxied: data.poll_stats?.total_hive_hp_incl_proxied ?? 0,
         total_voting_accounts_num:
-          data.poll_stats.total_voting_accounts_num +
+          (data.poll_stats?.total_voting_accounts_num ?? 0) +
           (currentUserChoices.length - (existingVotes?.length ?? 0))
       }
     };

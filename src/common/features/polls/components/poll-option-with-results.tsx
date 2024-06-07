@@ -27,8 +27,8 @@ export function PollOptionWithResults({ choice, activeChoices, entry, interpreta
     [pollDetails.data?.poll_stats.total_voting_accounts_num]
   );
   const totalHp = useMemo(
-    () => pollDetails.data?.poll_stats.total_hive_hp_incl_proxied ?? 0,
-    [pollDetails.data?.poll_stats.total_hive_hp_incl_proxied]
+    () => pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied ?? 0,
+    [pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied]
   );
   const choiceHp = useMemo(
     () =>

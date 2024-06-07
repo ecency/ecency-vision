@@ -57,8 +57,8 @@ export function PollWidget({ poll, isReadOnly, entry, compact = false }: Props) 
     [pollDetails.data?.status, resultsMode, pollDetails.data?.poll_trx_id]
   );
   const isInterpretationSelectionDisabled = useMemo(
-    () => pollDetails.data?.poll_stats.total_hive_hp_incl_proxied === null,
-    [pollDetails.data?.poll_stats.total_hive_hp_incl_proxied]
+    () => pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied === null,
+    [pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied]
   );
 
   useEffect(() => {
