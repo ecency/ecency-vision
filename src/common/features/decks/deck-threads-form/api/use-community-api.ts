@@ -5,9 +5,12 @@ import { comment } from "../../../../api/operations";
 import tempEntry from "../../../../helper/temp-entry";
 import { Entry } from "../../../../store/entries/types";
 import { EntryMetadataManagement } from "../../../entry-management";
+import { useContext } from "react";
+import { PollsContext } from "../../../../pages/submit/hooks/polls-manager";
 
 export function useCommunityApi() {
   const { activeUser, addEntry } = useMappedStore();
+  const { activePoll } = useContext(PollsContext);
 
   const request = async (host: string, raw: string, editingEntry?: Entry) => {
     if (!activeUser || !activeUser.data.__loaded) {
@@ -35,6 +38,7 @@ export function useCommunityApi() {
         hostTag,
         ...(raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"])
       ])
+      .withPoll(activePoll)
       .build();
 
     await comment(author, "", hostTag, permlink, "", cleanedRaw, jsonMeta, options, true);

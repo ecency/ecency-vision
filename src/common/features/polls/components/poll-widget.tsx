@@ -14,14 +14,16 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { FormControl } from "@ui/input";
 import { useSet } from "react-use";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   poll: PollSnapshot;
   isReadOnly: boolean;
   entry?: Entry;
+  compact?: boolean;
 }
 
-export function PollWidget({ poll, isReadOnly, entry }: Props) {
+export function PollWidget({ poll, isReadOnly, entry, compact = false }: Props) {
   const { activeUser } = useMappedStore();
 
   const pollDetails = useGetPollDetailsQuery(entry);
@@ -97,7 +99,13 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   return (
     <div className="grid grid-cols-4">
-      <div className="col-span-4 sm:col-span-3 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
+      <div
+        className={classNameObject({
+          "col-span-4 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900":
+            true,
+          "sm:col-span-3": !compact
+        })}
+      >
         {isReadOnly && (
           <div className="text-xs uppercase tracking-wide font-semibold opacity-50">
             {_t("polls.preview-mode")}

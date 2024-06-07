@@ -1,18 +1,20 @@
 import { Entry } from "../../../../store/entries/types";
-import { createReplyPermlink, makeJsonMetaDataReply } from "../../../../helper/posting";
+import { createReplyPermlink } from "../../../../helper/posting";
 import { comment } from "../../../../api/operations";
 import tempEntry from "../../../../helper/temp-entry";
 import { FullAccount } from "../../../../store/accounts/types";
-import { version } from "../../../../../../package.json";
 import { useMappedStore } from "../../../../store/use-mapped-store";
 import { v4 } from "uuid";
 import { ThreadItemEntry } from "../../columns/deck-threads-manager";
 import { useContext } from "react";
 import { EntriesCacheContext } from "../../../../core";
+import { PollsContext } from "../../../../pages/submit/hooks/polls-manager";
+import { EntryMetadataManagement } from "../../../entry-management";
 
 export function useThreadsApi() {
   const { activeUser } = useMappedStore();
   const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
+  const { activePoll } = useContext(PollsContext);
 
   const request = async (entry: Entry, raw: string, editingEntry?: ThreadItemEntry) => {
     if (!activeUser || !activeUser.data.__loaded) {
@@ -24,7 +26,12 @@ export function useThreadsApi() {
     const permlink = editingEntry?.permlink ?? createReplyPermlink(entry.author);
     const tags = raw.match(/\#[a-zA-Z0-9]+/g)?.map((tag) => tag.replace("#", "")) ?? ["ecency"];
 
-    const jsonMeta = makeJsonMetaDataReply(tags, version);
+    const jsonMeta = EntryMetadataManagement.EntryMetadataManager.shared
+      .builder()
+      .default()
+      .withTags(tags)
+      .withPoll(activePoll)
+      .build();
 
     await comment(author, parentAuthor, parentPermlink, permlink, "", raw, jsonMeta, null, true);
 

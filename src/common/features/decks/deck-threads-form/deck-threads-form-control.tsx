@@ -1,8 +1,10 @@
 import { _t } from "../../../i18n";
-import React from "react";
+import React, { useContext } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { DeckThreadsFormToolbar } from "./deck-threads-form-toolbar";
 import { closeSvg } from "../../../img/svg";
+import { PollsContext } from "../../../pages/submit/hooks/polls-manager";
+import { PollWidget } from "../../polls";
 
 interface Props {
   text: string;
@@ -27,6 +29,8 @@ export const DeckThreadsFormControl = ({
   onAddVideo,
   video
 }: Props) => {
+  const { activePoll } = useContext(PollsContext);
+
   return (
     <>
       <div className="comment-body">
@@ -63,6 +67,11 @@ export const DeckThreadsFormControl = ({
             <div className="remove" onClick={() => onAddVideo(null)}>
               {closeSvg}
             </div>
+          </div>
+        )}
+        {activePoll && (
+          <div className="py-4">
+            <PollWidget compact={true} poll={activePoll} isReadOnly={true} />
           </div>
         )}
         <DeckThreadsFormToolbar
