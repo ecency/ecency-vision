@@ -91,7 +91,8 @@
     "restore": "Palauta",
     "success": "Onnistui",
     "error": "Virhe",
-    "reset-form": "Tyhjennä lomake"
+    "reset-form": "Tyhjennä lomake",
+    "all": "All"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -2459,6 +2460,8 @@
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
     "interpretation": "Tulkinta",
     "creating-in-progress": "Luonti käynnissä...",
-    "invalid-time": "Virheellinen aikamuoto. Käytä TT:MM"
+    "invalid-time": "Virheellinen aikamuoto. Käytä TT:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }
