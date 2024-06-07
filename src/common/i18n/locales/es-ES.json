@@ -91,7 +91,8 @@
     "restore": "Restaurar",
     "success": "Éxito",
     "error": "Error",
-    "reset-form": "Reiniciar formulario"
+    "reset-form": "Reiniciar formulario",
+    "all": "All"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -2459,6 +2460,8 @@
     "expired-date": "La fecha de fin debe ser del presente o futuro",
     "interpretation": "Interpretación",
     "creating-in-progress": "Creación en progreso...",
-    "invalid-time": "Formato de hora inválido. Use HH:MM"
+    "invalid-time": "Formato de hora inválido. Use HH:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }
