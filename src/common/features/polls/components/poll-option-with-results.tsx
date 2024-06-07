@@ -23,8 +23,8 @@ export function PollOptionWithResults({ choice, activeChoices, entry, interpreta
     [choice, pollDetails.data?.poll_choices]
   );
   const totalVotes = useMemo(
-    () => Math.max(pollDetails.data?.poll_stats.total_voting_accounts_num ?? 0, 1),
-    [pollDetails.data?.poll_stats.total_voting_accounts_num]
+    () => Math.max(pollDetails.data?.poll_stats?.total_voting_accounts_num ?? 0, 1),
+    [pollDetails.data?.poll_stats?.total_voting_accounts_num]
   );
   const totalHp = useMemo(
     () => pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied ?? 0,
