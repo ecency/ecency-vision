@@ -91,7 +91,8 @@
     "restore": "Restaurar",
     "success": "Éxito",
     "error": "Error",
-    "reset-form": "Reiniciar formulario"
+    "reset-form": "Reiniciar formulario",
+    "all": "All"
   },
   "confirm": {
     "title": "¿Estás seguro?",
@@ -1428,6 +1429,8 @@
     "image-error-cache": "No se pudo subir la imagen. Parece que has cerrado la sesión. Intenta iniciar sesión de nuevo.",
     "image-error-size": "El tamaño de la imagen es demasiado grande, intente una imagen de tamaño más pequeño.",
     "image-error-conflict-name": "Ya tienes una imagen con este nombre de archivo. Selecciónala en la galería.",
+    "image-error-network": "No se pudo subir la imagen. Problema de red con el estado {{0}}.",
+    "image-error-url-missed": "La subida de imágenes ha causado un error. Por favor, inténtelo de nuevo.",
     "fragments": "Fragmentos de código",
     "link-image": "Enlace",
     "polls": "Encuestas"
@@ -2457,6 +2460,8 @@
     "expired-date": "La fecha de fin debe ser del presente o futuro",
     "interpretation": "Interpretación",
     "creating-in-progress": "Creación en progreso...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Formato de hora inválido. Use HH:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }

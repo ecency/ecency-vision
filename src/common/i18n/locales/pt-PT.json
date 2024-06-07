@@ -91,7 +91,8 @@
     "restore": "Restaurar",
     "success": "Success",
     "error": "Error",
-    "reset-form": "Reset form"
+    "reset-form": "Reset form",
+    "all": "All"
   },
   "confirm": {
     "title": "Tem a certeza?",
@@ -1428,6 +1429,8 @@
     "image-error-cache": "Não foi possível enviar a imagem. Você parece estar desconectado, tente realizar o login novamente.",
     "image-error-size": "O tamanho da imagem é muito grande, tente novamente com uma imagem mais pequena.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Trechos",
     "link-image": "Link",
     "polls": "Polls"
@@ -2457,6 +2460,8 @@
     "expired-date": "End date should be in present or future",
     "interpretation": "Interpretation",
     "creating-in-progress": "Criação em andamento...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Invalid time format. Use HH:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }

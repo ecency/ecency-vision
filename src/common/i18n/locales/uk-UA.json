@@ -91,7 +91,8 @@
     "restore": "Restore",
     "success": "Success",
     "error": "Error",
-    "reset-form": "Reset form"
+    "reset-form": "Reset form",
+    "all": "All"
   },
   "confirm": {
     "title": "Ви впевнені?",
@@ -1428,6 +1429,8 @@
     "image-error-cache": "Не вдалося завантажити зображення. Здається, ви вийшли з системи. Спробуйте увійти знову.",
     "image-error-size": "Зображення завелике. Спробуйте зменшити його розмір.",
     "image-error-conflict-name": "You have image with this filename already. Select it from gallery instead.",
+    "image-error-network": "Couldn't upload image. Network issue with status {{0}}.",
+    "image-error-url-missed": "Image uploading caused error. Please, try again.",
     "fragments": "Фрагменти",
     "link-image": "Посилання на зображення",
     "polls": "Polls"
@@ -2457,6 +2460,8 @@
     "expired-date": "End date should be in present or future",
     "interpretation": "Interpretation",
     "creating-in-progress": "Creating in progress...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Invalid time format. Use HH:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }

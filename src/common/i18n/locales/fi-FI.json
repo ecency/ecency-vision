@@ -91,7 +91,8 @@
     "restore": "Palauta",
     "success": "Onnistui",
     "error": "Virhe",
-    "reset-form": "Tyhjennä lomake"
+    "reset-form": "Tyhjennä lomake",
+    "all": "All"
   },
   "confirm": {
     "title": "Oletko varma?",
@@ -1428,6 +1429,8 @@
     "image-error-cache": "Kuvaa ei voitu ladata. Näyttää siltä, että olet kirjautunut ulos. Yritä kirjautua sisään uudelleen.",
     "image-error-size": "Kuvan koko on liian suuri, kokeile pienempää kuvaa.",
     "image-error-conflict-name": "Sinulla on jo kuva tällä tiedostonimellä. Valitse se sen sijaan galleriasta.",
+    "image-error-network": "Kuvaa ei voitu ladata. Verkkovirhe tilalla {{0}}.",
+    "image-error-url-missed": "Kuvan lataamisessa sattui virhe. Yritä uudelleen.",
     "fragments": "Katkelmat",
     "link-image": "Linkki",
     "polls": "Kyselyt"
@@ -2457,6 +2460,8 @@
     "expired-date": "Päättymispäivän tulisi olla nykyinen tai tuleva",
     "interpretation": "Tulkinta",
     "creating-in-progress": "Luonti käynnissä...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Virheellinen aikamuoto. Käytä TT:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }
