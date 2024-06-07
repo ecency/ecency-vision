@@ -127,6 +127,11 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             {_t("polls.account-age-hint", { n: poll.filters.accountAge })}
           </div>
         )}
+        {!resultsMode && (
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            {_t("polls.max-votes-hint", { n: poll.maxChoicesVoted ?? 1 })}
+          </div>
+        )}
         <div className="flex flex-col gap-3">
           {poll.choices.map((choice) =>
             resultsMode ? (
@@ -173,7 +178,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         </div>
         {showVote && (
           <Button
-            disabled={isReadOnly || !activeChoices || isVoting}
+            disabled={isReadOnly || activeChoices.size === 0 || isVoting}
             icon={<UilPanelAdd />}
             iconPlacement="left"
             size="lg"

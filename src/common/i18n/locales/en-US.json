@@ -2461,6 +2461,7 @@
     "interpretation": "Interpretation",
     "creating-in-progress": "Creating in progress...",
     "invalid-time": "Invalid time format. Use HH:MM",
-    "max-choices-voted": "Max choices voted by user"
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }
