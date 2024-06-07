@@ -18,6 +18,8 @@ import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import { dateToRelative } from "../../../../helper/parse-date";
 import EntryMenu from "../../../../components/entry-menu";
 import { Button } from "@ui/button";
+import { useEntryPollExtractor } from "../../../../pages/entry/utils";
+import { PollWidget } from "../../../polls";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -61,6 +63,8 @@ export const ThreadItem = ({
   const [hasParent, setHasParent] = useState(false);
   const [status, setStatus] = useState<"default" | "pending">("default");
   const [intervalStarted, setIntervalStarted] = useState(false);
+
+  const poll = useEntryPollExtractor(entry);
 
   useEntryChecking(entry, intervalStarted, (nextEntry) => {
     updateCache([
@@ -126,6 +130,11 @@ export const ThreadItem = ({
         setRenderInitiated={setRenderInitiated}
         onResize={onResize}
       />
+      {poll && (
+        <div className="p-4">
+          <PollWidget entry={entry} compact={true} poll={poll} isReadOnly={false} />
+        </div>
+      )}
       {entry.updated !== entry.created && (
         <div className="px-3 pb-3 updated-label">
           {_t("decks.columns.updated", { n: dateToRelative(entry.updated) })}

@@ -5,6 +5,7 @@ import { _t } from "../../../i18n";
 import { useMappedStore } from "../../../store/use-mapped-store";
 import { broadcastPostingJSON } from "../../../api/operations";
 import { QueryIdentifiers } from "../../../core";
+import { PollsVotesManagement } from "./polls-votes-management";
 
 export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQuery>["data"]) {
   const { activeUser } = useMappedStore();
@@ -12,14 +13,16 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
 
   return useMutation({
     mutationKey: ["sign-poll-vote", poll?.author, poll?.permlink],
-    mutationFn: async ({ choice }: { choice: string }) => {
+    mutationFn: async ({ choices }: { choices: Set<string> }) => {
       if (!poll || !activeUser) {
         error(_t("polls.not-found"));
         return;
       }
 
-      const choiceNum = poll.poll_choices?.find((pc) => pc.choice_text === choice)?.choice_num;
-      if (typeof choiceNum !== "number") {
+      const choiceNums = poll.poll_choices
+        ?.filter((pc) => choices.has(pc.choice_text))
+        ?.map((i) => i.choice_num);
+      if (choiceNums.length === 0) {
         error(_t("polls.not-found"));
         return;
       }
@@ -27,10 +30,10 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
       await broadcastPostingJSON(activeUser.username, "polls", {
         poll: poll.poll_trx_id,
         action: "vote",
-        choice: choiceNum
+        choices: choiceNums
       });
 
-      return { choiceNum };
+      return { choiceNums: choiceNums };
     },
     onSuccess: (resp) =>
       queryClient.setQueryData<ReturnType<typeof useGetPollDetailsQuery>["data"]>(
@@ -40,50 +43,7 @@ export function useSignPollVoteByKey(poll: ReturnType<typeof useGetPollDetailsQu
             return data;
           }
 
-          const existingVote = data.poll_voters?.find((pv) => pv.name === activeUser!!.username);
-          const previousUserChoice = data.poll_choices?.find(
-            (pc) => existingVote?.choice_num === pc.choice_num
-          );
-          const choice = data.poll_choices?.find((pc) => pc.choice_num === resp.choiceNum)!!;
-
-          const notTouchedChoices = data.poll_choices?.filter(
-            (pc) => ![previousUserChoice?.choice_num, choice?.choice_num].includes(pc.choice_num)
-          );
-          const otherVoters =
-            data.poll_voters?.filter((pv) => pv.name !== activeUser!!.username) ?? [];
-
-          return {
-            ...data,
-            poll_choices: [
-              ...notTouchedChoices,
-              previousUserChoice && previousUserChoice.choice_text !== choice.choice_text
-                ? {
-                    ...previousUserChoice,
-                    votes: {
-                      total_votes: (previousUserChoice?.votes?.total_votes ?? 0) - 1
-                    }
-                  }
-                : undefined,
-              {
-                ...choice,
-                votes: {
-                  total_votes:
-                    (choice?.votes?.total_votes ?? 0) +
-                    (previousUserChoice?.choice_text !== choice.choice_text ? 1 : 0)
-                }
-              }
-            ].filter((el) => !!el),
-            poll_voters: [
-              ...otherVoters,
-              { name: activeUser?.username, choice_num: resp.choiceNum }
-            ],
-            poll_stats: {
-              ...data.poll_stats,
-              total_voting_accounts_num: existingVote
-                ? data.poll_stats.total_voting_accounts_num
-                : data.poll_stats.total_voting_accounts_num + 1
-            }
-          } as ReturnType<typeof useGetPollDetailsQuery>["data"];
+          return PollsVotesManagement.processVoting(activeUser, data, resp.choiceNums);
         }
       )
   });

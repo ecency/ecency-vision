@@ -19,6 +19,7 @@ import { classNameObject } from "../../../helper/class-name-object";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
 import { Alert } from "@ui/alert";
+import { PollsContext } from "../../../pages/submit/hooks/polls-manager";
 
 interface Props {
   className?: string;
@@ -46,6 +47,8 @@ export const DeckThreadsForm = ({
 
   const { global, activeUser, toggleUIProp } = useMappedStore();
   const { setShow, create, createReply } = useContext(DeckThreadsFormContext);
+  const { clearActivePoll } = useContext(PollsContext);
+
   const location = useLocation();
 
   const [localDraft, setLocalDraft] = useLocalStorage<Record<string, any>>(
@@ -188,6 +191,7 @@ export const DeckThreadsForm = ({
       setText("");
       setImage(null);
       setImageName(null);
+      clearActivePoll();
       _t("decks.threads-form.successfully-created");
     } catch (e) {
       console.error(e);

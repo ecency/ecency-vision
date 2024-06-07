@@ -13,14 +13,17 @@ import { format, isBefore } from "date-fns";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PREFIX } from "../../../util/local-storage";
 import { FormControl } from "@ui/input";
+import { useSet } from "react-use";
+import { classNameObject } from "../../../helper/class-name-object";
 
 interface Props {
   poll: PollSnapshot;
   isReadOnly: boolean;
   entry?: Entry;
+  compact?: boolean;
 }
 
-export function PollWidget({ poll, isReadOnly, entry }: Props) {
+export function PollWidget({ poll, isReadOnly, entry, compact = false }: Props) {
   const { activeUser } = useMappedStore();
 
   const pollDetails = useGetPollDetailsQuery(entry);
@@ -31,7 +34,7 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   const { mutateAsync: vote, isLoading: isVoting } = useSignPollVoteByKey(pollDetails.data);
 
-  const [activeChoice, setActiveChoice] = useState<string>();
+  const [activeChoices, { add: addActiveChoice, remove: removeActiveChoice }] = useSet<string>();
   const [resultsMode, setResultsMode] = useState(false);
   const [isVotedAlready, setIsVotedAlready] = useState(false);
   const [showEndDate, setShowEndDate] = useLocalStorage(PREFIX + "_plls_set", false);
@@ -54,8 +57,8 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
     [pollDetails.data?.status, resultsMode, pollDetails.data?.poll_trx_id]
   );
   const isInterpretationSelectionDisabled = useMemo(
-    () => pollDetails.data?.poll_stats.total_hive_hp_incl_proxied === null,
-    [pollDetails.data?.poll_stats.total_hive_hp_incl_proxied]
+    () => pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied === null,
+    [pollDetails.data?.poll_stats?.total_hive_hp_incl_proxied]
   );
 
   useEffect(() => {
@@ -63,7 +66,9 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
       const choice = pollDetails.data?.poll_choices.find(
         (pc) => pc.choice_num === activeUserVote.choice_num
       );
-      setActiveChoice(choice?.choice_text);
+      if (choice) {
+        addActiveChoice(choice?.choice_text);
+      }
     }
   }, [activeUserVote, pollDetails.data]);
 
@@ -94,7 +99,13 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
 
   return (
     <div className="grid grid-cols-4">
-      <div className="col-span-4 sm:col-span-3 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900">
+      <div
+        className={classNameObject({
+          "col-span-4 flex flex-col gap-4 border border-[--border-color] rounded-3xl p-4 dark:border-gray-900":
+            true,
+          "sm:col-span-3": !compact
+        })}
+      >
         {isReadOnly && (
           <div className="text-xs uppercase tracking-wide font-semibold opacity-50">
             {_t("polls.preview-mode")}
@@ -124,6 +135,11 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
             {_t("polls.account-age-hint", { n: poll.filters.accountAge })}
           </div>
         )}
+        {!resultsMode && (
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            {_t("polls.max-votes-hint", { n: poll.maxChoicesVoted ?? 1 })}
+          </div>
+        )}
         <div className="flex flex-col gap-3">
           {poll.choices.map((choice) =>
             resultsMode ? (
@@ -132,14 +148,19 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
                 key={choice}
                 entry={entry}
                 choice={choice}
-                activeChoice={activeChoice}
+                activeChoices={activeChoices}
               />
             ) : (
               <PollOption
                 choice={choice}
                 key={choice}
-                setActiveChoice={setActiveChoice}
-                activeChoice={activeChoice}
+                addActiveChoice={(v) => {
+                  if (activeChoices.size < (pollDetails.data?.max_choices_voted ?? 1)) {
+                    addActiveChoice(v);
+                  }
+                }}
+                removeActiveChoice={removeActiveChoice}
+                activeChoices={activeChoices}
               />
             )
           )}
@@ -165,14 +186,14 @@ export function PollWidget({ poll, isReadOnly, entry }: Props) {
         </div>
         {showVote && (
           <Button
-            disabled={isReadOnly || !activeChoice || isVoting}
+            disabled={isReadOnly || activeChoices.size === 0 || isVoting}
             icon={<UilPanelAdd />}
             iconPlacement="left"
             size="lg"
             className="font-semibold text-sm px-4 mt-4"
             onClick={() => {
               setIsVotedAlready(false);
-              vote({ choice: activeChoice!! });
+              vote({ choices: activeChoices!! });
             }}
           >
             {_t(isVoting ? "polls.voting" : "polls.vote")}

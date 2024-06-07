@@ -14,6 +14,7 @@ import SSRSuspense from "../../components/ssr-suspense";
 import { classNameObject } from "../../helper/class-name-object";
 import useMount from "react-use/lib/useMount";
 import { DeckFloatingToolbarActivator } from "./deck-toolbar/deck-floating-toolbar-activator";
+import { PollsManager } from "../../pages/submit/hooks/polls-manager";
 
 interface Props {
   history: History;
@@ -40,43 +41,45 @@ export const Decks = ({ history }: Props) => {
       <DeckManager>
         {({ isDecksLoading }) => (
           <DeckThreadsManager>
-            <DeckThreadsFormManager>
-              {({ show: showThreadsForm }) => (
-                <div
-                  className={classNameObject({
-                    "decks grid grid-cols-deck items-center duration-300": true,
-                    "w-full": !isCollapsed,
-                    expanded: isExpanded,
-                    "toolbar-collapsed translate-x-[-72px] w-[calc(100%+72px)] sm:translate-x-0 sm:w-[auto]":
-                      isCollapsed,
-                    "thread-form-showed": showThreadsForm
-                  })}
-                >
-                  <DeckFloatingToolbarActivator
-                    open={!isCollapsed}
-                    setOpen={(v) => setIsCollapsed(!v)}
-                  />
-                  <DeckToolbar
-                    history={history}
-                    isExpanded={isExpanded}
-                    setIsExpanded={setIsExpanded}
-                  />
-                  <DeckThreadsForm className={showThreadsForm ? "show" : ""} persistable={true} />
-                  {isDecksLoading ? (
-                    <DeckLoader />
-                  ) : (
-                    <>
-                      <div className="decks-container w-full overflow-hidden">
-                        {/*<DeckSmoothScroller>*/}
-                        <DeckGrid history={history} />
-                        {/*</DeckSmoothScroller>*/}
-                      </div>
-                      <DeckFloatingManager />
-                    </>
-                  )}
-                </div>
-              )}
-            </DeckThreadsFormManager>
+            <PollsManager>
+              <DeckThreadsFormManager>
+                {({ show: showThreadsForm }) => (
+                  <div
+                    className={classNameObject({
+                      "decks grid grid-cols-deck items-center duration-300": true,
+                      "w-full": !isCollapsed,
+                      expanded: isExpanded,
+                      "toolbar-collapsed translate-x-[-72px] w-[calc(100%+72px)] sm:translate-x-0 sm:w-[auto]":
+                        isCollapsed,
+                      "thread-form-showed": showThreadsForm
+                    })}
+                  >
+                    <DeckFloatingToolbarActivator
+                      open={!isCollapsed}
+                      setOpen={(v) => setIsCollapsed(!v)}
+                    />
+                    <DeckToolbar
+                      history={history}
+                      isExpanded={isExpanded}
+                      setIsExpanded={setIsExpanded}
+                    />
+                    <DeckThreadsForm className={showThreadsForm ? "show" : ""} persistable={true} />
+                    {isDecksLoading ? (
+                      <DeckLoader />
+                    ) : (
+                      <>
+                        <div className="decks-container w-full overflow-hidden">
+                          {/*<DeckSmoothScroller>*/}
+                          <DeckGrid history={history} />
+                          {/*</DeckSmoothScroller>*/}
+                        </div>
+                        <DeckFloatingManager />
+                      </>
+                    )}
+                  </div>
+                )}
+              </DeckThreadsFormManager>
+            </PollsManager>
           </DeckThreadsManager>
         )}
       </DeckManager>

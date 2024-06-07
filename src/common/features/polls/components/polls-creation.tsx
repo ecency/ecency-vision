@@ -21,6 +21,7 @@ export interface PollSnapshot {
   choices: string[];
   voteChange: boolean;
   hideVotes: boolean;
+  maxChoicesVoted: number;
   filters: {
     accountAge: number;
   };
@@ -66,6 +67,8 @@ export function PollsCreation({
     isExpiredEndDate,
     endTime,
     setEndTime,
+    maxChoicesVoted,
+    setMaxChoicesVoted,
     clearAll
   } = usePollsCreationManagement(existingPoll);
 
@@ -174,6 +177,34 @@ export function PollsCreation({
               }
             }}
           />
+          <div className="text-sm opacity-50">{_t("polls.max-choices-voted")}</div>
+          <div className="w-full flex items-center gap-2 justify-between">
+            <FormControl
+              placeholder="1"
+              type="number"
+              min={0}
+              max={choices?.length ?? 1}
+              value={maxChoicesVoted}
+              disabled={readonly}
+              onChange={(e) => {
+                const value = +e.target.value;
+                if (value >= 0 && value <= (choices?.length ?? 1)) {
+                  setMaxChoicesVoted(+e.target.value);
+                } else if (value < 0) {
+                  setMaxChoicesVoted(0);
+                } else {
+                  setMaxChoicesVoted(choices?.length ?? 1);
+                }
+              }}
+            />
+            <Button
+              size="sm"
+              onClick={() => setMaxChoicesVoted(choices?.length ?? 1)}
+              appearance="gray-link"
+            >
+              {_t("g.all")}
+            </Button>
+          </div>
           <FormControl
             disabled={readonly}
             type="select"
@@ -258,6 +289,7 @@ export function PollsCreation({
                     choices,
                     voteChange: !!voteChange,
                     hideVotes: !!hideVotes,
+                    maxChoicesVoted: maxChoicesVoted ?? 1,
                     filters: {
                       accountAge
                     },
