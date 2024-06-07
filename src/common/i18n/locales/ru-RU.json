@@ -91,7 +91,8 @@
     "restore": "Восстановить",
     "success": "Успешно",
     "error": "Ошибка",
-    "reset-form": "Reset form"
+    "reset-form": "Reset form",
+    "all": "All"
   },
   "confirm": {
     "title": "Вы уверены?",
@@ -2459,6 +2460,8 @@
     "expired-date": "End date should be in present or future",
     "interpretation": "Interpretation",
     "creating-in-progress": "Creating in progress...",
-    "invalid-time": "Invalid time format. Use HH:MM"
+    "invalid-time": "Invalid time format. Use HH:MM",
+    "max-choices-voted": "Max choices voted by user",
+    "max-votes-hint": "You may select {{n}} choices"
   }
 }
