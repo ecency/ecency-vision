@@ -2462,6 +2462,6 @@
     "creating-in-progress": "Creación en progreso...",
     "invalid-time": "Formato de hora inválido. Use HH:MM",
     "max-choices-voted": "Opciones máximas votadas por el usuario",
-    "max-votes-hint": "You may select {{n}} choices"
+    "max-votes-hint": "Puedes seleccionar hasta {{n}} opciones"
   }
 }
