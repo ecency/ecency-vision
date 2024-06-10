@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { _t } from "../../i18n";
 import { getMetrics } from "../../api/hive-engine";
 
@@ -30,13 +30,13 @@ export const EngineTokensEstimated = (props: any) => {
         ? Number(pricePerHive * w.balance)
         : w.lastPrice === 0
         ? 0
-        : Number(w.lastPrice * pricePerHive * w.balance);
+        : Number((w.lastPrice ?? 0) * pricePerHive * w.balance);
     });
 
-    const totalWalletUsdValue = tokens_usd_prices.reduce((x: any, y: any) => {
-      const totalValue = +(x + y).toFixed(3);
-      return totalValue;
-    }, 0);
+    const totalWalletUsdValue = tokens_usd_prices.reduce(
+      (x: any, y: any) => +(x + y).toFixed(3),
+      0
+    );
     const usd_total_value = totalWalletUsdValue.toLocaleString("en-US", {
       style: "currency",
       currency: "USD"
