@@ -149,6 +149,7 @@ export class EntryMetadataBuilder {
             token: poll.interpretation === "tokens" ? "HIVE:HP" : null,
             hide_votes: poll.hideVotes,
             vote_change: poll.voteChange,
+            max_choices_voted: poll.maxChoicesVoted,
             filters: {
               account_age: poll.filters.accountAge
             },
