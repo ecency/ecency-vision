@@ -1,34 +1,41 @@
-"use client";
-
-import { cloneElement, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
+import { useMountedState } from "react-use";
+import { classNameObject } from "@ui/util";
 
 interface Props {
   content: string | JSX.Element;
   children: JSX.Element;
 }
 
-export function Tooltip({ content, children }: Props) {
-  return cloneElement(children, { title: content });
+// TODO: create styled tooltip
+export default function ({ content, children }: Props) {
+  return React.cloneElement(children, { title: content });
 }
 
 interface StyledProps {
   children: ReactNode;
   content: ReactNode;
+  className?: string;
 }
 
-export function StyledTooltip({ children, content }: StyledProps) {
+export function StyledTooltip({ children, content, className }: StyledProps) {
   const [ref, setRef] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const [show, setShow] = useState(false);
 
+  const isMounted = useMountedState();
+
   const popper = usePopper(ref, popperElement);
 
-  return (
+  return isMounted() ? (
     <div
       ref={setRef}
-      className="styled-tooltip"
+      className={classNameObject({
+        "styled-tooltip": true,
+        [className ?? ""]: true
+      })}
       onMouseEnter={() => {
         setShow(true);
         popper.update?.();
@@ -58,5 +65,7 @@ export function StyledTooltip({ children, content }: StyledProps) {
         document.querySelector("#popper-container") ?? document.createElement("div")
       )}
     </div>
+  ) : (
+    <></>
   );
 }

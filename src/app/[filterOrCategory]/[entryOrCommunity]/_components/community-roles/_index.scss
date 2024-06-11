@@ -1,0 +1,25 @@
+.community-roles {
+  margin-top: 20px;
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .table-roles {
+    max-width: 600px;
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      .username {
+        margin-left: 6px;
+
+        &:before{
+          content: '@';
+        }
+      }
+    }
+  }
+}

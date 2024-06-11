@@ -60,6 +60,7 @@ export interface Entry {
   id?: number;
   num?: number;
   promoted: string;
+  reblogs?: number;
   reblogged_by?: string[] | any;
   replies: any[];
   stats: EntryStat;

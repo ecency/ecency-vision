@@ -2,16 +2,32 @@ import { Fragment, useEffect, useState } from "react";
 import "./community.scss";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCommunityCache } from "@/core/caches";
-import { Feedback, LinearProgress, Navbar, ScrollToTop, Theme } from "@/features/shared";
+import {
+  DetectBottom,
+  EntryListContent,
+  EntryListLoadingItem,
+  Feedback,
+  LinearProgress,
+  Navbar,
+  ScrollToTop,
+  SearchBox,
+  SearchListItem,
+  Theme
+} from "@/features/shared";
 import {
   CommunityActivities,
   CommunityCard,
   CommunityCover,
   CommunityMenu,
+  CommunityRoles,
   CommunitySubscribers,
   JoinCommunityModal
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components";
 import defaults from "@/defaults.json";
+import i18next from "i18next";
+import { classNameObject } from "@ui/util";
+import { ListStyle } from "@/enums";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   communityName: string;
@@ -56,6 +72,7 @@ export const CommunityPage = ({ communityName }: Props) => {
     fetchSubscriptions();
   }, []);
 
+  const params = useSearchParams();
   useEffect(() => {
     if (community?.name === props.match.params.name) {
       setIsLoading(false);
@@ -197,7 +214,7 @@ export const CommunityPage = ({ communityName }: Props) => {
             }
 
             if (props.match.params.filter === "roles") {
-              return <CommunityRoles {...props} community={community} />;
+              return <CommunityRoles community={community} />;
             }
 
             const groupKey = makeGroupKey(props.match.params.filter, community.name);
@@ -216,7 +233,7 @@ export const CommunityPage = ({ communityName }: Props) => {
                     entryList.length > 0 && (
                       <div className="searchProfile">
                         <SearchBox
-                          placeholder={_t("search-comment.search-placeholder")}
+                          placeholder={i18next.t("search-comment.search-placeholder")}
                           value={search}
                           onChange={handleChangeSearch}
                           autoComplete="off"
@@ -234,29 +251,31 @@ export const CommunityPage = ({ communityName }: Props) => {
                     <div className="search-list">
                       {searchData.map((res) => (
                         <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
-                          {SearchListItem({ ...props, res: res })}
+                          <SearchListItem res={res} />
                         </Fragment>
                       ))}
                     </div>
                   ) : search.length === 0 ? null : (
-                    _t("g.no-matches")
+                    i18next.t("g.no-matches")
                   )}
                   {search.length === 0 && !searchDataLoading && (
-                    <div className={_c(`entry-list ${loading ? "loading" : ""}`)}>
+                    <div
+                      className={classNameObject({
+                        "entry-list": true,
+                        loading
+                      })}
+                    >
                       <div
-                        className={_c(
-                          `entry-list-body ${
-                            props.global.listStyle === ListStyle.grid ? "grid-view" : ""
-                          }`
-                        )}
+                        className={classNameObject({
+                          "entry-list-body": true,
+                          "grid-view": ListStyle.grid === listStyle
+                        })}
                       >
                         {loading && entryList.length === 0 && <EntryListLoadingItem />}
                         <EntryListContent
-                          {...props}
                           entries={entryList}
-                          promotedEntries={props.entries["__promoted__"].entries}
-                          community={community}
                           loading={loading}
+                          sectionParam={params.get("section")}
                         />
                       </div>
                     </div>

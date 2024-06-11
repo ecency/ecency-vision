@@ -1,0 +1,521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="promote-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Promote
+        </div>
+        <div
+          className="sub-title"
+        >
+          Promote your post
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body flex flex-col"
+    >
+      <div
+        className="self-center mb-4"
+      >
+        <a
+          href="/faq#how-promotion-work"
+        >
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <input
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
+            readOnly={true}
+            type="text"
+            value="500.000 POINTS"
+          />
+          
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <div
+            className="suggestion relative z-[11]"
+          >
+            <input
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+              disabled={false}
+              onChange={[Function]}
+              placeholder="username/permlink"
+              type="text"
+              value=""
+            />
+            <div />
+          </div>
+          
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <select
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
+            disabled={false}
+            onChange={[Function]}
+            type="select"
+            value={2}
+          >
+            <option
+              value={1}
+            >
+              1 day - 150 POINTS
+            </option>
+            <option
+              value={2}
+            >
+              2 days - 250 POINTS
+            </option>
+            <option
+              value={3}
+            >
+              3 days - 350 POINTS
+            </option>
+            <option
+              value={7}
+            >
+              7 days - 500 POINTS
+            </option>
+            <option
+              value={14}
+            >
+              14 days - 1000 POINTS
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        />
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            disabled={true}
+            onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
+            type="button"
+          >
+            <div>
+              Next
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) Insufficient Funds 1`] = `
+<div
+  className="promote-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Promote
+        </div>
+        <div
+          className="sub-title"
+        >
+          Promote your post
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body flex flex-col"
+    >
+      <div
+        className="self-center mb-4"
+      >
+        <a
+          href="/faq#how-promotion-work"
+        >
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <input
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input is-invalid"
+            readOnly={true}
+            type="text"
+            value="10.000 POINTS"
+          />
+          <small
+            className="pl-3 text-red"
+          >
+            Insufficient funds
+          </small>
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <div
+            className="suggestion relative z-[11]"
+          >
+            <input
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+              disabled={false}
+              onChange={[Function]}
+              placeholder="username/permlink"
+              type="text"
+              value=""
+            />
+            <div />
+          </div>
+          
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <select
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
+            disabled={false}
+            onChange={[Function]}
+            type="select"
+            value={2}
+          >
+            <option
+              value={1}
+            >
+              1 day - 150 POINTS
+            </option>
+            <option
+              value={2}
+            >
+              2 days - 250 POINTS
+            </option>
+            <option
+              value={3}
+            >
+              3 days - 350 POINTS
+            </option>
+            <option
+              value={7}
+            >
+              7 days - 500 POINTS
+            </option>
+            <option
+              value={14}
+            >
+              14 days - 1000 POINTS
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        />
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            disabled={true}
+            onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
+            type="button"
+          >
+            <div>
+              Next
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) With entry 1`] = `
+<div
+  className="promote-dialog-content"
+>
+  <div
+    className="transaction-form "
+  >
+    <div
+      className="transaction-form-header"
+    >
+      <div
+        className="step-no"
+      >
+        1
+      </div>
+      <div
+        className="box-titles"
+      >
+        <div
+          className="main-title"
+        >
+          Promote
+        </div>
+        <div
+          className="sub-title"
+        >
+          Promote your post
+        </div>
+      </div>
+    </div>
+    <div
+      className="transaction-form-body flex flex-col"
+    >
+      <div
+        className="self-center mb-4"
+      >
+        <a
+          href="/faq#how-promotion-work"
+        >
+          Learn more about promotion
+        </a>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Balance
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <input
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red balance-input"
+            readOnly={true}
+            type="text"
+            value="500.000 POINTS"
+          />
+          
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Post
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <div
+            className="suggestion relative z-[11]"
+          >
+            <input
+              className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+              disabled={false}
+              onChange={[Function]}
+              placeholder="username/permlink"
+              type="text"
+              value=""
+            />
+            <div />
+          </div>
+          
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        >
+          <label>
+            Duration
+          </label>
+        </div>
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <select
+            className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
+            disabled={false}
+            onChange={[Function]}
+            type="select"
+            value={2}
+          >
+            <option
+              value={1}
+            >
+              1 day - 150 POINTS
+            </option>
+            <option
+              value={2}
+            >
+              2 days - 250 POINTS
+            </option>
+            <option
+              value={3}
+            >
+              3 days - 350 POINTS
+            </option>
+            <option
+              value={7}
+            >
+              7 days - 500 POINTS
+            </option>
+            <option
+              value={14}
+            >
+              14 days - 1000 POINTS
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        className="grid grid-cols-12 mb-4"
+      >
+        <div
+          className="col-span-12 sm:col-span-2 flex items-center"
+        />
+        <div
+          className="col-span-12 sm:col-span-10"
+        >
+          <button
+            className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+            disabled={true}
+            onClick={[Function]}
+            style={
+              Object {
+                "outline": "none",
+              }
+            }
+            type="button"
+          >
+            <div>
+              Next
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

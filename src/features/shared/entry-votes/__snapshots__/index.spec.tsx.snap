@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="entry-votes notranslate"
+>
+  <span
+    className="inner-btn"
+    onClick={[Function]}
+    title="10 Votes"
+  >
+    <div
+      className="heart-icon"
+    >
+      <svg
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </div>
+    10
+  </span>
+</div>
+`;
+
+exports[`(2) No votes 1`] = `
+<div
+  className="entry-votes notranslate"
+>
+  <span
+    className="inner-btn"
+    onClick={[Function]}
+    title="10 Votes"
+  >
+    <div
+      className="heart-icon"
+    >
+      <svg
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+          fillRule="evenodd"
+        />
+      </svg>
+    </div>
+    10
+  </span>
+</div>
+`;
+
+exports[`(3) Render of detail with votes 1`] = `
+Array [
+  <div
+    className="text-sm p-3 rounded-[1rem] bg-warning-040 border border-warning-030 text-orange dark:bg-opacity-[20%] dark:border-opacity-[20%] dark:text-warning-default mb-4"
+  >
+    Content has pending votes. Please, wait a minute and refresh this dialog to see new votes.
+  </div>,
+  <div
+    className="voters-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user1"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
+            </a>
+            <span
+              className="item-reputation"
+            >
+              76
+            </span>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          $ 125.037
+          <span
+            className="separator"
+          />
+          0.4 %
+          <span
+            className="separator"
+          />
+          <span
+            title="2020-01-01 23:12:00"
+          >
+            3 days ago
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user2"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
+            </a>
+            <span
+              className="item-reputation"
+            >
+              77
+            </span>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          $ 0.058
+          <span
+            className="separator"
+          />
+          100.0 %
+          <span
+            className="separator"
+          />
+          <span
+            title="2020-01-01 23:12:00"
+          >
+            3 days ago
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="list-tools"
+  >
+    <div
+      className="pages"
+    />
+    <div
+      className="sorter"
+    >
+      <span
+        className="label"
+      >
+        Sort
+      </span>
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 "
+        onChange={[Function]}
+        type="select"
+        value="reward"
+      >
+        <option
+          value="reward"
+        >
+          Reward
+        </option>
+        <option
+          value="timestamp"
+        >
+          Time
+        </option>
+        <option
+          value="reputation"
+        >
+          Reputation
+        </option>
+        <option
+          value="percent"
+        >
+          Percentage
+        </option>
+      </select>
+    </div>
+  </div>,
+]
+`;

@@ -1,0 +1,61 @@
+@import "src/styles/vars_mixins";
+
+.entry-reblog-btn {
+  align-items: center;
+  @apply text-gray-steel;
+  display: flex;
+  cursor: pointer;
+
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  svg {
+    height: 16px;
+    opacity: 0.8;
+  }
+  span {
+    margin-top: -1px;
+  }
+
+  .inner-btn {
+    align-items: center;
+    @apply text-gray-steel;
+    display: flex;
+    span {
+      padding-left: 3px;
+    }
+  }
+
+  &:hover,
+  &.reblogged {
+    .inner-btn {
+      @apply text-blue-dark-sky;
+    }
+  }
+
+  &.reblogged {
+
+    &:hover {
+      .inner-btn {
+        @apply text-red-020;
+      }
+    }
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &.in-progress {
+    .inner-btn {
+      animation: anim-fadein-out 5s infinite;
+    }
+
+    pointer-events: none;
+
+    svg {
+      opacity: 1;
+    }
+  }
+}

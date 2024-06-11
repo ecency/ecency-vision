@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders a message 1`] = `
+<div
+  className="flex justify-center items-center mt-5"
+>
+  <div
+    className="w-[25%]"
+  >
+    <img
+      className="w-full h-full"
+      src="writer.png"
+    />
+  </div>
+  <div
+    className="flex flex-col w-[50%] ml-5"
+  >
+    <h2>
+      
+    </h2>
+    <p
+      className="text-gray-600 lead"
+    >
+      
+    </p>
+    
+  </div>
+</div>
+`;

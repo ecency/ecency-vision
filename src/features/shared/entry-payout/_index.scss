@@ -1,0 +1,58 @@
+@import "src/style/vars_mixins";
+
+.entry-payout {
+  @apply text-gray-steel;
+  margin-right: 15px;
+  cursor: default;
+
+  @media (min-width: $sm-break) {
+    margin-right: 25px;
+  }
+  @media (max-width: $xxsm-break) {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  @include themify(night) {
+    font-weight: 500;
+  }
+
+  &.payout-declined {
+    @apply text-gray-steel-light-015;
+    text-decoration: line-through;
+  }
+
+  &.payout-limit-hit {
+    @apply text-gray-steel-light-015;
+    opacity: .8;
+  }
+}
+
+.noselection {
+  user-select: none; /* standard syntax */
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.payout-popover-content {
+  @apply text-sm;
+
+  p {
+    margin: 0 0 8px 0;
+    display: flex;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .label {
+      display: inline-block;
+      font-weight: 500;
+      width: 130px;
+    }
+
+    .value {
+    }
+  }
+}

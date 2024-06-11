@@ -6,6 +6,19 @@ interface Props {
   size?: "small" | "medium" | "large";
 }
 
+export interface MenuItem {
+  label: string | JSX.Element;
+  href?: string;
+  onClick?: () => void;
+  selected?: boolean;
+  flash?: boolean;
+  disabled?: boolean;
+  id?: string;
+  icon?: JSX.Element;
+  content?: JSX.Element;
+  isStatic?: boolean;
+}
+
 export function DropdownItem(props: HTMLProps<HTMLDivElement> & Props) {
   const { setShow } = useContext(DropdownContext);
 

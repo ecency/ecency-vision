@@ -1,0 +1,14 @@
+@import "src/styles/vars_mixins";
+
+.skeleton {
+  animation: anim-fadein-out 2s infinite;
+  border-radius: 0.25rem;
+
+  @include themify(night) {
+    @apply bg-dark-default;
+  }
+
+  @include themify(day) {
+    @apply bg-light-light-405;
+  }
+}
