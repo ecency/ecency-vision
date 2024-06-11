@@ -377,12 +377,7 @@ export function Submit(props: PageProps & MatchProps) {
       {
         account: "spk.beneficiary",
         src: "ENCODER_PAY",
-        weight: 900
-      },
-      {
-        account: "threespeakleader",
-        src: "ENCODER_PAY",
-        weight: 100
+        weight: 1000
       }
     ];
     const joinedBeneficiary = [...videoBeneficiary, ...videoEncoders];
