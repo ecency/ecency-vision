@@ -13,12 +13,12 @@ import {
 import { Community } from "@/entities";
 
 interface Props {
-  show: boolean;
-  setShow: (v: boolean) => void;
   community: Community | null;
+  communityId?: string;
 }
 
-export function JoinCommunityModal({ show, setShow, community }: Props) {
+export function JoinCommunityModal({ community, communityId }: Props) {
+  const [show, setShow] = useState(!!communityId);
   const [inProgress, setInProgress] = useState(false);
 
   const { data: channels } = useChannelsQuery();
@@ -33,7 +33,7 @@ export function JoinCommunityModal({ show, setShow, community }: Props) {
       getJoinedCommunities(channels ?? [], leftChannelsIds ?? []).some(
         (community) => community.name === currentChannel?.communityName
       ),
-    [channels, leftChannelsIds]
+    [channels, currentChannel?.communityName, leftChannelsIds]
   );
 
   return (

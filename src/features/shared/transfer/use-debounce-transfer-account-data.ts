@@ -4,8 +4,8 @@ import { error } from "@/features/shared";
 import { formatError } from "@/api/operations";
 import { useTransferSharedState } from "./transfer-shared-state";
 import {
-  useDynamicPropsQuery,
-  useGetAccountFullQuery,
+  getAccountFullQuery,
+  getDynamicPropsQuery,
   useGetVestingDelegationsQuery
 } from "@/api/queries";
 import { useDebounce } from "react-use";
@@ -22,8 +22,12 @@ export function useDebounceTransferAccountData() {
   const [vestingDelegationUsername, setVestingDelegationUsername] = useState<string>();
   const [toWarning, setToWarning] = useState<string>();
 
-  const { data: dynamicProps } = useDynamicPropsQuery();
-  const { data: toData, error: toError, isLoading: toLoading } = useGetAccountFullQuery(toDebounce);
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
+  const {
+    data: toData,
+    error: toError,
+    isLoading: toLoading
+  } = getAccountFullQuery(toDebounce).useClientQuery();
   const {
     data: vestingDelegations,
     error: vestingDelegationsError,
@@ -42,7 +46,7 @@ export function useDebounceTransferAccountData() {
           formattedNumber(
             vestsToHp(
               Number(parseAsset(delegateAccount!.vesting_shares).amount),
-              dynamicProps.hivePerMVests
+              dynamicProps!.hivePerMVests
             )
           )
         )
@@ -53,7 +57,7 @@ export function useDebounceTransferAccountData() {
       delegatedAmount ? delegatedAmount.toString() : "0.001",
       delegateAccount
     ];
-  }, [activeUser?.username, dynamicProps.hivePerMVests, to, vestingDelegations]);
+  }, [activeUser?.username, dynamicProps!.hivePerMVests, to, vestingDelegations]);
 
   useDebounce(
     async () => {

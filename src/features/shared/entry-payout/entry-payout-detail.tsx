@@ -3,16 +3,16 @@ import { Entry } from "@/entities";
 import i18next from "i18next";
 import { FormattedCurrency } from "@/features/shared";
 import { dateToFullRelative, formattedNumber, parseAsset } from "@/utils";
-import { useDynamicPropsQuery } from "@/api/queries";
+import { getDynamicPropsQuery } from "@/api/queries";
 
 interface Props {
   entry: Entry;
 }
 
 export function EntryPayoutDetail({ entry }: Props) {
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
 
-  const { base, quote, hbdPrintRate } = dynamicProps;
+  const { base, quote, hbdPrintRate } = dynamicProps!;
 
   const payoutDate = dateToFullRelative(entry.payout_at);
 

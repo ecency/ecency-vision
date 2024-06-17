@@ -6,7 +6,7 @@ import React, { useCallback } from "react";
 import { useTransferSharedState } from "./transfer-shared-state";
 import { PrivateKey } from "@hiveio/dhive";
 import { useGlobalStore } from "@/core/global-store";
-import { useGetAccountFullQuery } from "@/api/queries";
+import { getAccountFullQuery } from "@/api/queries";
 import {
   useSignTransferByHiveSigner,
   useSignTransferByKey,
@@ -22,7 +22,7 @@ export function TransferStep3({ onHide }: Props) {
 
   const { step, setStep, to, amount, asset, mode, memo, inProgress } = useTransferSharedState();
 
-  const { refetch } = useGetAccountFullQuery(activeUser?.username);
+  const { refetch } = getAccountFullQuery(activeUser?.username).useClientQuery();
 
   const { mutateAsync: signByKey } = useSignTransferByKey(mode, asset);
   const { mutateAsync: signByKeychain } = useSignTransferByKeychain(mode, asset);

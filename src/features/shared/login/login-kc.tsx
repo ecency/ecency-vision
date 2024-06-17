@@ -5,7 +5,7 @@ import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Account } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
-import { useGetAccountFullQuery } from "@/api/queries";
+import { getAccountFullQuery } from "@/api/queries";
 import i18next from "i18next";
 import { addAccountAuthority, makeHsCode, signBuffer } from "@/utils";
 import { formatError } from "@/api/operations";
@@ -25,7 +25,8 @@ export function LoginKc({ doLogin }: Props) {
 
   const [username, setUsername] = useState("");
   const [inProgress, setInProgress] = useState(false);
-  const { data: account, isError: isAccountFetchingError } = useGetAccountFullQuery(username);
+  const { data: account, isError: isAccountFetchingError } =
+    getAccountFullQuery(username).useClientQuery();
 
   useEffect(() => {
     if (account) {

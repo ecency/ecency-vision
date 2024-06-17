@@ -4,11 +4,11 @@ import React from "react";
 import "./_index.scss";
 import { syncSvg } from "@ui/svg";
 import i18next from "i18next";
-import { useContributorsQuery } from "@/api/queries";
+import { getContributorsQuery } from "@/api/queries";
 import { ProfileLink, UserAvatar } from "@/features/shared";
 
 export function DiscoverContributors() {
-  let { data, refetch } = useContributorsQuery();
+  let { data, refetch } = getContributorsQuery().useClientQuery();
 
   return (
     <div className="discover-contributors-list">

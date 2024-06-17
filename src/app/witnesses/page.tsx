@@ -1,16 +1,15 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Navbar, ScrollToTop, Theme } from "@/features/shared";
 import "./page.scss";
-import { prefetchWitnessesQuery } from "@/api/queries";
+import { getWitnessesQuery } from "@/api/queries";
 import { WitnessesHeader, WitnessesList } from "@/app/witnesses/_components";
-import { getPristineQueryClient } from "@/core/react-query";
+import { getQueryClient } from "@/core/react-query";
 
 export default async function Witnesses() {
-  const queryClient = getPristineQueryClient();
-  await prefetchWitnessesQuery(queryClient);
+  await getWitnessesQuery(50).prefetch();
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrate(getQueryClient())}>
       <ScrollToTop />
       <Theme />
       <Navbar />

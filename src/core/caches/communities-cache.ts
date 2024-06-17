@@ -1,18 +1,32 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "../react-query";
-import * as bridgeApi from "../../api/bridge";
 import { useEffect } from "react";
 import { Community } from "@/entities";
 import { isCommunity } from "@/utils";
+import { bridgeApiCall } from "@/api/bridge";
 
-export function useCommunityCache(category?: string, invalidate?: boolean) {
+export async function prefetchCommunity(client: QueryClient, category?: string) {
+  if (!isCommunity(category ?? "")) {
+    return null;
+  }
+
+  const prefetchKey = [QueryIdentifiers.COMMUNITY, category];
+  await client.prefetchQuery({
+    queryKey: prefetchKey,
+    queryFn: () =>
+      bridgeApiCall<Community | null>("get_community", { name: category, observer: "" })
+  });
+  return client.getQueryData<Community>(prefetchKey) ?? null;
+}
+
+export function useCommunityCache(category?: string, observer: string = "", invalidate?: boolean) {
   const client = useQueryClient();
 
   const query = useQuery<Community | null>({
-    queryKey: [QueryIdentifiers.COMMUNITY, category],
-    queryFn: () => (isCommunity(category ?? "") ? bridgeApi.getCommunity(category!!) : null),
+    queryKey: [QueryIdentifiers.COMMUNITY, category, observer],
+    queryFn: () => bridgeApiCall<Community | null>("get_community", { name: category, observer }),
     initialData: null,
-    enabled: !!category
+    enabled: !!category && isCommunity(category ?? "")
   });
 
   useEffect(() => {

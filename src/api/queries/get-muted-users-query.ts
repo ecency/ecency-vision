@@ -1,13 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
-import { useGlobalStore } from "@/core/global-store";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { client } from "@/api/hive";
-import { Follow } from "@/entities";
+import { ActiveUser, Follow } from "@/entities";
 
-export function useGetMutedUsersQuery(limit = 100) {
-  const activeUser = useGlobalStore((s) => s.activeUser);
-
-  return useQuery({
+const getMutedUsersQuery = (activeUser: ActiveUser | null, limit = 100) =>
+  EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.MUTED_USERS, activeUser?.username],
     queryFn: async () => {
       const response = (await client.database.call("get_following", [
@@ -20,4 +16,3 @@ export function useGetMutedUsersQuery(limit = 100) {
       return response.map((user) => user.following);
     }
   });
-}

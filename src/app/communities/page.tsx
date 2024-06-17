@@ -5,10 +5,10 @@ import "./page.scss";
 import { CommunitiesList } from "./_components";
 import { getCommunities } from "@/api/bridge";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { getPristineQueryClient, QueryIdentifiers } from "@/core/react-query";
+import { getQueryClient, QueryIdentifiers } from "@/core/react-query";
 
 export default async function Communities() {
-  const queryClient = getPristineQueryClient();
+  const queryClient = getQueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: [QueryIdentifiers.COMMUNITIES, "rank", undefined],

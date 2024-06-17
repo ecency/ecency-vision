@@ -1,4 +1,5 @@
-import { QueryClient } from "@tanstack/react-query";
+import { isServer, QueryClient } from "@tanstack/react-query";
+import { cache } from "react";
 
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
@@ -26,6 +27,7 @@ export enum QueryIdentifiers {
   REBLOGS = "reblogs",
   MUTED_USERS = "muted-users",
   PROMOTED_ENTRIES = "promoted-entries",
+  SEARCH_API = "search-api",
 
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
   POINTS = "points",
@@ -37,6 +39,8 @@ export enum QueryIdentifiers {
   FETCH_MUTED_USERS = "fetch-muted-users",
   GET_ACCOUNT_FULL = "get-account-full",
   GET_POSTS = "get-posts",
+  GET_POSTS_CONTROVERSIAL_OR_RISING = "get-posts-control-or-rising",
+  GET_POSTS_RANKED = "get-posts-ranked",
   GET_BOTS = "get-bots",
   GET_BOOST_PLUS_PRICES = "get-boost-plus-prices",
   GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts",
@@ -63,13 +67,38 @@ export enum QueryIdentifiers {
   NOTIFICATIONS = "NOTIFICATIONS"
 }
 
-export function getPristineQueryClient() {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        refetchOnMount: false
-      }
-    }
-  });
+function makeQueryClient() {
+  // Cache creates one single instance per request in a server side
+  return cache(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // With SSR, we usually want to set some default staleTime
+            // above 0 to avoid refetching immediately on the client
+            staleTime: 60 * 1000,
+            refetchOnWindowFocus: false,
+            refetchOnMount: false
+          }
+        }
+      })
+  )();
 }
+
+let browserQueryClient: QueryClient | undefined = undefined;
+
+export function getQueryClient() {
+  if (isServer) {
+    // Server: always make a new query client
+    return makeQueryClient();
+  } else {
+    // Browser: make a new query client if we don't already have one
+    // This is very important, so we don't re-make a new client if React
+    // suspends during the initial render. This may not be needed if we
+    // have a suspense boundary BELOW the creation of the query client
+    if (!browserQueryClient) browserQueryClient = makeQueryClient();
+    return browserQueryClient;
+  }
+}
+
+export * from "./ecency-queries-manager";

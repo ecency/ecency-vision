@@ -1,16 +1,20 @@
 import { useMutation } from "@tanstack/react-query";
 import { useGlobalStore } from "@/core/global-store";
-import { useGetAccountPostsQuery } from "@/api/queries";
+import { getAccountPostsQuery } from "@/api/queries";
 import { useCreateReply } from "@/api/mutations";
 import { createReplyPermlink, tempEntry } from "@/utils";
 import { comment } from "@/api/operations";
 import { FullAccount } from "@/entities";
 import { error } from "@/features/shared";
 import i18next from "i18next";
+import { useMemo } from "react";
 
 export function useInviteViaPostComment(username: string) {
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { data: posts } = useGetAccountPostsQuery(username);
+  const { data } = getAccountPostsQuery(username).useClientQuery();
+
+  const posts = useMemo(() => data?.pages[0] ?? [], [data]);
+
   const { mutateAsync: addReply } = useCreateReply(posts[0]);
 
   return useMutation({

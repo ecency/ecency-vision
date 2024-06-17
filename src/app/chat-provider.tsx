@@ -2,13 +2,13 @@ import defaults from "@/defaults.json";
 import { PropsWithChildren, useMemo } from "react";
 import { ChatContextProvider } from "@ecency/ns-query";
 import { useGlobalStore } from "@/core/global-store";
-import { useGetAccountFullQuery } from "@/api/queries";
+import { getAccountFullQuery } from "@/api/queries";
 import { getAccessToken } from "@/utils";
 
 export function ChatProvider(props: PropsWithChildren) {
   const activeUser = useGlobalStore((state) => state.activeUser);
 
-  const { data: activeUserAccount } = useGetAccountFullQuery(activeUser?.username);
+  const { data: activeUserAccount } = getAccountFullQuery(activeUser?.username).useClientQuery();
   const accessToken = useMemo(
     () => (activeUser ? getAccessToken(activeUser.username) ?? "" : ""),
     [activeUser]

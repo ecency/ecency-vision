@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useCommunityCache } from "@/core/caches";
-import { useGetAccountFullQuery } from "@/api/queries";
+import { getAccountFullQuery } from "@/api/queries";
 import { UserAvatar } from "@/features/shared";
 import { dateToFormatted } from "@/utils";
 import i18next from "i18next";
@@ -20,7 +20,7 @@ interface Props {
 
 export default function ChatsProfileBox({ communityName, currentUser }: Props) {
   const { data: community } = useCommunityCache(communityName!);
-  const { data: account } = useGetAccountFullQuery(currentUser);
+  const { data: account } = getAccountFullQuery(currentUser).useClientQuery();
 
   const profileData = useMemo(() => {
     if (community) {

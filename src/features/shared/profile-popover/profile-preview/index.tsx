@@ -8,7 +8,7 @@ import { FavouriteBtn } from "@/features/shared/favorite-btn";
 import { useGlobalStore } from "@/core/global-store";
 import { closeSvg } from "@ui/svg";
 import {
-  useGetAccountFullQuery,
+  getAccountFullQuery,
   useGetFollowCount,
   useGetRelationshipBtwAccounts
 } from "@/api/queries";
@@ -27,7 +27,7 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
   const [loading, setLoading] = useState(false);
   const [isMounted, setIsmounted] = useState(false);
 
-  const { data: profile } = useGetAccountFullQuery(username);
+  const { data: profile } = getAccountFullQuery(username).useClientQuery();
   const { data: followCount, isLoading: loadingFollowCount } = useGetFollowCount(username);
   const { data: relationsBetweenAccounts, isLoading: followsActiveUserLoading } =
     useGetRelationshipBtwAccounts(username, activeUser!.username);

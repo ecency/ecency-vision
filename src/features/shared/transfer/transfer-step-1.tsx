@@ -14,7 +14,7 @@ import {
   vestsToHp
 } from "@/utils";
 import { useGlobalStore } from "@/core/global-store";
-import { useDynamicPropsQuery, useGetTransactionsQuery } from "@/api/queries";
+import { getDynamicPropsQuery, useGetTransactionsQuery } from "@/api/queries";
 import { TransferFormText } from "@/features/shared/transfer/transfer-form-text";
 import { TransferAssetSwitch } from "@/features/shared/transfer/transfer-assets-switch";
 import { EXCHANGE_ACCOUNTS } from "@/consts";
@@ -51,7 +51,7 @@ export function TransferStep1({ titleLngKey }: Props) {
     setAsset
   } = useTransferSharedState();
 
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
   const { data: transactions, isLoading: inProgress } = useGetTransactionsQuery(
     activeUser?.username
   );
@@ -63,7 +63,7 @@ export function TransferStep1({ titleLngKey }: Props) {
     [transactions]
   );
   const w = useMemo(
-    () => new HiveWallet(activeUser!.data, dynamicProps),
+    () => new HiveWallet(activeUser!.data, dynamicProps!),
     [activeUser, dynamicProps]
   );
   const subTitleLngKey = useMemo(() => `${mode}-sub-title`, [mode]);
@@ -148,7 +148,7 @@ export function TransferStep1({ titleLngKey }: Props) {
     if (asset === "POINT") {
       return parseAsset(activeUser!.points.points).amount;
     }
-    const w = new HiveWallet(activeUser!.data, dynamicProps);
+    const w = new HiveWallet(activeUser!.data, dynamicProps!);
 
     if (mode === "withdraw-saving" || mode === "claim-interest") {
       return asset === "HIVE" ? w.savingBalance : w.savingBalanceHbd;
@@ -163,7 +163,7 @@ export function TransferStep1({ titleLngKey }: Props) {
     }
 
     if (asset === "HP") {
-      const { hivePerMVests } = dynamicProps;
+      const { hivePerMVests } = dynamicProps!;
       const vestingShares = w.vestingSharesAvailable;
       return vestsToHp(vestingShares, hivePerMVests);
     }

@@ -3,19 +3,19 @@ import { Metadata } from "next";
 import i18next from "i18next";
 import "./page.scss";
 import { Tsx } from "@/features/i18n/helper";
-import { prefetchContributorsQuery } from "@/api/queries";
-import { getPristineQueryClient } from "@/core/react-query";
+import { getContributorsQuery } from "@/api/queries";
+import { getQueryClient } from "@/core/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: i18next.t("contributors.title")
 };
 
 export default async function Contributors() {
-  const client = getPristineQueryClient();
-  const data = await prefetchContributorsQuery(client);
+  const data = await getContributorsQuery().prefetch();
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(getQueryClient())}>
       <ScrollToTop />
       <Theme />
       <Navbar />
@@ -50,6 +50,6 @@ export default async function Contributors() {
           </div>
         </div>
       </div>
-    </>
+    </HydrationBoundary>
   );
 }

@@ -10,13 +10,14 @@ import {
   DiscoverLeaderboard
 } from "@/app/discover/_components";
 import {
-  prefetchContributorsQuery,
-  prefetchDiscoverCurationQuery,
-  prefetchDiscoverLeaderboardQuery,
-  prefetchDynamicPropsQuery
+  getContributorsQuery,
+  getDiscoverCurationQuery,
+  getDiscoverLeaderboardQuery,
+  getDynamicPropsQuery
 } from "@/api/queries";
 import { CurationDuration, LeaderBoardDuration } from "@/entities";
-import { getPristineQueryClient } from "@/core/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/core/react-query";
 
 export const metadata: Metadata = {
   title: i18next.t("discover.title"),
@@ -29,21 +30,18 @@ interface Props {
 
 export default async function Discover({ searchParams }: Props) {
   const usePrivate = useGlobalStore((state) => state.usePrivate);
-  const client = getPristineQueryClient();
 
-  const dynamicProps = await prefetchDynamicPropsQuery(client);
-  const leaderboardData = await prefetchDiscoverLeaderboardQuery(
-    client,
+  const dynamicProps = await getDynamicPropsQuery().prefetch();
+  const leaderboardData = await getDiscoverLeaderboardQuery(
     (searchParams["period"] as LeaderBoardDuration) ?? "day"
-  );
-  const curationData = await prefetchDiscoverCurationQuery(
-    client,
+  ).prefetch();
+  const curationData = await getDiscoverCurationQuery(
     (searchParams["period"] as LeaderBoardDuration) ?? "day"
-  );
-  await prefetchContributorsQuery(client);
+  ).prefetch();
+  await getContributorsQuery().prefetch();
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(getQueryClient())}>
       <ScrollToTop />
       <FullHeight />
       <Theme />
@@ -71,6 +69,6 @@ export default async function Discover({ searchParams }: Props) {
           <DiscoverContributors />
         </div>
       </div>
-    </>
+    </HydrationBoundary>
   );
 }

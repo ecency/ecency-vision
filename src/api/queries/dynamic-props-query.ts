@@ -1,10 +1,8 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
-import { DynamicProps } from "@/entities";
-import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { getDynamicProps } from "@/api/hive";
 
-function getOptions() {
-  return {
+export const getDynamicPropsQuery = () =>
+  EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.DYNAMIC_PROPS],
     queryFn: async () => getDynamicProps(),
     initialData: {
@@ -22,14 +20,4 @@ function getOptions() {
       vestingRewardPercent: 1,
       accountCreationFee: "3.000 HIVE"
     }
-  };
-}
-
-export function useDynamicPropsQuery() {
-  return useQuery<DynamicProps>(getOptions());
-}
-
-export async function prefetchDynamicPropsQuery(queryClient: QueryClient) {
-  await queryClient.prefetchQuery(getOptions());
-  return queryClient.getQueryData<DynamicProps>([QueryIdentifiers.DYNAMIC_PROPS]);
-}
+  });

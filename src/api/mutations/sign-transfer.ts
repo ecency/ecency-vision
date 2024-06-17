@@ -32,11 +32,11 @@ import {
 import { hpToVests } from "@/features/shared/transfer/hp-to-vests";
 import { error, TransferAsset, TransferMode } from "@/features/shared";
 import { PrivateKey, TransactionConfirmation } from "@hiveio/dhive";
-import { useDynamicPropsQuery } from "@/api/queries";
+import { getDynamicPropsQuery } from "@/api/queries";
 import { TxResponse } from "@/types";
 
 export function useSignTransferByKey(mode: TransferMode, asset: TransferAsset) {
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
 
   return useMutation({
     mutationKey: ["signTransfer", mode, asset],
@@ -87,12 +87,12 @@ export function useSignTransferByKey(mode: TransferMode, asset: TransferAsset) {
           break;
         }
         case "power-down": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           promise = withdrawVesting(username, key, vests);
           break;
         }
         case "delegate": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           promise = delegateVestingShares(username, key, to, vests);
           break;
         }
@@ -107,7 +107,7 @@ export function useSignTransferByKey(mode: TransferMode, asset: TransferAsset) {
 }
 
 export function useSignTransferByKeychain(mode: TransferMode, asset: TransferAsset) {
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
 
   return useMutation({
     mutationKey: ["signTransferByKeychain", mode, asset],
@@ -155,12 +155,12 @@ export function useSignTransferByKeychain(mode: TransferMode, asset: TransferAss
           break;
         }
         case "power-down": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           promise = withdrawVestingKc(username, vests);
           break;
         }
         case "delegate": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           promise = delegateVestingSharesKc(username, to, vests);
           break;
         }
@@ -174,7 +174,7 @@ export function useSignTransferByKeychain(mode: TransferMode, asset: TransferAss
 }
 
 export function useSignTransferByHiveSigner(mode: TransferMode, asset: TransferAsset) {
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
 
   return useMutation({
     mutationKey: ["signTransferByHiveSigner", mode, asset],
@@ -221,12 +221,12 @@ export function useSignTransferByHiveSigner(mode: TransferMode, asset: TransferA
           break;
         }
         case "power-down": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           withdrawVestingHot(username, vests);
           break;
         }
         case "delegate": {
-          const vests = hpToVests(Number(amount), dynamicProps.hivePerMVests);
+          const vests = hpToVests(Number(amount), dynamicProps!.hivePerMVests);
           delegateVestingSharesHot(username, to, vests);
           break;
         }

@@ -23,3 +23,4 @@ export * from "./use-synchronized-local-storage";
 export * from "./nl2list";
 export * from "./transform-marked-content";
 export * from "./truncate";
+export * from "./capitalize";

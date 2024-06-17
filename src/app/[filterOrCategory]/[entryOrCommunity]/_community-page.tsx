@@ -1,190 +1,69 @@
-import { Fragment, useEffect, useState } from "react";
 import "./community.scss";
-import { useQueryClient } from "@tanstack/react-query";
-import { useCommunityCache } from "@/core/caches";
+import { prefetchCommunity } from "@/core/caches";
+import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import {
-  DetectBottom,
-  EntryListContent,
-  EntryListLoadingItem,
-  Feedback,
-  LinearProgress,
-  Navbar,
-  ScrollToTop,
-  SearchBox,
-  SearchListItem,
-  Theme
-} from "@/features/shared";
-import {
-  CommunityActivities,
   CommunityCard,
   CommunityCover,
   CommunityMenu,
-  CommunityRoles,
-  CommunitySubscribers,
   JoinCommunityModal
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components";
 import defaults from "@/defaults.json";
+import { CommunityContent } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content";
+import {
+  getAccountFullQuery,
+  prefetchGetPostsFeedQuery,
+  prefetchSearchApiQuery
+} from "@/api/queries";
+import Head from "next/head";
 import i18next from "i18next";
-import { classNameObject } from "@ui/util";
-import { ListStyle } from "@/enums";
-import { useSearchParams } from "next/navigation";
+import { capitalize } from "@/utils";
+import { notFound } from "next/navigation";
+import { getQueryClient } from "@/core/react-query";
 
 interface Props {
-  communityName: string;
+  params: { filterOrCategory: string; entryOrCommunity: string };
+  searchParams: Record<string, string | undefined>;
 }
 
-export const CommunityPage = ({ communityName }: Props) => {
-  const getSearchParam = () => {
-    const updatedLocation = props.location.search.replace(/communityid=.*?(?=&|$)/, "");
-    return updatedLocation.replace("?", "").replace("q", "").replace("=", "").replace("&", "");
-  };
-  const queryClient = useQueryClient();
-  const { data: community } = useCommunityCache(communityName);
+export default async function CommunityPage({ params, searchParams }: Props) {
+  const client = getQueryClient();
 
-  const [account, setAccount] = useState<Account | undefined>(
-    props.accounts.find(({ name }) => [props.match.params.name])
-  );
-  const [typing, setTyping] = useState(false);
-  const [search, setSearch] = useState(getSearchParam());
-  const [searchDataLoading, setSearchDataLoading] = useState(getSearchParam().length > 0);
-  const [searchData, setSearchData] = useState<SearchResult[]>([]);
-  const [isJoinCommunity, setIsJoinCommunity] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const community = await prefetchCommunity(client, params.entryOrCommunity);
+  const account = await getAccountFullQuery(params.entryOrCommunity).prefetch();
 
-  const prevMatch = usePrevious(props.match);
-  const prevActiveUser = usePrevious(props.activeUser);
+  if (!community || !account) {
+    return notFound();
+  }
 
-  useEffect(() => {
-    setIsLoading(true);
+  await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
 
-    if (search.length) handleInputChange(search);
+  if (searchParams.q) {
+    await prefetchSearchApiQuery(getQueryClient(), searchParams.q, "newest", "0");
+  }
 
-    const { match, fetchEntries } = props;
-    const { filter, name } = match.params;
-    // fetch blog posts.
-    if (EntryFilter[filter]) fetchEntries(filter, name, false);
-    const urlParams = new URLSearchParams(location.search);
-    const communityId = urlParams.get("communityid");
-    if (communityId) {
-      setIsJoinCommunity(true);
-    }
+  // TODO: Add notification count to title in client side
+  const metaTitle = `${community!!.title.trim()} community ${params.filterOrCategory} list`;
+  const metaDescription = i18next.t("community.page-description", {
+    f: `${capitalize(params.filterOrCategory)} ${community!!.title.trim()}`
+  });
+  const metaUrl = `/${params.filterOrCategory}/${community!!.name}`;
+  const metaRss = `${defaults.base}/${params.filterOrCategory}/${community!!.name}/rss.xml`;
+  const metaImage = `${defaults.imageServer}/u/${community!!.name}/avatar/medium`;
+  const metaCanonical = `${defaults.base}/created/${community!!.name}`;
 
-    fetchSubscriptions();
-  }, []);
-
-  const params = useSearchParams();
-  useEffect(() => {
-    if (community?.name === props.match.params.name) {
-      setIsLoading(false);
-      props.addAccount(community);
-      setAccount({ ...account, ...community });
-    }
-  }, [community]);
-
-  useEffect(() => {
-    const { match, fetchEntries } = props;
-    const { filter, name } = match.params;
-
-    if (!prevMatch) {
-      return;
-    }
-
-    const { params: prevParams } = prevMatch;
-
-    // community changed. fetch community and account data.
-    if (name !== prevParams.name)
-      queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, match.params.name]);
-
-    //  community or filter changed
-    if ((filter !== prevParams.filter || name !== prevParams.name) && EntryFilter[filter]) {
-      fetchEntries(match.params.filter, match.params.name, false);
-    }
-
-    // re-fetch subscriptions once active user changed.
-    const { activeUser } = props;
-    if (prevActiveUser?.username !== activeUser?.username) fetchSubscriptions();
-  }, [props.match, props.activeUser]);
-
-  const handleInputChange = async (value: string): Promise<void> => {
-    setTyping(false);
-    if (value.trim() !== "") {
-      setSearchDataLoading(true);
-
-      let query = `${value} category:${props.global.tag}`;
-
-      const data = await searchApi(query, "newest", "0");
-      if (data?.results) {
-        setSearchData(
-          data.results.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
-        );
-        setSearchDataLoading(false);
-      }
-    }
-  };
-
-  const fetchSubscriptions = async () => {
-    const { activeUser, subscriptions, updateSubscriptions } = props;
-    if (activeUser && subscriptions.length === 0) {
-      const subs = await getSubscriptions(activeUser.username);
-      if (subs) updateSubscriptions(subs);
-    }
-  };
-
-  const bottomReached = () => {
-    const { match, entries, fetchEntries } = props;
-    const { filter, name } = match.params;
-    const groupKey = makeGroupKey(filter, name);
-
-    const data = entries[groupKey];
-    const { loading, hasMore } = data;
-
-    if (!loading && hasMore && search.length === 0) fetchEntries(filter, name, true);
-  };
-
-  const reload = async () => {
-    queryClient.invalidateQueries([QueryIdentifiers.COMMUNITY, props.match.params.name]);
-
-    const { match, fetchEntries, invalidateEntries } = props;
-    const { filter, name } = match.params;
-
-    if (EntryFilter[filter]) {
-      invalidateEntries(makeGroupKey(filter, name));
-      fetchEntries(filter, name, false);
-    }
-  };
-
-  const delayedSearch = _.debounce(handleInputChange, 2000);
-
-  const handleChangeSearch = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    const { value } = event.target;
-    setSearch(value);
-    setTyping(value.length !== 0);
-    delayedSearch(value);
-  };
-
-  const getMetaProps = () => {
-    const { filter } = props.match.params;
-    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
-    const fC = capitalize(filter);
-    const title = `${ncount}${community!!.title.trim()} community ${filter} list`;
-    const description = _t("community.page-description", {
-      f: `${fC} ${community!!.title.trim()}`
-    });
-    const url = `/${filter}/${community!!.name}`;
-    const rss = `${defaults.base}/${filter}/${community!!.name}/rss.xml`;
-    const image = `${defaults.imageServer}/u/${community!!.name}/avatar/medium`;
-    const canonical = `${defaults.base}/created/${community!!.name}`;
-
-    return { title, description, url, rss, image, canonical };
-  };
-
-  return community && account ? (
+  return (
     <>
-      <JoinCommunityModal
-        community={community}
-        show={isJoinCommunity}
-        setShow={setIsJoinCommunity}
-      />
+      <Head>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={metaImage} />
+        <meta property="og:url" content={metaUrl} />
+        <link rel="canonical" href={metaCanonical} />
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={metaRss} />
+      </Head>
+      <JoinCommunityModal community={community} communityId={searchParams.communityid} />
       <ScrollToTop />
       <Theme />
       <Feedback />
@@ -196,107 +75,22 @@ export const CommunityPage = ({ communityName }: Props) => {
         <span itemScope={true} itemType="http://schema.org/Organization">
           <meta itemProp="name" content={community.title.trim() || community.name} />
           <span itemProp="logo" itemScope={true} itemType="http://schema.org/ImageObject">
-            <meta itemProp="url" content={getMetaProps().image} />
+            <meta itemProp="url" content={metaUrl} />
           </span>
-          <meta itemProp="url" content={`${defaults.base}${getMetaProps().url}`} />
+          <meta itemProp="url" content={`${defaults.base}${metaUrl}`} />
         </span>
         <div className="content-side">
           <CommunityMenu community={community} />
           <CommunityCover account={account!!} community={community} />
-
-          {(() => {
-            if (props.match.params.filter === "subscribers") {
-              return <CommunitySubscribers community={community} />;
-            }
-
-            if (props.match.params.filter === "activities") {
-              return <CommunityActivities community={community} />;
-            }
-
-            if (props.match.params.filter === "roles") {
-              return <CommunityRoles community={community} />;
-            }
-
-            const groupKey = makeGroupKey(props.match.params.filter, community.name);
-            const data = props.entries[groupKey];
-
-            if (data !== undefined) {
-              const entryList = data?.entries;
-              const loading = data?.loading;
-
-              return (
-                <>
-                  {loading && entryList.length === 0 ? <LinearProgress /> : ""}
-
-                  {["hot", "created", "trending"].includes(props.match.params.filter) &&
-                    !loading &&
-                    entryList.length > 0 && (
-                      <div className="searchProfile">
-                        <SearchBox
-                          placeholder={i18next.t("search-comment.search-placeholder")}
-                          value={search}
-                          onChange={handleChangeSearch}
-                          autoComplete="off"
-                          showcopybutton={true}
-                          filter={`${community!!.name}`}
-                          username={props.match.params.filter}
-                        />
-                      </div>
-                    )}
-                  {typing ? (
-                    <LinearProgress />
-                  ) : search.length > 0 && searchDataLoading ? (
-                    <LinearProgress />
-                  ) : searchData.length > 0 && search.length > 0 ? (
-                    <div className="search-list">
-                      {searchData.map((res) => (
-                        <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
-                          <SearchListItem res={res} />
-                        </Fragment>
-                      ))}
-                    </div>
-                  ) : search.length === 0 ? null : (
-                    i18next.t("g.no-matches")
-                  )}
-                  {search.length === 0 && !searchDataLoading && (
-                    <div
-                      className={classNameObject({
-                        "entry-list": true,
-                        loading
-                      })}
-                    >
-                      <div
-                        className={classNameObject({
-                          "entry-list-body": true,
-                          "grid-view": ListStyle.grid === listStyle
-                        })}
-                      >
-                        {loading && entryList.length === 0 && <EntryListLoadingItem />}
-                        <EntryListContent
-                          entries={entryList}
-                          loading={loading}
-                          sectionParam={params.get("section")}
-                        />
-                      </div>
-                    </div>
-                  )}
-                  {search.length === 0 && loading && entryList.length > 0 ? <LinearProgress /> : ""}
-                  <DetectBottom onBottom={bottomReached} />
-                </>
-              );
-            }
-
-            return null;
-          })()}
+          <CommunityContent
+            community={community}
+            query={searchParams.q}
+            tag={params.entryOrCommunity}
+            filter={params.filterOrCategory}
+            section={searchParams.section ?? ""}
+          />
         </div>
       </div>
     </>
-  ) : isLoading ? (
-    <>
-      <Navbar />
-      <LinearProgress />
-    </>
-  ) : (
-    <NotFound />
   );
-};
+}

@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { CurationDuration, CurationItem } from "@/entities";
 import { apiBase } from "@/api/helper";
 import { getAccounts } from "@/api/hive";
@@ -25,6 +25,12 @@ async function fetch(duration: CurationDuration) {
   data.sort((a: CurationItem, b: CurationItem) => b.efficiency - a.efficiency);
   return data;
 }
+
+export const getDiscoverCurationQuery = (duration: CurationDuration) =>
+  EcencyQueriesManager.generateClientServerQuery({
+    queryKey: [QueryIdentifiers.DISCOVER_CURATION, duration],
+    queryFn: () => fetch(duration)
+  });
 
 export async function prefetchDiscoverCurationQuery(
   queryClient: QueryClient,

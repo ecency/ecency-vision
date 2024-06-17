@@ -10,7 +10,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { InputVote } from "@ui/input";
 import { parseAsset } from "@/utils";
 import { votingPower } from "@/api/hive";
-import { useDynamicPropsQuery } from "@/api/queries";
+import { getDynamicPropsQuery } from "@/api/queries";
 import { Account, Entry } from "@/entities";
 
 type Mode = "up" | "down";
@@ -41,7 +41,7 @@ export function EntryVoteDialog({
   account
 }: VoteDialogProps) {
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const { data: dynamicProps } = useDynamicPropsQuery();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
 
   const getUpVotedValue = useCallback(
     () =>
@@ -124,7 +124,7 @@ export function EntryVoteDialog({
         return 0;
       }
 
-      const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps;
+      const { fundRecentClaims, fundRewardBalance, base, quote } = dynamicProps!;
       const { data: account } = activeUser;
 
       if (!account.__loaded) {
