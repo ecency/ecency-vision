@@ -7,9 +7,6 @@ import isEqual from "react-fast-compare";
 import defaults from "../../constants/defaults.json";
 
 import { catchPostImage, setProxyBase } from "@ecency/render-helper";
-
-setProxyBase(defaults.imageServer);
-
 import { Global } from "../../store/global/types";
 import { Entry } from "../../store/entries/types";
 
@@ -23,6 +20,8 @@ import { _t } from "../../i18n";
 import { dateToFullRelative } from "../../helper/parse-date";
 import isCommunity from "../../helper/is-community";
 import "./_index.scss";
+
+setProxyBase(defaults.imageServer);
 
 interface Props {
   history: History;
@@ -109,7 +108,7 @@ export class SimilarEntries extends BaseComponent<Props, State> {
           });
           if (entries.length < limit) {
             this.setState({ retry: retry - 1 });
-            this.fetch();
+            // this.fetch();
           } else {
             entries = entries.slice(0, limit);
           }
