@@ -4,92 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added queries manager for generating client and server side boilerplate code">
-      <change afterPath="$PROJECT_DIR$/public/assets/back-clouds-down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/back-clouds-up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cloud1-about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cloud1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cloud2-about.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cloud2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cloud3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/coming-soon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/community-img.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cover-fallback-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/cover-fallback-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fallback.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/hive-signer.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/index-bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/keychain.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-circle-santa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-circle.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/logo-small-transparent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/noimage.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/noimage.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/notification.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/nsfw.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/signup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/writer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list-search.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list-sort-selector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/_input-vote.scss" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated assets">
+      <change afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-muted-users-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-muted-users-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/search-path-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/search-path-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-message-channel-item-extension.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-message-channel-item-extension.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/blocked-users-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/blocked-users-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/hidden-messages-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/hidden-messages-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-channel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-channel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/notification.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/notification.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/pin-tracker-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/pin-tracker-cache.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/drafts/draft-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/drafts/draft-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-payout/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-payout/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-payout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-payout/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/image-upload-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/image-upload-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar-toggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/schedules/scheduled-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/schedules/scheduled-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/input-vote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/input-vote.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/static-pages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/static-pages.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,7 +251,7 @@
       <workItem from="1718305116797" duration="8289000" />
       <workItem from="1718389062471" duration="6475000" />
       <workItem from="1718607175715" duration="7303000" />
-      <workItem from="1718695042695" duration="2353000" />
+      <workItem from="1718695042695" duration="4722000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -670,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718611139637</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Updated assets">
+      <option name="closed" value="true" />
+      <created>1718699472747</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718699472747</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +615,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added witnesses active proxy section" />
     <MESSAGE value="Fixed account logging in" />
     <MESSAGE value="Migrated purchase qr dialog" />
     <MESSAGE value="Migrated fragments" />
@@ -713,7 +639,8 @@
     <MESSAGE value="Migrated community card, started community page" />
     <MESSAGE value="Migrated community menu, cover, subscribers, activities" />
     <MESSAGE value="Added queries manager for generating client and server side boilerplate code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added queries manager for generating client and server side boilerplate code" />
+    <MESSAGE value="Updated assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated assets" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

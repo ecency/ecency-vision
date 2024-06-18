@@ -11,7 +11,6 @@ interface Props {
 
 export async function CommunitiesList({ sort, query }: Props) {
   const list = getCommunitiesQuery(sort, query).getData();
-  console.log("list is ", list);
 
   return (
     <>

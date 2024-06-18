@@ -1,5 +1,4 @@
 import { isServer, QueryClient } from "@tanstack/react-query";
-import { cache } from "react";
 
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",
@@ -83,11 +82,18 @@ function makeQueryClient() {
 }
 
 let browserQueryClient: QueryClient | undefined = undefined;
+let serverQueryClient: QueryClient | undefined = undefined;
+
+export function clearServerQueryClient() {
+  serverQueryClient = undefined;
+}
 
 export function getQueryClient() {
   if (isServer) {
-    // Server: always make a new query client
-    return cache(() => makeQueryClient())();
+    // Server: make a new query client once request started \
+    // And persist it during all render time
+    if (!serverQueryClient) serverQueryClient = makeQueryClient();
+    return serverQueryClient;
   } else {
     // Browser: make a new query client if we don't already have one
     // This is very important, so we don't re-make a new client if React

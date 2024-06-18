@@ -38,7 +38,7 @@
     "numeral": "^2.0.6",
     "path-to-regexp": "^6.2.1",
     "qrcode": "^1.5.3",
-    "react": "^18",
+    "react": "^18.3.1",
     "react-datetime": "^3.2.0",
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
