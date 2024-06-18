@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import "./_index.scss";
 import { Entry } from "@/entities";
 import { EntryListItem, LinearProgress, MessageNoData } from "@/features/shared";
-import { useGetMutedUsersQuery } from "@/api/queries/get-muted-users-query";
+import { getMutedUsersQuery } from "@/api/queries/get-muted-users-query";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { isCommunity } from "@/utils";
@@ -19,7 +19,8 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
   const filter = useGlobalStore((s) => s.filter);
   const activeUser = useGlobalStore((s) => s.activeUser);
 
-  const { data: mutedUsers, isPending: isLoadingMutedUsers } = useGetMutedUsersQuery();
+  const { data: mutedUsers, isPending: isLoadingMutedUsers } =
+    getMutedUsersQuery(activeUser).useClientQuery();
   const { data: promotedEntries } = useGetPromotedEntriesQuery();
 
   const isMyProfile = useMemo(
@@ -116,7 +117,6 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
                 : i18next.t("profile-info.create-posts")
             }
             buttonTo={filter == "feed" ? "/discover" : "/submit"}
-            global={global}
           />
         ) : isCommunity(tag) ? (
           <MessageNoData
@@ -126,7 +126,6 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
             )}.`}
             buttonText={i18next.t("profile-info.create-posts")}
             buttonTo="/submit"
-            global={global}
           />
         ) : tag == "my" ? (
           <MessageNoData
@@ -134,7 +133,6 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
             description={i18next.t("g.fill-community-feed")}
             buttonText={i18next.t("navbar.discover")}
             buttonTo="/communities"
-            global={global}
           />
         ) : (
           <MessageNoData
@@ -146,7 +144,6 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
             }.`}
             buttonText={isMyProfile ? i18next.t("profile-info.create-posts") : ""}
             buttonTo="/submit"
-            global={global}
           />
         ))
       )}

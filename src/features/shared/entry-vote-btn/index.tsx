@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import "./_index.scss";
 import * as ss from "@/utils/session-storage";

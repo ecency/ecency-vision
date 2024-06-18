@@ -9,7 +9,7 @@ import {
 } from "@ecency/ns-query";
 import { Badge } from "@ui/badge";
 import { UilUsersAlt } from "@iconscout/react-unicons";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
@@ -32,7 +32,7 @@ export function ChatSidebarChannel({
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
-  const { data: community } = useCommunityCache(channel?.communityName);
+  const { data: community } = getCommunityCache(channel?.communityName).useClientQuery();
   const { publicKey } = useKeysQuery();
   const unread = useUnreadCountQuery(undefined, channel);
   const lastMessage = useLastMessageQuery(undefined, channel, community ?? undefined);

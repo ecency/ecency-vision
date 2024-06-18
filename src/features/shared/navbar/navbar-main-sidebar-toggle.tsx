@@ -5,8 +5,6 @@ interface Props {
 }
 
 export function NavbarMainSidebarToggle({ onClick }: Props) {
-  const logo = require("../../../assets/img/logo-circle.svg");
-
   return (
     <div className="h-[40px] min-w-[60px] pl-[30px] cursor-pointer relative">
       <div className="absolute flex gap-1 flex-col top-3.5 left-0" onClick={onClick}>
@@ -16,7 +14,7 @@ export function NavbarMainSidebarToggle({ onClick }: Props) {
       </div>
       <a href="/">
         <Image
-          src={logo}
+          src="/assets/logo-circle.svg"
           className="logo relative min-w-[40px] max-w-[40px]"
           alt="Logo"
           width={40}

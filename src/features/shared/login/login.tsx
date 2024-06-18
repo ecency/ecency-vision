@@ -16,6 +16,7 @@ import { error } from "@/features/shared";
 import { grantPostingPermission } from "@/api/operations";
 import { UserItem } from "@/features/shared/login/user-item";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface Props {
   doLogin: (
@@ -268,17 +269,13 @@ export function Login({ doLogin, userListRef }: Props) {
       });
   };
 
-  const logo = require("../../../assets/img/logo-circle.svg");
-  const hsLogo = require("../../../assets/img/hive-signer.svg");
-  const keyChainLogo = require("../../../assets/img/keychain.png");
-
   const spinner = <Spinner className="mr-[6px] w-3.5 h-3.5" />;
 
   return (
     <>
       {users.length === 0 && (
         <div className="dialog-header flex flex-col items-center justify-center">
-          <img src={logo} alt="Logo" />
+          <Image width={100} height={100} src="/public/assets/img/logo-circle.svg" alt="Logo" />
           <h2>{i18next.t("login.title")}</h2>
         </div>
       )}
@@ -368,7 +365,15 @@ export function Login({ doLogin, userListRef }: Props) {
           outline={true}
           onClick={hsLogin}
           disabled={inProgress}
-          icon={<img src={hsLogo} className="hs-logo" alt="hivesigner" />}
+          icon={
+            <Image
+              width={100}
+              height={100}
+              src="/assets/img/hive-signer.svg"
+              className="hs-logo"
+              alt="hivesigner"
+            />
+          }
           iconPlacement="left"
         >
           {i18next.t("login.with-hive-signer")}
@@ -380,7 +385,15 @@ export function Login({ doLogin, userListRef }: Props) {
             outline={true}
             onClick={kcLogin}
             disabled={inProgress}
-            icon={<img src={keyChainLogo} className="kc-logo" alt="keychain" />}
+            icon={
+              <Image
+                width={100}
+                height={100}
+                src="/assets/img/keychain.png"
+                className="kc-logo"
+                alt="keychain"
+              />
+            }
             iconPlacement="left"
           >
             {i18next.t("login.with-keychain")}

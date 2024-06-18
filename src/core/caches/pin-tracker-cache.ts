@@ -30,7 +30,7 @@ export function useCommunityPinCache(entry: Entry) {
   });
 }
 
-export function useCommunityPin(entry: Entry, community: Community | null) {
+export function useCommunityPin(entry: Entry, community: Community | null | undefined) {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const queryClient = useQueryClient();
 

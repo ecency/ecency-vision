@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { PrivateKey } from "@hiveio/dhive";
 import "./_index.scss";

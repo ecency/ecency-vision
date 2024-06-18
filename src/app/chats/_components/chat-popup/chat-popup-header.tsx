@@ -3,7 +3,7 @@ import ChatsDropdownMenu from "../chats-dropdown-menu";
 import React, { useContext, useMemo } from "react";
 import { Channel, ChatContext, DirectContact, useKeysQuery } from "@ecency/ns-query";
 import { ChatSidebarSavedMessagesAvatar } from "../chats-sidebar/chat-sidebar-saved-messages-avatar";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
 import { Tooltip } from "@ui/tooltip";
@@ -33,7 +33,7 @@ export function ChatPopupHeader({
 }: Props) {
   const { revealPrivateKey, setRevealPrivateKey } = useContext(ChatContext);
 
-  const { data: community } = useCommunityCache(channel?.communityName);
+  const { data: community } = getCommunityCache(channel?.communityName).useClientQuery();
   const { privateKey } = useKeysQuery();
   const { publicKey } = useKeysQuery();
 

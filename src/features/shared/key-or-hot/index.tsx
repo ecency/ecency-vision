@@ -9,6 +9,7 @@ import { Form } from "@ui/form";
 import { keySvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
+import Image from "next/image";
 
 interface Props {
   inProgress: boolean;
@@ -45,9 +46,6 @@ export function KeyOrHot({ inProgress, onKey, onHot, onKc, keyOnly }: Props) {
     onKey(pKey);
   };
 
-  const hsLogo = require("../../../assets/img/hive-signer.svg");
-  const keyChainLogo = require("../../../assets/img/keychain.png");
-
   return (
     <>
       <div className="key-or-hot">
@@ -79,7 +77,15 @@ export function KeyOrHot({ inProgress, onKey, onHot, onKc, keyOnly }: Props) {
               <Button
                 outline={true}
                 onClick={() => onHot?.()}
-                icon={<img src={hsLogo} className="hs-logo" alt="hivesigner" />}
+                icon={
+                  <Image
+                    width={100}
+                    height={100}
+                    src="/assets/img/hive-signer.svg"
+                    className="hs-logo"
+                    alt="hivesigner"
+                  />
+                }
                 iconPlacement="left"
               >
                 {i18next.t("key-or-hot.with-hivesigner")}
@@ -91,7 +97,15 @@ export function KeyOrHot({ inProgress, onKey, onHot, onKc, keyOnly }: Props) {
                 <Button
                   outline={true}
                   onClick={() => onKc?.()}
-                  icon={<img src={keyChainLogo} className="kc-logo" alt="keychain" />}
+                  icon={
+                    <Image
+                      width={100}
+                      height={100}
+                      src="/assets/img/keychain.png"
+                      className="kc-logo"
+                      alt="keychain"
+                    />
+                  }
                   iconPlacement="left"
                 >
                   {i18next.t("key-or-hot.with-keychain")}

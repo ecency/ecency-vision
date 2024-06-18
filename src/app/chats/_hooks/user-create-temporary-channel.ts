@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Channel, ChatContext, ChatQueries, useCommunityChannelQuery } from "@ecency/ns-query";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 
 export function useCreateTemporaryChannel(communityName: string) {
   const queryClient = useQueryClient();
   const { activeUsername } = useContext(ChatContext);
 
-  const { data: community } = useCommunityCache(communityName);
+  const { data: community } = getCommunityCache(communityName).useClientQuery();
   const { data: communityChannel } = useCommunityChannelQuery(community ? community : undefined);
 
   // Create temporary channel

@@ -21,7 +21,7 @@ import { ForwardMessageDialog } from "./forward-message-dialog";
 import { UilCommentAltMessage, UilMessage } from "@iconscout/react-unicons";
 import { usePersistentReplyToMessage } from "../_hooks";
 import { useGlobalStore } from "@/core/global-store";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { ROLES } from "@/entities";
 import i18next from "i18next";
 import { hideSvg, removeUserSvg } from "@/assets/img/svg";
@@ -43,7 +43,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
   const [forwardingMessage, setForwardingMessage] = useState<Message>();
   const [_, setReply] = usePersistentReplyToMessage(currentChannel);
 
-  const { data: community } = useCommunityCache(currentChannel?.communityName);
+  const { data: community } = getCommunityCache(currentChannel?.communityName).useClientQuery();
   const { data: joinedCommunityTeamKeys, isSuccess: isJoinedCommunityTeamKeysFetched } =
     useJoinedCommunityTeamQuery(community ?? undefined);
   const { publicKey } = useKeysQuery();

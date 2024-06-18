@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
 import { Account, Entry } from "@/entities";
 import { LoginRequired, Transfer } from "@/features/shared";
-import Tooltip from "@ui/tooltip";
+import { Tooltip } from "@ui/tooltip";
 import i18next from "i18next";
 import { giftOutlineSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";

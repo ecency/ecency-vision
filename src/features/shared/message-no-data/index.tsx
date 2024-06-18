@@ -2,6 +2,7 @@ import React from "react";
 import "./_index.scss";
 import { Button } from "@ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   buttonTo: string;
@@ -9,15 +10,19 @@ interface Props {
   title: string;
   description: string;
   img?: any;
-  global: any;
 }
 
-export function MessageNoData({ buttonText, buttonTo, title, description, img, global }: Props) {
-  const writer = require("../../img/writer.png");
+export function MessageNoData({ buttonText, buttonTo, title, description, img }: Props) {
   return (
     <div className="flex justify-center items-center mt-5">
       <div className="w-[25%]">
-        <img src={img || writer} className="w-full h-full" />
+        <Image
+          width={400}
+          height={400}
+          src={img || "/assets/img/writer.png"}
+          alt=""
+          className="w-full h-full"
+        />
       </div>
       <div className="flex flex-col w-[50%] ml-5">
         <h2>{title}</h2>

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode, useMemo, useState } from "react";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
@@ -5,7 +7,7 @@ import { Spinner } from "@ui/spinner";
 import { FormControl } from "@ui/input";
 import { Alert } from "@ui/alert";
 import { Entry } from "@/entities";
-import Tooltip from "@ui/tooltip";
+import { Tooltip } from "@ui/tooltip";
 import i18next from "i18next";
 import { Pagination } from "@/features/ui";
 import { FormattedCurrency, ProfileLink, UserAvatar } from "@/features/shared";

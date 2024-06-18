@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import "./index.scss";

@@ -5,9 +5,9 @@ import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
 import { Draft, FullAccount } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
-import fallbackImage from "@/assets/img/fallback.png";
+import fallbackImage from "../../../../public/assets/fallback.png";
 import noImage from "@/assets/img/noimage.svg";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { accountReputation, dateToFormatted, dateToFullRelative } from "@/utils";
 import { UserAvatar } from "@/features/shared";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export function DraftListItem({ draft, editFn, deleteFn, cloneFn }: Props) {
   const img = catchPostImage(draft.body, 600, 500, canUseWebp ? "webp" : "match") || noImage;
   const summary = postBodySummary(draft.body, 200);
 
-  const { data: community } = useCommunityCache(tag);
+  const { data: community } = getCommunityCache(tag).useClientQuery();
 
   const dateRelative = useMemo(() => dateToFullRelative(draft.created), [draft]);
   const dateFormatted = useMemo(() => dateToFormatted(draft.created), [draft]);

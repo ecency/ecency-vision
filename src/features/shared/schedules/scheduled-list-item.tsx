@@ -12,7 +12,7 @@ import { Tooltip } from "@ui/tooltip";
 import { alertCircleSvg, checkAllSvg, deleteForeverSvg, textBoxOutline, timeSvg } from "@ui/svg";
 import i18next from "i18next";
 import Image from "next/image";
-import fallbackImage from "@/assets/img/fallback.png";
+import fallbackImage from "../../../../public/assets/fallback.png";
 import noImage from "@/assets/img/noimage.svg";
 
 interface Props {

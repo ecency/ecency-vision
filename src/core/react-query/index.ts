@@ -69,20 +69,17 @@ export enum QueryIdentifiers {
 
 function makeQueryClient() {
   // Cache creates one single instance per request in a server side
-  return cache(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            // With SSR, we usually want to set some default staleTime
-            // above 0 to avoid refetching immediately on the client
-            staleTime: 60 * 1000,
-            refetchOnWindowFocus: false,
-            refetchOnMount: false
-          }
-        }
-      })
-  )();
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        // With SSR, we usually want to set some default staleTime
+        // above 0 to avoid refetching immediately on the client
+        staleTime: 60 * 1000,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false
+      }
+    }
+  });
 }
 
 let browserQueryClient: QueryClient | undefined = undefined;
@@ -90,7 +87,7 @@ let browserQueryClient: QueryClient | undefined = undefined;
 export function getQueryClient() {
   if (isServer) {
     // Server: always make a new query client
-    return makeQueryClient();
+    return cache(() => makeQueryClient())();
   } else {
     // Browser: make a new query client if we don't already have one
     // This is very important, so we don't re-make a new client if React

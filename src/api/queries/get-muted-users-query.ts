@@ -2,7 +2,7 @@ import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { client } from "@/api/hive";
 import { ActiveUser, Follow } from "@/entities";
 
-const getMutedUsersQuery = (activeUser: ActiveUser | null, limit = 100) =>
+export const getMutedUsersQuery = (activeUser: ActiveUser | null, limit = 100) =>
   EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.MUTED_USERS, activeUser?.username],
     queryFn: async () => {

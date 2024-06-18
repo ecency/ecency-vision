@@ -4,54 +4,92 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated community menu, cover, subscribers, activities">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-contributors-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-controversial-rising-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-posts-ranked-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/search-api-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content-search.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/react-query/ecency-queries-manager.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added queries manager for generating client and server side boilerplate code">
+      <change afterPath="$PROJECT_DIR$/public/assets/back-clouds-down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/back-clouds-up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cloud1-about.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cloud1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cloud2-about.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cloud2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cloud3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/coming-soon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/community-img.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cover-fallback-day.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/cover-fallback-night.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fallback.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/hive-signer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/index-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/keychain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/logo-circle-santa.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/logo-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/logo-small-transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/noimage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/noimage.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/notification.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/nsfw.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/signup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/writer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list-search.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list-sort-selector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/input/_input-vote.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/sign-transfer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/sign-transfer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/contributors-query.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-posts-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-curation-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-discover-leaderboard-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/queries/get-muted-users-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-muted-users-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/witnesses-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/witnesses-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/search-path-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/search-path-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/join-community-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/join-community-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chat-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chat-provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-message-channel-item-extension.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-message-channel-item-extension.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_mutations/invite-via-post-comment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_mutations/invite-via-post-comment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client-providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/blocked-users-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/blocked-users-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/hidden-messages-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/hidden-messages-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-channel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-channel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/contributors/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/discover/_components/discover-contributors/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/_components/discover-contributors/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_queries/proxy-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/proxy-votes-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_queries/witness-proxy-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/witness-proxy-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_queries/witness-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_queries/witness-votes-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/notification.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/notification.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-payout/entry-payout-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-payout/entry-payout-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/caches/pin-tracker-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/pin-tracker-cache.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/drafts/draft-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/drafts/draft-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-payout/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-payout/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-payout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-payout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/image-upload-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/image-upload-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-delegations-type.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notification-types/notification-delegations-type.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar-toggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-2.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-3.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/use-debounce-transfer-account-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/use-debounce-transfer-account-data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/schedules/scheduled-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/schedules/scheduled-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/input/input-vote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/input-vote.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/static-pages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/static-pages.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/play-notification-sound.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,43 +130,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.scratch_39.js.executor": "Run",
+    "Node.js.scratch_40.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "feature/nextjs-migration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/public/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JavaScript&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -140,11 +178,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/src/features/ui/input" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/features/shared/profile-popover" />
       <recent name="$PROJECT_DIR$/src/features/ui" />
-      <recent name="$PROJECT_DIR$/src/features/shared/entry-menu" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/core/react-query" />
@@ -221,9 +259,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="Node.js.scratch_40.js" />
         <item itemvalue="Node.js.scratch_39.js" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
       </list>
@@ -293,7 +331,8 @@
       <workItem from="1718001094552" duration="27198000" />
       <workItem from="1718305116797" duration="8289000" />
       <workItem from="1718389062471" duration="6475000" />
-      <workItem from="1718607175715" duration="3907000" />
+      <workItem from="1718607175715" duration="7303000" />
+      <workItem from="1718695042695" duration="2353000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -623,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717260900419</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Added queries manager for generating client and server side boilerplate code">
+      <option name="closed" value="true" />
+      <created>1718611139637</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1718611139637</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated witnesses controls" />
     <MESSAGE value="Added witnesses active proxy section" />
     <MESSAGE value="Fixed account logging in" />
     <MESSAGE value="Migrated purchase qr dialog" />
@@ -666,7 +712,8 @@
     <MESSAGE value="Updated discover page styles" />
     <MESSAGE value="Migrated community card, started community page" />
     <MESSAGE value="Migrated community menu, cover, subscribers, activities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated community menu, cover, subscribers, activities" />
+    <MESSAGE value="Added queries manager for generating client and server side boilerplate code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added queries manager for generating client and server side boilerplate code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

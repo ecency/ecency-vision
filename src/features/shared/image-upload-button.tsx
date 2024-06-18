@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useRef } from "react";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { getAccountFullQuery } from "@/api/queries";
 import { UserAvatar } from "@/features/shared";
 import { dateToFormatted } from "@/utils";
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function ChatsProfileBox({ communityName, currentUser }: Props) {
-  const { data: community } = useCommunityCache(communityName!);
+  const { data: community } = getCommunityCache(communityName!).useClientQuery();
   const { data: account } = getAccountFullQuery(currentUser).useClientQuery();
 
   const profileData = useMemo(() => {

@@ -3,20 +3,19 @@ import i18next from "i18next";
 import Link from "next/link";
 import "./page.scss";
 import { CommunitiesList } from "./_components";
-import { getCommunities } from "@/api/bridge";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { getQueryClient, QueryIdentifiers } from "@/core/react-query";
+import { getQueryClient } from "@/core/react-query";
+import { getCommunitiesQuery } from "@/api/queries";
 
-export default async function Communities() {
-  const queryClient = getQueryClient();
+interface Props {
+  searchParams: Record<string, string | undefined>;
+}
 
-  await queryClient.prefetchQuery({
-    queryKey: [QueryIdentifiers.COMMUNITIES, "rank", undefined],
-    queryFn: () => getCommunities("", 100, null, "rank")
-  });
+export default async function Communities({ searchParams }: Props) {
+  await getCommunitiesQuery(searchParams.sort ?? "rank", searchParams.q ?? "").prefetch();
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrate(getQueryClient())}>
       <ScrollToTop />
       <Theme />
       <Navbar />
@@ -28,7 +27,7 @@ export default async function Communities() {
               {i18next.t("communities.create")}
             </Link>
           </div>
-          <CommunitiesList />
+          <CommunitiesList query={searchParams.q ?? ""} sort={searchParams.sort || "rank"} />
         </div>
       </div>
     </HydrationBoundary>

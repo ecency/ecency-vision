@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useState } from "react";
 import { postBodySummary, setProxyBase } from "@ecency/render-helper";
 import { Tsx } from "../../i18n/helper";
@@ -8,11 +10,11 @@ import { UilPanelAdd } from "@iconscout/react-unicons";
 import defaults from "@/defaults.json";
 import { Account, Community, Entry, FullAccount } from "@/entities";
 import { dateToFormatted, dateToRelative, truncate } from "@/utils";
-import EntryMenu from "@/features/shared/entry-menu";
 import { commentSvg, pinSvg, repeatSvg, volumeOffSvg } from "@ui/svg";
 import { StyledTooltip } from "@/features/ui";
 import { EntryLink } from "../entry-link";
 import {
+  EntryMenu,
   EntryPayout,
   EntryReblogBtn,
   EntryVoteBtn,
@@ -25,8 +27,9 @@ import { classNameObject } from "@ui/util";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { TagLink } from "@/features/shared/tag";
-import Tooltip from "@ui/tooltip";
+import { Tooltip } from "@ui/tooltip";
 import Link from "next/link";
+import Image from "next/image";
 
 setProxyBase(defaults.imageServer);
 
@@ -80,9 +83,6 @@ export function EntryListItem({
   }, [mutedProp]);
 
   const pinned = useMemo(() => pageAccount?.profile?.pinned, [pageAccount]);
-  const noImage = require("../../img/noimage.svg");
-
-  const nsfwImage = require("../../img/nsfw.png");
 
   const isCrossPost = useMemo(() => !!entryProp.original_entry, [entryProp]);
   const entry = useMemo(() => entryProp.original_entry || entryProp, [entryProp]);
@@ -200,7 +200,13 @@ export function EntryListItem({
         {nsfw && !showNsfw && !globalNsfw ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img className="w-full" src={nsfwImage} alt={entry.title} />
+              <Image
+                width={600}
+                height={600}
+                className="w-full"
+                src="/assets/img/nsfw.png"
+                alt={entry.title}
+              />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
@@ -243,7 +249,13 @@ export function EntryListItem({
         {showModMuted && showMuted ? (
           <>
             <div className="item-image item-image-nsfw">
-              <img className="w-full" src={nsfwImage} alt={entry.title} />
+              <Image
+                width={600}
+                height={600}
+                className="w-full"
+                src="/assets/img/nsfw.png"
+                alt={entry.title}
+              />
             </div>
             <div className="item-summary">
               <div className="item-nsfw">
@@ -270,7 +282,7 @@ export function EntryListItem({
               <EntryListItemThumbnail
                 entryProp={entryProp}
                 isCrossPost={isCrossPost}
-                noImage={noImage}
+                noImage="/assets/img/noimage.png"
                 entry={entry}
               />
             )}

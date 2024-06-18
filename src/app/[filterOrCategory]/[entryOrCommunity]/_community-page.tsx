@@ -1,5 +1,5 @@
 import "./community.scss";
-import { prefetchCommunity } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import {
   CommunityCard,
@@ -26,9 +26,7 @@ interface Props {
 }
 
 export default async function CommunityPage({ params, searchParams }: Props) {
-  const client = getQueryClient();
-
-  const community = await prefetchCommunity(client, params.entryOrCommunity);
+  const community = await getCommunityCache(params.entryOrCommunity).prefetch();
   const account = await getAccountFullQuery(params.entryOrCommunity).prefetch();
 
   if (!community || !account) {

@@ -12,6 +12,7 @@ import {
   useGetFollowCount,
   useGetRelationshipBtwAccounts
 } from "@/api/queries";
+import Image from "next/image";
 
 interface Props {
   username: string;
@@ -48,8 +49,6 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
     return () => {};
   }, [isMounted]);
 
-  const coverFallbackDay = require("../../img/cover-fallback-day.png");
-  const coverFallbackNight = require("../../img/cover-fallback-night.png");
   const reputation = profile && accountReputation(profile.reputation);
   const loggedIn = activeUser && activeUser.username;
 
@@ -64,13 +63,16 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
             <Skeleton className="cover-img-placeholder rounded-t" />
           ) : (
             profile && (
-              <img
+              <Image
+                alt=""
+                width={600}
+                height={600}
                 src={
                   profile.profile?.cover_image
                     ? `https://images.ecency.com/${canUseWebp ? "webp/" : ""}u/${username}/cover`
                     : theme === "day"
-                      ? coverFallbackDay
-                      : coverFallbackNight
+                      ? "/assets/img/cover-fallback-day.png"
+                      : "/assets/img/cover-fallback-night.png"
                 }
                 className="w-full cover-img rounded-t"
                 loading="lazy"

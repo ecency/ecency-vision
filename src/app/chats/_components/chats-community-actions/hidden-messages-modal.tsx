@@ -8,7 +8,7 @@ import {
   useNostrGetUserProfilesQuery
 } from "@ecency/ns-query";
 import { Button } from "@ui/button";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import i18next from "i18next";
 import { UserAvatar } from "@/features/shared";
 
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function HiddenMessagesModal({ channel, setShow, show }: Props) {
-  const { data: community } = useCommunityCache(channel?.communityName);
+  const { data: community } = getCommunityCache(channel?.communityName).useClientQuery();
 
   const { data: hiddenMessages } = useChannelHiddenMessagesQuery(channel, community ?? undefined);
 

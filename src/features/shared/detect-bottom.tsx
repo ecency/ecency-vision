@@ -6,27 +6,6 @@ interface Props {
   onBottom: () => any;
 }
 
-export default class DetectBottos extends React.Component<Props> {
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const { onBottom } = this.props;
-    if (window.innerHeight + window.scrollY + 100 >= document.body.offsetHeight) {
-      onBottom();
-    }
-  };
-
-  render() {
-    return null;
-  }
-}
-
 export function DetectBottom({ onBottom }: Props) {
   const handleScroll = useCallback(() => {
     if (window.innerHeight + window.scrollY + 100 >= document.body.offsetHeight) {

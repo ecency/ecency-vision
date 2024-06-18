@@ -10,7 +10,7 @@ import {
 import { BlockedUsersModal } from "./blocked-users-modal";
 import { HiddenMessagesModal } from "./hidden-messages-modal";
 import { useGlobalStore } from "@/core/global-store";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { chatLeaveSvg, kebabMenuSvg, messageSendSvg } from "@/assets/img/svg";
 import { linkSvg } from "@ui/svg";
 import i18next from "i18next";
@@ -27,7 +27,7 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
 
   const [showHiddenMessagesModal, setShowHiddenMessagesModal] = useState(false);
 
-  const { data: community } = useCommunityCache(channel?.communityName);
+  const { data: community } = getCommunityCache(channel?.communityName).useClientQuery();
   const { data: channels } = useChannelsQuery();
 
   const isJoinedToChannel = useMemo(

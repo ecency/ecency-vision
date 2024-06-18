@@ -4,12 +4,13 @@ import CommunityPage from "@/app/[filterOrCategory]/[entryOrCommunity]/_communit
 
 interface Props {
   params: { filterOrCategory: string; entryOrCommunity: string };
+  searchParams: Record<string, string | undefined>;
 }
 
-export default function FilteredOrCategorizedPage({ params }: Props) {
+export default function FilteredOrCategorizedPage({ params, searchParams }: Props) {
   return (
     <HydrationBoundary state={dehydrate(getQueryClient())}>
-      <CommunityPage params={params} />
+      <CommunityPage searchParams={searchParams} params={params} />
     </HydrationBoundary>
   );
 }

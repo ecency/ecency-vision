@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
@@ -10,7 +12,7 @@ interface Props {
 }
 
 // TODO: create styled tooltip
-export default function ({ content, children }: Props) {
+export function Tooltip({ content, children }: Props) {
   return React.cloneElement(children, { title: content });
 }
 

@@ -11,7 +11,7 @@ function detachNotificationAudioElement() {
 }
 
 export function playNotificationSound() {
-  const notificationSound = require("../assets/img/notification.mp3");
+  const notificationSound = require("../../public/assets/notification.mp3");
   const element = (
     <audio
       id="notification-audio"

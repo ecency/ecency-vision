@@ -1,8 +1,10 @@
+"use client";
+
 import React, { createElement, ReactElement, useMemo } from "react";
 import { isCommunity } from "@/utils";
 import { EntryFilter } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import i18next from "i18next";
 import { useRouter } from "next/navigation";
 
@@ -42,7 +44,7 @@ export function TagLink({ tag, type, children }: Props) {
     [tag, filter]
   );
 
-  const { data: community } = useCommunityCache(tag as string, false);
+  const { data: community } = getCommunityCache(tag as string).useClientQuery();
 
   if (type === "link") {
     const props = Object.assign({}, children.props, {

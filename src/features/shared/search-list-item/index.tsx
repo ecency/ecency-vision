@@ -39,8 +39,8 @@ export function SearchListItem({ res }: Props) {
     () =>
       (canUseWebp
         ? catchPostImage(res.body, 600, 500, "webp")
-        : catchPostImage(res.body, 600, 500)) || noImage,
-    [res, canUseWebp]
+        : catchPostImage(res.body, 600, 500)) || "/assets/img/noimage.svg",
+    [canUseWebp, res.body]
   );
 
   const title = useMemo(
@@ -52,9 +52,6 @@ export function SearchListItem({ res }: Props) {
       res.body_marked ? transformMarkedContent(res.body_marked) : postBodySummary(res.body, 200),
     [res]
   );
-
-  const fallbackImage = require("../../img/fallback.png");
-  const noImage = require("../../img/noimage.svg");
 
   return (
     <div className="search-list-item">
@@ -86,13 +83,9 @@ export function SearchListItem({ res }: Props) {
               <Image
                 width={500}
                 height={500}
-                src={img}
+                src={img ?? "/assets/img/fallback.png"}
                 alt={res.title}
-                onError={(e: React.SyntheticEvent) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = fallbackImage;
-                }}
-                className={img === noImage ? "no-img" : ""}
+                className={img === "/assets/img/noimage.svg" ? "no-img" : ""}
               />
             </div>
           </EntryLink>

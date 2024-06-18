@@ -3,7 +3,7 @@ import "./_index.scss";
 import { Button } from "@ui/button";
 import { useGlobalStore } from "@/core/global-store";
 import { LoginRequired } from "@/features/shared";
-import Tooltip from "@ui/tooltip";
+import { Tooltip } from "@ui/tooltip";
 import { personFavoriteOutlineSvg, personFavoriteSvg } from "@ui/svg";
 import i18next from "i18next";
 import { useAddFavourite, useCheckFavourite, useDeleteFavourite } from "@/api/mutations";

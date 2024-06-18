@@ -10,6 +10,7 @@ import i18next from "i18next";
 import { addAccountAuthority, makeHsCode, signBuffer } from "@/utils";
 import { formatError } from "@/api/operations";
 import { error } from "@/features/shared";
+import Image from "next/image";
 
 interface Props {
   doLogin: (
@@ -103,7 +104,7 @@ export function LoginKc({ doLogin }: Props) {
   return (
     <>
       <div className="dialog-header">
-        <img src={require("../../../assets/img/keychain.png")} alt="Logo" />
+        <Image width={100} height={100} src="/assets/img/keychain.png" alt="Logo" />
         <h2>{i18next.t("login.with-keychain")}</h2>
       </div>
 

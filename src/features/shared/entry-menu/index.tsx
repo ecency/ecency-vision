@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
 import { success } from "../feedback";
 import "./_index.scss";
 import { useMenuItemsGenerator } from "./menu-items-generator";
 import { Entry } from "@/entities";
-import { useCommunityCache, useCommunityPin } from "@/core/caches";
+import { getCommunityCache, useCommunityPin } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import { useDeleteComment, usePinToBlog } from "@/api/mutations";
 import { useRouter } from "next/navigation";
@@ -31,7 +33,7 @@ interface Props {
   pinEntry?: (entry: Entry | null) => void;
 }
 
-const EntryMenu = ({
+export const EntryMenu = ({
   entry,
   separatedSharing = false,
   alignBottom,
@@ -42,7 +44,7 @@ const EntryMenu = ({
   const activeUser = useGlobalStore((state) => state.activeUser);
   const router = useRouter();
 
-  const { data: community } = useCommunityCache(entry.category);
+  const { data: community } = getCommunityCache(entry.category).useClientQuery();
   const { mutateAsync: pinToBlog } = usePinToBlog(entry, () => pinEntry?.(pin ? entry : null));
   const { mutateAsync: pinToCommunity } = useCommunityPin(entry, community);
   const { mutateAsync: deleteAction } = useDeleteComment(entry, () => router.push("/"));
@@ -189,5 +191,3 @@ const EntryMenu = ({
     </div>
   );
 };
-
-export default EntryMenu;

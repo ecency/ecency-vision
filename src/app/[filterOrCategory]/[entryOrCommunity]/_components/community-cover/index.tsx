@@ -12,9 +12,6 @@ import { formattedNumber } from "@/utils";
 
 setProxyBase(defaults.imageServer);
 
-const coverFallbackDay = require("../../img/cover-fallback-day.png");
-const coverFallbackNight = require("../../img/cover-fallback-night.png");
-
 interface Props {
   community: Community;
   account: Account;
@@ -27,7 +24,10 @@ export function CommunityCover({ community, account }: Props) {
   const canUseWebp = useGlobalStore((state) => state.canUseWebp);
 
   const style = useMemo(() => {
-    let img = theme === "day" ? coverFallbackDay : coverFallbackNight;
+    let img =
+      theme === "day"
+        ? "/assets/img/cover-fallback-day.png"
+        : "/assets/img/cover-fallback-night.png";
     if (community) {
       img = `https://images.ecency.com/${canUseWebp ? "webp/" : ""}u/${community.name}/cover`;
     }

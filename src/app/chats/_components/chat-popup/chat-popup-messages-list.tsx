@@ -13,7 +13,7 @@ import {
   useUpdateChannelLastSeenDate,
   useUpdateDirectContactsLastSeenDate
 } from "@ecency/ns-query";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import Link from "next/link";
 
 interface Props {
@@ -22,7 +22,9 @@ interface Props {
 }
 
 export function ChatPopupMessagesList({ currentContact, currentChannel }: Props) {
-  const { data: currentCommunity } = useCommunityCache(currentChannel?.communityName);
+  const { data: currentCommunity } = getCommunityCache(
+    currentChannel?.communityName
+  ).useClientQuery();
 
   const { publicKey } = useKeysQuery();
   const messages = useMessagesQuery(currentContact, currentChannel);

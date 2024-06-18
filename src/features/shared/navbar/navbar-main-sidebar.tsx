@@ -32,8 +32,6 @@ export function NavbarMainSidebar({ show, setShow, setStepOne }: Props) {
   const [isReady, cancel, reset] = useTimeoutFn(() => setShowAnimated(show), 100);
   const router = useRouter();
 
-  const logo = require("../../../assets/img/logo-circle.svg");
-
   useEffect(() => {
     reset();
   }, [show]);
@@ -62,7 +60,7 @@ export function NavbarMainSidebar({ show, setShow, setStepOne }: Props) {
           <div className="flex items-center gap-3">
             <div className="h-[40px] w-[40px] shrink-0 cursor-pointer">
               <Image
-                src={logo}
+                src="/public/assets/img/logo-circle.svg"
                 alt="Logo"
                 className="h-[40px] w-[40px]"
                 onClick={onLogoClick}

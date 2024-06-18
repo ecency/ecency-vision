@@ -1,7 +1,7 @@
 import { Popover, PopoverContent } from "@ui/popover";
 import React, { PropsWithChildren, RefObject, useMemo, useRef } from "react";
 import { Channel, useNostrGetUserProfileQuery } from "@ecency/ns-query";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import Link from "next/link";
 import { FollowControls, UserAvatar } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
@@ -19,7 +19,7 @@ export function ChatMessageChannelItemExtension({
   const popoverRef = useRef<HTMLDivElement | null>(null);
 
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { data: community } = useCommunityCache(currentChannel?.communityName);
+  const { data: community } = getCommunityCache(currentChannel?.communityName).useClientQuery();
   const { data: nostrUserProfiles } = useNostrGetUserProfileQuery(creator);
 
   const profile = useMemo(

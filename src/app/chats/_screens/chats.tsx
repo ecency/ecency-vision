@@ -18,7 +18,7 @@ import {
 import { useUnmount } from "react-use";
 import { useCreateTemporaryContactFromParam } from "../_hooks";
 import { useGlobalStore } from "@/core/global-store";
-import { useCommunityCache } from "@/core/caches";
+import { getCommunityCache } from "@/core/caches";
 import { useParams } from "next/navigation";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
@@ -28,7 +28,7 @@ export const ChatsScreen = () => {
   const { receiverPubKey, revealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 
   const params = useParams();
-  const { data: community } = useCommunityCache(params[0] as string);
+  const { data: community } = getCommunityCache(params[0] as string).useClientQuery();
 
   useCreateTemporaryContactFromParam();
   const { publicKey, privateKey } = useKeysQuery();

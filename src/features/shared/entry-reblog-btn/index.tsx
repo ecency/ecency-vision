@@ -4,7 +4,7 @@ import { Entry } from "@/entities";
 import { PopoverConfirm } from "@/features/ui";
 import i18next from "i18next";
 import { LoginRequired } from "@/features/shared";
-import Tooltip from "@ui/tooltip";
+import { Tooltip } from "@ui/tooltip";
 import { repeatSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import { useEntryReblog } from "@/api/mutations";
