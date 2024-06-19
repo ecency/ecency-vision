@@ -4,17 +4,139 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated community posts fetching">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated community content">
+      <change afterPath="$PROJECT_DIR$/src/api/coingecko-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/market-pair.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/bookmarks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck-floating-manager.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck-toolbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-login-overlay-placeholder.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-wallet-balance-column.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-whats-new-column.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/_deck-add-column.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/common.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-community-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-notifications-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-search-box.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-search-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-thread-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-type-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-user-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-wallet-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/_deck-post-viewer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/_deck-thread-item-viewer-reply.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer-comment-box.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer-reply.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-topics-content-viewer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/_deck-search-column-settings.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-content-type-column-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-search-column-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-community-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-faq-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-hot-list-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-skeleton-items.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-edit-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body-render-helper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item-cache.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-login-overlay-placeholder.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-msf-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-notifications-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-search-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/community-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/deck-threads-column-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/identifiable-entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/threads-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-topics-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-trending-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-user-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-balance-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-with-data-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/_helpers.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/infinite-scroll-loader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/render-liketu.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/available-thread-hosts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/column-icons.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/column-titles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/content-types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/deck-search-column.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/default-layout.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-floating-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-grid.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-loader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/_decks-settings.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/decks-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-smooth-scroller.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/threads-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/use-community-api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-created-recently.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-control.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-emoji-picker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-thread-selection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-image-picker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-video-picker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-floating-toolbar-activator.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-toolbar-manager.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-floating-toolbar-activator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-base-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-toggle-area.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-reloading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-settings-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-update-interval-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/icons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/old-deck-migration.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/screens/decks.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/types/deck-grid-item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/types/deck-grid.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/types/old-decks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/utils/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/utils/new-data-coming-paginated-condition.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/decks/_components/utils/use-entry-checking.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-info/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-info/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/pin-to-blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/pin-to-blog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +187,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/public/assets",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -103,11 +225,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/src/api" />
+      <recent name="$PROJECT_DIR$/src/app/decks" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/src/features/ui/input" />
-      <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/features/shared/profile-popover" />
-      <recent name="$PROJECT_DIR$/src/features/ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/core/react-query" />
@@ -258,7 +380,7 @@
       <workItem from="1718389062471" duration="6475000" />
       <workItem from="1718607175715" duration="7303000" />
       <workItem from="1718695042695" duration="7355000" />
-      <workItem from="1718732132618" duration="6883000" />
+      <workItem from="1718732132618" duration="10737000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -620,7 +742,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718806700202</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Updated community content">
+      <option name="closed" value="true" />
+      <created>1718807967320</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718807967320</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +768,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated fragments" />
     <MESSAGE value="Migrated schedules" />
     <MESSAGE value="Migrated bookmarks" />
     <MESSAGE value="Migrated gallery" />
@@ -663,7 +792,8 @@
     <MESSAGE value="Updated assets" />
     <MESSAGE value="Added one query client for each request and persist data between server and client" />
     <MESSAGE value="Updated community posts fetching" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated community posts fetching" />
+    <MESSAGE value="Updated community content" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated community content" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

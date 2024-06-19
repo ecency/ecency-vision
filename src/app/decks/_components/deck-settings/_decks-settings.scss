@@ -1,0 +1,48 @@
+@import "src/style/vars_mixins";
+
+.decks-settings {
+  .modal-header {
+    border-bottom: 1px solid $border-color;
+  }
+
+  .form-section {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .form-check {
+    line-height: 1;
+  }
+
+  .form-check-label {
+    @include font-size(0.75rem);
+  }
+
+  .input-control {
+    height: 3rem;
+  }
+
+  .ecency-input-group-prepend {
+    height: 3rem;
+    position: relative;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0;
+      padding-bottom: 0;
+      outline: none;
+      box-shadow: none;
+    }
+
+    .emoji-picker {
+      top: calc(1.2em + 0.75rem);
+      left: $input-padding-x;
+    }
+
+    svg {
+      width: 1rem;
+    }
+  }
+}

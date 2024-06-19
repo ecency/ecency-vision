@@ -36,3 +36,5 @@ export * from "./entry-payout";
 export * from "./entry-votes";
 export * from "./entry-reblog-btn";
 export * from "./message-no-data";
+export * from "./entry-info";
+export * from "./bookmark-btn";

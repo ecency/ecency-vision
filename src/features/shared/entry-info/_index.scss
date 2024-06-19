@@ -1,0 +1,121 @@
+@import "src/styles/vars_mixins";
+
+.entry-info {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 14px;
+  height: 40px;
+  line-height: 100%;
+  margin-bottom: 15px;
+  position: relative;
+
+  @media (min-width: $sm-break) {
+    font-size: 18px;
+  }
+
+  @include themify(day) {
+    @apply text-gray-steel;
+  }
+
+  @include themify(night) {
+    @apply text-gray-pinkish;
+  }
+
+  .author-avatar {
+    width: 40px;
+    margin-right: 6px;
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .entry-info-inner {
+    .info-line-1 {
+      margin-bottom: 4px;
+
+      .author {
+        align-items: center;
+        display: inline-flex;
+
+        .author-name {
+          font-weight: 700;
+          margin-right: 2px;
+          word-break: keep-all;
+        }
+
+        @include themify(day) {
+          @apply text-gray-charcoal;
+        }
+
+        @include themify(night) {
+          @apply text-gray-pinkish;
+        }
+
+        .author-reputation {
+          @apply text-gray-steel;
+          font-size: 14px;
+          font-weight: 500;
+
+          &::before {
+            content: "(";
+          }
+
+          &::after {
+            content: ")";
+          }
+        }
+      }
+    }
+
+    .info-line-2 {
+      display: flex;
+      font-size: 90%;
+      flex-direction: column;
+
+      .separator {
+        display: none;
+      }
+
+      @media (min-width: $sm-break) {
+        flex-direction: row;
+        align-items: center;
+
+        .separator {
+          display: block;
+        }
+      }
+
+      .entry-tag {
+        .in-tag {
+          margin-right: 4px;
+        }
+
+        .tag-name {
+          font-weight: 500;
+
+          @include themify(day) {
+            @apply text-gray-steel;
+          }
+
+          @include themify(night) {
+            @apply text-gray-pinkish;
+          }
+
+          &:hover {
+            @apply text-blue-dark-sky;
+          }
+        }
+      }
+
+      .date {
+        @media (max-width: $xs-break - 1px) {
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}

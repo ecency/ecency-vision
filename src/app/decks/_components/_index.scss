@@ -1,0 +1,145 @@
+@import "src/style/vars_mixins";
+
+html, body {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.decks.expanded {
+  grid-template-columns: 280px 0 1fr;
+}
+
+.decks.thread-form-showed {
+  grid-template-columns: 72px 400px 1fr;
+}
+
+.decks.expanded.thread-form-showed {
+  grid-template-columns: 280px 400px 1fr;
+}
+
+.decks .decks-container::-webkit-scrollbar {
+  display: none;
+}
+
+.decks *[data-rbd-droppable-id] {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.decks *[data-rbd-draggable-id]:first-child .deck {
+  border-left: 0;
+}
+
+.decks {
+  @include themify(day) {
+    @apply bg-gray-300;
+    @apply text-black;
+  }
+
+  @include themify(night) {
+    @apply text-white;
+    @apply bg-gray-900;
+  }
+
+  .add-new-column-button {
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    height: 3rem;
+    @apply whitespace-nowrap;
+    @apply duration-300;
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+  }
+
+  .deck-loader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    @apply text-gray-500;
+  }
+
+  .deck-smooth-scroller {
+    @include transition(0.5s);
+  }
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-menu {
+      z-index: $zindex-dropdown;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $border-color;
+      min-width: 200px;
+      //backdrop-filter: blur(1rem);
+      //box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.25);
+
+      @include padding-top(0.5rem);
+      @include padding-bottom(0.5rem);
+      @include border-radius(0.25rem);
+
+      @include themify(day) {
+        @apply bg-white;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-default;
+      }
+
+      .dropdown-item {
+        width: 80%;
+
+        @include margin-top(0.25rem);
+        @include margin-bottom(0.25rem);
+        @include padding-left(1rem);
+        @include padding-right(1rem);
+        @include padding-top(0.5rem);
+        @include padding-bottom(0.5rem);
+
+        @include themify(day) {
+          @apply text-gray-800;
+        }
+
+        @include themify(night) {
+          @apply text-gray-300;
+        }
+
+        &:hover {
+          color: $primary;
+
+          @include border-top-right-radius(1rem);
+          @include border-bottom-right-radius(1rem);
+
+          @include themify(day) {
+            @apply bg-blue-duck-egg;
+          }
+
+          @include themify(night) {
+            @apply bg-gray-900;
+          }
+        }
+      }
+    }
+
+    .dropdown-toggle {
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    overflow-y: hidden;
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
