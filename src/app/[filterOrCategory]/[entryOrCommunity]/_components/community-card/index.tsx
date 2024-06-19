@@ -7,7 +7,6 @@ import { Button } from "@ui/button";
 import { useGlobalStore } from "@/core/global-store";
 import { Account, Community, FullAccount, roleMap, ROLES } from "@/entities";
 import i18next from "i18next";
-import Link from "next/link";
 import JoinCommunityChatBtn from "@/app/chats/_components/join-community-chat-btn";
 import { UserAvatar } from "@/features/shared";
 import { DialogInfo } from "@/app/[filterOrCategory]/[entryOrCommunity]/types";
@@ -85,9 +84,9 @@ export function CommunityCard({ community, account }: Props) {
           )}
           {canEditTeam && (
             <p className="community-control">
-              <Link href={`/roles/${community.name}`}>
-                <Button size="sm">{i18next.t("community-card.edit-team")}</Button>
-              </Link>
+              <Button href={`/roles/${community.name}`} size="sm">
+                {i18next.t("community-card.edit-team")}
+              </Button>
             </p>
           )}
         </div>

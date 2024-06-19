@@ -21,7 +21,7 @@ export function EntryLink({ children, entry, afterClick, target }: PropsWithChil
   const path = useMemo(() => makePath(entry.category, entry.author, entry.permlink), [entry]);
 
   return (
-    <Link href={path} target={target} onClick={(e) => afterClick?.()}>
+    <Link legacyBehavior={true} href={path} target={target} onClick={(e) => afterClick?.()}>
       {children}
     </Link>
   );

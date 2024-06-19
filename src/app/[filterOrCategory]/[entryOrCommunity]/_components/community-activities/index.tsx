@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useMemo } from "react";
 import "./_index.scss";
 import { Button } from "@ui/button";
@@ -91,10 +93,13 @@ export function CommunityActivities({ community }: Props) {
   const { fetchNextPage, isLoading, data } = useGetAccountNotificationsQuery(community, 50);
 
   const hasMore = useMemo(
-    () => data.pages && data.pages[data.pages?.length - 1].length === 50,
+    () => data.pages && data.pages[data.pages?.length - 1]?.length === 50,
     [data.pages]
   );
-  const items = useMemo(() => data?.pages?.reduce((acc, page) => [...acc, ...page]), [data?.pages]);
+  const items = useMemo(
+    () => data?.pages?.reduce((acc, page) => [...acc, ...page], []),
+    [data?.pages]
+  );
 
   return (
     <div className="community-activities">

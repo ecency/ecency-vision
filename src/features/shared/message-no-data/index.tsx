@@ -1,7 +1,6 @@
 import React from "react";
 import "./_index.scss";
 import { Button } from "@ui/button";
-import Link from "next/link";
 import Image from "next/image";
 
 interface Props {
@@ -28,9 +27,9 @@ export function MessageNoData({ buttonText, buttonTo, title, description, img }:
         <h2>{title}</h2>
         <p className="text-gray-600 lead">{description}</p>
         {buttonText && (
-          <Link href={buttonTo}>
-            <Button className="align-self-baseline">{buttonText}</Button>
-          </Link>
+          <Button href={buttonTo} className="align-self-baseline">
+            {buttonText}
+          </Button>
         )}
       </div>
     </div>

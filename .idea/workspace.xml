@@ -4,20 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added one query client for each request and persist data between server and client">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated community posts fetching">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-posts-ranked-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-posts-ranked-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-promoted-entries-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-promoted-entries-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/pin-to-blog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/pin-to-blog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,7 @@
     "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
-    "npm.dev.executor": "Debug",
+    "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
     "project.structure.last.edited": "Project",
@@ -261,7 +258,7 @@
       <workItem from="1718389062471" duration="6475000" />
       <workItem from="1718607175715" duration="7303000" />
       <workItem from="1718695042695" duration="7355000" />
-      <workItem from="1718732132618" duration="5495000" />
+      <workItem from="1718732132618" duration="6883000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -615,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718701793617</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Updated community posts fetching">
+      <option name="closed" value="true" />
+      <created>1718806700202</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718806700202</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated purchase qr dialog" />
     <MESSAGE value="Migrated fragments" />
     <MESSAGE value="Migrated schedules" />
     <MESSAGE value="Migrated bookmarks" />
@@ -658,7 +662,8 @@
     <MESSAGE value="Added queries manager for generating client and server side boilerplate code" />
     <MESSAGE value="Updated assets" />
     <MESSAGE value="Added one query client for each request and persist data between server and client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added one query client for each request and persist data between server and client" />
+    <MESSAGE value="Updated community posts fetching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated community posts fetching" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

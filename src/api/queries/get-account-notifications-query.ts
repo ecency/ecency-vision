@@ -7,19 +7,26 @@ export function useGetAccountNotificationsQuery(community: Community, limit: num
   return useInfiniteQuery({
     queryKey: [QueryIdentifiers.ACCOUNT_NOTIFICATIONS, community.name, limit],
     queryFn: async ({ pageParam }: { pageParam: number | null }) => {
-      const response = await bridgeApiCall<AccountNotification[] | null>("account_notifications", {
-        account: community.name,
-        limit,
-        last_id: pageParam ?? undefined
-      });
+      try {
+        const response = await bridgeApiCall<AccountNotification[] | null>(
+          "account_notifications",
+          {
+            account: community.name,
+            limit,
+            last_id: pageParam ?? undefined
+          }
+        );
 
-      return response ?? ([] as AccountNotification[]);
+        return response ?? ([] as AccountNotification[]);
+      } catch (e) {
+        return [];
+      }
     },
     initialData: {
       pages: [],
       pageParams: []
     },
     initialPageParam: null,
-    getNextPageParam: (lastPage) => (lastPage.length > 0 ? lastPage[lastPage.length - 1].id : null)
+    getNextPageParam: (lastPage) => (lastPage?.length > 0 ? lastPage[lastPage.length - 1].id : null)
   });
 }

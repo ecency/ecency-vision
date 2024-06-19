@@ -10,7 +10,7 @@ export function usePinToBlog(entry: Entry, onSuccess: () => void) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const updateActiveUser = useGlobalStore((s) => s.updateActiveUser);
 
-  const { mutateAsync: updateProfile } = useUpdateProfile(activeUser!.data as FullAccount);
+  const { mutateAsync: updateProfile } = useUpdateProfile(activeUser?.data as FullAccount);
 
   return useMutation({
     mutationKey: ["pinToBlog"],

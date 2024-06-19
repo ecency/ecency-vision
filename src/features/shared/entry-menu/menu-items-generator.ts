@@ -23,10 +23,9 @@ import { MenuItem } from "@ui/dropdown";
 
 export function useMenuItemsGenerator(
   entry: Entry,
-  community: Community | null,
+  community: Community | null | undefined,
   separatedSharing: boolean,
   toggleEdit: (() => void) | undefined,
-  history: History,
   extraMenuItems?: MenuItem[]
 ) {
   const activeUser = useGlobalStore((state) => state.activeUser);

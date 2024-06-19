@@ -69,14 +69,7 @@ export const EntryMenu = ({
     setMute,
     promote,
     setPromote
-  } = useMenuItemsGenerator(
-    entry,
-    community,
-    separatedSharing,
-    toggleEdit,
-    history,
-    extraMenuItems
-  );
+  } = useMenuItemsGenerator(entry, community, separatedSharing, toggleEdit, extraMenuItems);
 
   return (
     <div className="entry-menu">
