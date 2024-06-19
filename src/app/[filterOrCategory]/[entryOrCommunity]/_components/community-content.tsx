@@ -76,27 +76,27 @@ export async function CommunityContent({ filter, community, tag, query, section 
         <></>
       )}
 
-      {!query ||
-        (query?.length === 0 && (
-          <div className="entry-list">
-            <div
-              className={classNameObject({
-                "entry-list-body": true,
-                "grid-view": ListStyle.grid === listStyle
-              })}
-            >
-              {/*{loading && entryList.length === 0 && <EntryListLoadingItem />}*/}
-              <EntryListContent
-                entries={data.pages.reduce<Entry[]>(
-                  (acc, page) => [...acc, ...(page as Entry[])],
-                  []
-                )}
-                loading={false}
-                sectionParam={section}
-              />
-            </div>
+      {(!query || query?.length === 0) && (
+        <div className="entry-list">
+          <div
+            className={classNameObject({
+              "entry-list-body": true,
+              "grid-view": ListStyle.grid === listStyle
+            })}
+          >
+            {/*{loading && entryList.length === 0 && <EntryListLoadingItem />}*/}
+            <EntryListContent
+              isPromoted={filter === "promoted"}
+              entries={data.pages.reduce<Entry[]>(
+                (acc, page) => [...acc, ...(page as Entry[])],
+                []
+              )}
+              loading={false}
+              sectionParam={section}
+            />
           </div>
-        ))}
+        </div>
+      )}
       {/*{search.length === 0 && loading && entryList.length > 0 ? <LinearProgress /> : ""}*/}
       {/*<DetectBottom onBottom={bottomReached} />*/}
     </>

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 import "./_index.scss";
 import { useCommunitySubscribersQuery, useGetAccountsQuery } from "@/api/queries";

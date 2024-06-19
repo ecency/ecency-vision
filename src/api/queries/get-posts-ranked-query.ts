@@ -29,7 +29,7 @@ export const getPostsRankedQuery = (
 
       return [];
     },
-    enabled: enabled,
+    enabled,
     initialData: { pages: [], pageParams: [] },
     initialPageParam: { author: undefined, permlink: undefined } as PageParam,
     getNextPageParam: (lastPage: Entry[]) => {

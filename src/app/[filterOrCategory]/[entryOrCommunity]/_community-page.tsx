@@ -33,7 +33,7 @@ export default async function CommunityPage({ params, searchParams }: Props) {
     return notFound();
   }
 
-  await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
+  const data = await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
 
   if (searchParams.q) {
     await prefetchSearchApiQuery(getQueryClient(), searchParams.q, "newest", "0");
@@ -78,7 +78,7 @@ export default async function CommunityPage({ params, searchParams }: Props) {
           <meta itemProp="url" content={`${defaults.base}${metaUrl}`} />
         </span>
         <div className="content-side">
-          <CommunityMenu community={community} />
+          <CommunityMenu community={community} filter={params.filterOrCategory} />
           <CommunityCover account={account!!} community={community} />
           <CommunityContent
             community={community}

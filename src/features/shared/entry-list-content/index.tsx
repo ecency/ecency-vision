@@ -1,52 +1,44 @@
-import React, { useMemo } from "react";
+import React from "react";
 import "./_index.scss";
 import { Entry } from "@/entities";
-import { EntryListItem, LinearProgress, MessageNoData } from "@/features/shared";
+import { EntryListItem, MessageNoData } from "@/features/shared";
 import { getMutedUsersQuery } from "@/api/queries/get-muted-users-query";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { isCommunity } from "@/utils";
-import { useGetPromotedEntriesQuery } from "@/api/queries";
+import { getPromotedEntriesQuery } from "@/api/queries";
 
 interface Props {
   loading: boolean;
   entries: Entry[];
   sectionParam: string;
+  isPromoted: boolean;
 }
 
-export function EntryListContent({ sectionParam: section, loading, entries }: Props) {
+export async function EntryListContent({
+  sectionParam: section,
+  loading,
+  entries,
+  isPromoted
+}: Props) {
   const tag = useGlobalStore((s) => s.tag);
   const filter = useGlobalStore((s) => s.filter);
   const activeUser = useGlobalStore((s) => s.activeUser);
+  const usePrivate = useGlobalStore((s) => s.usePrivate);
 
-  const { data: mutedUsers, isPending: isLoadingMutedUsers } =
-    getMutedUsersQuery(activeUser).useClientQuery();
-  const { data: promotedEntries } = useGetPromotedEntriesQuery();
+  const mutedUsers = await getMutedUsersQuery(activeUser).prefetch();
+  const promotedEntries = await getPromotedEntriesQuery(usePrivate).prefetch();
 
-  const isMyProfile = useMemo(
-    () => !!activeUser && tag.includes("@") && activeUser.username === tag.replace("@", ""),
-    [activeUser, tag]
-  );
-  const mutedList = useMemo(() => {
-    if (mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username) {
-      return mutedUsers;
-    }
-    return [];
-  }, [activeUser, mutedUsers]);
-  const dataToRender = useMemo(() => {
-    let dataToRender = entries;
-    if (location.pathname.includes("/promoted")) {
-      dataToRender = promotedEntries ?? [];
-    }
+  const isMyProfile =
+    !!activeUser && tag.includes("@") && activeUser.username === tag.replace("@", "");
+  const mutedList =
+    mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username ? mutedUsers : [];
 
-    return dataToRender;
-  }, [entries, promotedEntries]);
+  const dataToRender = isPromoted ? promotedEntries ?? [] : entries;
 
   return (
     <>
-      {isLoadingMutedUsers ? (
-        <LinearProgress />
-      ) : dataToRender.length > 0 ? (
+      {dataToRender.length > 0 ? (
         <>
           {dataToRender.map((e, i) => {
             const l = [];
@@ -54,7 +46,7 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
             if (i % 4 === 0 && i > 0) {
               const ix = i / 4 - 1;
 
-              if (promotedEntries[ix]) {
+              if (promotedEntries?.[ix]) {
                 const p = promotedEntries[ix];
                 let isPostMuted =
                   (activeUser && activeUser.username && mutedList.includes(p.author)) || false;
@@ -74,7 +66,7 @@ export function EntryListContent({ sectionParam: section, loading, entries }: Pr
 
             let isPostMuted =
               (activeUser && activeUser.username && mutedList.includes(e.author)) || false;
-            if (location.pathname.includes("/promoted")) {
+            if (isPromoted) {
               l.push(
                 <EntryListItem
                   key={`${e.author}-${e.permlink}`}

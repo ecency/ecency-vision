@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 import { setProxyBase } from "@ecency/render-helper";
 import "./_index.scss";
