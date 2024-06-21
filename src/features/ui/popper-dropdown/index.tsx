@@ -1,3 +1,5 @@
+"use client";
+
 import { createPortal } from "react-dom";
 import React, { useRef, useState } from "react";
 import { usePopper } from "react-popper";

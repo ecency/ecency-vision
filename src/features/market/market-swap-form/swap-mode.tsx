@@ -17,7 +17,7 @@ export const SwapMode = ({ inline = false }: Props) => {
 
   const form = (
     <>
-      {activeUser ? <MarketSwapActiveOrders global={global} activeUser={activeUser} /> : <></>}
+      {activeUser ? <MarketSwapActiveOrders /> : <></>}
 
       <MarketSwapForm padding={inline ? "p-0" : undefined} />
       {!activeUser && (

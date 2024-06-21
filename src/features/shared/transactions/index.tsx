@@ -1,3 +1,5 @@
+"use client";
+
 import { ChangeEvent, useMemo, useState } from "react";
 import "./_index.scss";
 import { FormControl } from "@ui/input";

@@ -4,243 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved decks pt. 1">
-      <change afterPath="$PROJECT_DIR$/src/api/mutations/upload-post-image.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-bots-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-discussions-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-images-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/decks/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/sort-order.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/3speak/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/3speak/three-speak-manager-context.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/3speak/three-speak-manager.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/entry-management/entry-body-manager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/entry-management/entry-metadata-manager/entry-metadata-builder.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/entry-management/entry-metadata-manager/get-dimensions-from-data-url.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/entry-management/entry-metadata-manager/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/entry-management/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/__snapshots__/market-info.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/__snapshots__/market-swap-form-header.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/__snapshots__/market-swap-form-success.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/__snapshots__/sign-methods.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/__snapshots__/swap-amount-control.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/_swap-mode.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/coingecko-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/currency-rate-query.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/get-balance.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/get-balance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/get-market-rate.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/get-market-rate.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/hive-market-rate-listener.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/hive-market-rate-listener.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/swapping.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/swapping.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/form-step.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-info.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-info.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-pair.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/generic-order-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-form-header.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-form-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-form-success.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-form-success.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-by-key-spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-by-key.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-methods.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-methods.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-amount-control.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-amount-control.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/api/get-poll-details-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/api/polls-votes-management.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/api/sign-poll-vote.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/poll-option-with-results.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/poll-option.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/poll-votes-list-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/poll-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/components/polls-creation.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/hooks/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/hooks/polls-manager.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/hooks/use-entry-poll-extractor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/hooks/use-polls-creation-management.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/polls/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/available-credits/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/available-credits/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/comment/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/comment/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/comment/comment-preview.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/comment/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-bots.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item-body.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-link/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-link/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-link/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/textarea-autocomplete/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/textarea-autocomplete/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/textarea-autocomplete/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/textarea-autocomplete/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/transactions/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/transactions/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/transactions/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/transactions/transaction-row.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/two-user-avatar/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/two-user-avatar/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/two-user-avatar/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/two-user-avatar/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-gallery/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-gallery/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-gallery/video-gallery-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/assets/thumbnail-play.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/utils/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/utils/use-get-camera-list.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder-no-permission.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/wallet-badge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/popper-dropdown/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/popper-dropdown/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/spk-estimated-balance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/use-stopwatch.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved decks pt. 2">
+      <change afterPath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/delete-comment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/delete-comment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/operations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/operations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-transactions-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-transactions-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/threespeak/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/threespeak/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/threespeak/mutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/_deck-floating-manager.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck-floating-manager.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/_deck-toolbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck-toolbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/_deck.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/_deck.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-login-overlay-placeholder.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-login-overlay-placeholder.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-wallet-balance-column.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-wallet-balance-column.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-whats-new-column.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/_deck-whats-new-column.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer-comment-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer-comment-box.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer-reply.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer-reply.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-topics-content-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-topics-content-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/_deck-search-column-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/_deck-search-column-settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-content-type-column-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-content-type-column-settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-search-column-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-column-settings/deck-search-column-settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-community-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-community-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-faq-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-faq-column.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-hot-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-hot-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-edit-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-edit-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-login-overlay-placeholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-login-overlay-placeholder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-msf-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-msf-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-notifications-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-notifications-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-search-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-search-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/community-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/community-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/deck-threads-column-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/deck-threads-column-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/identifiable-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/identifiable-entry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/threads-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/threads-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-topics-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-topics-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-trending-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-trending-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-user-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-user-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-balance-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-balance-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-with-data-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/generic-deck-with-data-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/_helpers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/_helpers.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/infinite-scroll-loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/infinite-scroll-loader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/render-liketu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/helpers/render-liketu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/consts/column-icons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/column-icons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/consts/column-titles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/column-titles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/consts/content-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/consts/content-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-floating-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-floating-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-grid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-grid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-loader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/_decks-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/_decks-settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/decks-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-settings/decks-settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/threads-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/threads-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/use-community-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/use-community-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-created-recently.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-created-recently.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-control.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-emoji-picker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-emoji-picker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-thread-selection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-thread-selection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-image-picker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-image-picker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-video-picker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar-video-picker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-floating-toolbar-activator.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-floating-toolbar-activator.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-toolbar-manager.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/_deck-toolbar-manager.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-floating-toolbar-activator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-floating-toolbar-activator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-base-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-base-actions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-toggle-area.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-toggle-area.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-reloading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-reloading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-settings-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-settings-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-update-interval-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header-update-interval-settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/header/deck-header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/decks/_components/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/old-deck-migration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/old-deck-migration.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/screens/decks.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/utils/use-entry-checking.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/utils/use-entry-checking.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/entries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/entries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/hive/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/hive/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/operations/metadata.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/operations/metadata.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-info/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/available-credits/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/available-credits/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/form-controls/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/get-meta-props.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/get-meta-props.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/wallet-badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/wallet-badge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/popper-dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popper-dropdown/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/is-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-mobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/use-nav.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-nav.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/use-stopwatch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-stopwatch.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +98,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -488,7 +275,8 @@
       <workItem from="1718607175715" duration="7303000" />
       <workItem from="1718695042695" duration="7355000" />
       <workItem from="1718732132618" duration="18919000" />
-      <workItem from="1718904443028" duration="15598000" />
+      <workItem from="1718904443028" duration="15657000" />
+      <workItem from="1718988903705" duration="1906000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
       <option name="closed" value="true" />
@@ -866,7 +654,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718819839276</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Moved decks pt. 2">
+      <option name="closed" value="true" />
+      <created>1718961352131</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718961352131</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -884,7 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated bookmarks" />
     <MESSAGE value="Migrated gallery" />
     <MESSAGE value="Migrated drafts" />
     <MESSAGE value="Migrated notifications pt.1" />
@@ -909,7 +704,8 @@
     <MESSAGE value="Updated community posts fetching" />
     <MESSAGE value="Updated community content" />
     <MESSAGE value="Moved decks pt. 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved decks pt. 1" />
+    <MESSAGE value="Moved decks pt. 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved decks pt. 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

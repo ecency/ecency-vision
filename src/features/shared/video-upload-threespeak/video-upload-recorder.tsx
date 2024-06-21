@@ -53,8 +53,7 @@ export function VideoUploadRecorder({
 
   useEffect(() => {
     if (stream && ref.current) {
-      // @ts-ignore
-      ref.current?.srcObject = stream;
+      ref.current.srcObject = stream;
     }
   }, [stream, ref]);
 

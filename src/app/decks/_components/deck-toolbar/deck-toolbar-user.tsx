@@ -5,6 +5,7 @@ import { useGlobalStore } from "@/core/global-store";
 import Link from "next/link";
 import { FullAccount } from "@/entities";
 import i18next from "i18next";
+import Image from "next/image";
 
 interface Props {
   isExpanded: boolean;
@@ -35,7 +36,13 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => 
         />
       ) : (
         <Link href="/">
-          <img className="user-avatar medium" src={require("../../../img/logo-circle.svg")} />
+          <Image
+            alt="logo"
+            className="user-avatar medium"
+            src="/assets/logo-circle.svg"
+            width={100}
+            height={100}
+          />
         </Link>
       )}
       {isExpanded ? (

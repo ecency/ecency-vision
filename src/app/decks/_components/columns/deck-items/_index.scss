@@ -298,7 +298,7 @@
           width: 100%;
           background-size: cover;
           @apply bg-white;
-          background-image: url(../../../../img/noimage.png);
+          background-image: url(../../../../../../public/assets/noimage.png);
           background-position: center;
 
           @include border-radius(0.5rem);

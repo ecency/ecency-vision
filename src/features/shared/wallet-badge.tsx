@@ -1,3 +1,5 @@
+"use client";
+
 import { HiveWallet } from "@/utils";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Tooltip } from "@ui/tooltip";

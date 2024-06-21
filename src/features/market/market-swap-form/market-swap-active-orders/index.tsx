@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ActiveUser } from "../../../store/active-user/types";
-import { getOpenOrder, OpenOrdersData } from "../../../api/hive";
 import { GenericOrderItem } from "./generic-order-item";
-import { _t } from "../../../i18n";
-import BuySellHiveDialog, { TransactionType } from "../../buy-sell-hive";
-import { Global } from "../../../store/global/types";
 import "./index.scss";
+import { OpenOrdersData } from "@/entities";
+import { useGlobalStore } from "@/core/global-store";
+import { getOpenOrder } from "@/api/hive";
+import i18next from "i18next";
+import { BuySellHiveDialog } from "@/features/shared";
+import { BuySellHiveTransactionType } from "@/enums";
 
-interface Props {
-  activeUser: ActiveUser;
-  global: Global;
-}
+export const MarketSwapActiveOrders = () => {
+  const activeUser = useGlobalStore((s) => s.activeUser);
 
-export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
   const [orders, setOrders] = useState<OpenOrdersData[]>([]);
   const [cancelingOrder, setCancelingOrder] = useState(0);
 
@@ -22,7 +20,7 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
 
   const fetch = async () => {
     try {
-      const orders = await getOpenOrder(activeUser.username);
+      const orders = await getOpenOrder(activeUser!.username);
       setOrders(orders.filter((order) => order.orderid.toString().startsWith("9")));
     } catch (e) {}
   };
@@ -31,7 +29,7 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
     <>
       <div className="mb-4">
         <label>
-          <small className="font-bold">{_t("market.pending-orders")}</small>
+          <small className="font-bold">{i18next.t("market.pending-orders")}</small>
         </label>
         <div className="bg-white rounded-[1rem] market-swap-active-orders">
           {orders.map((order) => (
@@ -48,11 +46,9 @@ export const MarketSwapActiveOrders = ({ activeUser, global }: Props) => {
       </div>
       {cancelingOrder ? (
         <BuySellHiveDialog
-          Ttype={TransactionType.Cancel}
+          type={BuySellHiveTransactionType.Cancel}
           onHide={() => setCancelingOrder(0)}
-          global={global}
           onTransactionSuccess={() => fetch()}
-          activeUser={activeUser}
           orderid={cancelingOrder}
         />
       ) : (

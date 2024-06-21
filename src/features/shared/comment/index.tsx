@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { setProxyBase } from "@ecency/render-helper";
 import "./_index.scss";

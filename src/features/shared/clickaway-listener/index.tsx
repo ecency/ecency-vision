@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+"use client";
+
+import { useRef } from "react";
 import useClickAway from "react-use/lib/useClickAway";
 
 /**

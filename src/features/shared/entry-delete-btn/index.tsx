@@ -1,3 +1,5 @@
+"use client";
+
 import React, { cloneElement, ReactElement } from "react";
 import { Entry } from "@/entities";
 import { PopoverConfirm } from "@/features/ui";

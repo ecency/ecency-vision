@@ -86,7 +86,6 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
     <div className={"deck-toolbar " + (isExpanded ? "expanded" : "")}>
       <div className="deck-toolbar-content">
         <DeckToolbarUser
-          history={history}
           items={authorizedItems}
           isExpanded={isExpanded}
           setIsExpanded={setIsExpanded}
