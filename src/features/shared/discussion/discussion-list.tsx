@@ -89,7 +89,6 @@ export function DiscussionList({
           root={root}
           discussionList={discussionList}
           community={community}
-          history={history}
           key={`${d.author}-${d.permlink}`}
           entry={d}
           hideControls={hideControls}

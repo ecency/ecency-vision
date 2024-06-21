@@ -11,14 +11,12 @@ interface Props {
   isExpanded: boolean;
   setShowPurchaseDialog: (v: boolean) => void;
   setIsExpanded: (v: boolean) => void;
-  history: History;
 }
 
 export const DeckToolbarBaseActions = ({
   setShowPurchaseDialog,
   isExpanded,
-  setIsExpanded,
-  history
+  setIsExpanded
 }: Props) => {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const setActiveUser = useGlobalStore((s) => s.setActiveUser);

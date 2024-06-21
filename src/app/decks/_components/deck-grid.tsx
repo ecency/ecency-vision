@@ -27,11 +27,7 @@ import { Button } from "@ui/button";
 import { arrowLeftSvg, arrowRightSvg } from "@ui/svg";
 import i18next from "i18next";
 
-interface Props {
-  history: History;
-}
-
-export const DeckGrid = ({ history }: Props) => {
+export const DeckGrid = () => {
   const deckContext = useContext(DeckGridContext);
   const previousLayout = usePrevious(deckContext.layout);
 
@@ -209,7 +205,6 @@ export const DeckGrid = ({ history }: Props) => {
                           {type === "wb" && (
                             <DeckWalletBalanceColumn
                               id={id}
-                              history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />

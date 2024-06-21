@@ -25,7 +25,6 @@ interface Props {
   id: string;
   settings: UserDeckGridItem["settings"];
   draggable?: DraggableProvidedDragHandleProps | null;
-  history: History;
 }
 
 export type Tab = "ecency" | "hive" | "engine" | "spk";
@@ -51,7 +50,6 @@ const Card = ({ title, description, isLoading, value }: CardProps) => (
 export const DeckWalletBalanceColumn = ({
   id,
   draggable,
-  history,
   settings: { username, updateIntervalMs }
 }: Props) => {
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();

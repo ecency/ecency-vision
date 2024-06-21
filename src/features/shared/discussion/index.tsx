@@ -117,7 +117,7 @@ export function Discussion({ hideControls, isRawContent, parent, community }: Pr
           {" "}
           {commentSvg} {strCount}
         </div>
-        <DiscussionBots history={history} entries={botsData ?? []} />
+        <DiscussionBots entries={botsData ?? []} />
         <span className="flex-spacer" />
         {hideControls ? (
           <></>

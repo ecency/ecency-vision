@@ -15,10 +15,7 @@ export function ChatSidebarHeader() {
       <div className="flex items-center">
         {!!privateKey && (
           <div className="chat-menu">
-            <ChatsDropdownMenu
-              onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)}
-              history={history}
-            />
+            <ChatsDropdownMenu onManageChatKey={() => setRevealPrivateKey(!revealPrivateKey)} />
           </div>
         )}
       </div>

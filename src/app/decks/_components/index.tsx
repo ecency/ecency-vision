@@ -53,11 +53,7 @@ export const Decks = () => {
                     open={!isCollapsed}
                     setOpen={(v) => setIsCollapsed(!v)}
                   />
-                  <DeckToolbar
-                    history={history}
-                    isExpanded={isExpanded}
-                    setIsExpanded={setIsExpanded}
-                  />
+                  <DeckToolbar isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
                   <DeckThreadsForm className={showThreadsForm ? "show" : ""} persistable={true} />
                   {isDecksLoading ? (
                     <DeckLoader />
@@ -65,7 +61,7 @@ export const Decks = () => {
                     <>
                       <div className="decks-container w-full overflow-hidden">
                         {/*<DeckSmoothScroller>*/}
-                        <DeckGrid history={history} />
+                        <DeckGrid />
                         {/*</DeckSmoothScroller>*/}
                       </div>
                       <DeckFloatingManager />

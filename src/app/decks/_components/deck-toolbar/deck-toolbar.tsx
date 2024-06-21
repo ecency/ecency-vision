@@ -19,10 +19,9 @@ import i18next from "i18next";
 interface Props {
   isExpanded: boolean;
   setIsExpanded: (v: boolean) => void;
-  history: History;
 }
 
-export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
+export const DeckToolbar = ({ isExpanded, setIsExpanded }: Props) => {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const setActiveUser = useGlobalStore((s) => s.setActiveUser);
   const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
@@ -92,7 +91,6 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
         />
         <DeckToolbarBaseActions
           isExpanded={isExpanded}
-          history={history}
           setIsExpanded={setIsExpanded}
           setShowPurchaseDialog={setShowPurchaseDialog}
         />

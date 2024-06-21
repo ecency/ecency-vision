@@ -35,7 +35,6 @@ import { MuteBtn } from "@/features/shared/mute-btn";
 import { Comment } from "../comment";
 
 interface Props {
-  history: History;
   entry: Entry;
   root: Entry;
   community: Community | null;
@@ -45,7 +44,6 @@ interface Props {
 }
 
 export function DiscussionItem({
-  history,
   hideControls,
   isRawContent,
   entry: initialEntry,
@@ -304,7 +302,7 @@ export function DiscussionItem({
                   </Dropdown>
                 )}
               </div>
-              <DiscussionBots entries={botsData} history={history} />
+              <DiscussionBots entries={botsData} />
             </div>
           )}
           {readMore && (
@@ -350,7 +348,6 @@ export function DiscussionItem({
           parent={entry}
           root={root}
           hideControls={hideControls}
-          history={history}
           isRawContent={isRawContent}
         />
       )}

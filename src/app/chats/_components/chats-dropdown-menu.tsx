@@ -15,7 +15,6 @@ import { chatKeySvg, chatLeaveSvg, extendedView, kebabMenuSvg } from "@/assets/i
 import { keySvg, pinSvg } from "@ui/svg";
 
 interface Props {
-  history: History | null;
   onManageChatKey?: () => void;
   currentUser?: string;
   channel?: Channel;

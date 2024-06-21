@@ -11,11 +11,10 @@ import { dateToRelative } from "@/utils";
 import { ProfileLink } from "@/features/shared";
 
 interface Props {
-  history: History;
   entries: Entry[];
 }
 
-export function DiscussionBots({ entries, history }: Props) {
+export function DiscussionBots({ entries }: Props) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
