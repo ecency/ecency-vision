@@ -10,6 +10,7 @@ import { NavbarDesktop } from "./navbar-desktop";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Theme } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
+import { LoginDialog } from "@/features/shared";
 
 interface Props {
   match?: any;
@@ -21,6 +22,7 @@ interface Props {
 export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const toggleTheme = useGlobalStore((state) => state.toggleTheme);
+  const uiLogin = useGlobalStore((state) => state.login);
 
   const router = useRouter();
   const query = useSearchParams();
@@ -107,6 +109,7 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
         setStepOne={setStepOne}
         setSmVisible={setSmVisible}
       />
+      {uiLogin && <LoginDialog />}
     </div>
   );
 }

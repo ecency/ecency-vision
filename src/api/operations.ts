@@ -2281,3 +2281,55 @@ export const claimAccountByKeychain = (account: FullAccount) =>
     ],
     "Active"
   );
+
+export const boostPlus = (key: PrivateKey, user: string, account: string, duration: number) =>
+  hiveClient.broadcast.json(
+    {
+      id: "ecency_boost_plus",
+      json: JSON.stringify({
+        user,
+        account,
+        duration
+      }),
+      required_auths: [user],
+      required_posting_auths: []
+    },
+    key
+  );
+
+export const boostPlusHot = (user: string, account: string, duration: number) => {
+  const params = {
+    authority: "active",
+    required_auths: `["${user}"]`,
+    required_posting_auths: "[]",
+    id: "ecency_boost_plus",
+    json: JSON.stringify({
+      user,
+      account,
+      duration
+    })
+  };
+
+  hotSign("custom-json", params, `@${user}/points`);
+};
+
+export const promoteKc = (user: string, author: string, permlink: string, duration: number) => {
+  const json = JSON.stringify({
+    user,
+    author,
+    permlink,
+    duration
+  });
+
+  return keychain.customJson(user, "ecency_promote", "Active", json, "Promote");
+};
+
+export const boostPlusKc = (user: string, account: string, duration: number) => {
+  const json = JSON.stringify({
+    user,
+    account,
+    duration
+  });
+
+  return keychain.customJson(user, "ecency_boost_plus", "Active", json, "Boost Plus");
+};

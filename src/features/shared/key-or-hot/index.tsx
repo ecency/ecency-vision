@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
 import OrDivider from "../or-divider";

@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Got rid of history">
-      <change afterPath="$PROJECT_DIR$/src/app/signup/_sign-up.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/signup/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added sign up page">
+      <change afterPath="$PROJECT_DIR$/public/assets/like.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/reward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/svg.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/writer-thinking.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-boost-plus-account-prices-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-boost-plus-prices-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/perks/components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/perks/components/major-perk-card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/perks/components/perks-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/perks/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/boost/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/operations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/operations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +79,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/signup",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/public/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -100,18 +117,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/signup" />
+      <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/app/signup" />
       <recent name="$PROJECT_DIR$/src/features/ui" />
-      <recent name="$PROJECT_DIR$/src/features" />
-      <recent name="$PROJECT_DIR$/src/features/polls/hooks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/perks" />
+      <recent name="$PROJECT_DIR$/src/app/perks/page.tsx" />
+      <recent name="$PROJECT_DIR$/src/app/page.tsx" />
       <recent name="$PROJECT_DIR$/src/core/react-query" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card" />
-      <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]" />
-      <recent name="$PROJECT_DIR$/src/app/chats" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -257,15 +274,7 @@
       <workItem from="1718695042695" duration="7355000" />
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
-      <workItem from="1718988903705" duration="2622000" />
-    </task>
-    <task id="LOCAL-00002" summary="Moved common styles">
-      <option name="closed" value="true" />
-      <created>1701798616227</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1701798616227</updated>
+      <workItem from="1718988903705" duration="4642000" />
     </task>
     <task id="LOCAL-00003" summary="Migrated APIs">
       <option name="closed" value="true" />
@@ -651,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718990973934</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Added sign up page">
+      <option name="closed" value="true" />
+      <created>1718991550061</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1718991550062</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated notifications pt.1" />
     <MESSAGE value="Migrated notifications pt.2" />
     <MESSAGE value="Migrated notifications pt.3" />
     <MESSAGE value="Fixups" />
@@ -694,7 +710,8 @@
     <MESSAGE value="Moved decks pt. 2" />
     <MESSAGE value="Moved decks pt. 3" />
     <MESSAGE value="Got rid of history" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got rid of history" />
+    <MESSAGE value="Added sign up page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sign up page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

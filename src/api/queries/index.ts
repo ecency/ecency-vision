@@ -38,3 +38,5 @@ export * from "./search-api-query";
 export * from "./get-account-posts-feed-query";
 export * from "./get-bots-query";
 export * from "./get-images-query";
+export * from "./get-boost-plus-prices-query";
+export * from "./get-boost-plus-account-prices-query";

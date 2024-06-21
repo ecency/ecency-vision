@@ -1,11 +1,10 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import React, { createContext, HTMLProps, useEffect, useMemo, useState } from "react";
+import React, { createContext, HTMLProps, useEffect, useState } from "react";
 import useMount from "react-use/lib/useMount";
 import useUnmount from "react-use/lib/useUnmount";
-import { classNameObject, useFilteredProps } from "@/features/ui/util";
-import { animated, Transition, TransitionFrom, TransitionTo } from "@react-spring/web";
+import { classNameObject, useFilteredProps } from "@ui/util";
 
 interface Props {
   show: boolean;
@@ -14,9 +13,7 @@ interface Props {
   animation?: boolean;
   size?: "md" | "lg";
   dialogClassName?: string;
-  transitionFrom?: TransitionFrom<any>;
-  transitionEnter?: TransitionTo<any>;
-  transitionLeave?: TransitionTo<any>;
+  overlayClassName?: string;
 }
 
 export const ModalContext = createContext<{
@@ -28,19 +25,15 @@ export const ModalContext = createContext<{
 });
 
 export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>();
 
-  const transitionsTriggers = useMemo(() => (show ? [show] : []), [show]);
   const nativeProps = useFilteredProps(props, [
     "size",
     "animation",
     "show",
     "onHide",
     "centered",
-    "dialogClassName",
-    "transitionFrom",
-    "transitionEnter",
-    "transitionLeave"
+    "dialogClassName"
   ]);
 
   useMount(() => document.addEventListener("keyup", onKeyUp));
@@ -51,8 +44,10 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
   }, [props.show]);
 
   useEffect(() => {
-    if (!show) {
-      props.onHide();
+    if (typeof show === "boolean") {
+      if (!show) {
+        props.onHide();
+      }
     }
   }, [show]);
 
@@ -64,83 +59,41 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
 
   return (
     <ModalContext.Provider value={{ show, setShow }}>
-      {typeof document !== "undefined" &&
+      {show &&
         createPortal(
-          <Transition
-            items={transitionsTriggers}
-            keys={Array.from(transitionsTriggers.keys())}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 0.5 }}
-            leave={{ opacity: 0 }}
-          >
-            {(values, item, t, index) => (
-              <animated.div
-                key={index}
-                style={values}
-                className="bg-black z-[1040] fixed top-0 left-0 right-0 bottom-0"
-              />
-            )}
-          </Transition>,
-          document.querySelector("#modal-overlay-container") ?? document.createElement("div")
+          <div
+            className={classNameObject({
+              "bg-black opacity-[50%] z-[1040] fixed top-0 left-0 right-0 bottom-0": true,
+              [props.overlayClassName ?? ""]: !!props.overlayClassName
+            })}
+          />,
+          document.querySelector("#modal-overlay-container")!!
         )}
-      {typeof document !== "undefined" &&
+      {show &&
         createPortal(
-          <Transition
-            items={transitionsTriggers}
-            keys={Array.from(transitionsTriggers.keys())}
-            from={
-              props.animation
-                ? props.transitionFrom ?? {
-                    opacity: 0,
-                    scale: 0.95
-                  }
-                : {}
-            }
-            leave={
-              props.animation
-                ? props.transitionLeave ?? {
-                    opacity: 0,
-                    scale: 0.95
-                  }
-                : {}
-            }
-            enter={
-              props.animation
-                ? props.transitionEnter ?? {
-                    opacity: 1,
-                    scale: 1
-                  }
-                : {}
-            }
+          <div
+            {...nativeProps}
+            className={classNameObject({
+              "z-[1050] fixed top-0 py-8 left-0 right-0 bottom-0 overflow-y-auto h-full": true,
+              [props.className ?? ""]: true,
+              "flex justify-center items-center": props.centered
+            })}
+            onClick={() => setShow(false)}
           >
-            {(values, item, _, index) => (
-              <animated.div
-                {...nativeProps}
-                style={values}
-                key={index}
-                className={classNameObject({
-                  "z-[1050] fixed top-0 py-8 left-0 right-0 bottom-0 overflow-y-auto h-full": true,
-                  [props.className ?? ""]: true,
-                  "flex justify-center items-center": props.centered
-                })}
-                onClick={() => setShow(false)}
-              >
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  className={classNameObject({
-                    "bg-white rounded-xl w-[calc(100%-2rem)] ecency-modal-content overflow-x-hidden overflow-y-auto max-h-[calc(100vh-3rem)] my-[3rem] mx-3":
-                      true,
-                    "max-w-[500px]": !props.size || props.size === "md",
-                    "max-w-[800px]": props.size === "lg",
-                    [props.dialogClassName ?? ""]: true
-                  })}
-                >
-                  {props.children}
-                </div>
-              </animated.div>
-            )}
-          </Transition>,
-          document.querySelector("#modal-dialog-container") ?? document.createElement("div")
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={classNameObject({
+                "bg-white rounded-xl w-[calc(100%-2rem)] ecency-modal-content overflow-x-hidden overflow-y-auto max-h-[calc(100vh-3rem)] my-[3rem] mx-3":
+                  true,
+                "max-w-[500px]": !props.size || props.size === "md",
+                "max-w-[800px]": props.size === "lg",
+                [props.dialogClassName ?? ""]: true
+              })}
+            >
+              {props.children}
+            </div>
+          </div>,
+          document.querySelector("#modal-dialog-container")!!
         )}
     </ModalContext.Provider>
   );

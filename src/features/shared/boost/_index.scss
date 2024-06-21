@@ -1,0 +1,35 @@
+@import "src/styles/vars_mixins";
+
+.boost-dialog {
+  .boost-dialog-content {
+    .balance-input {
+      @apply text-blue-dark-sky;
+      font-weight: 500;
+      cursor: default;
+
+      &.is-invalid {
+        color: $danger;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .slider-area {
+      .slider-price {
+        @apply text-blue-dark-sky;
+        font-size: 1.4rem;
+
+        small {
+          font-size: .6em;
+          margin-left: 6px;
+        }
+      }
+
+      input[type="range"] {
+        width: 100%;
+      }
+    }
+  }
+}

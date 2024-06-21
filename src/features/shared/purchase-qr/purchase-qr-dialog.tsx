@@ -33,3 +33,6 @@ export const PurchaseQrDialog = ({ show, setShow, type }: Props) => {
     </Modal>
   );
 };
+
+export * from "./purchase-qr-types";
+export * from "./purchase-types";
