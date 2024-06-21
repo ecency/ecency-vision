@@ -174,7 +174,7 @@ export class TransactionRow extends Component<TransactionRowProps> {
 
 interface Props {
     global: Global;
-    myCommunity: Community
+    myCommunity?: Community
     dynamicProps: DynamicProps
     history: History;
     activeUser: ActiveUser | null;
