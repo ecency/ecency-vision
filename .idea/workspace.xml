@@ -4,30 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved decks pt. 2">
-      <change afterPath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Got rid of history">
+      <change afterPath="$PROJECT_DIR$/src/app/signup/_sign-up.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/signup/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/market-swap-active-orders/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/available-credits/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/available-credits/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-delete-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/video-upload-recorder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/wallet-badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/wallet-badge.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/popper-dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popper-dropdown/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/is-mobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/is-mobile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/use-nav.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-nav.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/use-stopwatch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/use-stopwatch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +62,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/shared",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/signup",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -119,11 +100,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/signup" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/features/ui" />
       <recent name="$PROJECT_DIR$/src/features" />
       <recent name="$PROJECT_DIR$/src/features/polls/hooks" />
-      <recent name="$PROJECT_DIR$/src/utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/core/react-query" />
@@ -276,15 +257,7 @@
       <workItem from="1718695042695" duration="7355000" />
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
-      <workItem from="1718988903705" duration="1906000" />
-    </task>
-    <task id="LOCAL-00001" summary="Migrated UI, some utils, added zustand">
-      <option name="closed" value="true" />
-      <created>1701797777990</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1701797777990</updated>
+      <workItem from="1718988903705" duration="2622000" />
     </task>
     <task id="LOCAL-00002" summary="Moved common styles">
       <option name="closed" value="true" />
@@ -662,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718961352131</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Moved decks pt. 3">
+      <option name="closed" value="true" />
+      <created>1718990852814</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718990852814</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Got rid of history">
+      <option name="closed" value="true" />
+      <created>1718990973934</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1718990973934</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,8 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated gallery" />
-    <MESSAGE value="Migrated drafts" />
     <MESSAGE value="Migrated notifications pt.1" />
     <MESSAGE value="Migrated notifications pt.2" />
     <MESSAGE value="Migrated notifications pt.3" />
@@ -705,7 +692,9 @@
     <MESSAGE value="Updated community content" />
     <MESSAGE value="Moved decks pt. 1" />
     <MESSAGE value="Moved decks pt. 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved decks pt. 2" />
+    <MESSAGE value="Moved decks pt. 3" />
+    <MESSAGE value="Got rid of history" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got rid of history" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

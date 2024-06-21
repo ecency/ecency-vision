@@ -30,3 +30,4 @@ export * from "./is-mobile";
 export * from "./spk-estimated-balance";
 export * from "./get-meta-props";
 export * from "./use-nav";
+export * from "./b64";

@@ -1,0 +1,221 @@
+@import "../../styles/vars_mixins";
+
+.sign-up-page {
+  display: block;
+
+  .sign-up {
+    max-width: 1400px;
+    margin: auto;
+
+    @media (min-width: $xl-break) {
+      display: flex;
+      margin-top: 35px;
+    }
+
+    .left-image {
+      display: none;
+
+      @media (max-width: $xl-break) {
+        &.register-type,
+        &.buy-account {
+          display: block;
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      @media (min-width: $xl-break) {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .the-form {
+      @media (min-width: $xl-break) {
+        height: calc(100vh - 6rem);
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .form-title {
+        font-size: 28px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
+
+        @media (min-width: $xl-break) {
+          font-size: 32px;
+        }
+      }
+
+      .form-sub-title {
+        opacity: 0.7;
+        text-align: center;
+      }
+
+      .form-icons {
+        margin: 22px 0 12px 0;
+
+        img,
+        svg {
+          height: 44px;
+        }
+
+        img {
+          margin-right: 30px;
+        }
+
+        svg {
+          color: #d2323e;
+        }
+      }
+
+      .form-image {
+        margin-bottom: 6px;
+        text-align: center;
+
+        @media (min-width: $xl-break) {
+          display: none;
+        }
+
+        img {
+          width: 90%;
+          max-width: 400px;
+        }
+      }
+
+      .bottom-description,
+      .form-faq {
+        opacity: 0.7;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .form-done {
+        margin: 20px auto;
+        text-align: center;
+        @apply bg-blue-dark-sky-040;
+        border-radius: 25px;
+        padding: 12px;
+        max-width: 420px;
+
+        .done-icon {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 20px auto;
+          @apply bg-blue-dark-sky;
+          border-radius: 50%;
+          @apply text-white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 24px;
+          }
+        }
+
+        .done-text {
+          @apply text-blue-dark-sky;
+        }
+      }
+
+      .form-content {
+        max-width: 460px;
+        width: 100%;
+        margin: 10px auto;
+
+        form {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+
+  .card {
+    line-height: 1.5;
+
+    .error {
+      padding: 12px 30px;
+
+      .error-info {
+        @apply text-red-020;
+        font-size: 93%;
+        font-weight: 400;
+      }
+    }
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  .app-btn {
+    @apply px-2 py-1;
+
+    @include themify(day) {
+      @apply bg-gray-300 text-dark-200 hover:bg-gray-400;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200 text-white hover:bg-black;
+    }
+
+    border-radius: 8px;
+    display: grid;
+    grid-template-areas:
+      "icon text"
+      "icon headline";
+    align-items: center;
+    text-align: left;
+
+    &::after {
+      content: none;
+    }
+
+    .text {
+      grid-area: text;
+      font-size: 0.75rem;
+    }
+
+    .icon {
+      grid-area: icon;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+
+      path {
+        @include themify(day) {
+          @apply fill-dark-200;
+        }
+
+        @include themify(night) {
+          @apply fill-white;
+        }
+      }
+    }
+
+    .headline {
+      grid-area: headline;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
