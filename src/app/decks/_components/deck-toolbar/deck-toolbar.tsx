@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { useMappedStore } from "../../../store/use-mapped-store";
 import "../_deck-toolbar.scss";
-import { History } from "history";
-import { _t } from "../../../i18n";
-import { PurchaseQrDialog } from "../../../components/purchase-qr";
-import Gallery from "../../../components/gallery";
-import Drafts from "../../../components/drafts";
-import Bookmarks from "../../../components/bookmarks";
-import Schedules from "../../../components/schedules";
-import Fragments from "../../../components/fragments";
-import { useLocation } from "react-router";
 import { DeckToolbarUser } from "./deck-toolbar-user";
 import { DeckToolbarBaseActions } from "./deck-toolbar-base-actions";
 import { DeckToolbarToggleArea } from "./deck-toolbar-toggle-area";
 import { DeckToolbarManager } from "./deck-toolbar-manager";
 import { DeckToolbarCreate } from "./deck-toolbar-create";
-import UserNotifications from "../../../components/notifications";
-import NotificationHandler from "../../../components/notification-handler";
-import Login from "../../../components/login";
+import { useGlobalStore } from "@/core/global-store";
+import { LoginDialog, NotificationHandler, PurchaseQrDialog } from "@/features/shared";
+import { FragmentsDialog } from "@/features/shared/fragments";
+import { SchedulesDialog } from "@/features/shared/schedules";
+import { BookmarksDialog } from "@/features/shared/bookmarks";
+import { DraftsDialog } from "@/features/shared/drafts";
+import { GalleryDialog } from "@/features/shared/gallery";
+import { NotificationsDialog } from "@/features/shared/notifications";
+import { useRouter } from "next/navigation";
+import i18next from "i18next";
 
 interface Props {
   isExpanded: boolean;
@@ -26,8 +23,14 @@ interface Props {
 }
 
 export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
-  const { activeUser, global, toggleUIProp, setActiveUser, ui } = useMappedStore();
-  const location = useLocation();
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const setActiveUser = useGlobalStore((s) => s.setActiveUser);
+  const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
+  const uiNotifications = useGlobalStore((s) => s.uiNotifications);
+  const usePrivate = useGlobalStore((s) => s.usePrivate);
+  const uiLogin = useGlobalStore((s) => s.login);
+
+  const router = useRouter();
 
   const [gallery, setGallery] = useState(false);
   const [drafts, setDrafts] = useState(false);
@@ -38,43 +41,43 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
 
   const authorizedItems = [
     {
-      label: _t("user-nav.profile"),
-      onClick: () => history.push(`/@${activeUser?.username}`)
+      label: i18next.t("user-nav.profile"),
+      onClick: () => router.push(`/@${activeUser?.username}`)
     },
-    ...(global.usePrivate
+    ...(usePrivate
       ? [
           {
-            label: _t("user-nav.drafts"),
+            label: i18next.t("user-nav.drafts"),
             onClick: () => setDrafts(true)
           },
           {
-            label: _t("user-nav.gallery"),
+            label: i18next.t("user-nav.gallery"),
             onClick: () => setGallery(true)
           },
           {
-            label: _t("user-nav.bookmarks"),
+            label: i18next.t("user-nav.bookmarks"),
             onClick: () => setBookmarks(true)
           },
           {
-            label: _t("user-nav.schedules"),
+            label: i18next.t("user-nav.schedules"),
             onClick: () => setSchedules(true)
           },
           {
-            label: _t("user-nav.fragments"),
+            label: i18next.t("user-nav.fragments"),
             onClick: () => setFragments(true)
           }
         ]
       : []),
     {
-      label: _t("user-nav.settings"),
-      onClick: () => history.push(`/@${activeUser?.username}/settings`)
+      label: i18next.t("user-nav.settings"),
+      onClick: () => router.push(`/@${activeUser?.username}/settings`)
     },
     {
-      label: _t("g.login-as"),
+      label: i18next.t("g.login-as"),
       onClick: () => toggleUIProp("login")
     },
     {
-      label: _t("user-nav.logout"),
+      label: i18next.t("user-nav.logout"),
       onClick: () => setActiveUser(null)
     }
   ];
@@ -98,22 +101,15 @@ export const DeckToolbar = ({ isExpanded, setIsExpanded, history }: Props) => {
         <DeckToolbarManager isExpanded={isExpanded} />
       </div>
       <DeckToolbarToggleArea isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-      {gallery && <Gallery onHide={() => setGallery(false)} />}
-      {drafts && <Drafts history={history} onHide={() => setDrafts(false)} />}
-      {bookmarks && <Bookmarks history={history} onHide={() => setBookmarks(false)} />}
-      {schedules && <Schedules history={history} onHide={() => setSchedules(false)} />}
-      {fragments && <Fragments onHide={() => setFragments(false)} />}
-      {global.usePrivate && <NotificationHandler />}
-      {ui.notifications && activeUser && (
-        <UserNotifications history={history} openLinksInNewTab={true} />
-      )}
-      {ui.login && <Login history={history} />}
-      <PurchaseQrDialog
-        show={showPurchaseDialog}
-        setShow={(v) => setShowPurchaseDialog(v)}
-        activeUser={activeUser}
-        location={location}
-      />
+      <GalleryDialog show={gallery} setShow={setGallery} />
+      <DraftsDialog show={drafts} setShow={setDrafts} />
+      <BookmarksDialog show={bookmarks} setShow={setBookmarks} />
+      <SchedulesDialog show={schedules} setShow={setSchedules} />
+      <FragmentsDialog show={fragments} setShow={setFragments} />
+      {usePrivate && <NotificationHandler />}
+      {uiNotifications && activeUser && <NotificationsDialog openLinksInNewTab={true} />}
+      {uiLogin && <LoginDialog />}
+      <PurchaseQrDialog show={showPurchaseDialog} setShow={(v) => setShowPurchaseDialog(v)} />
     </div>
   );
 };

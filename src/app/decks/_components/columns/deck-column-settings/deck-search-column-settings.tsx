@@ -1,14 +1,14 @@
 import { SearchDeckGridItem } from "../../types";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
-import { _t } from "../../../../i18n";
-import { SearchType } from "../../../../helper/search-query";
 import { DateOpt, SearchSort } from "../../consts";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import "./_deck-search-column-settings.scss";
 import { DeckGridContext } from "../../deck-manager";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import i18next from "i18next";
+import { SearchType } from "@/utils/search-query";
 
 interface Props {
   id: string;
@@ -39,21 +39,21 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
   return (
     <DeckHeaderSettingsItem
       className="deck-search-column-settings"
-      title={_t("decks.columns.filters")}
+      title={i18next.t("decks.columns.filters")}
       hasBorderBottom={false}
     >
       <div className="form-list">
         <FormControl
           type="text"
           autoFocus={true}
-          placeholder={_t("decks.columns.search-query")}
+          placeholder={i18next.t("decks.columns.search-query")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
         <FormControl
           type="text"
           autoFocus={true}
-          placeholder={_t("decks.username")}
+          placeholder={i18next.t("decks.username")}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
@@ -66,7 +66,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             >
               {Object.values(SearchType).map((x) => (
                 <option value={x} key={x}>
-                  {_t(`search-comment.type-${x}`)}
+                  {i18next.t(`search-comment.type-${x}`)}
                 </option>
               ))}
             </FormControl>
@@ -74,7 +74,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
           <div>
             <FormControl
               type="text"
-              placeholder={_t("search-comment.category-placeholder")}
+              placeholder={i18next.t("search-comment.category-placeholder")}
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
@@ -82,7 +82,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
         </div>
         <FormControl
           type="text"
-          placeholder={_t("search-comment.tags-placeholder")}
+          placeholder={i18next.t("search-comment.tags-placeholder")}
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
@@ -95,7 +95,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             >
               {Object.values(DateOpt).map((x) => (
                 <option value={x} key={x}>
-                  {_t(`search-comment.date-${x}`)}
+                  {i18next.t(`search-comment.date-${x}`)}
                 </option>
               ))}
             </FormControl>
@@ -108,7 +108,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             >
               {Object.values(SearchSort).map((x) => (
                 <option value={x} key={x}>
-                  {_t(`search-comment.sort-${x}`)}
+                  {i18next.t(`search-comment.sort-${x}`)}
                 </option>
               ))}
             </FormControl>
@@ -117,7 +117,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
         <FormControl
           type="checkbox"
           className="py-2"
-          label={_t("search-comment.hide-low")}
+          label={i18next.t("search-comment.hide-low")}
           checked={hideLow}
           onChange={(v) => setHideLow(v)}
         />
@@ -140,7 +140,7 @@ export const DeckSearchColumnSettings = ({ id, settings }: Props) => {
             setTimeout(() => setIsLoading(false), 1000);
           }}
         >
-          {isLoading ? _t("g.applying") : _t("g.apply")}
+          {isLoading ? i18next.t("g.applying") : i18next.t("g.apply")}
         </Button>
       </div>
     </DeckHeaderSettingsItem>

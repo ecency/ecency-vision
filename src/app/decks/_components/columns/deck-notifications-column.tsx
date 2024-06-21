@@ -3,33 +3,31 @@ import { ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { ApiNotification, NotificationFilter } from "../../../store/notifications/types";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { History } from "history";
-import { getNotifications } from "../../../api/private-api";
 import { NOTIFICATION_CONTENT_TYPES, notificationsTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
-import { getPost } from "../../../api/bridge";
-import { Entry } from "../../../store/entries/types";
 import { DeckPostViewer } from "./content-viewer";
 import { DeckLoginOverlayPlaceholder } from "./deck-login-overlay-placeholder";
 import usePrevious from "react-use/lib/usePrevious";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
-import { _t } from "../../../i18n";
 import { InfiniteScrollLoader } from "./helpers";
 import { newDataComingPaginatedCondition } from "../utils";
-import NotificationListItem from "../../../components/notifications/notification-list-item";
+import { useGlobalStore } from "@/core/global-store";
+import { ApiNotification, Entry } from "@/entities";
+import { getNotifications } from "@/api/private-api";
+import { NotificationFilter } from "@/enums";
+import i18next from "i18next";
+import { NotificationListItem } from "@/features/shared/notifications/notification-list-item";
+import { getPost } from "@/api/hive";
 
 interface Props {
   id: string;
   settings: UserDeckGridItem["settings"];
-  history: History;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
-export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Props) => {
-  const { addAccount, dynamicProps, global, markNotifications, toggleUIProp, activeUser } =
-    useMappedStore();
+export const DeckNotificationsColumn = ({ id, settings, draggable }: Props) => {
+  const activeUser = useGlobalStore((s) => s.activeUser);
+
   const previousActiveUser = usePrevious(activeUser);
 
   const [data, setData] = useState<ApiNotification[]>([]);
@@ -96,8 +94,8 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
       header={{
         title: "@" + settings.username.toLowerCase(),
         subtitle: notificationsTitles[settings.contentType]
-          ? `${_t("decks.notifications")} – ${notificationsTitles[settings.contentType]}`
-          : _t("decks.notifications"),
+          ? `${i18next.t("decks.notifications")} – ${notificationsTitles[settings.contentType]}`
+          : i18next.t("decks.notifications"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -119,7 +117,6 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
         currentViewingEntry && (
           <DeckPostViewer
             entry={currentViewingEntry}
-            history={history}
             onClose={() => setCurrentViewingEntry(undefined)}
           />
         )
@@ -141,12 +138,6 @@ export const DeckNotificationsColumn = ({ id, settings, draggable, history }: Pr
             }
           }}
           notification={item}
-          addAccount={addAccount}
-          dynamicProps={dynamicProps}
-          global={global}
-          history={history}
-          markNotifications={markNotifications}
-          toggleUIProp={toggleUIProp}
           className="notification-list-item"
           onLinkClick={async () => {
             switch (item.type) {

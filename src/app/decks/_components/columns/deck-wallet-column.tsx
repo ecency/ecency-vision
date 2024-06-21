@@ -1,63 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { UserDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
-import { fetchTransactions } from "../../../store/transactions/fetchTransactions";
-import { Transaction } from "../../../store/transactions/types";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { History } from "history";
 import { ShortListItemSkeleton } from "./deck-items";
 import { DeckGridContext } from "../deck-manager";
-import usePrevious from "react-use/lib/usePrevious";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import { WALLET_CONTENT_TYPES } from "../consts";
-import { _t } from "../../../i18n";
-import { TransactionRow } from "../../../components/transactions";
+import { Transaction } from "@/entities";
+import { getDynamicPropsQuery, getTransactionsQuery } from "@/api/queries";
+import i18next from "i18next";
+import { TransactionRow } from "@/features/shared";
 
 interface Props {
   id: string;
-  history: History;
   settings: UserDeckGridItem["settings"];
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 type IdentifiableTransaction = Transaction & { id: string };
 
-export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) => {
-  const { dynamicProps, global } = useMappedStore();
+export const DeckWalletColumn = ({ id, settings, draggable }: Props) => {
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
+  const { data, isRefetching, refetch } = getTransactionsQuery(
+    settings.username,
+    20,
+    settings.contentType as any
+  ).useClientQuery();
 
-  const [data, setData] = useState<IdentifiableTransaction[]>([]);
-  const [isReloading, setIsReloading] = useState(false);
   const [isFirstLoaded, setIsFirstLoaded] = useState(false);
 
+  const dataFlow = useMemo(
+    () => data?.pages?.reduce((acc, page) => [...acc, ...page], []) ?? [],
+    [data]
+  ) as IdentifiableTransaction[];
+
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
-  const prevSettings = usePrevious(settings);
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (prevSettings && prevSettings?.contentType !== settings.contentType) {
-      setData([]);
-      fetchData();
-    }
-  }, [settings.contentType]);
-
-  const fetchData = async () => {
-    if (data.length) {
-      setIsReloading(true);
-    }
-
-    try {
-      const response = await fetchTransactions(settings.username, settings.contentType as any);
-      setData(response.map((item) => ({ ...item, id: item.trx_id })) ?? []);
-    } catch (e) {
-    } finally {
-      setIsReloading(false);
+    if ((data?.pages.length ?? 0) > 0) {
       setIsFirstLoaded(true);
     }
-  };
+  }, [data]);
 
   return (
     <GenericDeckWithDataColumn
@@ -65,33 +48,27 @@ export const DeckWalletColumn = ({ id, settings, draggable, history }: Props) =>
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: _t("decks.wallet"),
+        subtitle: i18next.t("decks.wallet"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
         additionalSettings: (
           <DeckContentTypeColumnSettings
-            title={_t("decks.columns.filters")}
+            title={i18next.t("decks.columns.filters")}
             contentTypes={WALLET_CONTENT_TYPES}
             settings={settings}
             id={id}
           />
         )
       }}
-      data={data}
-      isReloading={isReloading}
+      data={dataFlow}
+      isReloading={isRefetching}
       isFirstLoaded={isFirstLoaded}
-      onReload={() => fetchData()}
+      onReload={() => refetch()}
       skeletonItem={<ShortListItemSkeleton />}
     >
       {(item: Transaction, measure: any, index: number) => (
-        <TransactionRow
-          global={global}
-          history={history}
-          dynamicProps={dynamicProps}
-          transaction={item}
-          onMounted={measure}
-        />
+        <TransactionRow transaction={item} onMounted={measure} />
       )}
     </GenericDeckWithDataColumn>
   );

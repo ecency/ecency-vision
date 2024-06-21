@@ -8,3 +8,4 @@ export * from "./buy-sell-hive-transaction-type";
 export * from "./order-id-prefix";
 export * from "./points-transaction-type";
 export * from "./notification-filter";
+export * from "./sort-order";

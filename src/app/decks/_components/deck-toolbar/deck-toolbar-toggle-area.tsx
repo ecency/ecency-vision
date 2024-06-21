@@ -1,5 +1,5 @@
-import { arrowLeftSvg, arrowRightSvg } from "../../../img/svg";
 import React from "react";
+import { arrowLeftSvg, arrowRightSvg } from "@ui/svg";
 
 interface Props {
   isExpanded: boolean;

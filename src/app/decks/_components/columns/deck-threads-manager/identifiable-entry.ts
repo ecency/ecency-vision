@@ -1,4 +1,4 @@
-import { Entry } from "../../../../store/entries/types";
+import { Entry } from "@/entities";
 
 export interface ThreadItemEntry extends Entry {
   host: string;

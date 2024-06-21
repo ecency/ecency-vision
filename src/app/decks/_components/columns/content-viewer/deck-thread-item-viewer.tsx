@@ -1,21 +1,21 @@
-import { History } from "history";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { arrowLeftSvg } from "../../../../img/svg";
-import { _t } from "../../../../i18n";
-import useMount from "react-use/lib/useMount";
+import React, { useContext, useMemo, useRef } from "react";
 import { DeckThreadItemSkeleton, ThreadItem } from "../deck-items";
-import { getDiscussion } from "../../../../api/bridge";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
-import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { repliesIconSvg } from "../../icons";
-import { Entry } from "../../../../store/entries/types";
 import { Button } from "@ui/button";
+import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import i18next from "i18next";
+import { arrowLeftSvg } from "@ui/svg";
+import {
+  addReplyToDiscussionsList,
+  getDiscussionsMapQuery
+} from "@/api/queries/get-discussions-query";
+import { useMounted } from "@/utils/use-mounted";
 
 interface Props {
   entry: IdentifiableEntry;
-  history: History;
   backTitle?: string;
   onClose: () => void;
   highlightedEntry?: string;
@@ -23,7 +23,6 @@ interface Props {
 
 export const DeckThreadItemViewer = ({
   entry: initialEntry,
-  history,
   backTitle,
   onClose,
   highlightedEntry
@@ -32,31 +31,17 @@ export const DeckThreadItemViewer = ({
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+  const isMounted = useMounted();
 
-  const [data, setData] = useState<Entry[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const { data: discussions } = getDiscussionsMapQuery(entry, updateCache).useClientQuery();
+  const data = useMemo(() => {
+    const tempResponse = { ...discussions };
+    Object.values(tempResponse).forEach((i) => {
+      i.host = entry.host;
+    });
 
-  useMount(() => setIsMounted(true));
-
-  useEffect(() => {
-    fetch();
+    return build(tempResponse);
   }, []);
-
-  const fetch = async () => {
-    const response = await getDiscussion(entry.author, entry.permlink);
-
-    if (response) {
-      const tempResponse = { ...response } as Record<string, IdentifiableEntry>;
-      Object.values(tempResponse).forEach((i) => {
-        i.host = entry.host;
-      });
-
-      const nextData = build(tempResponse);
-      setData(nextData);
-      setIsLoaded(true);
-    }
-  };
 
   const build = (dataset: Record<string, IdentifiableEntry>) => {
     const result: IdentifiableEntry[] = [];
@@ -98,7 +83,6 @@ export const DeckThreadItemViewer = ({
           <Button
             appearance="link"
             onClick={() => {
-              setIsMounted(false);
               onClose();
             }}
             icon={arrowLeftSvg}
@@ -113,7 +97,7 @@ export const DeckThreadItemViewer = ({
             target="_blank"
             size="sm"
           >
-            {_t("decks.columns.view-full-post")}
+            {i18next.t("decks.columns.view-full-post")}
           </Button>
         </div>
       </div>
@@ -121,33 +105,30 @@ export const DeckThreadItemViewer = ({
         pure={true}
         initialEntry={entry}
         onEntryView={() => {}}
-        history={history}
         onMounted={() => {}}
         onResize={() => {}}
       />
       <DeckThreadsForm
         inline={true}
-        placeholder={_t("decks.threads-form.write-your-reply")}
+        placeholder={i18next.t("decks.threads-form.write-your-reply")}
         replySource={entry}
         onSuccess={(reply) => {
           reply.replies = [];
           if (data) {
-            setData([reply, ...data]);
-
+            addReplyToDiscussionsList(entry, reply);
             // Update entry in global cache
             addReply(entry, reply);
           }
         }}
       />
       <div className="deck-thread-item-viewer-replies">
-        {isLoaded && (
+        {data.length > 0 && (
           <>
             {data.map((reply) => (
               <DeckThreadItemViewerReply
                 isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
                 key={reply.post_id}
                 entry={reply as IdentifiableEntry}
-                history={history}
                 parentEntry={entry}
                 incrementParentEntryCount={() => updateRepliesCount(entry, entry.children + 1)}
               />
@@ -155,7 +136,7 @@ export const DeckThreadItemViewer = ({
             {data.length === 0 && (
               <div className="no-replies-placeholder">
                 {repliesIconSvg}
-                <p>{_t("decks.columns.no-replies")}</p>
+                <p>{i18next.t("decks.columns.no-replies")}</p>
                 <Button
                   outline={true}
                   size="sm"
@@ -165,7 +146,7 @@ export const DeckThreadItemViewer = ({
                     )?.focus()
                   }
                 >
-                  {_t("decks.columns.add-new-reply")}
+                  {i18next.t("decks.columns.add-new-reply")}
                 </Button>
               </div>
             )}
@@ -173,7 +154,8 @@ export const DeckThreadItemViewer = ({
         )}
 
         <div className="skeleton-list">
-          {!isLoaded && Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
+          {data.length === 0 &&
+            Array.from(new Array(20)).map((_, i) => <DeckThreadItemSkeleton key={i} />)}
         </div>
       </div>
     </div>

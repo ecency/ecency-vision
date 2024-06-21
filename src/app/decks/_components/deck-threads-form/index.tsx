@@ -1,25 +1,24 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./_index.scss";
-import { arrowLeftSvg } from "../../../img/svg";
 import { DeckThreadsFormContext } from "./deck-threads-form-manager";
-import { _t } from "../../../i18n";
-import { UserAvatar } from "../../../components/user-avatar";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { AvailableCredits } from "../../../components/available-credits";
-import { useLocation } from "react-router";
 import { DeckThreadsFormControl } from "./deck-threads-form-control";
 import { DeckThreadsFormThreadSelection } from "./deck-threads-form-thread-selection";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { PREFIX } from "../../../util/local-storage";
-import { Entry } from "../../../store/entries/types";
 import { DeckThreadsCreatedRecently } from "./deck-threads-created-recently";
 import { IdentifiableEntry, ThreadItemEntry } from "../columns/deck-threads-manager";
 import useClickAway from "react-use/lib/useClickAway";
-import { classNameObject } from "../../../helper/class-name-object";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
 import { Alert } from "@ui/alert";
-import { PollsContext } from "../../../pages/submit/hooks/polls-manager";
+import { Entry } from "@/entities";
+import { useGlobalStore } from "@/core/global-store";
+import { PollsContext } from "@/features/polls";
+import { useLocation } from "react-use";
+import { PREFIX } from "@/utils/local-storage";
+import i18next from "i18next";
+import { AvailableCredits, UserAvatar } from "@/features/shared";
+import { arrowLeftSvg } from "@ui/svg";
+import { classNameObject } from "@ui/util";
 
 interface Props {
   className?: string;
@@ -45,7 +44,8 @@ export const DeckThreadsForm = ({
   const rootRef = useRef(null);
   useClickAway(rootRef, () => setFocused(false));
 
-  const { global, activeUser, toggleUIProp } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
   const { setShow, create, createReply } = useContext(DeckThreadsFormContext);
   const { clearActivePoll } = useContext(PollsContext);
 
@@ -192,7 +192,7 @@ export const DeckThreadsForm = ({
       setImage(null);
       setImageName(null);
       clearActivePoll();
-      _t("decks.threads-form.successfully-created");
+      i18next.t("decks.threads-form.successfully-created");
     } catch (e) {
       console.error(e);
     } finally {
@@ -207,13 +207,18 @@ export const DeckThreadsForm = ({
       className={"deck-toolbar-threads-form-submit "}
       size={size}
     >
-      {!activeUser && !entry && text?.length <= 255 && _t("decks.threads-form.login-and-publish")}
+      {!activeUser &&
+        !entry &&
+        text?.length <= 255 &&
+        i18next.t("decks.threads-form.login-and-publish")}
       {activeUser &&
         !entry &&
         text?.length <= 255 &&
-        (loading ? _t("decks.threads-form.publishing") : _t("decks.threads-form.publish"))}
-      {text?.length > 255 && !entry && _t("decks.threads-form.create-regular-post")}
-      {entry && _t("decks.threads-form.save")}
+        (loading
+          ? i18next.t("decks.threads-form.publishing")
+          : i18next.t("decks.threads-form.publish"))}
+      {text?.length > 255 && !entry && i18next.t("decks.threads-form.create-regular-post")}
+      {entry && i18next.t("decks.threads-form.save")}
     </Button>
   );
 
@@ -238,9 +243,7 @@ export const DeckThreadsForm = ({
       )}
       <div className="deck-toolbar-threads-form-content">
         <div className="deck-toolbar-threads-form-body p-3">
-          {!hideAvatar && (
-            <UserAvatar global={global} username={activeUser?.username ?? ""} size="medium" />
-          )}
+          {!hideAvatar && <UserAvatar username={activeUser?.username ?? ""} size="medium" />}
           <div>
             {!inline && (
               <DeckThreadsFormThreadSelection host={threadHost} setHost={setThreadHost} />
@@ -262,12 +265,7 @@ export const DeckThreadsForm = ({
             {inline && (
               <div className="flex items-center">
                 {activeUser && (
-                  <AvailableCredits
-                    username={activeUser.username}
-                    operation="comment_operation"
-                    activeUser={activeUser}
-                    location={location}
-                  />
+                  <AvailableCredits username={activeUser.username} operation="comment_operation" />
                 )}
                 {getSubmitButton("sm")}
               </div>
@@ -275,12 +273,12 @@ export const DeckThreadsForm = ({
           </div>
         </div>
         {inline && text?.length > 255 && (
-          <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
+          <Alert appearance="warning">{i18next.t("decks.threads-form.max-length")}</Alert>
         )}
         {!inline && (
           <div className="deck-toolbar-threads-form-bottom">
             {text?.length > 255 && (
-              <Alert appearance="warning">{_t("decks.threads-form.max-length")}</Alert>
+              <Alert appearance="warning">{i18next.t("decks.threads-form.max-length")}</Alert>
             )}
             <DeckThreadsCreatedRecently
               lastEntry={lastCreatedThreadItem}
@@ -288,12 +286,7 @@ export const DeckThreadsForm = ({
             />
             <div className="deck-toolbar-threads-form-footer">
               {activeUser && (
-                <AvailableCredits
-                  username={activeUser.username}
-                  operation="comment_operation"
-                  activeUser={activeUser}
-                  location={location}
-                />
+                <AvailableCredits username={activeUser.username} operation="comment_operation" />
               )}
               <Button
                 className="whitespace-nowrap flex items-center"
@@ -303,7 +296,7 @@ export const DeckThreadsForm = ({
                 outline={true}
                 size="sm"
               >
-                {_t("decks.threads-form.create-regular-post")}
+                {i18next.t("decks.threads-form.create-regular-post")}
               </Button>
             </div>
           </div>

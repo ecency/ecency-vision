@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Entry } from "../../../store/entries/types";
-import { _t } from "../../../i18n";
-import { EntryLink } from "../../../components/entry-link";
-import { checkSvg } from "../../../img/svg";
 import { DeckThreadsContext } from "../columns/deck-threads-manager";
 import { useEntryChecking } from "../utils";
 import { Spinner } from "@ui/spinner";
 import { Alert } from "@ui/alert";
+import { Entry } from "@/entities";
+import { checkSvg } from "@ui/svg";
+import { EntryLink } from "@/features/shared";
+import i18next from "i18next";
 
 interface Props {
   lastEntry?: Entry;
@@ -48,13 +48,13 @@ export const DeckThreadsCreatedRecently = ({ lastEntry, setLastEntry }: Props) =
             </div>
             <div className="pl-3">
               {!isLocal(lastEntry)
-                ? _t("decks.threads-form.successfully-created")
-                : _t("decks.threads-form.pending")}
+                ? i18next.t("decks.threads-form.successfully-created")
+                : i18next.t("decks.threads-form.pending")}
             </div>
           </div>
           {!isLocal(lastEntry) && (
             <EntryLink target="_blank" entry={lastEntry}>
-              <span>{_t("decks.threads-form.link-to-entry")}</span>
+              <span>{i18next.t("decks.threads-form.link-to-entry")}</span>
             </EntryLink>
           )}
         </Alert>

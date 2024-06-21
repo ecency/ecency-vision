@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { _t } from "../../../i18n";
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from "react-virtualized";
-import { upArrowSvg } from "../../../img/svg";
 import { DeckProps, GenericDeckColumn } from "./generic-deck-column";
 import { noContentSvg } from "../icons";
 import { Button } from "@ui/button";
+import { upArrowSvg } from "@ui/svg";
+import i18next from "i18next";
 
 type DataItem = Omit<any, "id"> & Required<{ id: string | number }>;
 
@@ -131,7 +131,7 @@ export const GenericDeckWithDataColumn = ({
             scrollContentRef.current?.scrollTo(0, 0);
           }}
         >
-          {_t("decks.columns.new-data-available")}
+          {i18next.t("decks.columns.new-data-available")}
         </Button>
       </div>
       {isFirstLoaded &&
@@ -140,7 +140,7 @@ export const GenericDeckWithDataColumn = ({
       {isFirstLoaded && data.length === 0 && (
         <div className="no-content">
           {noContentSvg}
-          <p>{_t("decks.columns.no-content")}</p>
+          <p>{i18next.t("decks.columns.no-content")}</p>
         </div>
       )}
       {!isFirstLoaded && (

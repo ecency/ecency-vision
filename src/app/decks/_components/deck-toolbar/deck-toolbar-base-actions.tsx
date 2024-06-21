@@ -1,11 +1,11 @@
-import { bellSvg, rocketSvg } from "../../../img/svg";
 import React, { useState } from "react";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { WalletBadge } from "../../../components/navbar/user-nav";
 import { dotsMenuIconSvg, walletIconSvg } from "../icons";
-import { NavbarMainSidebar } from "../../../components/navbar/navbar-main-sidebar";
 import { Button } from "@ui/button";
-import { History } from "history";
+import { useGlobalStore } from "@/core/global-store";
+import { useNotificationUnreadCountQuery } from "@/api/queries";
+import { bellSvg, rocketSvg } from "@ui/svg";
+import { NavbarMainSidebar } from "@/features/shared/navbar/navbar-main-sidebar";
+import { WalletBadge } from "@/features/shared";
 
 interface Props {
   isExpanded: boolean;
@@ -20,31 +20,39 @@ export const DeckToolbarBaseActions = ({
   setIsExpanded,
   history
 }: Props) => {
-  const { activeUser, global, toggleUIProp, notifications, dynamicProps } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const setActiveUser = useGlobalStore((s) => s.setActiveUser);
+  const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
+  const uiNotifications = useGlobalStore((s) => s.uiNotifications);
+  const usePrivate = useGlobalStore((s) => s.usePrivate);
+  const uiLogin = useGlobalStore((s) => s.login);
+
+  const { data: unread } = useNotificationUnreadCountQuery();
+
   const [showMainSide, setShowMainSide] = useState(false);
 
   return (
     <div className="base-actions">
       {activeUser && (
         <>
-          {global.usePrivate && (
+          {usePrivate && (
             <div className="notifications" onClick={() => toggleUIProp("notifications")}>
-              {notifications.unread > 0 && (
+              {unread > 0 && (
                 <span className="notifications-badge notranslate">
-                  {notifications.unread.toString().length < 3 ? notifications.unread : "..."}
+                  {unread.toString().length < 3 ? unread : "..."}
                 </span>
               )}
               {bellSvg}
             </div>
           )}
-          {global.usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
+          {usePrivate && <div onClick={() => setShowPurchaseDialog(true)}>{rocketSvg}</div>}
           <WalletBadge icon={walletIconSvg} />
         </>
       )}
       <Button appearance="link" onClick={() => setShowMainSide(true)} style={{ height: "56px" }}>
         {dotsMenuIconSvg}
       </Button>
-      <NavbarMainSidebar show={showMainSide} setShow={setShowMainSide} history={history} />
+      <NavbarMainSidebar show={showMainSide} setShow={setShowMainSide} />
     </div>
   );
 };

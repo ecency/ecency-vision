@@ -1,23 +1,24 @@
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
-import profileLink from "../../../../components/profile-link";
-import { history } from "../../../../store";
-import { dateToRelative } from "../../../../helper/parse-date";
-import { Link } from "react-router-dom";
-import { _t } from "../../../../i18n";
-import Tooltip from "../../../../components/tooltip";
-import { pinSvg } from "../../../../img/svg";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
-import EntryVoteBtn from "../../../../components/entry-vote-btn";
-import EntryPayout from "../../../../components/entry-payout";
-import EntryVotes from "../../../../components/entry-votes";
-import EntryReblogBtn from "../../../../components/entry-reblog-btn";
-import EntryMenu from "../../../../components/entry-menu";
-import { transformMarkedContent } from "../../../../util/transform-marked-content";
-import { EntryLink } from "../../../../components/entry-link";
 import { useInViewport } from "react-in-viewport";
 import { commentSvg, voteSvg } from "../../icons";
-import { EntriesCacheContext, useEntryCache } from "../../../../core";
+import { useEntryCache } from "@/core/caches";
+import { useGlobalStore } from "@/core/global-store";
+import { dateToRelative, transformMarkedContent } from "@/utils";
+import {
+  EntryLink,
+  EntryMenu,
+  EntryPayout,
+  EntryReblogBtn,
+  EntryVoteBtn,
+  EntryVotes,
+  ProfileLink
+} from "@/features/shared";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import i18next from "i18next";
+import { Tooltip } from "@ui/tooltip";
+import { pinSvg } from "@ui/svg";
 
 export interface SearchItemProps {
   avatar: string;
@@ -37,7 +38,6 @@ export interface SearchItemProps {
   entry: any;
   onMounted: () => void;
   onEntryView: () => void;
-  marked?: boolean;
   onAppear?: () => void;
 }
 
@@ -53,21 +53,19 @@ export const SearchListItem = ({
   entry: initialEntry,
   onMounted,
   onEntryView,
-  marked,
   onAppear
 }: SearchItemProps) => {
-  const { global } = useMappedStore();
+  const canUseWebp = useGlobalStore((s) => s.canUseWebp);
   const ref = useRef<HTMLDivElement | null>(null);
   const { inViewport } = useInViewport(ref);
-  const { updateVotes } = useContext(EntriesCacheContext);
   const { data: entry } = useEntryCache(initialEntry);
+
+  const router = useRouter();
 
   const [title, setTitle] = useState(entry.title);
   const [body, setBody] = useState(entry.b);
   const [image, setImage] = useState(
-    global.canUseWebp
-      ? catchPostImage(entry.body, 600, 500, "webp")
-      : catchPostImage(entry.body, 600, 500)
+    canUseWebp ? catchPostImage(entry.body, 600, 500, "webp") : catchPostImage(entry.body, 600, 500)
   );
 
   useEffect(() => {
@@ -113,10 +111,7 @@ export const SearchListItem = ({
             // user link
             return (
               <div key={i} className="mr-1">
-                {profileLink({
-                  username: part.replace("@", ""),
-                  children: <>{part}</>
-                } as any)}
+                <ProfileLink username={part.replace("@", "")}>{part}</ProfileLink>
               </div>
             );
           }
@@ -156,14 +151,14 @@ export const SearchListItem = ({
           {username && (
             <img
               src={`https://images.ecency.com/${
-                global.canUseWebp ? "webp/" : ""
+                canUseWebp ? "webp/" : ""
               }u/${username}/avatar/medium`}
               alt={username}
               className="rounded-[50%] search-item-avatar"
             />
           )}
           <div className="ml-3 deck-body">
-            <div onClick={() => history && history.push(url)} className="pointer text-dark">
+            <div onClick={() => router.push(url)} className="pointer text-dark">
               <div className="flex items-start flex-grow-1 hot-item-link">{msg}</div>
             </div>
           </div>
@@ -182,7 +177,7 @@ export const SearchListItem = ({
             {author && (
               <img
                 src={`https://images.ecency.com/${
-                  global.canUseWebp ? "webp/" : ""
+                  canUseWebp ? "webp/" : ""
                 }u/${author}/avatar/medium`}
                 alt={title}
                 className="rounded-[50%] search-item-avatar mr-3"
@@ -190,7 +185,7 @@ export const SearchListItem = ({
             )}
             {author && (
               <div>
-                <Link target="_blank" to={`/@${author}`}>
+                <Link target="_blank" href={`/@${author}`}>
                   {author}
                 </Link>
               </div>
@@ -198,8 +193,8 @@ export const SearchListItem = ({
             {community && (
               <div className="ml-1 grow truncate">
                 {" "}
-                {_t("entry.community-in")}{" "}
-                <Link target="_blank" to={`/created/${community}`}>
+                {i18next.t("entry.community-in")}{" "}
+                <Link target="_blank" href={`/created/${community}`}>
                   {" "}
                   {community_title}{" "}
                 </Link>
@@ -208,11 +203,12 @@ export const SearchListItem = ({
             {!community && (
               <div className="ml-2 grow">
                 {" "}
-                {_t("entry.community-in")} <Link to={`/created/${category}`}> #{category} </Link>
+                {i18next.t("entry.community-in")}{" "}
+                <Link href={`/created/${category}`}> #{category} </Link>
               </div>
             )}
             {isPinned && (
-              <Tooltip content={_t("entry-list-item.pinned")}>
+              <Tooltip content={i18next.t("entry-list-item.pinned")}>
                 <span className="deck-pinned">{pinSvg}</span>
               </Tooltip>
             )}
@@ -243,17 +239,10 @@ export const SearchListItem = ({
           </div>
         </div>
         <div className="item-controls mt-3 flex items-center">
-          <EntryVoteBtn
-            entry={entry}
-            isPostSlider={false}
-            history={history}
-            afterVote={(votes, estimated) => {
-              updateVotes(entry, votes, estimated);
-            }}
-          />
+          <EntryVoteBtn entry={entry} isPostSlider={false} />
           <EntryPayout entry={entry} />
-          <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
-          <Link to={`${url}#discussion`} className="text-gray-600 dark:text-gray-400">
+          <EntryVotes entry={entry} icon={voteSvg} />
+          <Link href={`${url}#discussion`} className="text-gray-600 dark:text-gray-400">
             <div className="flex items-center comments">
               <div style={{ paddingRight: 4 }}>{commentSvg}</div>
               <div>{entry.children}</div>
@@ -261,7 +250,7 @@ export const SearchListItem = ({
           </Link>
 
           <EntryReblogBtn entry={entry} />
-          <EntryMenu history={history!!} alignBottom={false} entry={entry} />
+          <EntryMenu alignBottom={false} entry={entry} />
         </div>
       </div>
     </div>

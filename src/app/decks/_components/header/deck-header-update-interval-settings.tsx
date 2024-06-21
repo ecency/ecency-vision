@@ -1,9 +1,9 @@
-import { _t } from "../../../i18n";
-import { checkSvg } from "../../../img/svg";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { DeckHeaderSettingsItem } from "./deck-header-settings-item";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
+import i18next from "i18next";
+import { checkSvg } from "@ui/svg";
 
 interface Props {
   updateInterval: number;
@@ -19,14 +19,14 @@ export const DeckHeaderUpdateIntervalSettings = ({
   setDeckUpdateInterval
 }: Props) => {
   const [deckUpdateOptions, setDeckUpdateOptions] = useState([
-    { label: _t("decks.update-n-seconds", { sec: 30 }), value: 30000 },
-    { label: _t("decks.update-n-minutes", { min: 1 }), value: 60000 },
-    { label: _t("decks.update-n-minutes", { min: 5 }), value: 300000 },
-    { label: _t("decks.update-n-minutes", { min: 10 }), value: 600000 },
-    { label: _t("decks.update-n-minutes", { min: 15 }), value: 900000 },
-    { label: _t("decks.update-n-minutes", { min: 30 }), value: 1800000 },
-    { label: _t("decks.update-n-hours", { hour: 1 }), value: 3600000 },
-    { label: _t("decks.update-custom"), value: "custom" }
+    { label: i18next.t("decks.update-n-seconds", { sec: 30 }), value: 30000 },
+    { label: i18next.t("decks.update-n-minutes", { min: 1 }), value: 60000 },
+    { label: i18next.t("decks.update-n-minutes", { min: 5 }), value: 300000 },
+    { label: i18next.t("decks.update-n-minutes", { min: 10 }), value: 600000 },
+    { label: i18next.t("decks.update-n-minutes", { min: 15 }), value: 900000 },
+    { label: i18next.t("decks.update-n-minutes", { min: 30 }), value: 1800000 },
+    { label: i18next.t("decks.update-n-hours", { hour: 1 }), value: 3600000 },
+    { label: i18next.t("decks.update-custom"), value: "custom" }
   ]);
   const [inputValue, setInputValue] = useState(0);
   const [showInput, setShowInput] = useState(false);
@@ -42,7 +42,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
     } else if (+value >= 30000 && +value <= 86400000) {
       setDeckUpdateInterval(+value);
     } else {
-      setErrorMessage(_t("decks.update-interval-value-error"));
+      setErrorMessage(i18next.t("decks.update-interval-value-error"));
     }
   };
 
@@ -72,7 +72,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
       return (
         <FormControl
           type="select"
-          placeholder={_t("decks.update-interval-placeholder")}
+          placeholder={i18next.t("decks.update-interval-placeholder")}
           value={updateInterval}
           onChange={onSelectChange}
         >
@@ -88,7 +88,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
         <div className="flex w-full">
           <FormControl
             type="number"
-            placeholder={_t("deck.update-custom-interval-in-minutes-placeholder")}
+            placeholder={i18next.t("deck.update-custom-interval-in-minutes-placeholder")}
             value={inputValue}
             onChange={(event) => setInputValue(+event.target.value)}
           />
@@ -99,10 +99,10 @@ export const DeckHeaderUpdateIntervalSettings = ({
   };
 
   return (
-    <DeckHeaderSettingsItem title={_t("decks.settings")} hasBorderBottom={false}>
+    <DeckHeaderSettingsItem title={i18next.t("decks.settings")} hasBorderBottom={false}>
       <div className="flex items-center w-full pb-2">
         <small className="label mr-3">
-          {showInput ? _t("decks.update-interval-min") : _t("decks.update-interval")}
+          {showInput ? i18next.t("decks.update-interval-min") : i18next.t("decks.update-interval")}
         </small>
         <div className="w-full">
           {getControl()}

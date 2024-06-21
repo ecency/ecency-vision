@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { EmojiPicker } from "../../../components/emoji-picker";
 import { Button } from "@ui/button";
 import { UilEmoji } from "@iconscout/react-unicons";
+import { EmojiPicker } from "@/features/ui";
 
 interface Props {
   onPick: (v: string) => void;

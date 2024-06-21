@@ -1,29 +1,23 @@
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { useResizeDetector } from "react-resize-detector";
 import React, { useContext, useEffect, useState } from "react";
-import { UserAvatar } from "../../../../components/user-avatar";
-import EntryVoteBtn from "../../../../components/entry-vote-btn";
-import { History } from "history";
-import { _t } from "../../../../i18n";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
-import EntryVotes from "../../../../components/entry-votes";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
-import { classNameObject } from "../../../../helper/class-name-object";
 import { useInViewport } from "react-in-viewport";
-import { EntriesCacheContext, useEntryCache } from "../../../../core";
 import { useEntryChecking } from "../../utils";
-import { Entry } from "../../../../store/entries/types";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
-import { dateToRelative } from "../../../../helper/parse-date";
-import EntryMenu from "../../../../components/entry-menu";
 import { Button } from "@ui/button";
-import { useEntryPollExtractor } from "../../../../pages/entry/utils";
-import { PollWidget } from "../../../polls";
+import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import { useGlobalStore } from "@/core/global-store";
+import { Entry } from "@/entities";
+import { classNameObject } from "@ui/util";
+import { PollWidget, useEntryPollExtractor } from "@/features/polls";
+import i18next from "i18next";
+import { dateToRelative } from "@/utils";
+import { EntryMenu, EntryVoteBtn, EntryVotes, UserAvatar } from "@/features/shared";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
-  history: History;
   onMounted: () => void;
   onEntryView: () => void;
   onResize: () => void;
@@ -43,7 +37,6 @@ export const ThreadItem = ({
   onMounted,
   onEntryView,
   onResize,
-  history,
   pure = false,
   sequenceItem,
   commentsSlot,
@@ -54,7 +47,7 @@ export const ThreadItem = ({
   triggerPendingStatus = false
 }: ThreadItemProps) => {
   const { updateVotes, updateCache } = useContext(EntriesCacheContext);
-  const { global, activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const { height, ref } = useResizeDetector();
   const { inViewport } = useInViewport(ref);
   const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
@@ -137,21 +130,14 @@ export const ThreadItem = ({
       )}
       {entry.updated !== entry.created && (
         <div className="px-3 pb-3 updated-label">
-          {_t("decks.columns.updated", { n: dateToRelative(entry.updated) })}
+          {i18next.t("decks.columns.updated", { n: dateToRelative(entry.updated) })}
         </div>
       )}
       {status === "default" && (
         <div className="thread-item-actions">
           <div>
-            <EntryVoteBtn
-              entry={entry}
-              isPostSlider={false}
-              history={history}
-              afterVote={(votes, estimated) => {
-                updateVotes(entry, votes, estimated);
-              }}
-            />
-            <EntryVotes history={history!!} entry={entry} icon={voteSvg} />
+            <EntryVoteBtn entry={entry} isPostSlider={false} />
+            <EntryVotes entry={entry} icon={voteSvg} />
             <Button appearance="link" onClick={() => onEntryView()}>
               <div className="flex items-center comments">
                 <div style={{ paddingRight: 4 }}>{commentSvg}</div>
@@ -160,10 +146,10 @@ export const ThreadItem = ({
             </Button>
           </div>
           <div>
-            <EntryMenu history={history} entry={entry} />
+            <EntryMenu entry={entry} />
             {activeUser?.username === entry.author && (
               <Button className="edit-btn" appearance="link" onClick={() => onEdit(entry)}>
-                {_t("decks.columns.edit-wave")}
+                {i18next.t("decks.columns.edit-wave")}
               </Button>
             )}
           </div>
@@ -171,9 +157,9 @@ export const ThreadItem = ({
       )}
       {hasParent && !pure && (
         <div className="thread-item-parent">
-          <UserAvatar size="small" global={global} username={entry.parent_author!!} />
+          <UserAvatar size="small" username={entry.parent_author!!} />
           <Button appearance="link" className="host" onClick={onSeeFullThread}>
-            {_t("decks.columns.see-full-thread")}
+            {i18next.t("decks.columns.see-full-thread")}
           </Button>
         </div>
       )}

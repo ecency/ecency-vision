@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useContext } from "react";
-import { _t } from "../../../../i18n";
 import { DeckHeaderSettingsItem } from "../../header/deck-header-settings-item";
 import { UserDeckGridItem } from "../../types";
 import { DeckGridContext } from "../../deck-manager";
 import { FormControl } from "@ui/input";
+import i18next from "i18next";
 
 interface Props {
   id: string;
@@ -14,7 +14,7 @@ interface Props {
 
 export const DeckContentTypeColumnSettings = ({
   id,
-  title = _t("decks.content-type"),
+  title = i18next.t("decks.content-type"),
   settings,
   contentTypes
 }: Props) => {

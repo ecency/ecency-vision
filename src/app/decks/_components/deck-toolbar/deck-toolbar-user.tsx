@@ -1,16 +1,12 @@
-import { UserAvatar } from "../../../components/user-avatar";
-import { FullAccount } from "../../../store/accounts/types";
-import React, { useState } from "react";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { _t } from "../../../i18n";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@ui/button";
-import { NavbarSideThemeSwitcher } from "../../../components/navbar/sidebar/navbar-side-theme-switcher";
-import { NavbarSide } from "../../../components/navbar/sidebar/navbar-side";
-import { History } from "history";
+import { NavbarSide, NavbarSideThemeSwitcher, UserAvatar } from "@/features/shared";
+import { useGlobalStore } from "@/core/global-store";
+import Link from "next/link";
+import { FullAccount } from "@/entities";
+import i18next from "i18next";
 
 interface Props {
-  history: History;
   isExpanded: boolean;
   setIsExpanded: (v: boolean) => void;
   items: {
@@ -19,8 +15,9 @@ interface Props {
   }[];
 }
 
-export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded, history }: Props) => {
-  const { activeUser, global, toggleTheme, toggleUIProp } = useMappedStore();
+export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded }: Props) => {
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
 
   const [showUserSide, setShowUserSide] = useState(false);
 
@@ -33,12 +30,11 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded, history }: P
       {activeUser ? (
         <UserAvatar
           size="medium"
-          global={global}
           username={activeUser?.username}
           onClick={() => setShowUserSide(true)}
         />
       ) : (
-        <Link to="/">
+        <Link href="/">
           <img className="user-avatar medium" src={require("../../../img/logo-circle.svg")} />
         </Link>
       )}
@@ -54,7 +50,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded, history }: P
         ) : (
           <>
             <Button className="w-full" outline={true} onClick={() => toggleUIProp("login")}>
-              {_t("g.login")}
+              {i18next.t("g.login")}
             </Button>
             <NavbarSideThemeSwitcher floatRight={true} />
           </>
@@ -63,14 +59,7 @@ export const DeckToolbarUser = ({ isExpanded, items, setIsExpanded, history }: P
         <></>
       )}
 
-      {activeUser && (
-        <NavbarSide
-          placement="left"
-          show={showUserSide}
-          setShow={setShowUserSide}
-          history={history}
-        />
-      )}
+      {activeUser && <NavbarSide placement="left" show={showUserSide} setShow={setShowUserSide} />}
     </div>
   );
 };

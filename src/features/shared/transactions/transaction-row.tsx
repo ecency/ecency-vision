@@ -1,0 +1,533 @@
+import {
+  cashCoinSvg,
+  cashMultiple,
+  chevronDownSvgForSlider,
+  chevronUpSvgForVote,
+  closeSvg,
+  exchangeSvg,
+  pickAxeSvg,
+  powerDownSvg,
+  powerUpSvg,
+  reOrderHorizontalSvg,
+  starsSvg,
+  ticketSvg
+} from "@/assets/img/svg";
+import { Tsx } from "@/features/i18n/helper";
+import { dateToFullRelative, formattedNumber, parseAsset, vestsToHp } from "@/utils";
+import i18next from "i18next";
+import { EntryLink, UserAvatar } from "@/features/shared";
+import { TwoUserAvatar } from "@/features/shared/two-user-avatar";
+import { getDynamicPropsQuery } from "@/api/queries";
+import { Transaction } from "@/entities";
+
+interface Props {
+  transaction: Transaction;
+  entry?: Transaction;
+  onMounted?: () => void;
+}
+
+export function TransactionRow({ entry, transaction: item }: Props) {
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
+
+  const { hivePerMVests } = dynamicProps!;
+  const tr = item || entry;
+
+  let flag = false;
+  let icon = ticketSvg;
+  let numbers = null;
+  let details = null;
+
+  if (tr.type === "curation_reward") {
+    flag = true;
+    icon = cashCoinSvg;
+
+    numbers = (
+      <>
+        {formattedNumber(vestsToHp(parseAsset(tr.reward).amount, hivePerMVests), {
+          suffix: "HP"
+        })}
+      </>
+    );
+    details = (
+      <EntryLink
+        entry={{
+          category: "history",
+          author: tr.comment_author || tr.author || "",
+          permlink: tr.comment_permlink || tr.permlink || ""
+        }}
+      >
+        <span>
+          {"@"}
+          {tr.comment_author || tr.author}/{tr.comment_permlink || tr.permlink}
+        </span>
+      </EntryLink>
+    );
+  }
+
+  if (tr.type === "author_reward" || tr.type === "comment_benefactor_reward") {
+    flag = true;
+    icon = cashCoinSvg;
+
+    const hbd_payout = parseAsset(tr.hbd_payout);
+    const hive_payout = parseAsset(tr.hive_payout);
+    const vesting_payout = parseAsset(tr.vesting_payout);
+    numbers = (
+      <>
+        {hbd_payout.amount > 0 && (
+          <span className="number">{formattedNumber(hbd_payout.amount, { suffix: "HBD" })}</span>
+        )}
+        {hive_payout.amount > 0 && (
+          <span className="number">{formattedNumber(hive_payout.amount, { suffix: "HIVE" })}</span>
+        )}
+        {vesting_payout.amount > 0 && (
+          <span className="number">
+            {formattedNumber(vestsToHp(vesting_payout.amount, hivePerMVests), { suffix: "HP" })}{" "}
+          </span>
+        )}
+      </>
+    );
+
+    details = (
+      <EntryLink
+        entry={{
+          category: "history",
+          author: tr.author,
+          permlink: tr.permlink
+        }}
+      >
+        <span>
+          {"@"}
+          {tr.author}/{tr.permlink}
+        </span>
+      </EntryLink>
+    );
+  }
+
+  if (tr.type === "claim_reward_balance") {
+    flag = true;
+
+    const reward_hbd = parseAsset(tr.reward_hbd);
+    const reward_hive = parseAsset(tr.reward_hive);
+    const reward_vests = parseAsset(tr.reward_vests);
+
+    numbers = (
+      <>
+        {reward_hbd.amount > 0 && (
+          <span className="number">{formattedNumber(reward_hbd.amount, { suffix: "HBD" })}</span>
+        )}
+        {reward_hive.amount > 0 && (
+          <span className="number">{formattedNumber(reward_hive.amount, { suffix: "HIVE" })}</span>
+        )}
+        {reward_vests.amount > 0 && (
+          <span className="number">
+            {formattedNumber(vestsToHp(reward_vests.amount, hivePerMVests), { suffix: "HP" })}
+          </span>
+        )}
+      </>
+    );
+  }
+
+  if (
+    tr.type === "transfer" ||
+    tr.type === "transfer_to_vesting" ||
+    tr.type === "transfer_to_savings"
+  ) {
+    flag = true;
+    // @ts-ignore
+    icon = <TwoUserAvatar from={tr.from_account} to={tr.to_account} size="small" />;
+
+    details = (
+      <span>
+        {tr.memo ? (
+          <>
+            {tr.memo} <br /> <br />
+          </>
+        ) : null}
+        <>
+          <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
+        </>
+      </span>
+    );
+
+    numbers = <span className="number">{tr.amount}</span>;
+  }
+
+  if (tr.type === "set_withdraw_vesting_route") {
+    flag = true;
+    icon = <TwoUserAvatar from={tr.from_account} to={tr.to_account} size="small" />;
+
+    details = (
+      <span>
+        {"Auto Vest:"} {tr.auto_vest} <br />
+        {"Percent:"} {tr.percent} <br />
+        <>
+          <strong>@{tr.from_account}</strong> -&gt; <strong>@{tr.to_account}</strong>
+        </>
+      </span>
+    );
+
+    numbers = <span className="number">{tr.percent}</span>;
+  }
+
+  if (tr.type === "recurrent_transfer" || tr.type === "fill_recurrent_transfer") {
+    flag = true;
+    icon = <TwoUserAvatar from={tr.from} to={tr.to} size="small" />;
+
+    details = (
+      <span>
+        {tr.memo ? (
+          <>
+            {tr.memo} <br /> <br />
+          </>
+        ) : null}
+        {tr.type === "recurrent_transfer" ? (
+          <>
+            <Tsx
+              k="transactions.type-recurrent_transfer-detail"
+              args={{ executions: tr.executions, recurrence: tr.recurrence }}
+            >
+              <span />
+            </Tsx>
+            <br />
+            <br />
+            <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
+          </>
+        ) : (
+          <>
+            <Tsx
+              k="transactions.type-fill_recurrent_transfer-detail"
+              args={{ remaining_executions: tr.remaining_executions }}
+            >
+              <span />
+            </Tsx>
+            <br />
+            <br />
+            <strong>@{tr.from}</strong> -&gt; <strong>@{tr.to}</strong>
+          </>
+        )}
+      </span>
+    );
+    let aam = tr.amount as any;
+    if (tr.type === "fill_recurrent_transfer") {
+      const t = parseAsset(tr.amount);
+      aam = `${t.amount} ${t.symbol}`;
+    }
+    numbers = <span className="number">{aam}</span>;
+  }
+
+  if (tr.type === "cancel_transfer_from_savings") {
+    flag = true;
+    icon = closeSvg;
+
+    details = (
+      <Tsx
+        k="transactions.type-cancel_transfer_from_savings-detail"
+        args={{ from: tr.from, request: tr.request_id }}
+      >
+        <span />
+      </Tsx>
+    );
+  }
+
+  if (tr.type === "withdraw_vesting") {
+    flag = true;
+    icon = powerDownSvg;
+
+    const vesting_shares = parseAsset(tr.vesting_shares);
+    numbers = (
+      <span className="number">
+        {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), { suffix: "HP" })}
+      </span>
+    );
+
+    details = tr.acc ? (
+      <span>
+        <strong>@{tr.acc}</strong>
+      </span>
+    ) : null;
+  }
+
+  if (tr.type === "delegate_vesting_shares") {
+    flag = true;
+    icon = <TwoUserAvatar from={tr.delegator} to={tr.delegatee} size="small" />;
+
+    const vesting_shares = parseAsset(tr.vesting_shares);
+    numbers = (
+      <span className="number">
+        {formattedNumber(vestsToHp(vesting_shares.amount, hivePerMVests), { suffix: "HP" })}
+      </span>
+    );
+
+    details = tr.delegatee ? (
+      <span>
+        <>
+          <strong>@{tr.delegator}</strong> -&gt; <strong>@{tr.delegatee}</strong>
+        </>
+      </span>
+    ) : null;
+  }
+
+  if (tr.type === "fill_vesting_withdraw") {
+    flag = true;
+    icon = powerDownSvg;
+
+    numbers = <span className="number">{tr.deposited}</span>;
+
+    details = tr.from_account ? (
+      <span>
+        <strong>
+          @{tr.from_account} -&gt; @{tr.to_account}
+        </strong>
+      </span>
+    ) : null;
+  }
+
+  if (tr.type === "fill_order") {
+    flag = true;
+    icon = reOrderHorizontalSvg;
+
+    numbers = (
+      <span className="number">
+        {tr.current_pays} = {tr.open_pays}
+      </span>
+    );
+  }
+
+  if (tr.type === "limit_order_create") {
+    flag = true;
+    icon = reOrderHorizontalSvg;
+
+    numbers = (
+      <span className="number">
+        {tr.amount_to_sell} = {tr.min_to_receive}
+      </span>
+    );
+  }
+
+  if (tr.type === "limit_order_cancel") {
+    flag = true;
+    icon = reOrderHorizontalSvg;
+
+    numbers = <span className="number">{tr.num}</span>;
+    details = tr.owner ? (
+      <span>
+        <strong>Order ID: {tr.orderid}</strong>
+      </span>
+    ) : null;
+  }
+
+  if (tr.type === "producer_reward") {
+    flag = true;
+    icon = pickAxeSvg;
+
+    numbers = (
+      <>
+        {formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {
+          suffix: "HP"
+        })}
+      </>
+    );
+  }
+
+  if (tr.type === "interest") {
+    flag = true;
+    icon = cashMultiple;
+
+    numbers = <span className="number">{tr.interest}</span>;
+  }
+
+  if (tr.type === "fill_convert_request") {
+    flag = true;
+    icon = reOrderHorizontalSvg;
+
+    numbers = (
+      <span className="number">
+        {tr.amount_in} = {tr.amount_out}
+      </span>
+    );
+  }
+
+  if (tr.type === "fill_collateralized_convert_request") {
+    flag = true;
+    icon = reOrderHorizontalSvg;
+
+    numbers = (
+      <span className="number">
+        {tr.amount_in} = {tr.amount_out}
+      </span>
+    );
+    details = (
+      <Tsx
+        k="transactions.type-fill_collateralized_convert-detail"
+        args={{ request: tr.requestid, returned: tr.excess_collateral }}
+      >
+        <span />
+      </Tsx>
+    );
+  }
+
+  if (tr.type === "return_vesting_delegation") {
+    flag = true;
+    icon = powerUpSvg;
+
+    numbers = (
+      <>
+        {formattedNumber(vestsToHp(parseAsset(tr.vesting_shares).amount, hivePerMVests), {
+          suffix: "HP"
+        })}
+      </>
+    );
+  }
+
+  if (tr.type === "proposal_pay") {
+    flag = true;
+    icon = ticketSvg;
+
+    numbers = <span className="number">{tr.payment}</span>;
+  }
+
+  if (tr.type === "update_proposal_votes") {
+    flag = true;
+    icon = tr.approve ? chevronUpSvgForVote : chevronDownSvgForSlider;
+
+    details = (
+      <Tsx k="transactions.type-update_proposal_vote-detail" args={{ pid: tr.proposal_ids }}>
+        <span />
+      </Tsx>
+    );
+  }
+
+  if (tr.type === "comment_payout_update") {
+    flag = true;
+    icon = starsSvg;
+
+    details = (
+      <EntryLink
+        entry={{
+          category: "history",
+          author: tr.author,
+          permlink: tr.permlink
+        }}
+      >
+        <span>
+          {"@"}
+          {tr.author}/{tr.permlink}
+        </span>
+      </EntryLink>
+    );
+  }
+
+  if (tr.type === "comment_reward") {
+    flag = true;
+    icon = cashCoinSvg;
+
+    const payout = parseAsset(tr.payout);
+
+    numbers = (
+      <>
+        {payout.amount > 0 && (
+          <span className="number">{formattedNumber(payout.amount, { suffix: "HBD" })}</span>
+        )}
+      </>
+    );
+
+    details = (
+      <EntryLink
+        entry={{
+          category: "history",
+          author: tr.author,
+          permlink: tr.permlink
+        }}
+      >
+        <span>
+          {"@"}
+          {tr.author}/{tr.permlink}
+        </span>
+      </EntryLink>
+    );
+  }
+
+  if (tr.type === "collateralized_convert") {
+    flag = true;
+    icon = exchangeSvg;
+    const amount = parseAsset(tr.amount);
+
+    numbers = (
+      <>
+        {amount.amount > 0 && (
+          <span className="number">{formattedNumber(amount.amount, { suffix: "HIVE" })}</span>
+        )}
+      </>
+    );
+
+    details = (
+      <Tsx k="transactions.type-collateralized_convert-detail" args={{ request: tr.requestid }}>
+        <span />
+      </Tsx>
+    );
+  }
+
+  if (tr.type === "effective_comment_vote") {
+    flag = true;
+
+    const payout = parseAsset(tr.pending_payout);
+
+    numbers = (
+      <>
+        {payout.amount > 0 && (
+          <span className="number">{formattedNumber(payout.amount, { suffix: "HBD" })}</span>
+        )}
+      </>
+    );
+
+    details = (
+      <EntryLink
+        entry={{
+          category: "history",
+          author: tr.author,
+          permlink: tr.permlink
+        }}
+      >
+        <span>
+          {"@"}
+          {tr.author}/{tr.permlink}
+        </span>
+      </EntryLink>
+    );
+  }
+
+  if (tr.type === "account_witness_proxy") {
+    flag = true;
+    icon = tr.proxy ? (
+      <TwoUserAvatar from={tr.account} to={tr.proxy} size="small" />
+    ) : (
+      <UserAvatar username={tr.account} size="small" />
+    );
+
+    details = (
+      <span>
+        <strong>@{tr.account}</strong> -&gt; <strong>{tr.proxy ? `@${tr.proxy}` : ""}</strong>
+      </span>
+    );
+  }
+
+  if (flag) {
+    return (
+      <div className="transaction-list-item">
+        <div className="transaction-icon">{icon}</div>
+        <div className="transaction-title">
+          <div className="transaction-name">{i18next.t(`transactions.type-${tr.type}`)}</div>
+          <div className="transaction-date">{dateToFullRelative(tr.timestamp)}</div>
+        </div>
+        <div className="transaction-numbers">{numbers}</div>
+        <div className="transaction-details">{details}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="transaction-list-item transaction-list-item-raw">
+      <div className="raw-code">{JSON.stringify(tr)}</div>
+    </div>
+  );
+}

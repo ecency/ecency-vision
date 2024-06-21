@@ -4,10 +4,8 @@ import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import React, { useContext, useEffect, useState } from "react";
 import { WavesDeckGridItem } from "../types";
-import { History } from "history";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
-import { _t } from "../../../i18n";
 import {
   DeckThreadsColumnManagerContext,
   DeckThreadsContext,
@@ -17,26 +15,26 @@ import {
 } from "./deck-threads-manager";
 import moment from "moment/moment";
 import usePrevious from "react-use/lib/usePrevious";
-import { getPost } from "../../../api/bridge";
 import { newDataComingPaginatedCondition } from "../utils";
 import { InfiniteScrollLoader } from "./helpers";
+import i18next from "i18next";
+import { getPost } from "@/api/hive";
 
 interface Props {
   id: string;
   settings: WavesDeckGridItem["settings"];
-  history: History;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 const MAX_ERROR_ATTEMPTS = 3;
-const ERROR_ATTEMPTS_INTERVALS = {
+const ERROR_ATTEMPTS_INTERVALS: Record<number, number> = {
   0: 3000,
   1: 10000,
   2: 20000,
   3: 30000
 };
 
-const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props) => {
+const DeckThreadsColumnComponent = ({ id, settings, draggable }: Props) => {
   const { register, detach, reloadingInitiated } = useContext(DeckThreadsContext);
   const { fetch } = useContext(DeckThreadsColumnManagerContext);
 
@@ -106,7 +104,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
 
       items.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
 
-      const nextHostGroupedData = AVAILABLE_THREAD_HOSTS.reduce(
+      const nextHostGroupedData = AVAILABLE_THREAD_HOSTS.reduce<Record<string, any>>(
         (acc, host) => ({
           ...acc,
           [host]: items.filter((i) => i.host === host)
@@ -151,9 +149,9 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
       header={{
         title:
           settings.host === "all"
-            ? _t("decks.columns.all-thread-hosts")
+            ? i18next.t("decks.columns.all-thread-hosts")
             : settings.host.toLowerCase(),
-        subtitle: _t("decks.columns.threads"),
+        subtitle: i18next.t("decks.columns.threads"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
@@ -171,7 +169,6 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
           <DeckThreadItemViewer
             entry={currentViewingEntry}
             onClose={() => setCurrentViewingEntry(null)}
-            history={history}
             backTitle={`${settings.host}`}
             highlightedEntry={currentHighlightedEntry}
           />
@@ -183,7 +180,7 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
             isEndReached={isEndReached}
             data={data}
             failed={nextPageError}
-            endReachedLabel={_t("decks.columns.end-reached")}
+            endReachedLabel={i18next.t("decks.columns.end-reached")}
           />
         ) : (
           <></>
@@ -197,7 +194,6 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
           )}
           <ThreadItem
             visible={item.post_id !== currentEditingEntry?.post_id}
-            history={history}
             initialEntry={item}
             onMounted={() => measure()}
             onAppear={() => {
@@ -213,8 +209,8 @@ const DeckThreadsColumnComponent = ({ id, settings, history, draggable }: Props)
             onSeeFullThread={async () => {
               try {
                 const entry = (await getPost(
-                  item.parent_author,
-                  item.parent_permlink
+                  item.parent_author!,
+                  item.parent_permlink!
                 )) as IdentifiableEntry;
                 if (entry) {
                   entry.id = entry.post_id;

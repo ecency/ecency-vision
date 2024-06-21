@@ -1,12 +1,12 @@
 import React, { createContext, useState } from "react";
-import * as bridgeApi from "../../../api/bridge";
-import { formatError } from "../../../api/operations";
-import { Entry } from "../../../store/entries/types";
-import { error } from "../../../components/feedback";
-import { ProfileFilter } from "../../../store/global/types";
-import { _t } from "../../../i18n";
+import * as bridgeApi from "@/api/bridge";
 import { useCommunityApi, useThreadsApi } from "./api";
 import { ThreadItemEntry } from "../columns/deck-threads-manager";
+import { Entry } from "@/entities";
+import { ProfileFilter } from "@/enums";
+import i18next from "i18next";
+import { error } from "@/features/shared";
+import { formatError } from "@/api/operations";
 
 interface Context {
   show: boolean;
@@ -18,8 +18,8 @@ interface Context {
 export const DeckThreadsFormContext = createContext<Context>({
   show: false,
   setShow: () => {},
-  create: async () => ({} as Entry),
-  createReply: async () => ({} as Entry)
+  create: async () => ({}) as Entry,
+  createReply: async () => ({}) as Entry
 });
 
 interface Props {
@@ -41,7 +41,7 @@ export const DeckThreadsFormManager = ({ children }: Props) => {
       const hostEntries = await bridgeApi.getAccountPosts(ProfileFilter.posts, host);
 
       if (!hostEntries) {
-        throw new Error(_t("decks.threads-form.no-threads-host"));
+        throw new Error(i18next.t("decks.threads-form.no-threads-host"));
       }
 
       const entry = hostEntries[0];

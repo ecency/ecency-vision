@@ -1,8 +1,8 @@
-import { _t } from "../../../i18n";
-import { refreshSvg } from "../../../img/svg";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "@ui/spinner";
 import { Button } from "@ui/button";
+import { refreshSvg } from "@ui/svg";
+import i18next from "i18next";
 
 interface Props {
   onReload: () => void;
@@ -29,7 +29,7 @@ export const DeckHeaderReloading = ({ isReloading, onReload, updateDataInterval 
       icon={isReloading ? <Spinner className="w-4 h-4" /> : refreshSvg}
       iconPlacement="left"
     >
-      {_t("decks.reload")}
+      {i18next.t("decks.reload")}
     </Button>
   );
 };

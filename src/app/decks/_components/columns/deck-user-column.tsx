@@ -2,30 +2,28 @@ import React, { useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
-import { getAccountPosts } from "../../../api/bridge";
-import { Entry } from "../../../store/entries/types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { USER_CONTENT_TYPES, userTitles } from "../consts";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
-import { History } from "history";
 import { DeckContentTypeColumnSettings } from "./deck-column-settings/deck-content-type-column-settings";
 import usePrevious from "react-use/lib/usePrevious";
-import { _t } from "../../../i18n";
 import moment from "moment";
 import { newDataComingPaginatedCondition } from "../utils";
 import { InfiniteScrollLoader } from "./helpers";
+import { Entry } from "@/entities";
+import { getAccountPosts } from "@/api/bridge";
+import i18next from "i18next";
 
 interface Props {
   id: string;
   settings: UserDeckGridItem["settings"];
-  history: History;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 type IdentifiableEntry = Entry & Required<Pick<Entry, "id">>;
 
-export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
+export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<IdentifiableEntry[]>([]);
   const prevData = usePrevious(data);
   const [isReloading, setIsReloading] = useState(false);
@@ -84,7 +82,7 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
       draggable={draggable}
       header={{
         title: "@" + settings.username.toLowerCase(),
-        subtitle: userTitles[settings.contentType] ?? _t("decks.user"),
+        subtitle: userTitles[settings.contentType] ?? i18next.t("decks.user"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -108,7 +106,6 @@ export const DeckUserColumn = ({ id, settings, draggable, history }: Props) => {
         currentViewingEntry ? (
           <DeckPostViewer
             entry={currentViewingEntry}
-            history={history}
             onClose={() => setCurrentViewingEntry(null)}
             backTitle={`@${settings.username}(${userTitles[settings.contentType]})`}
           />

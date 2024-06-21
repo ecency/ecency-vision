@@ -1,14 +1,15 @@
-import * as tus from "tus-js-axios";
+import * as tus from "tus-js-client";
+import axios from "axios";
 import { ThreeSpeakVideo } from "./types";
 import { getDecodedMemo } from "@/utils";
-import { appAxios } from "@/api/axios";
 
 const studioEndPoint = "https://studio.3speak.tv";
 const tusEndPoint = "https://uploads.3speak.tv/files/";
+const client = axios.create({});
 
 export const threespeakAuth = async (username: string) => {
   try {
-    let response = await appAxios.get(
+    let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&hivesigner=true`,
       {
         withCredentials: false,
@@ -30,7 +31,7 @@ export const threespeakAuth = async (username: string) => {
 
 export const getTokenValidated = async (jwt: string, username: string) => {
   try {
-    let response = await appAxios.get(
+    let response = await client.get(
       `${studioEndPoint}/mobile/login?username=${username}&access_token=${jwt}`,
       {
         withCredentials: false,
@@ -52,7 +53,7 @@ export const uploadVideoInfo = async (
   videoUrl: string,
   thumbnailUrl: string,
   username: string,
-  duration: string
+  duration: string | number
 ) => {
   const token = await threespeakAuth(username);
   try {
@@ -85,7 +86,7 @@ export const uploadVideoInfo = async (
 export const getAllVideoStatuses = async (username: string) => {
   const token = await threespeakAuth(username);
   try {
-    let response = await appAxios.get<ThreeSpeakVideo[]>(`${studioEndPoint}/mobile/api/my-videos`, {
+    let response = await client.get<ThreeSpeakVideo[]>(`${studioEndPoint}/mobile/api/my-videos`, {
       withCredentials: false,
       headers: {
         "Content-Type": "application/json",

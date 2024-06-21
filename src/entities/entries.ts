@@ -25,6 +25,20 @@ export interface JsonMetadata {
   original_author?: string;
   original_permlink?: string;
   image?: string[];
+  pinned_reply?: string; // author/permlink
+}
+
+export interface JsonPollMetadata {
+  content_type: "poll";
+  version: number;
+  question: string;
+  choices: string[];
+  preferred_interpretation: string;
+  token: string;
+  vote_change: boolean;
+  hide_votes: boolean;
+  filters: { account_age: number };
+  end_time: number;
 }
 
 export interface Entry {

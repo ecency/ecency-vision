@@ -110,3 +110,6 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
     </div>
   );
 }
+
+export * from "./sidebar/navbar-side-theme-switcher";
+export * from "./sidebar/navbar-side";

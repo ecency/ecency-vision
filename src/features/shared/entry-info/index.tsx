@@ -9,10 +9,9 @@ import { useGlobalStore } from "@/core/global-store";
 
 interface Props {
   entry: Entry;
-  history: History;
 }
 
-export const EntryInfo = ({ entry, history }: Props) => {
+export const EntryInfo = ({ entry }: Props) => {
   const usePrivate = useGlobalStore((s) => s.usePrivate);
 
   const reputation = accountReputation(entry.author_reputation);

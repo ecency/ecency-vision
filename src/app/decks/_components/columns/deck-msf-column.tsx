@@ -1,12 +1,12 @@
 import React from "react";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { _t } from "../../../i18n";
-import { SwapMode } from "../../../components/market-swap-form/swap-mode";
+import i18next from "i18next";
+import { SwapMode } from "@/features/market";
 
 interface Props {
   id: string;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 export const DeckMsfColumn = ({ id, draggable }: Props) => {
@@ -15,8 +15,8 @@ export const DeckMsfColumn = ({ id, draggable }: Props) => {
       id={id}
       draggable={draggable}
       header={{
-        title: _t("decks.columns.swap-form"),
-        subtitle: _t("decks.columns.market"),
+        title: i18next.t("decks.columns.swap-form"),
+        subtitle: i18next.t("decks.columns.market"),
         icon: null
       }}
       isReloading={false}

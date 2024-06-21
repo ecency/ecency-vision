@@ -1,11 +1,11 @@
-import { UserAvatar } from "../../../../components/user-avatar";
-import { Link } from "react-router-dom";
-import { _t } from "../../../../i18n";
-import { dateToRelative } from "../../../../helper/parse-date";
 import React from "react";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { ThreadItemEntry } from "../deck-threads-manager";
 import { Spinner } from "@ui/spinner";
+import { UserAvatar } from "@/features/shared";
+import Link from "next/link";
+import { useGlobalStore } from "@/core/global-store";
+import i18next from "i18next";
+import { dateToRelative } from "@/utils";
 
 interface Props {
   entry: ThreadItemEntry;
@@ -15,30 +15,32 @@ interface Props {
 }
 
 export const DeckThreadItemHeader = ({ entry, hasParent, pure, status }: Props) => {
-  const { activeUser, global } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
 
   return (
     <div className="thread-item-header">
-      <UserAvatar size="deck-item" global={global} username={entry.author} />
+      <UserAvatar size="deck-item" username={entry.author} />
       <div className="username truncate">
-        <Link to={`/@${entry.author}`}>{entry.author}</Link>
-        {activeUser?.username === entry.author && <span className="you">{`(${_t("g.you")})`}</span>}
+        <Link href={`/@${entry.author}`}>{entry.author}</Link>
+        {activeUser?.username === entry.author && (
+          <span className="you">{`(${i18next.t("g.you")})`}</span>
+        )}
         {hasParent && !pure && (
           <>
-            <span>{_t("decks.columns.replied-to")}</span>
-            <Link to={`/@${entry.parent_author}`}>{entry.parent_author}</Link>
+            <span>{i18next.t("decks.columns.replied-to")}</span>
+            <Link href={`/@${entry.parent_author}`}>{entry.parent_author}</Link>
           </>
         )}
       </div>
       <div className="host">
-        <Link target="_blank" to={`/created/${entry.category}`}>
+        <Link target="_blank" href={`/created/${entry.category}`}>
           #{entry.host}
         </Link>
       </div>
 
       <div className="date">
         {status === "default" && (
-          <Link target="_blank" to={`/@${entry.author}/${entry.permlink}`}>
+          <Link target="_blank" href={`/@${entry.author}/${entry.permlink}`}>
             {`${dateToRelative(entry.created)}`}
           </Link>
         )}

@@ -45,7 +45,7 @@ export function useUploadVideoInfo() {
       videoUrl: string;
       thumbUrl: string;
       activeUser: string;
-      duration: string;
+      duration: number;
     }) => {
       try {
         return await uploadVideoInfo(fileName, fileSize, videoUrl, thumbUrl, activeUser, duration);

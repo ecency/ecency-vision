@@ -1,6 +1,6 @@
-import { TrendingTag } from "../../../../store/trending-tags/types";
 import React, { useEffect } from "react";
-import { _t } from "../../../../i18n";
+import { TrendingTag } from "@/entities";
+import i18next from "i18next";
 
 export interface HotListItemProps {
   index: number;
@@ -23,7 +23,7 @@ export const HotListItem = ({ index, entry, onMounted, onClick }: HotListItemPro
         </a>
       </div>
       <div className="hot-item-post-count">
-        {entry.top_posts + entry.comments || 0} {_t("communities.n-posts")}
+        {entry.top_posts + entry.comments || 0} {i18next.t("communities.n-posts")}
       </div>
     </div>
   );

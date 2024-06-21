@@ -1,0 +1,82 @@
+@import "src/styles/vars_mixins";
+
+.comment-box {
+  margin: 10px 0 15px 0;
+
+  .editor-toolbar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    &.bottom {
+      border-radius: 0 0 8px 8px;
+    }
+  }
+
+  .comment-body {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-bottom: 4px;
+
+    @include themify(day) {
+      @apply bg-light-200;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200-010-light;
+    }
+
+    textarea {
+      @include themify(day) {
+        @apply bg-light-200;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-200-010-light;
+      }
+    }
+
+    .rta {
+      min-height: 80px;
+      // height: auto !important;
+    }
+
+    .form-control {
+      background: transparent;
+      border: none;
+      resize: none;
+      line-height: 1.5;
+      border-radius: 0 0;
+      min-height: 60px;
+      padding: 4px;
+      transition: height .3s;
+
+      @include themify(night) {
+        @apply text-silver;
+      }
+    }
+  }
+
+  .comment-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.the-editor {
+  @include themify(night) {
+    @apply text-silver;
+    @apply bg-dark-200;
+  }
+  @include themify(day) {
+    @apply bg-light-200;
+  }
+  border-width: 0px;
+  resize: none;
+  outline: none;
+  min-height: 80px;
+  padding: 4px;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+}

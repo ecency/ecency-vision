@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import { ThreadItemEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";

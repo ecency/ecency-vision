@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { DeckThreadsFormToolbarImagePicker } from "./deck-threads-form-toolbar-image-picker";
 import { DeckThreadsFormEmojiPicker } from "./deck-threads-form-emoji-picker";
-import { PollsCreation } from "../../polls";
 import { Button } from "@ui/button";
 import { UilChart } from "@iconscout/react-unicons";
-import { PollsContext } from "../../../pages/submit/hooks/polls-manager";
+import { PollsContext, PollsCreation } from "@/features/polls";
 
 interface Props {
   onAddImage: (url: string, name: string) => void;

@@ -1,16 +1,16 @@
-import { useMappedStore } from "../../../../store/use-mapped-store";
-import { FullAccount } from "../../../../store/accounts/types";
-import { createPermlink, makeCommentOptions } from "../../../../helper/posting";
-import { comment } from "../../../../api/operations";
-import tempEntry from "../../../../helper/temp-entry";
-import { Entry } from "../../../../store/entries/types";
-import { EntryMetadataManagement } from "../../../entry-management";
 import { useContext } from "react";
-import { PollsContext } from "../../../../pages/submit/hooks/polls-manager";
+import { useGlobalStore } from "@/core/global-store";
+import { PollsContext } from "@/features/polls";
+import { Entry, FullAccount } from "@/entities";
+import { createPermlink, makeCommentOptions, tempEntry } from "@/utils";
+import { EntryMetadataManagement } from "@/features/entry-management";
+import { comment } from "@/api/operations";
+import { EntriesCacheContext } from "@/core/caches";
 
 export function useCommunityApi() {
-  const { activeUser, addEntry } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const { activePoll } = useContext(PollsContext);
+  const { updateCache } = useContext(EntriesCacheContext);
 
   const request = async (host: string, raw: string, editingEntry?: Entry) => {
     if (!activeUser || !activeUser.data.__loaded) {
@@ -57,7 +57,7 @@ export function useCommunityApi() {
       max_accepted_payout: options.max_accepted_payout,
       percent_hbd: options.percent_hbd
     };
-    addEntry(entry);
+    updateCache([entry]);
 
     return entry;
   };

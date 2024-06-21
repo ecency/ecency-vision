@@ -1,5 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { client } from "@/api/hive";
 import { utils } from "@hiveio/dhive";
 import { ACCOUNT_OPERATION_GROUPS, OperationGroup } from "@/consts";
@@ -10,8 +9,8 @@ export const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS
   []
 );
 
-export function useGetTransactionsQuery(username?: string, limit = 20, group?: OperationGroup) {
-  return useInfiniteQuery({
+export const getTransactionsQuery = (username?: string, limit = 20, group?: OperationGroup) =>
+  EcencyQueriesManager.generateClientServerInfiniteQuery({
     queryKey: [QueryIdentifiers.TRANSACTIONS, username, group],
     queryFn: ({ pageParam }) => {
       if (!username) {
@@ -56,4 +55,3 @@ export function useGetTransactionsQuery(username?: string, limit = 20, group?: O
     initialPageParam: -1,
     getNextPageParam: (_, __, lastPageParam) => lastPageParam + limit
   });
-}

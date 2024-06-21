@@ -1,9 +1,7 @@
 import { createPortal } from "react-dom";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { renderPostBody } from "@ecency/render-helper";
 import { IdentifiableEntry } from "../deck-threads-manager";
-import { classNameObject } from "../../../../helper/class-name-object";
 import {
   renderAuthors,
   renderCurrencies,
@@ -15,6 +13,8 @@ import {
   renderVideos
 } from "./deck-thread-item-body-render-helper";
 import { renderLiketu } from "../helpers";
+import { useGlobalStore } from "@/core/global-store";
+import { classNameObject } from "@ui/util";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -31,8 +31,8 @@ export const DeckThreadItemBody = ({
   onResize,
   height
 }: Props) => {
-  const { global } = useMappedStore();
   const renderAreaRef = useRef<HTMLDivElement | null>(null);
+  const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
   const [currentViewingImage, setCurrentViewingImage] = useState<string | null>(null);
   const [currentViewingImageRect, setCurrentViewingImageRect] = useState<DOMRect | null>(null);
@@ -65,7 +65,7 @@ export const DeckThreadItemBody = ({
     }
 
     renderTags(renderAreaRef);
-    renderAuthors(renderAreaRef, global);
+    renderAuthors(renderAreaRef);
     renderPostLinks(renderAreaRef);
     renderExternalLinks(renderAreaRef);
     renderImages(renderAreaRef, {
@@ -81,8 +81,8 @@ export const DeckThreadItemBody = ({
       return renderLiketu(entry);
     }
 
-    return renderPostBody(entry, true, global.canUseWebp);
-  }, [entry, global.canUseWebp]);
+    return renderPostBody(entry, true, canUseWebp);
+  }, [entry, canUseWebp]);
 
   return (
     <div className="thread-item-body">

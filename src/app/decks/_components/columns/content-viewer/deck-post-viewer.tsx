@@ -19,17 +19,16 @@ import { Entry } from "@/entities";
 import { useEntryCache } from "@/core/caches";
 import { arrowLeftSvg } from "@ui/svg";
 import i18next from "i18next";
-import { EntryInfo, EntryVoteBtn, EntryVotes } from "@/features/shared";
+import { Discussion, EntryInfo, EntryVoteBtn, EntryVotes } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
 
 interface Props {
   entry: Entry;
-  history: History;
   backTitle?: string;
   onClose: () => void;
 }
 
-export const DeckPostViewer = ({ entry: initialEntry, onClose, history, backTitle }: Props) => {
+export const DeckPostViewer = ({ entry: initialEntry, onClose, backTitle }: Props) => {
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
   const [isMounted, setIsMounted] = useState(false);
@@ -92,7 +91,7 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, history, backTitl
         </div>
       </div>
       <div className="px-3">
-        <EntryInfo entry={entry} history={history} />
+        <EntryInfo entry={entry} />
       </div>
       <div
         ref={ref}
@@ -111,13 +110,7 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, history, backTitl
         <DeckPostViewerCommentBox entry={entry} onReplied={() => {}} />
       </div>
       <div className="px-3">
-        <Discussion
-          parent={entry}
-          community={null}
-          hideControls={false}
-          history={history}
-          isRawContent={false}
-        />
+        <Discussion parent={entry} community={null} hideControls={false} isRawContent={false} />
       </div>
     </div>
   );

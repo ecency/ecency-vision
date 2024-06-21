@@ -1,12 +1,12 @@
 import React from "react";
-import { _t } from "../../i18n";
 import { Spinner } from "@ui/spinner";
+import i18next from "i18next";
 
 export const DeckLoader = () => {
   return (
     <div className="deck-loader">
       <Spinner className="w-8 h-8" />
-      <div>{_t("decks.loading")}</div>
+      <div>{i18next.t("decks.loading")}</div>
     </div>
   );
 };

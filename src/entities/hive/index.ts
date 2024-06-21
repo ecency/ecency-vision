@@ -21,3 +21,4 @@ export * from "./savings-withdraw-request";
 export * from "./blog-entry";
 export * from "./rc-operation";
 export * from "./transaction";
+export * from "./orders-data-item";

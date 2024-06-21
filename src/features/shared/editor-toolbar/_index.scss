@@ -1,0 +1,139 @@
+@import "src/styles/vars_mixins";
+
+.editor-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: ($sm-break - 1px)) {
+    justify-content: center;
+  }
+
+  @include themify(day) {
+    @apply bg-light-300;
+  }
+
+  @include themify(night) {
+    @apply bg-dark-200;
+  }
+
+  .editor-tool {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    position: relative;
+    width: 34px;
+    flex-shrink: 0;
+
+    @media (min-width: $xl-break) {
+      width: 38px;
+    }
+
+    @include themify(day) {
+      @apply text-gray-steel;
+
+      &:hover {
+        @apply bg-light-305;
+      }
+    }
+
+    @include themify(night) {
+      @apply text-gray-pinkish;
+
+      &:hover {
+        @apply bg-dark-200-010-light;
+      }
+    }
+
+    svg {
+      height: 22px;
+    }
+
+    .sub-tool-menu {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: none;
+      right: 0;
+      position: absolute;
+      top: 100%;
+      white-space: nowrap;
+      width: auto;
+      z-index: 100;
+      min-width: 100%;
+      overflow: hidden;
+
+      @include themify(day) {
+        @apply bg-light-305;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-200;
+      }
+
+      .sub-tool-menu-item {
+        padding: 10px 6px;
+
+        &:hover {
+          @include themify(day) {
+            @apply bg-light-300;
+          }
+
+          @include themify(night) {
+            @apply bg-dark-200-010-light;
+          }
+        }
+      }
+    }
+
+    .emoji-picker {
+      display: none;
+      top: 36px;
+    }
+
+    &:hover {
+      .sub-tool-menu {
+        display: block;
+      }
+
+      .emoji-picker {
+        display: block;
+      }
+    }
+  }
+
+  .tool-separator {
+    height: 24px;
+    margin: 0 6px;
+    width: 1px;
+
+    @include themify(day) {
+      @apply bg-light-400;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200-010-light;
+    }
+  }
+
+  &.toolbar-sm {
+
+    .editor-tool {
+      width: 29px;
+      height: 30px;
+
+      svg {
+        height: 18px;
+      }
+    }
+
+    .emoji-picker {
+      top: 30px
+    }
+
+    .tool-separator {
+      height: 18px;
+    }
+  }
+}

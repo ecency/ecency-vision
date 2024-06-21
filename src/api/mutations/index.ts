@@ -25,3 +25,4 @@ export * from "./sign-transfer";
 export * from "./entry-vote";
 export * from "./record-user-activity";
 export * from "./entry-reblog";
+export * from "./upload-post-image";

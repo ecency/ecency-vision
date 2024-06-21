@@ -1,18 +1,16 @@
-import { Entry } from "../../../../store/entries/types";
-import { createReplyPermlink } from "../../../../helper/posting";
-import { comment } from "../../../../api/operations";
-import tempEntry from "../../../../helper/temp-entry";
-import { FullAccount } from "../../../../store/accounts/types";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import { v4 } from "uuid";
 import { ThreadItemEntry } from "../../columns/deck-threads-manager";
 import { useContext } from "react";
-import { EntriesCacheContext } from "../../../../core";
-import { PollsContext } from "../../../../pages/submit/hooks/polls-manager";
-import { EntryMetadataManagement } from "../../../entry-management";
+import { useGlobalStore } from "@/core/global-store";
+import { EntriesCacheContext } from "@/core/caches";
+import { PollsContext } from "@/features/polls";
+import { Entry, FullAccount } from "@/entities";
+import { createReplyPermlink, tempEntry } from "@/utils";
+import { EntryMetadataManagement } from "@/features/entry-management";
+import { comment } from "@/api/operations";
 
 export function useThreadsApi() {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
   const { activePoll } = useContext(PollsContext);
 

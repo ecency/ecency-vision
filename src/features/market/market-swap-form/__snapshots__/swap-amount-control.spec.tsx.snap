@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwapAmountControl should be able to render element after balance 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+      <small
+        className="balance block text-gray-600 whitespace-nowrap"
+      >
+        Balance
+        :
+        <span
+          className="text-blue-dark-sky font-bold cursor-pointer ml-1"
+          onClick={[Function]}
+        >
+          test
+        </span>
+      </small>
+    </div>
+  </div>
+  <div>
+    test
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should be able to show available assets list 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+        <option
+          value="HBD"
+        >
+          HBD
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should render balance showing 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+      <small
+        className="balance block text-gray-600 whitespace-nowrap"
+      >
+        Balance
+        :
+        <span
+          className="text-blue-dark-sky font-bold cursor-pointer ml-1"
+          onClick={[Function]}
+        >
+          test balance
+        </span>
+      </small>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should render correctly 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should render disabled state 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={true}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={true}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should render label 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl undefined"
+>
+  <label>
+    Test
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SwapAmountControl should set className 1`] = `
+<div
+  className="px-3 pt-3 pb-5 mb-0 border dark:border-[--border-color] rounded-2xl test"
+>
+  <label>
+    
+  </label>
+  <div
+    className="flex items-center w-full"
+  >
+    <div
+      className="w-full"
+    >
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red amount-control pl-0"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="0.000"
+        type="text"
+        value="0"
+      />
+      <small
+        className="usd-balance bold text-gray-600"
+      >
+        $
+        0
+      </small>
+    </div>
+    <div
+      className="flex flex-col items-end"
+    >
+      <select
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800  !w-auto"
+        disabled={false}
+        onChange={[Function]}
+        type="select"
+        value="HIVE"
+      >
+        <option
+          value="HIVE"
+        >
+          HIVE
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;

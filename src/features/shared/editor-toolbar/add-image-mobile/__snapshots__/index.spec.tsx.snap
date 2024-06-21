@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  >
+    <div
+      className="recent-list-title"
+    >
+      Recently uploaded
+    </div>
+    <div
+      className="recent-list-body"
+    >
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfsxYg31uVU2qaAJMbxLA5QC3UVPLuv3NgD6kUmbm4uwJEjM2p6HEJn3TeZdk26UewZU2EMYeTAuU.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/8SzwQc8j2KJa5zNbRVVrXkzCd9HNSAM9TwKNjpGfmsW5UVxK6wdRfC1pbPyM9xzYn5qraeesECP66rZ9edokgbrjcFaFjLZiaf41MhwjB1wzgzXk33t.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+      <div
+        className="recent-list-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundImage": "url('https://images.ecency.com/p/Zskj9C56UonZ32EJw6nMcm9UJXZFc4FvMtk6wyeAL2B2wn9sAe3xBkALEsfvhmDDq8UH7NwCDzBBoR2vndSdSHCkePRgrRjUjQGUWLjZrw3f2WethBCr.png?format=match&mode=fit&width=600&height=500')",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="flex justify-between"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Gallery
+      </div>
+    </button>
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Upload image
+      </div>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(2) usePrivate = 1 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  />
+  <div
+    className="flex justify-center"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Upload image
+      </div>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`(3) Empty gallery. 1`] = `
+<div
+  className="dialog-content"
+>
+  <div
+    className="recent-list"
+  />
+  <div
+    className="flex justify-center"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Upload image
+      </div>
+    </button>
+  </div>
+</div>
+`;

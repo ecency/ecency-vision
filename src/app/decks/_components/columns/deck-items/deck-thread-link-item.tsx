@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import { _t } from "../../../../i18n";
+import React, { useEffect, useState } from "react";
 import { useDeckThreadLinkItemCache } from "./deck-thread-link-item-cache";
+import i18next from "i18next";
 
 interface Props {
   link: string;
@@ -79,7 +78,7 @@ export const DeckThreadLinkItem = ({ link }: Props) => {
         <div className="image mb-3" style={{ backgroundImage: `url(${image})` }} />
       )}
       <div className={"title mb-1 " + (isLoading ? "loading" : "")}>
-        {isLoading ? "" : title ?? _t("decks.columns.thread-post-invalid")}
+        {isLoading ? "" : title ?? i18next.t("decks.columns.thread-post-invalid")}
       </div>
       <div className={"description " + (isLoading ? "loading" : "")}>{description ?? ""}</div>
     </div>

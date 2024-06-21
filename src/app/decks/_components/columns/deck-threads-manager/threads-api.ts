@@ -1,9 +1,8 @@
-import * as bridgeApi from "../../../../api/bridge";
-import { ProfileFilter } from "../../../../store/global/types";
-import { getDiscussion } from "../../../../api/bridge";
-import { ThreadItemEntry, IdentifiableEntry } from "./identifiable-entry";
-import { FetchQueryOptions } from "@tanstack/query-core/src/types";
-import { QueryIdentifiers } from "../../../../core";
+import * as bridgeApi from "@/api/bridge";
+import { IdentifiableEntry, ThreadItemEntry } from "./identifiable-entry";
+import { FetchQueryOptions } from "@tanstack/query-core";
+import { ProfileFilter } from "@/enums";
+import { QueryIdentifiers } from "@/core/react-query";
 
 export async function fetchThreads(
   host: string,
@@ -26,7 +25,7 @@ export async function fetchThreads(
     return [];
   }
 
-  const threadItems = await getDiscussion(host, nextThreadContainers[0].permlink);
+  const threadItems = await bridgeApi.getDiscussion(host, nextThreadContainers[0].permlink);
 
   // If no discussion need to fetch next container
   if (Object.values(threadItems || {}).length === 1) {

@@ -1,12 +1,12 @@
-import Comment from "../../../../components/comment";
-import { useMappedStore } from "../../../../store/use-mapped-store";
 import React, { useState } from "react";
-import { _t } from "../../../../i18n";
-import { Entry } from "../../../../store/entries/types";
-import { useLocation } from "react-router";
-import { createReplyPermlink, makeJsonMetaDataReply } from "../../../../helper/posting";
-import { version } from "../../../../../../package.json";
-import { useCreateReply } from "../../../../api/mutations";
+import { Entry } from "@/entities";
+import { useLocation } from "react-use";
+import { useCreateReply } from "@/api/mutations";
+import { useGlobalStore } from "@/core/global-store";
+import { createReplyPermlink, makeJsonMetaDataReply } from "@/utils";
+import appPackage from "../../../../../../package.json";
+import i18next from "i18next";
+import { Comment } from "@/features/shared";
 
 interface Props {
   entry: Entry;
@@ -14,17 +14,7 @@ interface Props {
 }
 
 export const DeckPostViewerCommentBox = ({ entry, onReplied }: Props) => {
-  const {
-    users,
-    activeUser,
-    ui,
-    global,
-    setActiveUser,
-    updateActiveUser,
-    deleteUser,
-    toggleUIProp
-  } = useMappedStore();
-
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const location = useLocation();
 
   const [isReplying, setIsReplying] = useState(false);
@@ -44,7 +34,7 @@ export const DeckPostViewerCommentBox = ({ entry, onReplied }: Props) => {
     const permlink = createReplyPermlink(entry.author);
     const tags = entry.json_metadata.tags || ["ecency"];
 
-    const jsonMeta = makeJsonMetaDataReply(tags, version);
+    const jsonMeta = makeJsonMetaDataReply(tags, appPackage.version);
 
     setIsReplying(true);
 
@@ -52,18 +42,9 @@ export const DeckPostViewerCommentBox = ({ entry, onReplied }: Props) => {
   };
   return (
     <Comment
-      defText={""}
-      submitText={_t("g.reply")}
-      users={users}
-      activeUser={activeUser}
-      ui={ui}
-      global={global}
+      defText=""
+      submitText={i18next.t("g.reply")}
       entry={entry}
-      location={location}
-      setActiveUser={setActiveUser}
-      updateActiveUser={updateActiveUser}
-      deleteUser={deleteUser}
-      toggleUIProp={toggleUIProp}
       onSubmit={submitReply}
       isCommented={isCommented}
       inProgress={isReplying}

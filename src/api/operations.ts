@@ -102,7 +102,7 @@ export const broadcastPostingJSON = (
     : Promise.resolve(0);
 };
 
-const broadcastPostingOperations = (
+export const broadcastPostingOperations = (
   username: string,
   operations: Operation[]
 ): Promise<TransactionConfirmation> => {

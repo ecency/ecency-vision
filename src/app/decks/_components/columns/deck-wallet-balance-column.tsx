@@ -1,30 +1,30 @@
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import React, { useContext, useEffect, useState } from "react";
 import { GenericDeckColumn } from "./generic-deck-column";
-import { _t } from "../../../i18n";
-import { History } from "history";
 import { UserDeckGridItem } from "../types";
 import "./_deck-wallet-balance-column.scss";
-import { getCurrencyTokenRate } from "../../../api/private-api";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { getAccount, getConversionRequests } from "../../../api/hive";
-import parseAsset from "../../../helper/parse-asset";
-import HiveWallet from "../../../helper/hive-wallet";
-import { FullAccount } from "../../../store/accounts/types";
-import formattedNumber from "../../../util/formatted-number";
-import { vestsToHp } from "../../../helper/vesting";
-import { getHiveEngineTokenBalances, getMetrics } from "../../../api/hive-engine";
-import { getSpkWallet } from "../../../api/spk-api";
 import { DeckGridContext } from "../deck-manager";
-import { usePointsQuery } from "../../../api/queries";
 import { Spinner } from "@ui/spinner";
-import { getEstimatedBalance } from "../../../components/wallet-spk/util";
-import FormattedCurrency from "../../../components/formatted-currency";
+import { getDynamicPropsQuery, usePointsQuery } from "@/api/queries";
+import { FullAccount } from "@/entities";
+import { getAccount, getConversionRequests } from "@/api/hive";
+import { getCurrencyTokenRate } from "@/api/private-api";
+import {
+  formattedNumber,
+  getSplEstimatedBalance,
+  HiveWallet,
+  parseAsset,
+  vestsToHp
+} from "@/utils";
+import { getHiveEngineTokenBalances, getMetrics } from "@/api/hive-engine";
+import { getSpkWallet } from "@/api/spk-api";
+import i18next from "i18next";
+import { FormattedCurrency } from "@/features/shared";
 
 interface Props {
   id: string;
   settings: UserDeckGridItem["settings"];
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
   history: History;
 }
 
@@ -54,7 +54,7 @@ export const DeckWalletBalanceColumn = ({
   history,
   settings: { username, updateIntervalMs }
 }: Props) => {
-  const { global, dynamicProps } = useMappedStore();
+  const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
   const [tab, setTab] = useState<Tab>("ecency");
@@ -148,10 +148,10 @@ export const DeckWalletBalanceColumn = ({
       });
 
       if (account) {
-        const wallet = new HiveWallet(account, dynamicProps, converting);
+        const wallet = new HiveWallet(account, dynamicProps!, converting);
         setHive(formattedNumber(wallet.balance, { suffix: "HIVE" }));
         setHp(
-          formattedNumber(vestsToHp(wallet.vestingShares, dynamicProps.hivePerMVests), {
+          formattedNumber(vestsToHp(wallet.vestingShares, dynamicProps!.hivePerMVests), {
             suffix: "HP"
           })
         );
@@ -172,7 +172,7 @@ export const DeckWalletBalanceColumn = ({
       const tokens = await getMetrics();
       const userTokens = await getHiveEngineTokenBalances(username);
 
-      const pricePerHive = dynamicProps.base / dynamicProps.quote;
+      const pricePerHive = dynamicProps!.base / dynamicProps!.quote;
 
       const mappedBalanceMetrics = userTokens.map((item: any) => ({
         ...item,
@@ -183,8 +183,8 @@ export const DeckWalletBalanceColumn = ({
         return w.symbol === "SWAP.HIVE"
           ? Number(pricePerHive * w.balance)
           : w.lastPrice === 0
-          ? 0
-          : Number(w.lastPrice * pricePerHive * w.balance);
+            ? 0
+            : Number(w.lastPrice * pricePerHive * w.balance);
       });
 
       const totalWalletUsdValue = tokensUsdPrices.reduce(
@@ -211,7 +211,7 @@ export const DeckWalletBalanceColumn = ({
       setLarynx(formattedNumber(response.balance / 1000, { suffix: "LARYNX" }));
       setLarynxPower(formattedNumber(response.poweredUp / 1000, { suffix: "LARYNX" }));
       setLarynxLocked(formattedNumber(response.gov / 1000, { suffix: "LARYNX" }));
-      setLarynxEstimatedValue(+(await getEstimatedBalance(response)));
+      setLarynxEstimatedValue(+(await getSplEstimatedBalance(response)));
     } catch (e) {
     } finally {
       setSpkLoading(false);
@@ -224,7 +224,7 @@ export const DeckWalletBalanceColumn = ({
       draggable={draggable}
       header={{
         title: `@${username}`,
-        subtitle: _t("decks.columns.balance"),
+        subtitle: i18next.t("decks.columns.balance"),
         icon: null,
         updateIntervalMs: updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
@@ -249,20 +249,14 @@ export const DeckWalletBalanceColumn = ({
             <>
               <Card
                 title="Ecency points"
-                description={_t("points.main-description")}
+                description={i18next.t("points.main-description")}
                 value={`${points} POINTS`}
                 isLoading={pointsLoading}
               />
               <Card
-                title={_t("wallet.estimated-points")}
-                description={_t("wallet.estimated-description-points")}
-                value={
-                  <FormattedCurrency
-                    global={global}
-                    value={estimatedValue * parseFloat(points)}
-                    fixAt={3}
-                  />
-                }
+                title={i18next.t("wallet.estimated-points")}
+                description={i18next.t("wallet.estimated-description-points")}
+                value={<FormattedCurrency value={estimatedValue * parseFloat(points)} fixAt={3} />}
                 isLoading={pointsLoading}
               />
             </>
@@ -270,33 +264,33 @@ export const DeckWalletBalanceColumn = ({
           {tab === "hive" && (
             <>
               <Card
-                title={_t("wallet.hive")}
-                description={_t("wallet.hive-description")}
+                title={i18next.t("wallet.hive")}
+                description={i18next.t("wallet.hive-description")}
                 value={hive}
                 isLoading={hiveLoading}
               />
               <Card
-                title={_t("wallet.hive-power")}
-                description={_t("wallet.hive-power-description")}
+                title={i18next.t("wallet.hive-power")}
+                description={i18next.t("wallet.hive-power-description")}
                 value={hp}
                 isLoading={hiveLoading}
               />
               <Card
-                title={_t("wallet.hive-dollars")}
-                description={_t("wallet.hive-dollars-description")}
+                title={i18next.t("wallet.hive-dollars")}
+                description={i18next.t("wallet.hive-dollars-description")}
                 value={hbd}
                 isLoading={hiveLoading}
               />
               <Card
-                title={_t("wallet.savings")}
-                description={_t("wallet.savings-description")}
+                title={i18next.t("wallet.savings")}
+                description={i18next.t("wallet.savings-description")}
                 value={savings}
                 isLoading={hiveLoading}
               />
               <Card
-                title={_t("wallet.estimated")}
-                description={_t("wallet.estimated-description")}
-                value={<FormattedCurrency global={global} value={hiveEstimatedValue} fixAt={3} />}
+                title={i18next.t("wallet.estimated")}
+                description={i18next.t("wallet.estimated-description")}
+                value={<FormattedCurrency value={hiveEstimatedValue} fixAt={3} />}
                 isLoading={hiveLoading}
               />
             </>
@@ -304,8 +298,8 @@ export const DeckWalletBalanceColumn = ({
           {tab === "engine" && (
             <>
               <Card
-                title={_t("wallet-engine-estimated.title")}
-                description={_t("wallet-engine-estimated.description")}
+                title={i18next.t("wallet-engine-estimated.title")}
+                description={i18next.t("wallet-engine-estimated.description")}
                 value={engineEstimatedValue}
                 isLoading={engineLoading}
               />
@@ -314,33 +308,33 @@ export const DeckWalletBalanceColumn = ({
           {tab === "spk" && (
             <>
               <Card
-                title={_t("wallet.spk.token")}
-                description={_t("wallet.spk.token-description")}
+                title={i18next.t("wallet.spk.token")}
+                description={i18next.t("wallet.spk.token-description")}
                 value={spk}
                 isLoading={spkLoading}
               />
               <Card
-                title={_t("wallet.spk.larynx-token")}
-                description={_t("wallet.spk.larynx-token-description")}
+                title={i18next.t("wallet.spk.larynx-token")}
+                description={i18next.t("wallet.spk.larynx-token-description")}
                 value={larynx}
                 isLoading={spkLoading}
               />
               <Card
-                title={_t("wallet.spk.larynx-power")}
-                description={_t("wallet.spk.larynx-power-description")}
+                title={i18next.t("wallet.spk.larynx-power")}
+                description={i18next.t("wallet.spk.larynx-power-description")}
                 value={larynxPower}
                 isLoading={spkLoading}
               />
               <Card
-                title={_t("wallet.spk.larynx-locked")}
-                description={_t("wallet.spk.larynx-locked-description")}
+                title={i18next.t("wallet.spk.larynx-locked")}
+                description={i18next.t("wallet.spk.larynx-locked-description")}
                 value={larynxLocked}
                 isLoading={spkLoading}
               />
               <Card
-                title={_t("wallet.spk.account-value")}
-                description={_t("wallet.spk.account-value-description")}
-                value={<FormattedCurrency global={global} value={larynxEstimatedValue} fixAt={3} />}
+                title={i18next.t("wallet.spk.account-value")}
+                description={i18next.t("wallet.spk.account-value-description")}
+                value={<FormattedCurrency value={larynxEstimatedValue} fixAt={3} />}
                 isLoading={spkLoading}
               />
             </>

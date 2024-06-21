@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { pencilOutlineSvg } from "../../../img/svg";
-import { _t } from "../../../i18n";
 import { DeckThreadsFormContext } from "../deck-threads-form";
 import { Button } from "@ui/button";
+import { pencilOutlineSvg } from "@ui/svg";
+import i18next from "i18next";
 
 interface Props {
   isExpanded: boolean;
@@ -14,7 +14,7 @@ export const DeckToolbarCreate = ({ isExpanded }: Props) => {
   return (
     <div className="deck-toolbar-create">
       <Button icon={pencilOutlineSvg} iconPlacement="left" onClick={() => setShow(!show)}>
-        {isExpanded ? _t("decks.wave") : ""}
+        {isExpanded ? i18next.t("decks.wave") : ""}
       </Button>
     </div>
   );

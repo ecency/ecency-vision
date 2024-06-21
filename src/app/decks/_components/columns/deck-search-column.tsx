@@ -3,25 +3,23 @@ import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { SearchDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { search, SearchResult } from "../../../api/search-api";
 import { DeckGridContext } from "../deck-manager";
 import { DeckPostViewer } from "./content-viewer";
-import { Entry } from "../../../store/entries/types";
-import { History } from "history";
 import { DeckSearchColumnSettings } from "./deck-column-settings/deck-search-column-settings";
 import moment, { Moment } from "moment/moment";
 import { DateOpt } from "../consts";
 import usePrevious from "react-use/lib/usePrevious";
-import { _t } from "../../../i18n";
+import { search } from "@/api/search-api";
+import i18next from "i18next";
+import { Entry, SearchResult } from "@/entities";
 
 interface Props {
   id: string;
   settings: SearchDeckGridItem["settings"];
-  history: History;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
-export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) => {
+export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
   const [data, setData] = useState<SearchResult[]>([]);
   const [isReloading, setIsReloading] = useState(false);
   const [currentViewingEntry, setCurrentViewingEntry] = useState<Entry | null>(null);
@@ -109,7 +107,7 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
       draggable={draggable}
       header={{
         title: settings.query,
-        subtitle: _t("decks.search-query"),
+        subtitle: i18next.t("decks.search-query"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v),
@@ -126,7 +124,6 @@ export const DeckSearchColumn = ({ id, settings, draggable, history }: Props) =>
         currentViewingEntry ? (
           <DeckPostViewer
             entry={currentViewingEntry}
-            history={history}
             onClose={() => setCurrentViewingEntry(null)}
             backTitle={`Query: ${settings.query}`}
           />

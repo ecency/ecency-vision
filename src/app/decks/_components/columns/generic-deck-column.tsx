@@ -1,9 +1,9 @@
-import { useMappedStore } from "../../../store/use-mapped-store";
 import React, { useContext } from "react";
 import { DeckGridContext } from "../deck-manager";
-import { _t } from "../../../i18n";
 import { DeckHeader } from "../header/deck-header";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
+import { useGlobalStore } from "@/core/global-store";
+import i18next from "i18next";
 
 export interface DeckProps<T extends any> {
   id: string;
@@ -16,7 +16,7 @@ export interface DeckProps<T extends any> {
     additionalSettings?: JSX.Element;
   };
   onReload: () => void;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
   isReloading: boolean;
   children: T;
   isExpanded?: boolean;
@@ -31,14 +31,14 @@ export const GenericDeckColumn = ({
   id,
   isExpanded
 }: DeckProps<any>) => {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
 
   const { deleteColumn } = useContext(DeckGridContext);
 
   return (
     <div
       className={`deck ${
-        header.title.includes(_t("decks.notifications")) ? "list-body pb-0" : ""
+        header.title.includes(i18next.t("decks.notifications")) ? "list-body pb-0" : ""
       } ${isExpanded ? "expanded" : ""}`}
     >
       <DeckHeader

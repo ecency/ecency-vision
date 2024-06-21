@@ -26,7 +26,7 @@ import { arrowLeftSvg } from "@ui/svg";
 interface Props {
   id: string;
   deckKey: number;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 interface AvailableColumn {

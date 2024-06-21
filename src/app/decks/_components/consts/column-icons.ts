@@ -30,7 +30,7 @@ import {
   whatsNewIconSvg
 } from "../icons";
 
-export const ICONS = {
+export const ICONS: Record<string, any> = {
   co: {
     trending: trendingIconSvg,
     hot: hotIconSvg,

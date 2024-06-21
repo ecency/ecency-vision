@@ -1,5 +1,5 @@
-import { Entry } from "../../../../store/entries/types";
 import { renderPostBody } from "@ecency/render-helper";
+import { Entry } from "@/entities";
 
 export function renderLiketu(entry: Entry) {
   const postTree = document.createElement("div");

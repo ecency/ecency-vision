@@ -1,0 +1,19 @@
+.market-swap-active-orders {
+  i {
+    display: flex;
+    align-items: center;
+    width: 16px;
+  }
+
+  .created-date {
+    opacity: .5;
+  }
+
+  .list-group-item {
+    border: 0;
+  }
+
+  .list-group-item:last-child {
+    border-bottom: 0 !important;
+  }
+}

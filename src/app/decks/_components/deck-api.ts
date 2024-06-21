@@ -1,7 +1,7 @@
 import axios from "axios";
-import { apiBase } from "../../api/helper";
-import { getAccessToken } from "../../helper/user-token";
 import { DeckGrid, DeckGridItem } from "./types";
+import { getAccessToken } from "@/utils";
+import { apiBase } from "@/api/helper";
 
 interface DeckApiModel {
   _id: string;

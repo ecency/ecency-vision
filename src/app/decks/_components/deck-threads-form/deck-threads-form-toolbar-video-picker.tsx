@@ -1,16 +1,17 @@
-import Tooltip from "../../../components/tooltip";
-import { _t } from "../../../i18n";
-import { PopperDropdown } from "../../../components/popper-dropdown";
-import { videoSvg } from "../../../img/svg";
 import React, { useState } from "react";
-import { useMappedStore } from "../../../store/use-mapped-store";
+import { useGlobalStore } from "@/core/global-store";
+import { Tooltip } from "@ui/tooltip";
+import { PopperDropdown } from "@/features/ui";
+import i18next from "i18next";
+import { videoSvg } from "@ui/svg";
 
 interface Props {
   onSelect: (video: string) => void;
 }
 
 export function DeckThreadsFormToolbarVideoPicker({ onSelect }: Props) {
-  const { activeUser, global } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const usePrivate = useGlobalStore((s) => s.usePrivate);
 
   const [showUpload, setShowUpload] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
@@ -18,15 +19,15 @@ export function DeckThreadsFormToolbarVideoPicker({ onSelect }: Props) {
   return (
     <div className="deck-threads-form-toolbar-video-picker">
       {activeUser && (
-        <Tooltip content={_t("editor-toolbar.image")}>
+        <Tooltip content={i18next.t("editor-toolbar.image")}>
           <PopperDropdown toggle={videoSvg} hideOnClick={true}>
             <div className="dropdown-menu">
               <div className="dropdown-item" onClick={() => setShowUpload(true)}>
-                {_t("video-upload.upload-video")}
+                {i18next.t("video-upload.upload-video")}
               </div>
-              {global.usePrivate && (
+              {usePrivate && (
                 <div className="dropdown-item" onClick={() => setShowGallery(true)}>
-                  {_t("video-upload.video-gallery")}
+                  {i18next.t("video-upload.video-gallery")}
                 </div>
               )}
             </div>

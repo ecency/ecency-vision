@@ -1,6 +1,5 @@
 import { GenericDeckColumn } from "./generic-deck-column";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { _t } from "../../../i18n";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./_deck-whats-new-column.scss";
@@ -9,10 +8,11 @@ import { version } from "../../../../../package.json";
 import { DeckGridContext } from "../deck-manager";
 import { ReloadableDeckGridItem } from "../types";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
+import i18next from "i18next";
 
 interface Props {
   id: string;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
   settings: ReloadableDeckGridItem["settings"];
 }
 
@@ -52,8 +52,8 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
       id={id}
       draggable={draggable}
       header={{
-        title: _t("decks.columns.whats-new"),
-        subtitle: _t("decks.columns.updates"),
+        title: i18next.t("decks.columns.whats-new"),
+        subtitle: i18next.t("decks.columns.updates"),
         icon: null,
         updateIntervalMs: settings.updateIntervalMs,
         setUpdateIntervalMs: (v) => updateColumnIntervalMs(id, v)
@@ -62,7 +62,7 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
       onReload={() => fetch()}
     >
       <div className="wn-container">
-        <p className="wn-label">{_t("decks.columns.release-list")}</p>
+        <p className="wn-label">{i18next.t("decks.columns.release-list")}</p>
         {!isLoading &&
           releasesList.map((item) => (
             <Accordion key={item.name}>
@@ -71,7 +71,7 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
                   {item.name}
                   {item.name === version && (
                     <div className="bg-blue-dark-sky px-2 py-1 text-xs font-bold text-white rounded">
-                      {_t("decks.columns.current")}
+                      {i18next.t("decks.columns.current")}
                     </div>
                   )}
                 </div>

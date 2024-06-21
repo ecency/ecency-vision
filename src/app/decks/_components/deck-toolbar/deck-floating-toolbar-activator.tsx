@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { upArrowSvg } from "../../../img/svg";
 import "./_deck-floating-toolbar-activator.scss";
-import { classNameObject } from "../../../helper/class-name-object";
 import { Button } from "@ui/button";
+import { classNameObject } from "@ui/util";
+import { upArrowSvg } from "@ui/svg";
 
 interface Props {
   open: boolean;

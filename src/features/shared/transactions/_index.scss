@@ -1,0 +1,168 @@
+@import "src/styles/vars_mixins";
+
+.transaction-list {
+  .transaction-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 10px 16px;
+    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: $sm-break) {
+      flex-direction: row;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+
+      @media (min-width: $sm-break) {
+        margin-bottom: 0;
+      }
+
+      @include themify(day) {
+        @apply text-gray-charcoal;
+      }
+
+      @include themify(night) {
+       @apply text-blue-powder;
+      }
+    }
+
+    select {
+      width: 240px;
+    }
+  }
+
+  .transaction-list-item {
+    border-radius: 8px;
+    box-sizing: content-box;
+    display: flex;
+    padding: 10px;
+    font-size: 13px;
+
+    @media (min-width: $lg-break) {
+      font-size: 16px;
+      padding: 20px 10px;
+    }
+
+    .transaction-icon {
+      align-items: center;
+      border-radius: 50%;
+      display: flex;
+      height: 28px;
+      justify-content: center;
+      margin-right: 10px;
+      width: 28px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      @media (min-width: $lg-break) {
+        font-size: 16px;
+        height: 32px;
+        width: 32px;
+      }
+
+      @include themify(day) {
+        @apply text-gray-steel;
+      }
+
+      @include themify(night) {
+        @apply text-blue-metallic-40-light;
+      }
+    }
+
+    .transaction-title {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      width: 30%;
+
+      .transaction-name {
+        @include themify(day) {
+          @apply text-gray-steel;
+        }
+
+        @include themify(night) {
+          @apply text-blue-metallic;
+        }
+      }
+
+      .transaction-date {
+        font-size: 12px;
+
+        @include themify(day) {
+          @apply text-silver;
+        }
+
+        @include themify(night) {
+          @apply text-gray-warm;
+        }
+      }
+    }
+
+    .transaction-numbers {
+      @apply text-blue-dark-sky;
+      flex-grow: 1;
+      font-weight: 500;
+      text-align: right;
+
+      .number {
+        margin-right: 4px;
+
+        &:not(:last-child) {
+          &:after {
+            content: ",";
+          }
+        }
+      }
+
+      @media (min-width: $md-break) {
+        margin-right: 10px;
+      }
+
+      @media (min-width: $lg-break) {
+        margin-right: 30px;
+      }
+    }
+
+    .transaction-details {
+      @apply text-gray-steel;
+      width: 30%;
+      word-break: break-all;
+      display: none;
+
+      @media (min-width: $md-break) {
+        display: block;
+      }
+    }
+
+    &:nth-child(even) {
+      @include themify(day) {
+        @apply bg-light-300;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-600;
+      }
+    }
+
+  }
+
+  .transaction-list-item-raw {
+    .raw-code {
+      @apply text-gray-warm;
+      word-break: break-all;
+      line-height: 150%;
+    }
+  }
+
+  .empty-list {
+    margin: 0 10px 0;
+  }
+}

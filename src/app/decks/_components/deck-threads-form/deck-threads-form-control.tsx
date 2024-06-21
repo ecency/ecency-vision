@@ -1,10 +1,9 @@
-import { _t } from "../../../i18n";
 import React, { useContext } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { DeckThreadsFormToolbar } from "./deck-threads-form-toolbar";
-import { closeSvg } from "../../../img/svg";
-import { PollsContext } from "../../../pages/submit/hooks/polls-manager";
-import { PollWidget } from "../../polls";
+import { PollsContext, PollWidget } from "@/features/polls";
+import i18next from "i18next";
+import { closeSvg } from "@ui/svg";
 
 interface Props {
   text: string;
@@ -37,7 +36,7 @@ export const DeckThreadsFormControl = ({
         <div className="editor">
           <TextareaAutosize
             className="editor-control"
-            placeholder={placeholder ?? _t("decks.threads-form.input-placeholder")}
+            placeholder={placeholder ?? i18next.t("decks.threads-form.input-placeholder")}
             value={text}
             onChange={(e) => setText(e.target.value)}
             onFocus={onTextareaFocus}

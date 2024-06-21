@@ -3,8 +3,8 @@ import { ThreadItemEntry } from "./identifiable-entry";
 import { communityThreadsQuery } from "./community-api";
 import { threadsQuery } from "./threads-api";
 import { useQueryClient } from "@tanstack/react-query";
-import { FetchQueryOptions } from "@tanstack/query-core/src/types";
-import { EntriesCacheContext, QueryIdentifiers } from "../../../../core";
+import { FetchQueryOptions } from "@tanstack/query-core";
+import { EntriesCacheContext } from "@/core/caches";
 
 export const DeckThreadsColumnManagerContext = createContext<{
   fetch: (hosts: string[], lastContainers?: ThreadItemEntry[]) => Promise<ThreadItemEntry[]>;

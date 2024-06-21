@@ -1,11 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
 import "./_deck-floating-manager.scss";
 import { DeckGridContext } from "./deck-manager";
-import { upArrowSvg } from "../../img/svg";
 import { getColumnTitle, ICONS } from "./consts";
-import { _t } from "../../i18n";
-import { classNameObject } from "../../helper/class-name-object";
 import { Button } from "@ui/button";
+import { classNameObject } from "@ui/util";
+import { upArrowSvg } from "@ui/svg";
+import i18next from "i18next";
 
 export const DeckFloatingManager = () => {
   const columnsRef = useRef<HTMLDivElement | null>(null);
@@ -87,13 +87,13 @@ export const DeckFloatingManager = () => {
                   ) : (
                     <></>
                   )}
-                  {type === "ac" ? _t("decks.columns.new-column") : ""}
-                  {type === "to" ? _t("decks.columns.topics") : ""}
-                  {type === "tr" ? _t("decks.columns.trending") : ""}
-                  {type === "msf" ? _t("decks.columns.market-swap-form") : ""}
-                  {type === "faq" ? _t("decks.columns.faq") : ""}
-                  {type === "wb" ? _t("decks.columns.balance") : ""}
-                  {type === "wn" ? _t("decks.columns.whats-new") : ""}
+                  {type === "ac" ? i18next.t("decks.columns.new-column") : ""}
+                  {type === "to" ? i18next.t("decks.columns.topics") : ""}
+                  {type === "tr" ? i18next.t("decks.columns.trending") : ""}
+                  {type === "msf" ? i18next.t("decks.columns.market-swap-form") : ""}
+                  {type === "faq" ? i18next.t("decks.columns.faq") : ""}
+                  {type === "wb" ? i18next.t("decks.columns.balance") : ""}
+                  {type === "wn" ? i18next.t("decks.columns.whats-new") : ""}
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@ export const DeckFloatingManager = () => {
             })
           }
         >
-          {_t("decks.add-column")}
+          {i18next.t("decks.add-column")}
         </Button>
       </div>
     </div>

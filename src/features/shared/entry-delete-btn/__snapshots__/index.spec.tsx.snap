@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+>
+  delete
+</a>
+`;

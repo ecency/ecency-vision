@@ -1,14 +1,14 @@
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { GenericDeckColumn } from "./generic-deck-column";
-import { _t } from "../../../i18n";
 import React, { useEffect, useState } from "react";
-import { articleSvg } from "../../../img/svg";
-import { faqKeysGeneral } from "../../../constants";
 import { FormControl } from "@ui/input";
+import { faqKeysGeneral } from "@/consts";
+import i18next from "i18next";
+import { articleSvg } from "@ui/svg";
 
 interface Props {
   id: string;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
 }
 
 export const DeckFaqColumn = ({ id, draggable }: Props) => {
@@ -19,7 +19,10 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
   useEffect(() => {
     setDataToShow(
       faqKeysGeneral.filter((key) =>
-        _t(`static.faq.${key}-header`).toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+        i18next
+          .t(`static.faq.${key}-header`)
+          .toLocaleLowerCase()
+          .includes(searchText.toLocaleLowerCase())
       )
     );
   }, [searchText]);
@@ -29,8 +32,8 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
       id={id}
       draggable={draggable}
       header={{
-        title: _t("decks.columns.faq"),
-        subtitle: _t("decks.columns.faq-subtitle"),
+        title: i18next.t("decks.columns.faq"),
+        subtitle: i18next.t("decks.columns.faq-subtitle"),
         icon: null
       }}
       isReloading={false}
@@ -45,15 +48,15 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
             <div className="search-bar w-full mb-4">
               <FormControl
                 type="text"
-                placeholder={_t("floating-faq.search-placeholder")}
+                placeholder={i18next.t("floating-faq.search-placeholder")}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
             </div>
             {!searchText ? (
-              <p className="suggest-label">{_t("floating-faq.suggestion")}</p>
+              <p className="suggest-label">{i18next.t("floating-faq.suggestion")}</p>
             ) : !dataToShow.length ? (
-              <p className="suggest-label">{_t("floating-faq.no-results")}</p>
+              <p className="suggest-label">{i18next.t("floating-faq.no-results")}</p>
             ) : (
               ""
             )}
@@ -62,7 +65,7 @@ export const DeckFaqColumn = ({ id, draggable }: Props) => {
                 return (
                   <a className="faq-article" href={`/faq#${x}`} target="_blank" key={x}>
                     <div className="faq-image">{articleSvg}</div>
-                    {_t(`static.faq.${x}-header`)}
+                    {i18next.t(`static.faq.${x}-header`)}
                   </a>
                 );
               })}

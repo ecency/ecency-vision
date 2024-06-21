@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import useMount from "react-use/lib/useMount";
-import { arrowLeftSvg } from "../../../../img/svg";
-import { Entry } from "../../../../store/entries/types";
-import { getPostsRanked } from "../../../../api/bridge";
+import React, { useMemo } from "react";
 import { ListItemSkeleton, SearchListItem } from "../deck-items";
-import { makePath } from "../../../../components/entry-link";
 import { Button } from "@ui/button";
+import { getPostsRankedQuery } from "@/api/queries";
+import { arrowLeftSvg } from "@ui/svg";
+import { useMounted } from "@/utils/use-mounted";
+import { makeEntryPath } from "@/utils";
 
 interface Props {
   topic: string;
@@ -14,26 +13,13 @@ interface Props {
 }
 
 export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [data, setData] = useState<Entry[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { data } = getPostsRankedQuery("trending", "", 20, topic).useClientQuery();
 
-  useMount(() => {
-    setIsMounted(true);
-    fetch();
-  });
-
-  const fetch = async () => {
-    try {
-      const response = await getPostsRanked("trending", "", "", 20, topic);
-      if (response) {
-        setData(response);
-      }
-    } catch (e) {
-    } finally {
-      setIsLoaded(true);
-    }
-  };
+  const dataFlow = useMemo(
+    () => data?.pages?.reduce((acc, item) => [...acc, ...item], []) ?? [],
+    []
+  );
+  const isMounted = useMounted();
 
   return (
     <div
@@ -46,7 +32,6 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
           <Button
             appearance="link"
             onClick={() => {
-              setIsMounted(false);
               setTimeout(() => onClose(), 300);
             }}
             icon={arrowLeftSvg}
@@ -60,25 +45,24 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
         </div>
       </div>
       <div>
-        {isLoaded &&
-          data.map((item: any, index) => (
-            <div className="virtual-list-item" key={item.post_id}>
-              <SearchListItem
-                index={index + 1}
-                entry={{
-                  ...item,
-                  toggleNotNeeded: true
-                }}
-                {...item}
-                children=""
-                onMounted={() => {}}
-                onEntryView={() =>
-                  window.open(makePath(item.category, item.author, item.permlink), "_blank")
-                }
-              />
-            </div>
-          ))}
-        {!isLoaded && (
+        {dataFlow?.map((item: any, index) => (
+          <div className="virtual-list-item" key={item.post_id}>
+            <SearchListItem
+              index={index + 1}
+              entry={{
+                ...item,
+                toggleNotNeeded: true
+              }}
+              {...item}
+              children=""
+              onMounted={() => {}}
+              onEntryView={() =>
+                window.open(makeEntryPath(item.category, item.author, item.permlink), "_blank")
+              }
+            />
+          </div>
+        ))}
+        {dataFlow.length === 0 && (
           <div className="skeleton-list pt-0">
             {Array.from(Array(20).keys()).map((i) => (
               <div key={i}>

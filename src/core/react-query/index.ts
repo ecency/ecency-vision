@@ -27,6 +27,7 @@ export enum QueryIdentifiers {
   MUTED_USERS = "muted-users",
   PROMOTED_ENTRIES = "promoted-entries",
   SEARCH_API = "search-api",
+  GET_IMAGES = "get-images",
 
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
   POINTS = "points",
@@ -35,6 +36,7 @@ export enum QueryIdentifiers {
   DRAFTS = "drafts",
   BY_DRAFT_ID = "by-draft-id",
   FETCH_DISCUSSIONS = "fetch-discussions",
+  FETCH_DISCUSSIONS_MAP = "fetch-discussions-map",
   FETCH_MUTED_USERS = "fetch-muted-users",
   GET_ACCOUNT_FULL = "get-account-full",
   GET_POSTS = "get-posts",

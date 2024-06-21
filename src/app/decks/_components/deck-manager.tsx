@@ -3,12 +3,12 @@ import { DEFAULT_LAYOUT } from "./consts";
 import { DeckGrid, DeckGridItem, DeckGrids } from "./types";
 import * as uuid from "uuid";
 import useLocalStorage from "react-use/lib/useLocalStorage";
-import { PREFIX } from "../../util/local-storage";
 import { createDeck, deleteDeck, getDecks, updateDeck } from "./deck-api";
-import { useMappedStore } from "../../store/use-mapped-store";
 import usePrevious from "react-use/lib/usePrevious";
-import { error } from "../../components/feedback";
-import { _t } from "../../i18n";
+import { useGlobalStore } from "@/core/global-store";
+import { PREFIX } from "@/utils/local-storage";
+import { error } from "@/features/shared";
+import i18next from "i18next";
 
 interface Context {
   layout: DeckGrid;
@@ -30,7 +30,7 @@ interface Context {
 
 export const DeckGridContext = React.createContext<Context>({
   activeDeck: "",
-  layout: DEFAULT_LAYOUT[0],
+  layout: DEFAULT_LAYOUT.decks[0],
   decks: DEFAULT_LAYOUT,
   add: () => {},
   reOrder: () => {},
@@ -51,7 +51,7 @@ interface Props {
 }
 
 export const DeckManager = ({ children }: Props) => {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const previousActiveUser = usePrevious(activeUser);
 
   const [localDecks, setLocalDecks] = useLocalStorage(PREFIX + "_d", DEFAULT_LAYOUT);
@@ -123,7 +123,7 @@ export const DeckManager = ({ children }: Props) => {
         }
       }
     } catch (e) {
-      error(_t("decks.columns.failed-fetch"));
+      error(i18next.t("decks.columns.failed-fetch"));
     } finally {
       setTimeout(() => {
         setIsDecksLoading(false);
@@ -145,7 +145,7 @@ export const DeckManager = ({ children }: Props) => {
           }
         }
       } catch (e) {
-        error(_t("decks.columns.failed-update"));
+        error(i18next.t("decks.columns.failed-update"));
       } finally {
         setDecks(decksSnapshot);
       }

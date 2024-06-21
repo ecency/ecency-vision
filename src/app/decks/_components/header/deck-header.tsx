@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { _t } from "../../../i18n";
 import {
   chevronDownSvgForSlider,
   chevronUpSvgForSlider,
   deleteForeverSvg,
   dragSvg
-} from "../../../img/svg";
+} from "@/assets/img/svg";
 import { DeckHeaderSettings } from "./deck-header-settings";
 import { DeckHeaderReloading } from "./deck-header-reloading";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import { classNameObject } from "../../../helper/class-name-object";
 import { Button } from "@ui/button";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
-import Tooltip from "../../../components/tooltip";
+import { classNameObject } from "@ui/util";
+import { Tooltip } from "@ui/tooltip";
+import i18next from "i18next";
 
 export interface Props {
   title: string;
@@ -22,7 +22,7 @@ export interface Props {
   sticky?: boolean;
   primary?: boolean;
   prefix?: JSX.Element;
-  draggable?: DraggableProvidedDragHandleProps;
+  draggable?: DraggableProvidedDragHandleProps | null;
   additionalSettings?: JSX.Element;
 }
 
@@ -70,7 +70,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
             )}
             <div className="title">{props.title}</div>
           </div>
-          <Tooltip content={_t("decks.header-info")}>
+          <Tooltip content={i18next.t("decks.header-info")}>
             <AccordionToggle
               as={Button}
               appearance="link"
@@ -117,7 +117,7 @@ export const DeckHeader = (props: Props | WithIntervalProps | WithDeletionProps 
                   icon={deleteForeverSvg}
                   iconPlacement="left"
                 >
-                  {_t("decks.remove")}
+                  {i18next.t("decks.remove")}
                 </Button>
               ) : (
                 <></>

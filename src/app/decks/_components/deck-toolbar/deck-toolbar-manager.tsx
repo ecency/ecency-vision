@@ -4,8 +4,8 @@ import "./_deck-toolbar-manager.scss";
 import { addIconSvg, settingsIconSvg } from "../icons";
 import { DecksSettings } from "../deck-settings/decks-settings";
 import { DeckGrid } from "../types";
-import { _t } from "../../../i18n";
 import { Button } from "@ui/button";
+import i18next from "i18next";
 
 interface Props {
   isExpanded: boolean;
@@ -20,7 +20,7 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
   return (
     <div className="deck-toolbar-manager">
       <div className="title">
-        <div className="text">{_t("decks.decks")}</div>
+        <div className="text">{i18next.t("decks.decks")}</div>
         <Button
           appearance="link"
           className="add-deck-btn"
@@ -40,7 +40,7 @@ export const DeckToolbarManager = ({ isExpanded }: Props) => {
               <div className="title px-0">
                 {deck.title}
                 {deck.storageType === "local" ? (
-                  <div className="local">{_t("decks.local")}</div>
+                  <div className="local">{i18next.t("decks.local")}</div>
                 ) : (
                   <></>
                 )}

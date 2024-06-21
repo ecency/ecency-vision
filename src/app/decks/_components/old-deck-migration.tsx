@@ -1,13 +1,13 @@
-import { useMappedStore } from "../../store/use-mapped-store";
 import { useContext, useEffect } from "react";
-import { get, set } from "../../util/local-storage";
 import { DeckGrid, OldDeck } from "./types";
 import { DeckGridContext } from "./deck-manager";
 import * as uuid from "uuid";
-import { _t } from "../../i18n";
+import { useGlobalStore } from "@/core/global-store";
+import { get, set } from "@/utils/local-storage";
+import i18next from "i18next";
 
 export function useOldDeckMigration() {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const { pushOrUpdateDeck } = useContext(DeckGridContext);
 
   useEffect(() => {
@@ -27,12 +27,12 @@ export function useOldDeckMigration() {
 
           const isCommunity = title.includes("hive-");
           const isPost =
-            deckType === _t("decks.posts").toLocaleLowerCase() ||
-            deckType === _t("decks.blogs").toLocaleLowerCase() ||
-            deckType === _t("decks.comments").toLocaleLowerCase() ||
-            deckType === _t("decks.replies").toLocaleLowerCase();
+            deckType === i18next.t("decks.posts").toLocaleLowerCase() ||
+            deckType === i18next.t("decks.blogs").toLocaleLowerCase() ||
+            deckType === i18next.t("decks.comments").toLocaleLowerCase() ||
+            deckType === i18next.t("decks.replies").toLocaleLowerCase();
 
-          if (deckType === _t("decks.trending-topics").toLocaleLowerCase()) {
+          if (deckType === i18next.t("decks.trending-topics").toLocaleLowerCase()) {
             newDeck.columns.push({
               key: newDeck.columns.length,
               type: "to",
@@ -41,7 +41,7 @@ export function useOldDeckMigration() {
                 updateIntervalMs
               }
             });
-          } else if (deckType === _t("decks.trending").toLocaleLowerCase() && !isCommunity) {
+          } else if (deckType === i18next.t("decks.trending").toLocaleLowerCase() && !isCommunity) {
             newDeck.columns.push({
               key: newDeck.columns.length,
               type: "tr",
@@ -62,7 +62,7 @@ export function useOldDeckMigration() {
                 updateIntervalMs
               }
             });
-          } else if (deckType === _t("decks.notifications").toLocaleLowerCase()) {
+          } else if (deckType === i18next.t("decks.notifications").toLocaleLowerCase()) {
             let contentType = "all";
             if (dataFilters && "type" in dataFilters) {
               contentType = dataFilters.type;
@@ -77,7 +77,7 @@ export function useOldDeckMigration() {
                 updateIntervalMs
               }
             });
-          } else if (deckType === _t("decks.wallet").toLocaleLowerCase()) {
+          } else if (deckType === i18next.t("decks.wallet").toLocaleLowerCase()) {
             let contentType = "all";
             if (dataFilters && "group" in dataFilters) {
               contentType = dataFilters.group;

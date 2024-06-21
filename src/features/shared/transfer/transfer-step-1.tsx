@@ -14,7 +14,7 @@ import {
   vestsToHp
 } from "@/utils";
 import { useGlobalStore } from "@/core/global-store";
-import { getDynamicPropsQuery, useGetTransactionsQuery } from "@/api/queries";
+import { getDynamicPropsQuery, getTransactionsQuery } from "@/api/queries";
 import { TransferFormText } from "@/features/shared/transfer/transfer-form-text";
 import { TransferAssetSwitch } from "@/features/shared/transfer/transfer-assets-switch";
 import { EXCHANGE_ACCOUNTS } from "@/consts";
@@ -52,14 +52,14 @@ export function TransferStep1({ titleLngKey }: Props) {
   } = useTransferSharedState();
 
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
-  const { data: transactions, isLoading: inProgress } = useGetTransactionsQuery(
+  const { data: transactions, isLoading: inProgress } = getTransactionsQuery(
     activeUser?.username
-  );
+  ).useClientQuery();
   const { toWarning, toData, delegatedAmount, toError, delegateAccount } =
     useDebounceTransferAccountData();
 
   const transactionsFlow = useMemo(
-    () => transactions?.pages.reduce((acc, page) => [...acc, ...page], []),
+    () => transactions?.pages.reduce((acc, page) => [...acc, ...page], []) ?? [],
     [transactions]
   );
   const w = useMemo(

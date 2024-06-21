@@ -12,3 +12,4 @@ export * from "./tooltip";
 export * from "./emoji-picker";
 export * from "./full-height";
 export * from "./modal-confirm";
+export * from "./popper-dropdown";

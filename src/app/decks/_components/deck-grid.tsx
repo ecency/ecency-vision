@@ -11,7 +11,6 @@ import {
 } from "./types";
 import { DeckCommunityColumn } from "./columns/deck-community-column";
 import { DeckWalletColumn } from "./columns/deck-wallet-column";
-import { History } from "history";
 import { DeckNotificationsColumn } from "./columns/deck-notifications-column";
 import { DeckTrendingColumn } from "./columns/deck-trending-column";
 import { DeckTopicsColumn } from "./columns/deck-topics-column";
@@ -19,14 +18,14 @@ import { DeckSearchColumn } from "./columns/deck-search-column";
 import usePrevious from "react-use/lib/usePrevious";
 import * as uuid from "uuid";
 import { useOldDeckMigration } from "./old-deck-migration";
-import { _t } from "../../i18n";
 import { DeckThreadsColumn } from "./columns/deck-threads-column";
 import { DeckMsfColumn } from "./columns/deck-msf-column";
 import { DeckFaqColumn } from "./columns/deck-faq-column";
 import { DeckWalletBalanceColumn } from "./columns/deck-wallet-balance-column";
 import { DeckWhatsNewColumn } from "./columns/deck-whats-new-column";
 import { Button } from "@ui/button";
-import { arrowLeftSvg, arrowRightSvg } from "../../img/svg";
+import { arrowLeftSvg, arrowRightSvg } from "@ui/svg";
+import i18next from "i18next";
 
 interface Props {
   history: History;
@@ -128,7 +127,7 @@ export const DeckGrid = ({ history }: Props) => {
                       provided.draggableProps.style = {
                         ...provided.draggableProps.style,
                         transform
-                      };
+                      } as any;
                     }
                     return (
                       <div
@@ -149,14 +148,12 @@ export const DeckGrid = ({ history }: Props) => {
                             <DeckUserColumn
                               id={id}
                               draggable={provided.dragHandleProps}
-                              history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                             />
                           )}
                           {type === "co" && (
                             <DeckCommunityColumn
                               id={id}
-                              history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as CommunityDeckGridItem["settings"]}
                             />
@@ -166,13 +163,11 @@ export const DeckGrid = ({ history }: Props) => {
                               id={id}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
-                              history={history}
                             />
                           )}
                           {type === "n" && (
                             <DeckNotificationsColumn
                               id={id}
-                              history={history}
                               settings={settings as UserDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
                             />
@@ -180,7 +175,6 @@ export const DeckGrid = ({ history }: Props) => {
                           {type === "tr" && (
                             <DeckTrendingColumn
                               id={id}
-                              history={history}
                               draggable={provided.dragHandleProps}
                               settings={settings as ReloadableDeckGridItem["settings"]}
                             />
@@ -197,7 +191,6 @@ export const DeckGrid = ({ history }: Props) => {
                               id={id}
                               settings={settings as SearchDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
-                              history={history}
                             />
                           )}
                           {type === "th" && (
@@ -205,7 +198,6 @@ export const DeckGrid = ({ history }: Props) => {
                               id={id}
                               settings={settings as WavesDeckGridItem["settings"]}
                               draggable={provided.dragHandleProps}
-                              history={history}
                             />
                           )}
                           {type === "msf" && (
@@ -250,7 +242,7 @@ export const DeckGrid = ({ history }: Props) => {
                     })
                   }
                 >
-                  {_t("decks.add-column")}
+                  {i18next.t("decks.add-column")}
                 </Button>
               </div>
             </div>

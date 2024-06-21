@@ -2,9 +2,7 @@ import { capitalize } from "./capitalize";
 import defaults from "@/defaults.json";
 import i18next from "i18next";
 
-export function getMetaProps<T extends Record<string, any>>({ global, activeUser }: T) {
-  const { filter, tag } = global;
-
+export function getMetaProps<T extends Record<string, any>>({ activeUser, filter, tag }: T) {
   const fC = capitalize(filter);
   let title = i18next.t("entry-index.title", { f: fC });
   let description = i18next.t("entry-index.description", { f: fC });

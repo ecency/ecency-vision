@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "../../../img/svg";
 import { Button } from "@ui/button";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
+import { chevronDownSvgForSlider, chevronUpSvgForSlider } from "@ui/svg";
 
 interface Props {
   title: string;

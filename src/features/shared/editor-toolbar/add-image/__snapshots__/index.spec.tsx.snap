@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="dialog-content"
+>
+  <form
+    className="block "
+    onSubmit={[Function]}
+  >
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onInput={[Function]}
+        onInvalid={[Function]}
+        placeholder="Image Text"
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <input
+        autoComplete="off"
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        onInput={[Function]}
+        onInvalid={[Function]}
+        placeholder="Image Link"
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="flex justify-end"
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="submit"
+      >
+        <div>
+          Add
+        </div>
+      </button>
+    </div>
+  </form>
+</div>
+`;

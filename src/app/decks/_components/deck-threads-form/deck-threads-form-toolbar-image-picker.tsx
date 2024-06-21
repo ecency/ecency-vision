@@ -1,23 +1,24 @@
-import Tooltip from "../../../components/tooltip";
-import { _t } from "../../../i18n";
 import React, { useRef, useState } from "react";
-import AddImage from "../../../components/add-image";
-import { useMappedStore } from "../../../store/use-mapped-store";
-import { getAccessToken } from "../../../helper/user-token";
-import { uploadImage } from "../../../api/misc";
-import { error } from "../../../components/feedback";
 import axios from "axios";
-import Gallery from "../../../components/gallery";
-import { PopperDropdown } from "../../../components/popper-dropdown";
 import { Button } from "@ui/button";
 import { UilImage } from "@iconscout/react-unicons";
+import { useGlobalStore } from "@/core/global-store";
+import { getAccessToken } from "@/utils";
+import { uploadImage } from "@/api/misc";
+import { error } from "@/features/shared";
+import i18next from "i18next";
+import { Tooltip } from "@ui/tooltip";
+import { PopperDropdown } from "@/features/ui";
+import { AddImage } from "@/features/shared/editor-toolbar/add-image";
+import { GalleryDialog } from "@/features/shared/gallery";
 
 interface Props {
   onAddImage: (link: string, name: string) => void;
 }
 
 export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
-  const { activeUser, global } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const usePrivate = useGlobalStore((s) => s.usePrivate);
 
   const fileInputRef = useRef<any>();
 
@@ -34,7 +35,9 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
   };
 
   const fileInputChanged = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let files = [...(e.target.files as FileList)].filter((i) => checkFile(i.name)).filter((i) => i);
+    let files = Array.from(e.target.files as FileList)
+      .filter((i) => checkFile(i.name))
+      .filter((i) => i);
 
     if (files.length > 0) {
       e.stopPropagation();
@@ -57,13 +60,13 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
         imageUrl = resp.url;
         onAddImage(imageUrl, file.name);
       } else {
-        error(_t("editor-toolbar.image-error-cache"));
+        error(i18next.t("editor-toolbar.image-error-cache"));
       }
     } catch (e) {
       if (axios.isAxiosError(e) && e.response?.status === 413) {
-        error(_t("editor-toolbar.image-error-size"));
+        error(i18next.t("editor-toolbar.image-error-size"));
       } else {
-        error(_t("editor-toolbar.image-error"));
+        error(i18next.t("editor-toolbar.image-error"));
       }
       return;
     }
@@ -72,7 +75,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
   return (
     <div className="deck-threads-form-toolbar-image-picker">
       {activeUser && (
-        <Tooltip content={_t("editor-toolbar.image")}>
+        <Tooltip content={i18next.t("editor-toolbar.image")}>
           <PopperDropdown
             toggle={<Button icon={<UilImage />} appearance="gray-link" noPadding={true} />}
           >
@@ -83,7 +86,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
                   setImagePickInitiated(true);
                 }}
               >
-                {_t("editor-toolbar.link-image")}
+                {i18next.t("editor-toolbar.link-image")}
               </div>
               <div
                 className="dropdown-item"
@@ -93,9 +96,9 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
                   if (el) el.click();
                 }}
               >
-                {_t("editor-toolbar.upload")}
+                {i18next.t("editor-toolbar.upload")}
               </div>
-              {global.usePrivate && (
+              {usePrivate && (
                 <div
                   className="dropdown-item"
                   onClick={(e: React.MouseEvent<HTMLElement>) => {
@@ -103,7 +106,7 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
                     setGalleryPickInitiated(true);
                   }}
                 >
-                  {_t("editor-toolbar.gallery")}
+                  {i18next.t("editor-toolbar.gallery")}
                 </div>
               )}
             </div>
@@ -120,8 +123,9 @@ export const DeckThreadsFormToolbarImagePicker = ({ onAddImage }: Props) => {
         />
       )}
       {galleryPickInitiated && activeUser && (
-        <Gallery
-          onHide={() => setGalleryPickInitiated(false)}
+        <GalleryDialog
+          show={galleryPickInitiated}
+          setShow={setGalleryPickInitiated}
           onPick={(url: string) => {
             const fileName = "";
             onImagePick(fileName, url);

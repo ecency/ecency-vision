@@ -36,3 +36,5 @@ export * from "./get-controversial-rising-query";
 export * from "./get-posts-ranked-query";
 export * from "./search-api-query";
 export * from "./get-account-posts-feed-query";
+export * from "./get-bots-query";
+export * from "./get-images-query";

@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./_decks-settings.scss";
 import { DeckGrid } from "../types";
-import EmojiPicker from "../../../components/emoji-picker/index-old";
-import { deleteForeverSvg, emoticonHappyOutlineSvg } from "../../../img/svg";
-import ClickAwayListener from "../../../components/clickaway-listener";
 import * as uuid from "uuid";
 import { DeckGridContext } from "../deck-manager";
 import { DEFAULT_COLUMNS } from "../consts";
-import { _t } from "../../../i18n";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { Alert } from "@ui/alert";
+import { deleteForeverSvg, emoticonHappyOutlineSvg } from "@ui/svg";
+import { EmojiPicker } from "@/features/ui";
+import i18next from "i18next";
+import { ClickAwayListener } from "@/features/shared";
 
 interface Props {
   deck?: DeckGrid;
@@ -21,6 +21,7 @@ interface Props {
 }
 
 export const DecksSettings = ({ show, setShow, deck }: Props) => {
+  const anchorRef = useRef<HTMLButtonElement>(null);
   const { pushOrUpdateDeck, removeDeck, decks } = useContext(DeckGridContext);
 
   const [name, setName] = useState("");
@@ -72,19 +73,21 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
       className="decks-settings"
     >
       <ModalHeader closeButton={true}>
-        <ModalTitle>{deck ? _t("decks.settings") : _t("decks.create-deck")}</ModalTitle>
+        <ModalTitle>
+          {deck ? i18next.t("decks.settings") : i18next.t("decks.create-deck")}
+        </ModalTitle>
       </ModalHeader>
       <ModalBody>
         {isRemovingDeck && deck && (
           <div>
-            <div className="text-center mb-4">{_t("decks.delete-prompt")}</div>
+            <div className="text-center mb-4">{i18next.t("decks.delete-prompt")}</div>
             <div className="flex items-center justify-center">
               <Button
                 disabled={isLoading}
                 className="mr-2"
                 onClick={() => setIsRemovingDeck(false)}
               >
-                {_t("g.cancel")}
+                {i18next.t("g.cancel")}
               </Button>
               <Button
                 disabled={isLoading}
@@ -102,7 +105,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                   }
                 }}
               >
-                {_t("g.confirm")}
+                {i18next.t("g.confirm")}
               </Button>
             </div>
           </div>
@@ -114,6 +117,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 prepend={
                   <>
                     <Button
+                      ref={anchorRef}
                       appearance="link"
                       onClick={() => {
                         setShowEmoji(!showEmoji);
@@ -124,7 +128,8 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                     {showEmoji ? (
                       <ClickAwayListener onClickAway={() => setShowEmoji(false)}>
                         <EmojiPicker
-                          fallback={(value) => {
+                          anchor={anchorRef.current}
+                          onSelect={(value) => {
                             setIcon(value);
                             setShowEmoji(false);
                           }}
@@ -145,14 +150,14 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
                 />
               </InputGroup>
             </div>
-            <label className="font-bold">{_t("g.settings")}</label>
-            {isLocalStorage && <Alert className="my-3">{_t("decks.use-local-text")}</Alert>}
+            <label className="font-bold">{i18next.t("g.settings")}</label>
+            {isLocalStorage && <Alert className="my-3">{i18next.t("decks.use-local-text")}</Alert>}
             <div className="form-section flex">
               <div className="mb-4">
                 <FormControl
                   checked={isLocalStorage}
                   type="checkbox"
-                  label={_t("decks.save-locally")}
+                  label={i18next.t("decks.save-locally")}
                   onChange={(value) => setIsLocalStorage(value)}
                 />
               </div>
@@ -172,10 +177,10 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
               </div>
               <div>
                 <Button appearance="link" onClick={() => setShow(false)}>
-                  {_t("g.cancel")}
+                  {i18next.t("g.cancel")}
                 </Button>
                 <Button disabled={!name} onClick={() => submit()}>
-                  {deck ? _t("g.save") : _t("decks.create")}
+                  {deck ? i18next.t("g.save") : i18next.t("decks.create")}
                 </Button>
               </div>
             </div>
