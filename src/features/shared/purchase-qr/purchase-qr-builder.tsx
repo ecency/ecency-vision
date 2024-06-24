@@ -13,12 +13,13 @@ import { SearchByUsername } from "@/features/shared/search-by-username";
 import { useSearchParams } from "next/navigation";
 
 interface Props {
+  username?: string;
   queryType?: PurchaseTypes;
   queryProductId?: string;
 }
 
-export const PurchaseQrBuilder = ({ queryType, queryProductId }: Props) => {
-  const [username, setUsername] = useState("");
+export const PurchaseQrBuilder = ({ queryType, queryProductId, username: propUsername }: Props) => {
+  const [username, setUsername] = useState(propUsername ?? "");
   const qrImgRef = useRef<HTMLImageElement | undefined>();
   const [isQrShow, setIsQrShow] = useState(false);
   const [type, setType] = useState(PurchaseTypes.BOOST);
