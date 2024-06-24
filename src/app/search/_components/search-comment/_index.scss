@@ -1,0 +1,30 @@
+@import "src/styles/vars_mixins";
+
+.search-comment {
+  margin-bottom: 20px;
+
+  .advanced-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    @include themify(day) {
+      border-bottom: 1px solid;
+      @apply border-light-300;
+    }
+  }
+
+  .card-header {
+    .matches {
+      font-weight: 300;
+      font-size: 90%;
+      margin-left: 10px;
+    }
+  }
+
+  .search-list {
+    .show-more {
+      padding: 6px;
+      text-align: center;
+    }
+  }
+}

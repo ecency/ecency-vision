@@ -9,8 +9,7 @@ import { ListStyle } from "@/enums";
 import { Community, Entry, SearchResult } from "@/entities";
 import { getPostsFeedQueryData } from "@/api/queries/get-account-posts-feed-query";
 import { CommunityContentSearch } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content-search";
-import { getSearchApiQueryData } from "@/api/queries";
-import { getQueryClient } from "@/core/react-query";
+import { getSearchApiQuery } from "@/api/queries";
 import { useGlobalStore } from "@/core/global-store";
 
 interface Props {
@@ -43,15 +42,15 @@ export async function CommunityContent({ filter, community, tag, query, section 
   }
 
   const searchData =
-    getSearchApiQueryData(getQueryClient(), query ?? "", "newest", "0")?.pages.reduce<
-      SearchResult[]
-    >(
-      (acc, page) =>
-        [...acc, ...page.results].sort(
-          (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
-        ),
-      []
-    ) ?? [];
+    getSearchApiQuery(query ?? "", "newest", "0")
+      .getData()
+      ?.pages.reduce<SearchResult[]>(
+        (acc, page) =>
+          [...acc, ...page.results].sort(
+            (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+          ),
+        []
+      ) ?? [];
 
   return (
     <>

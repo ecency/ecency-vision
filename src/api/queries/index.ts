@@ -40,3 +40,5 @@ export * from "./get-bots-query";
 export * from "./get-images-query";
 export * from "./get-boost-plus-prices-query";
 export * from "./get-boost-plus-account-prices-query";
+export * from "./get-search-account-query";
+export * from "./get-search-topics-query";

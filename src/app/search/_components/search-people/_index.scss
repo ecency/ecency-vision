@@ -1,0 +1,13 @@
+@import "src/styles/vars_mixins";
+
+.search-people {
+  margin-bottom: 20px;
+
+  .people-list {
+    @include search-side-list;
+
+    .list-item {
+      list-style: none;
+    }
+  }
+}

@@ -9,16 +9,11 @@ import {
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components";
 import defaults from "@/defaults.json";
 import { CommunityContent } from "@/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content";
-import {
-  getAccountFullQuery,
-  prefetchGetPostsFeedQuery,
-  prefetchSearchApiQuery
-} from "@/api/queries";
+import { getAccountFullQuery, getSearchApiQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
 import Head from "next/head";
 import i18next from "i18next";
 import { capitalize } from "@/utils";
 import { notFound } from "next/navigation";
-import { getQueryClient } from "@/core/react-query";
 
 interface Props {
   params: { filterOrCategory: string; entryOrCommunity: string };
@@ -36,7 +31,7 @@ export default async function CommunityPage({ params, searchParams }: Props) {
   const data = await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
 
   if (searchParams.q) {
-    await prefetchSearchApiQuery(getQueryClient(), searchParams.q, "newest", "0");
+    await getSearchApiQuery(searchParams.q, "newest", "0").prefetch();
   }
 
   // TODO: Add notification count to title in client side

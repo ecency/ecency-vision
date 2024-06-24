@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="border border-[--border-color] bg-white rounded  search-people"
+>
+  <div
+    className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3"
+  >
+    <strong>
+      People
+    </strong>
+  </div>
+  <div
+    className="p-3"
+  >
+    <div
+      className="linear-progress"
+    >
+      <div
+        className="bar bar1"
+      />
+      <div
+        className="bar bar2"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) No matches 1`] = `
+<div
+  className="border border-[--border-color] bg-white rounded  search-people"
+>
+  <div
+    className="bg-gray-100 dark:bg-dark-default border-b border-[--border-color] p-3"
+  >
+    <strong>
+      People
+    </strong>
+  </div>
+  <div
+    className="p-3"
+  >
+    <div
+      className="linear-progress"
+    >
+      <div
+        className="bar bar1"
+      />
+      <div
+        className="bar bar2"
+      />
+    </div>
+  </div>
+</div>
+`;

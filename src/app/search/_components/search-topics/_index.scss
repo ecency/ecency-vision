@@ -1,0 +1,45 @@
+@import "src/styles/vars_mixins";
+
+.search-topics {
+  .topic-list {
+    .list-item {
+      border-radius: 25px;
+      cursor: pointer;
+      display: inline-block;
+      margin:  0 8px 8px 0;
+      padding: 4px 8px;
+      text-decoration: none;
+      transition: 0.5s;
+      font-size: 90%;
+
+      @media (min-width: $lg-break) {
+        font-size: $font-size-base;
+        padding: 4px 12px;
+      }
+
+      @include themify(day) {
+        @apply bg-white;
+        @apply text-silver-035;
+        border: solid 1px;
+        @apply border-light-400;
+      }
+
+      @include themify(night) {
+        @apply bg-blue-dark-grey;
+        @apply text-silver-010;
+        border: solid 1px;
+        @apply border-dark-200;
+      }
+
+      &:hover {
+        @include themify(day) {
+          @apply bg-white-500;
+        }
+
+        @include themify(night) {
+          @apply bg-blue-dark-grey;
+        }
+      }
+    }
+  }
+}

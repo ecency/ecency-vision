@@ -27,6 +27,8 @@ export enum QueryIdentifiers {
   MUTED_USERS = "muted-users",
   PROMOTED_ENTRIES = "promoted-entries",
   SEARCH_API = "search-api",
+  SEARCH_ACCOUNT = "search-account",
+  SEARCH_TOPICS = "search-topics",
   GET_IMAGES = "get-images",
 
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
