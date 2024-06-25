@@ -4,38 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added perks page">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-search-account-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-search-topics-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-advanced-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-comment/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-comment/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-comment/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-comment/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-communities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-communities/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-communities/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-communities/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-people/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-people/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-people/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-people/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-topics/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-topics/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-topics/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_components/search-topics/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/_page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/search/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/date-opt.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated purchase page">
+      <change afterPath="$PROJECT_DIR$/src/api/mutations/proposal-vote.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-proposals-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/_page.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/search-api-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/search-api-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +82,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/search/_components",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/proposals/_components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -127,11 +120,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/proposals/_components" />
+      <recent name="$PROJECT_DIR$/src/app/proposals" />
       <recent name="$PROJECT_DIR$/src/app/search/_components" />
       <recent name="$PROJECT_DIR$/src/app/search" />
       <recent name="$PROJECT_DIR$/public/assets" />
-      <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/search/more" />
@@ -285,14 +278,7 @@
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
       <workItem from="1718988903705" duration="15205000" />
-    </task>
-    <task id="LOCAL-00004" summary="Migrated all dependencies for communities page">
-      <option name="closed" value="true" />
-      <created>1702028569165</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1702028569165</updated>
+      <workItem from="1719295624184" duration="4779000" />
     </task>
     <task id="LOCAL-00005" summary="Fixed utils imports">
       <option name="closed" value="true" />
@@ -678,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718993578963</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Migrated purchase page">
+      <option name="closed" value="true" />
+      <created>1719217525866</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1719217525866</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated notifications pt.3" />
     <MESSAGE value="Fixups" />
     <MESSAGE value="Migrated sidebars" />
     <MESSAGE value="Migrated sidebars pt.2" />
@@ -721,7 +714,8 @@
     <MESSAGE value="Got rid of history" />
     <MESSAGE value="Added sign up page" />
     <MESSAGE value="Added perks page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added perks page" />
+    <MESSAGE value="Migrated purchase page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated purchase page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

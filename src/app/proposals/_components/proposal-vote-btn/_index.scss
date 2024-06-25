@@ -1,0 +1,7 @@
+@import "src/styles/vars_mixins";
+
+.proposal-vote-btn {
+  .btn-proposal-vote {
+    @include btn-vote;
+  }
+}

@@ -30,7 +30,7 @@ export enum QueryIdentifiers {
   SEARCH_ACCOUNT = "search-account",
   SEARCH_TOPICS = "search-topics",
   GET_IMAGES = "get-images",
-
+  PROPOSAL_VOTES = "proposal-votes",
   SWAP_FORM_CURRENCY_RATE = "swap-form-currency-rate",
   POINTS = "points",
   THREE_SPEAK_VIDEO_LIST = "three-speak-video-list",
@@ -47,7 +47,7 @@ export enum QueryIdentifiers {
   GET_BOTS = "get-bots",
   GET_BOOST_PLUS_PRICES = "get-boost-plus-prices",
   GET_BOOST_PLUS_ACCOUNTS = "get-boost-plus-accounts",
-
+  PROPOSALS = "proposals",
   POLL_DETAILS = "poll-details",
   GET_RELATIONSHIP_BETWEEN_ACCOUNTS = "get-relationship-between-accounts",
   COMMUNITIES = "communities",

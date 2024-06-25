@@ -42,3 +42,5 @@ export * from "./get-boost-plus-prices-query";
 export * from "./get-boost-plus-account-prices-query";
 export * from "./get-search-account-query";
 export * from "./get-search-topics-query";
+export * from "./get-proposal-votes-query";
+export * from "./get-proposals-query";
