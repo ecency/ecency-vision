@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated proposals page pt.2">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated proposals page pt.3">
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-proposal-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,43 +53,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.scratch_39.js.executor": "Run",
-    "Node.js.scratch_40.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/proposals/_components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/proposals/_components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JavaScript"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JavaScript&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -256,15 +259,8 @@
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
       <workItem from="1718988903705" duration="15205000" />
-      <workItem from="1719295624184" duration="6560000" />
-    </task>
-    <task id="LOCAL-00007" summary="Completed communities migration">
-      <option name="closed" value="true" />
-      <created>1702131863158</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1702131863158</updated>
+      <workItem from="1719295624184" duration="6896000" />
+      <workItem from="1719329685216" duration="2970000" />
     </task>
     <task id="LOCAL-00008" summary="Added working SSR example">
       <option name="closed" value="true" />
@@ -650,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719301756598</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Migrated proposals page pt.3">
+      <option name="closed" value="true" />
+      <created>1719302224456</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1719302224457</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated sidebars pt.2" />
     <MESSAGE value="Migrated chats pt.1" />
     <MESSAGE value="Migrated static pages" />
     <MESSAGE value="Fixed typos" />
@@ -693,7 +696,8 @@
     <MESSAGE value="Migrated purchase page" />
     <MESSAGE value="Migrated proposals page pt.1" />
     <MESSAGE value="Migrated proposals page pt.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated proposals page pt.2" />
+    <MESSAGE value="Migrated proposals page pt.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated proposals page pt.3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

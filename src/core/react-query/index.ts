@@ -67,7 +67,8 @@ export enum QueryIdentifiers {
   DISCOVER_CURATION = "discover-curation",
   CONTRIBUTORS = "contributors",
   GIFS = "GIFS",
-  NOTIFICATIONS = "NOTIFICATIONS"
+  NOTIFICATIONS = "NOTIFICATIONS",
+  PROPOSAL = "proposal"
 }
 
 function makeQueryClient() {
