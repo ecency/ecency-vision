@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated proposals page pt.1">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated proposals page pt.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/proposals/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -260,15 +256,7 @@
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
       <workItem from="1718988903705" duration="15205000" />
-      <workItem from="1719295624184" duration="6089000" />
-    </task>
-    <task id="LOCAL-00006" summary="Fixed CSS imports and ts imports">
-      <option name="closed" value="true" />
-      <created>1702126284584</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1702126284584</updated>
+      <workItem from="1719295624184" duration="6560000" />
     </task>
     <task id="LOCAL-00007" summary="Completed communities migration">
       <option name="closed" value="true" />
@@ -654,7 +642,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719300514790</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Migrated proposals page pt.2">
+      <option name="closed" value="true" />
+      <created>1719301756598</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1719301756598</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated sidebars" />
     <MESSAGE value="Migrated sidebars pt.2" />
     <MESSAGE value="Migrated chats pt.1" />
     <MESSAGE value="Migrated static pages" />
@@ -697,7 +692,8 @@
     <MESSAGE value="Added perks page" />
     <MESSAGE value="Migrated purchase page" />
     <MESSAGE value="Migrated proposals page pt.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated proposals page pt.1" />
+    <MESSAGE value="Migrated proposals page pt.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated proposals page pt.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

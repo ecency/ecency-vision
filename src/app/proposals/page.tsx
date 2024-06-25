@@ -9,9 +9,11 @@ import { Tsx } from "@/features/i18n/helper";
 import i18next from "i18next";
 import Head from "next/head";
 import { ProposalListItem } from "@/app/proposals/_components";
-import { getAccountFullQuery, getProposalsQuery } from "@/api/queries";
+import { getAccountFullQuery, getDynamicPropsQuery, getProposalsQuery } from "@/api/queries";
 import { parseAsset } from "@/utils";
 import { Proposal } from "@/entities";
+import { useMount } from "react-use";
+import { Button } from "@ui/button";
 
 setProxyBase(defaults.imageServer);
 
@@ -25,6 +27,7 @@ enum Filter {
 export default function ProposalsPage() {
   const { data: proposals, isLoading } = getProposalsQuery().useClientQuery();
   const { data: fund } = getAccountFullQuery("hive.fund").useClientQuery();
+  const [page, setPage] = useState(1);
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState(Filter.ALL);
@@ -58,6 +61,7 @@ export default function ProposalsPage() {
         ),
     [filter, proposals, search]
   );
+  const sliced = useMemo(() => filteredProposals?.slice(0, page * 5), [filteredProposals, page]);
   const totalBudget = useMemo(
     () => parseAsset(fund?.hbd_balance ?? "0").amount,
     [fund?.hbd_balance]
@@ -90,10 +94,10 @@ export default function ProposalsPage() {
       thresholdProposalId
     };
   }, [dailyBudget, proposals]);
-  const minVotes = useMemo(
-    () => Number(proposals?.find((x) => x.id === 0)?.total_votes ?? 0),
-    [proposals]
-  );
+
+  useMount(() => {
+    getDynamicPropsQuery().prefetch();
+  });
 
   return (
     <>
@@ -162,11 +166,18 @@ export default function ProposalsPage() {
           </div>
         </div>
         {isLoading && <LinearProgress />}
-        {(filteredProposals?.length ?? 0) > 0 && (
+        {(sliced?.length ?? 0) > 0 && (
           <div className="proposal-list">
-            {filteredProposals?.map((p) => (
+            {sliced?.map((p) => (
               <ProposalListItem key={p.id} proposal={p} thresholdProposalId={thresholdProposalId} />
             ))}
+          </div>
+        )}
+        {page * 5 < (filteredProposals?.length ?? 0) && (
+          <div className="flex items-center justify-center mb-4">
+            <Button className="capitalize" onClick={() => setPage(page + 1)}>
+              {i18next.t("search-comment.show-more")}
+            </Button>
           </div>
         )}
       </div>
