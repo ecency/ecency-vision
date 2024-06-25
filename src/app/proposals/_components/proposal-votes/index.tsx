@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import numeral from "numeral";
 import "./_index.scss";
 import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
@@ -20,14 +20,12 @@ interface ProposalVotesProps {
 
 export function ProposalVotes({ proposal, onHide }: ProposalVotesProps) {
   const [searchText, setSearchText] = useState("");
-  const [voter, setVoter] = useState("");
-  const [voteCount, setVoteCount] = useState(0);
   const [sort, setSort] = useState<SortOption>("hp");
 
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
   const { data: votes, isLoading } = getProposalVotesQuery(
     proposal.proposal_id,
-    voter,
+    "",
     1000
   ).useClientQuery();
 
@@ -54,17 +52,15 @@ export function ProposalVotes({ proposal, onHide }: ProposalVotesProps) {
             totalHp
           };
         })
-        .sort((a, b) => (b.totalHp > a.totalHp ? 1 : -1)),
-    [accounts, dynamicProps]
+        ?.filter((item) => item.name.toLowerCase().includes(searchText.toLocaleLowerCase()))
+        .sort((a, b) => {
+          if (sort === "reputation") {
+            return b.reputation > a.reputation ? 1 : -1;
+          }
+          return b.totalHp > a.totalHp ? 1 : -1;
+        }),
+    [accounts, dynamicProps, searchText, sort]
   );
-
-  useEffect(() => {
-    if (votes) {
-      setVoter(votes[votes.length - 1].voter);
-    }
-  }, [votes]);
-
-  const modalTitle = voteCount ? voteCount + "+" + " " : voteCount + " ";
 
   return (
     <Modal
@@ -77,16 +73,24 @@ export function ProposalVotes({ proposal, onHide }: ProposalVotesProps) {
     >
       <ModalHeader closeButton={true} className="items-center">
         <ModalTitle>
-          {modalTitle + i18next.t("proposals.votes-dialog-title", { n: proposal.id })}
+          {accounts?.length + " " + i18next.t("proposals.votes-dialog-title", { n: proposal.id })}
         </ModalTitle>
       </ModalHeader>
-      <div className="w-full p-3 mb-3">
+      <div className="w-full flex flex-col sm:flex-row gap-4 p-3 mb-3">
         <FormControl
           type="text"
           placeholder={i18next.t("proposals.search-placeholder")}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
+        <FormControl
+          type="select"
+          onChange={(e: any) => setSort(e.target.value as SortOption)}
+          value={sort}
+        >
+          <option value="reputation">{i18next.t("proposals.sort-reputation")}</option>
+          <option value="hp">{i18next.t("proposals.sort-hp")}</option>
+        </FormControl>
       </div>
       <ModalBody>
         {isLoading && <LinearProgress />}
@@ -134,21 +138,6 @@ export function ProposalVotes({ proposal, onHide }: ProposalVotesProps) {
               </div>
             )}
           </List>
-        </div>
-
-        <div className="list-tools">
-          <div className="pages" />
-          <div className="sorter">
-            <span className="label">{i18next.t("proposals.sort")}</span>
-            <FormControl
-              type="select"
-              onChange={(e: any) => setSort(e.target.value as SortOption)}
-              value={sort}
-            >
-              <option value="reputation">{i18next.t("proposals.sort-reputation")}</option>
-              <option value="hp">{i18next.t("proposals.sort-hp")}</option>
-            </FormControl>
-          </div>
         </div>
       </ModalBody>
     </Modal>

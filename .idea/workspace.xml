@@ -4,31 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated purchase page">
-      <change afterPath="$PROJECT_DIR$/src/api/mutations/proposal-vote.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-proposals-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-vote-btn/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/_page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated proposals page pt.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-accounts-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-proposal-votes-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/proposals/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,15 +260,7 @@
       <workItem from="1718732132618" duration="18919000" />
       <workItem from="1718904443028" duration="15657000" />
       <workItem from="1718988903705" duration="15205000" />
-      <workItem from="1719295624184" duration="4779000" />
-    </task>
-    <task id="LOCAL-00005" summary="Fixed utils imports">
-      <option name="closed" value="true" />
-      <created>1702029053524</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1702029053524</updated>
+      <workItem from="1719295624184" duration="6089000" />
     </task>
     <task id="LOCAL-00006" summary="Fixed CSS imports and ts imports">
       <option name="closed" value="true" />
@@ -672,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719217525866</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Migrated proposals page pt.1">
+      <option name="closed" value="true" />
+      <created>1719300514790</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1719300514790</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixups" />
     <MESSAGE value="Migrated sidebars" />
     <MESSAGE value="Migrated sidebars pt.2" />
     <MESSAGE value="Migrated chats pt.1" />
@@ -715,7 +696,8 @@
     <MESSAGE value="Added sign up page" />
     <MESSAGE value="Added perks page" />
     <MESSAGE value="Migrated purchase page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated purchase page" />
+    <MESSAGE value="Migrated proposals page pt.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated proposals page pt.1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

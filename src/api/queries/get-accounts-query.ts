@@ -13,7 +13,7 @@ export function useGetAccountsQuery(usernames: string[]) {
 
 export const getAccountsQuery = (usernames: string[]) =>
   EcencyQueriesManager.generateClientServerQuery({
-    queryKey: [QueryIdentifiers.GET_ACCOUNTS],
+    queryKey: [QueryIdentifiers.GET_ACCOUNTS, usernames],
     queryFn: () => getAccounts(usernames),
     enabled: usernames.length > 0,
     initialData: []

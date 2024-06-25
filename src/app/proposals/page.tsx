@@ -137,7 +137,7 @@ export default function ProposalsPage() {
           <div className="search-proposals">
             <SearchBox
               placeholder={i18next.t("search.placeholder-proposals")}
-              onChange={setSearch}
+              onChange={(e: any) => setSearch(e.target.value)}
               value={search}
             />
           </div>
@@ -164,7 +164,7 @@ export default function ProposalsPage() {
         {isLoading && <LinearProgress />}
         {(filteredProposals?.length ?? 0) > 0 && (
           <div className="proposal-list">
-            {proposals?.map((p) => (
+            {filteredProposals?.map((p) => (
               <ProposalListItem key={p.id} proposal={p} thresholdProposalId={thresholdProposalId} />
             ))}
           </div>

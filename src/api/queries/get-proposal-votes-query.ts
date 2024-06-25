@@ -4,7 +4,7 @@ import { ProposalVote } from "@/entities";
 
 export const getProposalVotesQuery = (proposalId: number, voter: string, limit: number) =>
   EcencyQueriesManager.generateClientServerQuery({
-    queryKey: [QueryIdentifiers.PROPOSAL_VOTES],
+    queryKey: [QueryIdentifiers.PROPOSAL_VOTES, proposalId, voter, limit],
     queryFn: async () => {
       const response = (await client.call("condenser_api", "list_proposal_votes", [
         [proposalId, voter],

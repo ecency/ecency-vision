@@ -115,7 +115,7 @@ export function ProposalListItem({ proposal, isReturnProposalId, thresholdPropos
               className="btn-votes"
               onClick={(e) => {
                 e.preventDefault();
-                setShow(false);
+                setShow(true);
               }}
             >
               {i18next.t("proposals.votes", { n: strVotes })}
