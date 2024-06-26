@@ -240,7 +240,7 @@ exports[`(2) Render with some hive engine tokens 1`] = `
           >
             <span>
                
-              $NaN
+              $0.00
                
             </span>
           </div>
@@ -556,7 +556,7 @@ exports[`(3) Render with an unclaimed rewards 1`] = `
           >
             <span>
                
-              $NaN
+              $0.00
                
             </span>
           </div>
@@ -854,7 +854,7 @@ exports[`(4) Render an empty list if tokens equals zero 1`] = `
           >
             <span>
                
-              $NaN
+              $0.00
                
             </span>
           </div>
@@ -1041,7 +1041,7 @@ exports[`(5) usePrivate = false 1`] = `
           >
             <span>
                
-              $NaN
+              $0.00
                
             </span>
           </div>

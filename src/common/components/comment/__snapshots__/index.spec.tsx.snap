@@ -220,7 +220,7 @@ exports[`(1) Default render 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-f1601f2b-75bc-473e-b659-2525491c76ab"
+      id="editor-tool-emoji-picker-b4042e26-e45c-4b7d-a94a-bfb60c4f6527"
       role="none"
       title="Emoji"
     >
@@ -586,7 +586,7 @@ exports[`(2) Cancellable, in progress 1`] = `
     </div>
     <div
       className="editor-tool"
-      id="editor-tool-emoji-picker-7005da35-392b-43e6-b1b6-870862697a79"
+      id="editor-tool-emoji-picker-ef341785-4ebe-4d75-9b1e-f7206c6582a4"
       role="none"
       title="Emoji"
     >
