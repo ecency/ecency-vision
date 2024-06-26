@@ -1,10 +1,10 @@
-import { Client, RCAPI, SMTAsset, utils } from "@hiveio/dhive";
+import { Client, RCAPI, SMTAsset } from "@hiveio/dhive";
 
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 
 import { TrendingTag } from "../store/trending-tags/types";
 import { DynamicProps } from "../store/dynamic-props/types";
-import { FullAccount, AccountProfile, AccountFollowStats } from "../store/accounts/types";
+import { AccountFollowStats, AccountProfile, FullAccount } from "../store/accounts/types";
 import { Entry } from "../store/entries/types";
 
 import parseAsset from "../helper/parse-asset";
@@ -147,6 +147,7 @@ export interface Reputations {
   account: string;
   reputation: number;
 }
+
 interface ApiError {
   error: string;
   data: any;
@@ -288,6 +289,9 @@ export const getAccounts = (usernames: string[]): Promise<FullAccount[]> => {
 
 export const getAccount = async (username: string): Promise<FullAccount> => {
   let aa = await getAccounts([username]).then((resp) => resp[0]);
+  if (!aa) {
+    throw new Error("Account not found");
+  }
   let rp = await getAccountReputations(username, 1);
   return { ...aa, ...rp[0] };
 };

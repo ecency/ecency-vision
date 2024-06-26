@@ -662,7 +662,7 @@ export class Transfer extends BaseComponent<Props, State> {
                   <label>{_t("transfer.amount")}</label>
                 </div>
                 <div className="col-span-12 sm:col-span-10 flex items-center">
-                  <InputGroup prepend="#">
+                  <InputGroup prepend="#" append={asset}>
                     <FormControl
                       type="text"
                       placeholder={_t("transfer.amount-placeholder")}
@@ -671,7 +671,6 @@ export class Transfer extends BaseComponent<Props, State> {
                       className={amount > balance && amountError ? "is-invalid" : ""}
                       autoFocus={mode !== "transfer"}
                     />
-                    <span className="balance-num align-self-center ml-1">{asset}</span>
                   </InputGroup>
                 </div>
               </div>
@@ -747,7 +746,10 @@ export class Transfer extends BaseComponent<Props, State> {
               <div className="grid items-center grid-cols-12 mb-4">
                 <div className="col-span-12 sm:col-span-10 sm:col-start-3">
                   {/* Changed && to || since it just allows the form to submit anyway initially */}
-                  <Button onClick={this.next} disabled={!this.canSubmit() || amount > balance}>
+                  <Button
+                    onClick={this.next}
+                    disabled={!this.canSubmit() || amount > balance || !!toError}
+                  >
                     {_t("g.next")}
                   </Button>
                 </div>
