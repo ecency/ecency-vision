@@ -1,0 +1,468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render with not loaded data 1`] = `
+<div
+  className="profile-card"
+>
+  <div
+    className="profile-avatar"
+  >
+    <span
+      className="user-avatar xLarge"
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/large)",
+        }
+      }
+    />
+  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
+</div>
+`;
+
+exports[`(2) Render with loaded data 1`] = `
+<div
+  className="profile-card"
+>
+  <div
+    className="profile-avatar"
+  >
+    <span
+      className="user-avatar xLarge"
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/large)",
+        }
+      }
+    />
+    <div
+      className="reputation"
+    >
+      38
+    </div>
+  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
+  <div
+    className="basic-info"
+  >
+    <div
+      className="full-name"
+    >
+      Foo Bar
+    </div>
+    <div
+      className="about"
+    >
+      Lorem ipsum dolor sit amet
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        className="cursor-pointer flex flex-col mb-1"
+        onClick={[Function]}
+      >
+        <div
+          className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden"
+        >
+          <div
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
+            role="progressbar"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            Available
+          </div>
+          <div
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
+            role="progressbar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            Used
+          </div>
+        </div>
+        <div
+          className="rc-percentage mt-2 align-self-center"
+        >
+          <span
+            className="cursor-pointer"
+          >
+            Resource Credits
+          </span>
+        </div>
+      </div>
+      <div />
+    </div>
+  </div>
+  <div
+    className="stats"
+  >
+    <div
+      className="stat followers"
+    >
+      <span
+        onClick={[Function]}
+        title="Followers"
+      >
+        232
+         
+        Followers
+      </span>
+    </div>
+    <div
+      className="stat following"
+    >
+      <span
+        onClick={[Function]}
+        title="Following"
+      >
+        27
+         
+        Following
+      </span>
+    </div>
+  </div>
+  <div
+    className="extra-props"
+  >
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M21,3L3,10.53V11.5L9.84,14.16L12.5,21H13.46L21,3Z"
+          fill="currentColor"
+        />
+      </svg>
+       
+      Hive
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+          fill="currentColor"
+        />
+      </svg>
+      <a
+        className="website-link"
+        href="https://esteem.app"
+        target="_external"
+      >
+        https://esteem.app
+      </a>
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"
+          fill="currentColor"
+        />
+      </svg>
+       
+      July 7, 2016
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"
+          fill="currentColor"
+        />
+      </svg>
+      <a
+        href="https://ecency.com/@user1/rss"
+        target="_external"
+      >
+        RSS feed
+      </a>
+    </div>
+  </div>
+  <div
+    className="btn-controls flex flex-wrap gap-3"
+  />
+</div>
+`;
+
+exports[`(3) Should show profile edits 1`] = `
+<div
+  className="profile-card"
+>
+  <div
+    className="profile-avatar"
+  >
+    <span
+      className="user-avatar xLarge"
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/large)",
+        }
+      }
+    />
+    <div
+      className="reputation"
+    >
+      38
+    </div>
+  </div>
+  <h1>
+    <div
+      className="username"
+    >
+      user1
+    </div>
+  </h1>
+  <div
+    className="basic-info"
+  >
+    <div
+      className="full-name"
+    >
+      Foo Bar
+    </div>
+    <div
+      className="about"
+    >
+      Lorem ipsum dolor sit amet
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        className="cursor-pointer flex flex-col mb-1"
+        onClick={[Function]}
+      >
+        <div
+          className="bg-gray-200 h-[1rem] text-white rounded-lg flex overflow-hidden"
+        >
+          <div
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-blue-dark-sky"
+            role="progressbar"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            Available
+          </div>
+          <div
+            className="flex duration-300 justify-center overflow-hidden text-xs bg-[#F0706A]"
+            role="progressbar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            Used
+          </div>
+        </div>
+        <div
+          className="rc-percentage mt-2 align-self-center"
+        >
+          <span
+            className="cursor-pointer"
+          >
+            Resource Credits
+          </span>
+        </div>
+      </div>
+      <div />
+    </div>
+  </div>
+  <div
+    className="stats"
+  >
+    <div
+      className="stat followers"
+    >
+      <span
+        onClick={[Function]}
+        title="Followers"
+      >
+        232
+         
+        Followers
+      </span>
+    </div>
+    <div
+      className="stat following"
+    >
+      <span
+        onClick={[Function]}
+        title="Following"
+      >
+        27
+         
+        Following
+      </span>
+    </div>
+  </div>
+  <div
+    className="extra-props"
+  >
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M21,3L3,10.53V11.5L9.84,14.16L12.5,21H13.46L21,3Z"
+          fill="currentColor"
+        />
+      </svg>
+       
+      Hive
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+          fill="currentColor"
+        />
+      </svg>
+      <a
+        className="website-link"
+        href="https://esteem.app"
+        target="_external"
+      >
+        https://esteem.app
+      </a>
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"
+          fill="currentColor"
+        />
+      </svg>
+       
+      July 7, 2016
+    </div>
+    <div
+      className="prop"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"
+          fill="currentColor"
+        />
+      </svg>
+      <a
+        href="https://ecency.com/@user1/rss"
+        target="_external"
+      >
+        RSS feed
+      </a>
+    </div>
+  </div>
+  <div
+    className="btn-controls flex flex-wrap gap-3"
+  >
+    <a
+      href="/@user1/referrals"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Referrals
+        </div>
+      </button>
+    </a>
+    <a
+      href="/witnesses"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Witnesses
+        </div>
+      </button>
+    </a>
+    <a
+      href="/proposals"
+      onClick={[Function]}
+    >
+      <button
+        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2rem] text-sm font-[500] px-2 "
+        size="sm"
+        style={
+          Object {
+            "outline": "none",
+          }
+        }
+        type="button"
+      >
+        <div>
+          Proposals
+        </div>
+      </button>
+    </a>
+  </div>
+</div>
+`;

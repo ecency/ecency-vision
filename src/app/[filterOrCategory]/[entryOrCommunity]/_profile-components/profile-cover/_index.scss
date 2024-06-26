@@ -1,0 +1,35 @@
+@import "src/styles/vars_mixins";
+
+.profile-cover {
+  height: 134px;
+  position: relative;
+  width: 100%;
+
+  .cover-image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+
+    @include themify(day) {
+      @apply bg-light-300;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-default;
+    }
+  }
+
+  .follow-controls-holder {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+}

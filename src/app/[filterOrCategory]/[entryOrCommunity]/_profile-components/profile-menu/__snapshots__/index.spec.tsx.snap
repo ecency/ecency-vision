@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render 1`] = `
+<div
+  className="profile-menu"
+>
+  <div
+    className="profile-menu-items"
+  >
+    <span
+      className="flex lg:hidden selected-item profile-menu-item"
+    />
+    <div
+      className="hidden lg:flex items-center"
+    >
+      <a
+        className="profile-menu-item flex"
+        href="/@username/blog"
+        onClick={[Function]}
+      >
+        Blog
+      </a>
+      <a
+        className="profile-menu-item flex selected-item"
+        href="/@username/posts"
+        onClick={[Function]}
+      >
+        Posts
+      </a>
+      <a
+        className="profile-menu-item flex"
+        href="/@username/comments"
+        onClick={[Function]}
+      >
+        Comments
+      </a>
+    </div>
+    <a
+      className="profile-menu-item flex lg:hidden"
+      href="/@username/communities"
+      onClick={[Function]}
+    >
+      Communities
+    </a>
+    <a
+      className="profile-menu-item flex"
+      href="/@username/wallet"
+      onClick={[Function]}
+    >
+      Wallet
+    </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
+    />
+  </div>
+  <div
+    className="page-tools"
+  >
+    <div
+      className="viewLayouts"
+    />
+  </div>
+</div>
+`;
+
+exports[`(2) With active user 1`] = `
+<div
+  className="profile-menu"
+>
+  <div
+    className="profile-menu-items"
+  >
+    <span
+      className="flex lg:hidden selected-item profile-menu-item"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          <div
+            className="label"
+          >
+            Posts
+          </div>
+          <div
+            className="menu-down"
+            style={Object {}}
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </span>
+    <div
+      className="hidden lg:flex items-center"
+    >
+      <a
+        className="profile-menu-item flex"
+        href="/@username/blog"
+        onClick={[Function]}
+      >
+        Blog
+      </a>
+      <a
+        className="profile-menu-item flex selected-item"
+        href="/@username/posts"
+        onClick={[Function]}
+      >
+        Posts
+      </a>
+      <a
+        className="profile-menu-item flex"
+        href="/@username/comments"
+        onClick={[Function]}
+      >
+        Comments
+      </a>
+    </div>
+    <a
+      className="profile-menu-item flex"
+      href="/@username/wallet"
+      onClick={[Function]}
+    >
+      Wallet
+    </a>
+    <a
+      className="profile-menu-item flex"
+      href="/@username/settings"
+      onClick={[Function]}
+    >
+      Settings
+    </a>
+    <div
+      className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex"
+    >
+      <div
+        className="custom-dropdown float-left"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <div
+          className="dropdown-btn"
+        >
+          
+          <div
+            className="menu-down"
+            style={Object {}}
+          >
+            <svg
+              fill="none"
+              height="30"
+              stroke="#357ce6"
+              strokeLinecap="square"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="30"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="19"
+                cy="12"
+                r="1"
+              />
+              <circle
+                cx="5"
+                cy="12"
+                r="1"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="page-tools"
+  >
+    <div
+      className="viewLayouts"
+    >
+      <div
+        className="custom-dropdown float-right"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <span
+          className="view-feed"
+        >
+          <span
+            className="view-layout "
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16,5V11H21V5M10,11H15V5H10M16,18H21V12H16M10,18H15V12H10M4,18H9V12H4M4,11H9V5H4V11Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+           
+          <span
+            className="menu-down-icon "
+          >
+            <svg
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Render list 1`] = `
+<div
+  className="friends-content"
+>
+  <div>
+    <div>
+      <div
+        className="friends-filter"
+      >
+        <div
+          className="filter-options"
+        >
+          <div
+            className="dropdown-wrapper"
+          >
+            <div
+              className="custom-dropdown float-top"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="dropdown-btn"
+              >
+                <div
+                  className="label"
+                >
+                  Filter
+                </div>
+                <div
+                  className="menu-down"
+                  style={Object {}}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7,10L12,15L17,10H7Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="friends-list"
+  >
+    <div
+      className="friend-search-box"
+    >
+      <div
+        className="ecency-input-group flex items-stretch w-full [&>input]:rounded-[0] [&>input:first-child]:rounded-l-full [&>input:last-child]:rounded-r-full [&>.ecency-input-group-part>button]:rounded-tl-none [&>.ecency-input-group-part>button]:rounded-bl-none [&>.ecency-input-group-part>button]:h-[2.75rem]"
+      >
+        <div
+          className="ecency-input-group-part ecency-input-group-prepend flex items-center justify-center border-r-0 rounded-tl-full rounded-bl-full dark:border-gray-600 px-2.5 [&>svg]:w-4 [&>svg]:h-4 px-2 border-2 bg-gray-200 dark:bg-gray-600"
+          onClick={[Function]}
+        >
+          @
+        </div>
+        <input
+          className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user1"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user2"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user3"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user3
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="last-seen mt-1"
+        >
+          <a
+            href="#"
+          >
+            Active: a few seconds ago
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="load-more"
+  >
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 "
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="button"
+    >
+      <div>
+        Load More
+      </div>
+    </button>
+  </div>
+</div>
+`;

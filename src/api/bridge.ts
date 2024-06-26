@@ -116,11 +116,17 @@ export const getPost = (
   });
 };
 
-export const getPostHeader = (author: string = "", permlink: string = ""): Promise<Entry | null> =>
-  bridgeApiCall<Entry | null>("get_post_header", {
+export const getPostHeader = (
+  author: string = "",
+  permlink: string = ""
+): Promise<Entry | null> => {
+  return bridgeApiCall<Entry | null>("get_post_header", {
     author,
     permlink
+  }).then((resp) => {
+    return resp;
   });
+};
 
 export interface AccountNotification {
   date: string;
@@ -169,14 +175,14 @@ export const getCommunities = (
   query?: string | null,
   sort: string = "rank",
   observer: string = ""
-): Promise<Community[]> =>
+): Promise<Community[] | null> =>
   bridgeApiCall<Community[] | null>("list_communities", {
     last,
     limit,
     query,
     sort,
     observer
-  }).then((r) => r ?? []);
+  });
 
 export const normalizePost = (post: any): Promise<Entry | null> =>
   bridgeApiCall<Entry | null>("normalize_post", {
@@ -199,3 +205,12 @@ export interface AccountRelationship {
   is_blacklisted: boolean;
   follows_blacklists: boolean;
 }
+
+export const getRelationshipBetweenAccounts = (
+  follower: string,
+  following: string
+): Promise<AccountRelationship | null> =>
+  bridgeApiCall<AccountRelationship | null>("get_relationship_between_accounts", [
+    follower,
+    following
+  ]);

@@ -1,0 +1,298 @@
+@import "src/styles/vars_mixins";
+
+.profile-card {
+  position: relative;
+
+  @media (min-width: $md-break) {
+    padding-top: 16px;
+  }
+
+  .profile-avatar {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 26px auto;
+    position: relative;
+
+    @media (min-width: $md-break) {
+      float: none;
+      margin: 0 0 26px 0;
+    }
+
+    .user-avatar {
+      border: 3px solid;
+      height: 128px;
+      width: 128px;
+      background-color: transparent;
+      @apply border-blue-duck-egg;
+    }
+
+    .reputation {
+      @apply bg-blue-dark-sky;
+      border-radius: 25px;
+      bottom: 2px;
+      @apply text-white;
+      font-weight: 700;
+      left: 0;
+      line-height: 1em;
+      padding: 4px 12px;
+      position: absolute;
+    }
+  }
+
+  .username {
+    font-size: 22px; // 16px;
+    font-weight: 600;
+    margin-bottom: 24px; // 12px;
+    text-align: center;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+      padding-top: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    @include themify(day) {
+      @apply text-gray-charcoal;
+    }
+
+    @include themify(night) {
+      @apply text-gray-pinkish;
+    }
+
+    &:before {
+      content: "@";
+    }
+  }
+
+  .rc-line {
+    height: 2px;
+    width: 300px;
+    margin: 0 auto 8px auto;
+    @apply bg-blue-duck-egg;
+
+    @media (min-width: $md-break) {
+      width: auto;
+    }
+
+    .rc-line-inner {
+      @apply bg-blue-dark-sky;
+      height: 2px;
+    }
+  }
+
+  .rc-percentage {
+    @apply text-blue-dark-sky;
+    cursor: default;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media (min-width: $md-break) {
+      text-align: left;
+    }
+  }
+
+  .basic-info,
+  .stats,
+  .extra-props,
+  .com-props {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+
+    @include themify(day) {
+      border-bottom: 1px solid;
+      @apply border-light-300;
+    }
+
+    @include themify(night) {
+      border-bottom: 1px solid;
+      @apply border-dark-200;
+    }
+  }
+
+  .basic-info {
+    .full-name {
+      @apply text-blue-dark-sky;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-align: center;
+
+      @media (min-width: $md-break) {
+        font-size: 16px;
+        text-align: left;
+      }
+    }
+
+    .about {
+      @apply text-blue-dark-sky;
+      opacity: 0.5;
+      text-align: center;
+      word-wrap: break-word;
+
+      @media (min-width: $md-break) {
+        text-align: left;
+      }
+    }
+  }
+
+  .stats,
+  .extra-props {
+    @apply text-gray-steel;
+
+    a {
+      @apply text-gray-steel;
+    }
+
+    svg {
+      @apply text-silver;
+      height: 16px;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+  }
+
+  .stats {
+    cursor: default;
+    display: flex;
+    justify-content: space-evenly;
+
+    @media (min-width: $md-break) {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 20px 20px;
+      justify-content: flex-start;
+    }
+
+    .stat {
+      span {
+        display: inline-flex;
+        align-items: center;
+        line-height: 100%;
+      }
+
+      &.followers,
+      &.following {
+        span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .extra-props {
+    @apply text-gray-steel;
+    grid-gap: 20px;
+    display: none;
+
+    @media (min-width: $md-break) {
+      display: grid;
+    }
+
+    .prop {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+
+      .website-link {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .com-props {
+    grid-gap: 10px;
+    display: none;
+
+    @media (min-width: $md-break) {
+      display: grid;
+    }
+    .prop {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .com-title {
+      padding-bottom: 10px;
+      font-weight: 600;
+    }
+  }
+
+  .btn-controls {
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+
+    .btn:not(:last-child) {
+      margin-right: 4px;
+    }
+
+    @media (min-width: $md-break) {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      margin: 0;
+
+      .btn:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.edit-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @apply bg-blue-dark-sky;
+  @apply text-white;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+
+  svg {
+    height: 16px;
+  }
+}
+
+.loading-follows-you{
+  width: 40px;
+  height: 20px;
+}
+
+
+.follow-pill {
+  @apply bg-light-600;
+  color: #656d70;
+  border: solid 1px;
+  @apply border-light-400;
+  border-radius: 25px;
+  padding: 0.25rem;
+  margin-top: -5px;
+  font-size: 12px;
+
+  @include themify(night) {
+    @apply bg-blue-dark-grey;
+    @apply text-gray-light;
+    border: solid 1px;
+    @apply border-dark-200;
+  }
+}

@@ -42,7 +42,7 @@ export async function CommunityContent({ filter, community, tag, query, section 
   }
 
   const searchData =
-    getSearchApiQuery(query ?? "", "newest", "0")
+    getSearchApiQuery(query ?? "", "newest", false)
       .getData()
       ?.pages.reduce<SearchResult[]>(
         (acc, page) =>

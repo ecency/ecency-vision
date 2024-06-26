@@ -68,7 +68,10 @@ export enum QueryIdentifiers {
   CONTRIBUTORS = "contributors",
   GIFS = "GIFS",
   NOTIFICATIONS = "NOTIFICATIONS",
-  PROPOSAL = "proposal"
+  PROPOSAL = "proposal",
+  GET_FRIENDS = "get-friends",
+  GET_SEARCH_FRIENDS = "get-search-friends",
+  RC_ACCOUNTS = "rc-accounts"
 }
 
 function makeQueryClient() {
