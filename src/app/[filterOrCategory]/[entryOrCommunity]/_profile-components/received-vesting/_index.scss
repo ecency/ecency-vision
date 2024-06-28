@@ -1,0 +1,19 @@
+@import "src/styles/vars_mixins";
+
+.received-vesting-content {
+  height: 370px;
+  overflow: auto;
+
+  .user-list {
+    @include user-grid-list(1, 2, 2);
+    min-height: 361px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .item-extra {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

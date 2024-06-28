@@ -1,0 +1,7 @@
+.open-orders-content {
+  height: 370px;
+  overflow: auto;
+  .oo-table tbody tr {
+    cursor: pointer;
+  }  
+}

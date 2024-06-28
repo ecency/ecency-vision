@@ -3,3 +3,7 @@ export * from "./rc-info";
 export * from "./profile-menu";
 export * from "./profile-cover";
 export * from "./profile-entries-list";
+export * from "./curation-trail";
+export * from "./wallet-hive";
+export * from "./password-update";
+export * from "./manage-authority";

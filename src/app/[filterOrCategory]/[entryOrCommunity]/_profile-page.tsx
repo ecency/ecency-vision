@@ -15,14 +15,19 @@ import { Account, Entry, EntryGroup, FullAccount } from "@/entities";
 import i18next from "i18next";
 import defaults from "@/defaults.json";
 import {
+  CurationTrail,
+  ManageAuthorities,
+  PasswordUpdate,
   ProfileCard,
   ProfileCover,
   ProfileEntriesList,
-  ProfileMenu
+  ProfileMenu,
+  WalletHive
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components";
 import { useGlobalStore } from "@/core/global-store";
 import { getAccountFullQuery } from "@/api/queries";
 import { notFound } from "next/navigation";
+import { AccountRecovery } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account";
 
 interface Props {
   params: { filterOrCategory: string; entryOrCommunity: string };
@@ -33,20 +38,20 @@ export async function Profile({
   params: { filterOrCategory: username, entryOrCommunity: section },
   searchParams: { q: searchParam }
 }: Props) {
+  const activeUser = useGlobalStore((s) => s.activeUser);
+  const listStyle = useGlobalStore((s) => s.listStyle);
+
   const account = await getAccountFullQuery(username).prefetch();
 
   if (!account) {
     return notFound();
   }
 
-  const activeUser = useGlobalStore((s) => s.activeUser);
-  const listStyle = useGlobalStore((s) => s.listStyle);
-
-  const prevMatchUsername = usePrevious(props.match.params.username);
-  const prevMatchSection = usePrevious(props.match.params.section);
-  const prevEntries = usePrevious(props.entries);
-  const prevSearch = usePrevious(props.location.search);
-  const prevGlobal = usePrevious(props.global);
+  const prevMatchUsername = usePrevious(username);
+  const prevMatchSection = usePrevious(section);
+  const prevEntries = usePrevious(entries);
+  const prevSearch = usePrevious(search);
+  const prevGlobal = usePrevious(global);
 
   const [loading, setLoading] = useState(true);
   const [typing, setTyping] = useState(false);
@@ -99,9 +104,9 @@ export async function Profile({
     };
   }, []);
   useEffect(() => {
-    setData(props.entries[makeGroupKey(props.global.filter, props.global.tag)]);
+    setData(entries[makeGroupKey(global.filter, global.tag)]);
     setLoading(false);
-  }, [props.global.filter, props.global.tag, props.entries]);
+  }, [global.filter, global.tag, entries]);
   useAsyncEffect(
     async (_) => {
       if (prevSearch !== search) {
@@ -110,15 +115,15 @@ export async function Profile({
         searchText.length > 0 && (await handleInputChange(searchText));
       }
     },
-    [props.location]
+    [location]
   );
   useAsyncEffect(
     async (_) => {
       const { global, fetchEntries, history } = props;
 
-      const nextUsername = props.match.params.username.replace("@", "");
-      const nextSection = props.match.params.section;
-      const nextAccount = props.accounts.find((x) => x.name === nextUsername);
+      const nextUsername = match.params.username.replace("@", "");
+      const nextSection = match.params.section;
+      const nextAccount = accounts.find((x) => x.name === nextUsername);
 
       setUsername(nextUsername);
       setSection(nextSection || ProfileFilter.blog);
@@ -132,8 +137,8 @@ export async function Profile({
       if (`@${nextUsername}` !== prevMatchUsername) {
         setPinnedEntry(null);
         await ensureAccount();
-        props.resetTransactions();
-        props.fetchTransactions(`@${nextUsername}`);
+        resetTransactions();
+        fetchTransactions(`@${nextUsername}`);
 
         queryClient.invalidateQueries([QueryIdentifiers.POINTS, nextUsername]);
       }
@@ -156,7 +161,7 @@ export async function Profile({
         const groupKey = makeGroupKey(filter, tag);
         const prevData = entries[groupKey];
         if (prevData) {
-          const data = props.entries[groupKey];
+          const data = entries[groupKey];
           const { loading } = data;
           const { loading: prevLoading } = prevData;
 
@@ -173,25 +178,22 @@ export async function Profile({
         }
       }
 
-      if (prevGlobal?.filter && prevGlobal?.filter !== props.global.filter) {
+      if (prevGlobal?.filter && prevGlobal?.filter !== global.filter) {
         setSearch("");
       }
 
-      if (
-        ["comments", "replies"].includes(props.global.filter) &&
-        props.global.filter !== prevGlobal?.filter
-      ) {
+      if (["comments", "replies"].includes(global.filter) && filter !== prevGlobal?.filter) {
         setPinnedEntry(null);
       }
 
       if (
         `@${nextUsername}` !== prevMatchUsername ||
-        (["blog", "posts"].includes(props.global.filter) && !pinnedEntry)
+        (["blog", "posts"].includes(global.filter) && !pinnedEntry)
       ) {
         await initPinnedEntry(nextUsername, nextAccount);
       }
     },
-    [props.accounts, props.match, props.global, props.history, props.location, props.activeUser]
+    [accounts, match, global, history, location, activeUser]
   );
 
   const bottomReached = async () => {
@@ -272,11 +274,11 @@ export async function Profile({
   const delayedSearch = useCallback(_.debounce(handleInputChange, 3000, { leading: true }), []);
 
   const getMetaProps = () => {
-    const username = props.match.params.username.replace("@", "");
-    const account = props.accounts.find((x) => x.name === username);
-    const { section = ProfileFilter.blog } = props.match.params;
+    const username = match.params.username.replace("@", "");
+    const account = accounts.find((x) => x.name === username);
+    const { section = ProfileFilter.blog } = match.params;
     const url = `${defaults.base}/@${username}${section ? `/${section}` : ""}`;
-    const ncount = props.notifications.unread > 0 ? `(${props.notifications.unread}) ` : "";
+    const ncount = notifications.unread > 0 ? `(${notifications.unread}) ` : "";
 
     if (!account) {
       return {};
@@ -380,10 +382,8 @@ export async function Profile({
             </>
           ) : (
             <>
+              {section === "wallet" && <WalletHive account={account} />}
               {(() => {
-                if (section === "wallet") {
-                  return WalletHive({ ...props, account, updateWalletValues: ensureAccount });
-                }
                 if (section === "engine") {
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
                 }
@@ -391,7 +391,7 @@ export async function Profile({
                   return WalletSpk({
                     ...props,
                     account,
-                    isActiveUserWallet: account.name === props.activeUser?.username
+                    isActiveUserWallet: account.name === activeUser?.username
                   });
                 }
                 if (section === "points") {
@@ -450,18 +450,18 @@ export async function Profile({
                           </div>
                         </div>
                         <div className="container-fluid">
-                          {tabState === 1 && <ManageAuthorities {...props} />}
+                          {tabState === 1 && <ManageAuthorities />}
                           <div className="grid grid-cols-12 pb-4">
                             <div className="col-span-12 sm:col-span-6">
-                              {tabState === 2 && <AccountRecovery {...props} />}
-                              {tabState === 3 && <PasswordUpdate activeUser={props.activeUser} />}
+                              {tabState === 2 && <AccountRecovery />}
+                              {tabState === 3 && <PasswordUpdate />}
                             </div>
                           </div>
                         </div>
                       </>
                     );
                   } else {
-                    return <Redirect to={`/@${account.name}`} />;
+                    router.push(`/@${account.name}`);
                   }
                 }
 
@@ -474,23 +474,14 @@ export async function Profile({
                             listStyle === ListStyle.grid ? "grid-view" : ""
                           }`}
                         >
-                          <CurationTrail
-                            {...{
-                              ...props,
-                              account,
-                              pinEntry,
-                              username,
-                              section
-                            }}
-                          />
+                          <CurationTrail account={account} section={section} />
                         </div>
                       </div>
                     </>
                   );
                 }
 
-                <ProfileEntriesList section={section} account={account} />;
-                return null;
+                return <ProfileEntriesList section={section} account={account} />;
               })()}
             </>
           )}

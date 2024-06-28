@@ -13,12 +13,6 @@ import { Account } from "@/entities";
 
 interface Props {
   account: Account;
-  fetchTransactions: (
-    username: string,
-    group?: OperationGroup | "",
-    start?: number,
-    limit?: number
-  ) => void;
 }
 
 export const TransactionsList = ({ account }: Props) => {
@@ -32,7 +26,7 @@ export const TransactionsList = ({ account }: Props) => {
   } = getTransactionsQuery(account.name, 20, group).useClientQuery();
   const transactionsFlow = useMemo(
     () => transactionsList?.pages?.reduce((acc, page) => [...acc, ...page], []) ?? [],
-    []
+    [transactionsList?.pages]
   );
   const uniqueTransactionsList = useMemo(
     () => Array.from(new Map(transactionsFlow.map((item) => [item["num"], item])).values()),

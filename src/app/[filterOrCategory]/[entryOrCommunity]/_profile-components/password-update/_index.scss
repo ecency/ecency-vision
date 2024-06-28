@@ -1,0 +1,10 @@
+@import "src/styles/vars_mixins";
+
+.password-update-modal {
+  .pass-generated {
+    font-size: 14px;
+    font-weight: 500;
+    @apply text-red-020;
+    word-break: break-all;
+  }
+}

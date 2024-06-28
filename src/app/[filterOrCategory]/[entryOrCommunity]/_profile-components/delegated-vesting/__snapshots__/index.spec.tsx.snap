@@ -1,0 +1,1021 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user2"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
+          >
+            98.527 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user3"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user3
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user4"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user4
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user1"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user5"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user5
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="mt-4"
+    >
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        First
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        active={true}
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 border-blue-dark-sky bg-blue-dark-sky text-white"
+        onClick={[Function]}
+      >
+        1
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Last
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) With active user 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user2"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
+          >
+            98.527 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user3"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user3
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user4"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user4
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user1"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user5"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user5
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="mt-4"
+    >
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        First
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        active={true}
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 border-blue-dark-sky bg-blue-dark-sky text-white"
+        onClick={[Function]}
+      >
+        1
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Last
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) With delegator active user 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user2"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user2/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user2"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user2
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="191778.000000 VESTS"
+          >
+            98.527 HP
+          </span>
+          <div
+            className="main"
+          >
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user3"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user3/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user3"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user3
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="29326.000000 VESTS"
+          >
+            15.066 HP
+          </span>
+          <div
+            className="main"
+          >
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user4"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user4/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user4"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user4
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="27751.000000 VESTS"
+          >
+            14.257 HP
+          </span>
+          <div
+            className="main"
+          >
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user1"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user1/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user1"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user1
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="14848.000000 VESTS"
+          >
+            7.628 HP
+          </span>
+          <div
+            className="main"
+          >
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="list-item"
+      >
+        <div
+          className="item-main"
+        >
+          <a
+            href="/@user5"
+            onClick={[Function]}
+          >
+            <span
+              className="user-avatar small"
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundImage": "url(https://images.ecency.com/u/user5/avatar/small)",
+                }
+              }
+            />
+          </a>
+          <div
+            className="item-info"
+          >
+            <a
+              href="/@user5"
+              onClick={[Function]}
+            >
+              <span
+                className="item-name notranslate"
+              >
+                user5
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="item-extra"
+        >
+          <span
+            title="1957.888055 VESTS"
+          >
+            1.006 HP
+          </span>
+          <div
+            className="main"
+          >
+            <div
+              onClick={[Function]}
+            >
+              <a
+                className="undelegate"
+                href="#"
+                onClick={[Function]}
+              >
+                undelegate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="mt-4"
+    >
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        First
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        active={true}
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 border-blue-dark-sky bg-blue-dark-sky text-white"
+        onClick={[Function]}
+      >
+        1
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Last
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(4) Empty List 1`] = `
+<div
+  className="delegated-vesting-content"
+>
+  <div
+    className="user-list"
+  >
+    <div
+      className="list-body"
+    >
+      <div
+        className="empty-list"
+      >
+        Nothing here
+      </div>
+    </div>
+    <div
+      className="mt-4"
+    >
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        First
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        className="pagination border-r dark:border-gray-700 border-t border-b first:border-l first:rounded-l-xl last:rounded-r-xl last:border-l-0 disabled:hover:bg-white p-2.5 disabled:text-gray-600 text-blue-dark-sky bg-white hover:bg-gray-100 dark:hover:bg-gray-800"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Last
+      </button>
+    </div>
+  </div>
+</div>
+`;

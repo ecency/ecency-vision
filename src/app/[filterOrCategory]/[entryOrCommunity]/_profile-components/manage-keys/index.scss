@@ -1,0 +1,31 @@
+@import "src/styles/vars_mixins";
+
+.key {
+  @apply text-gray-charcoal-010;
+}
+
+.copy-btn {
+  margin-right: 1rem;
+}
+
+.import-btn {
+  width: 154px;
+}
+
+.action-btns {
+  width: 260px;
+}
+
+.curr-password {
+  margin: 2rem 0;
+}
+
+@include media-breakpoint-down(md) {
+  .copy-btn {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .reveal-btn {
+    display: block;
+  }
+}

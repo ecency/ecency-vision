@@ -1,0 +1,93 @@
+@import "src/styles/vars_mixins";
+
+.wallet-menu {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  @media (min-width: $md-break) {
+    flex-direction: row;
+  }
+
+  @media (min-width: $xl-break) {
+    padding: 0 10px;
+    flex-direction: column;
+    width: 240px;
+    justify-content: flex-start;
+  }
+
+  .menu-item {
+    height: 91px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 14px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    @media (min-width: $md-break) {
+      width: 33%;
+    }
+
+    @media (min-width: $xl-break) {
+      width: auto;
+      margin-left: 10px;
+    }
+
+    @include themify(day) {
+      @apply bg-light-200;
+      border: 2px solid;
+      @apply border-light-300;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200;
+      border: 2px solid;
+      @apply border-dark-600;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .platform-logo {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      opacity: 0.4;
+      @apply text-blue-dark-sky;
+
+      img, svg {
+        width: 32px;
+      }
+    }
+
+    &.hive {
+      @apply text-blue-dark-sky;
+    }
+
+    &.ecency {
+      @apply text-blue-dark-sky;
+    }
+
+    &.spk {
+      @apply text-blue-dark-sky;
+    }
+
+    &.active, &:hover {
+      @apply border-blue-dark-sky;
+
+      .platform-logo {
+        opacity: 1;
+      }
+    }
+  }
+}

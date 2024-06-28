@@ -71,7 +71,14 @@ export enum QueryIdentifiers {
   PROPOSAL = "proposal",
   GET_FRIENDS = "get-friends",
   GET_SEARCH_FRIENDS = "get-search-friends",
-  RC_ACCOUNTS = "rc-accounts"
+  RC_ACCOUNTS = "rc-accounts",
+  ACCOUNT_VOTES_HISTORY = "account-votes-history",
+  WITHDRAW_ROUTES = "withdraw-routers",
+  OPEN_ORDERS = "open-orders",
+  SAVING_WITHDRAW = "saving-withdraw",
+  COLLATERALIZED_REQUESTS = "collateralized-requests",
+  CONVERSION_REQUESTS = "conversion-requests",
+  RECEIVED_VESTING_SHARES = "receiving-vesting-shares"
 }
 
 function makeQueryClient() {

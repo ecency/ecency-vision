@@ -6,7 +6,7 @@ import { useTransferSharedState } from "./transfer-shared-state";
 import {
   getAccountFullQuery,
   getDynamicPropsQuery,
-  useGetVestingDelegationsQuery
+  getVestingDelegationsQuery
 } from "@/api/queries";
 import { useDebounce } from "react-use";
 import i18next from "i18next";
@@ -32,7 +32,7 @@ export function useDebounceTransferAccountData() {
     data: vestingDelegations,
     error: vestingDelegationsError,
     isLoading: vestingLoading
-  } = useGetVestingDelegationsQuery(vestingDelegationUsername, to, 1000);
+  } = getVestingDelegationsQuery(vestingDelegationUsername, to, 1000).useClientQuery();
 
   const [delegatedAmount, amount, delegateAccount] = useMemo(() => {
     const delegateAccount =

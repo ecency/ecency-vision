@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Default render 1`] = `
+<div
+  className="account-recovery-form"
+>
+  <form
+    className="block "
+    onSubmit={[Function]}
+  >
+    <div
+      className="mb-4"
+    >
+      <label>
+        Current Recovery Agent
+      </label>
+      <input
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        readOnly={true}
+        type="text"
+        value=""
+      />
+    </div>
+    
+    <div
+      className="mb-4"
+    >
+      <label>
+        New Recovery Agent
+      </label>
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+        onChange={[Function]}
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    
+    <button
+      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.125rem] px-3 update-btn"
+      disabled={true}
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      type="submit"
+    >
+      <div>
+        Update
+      </div>
+    </button>
+  </form>
+</div>
+`;
