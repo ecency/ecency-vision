@@ -1,6 +1,10 @@
 import Cookies from "js-cookie";
 import { AllFilter, ListStyle, Theme } from "@/enums";
 import * as ls from "@/utils/local-storage";
+import { success } from "@/features/shared";
+import i18next from "i18next";
+import { getCurrencyRate } from "@/api/misc";
+import { currencySymbol } from "@/utils";
 
 export function createGlobalState() {
   return {
@@ -71,6 +75,22 @@ export function createGlobalActions(set: (state: Partial<State>) => void, getSta
       set({
         listStyle
       });
+    },
+    async setCurrency(currency: string) {
+      const rate = await getCurrencyRate(currency);
+      const symbol = currencySymbol(currency);
+      set({
+        currency,
+        currencyRate: rate,
+        currencySymbol: symbol
+      });
+      success(i18next.t("preferences.updated"));
+    },
+    setNsfw(value: string) {
+      set({
+        nsfw: Boolean(Number(value))
+      });
+      success(i18next.t("preferences.updated"));
     }
   };
 }

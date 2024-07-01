@@ -31,3 +31,4 @@ export * from "./spk-estimated-balance";
 export * from "./get-meta-props";
 export * from "./use-nav";
 export * from "./b64";
+export * from "./currency-symbol";

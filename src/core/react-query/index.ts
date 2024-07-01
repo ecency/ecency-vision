@@ -78,7 +78,9 @@ export enum QueryIdentifiers {
   SAVING_WITHDRAW = "saving-withdraw",
   COLLATERALIZED_REQUESTS = "collateralized-requests",
   CONVERSION_REQUESTS = "conversion-requests",
-  RECEIVED_VESTING_SHARES = "receiving-vesting-shares"
+  RECEIVED_VESTING_SHARES = "receiving-vesting-shares",
+  REFERRALS = "referrals",
+  REFERRALS_STATS = "referrals-stats"
 }
 
 function makeQueryClient() {

@@ -7,3 +7,5 @@ export * from "./curation-trail";
 export * from "./wallet-hive";
 export * from "./password-update";
 export * from "./manage-authority";
+export * from "./profile-referrals";
+export * from "./profile-settings";

@@ -22,6 +22,8 @@ import {
   ProfileCover,
   ProfileEntriesList,
   ProfileMenu,
+  ProfileReferrals,
+  ProfileSettings,
   WalletHive
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components";
 import { useGlobalStore } from "@/core/global-store";
@@ -401,10 +403,10 @@ export async function Profile({
                   return ProfileCommunities({ ...props, account });
                 }
                 if (section === "settings") {
-                  return ProfileSettings({ ...props, account });
+                  return <ProfileSettings account={account} />;
                 }
                 if (section === "referrals") {
-                  return ProfileReferrals({ ...props, account, updateWalletValues: ensureAccount });
+                  return <ProfileReferrals account={account} />;
                 }
 
                 if (section === "permissions" && activeUser) {

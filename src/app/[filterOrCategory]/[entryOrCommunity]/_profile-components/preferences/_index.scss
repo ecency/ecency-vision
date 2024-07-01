@@ -1,0 +1,24 @@
+.preferences {
+  margin-bottom: 40px;
+
+  .preferences-header {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+
+  .form-label {
+    font-size: 90%;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+.copy-to-clipboard{
+  svg {
+    height: 18px;
+  }
+}
