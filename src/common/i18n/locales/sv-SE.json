@@ -28,7 +28,7 @@
     "finish": "Finish",
     "next": "Nästa",
     "previous": "Previous",
-    "back": "Back",
+    "back": "Tillbaka",
     "load-more": "Load More",
     "empty-list": "Nothing here",
     "no-matches": "Nothing found",
@@ -101,7 +101,7 @@
   },
   "announcements": {
     "dismiss": "Dismiss",
-    "next": "Next",
+    "next": "Nästa",
     "later": "Later"
   },
   "floating-faq": {
@@ -109,13 +109,13 @@
     "help": "Hjälp",
     "welcome": "Welcome to Ecency",
     "need-help": "Need Help?",
-    "search-placeholder": "Search",
+    "search-placeholder": "Sök",
     "suggestion": "Suggested articles",
     "contact": "Contact us",
-    "submit": "Submit",
+    "submit": "Skicka",
     "username": "användarnamn",
     "message": "message",
-    "no-results": "No results found"
+    "no-results": "Inga resultat hittades"
   },
   "entry-filter": {
     "filter-trending": "Trending",
@@ -156,11 +156,11 @@
     "home": "Home"
   },
   "search": {
-    "placeholder": "Search",
+    "placeholder": "Sök",
     "placeholder-proposals": "Search proposals",
     "placeholder-count": "Search {{n}} posts",
     "header-tag": "Tags",
-    "header-account": "Users",
+    "header-account": "Användare",
     "header-community": "Communities"
   },
   "tag": {
@@ -171,20 +171,20 @@
     "contributors": "Contributors"
   },
   "user-nav": {
-    "wallet": "Wallet",
+    "wallet": "Plånbok",
     "unclaimed-reward-notice": "You have unclaimed rewards",
     "points": "Points",
     "unclaimed-points-notice": "You have unclaimed points",
     "notifications": "Notifications",
-    "profile": "Profile",
+    "profile": "Profil",
     "profile-menu": "Profile menu",
-    "gallery": "Gallery",
-    "drafts": "Drafts",
-    "bookmarks": "Bookmarks",
+    "gallery": "Galleri",
+    "drafts": "Utkast",
+    "bookmarks": "Bokmärken",
     "schedules": "Schedules",
     "fragments": "Snippets",
-    "settings": "Settings",
-    "logout": "Logout",
+    "settings": "Inställningar",
+    "logout": "Logga ut",
     "theme": "theme",
     "light": "light",
     "dark": "dark",
@@ -228,7 +228,7 @@
     "username": "Pick a username",
     "email": "Ange din e-postadress",
     "ref": "Referred user (optional)",
-    "submit": "Continue",
+    "submit": "Fortsätt",
     "validation-username": "Username is required.",
     "validation-email": "Email is required.",
     "success": "We've sent an email to {{email}}.",
