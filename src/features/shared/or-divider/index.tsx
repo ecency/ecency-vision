@@ -1,15 +1,9 @@
 "use client";
 
-import React, { Component } from "react";
+import React from "react";
 import "./_index.scss";
 import i18next from "i18next";
 
-export default class OrDivider extends Component {
-  render() {
-    return (
-      <>
-        <div className="or-divider">{i18next.t("g.or")}</div>
-      </>
-    );
-  }
+export function OrDivider() {
+  return <div className="or-divider">{i18next.t("g.or")}</div>;
 }

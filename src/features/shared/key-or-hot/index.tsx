@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { cryptoUtils, PrivateKey } from "@hiveio/dhive";
-import OrDivider from "../or-divider";
+import { OrDivider } from "../or-divider";
 import { error } from "../feedback";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";

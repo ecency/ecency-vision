@@ -4,7 +4,7 @@ import { CreateAnAccount } from "./create-an-account";
 import { ChatsImport } from "./chats-import";
 import { ChatContext, useKeysQuery, useRestoreChatByPin } from "@ecency/ns-query";
 import i18next from "i18next";
-import OrDivider from "@/features/shared/or-divider";
+import { OrDivider } from "@/features/shared";
 
 export function ChatsWelcome() {
   const [step, setStep] = useState(0);

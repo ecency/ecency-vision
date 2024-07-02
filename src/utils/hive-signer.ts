@@ -30,7 +30,7 @@ export function getDecodedMemo(username: string, memo: string): Promise<any> {
 }
 
 export function decodeToken(code: string): HiveSignerMessage | null {
-  const buff = new Buffer(code, "base64");
+  const buff = Buffer.from(code, "base64");
   try {
     const s = buff.toString("ascii");
     return JSON.parse(s);

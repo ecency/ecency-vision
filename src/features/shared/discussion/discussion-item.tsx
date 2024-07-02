@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Tsx } from "../../i18n/helper";
-import { version } from "../../../../package.json";
+import appPackage from "../../../../package.json";
 import { EntryLink } from "../entry-link";
 import { DiscussionList } from "./discussion-list";
 import { DiscussionItemBody } from "./discussion-item-body";
@@ -180,7 +180,7 @@ export function DiscussionItem({
   const submitReply = (text: string) =>
     createReply({
       text,
-      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version),
+      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], appPackage.version),
       permlink: createReplyPermlink(entry.author),
       point: true
     });
@@ -189,7 +189,7 @@ export function DiscussionItem({
     updateReply({
       text,
       point: true,
-      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], version)
+      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], appPackage.version)
     });
 
   return (

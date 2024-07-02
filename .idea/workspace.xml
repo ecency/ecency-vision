@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated profile page pt. 5">
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-permissions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-search-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-search.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated profile page pt. 6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/curation-trail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/curation-trail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-entries-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-welcome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-welcome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,15 +268,7 @@
       <workItem from="1719554475592" duration="8831000" />
       <workItem from="1719757625387" duration="3671000" />
       <workItem from="1719846001499" duration="9694000" />
-      <workItem from="1719934710532" duration="5744000" />
-    </task>
-    <task id="LOCAL-00014" summary="Added witnesses active proxy section">
-      <option name="closed" value="true" />
-      <created>1703850847161</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1703850847161</updated>
+      <workItem from="1719934710532" duration="6603000" />
     </task>
     <task id="LOCAL-00015" summary="Added witnesses active proxy section">
       <option name="closed" value="true" />
@@ -673,7 +654,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719936557876</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Migrated profile page pt. 6">
+      <option name="closed" value="true" />
+      <created>1719940548183</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1719940548183</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved from global axios to local" />
     <MESSAGE value="Updated discover page styles" />
     <MESSAGE value="Migrated community card, started community page" />
     <MESSAGE value="Migrated community menu, cover, subscribers, activities" />
@@ -716,7 +704,8 @@
     <MESSAGE value="Migrated profile page pt. 3" />
     <MESSAGE value="Migrated profile page pt. 4" />
     <MESSAGE value="Migrated profile page pt. 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated profile page pt. 5" />
+    <MESSAGE value="Migrated profile page pt. 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated profile page pt. 6" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

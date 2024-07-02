@@ -2,7 +2,7 @@
 
 .notifications-modal {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding: 0 !important;
 
   .ecency-modal-content {
@@ -121,9 +121,8 @@
     }
 
     .select-buttons {
-      display: -webkit-inline-box;
-      margin-right: 12px;
       display: flex;
+      margin-right: 12px;
       justify-content: space-between;
       align-items: center;
 
