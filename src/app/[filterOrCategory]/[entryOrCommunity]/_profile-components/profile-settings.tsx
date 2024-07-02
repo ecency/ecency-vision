@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 import { Account } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";

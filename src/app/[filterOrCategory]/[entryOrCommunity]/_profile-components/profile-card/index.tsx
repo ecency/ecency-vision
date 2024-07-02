@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useEffect, useState } from "react";
 import { RCAccount } from "@hiveio/dhive/lib/chain/rc";
 import defaults from "@/defaults.json";

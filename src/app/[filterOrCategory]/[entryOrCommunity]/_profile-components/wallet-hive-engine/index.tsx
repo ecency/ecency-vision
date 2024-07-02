@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { proxifyImageSrc } from "@ecency/render-helper";
 import "./_index.scss";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { WalletSpkSection } from "./wallet-spk-section";
 import { SendSpkDialog } from "./send-spk-dialog";

@@ -33,6 +33,20 @@ export async function ProfileEntriesList({ section, account }: Props) {
   if (pinnedEntry) {
     entryList.unshift(pinnedEntry);
   }
+
+  // const bottomReached = async () => {
+  //   const { global, entries, fetchEntries } = props;
+  //   const { filter, tag } = global;
+  //   const groupKey = makeGroupKey(filter, tag);
+  //
+  //   const data = entries[groupKey];
+  //   const { loading, hasMore } = data;
+  //
+  //   if (!loading && hasMore) {
+  //     fetchEntries(filter, tag, true);
+  //   }
+  // };
+
   return (
     <>
       <div className={`entry-list`}>

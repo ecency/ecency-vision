@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import defaults from "@/defaults.json";
 import { proxifyImageSrc, setProxyBase } from "@ecency/render-helper";

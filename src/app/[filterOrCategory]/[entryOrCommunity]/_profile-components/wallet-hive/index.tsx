@@ -1,3 +1,5 @@
+"use client";
+
 import { AssetSymbol } from "@hiveio/dhive";
 import "./_index.scss";
 import {

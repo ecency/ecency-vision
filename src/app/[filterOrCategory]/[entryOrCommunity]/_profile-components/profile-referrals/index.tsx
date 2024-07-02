@@ -1,3 +1,4 @@
+"use client";
 import React, { useMemo, useState } from "react";
 import "./index.scss";
 import { ProfileReferralsTable } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/profile-referrals-table";
