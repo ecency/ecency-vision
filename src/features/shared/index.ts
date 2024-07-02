@@ -50,3 +50,5 @@ export * from "./buy-sell-hive";
 export * from "./boost";
 export * from "./key-or-hot";
 export * from "./image-upload-button";
+export * from "./notifications";
+export * from "./gallery";

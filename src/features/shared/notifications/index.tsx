@@ -1,3 +1,5 @@
+"use client";
+
 import { Modal, ModalBody } from "@ui/modal";
 import React, { useEffect, useState } from "react";
 import { NotificationsContent } from "@/features/shared/notifications/notifications-content";
@@ -25,18 +27,18 @@ export function NotificationsDialog({ className, openLinksInNewTab = false }: Pr
       show={show}
       onHide={() => toggleUIProp("notifications", false)}
       className={"notifications-modal drawer " + className}
-      transitionFrom={{
-        opacity: 0,
-        x: 500
-      }}
-      transitionEnter={{
-        opacity: 1,
-        x: 0
-      }}
-      transitionLeave={{
-        opacity: 0,
-        x: 500
-      }}
+      // transitionFrom={{
+      //   opacity: 0,
+      //   x: 500
+      // }}
+      // transitionEnter={{
+      //   opacity: 1,
+      //   x: 0
+      // }}
+      // transitionLeave={{
+      //   opacity: 0,
+      //   x: 500
+      // }}
     >
       <ModalBody>
         <NotificationsContent openLinksInNewTab={openLinksInNewTab} />
@@ -44,3 +46,5 @@ export function NotificationsDialog({ className, openLinksInNewTab = false }: Pr
     </Modal>
   );
 }
+
+export * from "./notification-list-item";

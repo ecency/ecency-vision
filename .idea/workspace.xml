@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated profile page pt. 6">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Build fixups">
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/profile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-welcome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-welcome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/or-divider/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover-confirm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +63,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[filterOrCategory]/[entryOrCommunity]",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -104,11 +101,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]" />
       <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine" />
       <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components" />
       <recent name="$PROJECT_DIR$/src/consts" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/search/more" />
@@ -268,23 +265,7 @@
       <workItem from="1719554475592" duration="8831000" />
       <workItem from="1719757625387" duration="3671000" />
       <workItem from="1719846001499" duration="9694000" />
-      <workItem from="1719934710532" duration="6603000" />
-    </task>
-    <task id="LOCAL-00015" summary="Added witnesses active proxy section">
-      <option name="closed" value="true" />
-      <created>1703851684421</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1703851684421</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Fixed account logging in">
-      <option name="closed" value="true" />
-      <created>1703852049094</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1703852049094</updated>
+      <workItem from="1719934710532" duration="7371000" />
     </task>
     <task id="LOCAL-00017" summary="Migrated purchase qr dialog">
       <option name="closed" value="true" />
@@ -662,7 +643,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719940548183</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Build fixups">
+      <option name="closed" value="true" />
+      <created>1719941641204</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1719941641204</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Build fixups">
+      <option name="closed" value="true" />
+      <created>1719941869916</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1719941869916</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,7 +677,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated discover page styles" />
     <MESSAGE value="Migrated community card, started community page" />
     <MESSAGE value="Migrated community menu, cover, subscribers, activities" />
     <MESSAGE value="Added queries manager for generating client and server side boilerplate code" />
@@ -705,7 +701,8 @@
     <MESSAGE value="Migrated profile page pt. 4" />
     <MESSAGE value="Migrated profile page pt. 5" />
     <MESSAGE value="Migrated profile page pt. 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated profile page pt. 6" />
+    <MESSAGE value="Build fixups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build fixups" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

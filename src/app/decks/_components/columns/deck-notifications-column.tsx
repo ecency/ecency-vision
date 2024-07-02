@@ -16,7 +16,7 @@ import { ApiNotification, Entry } from "@/entities";
 import { getNotifications } from "@/api/private-api";
 import { NotificationFilter } from "@/enums";
 import i18next from "i18next";
-import { NotificationListItem } from "@/features/shared/notifications/notification-list-item";
+import { NotificationListItem } from "@/features/shared";
 import { getPost } from "@/api/hive";
 
 interface Props {

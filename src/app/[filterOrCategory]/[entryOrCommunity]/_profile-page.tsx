@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 import "./profile.scss";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { ListStyle, ProfileFilter } from "@/enums";
@@ -24,6 +23,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { getAccountFullQuery, getSearchApiQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
 import { notFound } from "next/navigation";
 import Head from "next/head";
+import "./profile.scss";
 import { ProfilePermissions } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-permissions";
 
 interface Props {
