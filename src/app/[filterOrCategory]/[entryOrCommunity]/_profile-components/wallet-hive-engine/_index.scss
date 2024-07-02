@@ -1,0 +1,65 @@
+@import "src/styles/vars_mixins";
+//@import "src/common/components/entry-index-menu";
+
+.wallet-hive-engine {
+  @include wallet;
+
+  .wallet-main {
+    .wallet-info {
+      .unclaimed-rewards {
+        flex-direction: row;
+        flex-flow: wrap;
+        margin-bottom: 10px;
+
+        .rewards {
+          margin-right: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .item-image {
+      margin-right: 10px;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      @apply bg-gray-pinkish;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .entry-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 15px 10px;
+      font-weight: 500;
+      @apply bg-blue-light-powder;
+      @apply text-dark-200;
+
+      .entry-header {
+        margin-left: 10px;
+      }
+
+      .entry-body {
+        font-weight: 600;
+        @apply text-blue-dark-sky;
+
+        .item-conversion {
+          @apply text-green;
+        }
+      }
+
+      @include themify(night) {
+        background: #283241;
+        @apply text-gray-pinkish;
+      }
+    }
+  }
+}
+
+.lowercase::first-letter {
+  text-transform: uppercase;
+}

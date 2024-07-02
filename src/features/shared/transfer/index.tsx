@@ -22,6 +22,9 @@ export type TransferMode =
   | "power-up"
   | "power-down"
   | "delegate"
+  | "undelegate"
+  | "stake"
+  | "unstake"
   | "claim-interest";
 export type TransferAsset = "HIVE" | "HBD" | "HP" | "POINT";
 

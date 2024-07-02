@@ -33,6 +33,7 @@ import {
 import { useGlobalStore } from "@/core/global-store";
 import { getAccountFullQuery } from "@/api/queries";
 import { notFound } from "next/navigation";
+import { WalletHiveEngine } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine";
 
 interface Props {
   params: { filterOrCategory: string; entryOrCommunity: string };
@@ -390,7 +391,7 @@ export async function Profile({
               {section === "wallet" && <WalletHive account={account} />}
               {(() => {
                 if (section === "engine") {
-                  return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
+                  return <WalletHiveEngine account={account} />;
                 }
                 if (section === "spk") {
                   return (
