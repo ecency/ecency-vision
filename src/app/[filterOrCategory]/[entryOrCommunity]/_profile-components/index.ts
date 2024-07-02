@@ -9,3 +9,7 @@ export * from "./password-update";
 export * from "./manage-authority";
 export * from "./profile-referrals";
 export * from "./profile-settings";
+export * from "./profile-communities";
+export * from "./wallet-ecency";
+export * from "./recovery-account";
+export * from "./wallet-spk";

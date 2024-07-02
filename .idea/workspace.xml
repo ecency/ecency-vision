@@ -4,35 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated profile page pt. 2">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-referrals-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/profile-referral-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/profile-referrals-table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-settings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/consts/currencies.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/image-upload-button/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/image-upload-button/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/image-upload-button/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated profile page pt. 3">
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/wallet-ecency-transaction-row.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-confirm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-delegate-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-lock.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-power-up-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-sign.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-success.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/delegate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/lock.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/power.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/transfer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/send-spk-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/util/estimated-balance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/util/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-active-power-down.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-dialog-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-dialog.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-group.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-larynx-locked.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-larynx-power.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-section.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-steps.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-unclaimed-points.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/global-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/global-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,43 +91,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.scratch_39.js.executor": "Run",
-    "Node.js.scratch_40.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/consts",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JavaScript"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JavaScript&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -124,8 +139,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/consts" />
       <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components" />
+      <recent name="$PROJECT_DIR$/src/consts" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends" />
       <recent name="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info" />
@@ -287,15 +302,8 @@
       <workItem from="1719482819951" duration="11421000" />
       <workItem from="1719554475592" duration="8831000" />
       <workItem from="1719757625387" duration="3671000" />
-      <workItem from="1719846001499" duration="2289000" />
-    </task>
-    <task id="LOCAL-00011" summary="Updated to react query 5">
-      <option name="closed" value="true" />
-      <created>1703589325077</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1703589325077</updated>
+      <workItem from="1719846001499" duration="9694000" />
+      <workItem from="1719934710532" duration="324000" />
     </task>
     <task id="LOCAL-00012" summary="Migrated witnesses list and header, migrate witnesses to queries">
       <option name="closed" value="true" />
@@ -681,7 +689,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719565453953</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Migrated profile page pt. 3">
+      <option name="closed" value="true" />
+      <created>1719848340169</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1719848340171</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,7 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated discover page" />
     <MESSAGE value="Updated chat providers" />
     <MESSAGE value="Updated build" />
     <MESSAGE value="Moved from global axios to local" />
@@ -724,7 +739,8 @@
     <MESSAGE value="Migrated proposal details page" />
     <MESSAGE value="Migrated profile page pt. 1" />
     <MESSAGE value="Migrated profile page pt. 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated profile page pt. 2" />
+    <MESSAGE value="Migrated profile page pt. 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated profile page pt. 3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

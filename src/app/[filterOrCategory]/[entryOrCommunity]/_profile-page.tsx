@@ -15,21 +15,24 @@ import { Account, Entry, EntryGroup, FullAccount } from "@/entities";
 import i18next from "i18next";
 import defaults from "@/defaults.json";
 import {
+  AccountRecovery,
   CurationTrail,
   ManageAuthorities,
   PasswordUpdate,
   ProfileCard,
+  ProfileCommunities,
   ProfileCover,
   ProfileEntriesList,
   ProfileMenu,
   ProfileReferrals,
   ProfileSettings,
-  WalletHive
+  WalletEcency,
+  WalletHive,
+  WalletSpk
 } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components";
 import { useGlobalStore } from "@/core/global-store";
 import { getAccountFullQuery } from "@/api/queries";
 import { notFound } from "next/navigation";
-import { AccountRecovery } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account";
 
 interface Props {
   params: { filterOrCategory: string; entryOrCommunity: string };
@@ -390,17 +393,18 @@ export async function Profile({
                   return WalletHiveEngine({ ...props, account, updateWalletValues: ensureAccount });
                 }
                 if (section === "spk") {
-                  return WalletSpk({
-                    ...props,
-                    account,
-                    isActiveUserWallet: account.name === activeUser?.username
-                  });
+                  return (
+                    <WalletSpk
+                      account={account}
+                      isActiveUserWallet={account.name === activeUser?.username}
+                    />
+                  );
                 }
                 if (section === "points") {
-                  return WalletEcency({ ...props, account, updateWalletValues: ensureAccount });
+                  return <WalletEcency account={account} />;
                 }
                 if (section === "communities") {
-                  return ProfileCommunities({ ...props, account });
+                  return <ProfileCommunities account={account} />;
                 }
                 if (section === "settings") {
                   return <ProfileSettings account={account} />;
