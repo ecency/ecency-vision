@@ -510,5 +510,29 @@
   {
     "name": "sirenahippie",
     "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "ahmedhayat",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "edwing357",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "mysteriousroad",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "djbravo",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "idea-make-rich",
+    "contributes": ["Guest Curator"]
+  },
+  {
+    "name": "sahi1",
+    "contributes": ["Guest Curator"]
   }
 ]
