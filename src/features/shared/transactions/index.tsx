@@ -11,6 +11,8 @@ import { OperationGroup } from "@/consts";
 import { getTransactionsQuery } from "@/api/queries";
 import { Account } from "@/entities";
 
+export * from "./transaction-row";
+
 interface Props {
   account: Account;
 }
@@ -69,5 +71,3 @@ export const TransactionsList = ({ account }: Props) => {
     </div>
   );
 };
-
-export * from "./transaction-row";

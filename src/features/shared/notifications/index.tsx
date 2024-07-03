@@ -6,6 +6,8 @@ import { NotificationsContent } from "@/features/shared/notifications/notificati
 import "./_index.scss";
 import { useGlobalStore } from "@/core/global-store";
 
+export * from "./notification-list-item";
+
 interface Props {
   className?: string;
   openLinksInNewTab?: boolean;
@@ -46,5 +48,3 @@ export function NotificationsDialog({ className, openLinksInNewTab = false }: Pr
     </Modal>
   );
 }
-
-export * from "./notification-list-item";

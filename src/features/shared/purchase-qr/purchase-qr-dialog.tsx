@@ -5,6 +5,9 @@ import { Modal, ModalBody, ModalHeader, ModalTitle } from "@ui/modal";
 import { PurchaseQrBuilder } from "@/features/shared";
 import i18next from "i18next";
 
+export * from "./purchase-qr-types";
+export * from "./purchase-types";
+
 interface Props {
   show: boolean;
   setShow?: (val: boolean) => void;
@@ -33,6 +36,3 @@ export const PurchaseQrDialog = ({ show, setShow, type }: Props) => {
     </Modal>
   );
 };
-
-export * from "./purchase-qr-types";
-export * from "./purchase-types";

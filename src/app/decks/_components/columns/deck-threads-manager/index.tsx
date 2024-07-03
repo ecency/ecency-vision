@@ -1,9 +1,5 @@
-import { createContext, useState } from "react";
-import React from "react";
+import React, { createContext, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
-import { ThreadItemEntry } from "./identifiable-entry";
-import { fetchThreads } from "./threads-api";
-import { fetchThreadsFromCommunity } from "./community-api";
 
 export * from "./identifiable-entry";
 export * from "./deck-threads-column-manager";

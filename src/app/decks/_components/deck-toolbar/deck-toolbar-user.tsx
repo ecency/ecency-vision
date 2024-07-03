@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@ui/button";
-import { NavbarSide, NavbarSideThemeSwitcher, UserAvatar } from "@/features/shared";
+import { UserAvatar } from "@/features/shared";
+import { NavbarSide, NavbarSideThemeSwitcher } from "@/features/shared/navbar/sidebar";
 import { useGlobalStore } from "@/core/global-store";
 import Link from "next/link";
 import { FullAccount } from "@/entities";

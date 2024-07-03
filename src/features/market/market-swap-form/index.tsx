@@ -21,6 +21,8 @@ import i18next from "i18next";
 import { checkSvg, swapSvg } from "@ui/svg";
 import useMount from "react-use/lib/useMount";
 
+export * from "./swap-mode";
+
 export interface Props {
   padding?: string;
 }
@@ -300,5 +302,3 @@ export const MarketSwapForm = ({ padding = "p-4" }: Props) => {
     </div>
   );
 };
-
-export * from "./swap-mode";

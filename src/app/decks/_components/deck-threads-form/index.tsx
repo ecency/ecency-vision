@@ -20,6 +20,8 @@ import { AvailableCredits, UserAvatar } from "@/features/shared";
 import { arrowLeftSvg } from "@ui/svg";
 import { classNameObject } from "@ui/util";
 
+export * from "./deck-threads-form-manager";
+
 interface Props {
   className?: string;
   inline?: boolean;
@@ -318,5 +320,3 @@ export const DeckThreadsForm = ({
     </div>
   );
 };
-
-export * from "./deck-threads-form-manager";
