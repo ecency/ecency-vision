@@ -14,7 +14,7 @@ interface Props {
   onConfirm: () => void;
 }
 
-const ChatsConfirmationModal = (props: Props) => {
+export const ChatsConfirmationModal = (props: Props) => {
   const { onClose, onConfirm, content, actionType } = props;
   const { hasUserJoinedChat } = useContext(ChatContext);
   const [inProgress, setInProgress] = useState(false);
@@ -68,5 +68,3 @@ const ChatsConfirmationModal = (props: Props) => {
     </Modal>
   );
 };
-
-export default ChatsConfirmationModal;

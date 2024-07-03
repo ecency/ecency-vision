@@ -8,7 +8,7 @@ import { Button } from "@ui/button";
 import { Account, FullAccount, Subscription } from "@/entities";
 import Link from "next/link";
 import i18next from "i18next";
-import JoinCommunityChatBtn from "@/app/chats/_components/join-community-chat-btn";
+import { JoinCommunityChatBtn } from "@/app/chats/_components/join-community-chat-btn";
 import { accountReputation, dateToFormatted, formattedNumber, isCommunity } from "@/utils";
 import { calendarRangeSvg, earthSvg, nearMeSvg, rssSvg } from "@ui/svg";
 import { Tooltip } from "@ui/tooltip";

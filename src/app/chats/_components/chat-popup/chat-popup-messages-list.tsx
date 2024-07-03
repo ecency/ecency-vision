@@ -1,5 +1,5 @@
-import ChatsProfileBox from "../chat-profile-box";
-import ChatsDirectMessages from "../chats-direct-messages";
+import { ChatsProfileBox } from "../chat-profile-box";
+import { ChatsDirectMessages } from "../chats-direct-messages";
 import React, { useEffect, useMemo } from "react";
 import { ChatsChannelMessages } from "../chat-channel-messages";
 import {

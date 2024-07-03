@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import ManageChatKey from "../manage-chat-key";
+import { ManageChatKey } from "../manage-chat-key";
 import { ChatInput } from "../chat-input";
 import "./_index.scss";
 import { useMount } from "react-use";

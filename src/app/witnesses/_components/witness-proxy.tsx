@@ -78,5 +78,3 @@ export function WitnessesProxy(props: Props) {
     </div>
   );
 }
-
-export default WitnessesProxy;

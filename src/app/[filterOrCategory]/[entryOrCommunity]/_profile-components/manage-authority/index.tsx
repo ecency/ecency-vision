@@ -11,7 +11,7 @@ import { formatError, Revoke, RevokeHot, RevokeKc } from "@/api/operations";
 import { error, KeyOrHot, LinearProgress, UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import { ManageAuthIcon } from "../manage-auth-icon";
-import ManageKeys from "../manage-keys";
+import { ManageKeys } from "../manage-keys";
 
 export function ManageAuthorities() {
   const activeUser = useGlobalStore((s) => s.activeUser);

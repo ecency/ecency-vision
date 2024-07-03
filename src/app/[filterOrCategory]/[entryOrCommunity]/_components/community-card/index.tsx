@@ -7,7 +7,7 @@ import { Button } from "@ui/button";
 import { useGlobalStore } from "@/core/global-store";
 import { Account, Community, FullAccount, roleMap, ROLES } from "@/entities";
 import i18next from "i18next";
-import JoinCommunityChatBtn from "@/app/chats/_components/join-community-chat-btn";
+import { JoinCommunityChatBtn } from "@/app/chats/_components/join-community-chat-btn";
 import { UserAvatar } from "@/features/shared";
 import { DialogInfo } from "@/app/[filterOrCategory]/[entryOrCommunity]/types";
 import { CommunityCardEditPic } from "./community-card-edit-pic";

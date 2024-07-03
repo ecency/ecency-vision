@@ -1,5 +1,5 @@
 import { Button } from "@ui/button";
-import ManageChatKey from "@/app/chats/_components/manage-chat-key";
+import { ManageChatKey } from "@/app/chats/_components/manage-chat-key";
 import React, { useContext } from "react";
 import { ChatContext } from "@ecency/ns-query";
 import { arrowBackSvg } from "@/assets/img/svg";

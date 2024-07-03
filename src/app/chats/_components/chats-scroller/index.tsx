@@ -10,7 +10,7 @@ interface Props {
   marginRight: string;
 }
 
-export default function ChatsScroller(props: Props) {
+export function ChatsScroller(props: Props) {
   const { bodyRef, isScrollToTop, isScrollToBottom, marginRight } = props;
 
   const scrollerClicked = () => {

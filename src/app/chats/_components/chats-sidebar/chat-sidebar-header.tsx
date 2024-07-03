@@ -1,4 +1,4 @@
-import ChatsDropdownMenu from "../chats-dropdown-menu";
+import { ChatsDropdownMenu } from "../chats-dropdown-menu";
 import React, { useContext } from "react";
 import { ChatContext, useKeysQuery } from "@ecency/ns-query";
 import i18next from "i18next";

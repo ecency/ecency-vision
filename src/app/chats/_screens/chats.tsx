@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext, useEffect, useMemo } from "react";
-import ChatsSideBar from "@/app/chats/_components/chats-sidebar";
-import ChatsMessagesBox from "@/app/chats/_components/chat-message-box";
+import { ChatsSideBar } from "@/app/chats/_components/chats-sidebar";
+import { ChatsMessagesBox } from "@/app/chats/_components/chat-message-box";
 import { ChatsWelcome } from "@/app/chats/_components/chats-welcome";
 import useMountedState from "react-use/lib/useMountedState";
 import { ChatsDefaultScreen } from "@/app/chats/_components/chats-default-screen";

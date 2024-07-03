@@ -24,7 +24,7 @@ interface Props {
   isChannel: boolean;
 }
 
-export default function ChatsSideBar(props: Props) {
+export function ChatsSideBar(props: Props) {
   const { username } = props;
   const { setRevealPrivateKey, setReceiverPubKey } = useContext(ChatContext);
 

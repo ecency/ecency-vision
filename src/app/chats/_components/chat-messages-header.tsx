@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from "react";
-import ChatsCommunityDropdownMenu from "./chats-community-actions";
+import { ChatsCommunityDropdownMenu } from "./chats-community-actions";
 import { Button } from "@ui/button";
 import {
   Channel,
@@ -22,7 +22,7 @@ interface Props {
   contact?: DirectContact;
 }
 
-export default function ChatsMessagesHeader(props: Props) {
+export function ChatsMessagesHeader(props: Props) {
   const { username } = props;
   const { setReceiverPubKey, receiverPubKey } = useContext(ChatContext);
 

@@ -21,7 +21,7 @@ interface Props {
   contact?: DirectContact;
 }
 
-const ChatsDropdownMenu = (props: Props) => {
+export const ChatsDropdownMenu = (props: Props) => {
   const { mutateAsync: logout } = useLogoutFromChats();
   const pathname = usePathname();
   const router = useRouter();
@@ -102,5 +102,3 @@ const ChatsDropdownMenu = (props: Props) => {
     </Dropdown>
   );
 };
-
-export default ChatsDropdownMenu;

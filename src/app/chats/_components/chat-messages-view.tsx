@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from "react";
-import ChatsProfileBox from "./chat-profile-box";
-import ChatsDirectMessages from "./chats-direct-messages";
+import { ChatsProfileBox } from "./chat-profile-box";
+import { ChatsDirectMessages } from "./chats-direct-messages";
 import { ChatInput } from "./chat-input";
 import { ChatsChannelMessages } from "./chat-channel-messages";
 import {
@@ -21,7 +21,7 @@ interface Props {
   currentChannel: Channel;
 }
 
-export default function ChatsMessagesView({ currentContact, currentChannel }: Props) {
+export function ChatsMessagesView({ currentContact, currentChannel }: Props) {
   const messagesBoxRef = useRef<HTMLDivElement>(null);
 
   const { publicKey } = useKeysQuery();

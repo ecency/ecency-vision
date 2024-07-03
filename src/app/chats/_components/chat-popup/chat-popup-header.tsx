@@ -1,5 +1,5 @@
 import { Button } from "@ui/button";
-import ChatsDropdownMenu from "../chats-dropdown-menu";
+import { ChatsDropdownMenu } from "../chats-dropdown-menu";
 import React, { useContext, useMemo } from "react";
 import { Channel, ChatContext, DirectContact, useKeysQuery } from "@ecency/ns-query";
 import { ChatSidebarSavedMessagesAvatar } from "../chats-sidebar/chat-sidebar-saved-messages-avatar";

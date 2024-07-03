@@ -14,7 +14,7 @@ interface Props {
   claimAccountAmount: number;
 }
 
-const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
+export const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
   const activeUser = useGlobalStore((s) => s.activeUser);
 
   const {
@@ -86,5 +86,3 @@ const ClaimAccountCredit = ({ account, claimAccountAmount }: Props) => {
     </div>
   );
 };
-
-export default ClaimAccountCredit;

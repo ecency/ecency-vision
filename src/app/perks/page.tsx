@@ -1,12 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Feedback, Navbar, Promote, PurchaseQrDialog, PurchaseTypes } from "@/features/shared";
+import {
+  BoostDialog,
+  Feedback,
+  Navbar,
+  Promote,
+  PurchaseQrDialog,
+  PurchaseTypes
+} from "@/features/shared";
 import Head from "next/head";
 import i18next from "i18next";
 import { MajorPerkCard, PerksHeader } from "@/app/perks/components";
 import { UilChart, UilFire, UilMoneyWithdraw, UilRocket } from "@iconscout/react-unicons";
-import BoostDialog from "@/features/shared/boost";
 
 export default function PerksPage() {
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);

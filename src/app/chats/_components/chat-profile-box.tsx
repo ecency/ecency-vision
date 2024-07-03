@@ -18,7 +18,7 @@ interface Props {
   currentUser?: string;
 }
 
-export default function ChatsProfileBox({ communityName, currentUser }: Props) {
+export function ChatsProfileBox({ communityName, currentUser }: Props) {
   const { data: community } = getCommunityCache(communityName!).useClientQuery();
   const { data: account } = getAccountFullQuery(currentUser).useClientQuery();
 

@@ -8,7 +8,7 @@ import { PREFIX } from "@/utils/local-storage";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
 
-export default function ManageChatKey() {
+export function ManageChatKey() {
   const activeUser = useGlobalStore((state) => state.activeUser);
 
   const qrImgRef = useRef<HTMLImageElement | null>(null);

@@ -2,7 +2,7 @@ import { WitnessesExtra } from "@/app/witnesses/_components/witnesses-extra";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryIdentifiers } from "@/core/react-query";
 import { useWitnessProxyQuery, useWitnessVotesQuery } from "@/app/witnesses/_queries";
-import WitnessesProxy from "@/app/witnesses/_components/witness-proxy";
+import { WitnessesProxy } from "@/app/witnesses/_components/witness-proxy";
 import { useMemo } from "react";
 import { WitnessTransformed } from "@/entities";
 

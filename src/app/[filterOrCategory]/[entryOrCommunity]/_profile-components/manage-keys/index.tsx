@@ -20,7 +20,7 @@ interface Props {
   accountData: AccountDataType;
 }
 
-export default function ManageKeys(props: Props) {
+export function ManageKeys(props: Props) {
   const activeUser = useGlobalStore((s) => s.activeUser);
 
   const [ownerReveal, setOwnerReveal] = useState(true);

@@ -11,7 +11,7 @@ interface Props {
   community: Community;
 }
 
-export default function JoinCommunityChatBtn(props: Props) {
+export function JoinCommunityChatBtn(props: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const { data: currentChannel, isLoading: isCurrentChannelLoading } = useCommunityChannelQuery(
     props.community

@@ -25,7 +25,7 @@ interface Props {
   isPage?: boolean;
 }
 
-export default function ChatsDirectMessages(props: Props) {
+export function ChatsDirectMessages(props: Props) {
   const { directMessages } = props;
 
   const [needFetchNextPage, setNeedFetchNextPage] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
-import ChatsMessagesHeader from "./chat-messages-header";
-import ChatsMessagesView from "./chat-messages-view";
+import { ChatsMessagesHeader } from "./chat-messages-header";
+import { ChatsMessagesView } from "./chat-messages-view";
 import {
   Channel,
   DirectContact,
@@ -26,7 +26,7 @@ interface Props {
   currentContact?: DirectContact;
 }
 
-export default function ChatsMessagesBox(props: Props) {
+export function ChatsMessagesBox(props: Props) {
   const isContactJoined = useMemo(
     () => !!props.currentContact?.pubkey && !props.currentContact.pubkey.startsWith("not_joined_"),
     [props.currentContact]

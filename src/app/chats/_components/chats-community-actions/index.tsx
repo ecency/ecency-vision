@@ -21,7 +21,7 @@ interface Props {
   channel?: Channel;
 }
 
-const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
+export const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const [showBlockedUsersModal, setShowBlockedUsersModal] = useState(false);
 
@@ -92,5 +92,3 @@ const ChatsCommunityDropdownMenu = ({ channel }: Props) => {
     </>
   );
 };
-
-export default ChatsCommunityDropdownMenu;

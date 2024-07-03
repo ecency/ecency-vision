@@ -20,7 +20,7 @@ interface Props {
   onHide: () => void;
 }
 
-function BoostDialog({ onHide }: Props) {
+export function BoostDialog({ onHide }: Props) {
   const activeUser = useGlobalStore((s) => s.activeUser);
 
   const { data: prices } = getBoostPlusPricesQuery(activeUser).useClientQuery();
@@ -223,5 +223,3 @@ function BoostDialog({ onHide }: Props) {
     </Modal>
   );
 }
-
-export default BoostDialog;
