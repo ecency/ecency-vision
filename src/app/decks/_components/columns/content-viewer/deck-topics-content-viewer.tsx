@@ -17,7 +17,7 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
 
   const dataFlow = useMemo(
     () => data?.pages?.reduce((acc, item) => [...acc, ...item], []) ?? [],
-    []
+    [data]
   );
   const isMounted = useMounted();
 
@@ -54,12 +54,11 @@ export const DeckTopicsContentViewer = ({ onClose, backTitle, topic }: Props) =>
                 toggleNotNeeded: true
               }}
               {...item}
-              children=""
               onMounted={() => {}}
               onEntryView={() =>
                 window.open(makeEntryPath(item.category, item.author, item.permlink), "_blank")
               }
-            />
+            ></SearchListItem>
           </div>
         ))}
         {dataFlow.length === 0 && (

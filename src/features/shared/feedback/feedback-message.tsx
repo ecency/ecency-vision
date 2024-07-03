@@ -30,7 +30,7 @@ export function FeedbackMessage(props: Props) {
     }
     setList([...list, props.feedback]);
     startTimer();
-  }, []);
+  }, [list, props.feedback]);
 
   useEffect(() => {
     if (progress === 0) {
@@ -38,15 +38,14 @@ export function FeedbackMessage(props: Props) {
       props.handleChild(false);
       stopTimer();
     }
-  }, [progress]);
+  }, [progress, props]);
 
   const startTimer = () => {
     const setWidth = () => {
       setProgress((prevProgress) => prevProgress - 2.5);
     };
 
-    const interval = setInterval(setWidth, 125);
-    intervalID.current = interval;
+    intervalID.current = setInterval(setWidth, 125);
   };
 
   const stopTimer = () => {

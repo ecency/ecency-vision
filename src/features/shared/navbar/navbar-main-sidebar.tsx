@@ -34,7 +34,7 @@ export function NavbarMainSidebar({ show, setShow, setStepOne }: Props) {
 
   useEffect(() => {
     reset();
-  }, [show]);
+  }, [reset, show]);
 
   const onLogoClick = () => {
     if (

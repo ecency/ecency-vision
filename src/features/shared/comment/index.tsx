@@ -70,20 +70,6 @@ export function Comment({
 
   const rows = useMemo(() => text.split(/\r\n|\r|\n|<br>/).length, [text]);
 
-  useEffect(() => {
-    if (defText !== previousDefText && !previousDefText) {
-      let commentText = text ? text + "\n" + defText : defText;
-      setText(commentText || "");
-      setPreview(commentText || "");
-      if (resetSelection) resetSelection();
-      updateLsCommentDraft(commentText);
-    }
-    if (previousIsCommented && !isCommented) {
-      setText("");
-      setPreview("");
-    }
-  }, []);
-
   useDebounce(
     () => {
       setPreview(text);
@@ -162,6 +148,28 @@ export function Comment({
       detectEvent("blockquote");
     }
   };
+
+  useEffect(() => {
+    if (defText !== previousDefText && !previousDefText) {
+      let commentText = text ? text + "\n" + defText : defText;
+      setText(commentText || "");
+      setPreview(commentText || "");
+      if (resetSelection) resetSelection();
+      updateLsCommentDraft(commentText);
+    }
+    if (previousIsCommented && !isCommented) {
+      setText("");
+      setPreview("");
+    }
+  }, [
+    defText,
+    isCommented,
+    previousDefText,
+    previousIsCommented,
+    resetSelection,
+    text,
+    updateLsCommentDraft
+  ]);
 
   return (
     <>

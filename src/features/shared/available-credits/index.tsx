@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { usePopper } from "react-popper";
 import {
   client,
@@ -44,11 +44,7 @@ export const AvailableCredits = ({ username, className }: Props) => {
 
   const isMounted = useMounted();
 
-  useEffect(() => {
-    fetchRc();
-  }, [username]);
-
-  const fetchRc = async () => {
+  const fetchRc = useCallback(async () => {
     try {
       const response = await findRcAccounts(username);
       const account = response[0];
@@ -79,7 +75,11 @@ export const AvailableCredits = ({ username, className }: Props) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [username]);
+
+  useEffect(() => {
+    fetchRc();
+  }, [fetchRc, username]);
 
   const show = () => {
     setIsShow(true);

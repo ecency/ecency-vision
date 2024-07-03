@@ -30,7 +30,7 @@ export function useFocusOnMessageById(
 
       return getElementById();
     }
-  }, [id]);
+  }, [currentContact, directMessagesQuery, id, publicMessagesQuery]);
 
   const [isReady, cancel, reset] = useTimeoutFn(async () => {
     const element = await getElementById();
@@ -47,7 +47,7 @@ export function useFocusOnMessageById(
     element?.classList.add("bg-opacity-20");
 
     reset();
-  }, [id, getElementById, messages]);
+  }, [getElementById, reset]);
 
   return {
     focus

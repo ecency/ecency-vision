@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { GenericOrderItem } from "./generic-order-item";
 import "./index.scss";
 import { OpenOrdersData } from "@/entities";
@@ -14,16 +14,16 @@ export const MarketSwapActiveOrders = () => {
   const [orders, setOrders] = useState<OpenOrdersData[]>([]);
   const [cancelingOrder, setCancelingOrder] = useState(0);
 
-  useEffect(() => {
-    fetch();
-  }, [activeUser]);
-
-  const fetch = async () => {
+  const fetch = useCallback(async () => {
     try {
       const orders = await getOpenOrder(activeUser!.username);
       setOrders(orders.filter((order) => order.orderid.toString().startsWith("9")));
     } catch (e) {}
-  };
+  }, [activeUser]);
+
+  useEffect(() => {
+    fetch();
+  }, [activeUser, fetch]);
 
   return orders.length > 0 ? (
     <>

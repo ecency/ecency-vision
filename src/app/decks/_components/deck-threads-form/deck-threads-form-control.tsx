@@ -4,6 +4,7 @@ import { DeckThreadsFormToolbar } from "./deck-threads-form-toolbar";
 import { PollsContext, PollWidget } from "@/features/polls";
 import i18next from "i18next";
 import { closeSvg } from "@ui/svg";
+import Image from "next/image";
 
 interface Props {
   text: string;
@@ -46,7 +47,7 @@ export const DeckThreadsFormControl = ({
         {selectedImage && (
           <div className="deck-threads-form-selected-image border mb-3">
             <div className="type">image</div>
-            <img src={selectedImage} alt="" />
+            <Image width={1000} height={1000} src={selectedImage} alt="" />
             <div className="remove" onClick={() => setSelectedImage(null)}>
               {closeSvg}
             </div>
@@ -55,7 +56,9 @@ export const DeckThreadsFormControl = ({
         {video && (
           <div className="deck-threads-form-selected-image border mb-3">
             <div className="type">video</div>
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src={video
                 .matchAll(/<center>\[!\[](.*)].*<\/center>/g)
                 .next()

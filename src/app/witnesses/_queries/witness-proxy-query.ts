@@ -17,7 +17,7 @@ export function useWitnessProxyQuery() {
 
   useEffect(() => {
     queryClient.refetchQueries({ queryKey: [QueryIdentifiers.WITNESSES, "proxy"] });
-  }, [urlParamAccount, activeUserAccount]);
+  }, [urlParamAccount, activeUserAccount, queryClient]);
 
   return useQuery<string>({
     queryKey: [QueryIdentifiers.WITNESSES, "proxy"],

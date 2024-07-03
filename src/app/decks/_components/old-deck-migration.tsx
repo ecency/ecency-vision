@@ -111,5 +111,5 @@ export function useOldDeckMigration() {
         set(`${activeUser.username}_dm`, true);
       }
     }
-  }, [activeUser]);
+  }, [activeUser, pushOrUpdateDeck]);
 }

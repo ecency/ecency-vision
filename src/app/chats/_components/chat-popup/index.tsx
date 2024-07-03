@@ -90,7 +90,7 @@ export const ChatPopUp = () => {
     if (prevActiveUser?.username !== activeUser?.username) {
       setCommunityName("");
     }
-  }, [theme, activeUser]);
+  }, [theme, activeUser, prevActiveUser?.username]);
 
   const handleMessageSvgClick = () => {
     setShowSearchUser(!showSearchUser);

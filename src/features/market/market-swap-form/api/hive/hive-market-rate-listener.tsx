@@ -1,8 +1,10 @@
 import { MarketAsset } from "../../market-pair";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { OrdersDataItem } from "@/entities";
 import { getOrderBook } from "@/api/hive";
 import { error } from "@/features/shared";
+import useMount from "react-use/lib/useMount";
+import useUnmount from "react-use/lib/useUnmount";
 
 export namespace HiveMarket {
   interface ProcessingResult {
@@ -113,25 +115,9 @@ export const HiveMarketRateListener = ({
   const [buyOrderBook, setBuyOrderBook] = useState<OrdersDataItem[]>([]);
   const [sellOrderBook, setSellOrderBook] = useState<OrdersDataItem[]>([]);
 
-  let updateInterval: any;
+  let updateIntervalRef = useRef<any>();
 
-  useEffect(() => {
-    fetchOrderBook();
-    updateInterval = setInterval(() => fetchOrderBook(), 60000);
-    return () => {
-      clearInterval(updateInterval);
-    };
-  }, []);
-
-  useEffect(() => {
-    fetchOrderBook();
-  }, [asset]);
-
-  useEffect(() => {
-    processOrderBook();
-  }, [amount]);
-
-  const processOrderBook = () => {
+  const processOrderBook = useCallback(() => {
     const { tooMuchSlippage, invalidAmount, toAmount } = HiveMarket.processHiveOrderBook(
       buyOrderBook,
       sellOrderBook,
@@ -143,9 +129,17 @@ export const HiveMarketRateListener = ({
     if (toAmount) {
       setToAmount(toAmount);
     }
-  };
+  }, [
+    amount,
+    asset,
+    buyOrderBook,
+    sellOrderBook,
+    setInvalidAmount,
+    setToAmount,
+    setTooMuchSlippage
+  ]);
 
-  const fetchOrderBook = async () => {
+  const fetchOrderBook = useCallback(async () => {
     setLoading(true);
     try {
       const book = await HiveMarket.fetchHiveOrderBook();
@@ -157,7 +151,21 @@ export const HiveMarketRateListener = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [processOrderBook, setLoading]);
+
+  useMount(() => {
+    fetchOrderBook();
+    updateIntervalRef.current = setInterval(() => fetchOrderBook(), 60000);
+  });
+  useUnmount(() => clearInterval(updateIntervalRef.current));
+
+  useEffect(() => {
+    fetchOrderBook();
+  }, [asset, fetchOrderBook]);
+
+  useEffect(() => {
+    processOrderBook();
+  }, [amount, processOrderBook]);
 
   return <></>;
 };

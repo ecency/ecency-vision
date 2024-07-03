@@ -37,6 +37,11 @@ export function useChatInputSubmit({
     }
   );
 
+  const buildImages = useCallback(
+    (message: string) => `${message}${uploadedFileLinks.map((link) => `\n![](${link})`)}`,
+    [uploadedFileLinks]
+  );
+
   const submit = useCallback(async () => {
     const nextMessage = buildImages(message);
 
@@ -57,10 +62,19 @@ export function useChatInputSubmit({
     // Re-focus to input because when DOM changes and input position changes then
     //  focus is lost
     setTimeout(() => inputRef.current?.focus(), 1);
-  }, [message, isDisabled, isSendMessageLoading, isFilesUploading, sendMessage, reply, clearReply]);
-
-  const buildImages = (message: string) =>
-    `${message}${uploadedFileLinks.map((link) => `\n![](${link})`)}`;
+  }, [
+    buildImages,
+    message,
+    isDisabled,
+    isSendMessageLoading,
+    isFilesUploading,
+    reply,
+    sendMessage,
+    clearReply,
+    setFiles,
+    setUploadedFileLinks,
+    inputRef
+  ]);
 
   return { submit, sendMessage, isSendMessageLoading } as const;
 }

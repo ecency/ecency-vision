@@ -3,7 +3,7 @@ import { EntryFilter, ProfileFilter } from "@/enums";
 const entryFilters = Object.values(EntryFilter);
 const profileFilters = Object.values(ProfileFilter);
 
-export default {
+const routes = {
   HOME: `/`,
   ABOUT: `/about`,
   GUESTS: `/guest-posts`,
@@ -41,3 +41,4 @@ export default {
   PURCHASE: "/purchase",
   DECKS: "/decks"
 };
+export default routes;

@@ -26,7 +26,7 @@ export function OpenOrdersList({ account, onHide, tokenType }: Props) {
 
   const sliced = useMemo(
     () => openOrders?.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize) ?? [],
-    []
+    [openOrders, page, pageSize]
   );
 
   const router = useRouter();

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
@@ -14,6 +14,7 @@ import { InfiniteScrollLoader } from "./helpers";
 import { Entry } from "@/entities";
 import { getAccountPosts } from "@/api/bridge";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   id: string;
@@ -34,47 +35,50 @@ export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
 
-  useEffect(() => {
+  useMount(() => {
     fetchData();
-  }, []);
+  });
+
+  const fetchData = useCallback(
+    async (since?: Entry) => {
+      if (data.length) {
+        setIsReloading(true);
+      }
+
+      try {
+        const response = await getAccountPosts(
+          settings.contentType,
+          settings.username,
+          since?.author,
+          since?.permlink
+        );
+        let items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
+        items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
+
+        if (items.length === 0) {
+          setHasNextPage(false);
+        }
+
+        if (since) {
+          setData([...data, ...items]);
+        } else {
+          setData(items ?? []);
+        }
+      } catch (e) {
+      } finally {
+        setIsReloading(false);
+        setIsFirstLoaded(true);
+      }
+    },
+    [data, settings.contentType, settings.username]
+  );
 
   useEffect(() => {
     if (prevSettings && prevSettings?.contentType !== settings.contentType) {
       setData([]);
       fetchData();
     }
-  }, [settings.contentType]);
-
-  const fetchData = async (since?: Entry) => {
-    if (data.length) {
-      setIsReloading(true);
-    }
-
-    try {
-      const response = await getAccountPosts(
-        settings.contentType,
-        settings.username,
-        since?.author,
-        since?.permlink
-      );
-      let items = response?.map((i) => ({ ...i, id: i.post_id })) ?? [];
-      items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
-
-      if (items.length === 0) {
-        setHasNextPage(false);
-      }
-
-      if (since) {
-        setData([...data, ...items]);
-      } else {
-        setData(items ?? []);
-      }
-    } catch (e) {
-    } finally {
-      setIsReloading(false);
-      setIsFirstLoaded(true);
-    }
-  };
+  }, [fetchData, prevSettings, settings.contentType]);
 
   return (
     <GenericDeckWithDataColumn
@@ -124,7 +128,6 @@ export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
             toggleNotNeeded: true
           }}
           {...item}
-          children=""
           onAppear={() => {
             const isLast = data[data.length - 1]?.post_id === item.post_id;
             if (isLast && hasNextPage) {
@@ -132,7 +135,7 @@ export const DeckUserColumn = ({ id, settings, draggable }: Props) => {
             }
           }}
           onEntryView={() => setCurrentViewingEntry(item)}
-        />
+        ></SearchListItem>
       )}
     </GenericDeckWithDataColumn>
   );

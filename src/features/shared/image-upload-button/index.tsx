@@ -19,34 +19,37 @@ export function ImageUploadButton({ onBegin, onEnd }: UploadButtonProps) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const [inProgress, setInProgress] = useState(false);
 
-  const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    const files = [...e.target.files];
+  const handleFileInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      // @ts-ignore
+      const files = [...e.target.files];
 
-    if (files.length === 0) {
-      return;
-    }
+      if (files.length === 0) {
+        return;
+      }
 
-    const [file] = files;
-    onBegin();
+      const [file] = files;
+      onBegin();
 
-    setInProgress(true);
-    let token = getAccessToken(activeUser!.username);
+      setInProgress(true);
+      let token = getAccessToken(activeUser!.username);
 
-    if (token) {
-      uploadImage(file, token)
-        .then((r) => {
-          onEnd(r.url);
-          success(i18next.t("image-upload-button.uploaded"));
-        })
-        .catch(() => {
-          error(i18next.t("g.server-error"));
-        })
-        .finally(() => setInProgress(false));
-    } else {
-      error(i18next.t("editor-toolbar.image-error-cache"));
-    }
-  }, []);
+      if (token) {
+        uploadImage(file, token)
+          .then((r) => {
+            onEnd(r.url);
+            success(i18next.t("image-upload-button.uploaded"));
+          })
+          .catch(() => {
+            error(i18next.t("g.server-error"));
+          })
+          .finally(() => setInProgress(false));
+      } else {
+        error(i18next.t("editor-toolbar.image-error-cache"));
+      }
+    },
+    [activeUser, onBegin, onEnd]
+  );
 
   return (
     <>

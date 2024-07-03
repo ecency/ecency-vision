@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./_index.scss";
 
 import {
@@ -40,6 +40,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdo
 import { menuDownSvg } from "@ui/svg";
 import { FormControl } from "@ui/input";
 import { WalletEcencyTransactionRow } from "@/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/wallet-ecency-transaction-row";
+import useMount from "react-use/lib/useMount";
 
 export const formatMemo = (memo: string) => {
   return memo.split(" ").map((x) => {
@@ -88,14 +89,14 @@ export const WalletEcency = ({ account }: Props) => {
 
   const queryClient = useQueryClient();
 
-  useEffect(() => {
+  useMount(() => {
     if (!usePrivate) {
       router.push("/");
     }
     let user = pathname.split("/")[1];
     user = user.replace("@", "");
     getEstimatedPointsValue();
-  }, []);
+  });
 
   const getEstimatedPointsValue = () => {
     setEstimatedPointsValueLoading(true);

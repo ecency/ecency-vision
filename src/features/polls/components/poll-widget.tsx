@@ -70,7 +70,7 @@ export function PollWidget({ poll, isReadOnly, entry, compact = false }: Props) 
         addActiveChoice(choice?.choice_text);
       }
     }
-  }, [activeUserVote, pollDetails.data]);
+  }, [activeUserVote, addActiveChoice, pollDetails.data]);
 
   useEffect(() => {
     setResultsMode(isVotedAlready || isFinished);
@@ -95,7 +95,7 @@ export function PollWidget({ poll, isReadOnly, entry, compact = false }: Props) 
     if (!pollDetails.data?.poll_trx_id) {
       setTimeout(() => pollDetails.refetch(), 5000);
     }
-  }, [pollDetails.data?.poll_trx_id]);
+  }, [pollDetails, pollDetails.data?.poll_trx_id]);
 
   return (
     <div className="grid grid-cols-4">

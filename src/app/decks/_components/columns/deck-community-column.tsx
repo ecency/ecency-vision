@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { CommunityDeckGridItem } from "../types";
@@ -14,6 +14,7 @@ import moment from "moment";
 import { Entry } from "@/entities";
 import { getPostsRanked } from "@/api/bridge";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   id: string;
@@ -34,55 +35,58 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
 
-  useEffect(() => {
+  const fetchData = useCallback(
+    async (since?: Entry) => {
+      if (data.length) {
+        setIsReloading(true);
+      }
+
+      if (isReloading) {
+        return;
+      }
+
+      try {
+        const response = await getPostsRanked(
+          settings.contentType,
+          since?.author,
+          since?.permlink,
+          20,
+          settings.tag
+        );
+        let items = ((response as IdentifiableEntry[] | null) ?? [])
+          .filter((e) => !e.stats?.is_pinned)
+          .map((i) => ({ ...i, id: i.post_id }));
+
+        items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
+
+        if (items.length === 0) {
+          setHasNextPage(false);
+        }
+
+        if (since) {
+          setData([...data, ...items]);
+        } else {
+          setData(items);
+        }
+      } catch (e) {
+      } finally {
+        setIsReloading(false);
+        setIsFirstLoaded(true);
+      }
+    },
+    [data, isReloading, settings.contentType, settings.tag]
+  );
+
+  useMount(() => {
     fetchData();
-  }, []);
+  });
 
   useEffect(() => {
     if (prevSettings && prevSettings?.contentType !== settings.contentType) {
       setData([]);
       fetchData();
     }
-  }, [settings.contentType]);
-
-  const fetchData = async (since?: Entry) => {
-    if (data.length) {
-      setIsReloading(true);
-    }
-
-    if (isReloading) {
-      return;
-    }
-
-    try {
-      const response = await getPostsRanked(
-        settings.contentType,
-        since?.author,
-        since?.permlink,
-        20,
-        settings.tag
-      );
-      let items = ((response as IdentifiableEntry[] | null) ?? [])
-        .filter((e) => !e.stats?.is_pinned)
-        .map((i) => ({ ...i, id: i.post_id }));
-
-      items = items.sort((a, b) => (moment(a.created).isAfter(moment(b.created)) ? -1 : 1));
-
-      if (items.length === 0) {
-        setHasNextPage(false);
-      }
-
-      if (since) {
-        setData([...data, ...items]);
-      } else {
-        setData(items);
-      }
-    } catch (e) {
-    } finally {
-      setIsReloading(false);
-      setIsFirstLoaded(true);
-    }
-  };
+  }, [settings.contentType, fetchData, prevSettings]);
 
   return (
     <GenericDeckWithDataColumn
@@ -129,7 +133,6 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
             toggleNotNeeded: true
           }}
           {...item}
-          children=""
           onMounted={() => measure()}
           onAppear={() => {
             const isLast = data[data.length - 1]?.id === item.id;
@@ -138,7 +141,7 @@ export const DeckCommunityColumn = ({ id, settings, draggable }: Props) => {
             }
           }}
           onEntryView={() => setCurrentViewingEntry(item)}
-        />
+        ></SearchListItem>
       )}
     </GenericDeckWithDataColumn>
   );

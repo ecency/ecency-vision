@@ -7,6 +7,7 @@ import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import { copyOutlinSvg, informationSvg } from "@ui/svg";
 import { dateToFullRelative } from "@/utils";
+import Image from "next/image";
 
 interface videoProps {
   status: string;
@@ -108,7 +109,12 @@ export function VideoGalleryItem({
   return (
     <div className="video-list-body">
       <div className="thumnail-wrapper">
-        <img src={proxifyImageSrc(item.thumbUrl, 600, 500, canUseWebp ? "webp" : "match")} alt="" />
+        <Image
+          width={600}
+          height={500}
+          src={proxifyImageSrc(item.thumbUrl, 600, 500, canUseWebp ? "webp" : "match")}
+          alt=""
+        />
       </div>
       <div className="list-details-wrapper">
         <div className="list-details-wrapper-status">

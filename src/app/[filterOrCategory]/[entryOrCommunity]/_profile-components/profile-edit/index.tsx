@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
@@ -24,8 +24,10 @@ export function ProfileEdit() {
     activeUser?.username
   ).useClientQuery();
 
-  const profile =
-    activeUser?.data.__loaded && activeUser.data.profile ? activeUser.data.profile : {};
+  const profile = useMemo(
+    () => (activeUser?.data.__loaded && activeUser.data.profile ? activeUser.data.profile : {}),
+    [activeUser]
+  );
 
   const [name, setName] = useState(profile.name ?? "");
   const [about, setAbout] = useState(profile.about ?? "");

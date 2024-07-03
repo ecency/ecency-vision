@@ -46,7 +46,7 @@ export function ChatsMessagesBox(props: Props) {
         lastSeenDate: new Date()
       });
     }
-  }, [props.currentContact, isDirectContactsLoaded]);
+  }, [props.currentContact, isDirectContactsLoaded, updateDirectContactsLastSeenDate]);
 
   useEffect(() => {
     if (props.channel) {
@@ -55,7 +55,7 @@ export function ChatsMessagesBox(props: Props) {
         lastSeenDate: new Date()
       });
     }
-  }, [props.channel]);
+  }, [props.channel, updateChannelLastSeenDate]);
 
   return (
     <div

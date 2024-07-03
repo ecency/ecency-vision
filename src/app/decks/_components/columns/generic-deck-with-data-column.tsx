@@ -59,7 +59,7 @@ export const GenericDeckWithDataColumn = ({
       const newData = data.filter(({ id }) => !visibleData.some((vd) => vd.id === id));
       setNewComingData(newData);
     }
-  }, [data]);
+  }, [data, newDataComingCondition, visibleData]);
 
   const virtualScrollContent = (
     <AutoSizer>

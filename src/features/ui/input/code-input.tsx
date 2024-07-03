@@ -17,7 +17,7 @@ export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
 
   useEffect(() => {
     setValue?.(code.join(""));
-  }, [code]);
+  }, [code, setValue]);
 
   useEffect(() => {
     const nextCode = value.split("");
@@ -29,7 +29,7 @@ export function CodeInput({ value, setValue, codeSize = 6, disabled }: Props) {
         return "";
       })
     );
-  }, [value]);
+  }, [codeSize, value]);
 
   return (
     <div className="flex py-6 [&>input]:w-[36px] [&>input]:h-[36px] gap-2 justify-center [&>input]:text-center">

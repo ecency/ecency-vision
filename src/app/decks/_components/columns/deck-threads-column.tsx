@@ -2,7 +2,7 @@ import { AVAILABLE_THREAD_HOSTS } from "../consts";
 import { DeckThreadEditItem, DeckThreadItemSkeleton, ThreadItem } from "./deck-items";
 import { DeckThreadItemViewer } from "./content-viewer";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { WavesDeckGridItem } from "../types";
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
 import { DeckGridContext } from "../deck-manager";
@@ -19,6 +19,8 @@ import { newDataComingPaginatedCondition } from "../utils";
 import { InfiniteScrollLoader } from "./helpers";
 import i18next from "i18next";
 import { getPost } from "@/api/hive";
+import useMount from "react-use/lib/useMount";
+import useUnmount from "react-use/lib/useUnmount";
 
 interface Props {
   id: string;
@@ -72,75 +74,75 @@ const DeckThreadsColumnComponent = ({ id, settings, draggable }: Props) => {
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
-  useEffect(() => {
+  useMount(() => {
     register(id);
     fetchData();
+  });
+  useUnmount(() => detach(id));
 
-    return () => {
-      detach(id);
-    };
-  }, []);
+  const fetchData = useCallback(
+    async (sinceEntries?: IdentifiableEntry[], retries = 0) => {
+      setNextPageError(false);
+
+      try {
+        if (data.length) {
+          setIsReloading(true);
+        }
+
+        const usingHosts = AVAILABLE_THREAD_HOSTS.filter((h) =>
+          settings.host === "all" ? true : h === settings.host
+        );
+        const response = (await fetch(usingHosts, sinceEntries)) as IdentifiableEntry[];
+
+        let items = [...(sinceEntries ? data : []), ...response];
+
+        items.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
+
+        const nextHostGroupedData = AVAILABLE_THREAD_HOSTS.reduce<Record<string, any>>(
+          (acc, host) => ({
+            ...acc,
+            [host]: items.filter((i) => i.host === host)
+          }),
+          {}
+        );
+        setHostGroupedData(nextHostGroupedData);
+        setData(items);
+
+        setHasHostNextPage({
+          ...hasHostNextPage,
+          ...usingHosts.reduce(
+            (acc, host) => ({
+              ...acc,
+              [host]: nextHostGroupedData[host].length > 0
+            }),
+            {}
+          )
+        });
+
+        if (response.length === 0 && items.length > 0) {
+          setIsEndReached(true);
+        }
+      } catch (e) {
+        if (retries < MAX_ERROR_ATTEMPTS && sinceEntries) {
+          setNextPageError(true);
+          setTimeout(() => {
+            fetchData(sinceEntries, retries + 1);
+          }, ERROR_ATTEMPTS_INTERVALS[retries]);
+        }
+        console.error(e);
+      } finally {
+        setIsReloading(false);
+        setIsFirstLoaded(true);
+      }
+    },
+    [data, fetch, hasHostNextPage, settings.host]
+  );
 
   useEffect(() => {
     if (reloadingInitiated) {
       fetchData();
     }
-  }, [reloadingInitiated]);
-
-  const fetchData = async (sinceEntries?: IdentifiableEntry[], retries = 0) => {
-    setNextPageError(false);
-
-    try {
-      if (data.length) {
-        setIsReloading(true);
-      }
-
-      const usingHosts = AVAILABLE_THREAD_HOSTS.filter((h) =>
-        settings.host === "all" ? true : h === settings.host
-      );
-      const response = (await fetch(usingHosts, sinceEntries)) as IdentifiableEntry[];
-
-      let items = [...(sinceEntries ? data : []), ...response];
-
-      items.sort((a, b) => (moment(a.created).isAfter(b.created) ? -1 : 1));
-
-      const nextHostGroupedData = AVAILABLE_THREAD_HOSTS.reduce<Record<string, any>>(
-        (acc, host) => ({
-          ...acc,
-          [host]: items.filter((i) => i.host === host)
-        }),
-        {}
-      );
-      setHostGroupedData(nextHostGroupedData);
-      setData(items);
-
-      setHasHostNextPage({
-        ...hasHostNextPage,
-        ...usingHosts.reduce(
-          (acc, host) => ({
-            ...acc,
-            [host]: nextHostGroupedData[host].length > 0
-          }),
-          {}
-        )
-      });
-
-      if (response.length === 0 && items.length > 0) {
-        setIsEndReached(true);
-      }
-    } catch (e) {
-      if (retries < MAX_ERROR_ATTEMPTS && sinceEntries) {
-        setNextPageError(true);
-        setTimeout(() => {
-          fetchData(sinceEntries, retries + 1);
-        }, ERROR_ATTEMPTS_INTERVALS[retries]);
-      }
-      console.error(e);
-    } finally {
-      setIsReloading(false);
-      setIsFirstLoaded(true);
-    }
-  };
+  }, [fetchData, reloadingInitiated]);
 
   return (
     <GenericDeckWithDataColumn

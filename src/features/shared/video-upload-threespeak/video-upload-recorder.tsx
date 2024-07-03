@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useMount from "react-use/lib/useMount";
 import { VideoUploadRecorderActions } from "./video-upload-recorder-actions";
 import { VideoUploadRecorderNoPermission } from "./video-upload-recorder-no-permission";
@@ -48,50 +48,53 @@ export function VideoUploadRecorder({
   });
 
   useEffect(() => {
-    initStreamSafe();
-  }, [currentCamera]);
-
-  useEffect(() => {
     if (stream && ref.current) {
       ref.current.srcObject = stream;
     }
   }, [stream, ref]);
 
-  const initStream = async (mimeType: string) => {
-    setNoPermission(false);
+  const initStream = useCallback(
+    async (mimeType: string) => {
+      setNoPermission(false);
 
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: currentCamera ? { deviceId: currentCamera.deviceId } : true,
-        audio: true
-      });
-      const mediaRecorder = new MediaRecorder(stream, {
-        mimeType
-      });
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: currentCamera ? { deviceId: currentCamera.deviceId } : true,
+          audio: true
+        });
+        const mediaRecorder = new MediaRecorder(stream, {
+          mimeType
+        });
 
-      setMediaRecorder(mediaRecorder);
-      setStream(stream);
+        setMediaRecorder(mediaRecorder);
+        setStream(stream);
 
-      mediaRecorder.addEventListener("dataavailable", (event) => {
-        if (event.data.size > 0) {
-          setRecordedVideoSrc(URL.createObjectURL(event.data));
-          setRecordedBlob(event.data);
-          stream.getTracks().forEach((track) => track.stop());
-        }
-      });
-    } catch (e) {
-      setNoPermission(true);
-      throw e;
-    }
-  };
+        mediaRecorder.addEventListener("dataavailable", (event) => {
+          if (event.data.size > 0) {
+            setRecordedVideoSrc(URL.createObjectURL(event.data));
+            setRecordedBlob(event.data);
+            stream.getTracks().forEach((track) => track.stop());
+          }
+        });
+      } catch (e) {
+        setNoPermission(true);
+        throw e;
+      }
+    },
+    [currentCamera]
+  );
 
-  const initStreamSafe = async () => {
+  const initStreamSafe = useCallback(async () => {
     try {
       await initStream("video/webm");
     } catch (e) {
       await initStream("video/mp4");
     }
-  };
+  }, [initStream]);
+
+  useEffect(() => {
+    initStreamSafe();
+  }, [currentCamera, initStreamSafe]);
 
   return (
     <div className="video-upload-recorder">

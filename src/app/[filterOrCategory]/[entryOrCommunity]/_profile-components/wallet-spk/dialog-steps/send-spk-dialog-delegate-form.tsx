@@ -1,5 +1,5 @@
 import { WalletSpkGroup } from "../wallet-spk-group";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Alert } from "@ui/alert";
@@ -7,6 +7,7 @@ import { Market } from "@/entities";
 import { getSpkWallet } from "@/api/spk-api";
 import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   username: string;
@@ -37,9 +38,23 @@ export const SendSpkDialogDelegateForm = ({
 
   const [delegatedAlready, setDelegatedAlready] = useState(0);
 
-  useEffect(() => {
+  useMount(() => {
     setUsername("good-karma.spk");
-  }, []);
+  });
+
+  const fetchUserDetails = useCallback(
+    async (name: string | undefined) => {
+      if (name) {
+        const wallet = await getSpkWallet(name);
+        const totalDelegated = Object.entries(wallet.granting).find(([name]) => name === username);
+        if (totalDelegated) {
+          setDelegatedAlready(totalDelegated[1] / 1000);
+          setAmount((totalDelegated[1] / 1000).toFixed(3));
+        }
+      }
+    },
+    [setAmount, username]
+  );
 
   useEffect(() => {
     if (username) {
@@ -47,18 +62,7 @@ export const SendSpkDialogDelegateForm = ({
       setAmount("0");
       fetchUserDetails(activeUser?.username);
     }
-  }, [username]);
-
-  const fetchUserDetails = async (name: string | undefined) => {
-    if (name) {
-      const wallet = await getSpkWallet(name);
-      const totalDelegated = Object.entries(wallet.granting).find(([name]) => name === username);
-      if (totalDelegated) {
-        setDelegatedAlready(totalDelegated[1] / 1000);
-        setAmount((totalDelegated[1] / 1000).toFixed(3));
-      }
-    }
-  };
+  }, [activeUser?.username, fetchUserDetails, setAmount, username]);
 
   const getBalance = () => {
     return (+balance + delegatedAlready).toFixed(3);

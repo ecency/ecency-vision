@@ -15,6 +15,7 @@ import { PollWidget, useEntryPollExtractor } from "@/features/polls";
 import i18next from "i18next";
 import { dateToRelative } from "@/utils";
 import { EntryMenu, EntryVoteBtn, EntryVotes, UserAvatar } from "@/features/shared";
+import useMount from "react-use/lib/useMount";
 
 export interface ThreadItemProps {
   initialEntry: IdentifiableEntry;
@@ -66,9 +67,9 @@ export const ThreadItem = ({
     setIntervalStarted(false);
   });
 
-  useEffect(() => {
+  useMount(() => {
     onMounted();
-  }, []);
+  });
 
   useEffect(() => {
     if (triggerPendingStatus) {
@@ -84,7 +85,7 @@ export const ThreadItem = ({
     if (inViewport && onAppear) {
       onAppear();
     }
-  }, [inViewport]);
+  }, [inViewport, onAppear]);
 
   useEffect(() => {
     setHasParent(

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./_deck.scss";
 import "./_index.scss";
 import { DeckGrid } from "./deck-grid";
@@ -22,9 +22,9 @@ export const Decks = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  useEffect(() => {
+  useMount(() => {
     setNavShow(false);
-  }, []);
+  });
 
   useMount(() => {
     if (window.innerWidth <= 576) {

@@ -38,7 +38,7 @@ export const CommunityMenu = (props: Props) => {
       newLabel = i18next.t(`entry-filter.filter-${menuItems[0]}`);
     }
     setLabel(newLabel);
-  }, [props.filter]);
+  }, [props.filter, label, menuItems]);
 
   const isFilterInItems = () => menuItems.some((item) => props.filter === item);
 

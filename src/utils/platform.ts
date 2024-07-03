@@ -32,4 +32,5 @@ export function getOperatingSystem(agent: string) {
   return operatingSystem;
 }
 
-export default (window: any): string => getOperatingSystem(window.navigator.appVersion);
+const platformFn = (window: any): string => getOperatingSystem(window.navigator.appVersion);
+export default platformFn;

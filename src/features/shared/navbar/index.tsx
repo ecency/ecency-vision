@@ -67,7 +67,7 @@ export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
         setStepTwo && setStepTwo();
       }
     }
-  }, [pathname, previousPathname, activeUser, previousActiveUser]);
+  }, [pathname, previousPathname, activeUser, previousActiveUser, setStepOne, setStepTwo]);
 
   useEffect(() => {
     setTransparentVerify(

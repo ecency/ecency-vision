@@ -1,5 +1,5 @@
-import { Account, FullAccount } from "../../../store/accounts/types";
 import { PublicKey } from "@hiveio/dhive";
+import { Account } from "@/entities";
 
 export const Keytype = {
   Owner: "owner",

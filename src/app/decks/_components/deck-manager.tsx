@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { DEFAULT_LAYOUT } from "./consts";
 import { DeckGrid, DeckGridItem, DeckGrids } from "./types";
 import * as uuid from "uuid";
@@ -9,6 +9,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { PREFIX } from "@/utils/local-storage";
 import { error } from "@/features/shared";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 interface Context {
   layout: DeckGrid;
@@ -73,39 +74,14 @@ export const DeckManager = ({ children }: Props) => {
     handle: (key: number) => {}
   });
 
-  useEffect(() => {
+  useMount(() => {
     if (persistedActiveDeck && decks.decks.find((d) => d.key === persistedActiveDeck)) {
       setActiveDeck(persistedActiveDeck);
     }
     fetchDecks();
-  }, []);
+  });
 
-  useEffect(() => {
-    if (activeUser?.username !== previousActiveUser?.username) {
-      fetchDecks();
-    }
-
-    if (!activeUser) {
-      const nextDeck = localDecks ?? DEFAULT_LAYOUT;
-      setDecks(nextDeck);
-      setActiveDeck(nextDeck.decks[0].key);
-    }
-  }, [activeUser]);
-
-  // Save active deck after column re-arrange
-  useEffect(() => {
-    updateDeckOnLayoutChange();
-  }, [layout]);
-
-  useEffect(() => {
-    const deck = decks.decks.find((d) => d.key === activeDeck);
-    if (deck) {
-      setLayout(deck);
-    }
-    setPersistedActiveDeck(activeDeck);
-  }, [activeDeck]);
-
-  const fetchDecks = async () => {
+  const fetchDecks = useCallback(async () => {
     try {
       if (activeUser) {
         const accountDecks = await getDecks(activeUser?.username);
@@ -129,9 +105,9 @@ export const DeckManager = ({ children }: Props) => {
         setIsDecksLoading(false);
       }, 300);
     }
-  };
+  }, [activeUser, decks.decks, persistedActiveDeck]);
 
-  const updateDeckOnLayoutChange = async () => {
+  const updateDeckOnLayoutChange = useCallback(async () => {
     const decksSnapshot = { decks: [...decks?.decks] };
     const existingDeckIndex = decksSnapshot.decks.findIndex((d) => d.key === activeDeck);
     if (existingDeckIndex > -1) {
@@ -150,7 +126,7 @@ export const DeckManager = ({ children }: Props) => {
         setDecks(decksSnapshot);
       }
     }
-  };
+  }, [activeDeck, activeUser, decks?.decks, layout, previousLayout?.key, setLocalDecks]);
 
   const getNextKey = () => Math.max(...layout.columns.map((c: DeckGridItem) => c.key)) + 1;
 
@@ -312,6 +288,31 @@ export const DeckManager = ({ children }: Props) => {
       updateIntervalMs: value
     });
   };
+
+  useEffect(() => {
+    if (activeUser?.username !== previousActiveUser?.username) {
+      fetchDecks();
+    }
+
+    if (!activeUser) {
+      const nextDeck = localDecks ?? DEFAULT_LAYOUT;
+      setDecks(nextDeck);
+      setActiveDeck(nextDeck.decks[0].key);
+    }
+  }, [activeUser, fetchDecks, localDecks, previousActiveUser?.username]);
+
+  // Save active deck after column re-arrange
+  useEffect(() => {
+    updateDeckOnLayoutChange();
+  }, [layout, updateDeckOnLayoutChange]);
+
+  useEffect(() => {
+    const deck = decks.decks.find((d) => d.key === activeDeck);
+    if (deck) {
+      setLayout(deck);
+    }
+    setPersistedActiveDeck(activeDeck);
+  }, [activeDeck, decks.decks, setPersistedActiveDeck]);
 
   return (
     <DeckGridContext.Provider

@@ -7,6 +7,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { PREFIX } from "@/utils/local-storage";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
+import Image from "next/image";
 
 export function ManageChatKey() {
   const activeUser = useGlobalStore((state) => state.activeUser);
@@ -19,7 +20,10 @@ export function ManageChatKey() {
 
   const { publicKey, privateKey, iv } = useKeysQuery();
 
-  const pin = useMemo(() => localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username), []);
+  const pin = useMemo(
+    () => localStorage.getItem(PREFIX + "_nostr_pr_" + activeUser?.username),
+    [activeUser?.username]
+  );
   const ecencyKey = useMemo(
     () =>
       Buffer.from(
@@ -60,7 +64,11 @@ export function ManageChatKey() {
           <InputGroupCopyClipboard value={pin ?? ""} />
           <div className="text-sm mt-4">{i18next.t("chat.ecency-key")}</div>
           <InputGroupCopyClipboard value={ecencyKey ?? ""} />
-          <img
+          <Image
+            alt=""
+            src=""
+            width={1000}
+            height={1000}
             ref={qrImgRef}
             className={classNameObject({
               "self-center border rounded-xl border-[--border-color]": true,

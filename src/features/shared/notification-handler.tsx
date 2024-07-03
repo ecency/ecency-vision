@@ -40,7 +40,15 @@ export function NotificationHandler() {
       .setEnabledNotificationsTypes(
         (notificationsSettingsQuery.data?.notify_types as NotifyTypes[]) || []
       );
-  }, [activeUser]);
+  }, [
+    activeUser,
+    globalNotifications,
+    notificationUnreadCountQuery,
+    notificationsQuery,
+    notificationsSettingsQuery,
+    toggleUIProp,
+    uiNotifications
+  ]);
 
   useEffect(() => {
     nws.current.setEnabledNotificationsTypes(

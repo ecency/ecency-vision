@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useMountedState } from "react-use";
 import { v4 } from "uuid";
 import {
@@ -36,6 +36,7 @@ import { VideoGallery } from "@/features/shared/video-gallery";
 import { AddImage } from "@/features/shared/editor-toolbar/add-image";
 import { AddLink } from "@/features/shared/editor-toolbar/add-link";
 import { AddImageMobile } from "@/features/shared/editor-toolbar/add-image-mobile";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   sm?: boolean;
@@ -93,7 +94,7 @@ export function EditorToolbar({
   const uploadImage = useUploadPostImage();
   const isMounted = useMountedState();
 
-  useEffect(() => {
+  useMount(() => {
     window.addEventListener("bold", bold);
     window.addEventListener("italic", italic);
     window.addEventListener("table", table);
@@ -113,7 +114,7 @@ export function EditorToolbar({
       window.removeEventListener("image", () => setImage(true));
       window.removeEventListener("customToolbarEvent", handleCustomToolbarEvent);
     };
-  }, []);
+  });
 
   const getTargetEl = () => {
     const root = rootRef.current;

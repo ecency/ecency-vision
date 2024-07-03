@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { WalletSpkSection } from "./wallet-spk-section";
 import { SendSpkDialog } from "./send-spk-dialog";
 import { WalletSpkLarynxPower } from "./wallet-spk-larynx-power";
@@ -76,14 +76,14 @@ export function WalletSpk({ account, isActiveUserWallet }: Props) {
       }
   }
 
-  const fetchActiveUserWallet = async () => {
+  const fetchActiveUserWallet = useCallback(async () => {
     const format = (value: number) => value.toFixed(3);
     if (!isActiveUserWallet && activeUser) {
       const activeUserWallet = await getSpkWallet(activeUser?.username);
       setActiveUserTokenBalance(format(activeUserWallet.spk / 1000));
       setActiveUserLarynxTokenBalance(format(activeUserWallet.balance / 1000));
     }
-  };
+  }, [activeUser, isActiveUserWallet]);
   const fetch = async () => {
     try {
       const wallet = await getSpkWallet(account.name);

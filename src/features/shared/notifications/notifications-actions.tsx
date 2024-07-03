@@ -60,7 +60,7 @@ export function NotificationsActions({ filter }: Props) {
       );
       notificationSettings.notify_types?.map((type) => setSettingItem(type, true));
     }
-  }, [notificationSettings]);
+  }, [notificationSettings, setSettingItem, settings]);
 
   useDebounce(
     () => {

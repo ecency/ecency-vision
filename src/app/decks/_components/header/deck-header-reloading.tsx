@@ -18,7 +18,7 @@ export const DeckHeaderReloading = ({ isReloading, onReload, updateDataInterval 
       clearInterval(intervalLink);
     }
     setIntervalLink(setInterval(onReload, updateDataInterval));
-  }, [updateDataInterval]);
+  }, [intervalLink, onReload, updateDataInterval]);
 
   return (
     <Button

@@ -1,5 +1,5 @@
 import { DraggableProvidedDragHandleProps } from "react-beautiful-dnd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { GenericDeckColumn } from "./generic-deck-column";
 import { UserDeckGridItem } from "../types";
 import "./_deck-wallet-balance-column.scss";
@@ -20,6 +20,7 @@ import { getHiveEngineTokenBalances, getMetrics } from "@/api/hive-engine";
 import { getSpkWallet } from "@/api/spk-api";
 import i18next from "i18next";
 import { FormattedCurrency } from "@/features/shared";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   id: string;
@@ -85,30 +86,9 @@ export const DeckWalletBalanceColumn = ({
   const [larynxEstimatedValue, setLarynxEstimatedValue] = useState(0);
   const [spkLoading, setSpkLoading] = useState(false);
 
-  useEffect(() => {
+  useMount(() => {
     fetchAccount();
-  }, []);
-
-  useEffect(() => {
-    fetch();
-  }, [tab]);
-
-  const fetch = () => {
-    if (tab === "ecency") {
-      fetchEcencyPoints();
-    }
-    if (tab === "hive") {
-      fetchHive();
-    }
-
-    if (tab === "engine") {
-      fetchEngine();
-    }
-
-    if (tab === "spk") {
-      fetchSpk();
-    }
-  };
+  });
 
   const fetchAccount = async () => {
     try {
@@ -134,7 +114,7 @@ export const DeckWalletBalanceColumn = ({
     }
   };
 
-  const fetchHive = async () => {
+  const fetchHive = useCallback(async () => {
     setHiveLoading(true);
 
     try {
@@ -161,9 +141,9 @@ export const DeckWalletBalanceColumn = ({
     } finally {
       setHiveLoading(false);
     }
-  };
+  }, [account, dynamicProps, username]);
 
-  const fetchEngine = async () => {
+  const fetchEngine = useCallback(async () => {
     setEngineLoading(true);
 
     try {
@@ -198,9 +178,9 @@ export const DeckWalletBalanceColumn = ({
     } finally {
       setEngineLoading(false);
     }
-  };
+  }, [dynamicProps, username]);
 
-  const fetchSpk = async () => {
+  const fetchSpk = useCallback(async () => {
     setSpkLoading(true);
 
     try {
@@ -214,7 +194,28 @@ export const DeckWalletBalanceColumn = ({
     } finally {
       setSpkLoading(false);
     }
-  };
+  }, [username]);
+
+  const fetch = useCallback(() => {
+    if (tab === "ecency") {
+      fetchEcencyPoints();
+    }
+    if (tab === "hive") {
+      fetchHive();
+    }
+
+    if (tab === "engine") {
+      fetchEngine();
+    }
+
+    if (tab === "spk") {
+      fetchSpk();
+    }
+  }, [fetchEngine, fetchHive, fetchSpk, tab]);
+
+  useEffect(() => {
+    fetch();
+  }, [fetch, tab]);
 
   return (
     <GenericDeckColumn

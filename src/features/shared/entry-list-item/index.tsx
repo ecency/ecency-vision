@@ -71,10 +71,6 @@ export function EntryListItem({
   });
 
   useEffect(() => {
-    setShowModMuted(entry.stats?.gray ?? false);
-  }, [entryProp]);
-
-  useEffect(() => {
     setShowMuted(false);
   }, [activeUser]);
 
@@ -104,6 +100,10 @@ export function EntryListItem({
       entry.json_metadata.tags.includes("nsfw"),
     [entry]
   );
+
+  useEffect(() => {
+    setShowModMuted(entry.stats?.gray ?? false);
+  }, [entry, entryProp]);
 
   return (
     <div

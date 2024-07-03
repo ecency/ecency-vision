@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
@@ -11,6 +11,7 @@ import { delegateRC } from "@/api/operations";
 import { useParams } from "next/navigation";
 import { useGlobalStore } from "@/core/global-store";
 import { rcFormatter } from "@/utils";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   showDelegation: () => void;
@@ -42,10 +43,10 @@ export const RcDelegationsList = ({
   const [search, setsearch] = useState("");
   const [loadList, setLoadList] = useState(21);
 
-  useEffect(() => {
+  useMount(() => {
     getOutGoingRcList();
     getIncomingRcList();
-  }, []);
+  });
 
   const getOutGoingRcList = async () => {
     setLoading(true);
@@ -68,10 +69,7 @@ export const RcDelegationsList = ({
     setLoadList(moreList);
   };
 
-  const getToData = async (data: any) => {
-    const toData = await getAccount(data);
-    return toData;
-  };
+  const getToData = async (data: any) => getAccount(data);
 
   return (
     <div className="delgations-list">

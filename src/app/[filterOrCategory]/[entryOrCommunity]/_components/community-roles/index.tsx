@@ -23,7 +23,7 @@ export function CommunityRoles({ community }: Props) {
 
   const role = useMemo(
     () => community.team.find((x) => x[0] === activeUser?.username),
-    [community]
+    [community, activeUser?.username]
   );
   const roleInTeam = useMemo(() => (role ? role[1] : null), [role]);
   const roles = useMemo(() => (roleInTeam ? roleMap[roleInTeam] : []), [roleInTeam]);

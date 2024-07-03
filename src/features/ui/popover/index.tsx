@@ -34,11 +34,11 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
       host.parentElement.addEventListener("mouseenter", () => setShow(true));
       host.parentElement.addEventListener("mouseleave", () => setShow(false));
     }
-  }, [(props as Props).anchorParent, host]);
+  }, [host, props]);
 
   useEffect(() => {
     setShow((props as ShowProps).show ?? false);
-  }, [(props as ShowProps).show]);
+  }, [props]);
 
   return (
     <div {...nativeProps} ref={setHost}>

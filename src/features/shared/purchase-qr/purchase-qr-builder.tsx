@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { success } from "../feedback";
 import qrcode from "qrcode";
 import defaults from "@/defaults.json";
@@ -11,6 +11,7 @@ import { Alert } from "@ui/alert";
 import i18next from "i18next";
 import { SearchByUsername } from "@/features/shared/search-by-username";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 interface Props {
   username?: string;
@@ -39,11 +40,23 @@ export const PurchaseQrBuilder = ({ queryType, queryProductId, username: propUse
     }
   }, [queryProductId]);
 
+  const getURL = useCallback(() => {
+    const url = new URL(defaults.base);
+    url.pathname = "purchase";
+
+    const params = new URLSearchParams(searchParams);
+    params.set("username", username);
+    params.set("type", type);
+    params.set("product_id", pointsValue);
+    url.search = params.toString();
+    return url.toString();
+  }, [pointsValue, searchParams, type, username]);
+
   useEffect(() => {
     if (username) {
       compileQR(getURL());
     }
-  }, [username, type, pointsValue, searchParams]);
+  }, [username, type, pointsValue, searchParams, getURL]);
 
   const compileQR = async (url: string) => {
     if (qrImgRef.current) {
@@ -60,18 +73,6 @@ export const PurchaseQrBuilder = ({ queryType, queryProductId, username: propUse
     document.execCommand("copy");
     textField.remove();
     success(i18next.t("purchase-qr.copied"));
-  };
-
-  const getURL = () => {
-    const url = new URL(defaults.base);
-    url.pathname = "purchase";
-
-    const params = new URLSearchParams(searchParams);
-    params.set("username", username);
-    params.set("type", type);
-    params.set("product_id", pointsValue);
-    url.search = params.toString();
-    return url.toString();
   };
 
   return (
@@ -101,9 +102,12 @@ export const PurchaseQrBuilder = ({ queryType, queryProductId, username: propUse
           <></>
         )}
       </div>
-      <img
+      <Image
+        width={600}
+        height={600}
         ref={qrImgRef as any}
         alt="Boost QR Code"
+        src=""
         className="my-4"
         style={{ display: isQrShow ? "block" : "none" }}
       />

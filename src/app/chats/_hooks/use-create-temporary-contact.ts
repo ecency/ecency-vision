@@ -27,5 +27,13 @@ export function useCreateTemporaryContact(selectedAccount: string) {
       );
       setReceiverPubKey(contactKeys?.pubkey ?? `not_joined_${selectedAccount}`);
     }
-  }, [selectedAccount, contactKeys, isFetched, isError]);
+  }, [
+    selectedAccount,
+    contactKeys,
+    isFetched,
+    isError,
+    activeUsername,
+    queryClient,
+    setReceiverPubKey
+  ]);
 }

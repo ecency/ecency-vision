@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import useQueue from "react-use/lib/useQueue";
 import { DeckGridContext } from "./deck-manager";
 
@@ -13,7 +13,30 @@ export const DeckSmoothScroller = ({ children }: Props) => {
   const [startTouchX, setStartTouchX] = useState<number | undefined>(undefined);
 
   const queue = useQueue<number | undefined>();
-  let wheelTimeout: any;
+  let wheelTimeoutRef = useRef<any>();
+
+  const getColumnWidth = () => {
+    const anyDeckColumn = document.querySelector(".deck");
+    if (anyDeckColumn) {
+      return anyDeckColumn.clientWidth + 2; // 2 is border
+    }
+    return 0;
+  };
+
+  const scrollToSpecificColumn = useCallback((key: number) => {
+    const deckList = document.querySelectorAll("[data-rbd-draggable-context-id]");
+    const index = Array.from(deckList.values()).findIndex(
+      (el) => Number(el.getAttribute("id") ?? -1) === key
+    );
+    if (index > -1) {
+      const nextOffset = index * getColumnWidth();
+      setOffset(-nextOffset);
+    }
+  }, []);
+
+  useEffect(() => {
+    setScrollHandler({ handle: scrollToSpecificColumn });
+  }, [scrollToSpecificColumn, setScrollHandler]);
 
   useEffect(() => {
     if (typeof queue.first === "number") {
@@ -33,32 +56,9 @@ export const DeckSmoothScroller = ({ children }: Props) => {
         }
       }
     }
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => queue.remove(), 400);
-  }, [queue.first]);
-
-  const getColumnWidth = () => {
-    const anyDeckColumn = document.querySelector(".deck");
-    if (anyDeckColumn) {
-      return anyDeckColumn.clientWidth + 2; // 2 is border
-    }
-    return 0;
-  };
-
-  const scrollToSpecificColumn = (key: number) => {
-    const deckList = document.querySelectorAll("[data-rbd-draggable-context-id]");
-    const index = Array.from(deckList.values()).findIndex(
-      (el) => Number(el.getAttribute("id") ?? -1) === key
-    );
-    if (index > -1) {
-      const nextOffset = index * getColumnWidth();
-      setOffset(-nextOffset);
-    }
-  };
-
-  useEffect(() => {
-    setScrollHandler({ handle: scrollToSpecificColumn });
-  }, []);
+    clearTimeout(wheelTimeoutRef.current);
+    wheelTimeoutRef.current = setTimeout(() => queue.remove(), 400);
+  }, [queue.first, offset, queue]);
 
   return (
     <div

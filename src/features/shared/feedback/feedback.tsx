@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FeedbackMessage, FeedbackObject } from "@/features/shared";
 
 export function Feedback() {
-  const intervalID = useRef<any>(null);
-
   const [feedback, setFeedBack] = useState<FeedbackObject | null>();
   const [showChild, setShowChild] = useState(false);
 
@@ -14,7 +12,6 @@ export function Feedback() {
 
     return () => {
       window.removeEventListener("feedback", onFeedback);
-      clearInterval(intervalID.current);
     };
   }, []);
 

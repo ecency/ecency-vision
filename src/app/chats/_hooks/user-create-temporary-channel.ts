@@ -23,5 +23,5 @@ export function useCreateTemporaryChannel(communityName: string) {
         ]
       );
     }
-  }, [communityChannel]);
+  }, [communityChannel, activeUsername, queryClient]);
 }

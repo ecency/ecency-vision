@@ -47,7 +47,7 @@ export function usePollsCreationManagement(poll?: PollSnapshot) {
       setVoteChange(poll.voteChange);
       setHideVotes(poll.hideVotes);
     }
-  }, [poll]);
+  }, [poll, setAccountAge, setChoices, setEndDate, setHideVotes, setTitle, setVoteChange]);
 
   const pushChoice = (choice: string) => setChoices([...(choices ?? []), choice]);
 

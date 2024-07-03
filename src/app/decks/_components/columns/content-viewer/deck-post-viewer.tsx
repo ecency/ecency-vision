@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./_deck-post-viewer.scss";
 import useMount from "react-use/lib/useMount";
 import { renderPostBody } from "@ecency/render-helper";
@@ -40,13 +40,7 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, backTitle }: Prop
 
   useMount(() => setIsMounted(true));
 
-  useEffect(() => {
-    if (!renderInitiated) {
-      extendedRenderBody();
-    }
-  }, [height]);
-
-  const extendedRenderBody = async () => {
+  const extendedRenderBody = useCallback(async () => {
     setRenderInitiated(true);
 
     if (ref.current) {
@@ -59,7 +53,13 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, backTitle }: Prop
     renderExternalLinks(ref);
     renderVideos(ref);
     renderTweets(ref);
-  };
+  }, [ref]);
+
+  useEffect(() => {
+    if (!renderInitiated) {
+      extendedRenderBody();
+    }
+  }, [height, extendedRenderBody, renderInitiated]);
 
   return (
     <div className={"deck-post-viewer " + (isMounted ? "visible" : "")}>

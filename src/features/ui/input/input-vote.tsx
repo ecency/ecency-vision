@@ -54,7 +54,7 @@ export function InputVote({ value, setValue, mode = "positive" }: Props) {
     } else {
       setValue(value);
     }
-  }, [value]);
+  }, [setValue, value]);
 
   const onTouchMove = (e: TouchEvent) => {
     const touch = e.touches.item(0);

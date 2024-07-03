@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getMetrics } from "@/api/hive-engine";
 import i18next from "i18next";
 import { getDynamicPropsQuery } from "@/api/queries";
@@ -9,11 +9,7 @@ export const EngineTokensEstimated = (props: any) => {
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
   const [estimated, setEstimated] = useState(`${i18next.t("wallet.calculating")}...`);
 
-  useEffect(() => {
-    getEstimatedUsdValue();
-  }, [userTokens]);
-
-  const getEstimatedUsdValue = async () => {
+  const getEstimatedUsdValue = useCallback(async () => {
     const AllMarketTokens = await getMetrics();
 
     const pricePerHive = dynamicProps!.base / dynamicProps!.quote;
@@ -45,7 +41,12 @@ export const EngineTokensEstimated = (props: any) => {
       currency: "USD"
     });
     setEstimated(usd_total_value);
-  };
+  }, [dynamicProps, userTokens]);
+
+  useEffect(() => {
+    getEstimatedUsdValue();
+  }, [getEstimatedUsdValue, userTokens]);
+
   return (
     <div className="balance-row estimated alternative">
       <div className="balance-info">

@@ -113,7 +113,7 @@ export const DeckThreadsForm = ({
         setVideo(persistedForm.video);
       }
     }
-  }, [persistedForm]);
+  }, [image, imageName, persistable, persistedForm, text, threadHost, video]);
 
   useEffect(() => {
     if (
@@ -132,7 +132,20 @@ export const DeckThreadsForm = ({
         video
       });
     }
-  }, [threadHost, text, image, imageName]);
+  }, [
+    threadHost,
+    text,
+    image,
+    imageName,
+    persistable,
+    persistedForm?.threadHost,
+    persistedForm?.text,
+    persistedForm?.image,
+    persistedForm?.imageName,
+    persistedForm?.video,
+    video,
+    setPersistedForm
+  ]);
 
   const submit = async () => {
     if (!activeUser) {

@@ -50,7 +50,7 @@ export const DeckHeaderUpdateIntervalSettings = ({
     if (updateInterval !== inputValue) {
       setInputValue(updateInterval / 1000 / 60);
     }
-  }, [updateInterval]);
+  }, [inputValue, updateInterval]);
 
   const getSubmitButton = () => {
     if (updateInterval !== inputValue * 1000 * 60) {

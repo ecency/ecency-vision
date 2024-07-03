@@ -91,7 +91,9 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                 ) : (
                   profile && (
                     <Link href={`/@${username}`} onClick={(e) => onClose(e, true)}>
-                      <img
+                      <Image
+                        width={1000}
+                        height={1000}
                         src={`https://images.ecency.com/${
                           canUseWebp ? "webp/" : ""
                         }u/${username}/avatar/medium`}

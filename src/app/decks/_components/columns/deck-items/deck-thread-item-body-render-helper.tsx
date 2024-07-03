@@ -2,11 +2,11 @@ import React, { MutableRefObject } from "react";
 import { DeckThreadLinkItem } from "./deck-thread-link-item";
 import { renderToString } from "react-dom/server";
 import { UserAvatar } from "@/features/shared";
-import { hydrate } from "react-dom";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { getCGMarketApi } from "@/api/coingecko-api";
 import i18next from "i18next";
 import { formattedNumber } from "@/utils";
+import { hydrateRoot } from "react-dom/client";
 
 export function renderTags(renderAreaRef: MutableRefObject<HTMLElement | null>) {
   return renderAreaRef.current
@@ -25,12 +25,12 @@ export function renderAuthors(renderAreaRef: MutableRefObject<HTMLElement | null
       if (author) {
         element.href = `/@${author}`;
         element.target = "_blank";
-        hydrate(
+        hydrateRoot(
+          element,
           <>
             <UserAvatar size="xsmall" username={author} />
             <span>{author}</span>
-          </>,
-          element
+          </>
         );
       }
     });
@@ -45,7 +45,7 @@ export function renderPostLinks(renderAreaRef: MutableRefObject<HTMLElement | nu
       if (author && permlink) {
         element.href = `/@${author}/${permlink}`;
         element.target = "_blank";
-        hydrate(<DeckThreadLinkItem link={`/@${author}/${permlink}`} />, element);
+        hydrateRoot(element, <DeckThreadLinkItem link={`/@${author}/${permlink}`} />);
       }
     });
 }
@@ -69,7 +69,8 @@ export function renderExternalLinks(renderAreaRef: MutableRefObject<HTMLElement 
         const link = new URL(href);
         const code = link.pathname.replaceAll("/shorts/", "");
 
-        hydrate(
+        hydrateRoot(
+          element,
           <iframe
             className="youtube-shorts-iframe"
             width="100%"
@@ -79,8 +80,7 @@ export function renderExternalLinks(renderAreaRef: MutableRefObject<HTMLElement 
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen={true}
-          />,
-          element
+          />
         );
       }
     });
@@ -113,7 +113,7 @@ export function renderTweets(renderAreaRef: MutableRefObject<HTMLElement | null>
       if (link) {
         const parts = link.split("/");
         const id = parts[parts.length - 1].replace(/\?.*/, "");
-        hydrate(<TwitterTweetEmbed tweetId={id} />, element);
+        hydrateRoot(element, <TwitterTweetEmbed tweetId={id} />);
       }
     });
 }
@@ -126,7 +126,8 @@ export function renderVideos(renderAreaRef: MutableRefObject<HTMLElement | null>
       embedSrc = embedSrc?.replaceAll("autoplay=1", "");
 
       if (embedSrc) {
-        hydrate(
+        hydrateRoot(
+          element,
           <iframe
             className="youtube-shorts-iframe"
             width="100%"
@@ -136,8 +137,7 @@ export function renderVideos(renderAreaRef: MutableRefObject<HTMLElement | null>
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen={true}
-          />,
-          element
+          />
         );
       }
     });

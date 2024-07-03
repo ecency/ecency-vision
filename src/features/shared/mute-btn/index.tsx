@@ -24,12 +24,15 @@ export function MuteBtn({ entry, community, onSuccess, onCancel, onlyDialog }: P
   const isMuted = useMemo(() => !!entry.stats?.gray, [entry]);
   const { mutateAsync: mutePost, isPending } = useMutePost(entry, community);
 
-  const submit = useCallback(async (mute: boolean, notes: string) => {
-    await mutePost({ notes, mute });
-    const nStats: EntryStat = { ...clone(entry.stats), gray: mute };
-    const nEntry: Entry = { ...clone(entry), stats: nStats };
-    onSuccess(nEntry, mute);
-  }, []);
+  const submit = useCallback(
+    async (mute: boolean, notes: string) => {
+      await mutePost({ notes, mute });
+      const nStats: EntryStat = { ...clone(entry.stats), gray: mute };
+      const nEntry: Entry = { ...clone(entry), stats: nStats };
+      onSuccess(nEntry, mute);
+    },
+    [entry, mutePost, onSuccess]
+  );
 
   return (
     <>

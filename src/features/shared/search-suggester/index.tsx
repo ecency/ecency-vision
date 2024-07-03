@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { makePath as makePathTag } from "../tag";
 import { makePath as makePathProfile } from "../profile-link";
 import defaults from "@/defaults.json";
@@ -52,13 +52,31 @@ export function SearchSuggester({ changed, value, children, containerClassName }
     [value, previousValue]
   );
 
-  useEffect(() => {
-    if (value !== previousValue && changed) {
-      fetch();
-    }
-  }, [value, previousValue]);
+  const accountSelected = useCallback(
+    (name: string) => {
+      const loc = makePathProfile(name);
+      router.push(loc);
+    },
+    [router]
+  );
 
-  const fetch = async () => {
+  const tagSelected = useCallback(
+    (tag: string) => {
+      const loc = makePathTag(defaults.filter, tag);
+      router.push(loc);
+    },
+    [router]
+  );
+
+  const communitySelected = useCallback(
+    (item: Community) => {
+      const loc = makePathTag(defaults.filter, item.name);
+      router.push(loc);
+    },
+    [router]
+  );
+
+  const fetch = useCallback(async () => {
     if (loading) {
       return;
     }
@@ -201,22 +219,13 @@ export function SearchSuggester({ changed, value, children, containerClassName }
       setSuggestionWithMode([]);
       setSuggestions([]);
     }
-  };
+  }, [accountSelected, communitySelected, loading, tagSelected, trendingTags, value]);
 
-  const accountSelected = (name: string) => {
-    const loc = makePathProfile(name);
-    router.push(loc);
-  };
-
-  const tagSelected = (tag: string) => {
-    const loc = makePathTag(defaults.filter, tag);
-    router.push(loc);
-  };
-
-  const communitySelected = (item: Community) => {
-    const loc = makePathTag(defaults.filter, item.name);
-    router.push(loc);
-  };
+  useEffect(() => {
+    if (value !== previousValue && changed) {
+      fetch();
+    }
+  }, [value, previousValue, changed, fetch]);
 
   return (
     <SuggestionList

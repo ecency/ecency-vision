@@ -35,7 +35,7 @@ export const DecksSettings = ({ show, setShow, deck }: Props) => {
     setName(deck?.title ?? name);
     setIcon(deck?.icon ?? icon);
     setIsLocalStorage(deck?.storageType === "local" ?? false);
-  }, [deck]);
+  }, [deck, icon, name]);
 
   const submit = () => {
     if (!name) {

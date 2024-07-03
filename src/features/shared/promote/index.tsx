@@ -42,7 +42,19 @@ export function Promote({ onHide, entry }: Props) {
     () => isKeychainPending || isApiPending || isPricesLoading,
     [isKeychainPending, isApiPending, isPricesLoading]
   );
-  const canSubmit = useMemo(() => !postError && !balanceError && isValidPath(path), []);
+
+  const isValidPath = useCallback((p: string) => {
+    if (p.indexOf("/") === -1) {
+      return;
+    }
+
+    const [author, permlink] = p.replace("@", "").split("/");
+    return author.length >= 3 && permlink.length >= 3;
+  }, []);
+  const canSubmit = useMemo(
+    () => !postError && !balanceError && isValidPath(path),
+    [balanceError, isValidPath, path, postError]
+  );
 
   useMount(() => {
     if (entry) {
@@ -74,15 +86,6 @@ export function Promote({ onHide, entry }: Props) {
     }
 
     setPathQuery(path);
-  }, []);
-
-  const isValidPath = useCallback((p: string) => {
-    if (p.indexOf("/") === -1) {
-      return;
-    }
-
-    const [author, permlink] = p.replace("@", "").split("/");
-    return author.length >= 3 && permlink.length >= 3;
   }, []);
 
   const sign = useCallback(

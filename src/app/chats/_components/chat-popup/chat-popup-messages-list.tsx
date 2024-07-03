@@ -46,7 +46,7 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
         lastSeenDate: new Date()
       });
     }
-  }, [currentContact, isDirectContactsLoaded]);
+  }, [currentContact, isDirectContactsLoaded, updateDirectContactsLastSeenDate]);
 
   useEffect(() => {
     if (currentChannel) {
@@ -55,7 +55,7 @@ export function ChatPopupMessagesList({ currentContact, currentChannel }: Props)
         lastSeenDate: new Date()
       });
     }
-  }, [currentChannel]);
+  }, [currentChannel, updateChannelLastSeenDate]);
 
   return (
     <div className="chats h-full">

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import { cryptoUtils, KeyRole, PrivateKey } from "@hiveio/dhive";
 import base58 from "bs58";

@@ -33,7 +33,6 @@ export const ProfileCard = ({ account, section }: Props) => {
   const [followersList, setFollowersList] = useState(false);
   const [followingList, setFollowingList] = useState(false);
   const [followsActiveUser, setFollowsActiveUser] = useState(false);
-  const [isMounted, setIsmounted] = useState(false);
   const [followsActiveUserLoading, setFollowsActiveUserLoading] = useState(false);
   const [subs, setSubs] = useState([] as Subscription[]);
   const [rcPercent, setRcPercent] = useState(100);
@@ -43,9 +42,42 @@ export const ProfileCard = ({ account, section }: Props) => {
 
   const { data: community } = getCommunityCache(account?.name).useClientQuery();
 
+  const getFollowsInfo = useCallback(
+    (username: string) => {
+      if (activeUser) {
+        getRelationshipBetweenAccounts(username, activeUser.username)
+          .then((res) => {
+            setFollowsActiveUserLoading(false);
+            setFollowsActiveUser(res?.follows || false);
+          })
+          .catch((error) => {
+            setFollowsActiveUserLoading(false);
+            setFollowsActiveUser(false);
+          });
+      }
+    },
+    [activeUser]
+  );
+
+  const toggleFollowers = () => {
+    setFollowersList(!followersList);
+  };
+
+  const toggleFollowing = () => {
+    setFollowingList(!followingList);
+  };
+  const loggedIn = activeUser && activeUser.username;
+
+  useEffect(() => {
+    setFollowersList(false);
+    setFollowingList(false);
+    setFollowsActiveUserLoading(!!(activeUser && activeUser.username));
+    getFollowsInfo(account?.name);
+  }, [account?.name, activeUser, getFollowsInfo]);
+
   useEffect(() => {
     if (activeUser && activeUser.username) {
-      setFollowsActiveUserLoading(activeUser && activeUser.username ? true : false);
+      setFollowsActiveUserLoading(!!(activeUser && activeUser.username));
       getFollowsInfo(account?.name);
     }
     getSubscriptions(account?.name)
@@ -67,44 +99,9 @@ export const ProfileCard = ({ account, section }: Props) => {
       .catch((e) => {
         setRcPercent(100);
       });
-  }, [account]);
+  }, [account, activeUser, getFollowsInfo]);
 
-  useEffect(() => {
-    setIsmounted(true);
-    return () => setIsmounted(false);
-  }, []);
-
-  useEffect(() => {
-    setFollowersList(false);
-    setFollowingList(false);
-    setFollowsActiveUserLoading(!!(activeUser && activeUser.username));
-    isMounted && getFollowsInfo(account?.name);
-  }, [account?.name]);
-
-  const getFollowsInfo = (username: string) => {
-    if (activeUser) {
-      getRelationshipBetweenAccounts(username, activeUser.username)
-        .then((res) => {
-          setFollowsActiveUserLoading(false);
-          setFollowsActiveUser(res?.follows || false);
-        })
-        .catch((error) => {
-          setFollowsActiveUserLoading(false);
-          setFollowsActiveUser(false);
-        });
-    }
-  };
-
-  const toggleFollowers = () => {
-    setFollowersList(!followersList);
-  };
-
-  const toggleFollowing = () => {
-    setFollowingList(!followingList);
-  };
-  const loggedIn = activeUser && activeUser.username;
   // TODO: use better conditions throughout app than .__loaded, remove all instances that rely on .__loaded
-
   if (!account?.__loaded) {
     return (
       <div className="profile-card">

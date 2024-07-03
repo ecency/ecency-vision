@@ -15,6 +15,7 @@ import {
 import { renderLiketu } from "../helpers";
 import { useGlobalStore } from "@/core/global-store";
 import { classNameObject } from "@ui/util";
+import Image from "next/image";
 
 interface Props {
   entry: IdentifiableEntry;
@@ -38,22 +39,7 @@ export const DeckThreadItemBody = ({
   const [currentViewingImageRect, setCurrentViewingImageRect] = useState<DOMRect | null>(null);
   const [isCurrentViewingImageShowed, setIsCurrentViewingImageShowed] = useState(false);
 
-  useEffect(() => {
-    if (currentViewingImage) {
-      setTimeout(() => {
-        setIsCurrentViewingImageShowed(true);
-      }, 1);
-    }
-  }, [currentViewingImage]);
-
-  useEffect(() => {
-    onResize();
-    if (!renderInitiated) {
-      renderBody();
-    }
-  }, [height, entry]);
-
-  const renderBody = async () => {
+  const renderBody = useCallback(async () => {
     setRenderInitiated(true);
 
     if (renderAreaRef.current) {
@@ -74,7 +60,7 @@ export const DeckThreadItemBody = ({
     });
     renderVideos(renderAreaRef);
     renderTweets(renderAreaRef);
-  };
+  }, [entry.parent_author, setRenderInitiated]);
 
   const renderContentBody = useCallback(() => {
     if (entry.parent_author === "liketu.moments") {
@@ -83,6 +69,21 @@ export const DeckThreadItemBody = ({
 
     return renderPostBody(entry, true, canUseWebp);
   }, [entry, canUseWebp]);
+
+  useEffect(() => {
+    if (currentViewingImage) {
+      setTimeout(() => {
+        setIsCurrentViewingImageShowed(true);
+      }, 1);
+    }
+  }, [currentViewingImage]);
+
+  useEffect(() => {
+    onResize();
+    if (!renderInitiated) {
+      renderBody();
+    }
+  }, [height, entry, onResize, renderBody, renderInitiated]);
 
   return (
     <div className="thread-item-body">
@@ -108,7 +109,9 @@ export const DeckThreadItemBody = ({
               }, 400);
             }}
           >
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src={currentViewingImage}
               alt=""
               style={{

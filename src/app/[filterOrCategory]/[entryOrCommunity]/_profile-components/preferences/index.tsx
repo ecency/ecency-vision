@@ -30,37 +30,43 @@ export function Preferences() {
   const defaultTheme = useMemo(() => theme, [theme]);
 
   const { mutateAsync: updateNotificationSettings } = useUpdateNotificationsSettings();
-  const notificationsChanged = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value === "1") {
-      updateNotificationSettings({
-        notifyTypes: [NotifyTypes.ALLOW_NOTIFY],
-        isEnabled: true
-      });
-    }
+  const notificationsChanged = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      if (e.target.value === "1") {
+        updateNotificationSettings({
+          notifyTypes: [NotifyTypes.ALLOW_NOTIFY],
+          isEnabled: true
+        });
+      }
 
-    if (e.target.value === "0") {
-      updateNotificationSettings({
-        notifyTypes: [],
-        isEnabled: false
-      });
-    }
+      if (e.target.value === "0") {
+        updateNotificationSettings({
+          notifyTypes: [],
+          isEnabled: false
+        });
+      }
 
-    success(i18next.t("preferences.updated"));
-  }, []);
-  const themeChanged = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    if (value === "system") {
-      ls.set("use_system_theme", true);
-    } else {
-      ls.remove("use_system_theme");
-      ls.set("theme", value);
-    }
-    toggleTheme(value as Theme);
-    success(i18next.t("preferences.updated"));
-  }, []);
+      success(i18next.t("preferences.updated"));
+    },
+    [updateNotificationSettings]
+  );
+  const themeChanged = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const { value } = e.target;
+      if (value === "system") {
+        ls.set("use_system_theme", true);
+      } else {
+        ls.remove("use_system_theme");
+        ls.set("theme", value);
+      }
+      toggleTheme(value as Theme);
+      success(i18next.t("preferences.updated"));
+    },
+    [toggleTheme]
+  );
   const currencyChanged = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => setCurrency(e.target.value),
-    []
+    [setCurrency]
   );
 
   return (

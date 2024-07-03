@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import { PrivateKey } from "@hiveio/dhive";
 import { AccountDataType, actionType } from "./types";
 import "./index.scss";
@@ -12,6 +14,7 @@ import { error, KeyOrHot, LinearProgress, UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import { ManageAuthIcon } from "../manage-auth-icon";
 import { ManageKeys } from "../manage-keys";
+import useMount from "react-use/lib/useMount";
 
 export function ManageAuthorities() {
   const activeUser = useGlobalStore((s) => s.activeUser);
@@ -23,9 +26,9 @@ export function ManageAuthorities() {
   const [targetAccount, setTargetAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
 
-  useEffect(() => {
+  useMount(() => {
     getAccountData();
-  }, []);
+  });
 
   const getAccountData = async () => {
     const response = await getAccounts([activeUser!.username]);

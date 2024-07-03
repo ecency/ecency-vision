@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { HotListItem, ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { ReloadableDeckGridItem } from "../types";
@@ -10,6 +10,7 @@ import { TrendingTag } from "@/entities";
 import { PREFIX } from "@/utils/local-storage";
 import { getAllTrendingTags } from "@/api/hive";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   id: string;
@@ -31,9 +32,9 @@ export const DeckTopicsColumn = ({ id, settings, draggable }: Props) => {
 
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
 
-  useEffect(() => {
+  useMount(() => {
     fetchData();
-  }, []);
+  });
 
   const fetchData = async () => {
     if (data.length) {

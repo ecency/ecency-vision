@@ -48,7 +48,7 @@ export function DiscussionList({
           item.depth === 1 &&
           item.parent_author === parent.author
       ),
-    [filtered, parent]
+    [activeUser, filtered, mutedUsers, parent.author]
   );
   const data = useMemo(() => {
     if (!activeUser) {
@@ -60,10 +60,10 @@ export function DiscussionList({
     );
 
     return isHiddenPermitted ? [...unMutedContent, ...mutedContent] : unMutedContent;
-  }, [filtered, activeUser, mutedUsers, isHiddenPermitted]);
+  }, [activeUser, filtered, isHiddenPermitted, mutedContent]);
   const botsFreeData = useMemo(
     () => data.filter((entry) => (botsList?.includes(entry.author) ? entry.children > 0 : true)),
-    [data]
+    [botsList, data]
   );
 
   useMount(() => (document.getElementsByTagName("html")[0].style.position = "relative"));

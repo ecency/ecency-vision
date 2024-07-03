@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FormControl, InputGroup } from "@ui/input";
 import { Spinner } from "@ui/spinner";
 import { useGlobalStore } from "@/core/global-store";
@@ -27,6 +27,49 @@ export const SearchByUsername = ({ setUsername, excludeActiveUser, recent, usern
   const [isUsernameDataLoading, setIsUsernameDataLoading] = useState(false);
 
   useEffect(() => {
+    if (activeUser && !excludeActiveUser) {
+      setIsActiveUserSet(true);
+      setUsername(activeUser.username);
+      setUsernameInput(activeUser.username);
+    }
+  }, [activeUser, excludeActiveUser, setUsername]);
+
+  const getUsernameData = useCallback(
+    async (query: string) => {
+      try {
+        const resp = await lookupAccounts(query, 5);
+        if (resp) {
+          setUsernameData(
+            resp.filter((item) => (excludeActiveUser ? item !== activeUser?.username : true))
+          );
+        }
+      } catch (e) {
+        error(...formatError(e));
+      } finally {
+        setIsUsernameDataLoading(false);
+      }
+    },
+    [activeUser?.username, excludeActiveUser]
+  );
+  const fetchUsernameData = useCallback(
+    (query: string) => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      if (usernameInput === "" || isActiveUserSet) {
+        setIsActiveUserSet(false);
+        setIsUsernameDataLoading(false);
+        return;
+      }
+
+      setIsUsernameDataLoading(true);
+      setTimer(setTimeout(() => getUsernameData(query), 500));
+    },
+    [getUsernameData, isActiveUserSet, timer, usernameInput]
+  );
+
+  useEffect(() => {
     if (!usernameInput) {
       setUsername("");
       if (recent) {
@@ -37,45 +80,7 @@ export const SearchByUsername = ({ setUsername, excludeActiveUser, recent, usern
       fetchUsernameData(usernameInput);
       setPrefilledUsername("");
     }
-  }, [usernameInput]);
-
-  useEffect(() => {
-    if (activeUser && !excludeActiveUser) {
-      setIsActiveUserSet(true);
-      setUsername(activeUser.username);
-      setUsernameInput(activeUser.username);
-    }
-  }, [activeUser]);
-
-  const fetchUsernameData = (query: string) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    if (usernameInput === "" || isActiveUserSet) {
-      setIsActiveUserSet(false);
-      setIsUsernameDataLoading(false);
-      return;
-    }
-
-    setIsUsernameDataLoading(true);
-    setTimer(setTimeout(() => getUsernameData(query), 500));
-  };
-
-  const getUsernameData = async (query: string) => {
-    try {
-      const resp = await lookupAccounts(query, 5);
-      if (resp) {
-        setUsernameData(
-          resp.filter((item) => (excludeActiveUser ? item !== activeUser?.username : true))
-        );
-      }
-    } catch (e) {
-      error(...formatError(e));
-    } finally {
-      setIsUsernameDataLoading(false);
-    }
-  };
+  }, [fetchUsernameData, prefilledUsername, recent, setUsername, usernameInput]);
 
   const suggestionProps = {
     renderer: (i: any) => {

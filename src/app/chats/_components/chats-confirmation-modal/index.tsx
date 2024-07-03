@@ -23,7 +23,7 @@ export const ChatsConfirmationModal = (props: Props) => {
     if (hasUserJoinedChat && inProgress) {
       setInProgress(false);
     }
-  }, [hasUserJoinedChat]);
+  }, [hasUserJoinedChat, inProgress]);
   const confirmationModalContent = (
     <>
       <div className="join-community-dialog-header border-bottom">

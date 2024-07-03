@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { PrivateKey } from "@hiveio/dhive";
 import { Modal, ModalBody, ModalHeader } from "@ui/modal";
@@ -19,6 +21,7 @@ import {
   changeRecoveryAccountKc,
   formatError
 } from "@/api/operations";
+import useMount from "react-use/lib/useMount";
 
 const ECENCY = "ecency";
 
@@ -44,10 +47,10 @@ export function AccountRecovery() {
     setRecoveryEmail(response[0].email);
   };
 
-  useEffect(() => {
+  useMount(() => {
     getCurrentAccount();
     fetchEmail();
-  }, []);
+  });
 
   const getCurrentAccount = async () => {
     const account = await getAccount(activeUser!.username);

@@ -59,7 +59,7 @@ export function Discussion({ hideControls, isRawContent, parent, community }: Pr
   );
   const botsData = useMemo(
     () => filtered?.filter((entry) => botsList?.includes(entry.author) && entry.children === 0),
-    [filtered]
+    [botsList, filtered]
   );
 
   useEffect(() => {

@@ -70,7 +70,7 @@ export const DeckGrid = () => {
       const cols = deckContext.layout.columns;
       deckContext.scrollTo(cols[cols.length - 1]?.key);
     }
-  }, [deckContext.layout]);
+  }, [deckContext, deckContext.layout, previousLayout?.columns.length]);
 
   const scrollTo = (direction: "left" | "right") => {
     const el = document.querySelector("#draggable-container");

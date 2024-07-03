@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { success } from "../feedback";
 import { Community, Entry, FullAccount, ROLES } from "@/entities";
 import { useCommunityPinCache } from "@/core/caches";
@@ -53,10 +53,6 @@ export function useMenuItemsGenerator(
   });
 
   useEffect(() => {
-    generate();
-  }, [isPinned, activeUser, community, canMute, separatedSharing, extraMenuItems]);
-
-  useEffect(() => {
     setCanMute(
       activeUser && community
         ? !!community.team?.find(
@@ -68,7 +64,47 @@ export function useMenuItemsGenerator(
     );
   }, [activeUser, community]);
 
-  const generate = () => {
+  const copyAddress = useCallback(() => {
+    let u;
+    if (activeUser?.username) {
+      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}?referral=${activeUser.username}`;
+    } else {
+      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
+    }
+    clipboard(u);
+    success(i18next.t("entry.address-copied"));
+  }, [activeUser?.username, entry.author, entry.category, entry.permlink]);
+
+  const togglePin = useCallback(
+    (key = "") => {
+      setPin(!pin);
+      setPinKey(key);
+    },
+    [pin]
+  );
+
+  const toggleUnpin = useCallback(
+    (key = "") => {
+      setUnpin(!unpin);
+      setPinKey(key);
+    },
+    [unpin]
+  );
+
+  const isTeamManager = useCallback(
+    () =>
+      activeUser && community
+        ? !!community.team?.find((m) => {
+            return (
+              m[0] === activeUser.username &&
+              [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
+            );
+          })
+        : false,
+    [activeUser, community]
+  );
+
+  const generate = useCallback(() => {
     const isComment = !!entry.parent_author;
     const isOwn = !!activeUser && activeUser.username === entry.author;
     const isCross = activeUser && !isComment && isCommunity(entry.category);
@@ -189,38 +225,39 @@ export function useMenuItemsGenerator(
           ]
         : [])
     ]);
-  };
+  }, [
+    activeUser,
+    canMute,
+    copyAddress,
+    cross,
+    delete_,
+    editHistory,
+    entry.author,
+    entry.category,
+    entry.children,
+    entry.is_paidout,
+    entry.net_rshares,
+    entry.parent_author,
+    entry.permlink,
+    entry.stats?.gray,
+    extraMenuItems,
+    isPinned,
+    isTeamManager,
+    mute,
+    promote,
+    router,
+    separatedSharing,
+    share,
+    toggleEdit,
+    togglePin,
+    toggleUIProp,
+    toggleUnpin,
+    usePrivate
+  ]);
 
-  const copyAddress = () => {
-    let u;
-    if (activeUser?.username) {
-      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}?referral=${activeUser.username}`;
-    } else {
-      u = `https://ecency.com/${entry.category}/@${entry.author}/${entry.permlink}`;
-    }
-    clipboard(u);
-    success(i18next.t("entry.address-copied"));
-  };
-
-  const togglePin = (key = "") => {
-    setPin(!pin);
-    setPinKey(key);
-  };
-
-  const toggleUnpin = (key = "") => {
-    setUnpin(!unpin);
-    setPinKey(key);
-  };
-
-  const isTeamManager = () =>
-    activeUser && community
-      ? !!community.team?.find((m) => {
-          return (
-            m[0] === activeUser.username &&
-            [ROLES.OWNER.toString(), ROLES.ADMIN.toString(), ROLES.MOD.toString()].includes(m[1])
-          );
-        })
-      : false;
+  useEffect(() => {
+    generate();
+  }, [isPinned, activeUser, community, canMute, separatedSharing, extraMenuItems, generate]);
 
   return {
     menuItems,

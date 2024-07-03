@@ -36,7 +36,7 @@ export function SearchAdvancedForm() {
     setSort((params.get("sort") as SearchSort) ?? SearchSort.NEWEST);
     setHideLow(params.get("hd") !== "0");
     setDate((params.get("date") as DateOpt) ?? DateOpt.M);
-  }, [params]);
+  }, [params, setDate]);
 
   const searchChanged = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setSearch(e.currentTarget.value);

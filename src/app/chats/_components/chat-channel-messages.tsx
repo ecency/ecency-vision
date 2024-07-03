@@ -72,7 +72,7 @@ export function ChatsChannelMessages({ publicMessages, currentChannel, isPage }:
     if (publicMessages.length === 0 && isJoinedCommunityTeamKeysFetched) {
       refetch();
     }
-  }, [publicMessages, isJoinedCommunityTeamKeysFetched]);
+  }, [publicMessages, isJoinedCommunityTeamKeysFetched, refetch]);
 
   useDebounce(
     () => {

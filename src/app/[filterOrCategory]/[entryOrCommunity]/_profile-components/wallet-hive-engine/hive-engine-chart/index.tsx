@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactHighcharts from "react-highcharts";
 import moment from "moment";
 import "./_index.scss";
@@ -6,14 +6,15 @@ import { getMarketData } from "@/api/hive-engine";
 import { Theme } from "@/enums";
 import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
+import useMount from "react-use/lib/useMount";
 
 export const HiveEngineChart = ({ items }: any) => {
   const theme = useGlobalStore((s) => s.theme);
   const [prices, setPrices]: any = useState([]);
 
-  useEffect(() => {
+  useMount(() => {
     getHistory();
-  }, []);
+  });
 
   const getHistory = async () => {
     const history = await getMarketData(items.symbol);

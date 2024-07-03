@@ -36,7 +36,7 @@ export function LoginKc({ doLogin }: Props) {
         return;
       }
     }
-  }, [account]);
+  }, [account, username]);
 
   useEffect(() => {
     if (isAccountFetchingError) {

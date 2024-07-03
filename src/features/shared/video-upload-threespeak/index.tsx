@@ -73,7 +73,7 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       setShowRecorder(false);
       setDurationForApiCall(0);
     }
-  }, [props.show]);
+  }, [props.show, setThumbnailPercentage, setVideoPercentage]);
 
   const getVideoDuration = () => {
     if (videoRef.current) {

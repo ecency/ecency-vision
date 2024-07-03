@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useDebounce from "react-use/lib/useDebounce";
 import { UsernameDataItem } from "./common";
 import { FormControl, InputGroup } from "@ui/input";
@@ -78,6 +78,14 @@ export const DeckAddColumnSearchBox = ({
     [usernameInput]
   );
 
+  const resetToRecentList = useCallback(() => {
+    setUsername("");
+    setIsRecent(true);
+    if (recentList) {
+      setUsernameData(recentList);
+    }
+  }, [setUsername, recentList]);
+
   useEffect(() => {
     if (!usernameInput) {
       resetToRecentList();
@@ -86,15 +94,7 @@ export const DeckAddColumnSearchBox = ({
       setTriggerFetch(true);
       setPrefilledUsername("");
     }
-  }, [usernameInput]);
-
-  const resetToRecentList = () => {
-    setUsername("");
-    setIsRecent(true);
-    if (recentList) {
-      setUsernameData(recentList);
-    }
-  };
+  }, [usernameInput, prefilledUsername, resetToRecentList]);
 
   return (
     <div className="deck-add-column-search-box">

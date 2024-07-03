@@ -14,7 +14,7 @@ export const WalletSpkSteps = ({ steps, stepIndex, children }: Props) => {
   const [step, setStep] = useState(steps[0]);
   useEffect(() => {
     setStep(steps[stepIndex]);
-  }, [stepIndex]);
+  }, [stepIndex, steps]);
 
   return (
     <div className="transaction-form">

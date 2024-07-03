@@ -90,7 +90,7 @@ export default function SignUp() {
       setUrl(url.toString());
       compileQR(url.toString());
     }
-  }, [stage]);
+  }, [email, referral, stage, username]);
 
   useEffect(() => {
     setUsernameError("");
@@ -468,7 +468,7 @@ export default function SignUp() {
               <div className="flex items-center flex-col justify-center">
                 <div className="my-3">{i18next.t("sign-up.qr-desc")}</div>
                 <a href={url}>
-                  <img ref={qrCodeRef} />
+                  <Image src="" alt="" width={1000} height={1000} ref={qrCodeRef} />
                 </a>
                 <div className="flex flex-col my-4 mb-16 gap-4 sm:flex-row">
                   <a href="https://ios.ecency.com" className="app-btn" target="_blank">

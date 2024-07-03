@@ -42,6 +42,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { getDynamicPropsQuery } from "@/api/queries";
 import { formatError } from "@/api/operations";
 import useMount from "react-use/lib/useMount";
+import Image from "next/image";
 
 interface Props {
   account: Account;
@@ -337,19 +338,15 @@ export function WalletHiveEngine({ account }: Props) {
               <div className="entry-list-body">
                 {tokens.map((b, i) => {
                   const imageSrc = proxifyImageSrc(b.icon, 0, 0, canUseWebp ? "webp" : "match");
-                  const fallbackImage = require("../../img/noimage.svg");
-
                   return (
                     <div className="entry-list-item" key={i}>
                       <div className="entry-header">
-                        <img
+                        <Image
+                          width={1000}
+                          height={1000}
                           alt={b.symbol}
-                          src={imageSrc}
+                          src={imageSrc ?? "/public/assets/noimage.svg"}
                           className="item-image"
-                          onError={(e: React.SyntheticEvent) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = fallbackImage;
-                          }}
                         />
                         {b.symbol}
                       </div>

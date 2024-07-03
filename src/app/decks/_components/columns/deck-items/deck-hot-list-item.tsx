@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { TrendingTag } from "@/entities";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 export interface HotListItemProps {
   index: number;
@@ -10,9 +11,9 @@ export interface HotListItemProps {
 }
 
 export const HotListItem = ({ index, entry, onMounted, onClick }: HotListItemProps) => {
-  useEffect(() => {
+  useMount(() => {
     onMounted();
-  }, []);
+  });
 
   return (
     <div className="p-3 border-b border-[--border-color] flex items-center">

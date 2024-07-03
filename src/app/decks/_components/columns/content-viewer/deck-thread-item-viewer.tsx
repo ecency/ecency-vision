@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from "react";
+import React, { useCallback, useContext, useMemo, useRef } from "react";
 import { DeckThreadItemSkeleton, ThreadItem } from "../deck-items";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
@@ -34,6 +34,40 @@ export const DeckThreadItemViewer = ({
   const isMounted = useMounted();
 
   const { data: discussions } = getDiscussionsMapQuery(entry, updateCache).useClientQuery();
+
+  const build = useCallback(
+    (dataset: Record<string, IdentifiableEntry>) => {
+      const result: IdentifiableEntry[] = [];
+      const values = [...Object.values(dataset).filter((v) => v.permlink !== entry.permlink)];
+      Object.entries(dataset)
+        .filter(([_, v]) => v.permlink !== entry.permlink)
+        .forEach(([key, value]) => {
+          const parent = values.find((v) => v.replies.includes(key));
+          if (parent) {
+            const existingTempIndex = result.findIndex(
+              (v) => v.author === parent.author && v.permlink === parent.permlink
+            );
+            if (existingTempIndex > -1) {
+              result[existingTempIndex].replies.push(value);
+              result[existingTempIndex].replies = result[existingTempIndex].replies.filter(
+                (r) => r !== key
+              );
+            } else {
+              parent.replies.push(value);
+              parent.replies = parent.replies.filter((r) => r !== key);
+              result.push(parent);
+            }
+          } else if (
+            result.every((r) => r.author !== value.author && r.permlink !== value.permlink)
+          ) {
+            result.push(value);
+          }
+        });
+      return result;
+    },
+    [entry.permlink]
+  );
+
   const data = useMemo(() => {
     const tempResponse = { ...discussions };
     Object.values(tempResponse).forEach((i) => {
@@ -41,37 +75,7 @@ export const DeckThreadItemViewer = ({
     });
 
     return build(tempResponse);
-  }, []);
-
-  const build = (dataset: Record<string, IdentifiableEntry>) => {
-    const result: IdentifiableEntry[] = [];
-    const values = [...Object.values(dataset).filter((v) => v.permlink !== entry.permlink)];
-    Object.entries(dataset)
-      .filter(([_, v]) => v.permlink !== entry.permlink)
-      .forEach(([key, value]) => {
-        const parent = values.find((v) => v.replies.includes(key));
-        if (parent) {
-          const existingTempIndex = result.findIndex(
-            (v) => v.author === parent.author && v.permlink === parent.permlink
-          );
-          if (existingTempIndex > -1) {
-            result[existingTempIndex].replies.push(value);
-            result[existingTempIndex].replies = result[existingTempIndex].replies.filter(
-              (r) => r !== key
-            );
-          } else {
-            parent.replies.push(value);
-            parent.replies = parent.replies.filter((r) => r !== key);
-            result.push(parent);
-          }
-        } else if (
-          result.every((r) => r.author !== value.author && r.permlink !== value.permlink)
-        ) {
-          result.push(value);
-        }
-      });
-    return result;
-  };
+  }, [build, discussions, entry.host]);
 
   return (
     <div

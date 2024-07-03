@@ -97,9 +97,7 @@ export function WalletEcencyTransactionRow({ tr }: Props) {
         </div>
         <div className="transaction-date">{dateRelative}</div>
       </div>
-      {tr.memo && (
-        <div className="transaction-details user-selectable">{formatMemo(tr.memo, history)}</div>
-      )}
+      {tr.memo && <div className="transaction-details user-selectable">{formatMemo(tr.memo)}</div>}
       <div className="transaction-numbers">{tr.amount}</div>
     </div>
   );

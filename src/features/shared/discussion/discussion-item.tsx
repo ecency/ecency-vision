@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Tsx } from "../../i18n/helper";
 import appPackage from "../../../../package.json";
 import { EntryLink } from "../entry-link";
@@ -63,7 +63,7 @@ export function DiscussionItem({
   const { data: botsList } = getBotsQuery().useClientQuery();
 
   const readMore = useMemo(() => entry.children > 0 && entry.depth > 5, [entry]);
-  const showSubList = useMemo(() => !readMore && entry.children > 0, [entry]);
+  const showSubList = useMemo(() => !readMore && entry.children > 0, [entry.children, readMore]);
   const canEdit = useMemo(
     () => activeUser && activeUser.username === entry.author,
     [activeUser, entry]
@@ -82,7 +82,7 @@ export function DiscussionItem({
   );
   const selected = useMemo(
     () => location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`,
-    [location, entry]
+    [entry]
   );
   const entryIsMuted = useMemo(
     () => mutedUsers?.includes(entry.author) ?? false,
@@ -121,7 +121,7 @@ export function DiscussionItem({
     () =>
       !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0) &&
       entry.author === activeUser?.username,
-    [entry]
+    [activeUser?.username, entry.author, entry.children, entry.is_paidout, entry.net_rshares]
   );
   const isPinned = useMemo(
     () => root.json_metadata.pinned_reply === `${entry.author}/${entry.permlink}`,
@@ -151,12 +151,6 @@ export function DiscussionItem({
   );
   const { mutateAsync: pinReply } = usePinReply(entry, root);
 
-  useEffect(() => {
-    if (edit || reply) {
-      checkLsDraft();
-    }
-  }, [edit, reply]);
-
   const toggleReply = () => {
     if (edit) {
       return;
@@ -171,11 +165,11 @@ export function DiscussionItem({
     setEdit(!edit);
   };
 
-  const checkLsDraft = () => {
+  const checkLsDraft = useCallback(() => {
     let replyDraft = ss.get(`reply_draft_${entry?.author}_${entry?.permlink}`);
     replyDraft = (replyDraft && replyDraft.trim()) || "";
     setLsDraft(replyDraft);
-  };
+  }, [entry?.author, entry?.permlink]);
 
   const submitReply = (text: string) =>
     createReply({
@@ -191,6 +185,12 @@ export function DiscussionItem({
       point: true,
       jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], appPackage.version)
     });
+
+  useEffect(() => {
+    if (edit || reply) {
+      checkLsDraft();
+    }
+  }, [checkLsDraft, edit, reply]);
 
   return (
     <div className={`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`}>

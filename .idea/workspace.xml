@@ -4,39 +4,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Build fixups">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed warnings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/claim-account-credit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/claim-account-credit/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-rewarded-communities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-rewarded-communities.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-edit-pic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-edit-pic.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/types/manage-authorities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/types/manage-authorities.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/rc-progress-circle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/rc-progress-circle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-info/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-delegations-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-delegations-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/wallet-ecency-transaction-row.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/wallet-ecency-transaction-row.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-delegate-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-delegate-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-steps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-steps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-channel-messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-input/hooks/use-chat-input-submit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-input/hooks/use-chat-input-submit.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-message-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-message-box.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-messages-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-messages-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-messages-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-messages-view.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-message-item/hooks/use-focus-on-message-by-id.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-message-item/hooks/use-focus-on-message-by-id.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/chat-popup-messages-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-popup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chat-profile-box.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-community-actions/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-confirmation-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-confirmation-modal/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-direct-messages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-direct-messages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-dropdown-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-scroller/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-scroller/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/chat-sidebar-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-sidebar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/join-community-chat-btn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/join-community-chat-btn.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/chats/_components/manage-chat-key.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/manage-chat-key.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_screens/chats-manage-key-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_screens/chats-manage-key-section.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_screens/chats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/perks/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/perks/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_components/witness-proxy.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witness-proxy.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-controls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/_components/witnesses-controls.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-loading-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-loading-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_hooks/use-create-temporary-contact.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_hooks/use-create-temporary-contact.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_hooks/user-create-temporary-channel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/chats/_screens/chats-user-not-joined-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_screens/chats-user-not-joined-section.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-search-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/add-column/deck-add-column-search-box.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-topics-content-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-topics-content-viewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-community-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-community-column.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-hot-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-hot-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body-render-helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body-render-helper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item-body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-link-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-notifications-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-notifications-column.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-smooth-scroller.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-smooth-scroller.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/deck-threads-form-control.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-by-key-spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/sign-by-key.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,9 +231,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
         <item itemvalue="Node.js.scratch_40.js" />
         <item itemvalue="Node.js.scratch_39.js" />
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
@@ -293,23 +314,9 @@
       <workItem from="1719757625387" duration="3671000" />
       <workItem from="1719846001499" duration="9694000" />
       <workItem from="1719934710532" duration="7435000" />
-      <workItem from="1719996468890" duration="1286000" />
-    </task>
-    <task id="LOCAL-00018" summary="Migrated fragments">
-      <option name="closed" value="true" />
-      <created>1704638674266</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1704638674266</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Migrated fragments">
-      <option name="closed" value="true" />
-      <created>1704638865258</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1704638865258</updated>
+      <workItem from="1719996468890" duration="9894000" />
+      <workItem from="1720021279791" duration="237000" />
+      <workItem from="1720021530661" duration="1600000" />
     </task>
     <task id="LOCAL-00020" summary="Migrated schedules">
       <option name="closed" value="true" />
@@ -687,7 +694,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719942238840</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Build imports">
+      <option name="closed" value="true" />
+      <created>1719997831247</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1719997831247</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Fixed warnings">
+      <option name="closed" value="true" />
+      <created>1720016380538</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1720016380538</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,8 +728,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated community card, started community page" />
-    <MESSAGE value="Migrated community menu, cover, subscribers, activities" />
     <MESSAGE value="Added queries manager for generating client and server side boilerplate code" />
     <MESSAGE value="Updated assets" />
     <MESSAGE value="Added one query client for each request and persist data between server and client" />
@@ -730,7 +751,9 @@
     <MESSAGE value="Migrated profile page pt. 5" />
     <MESSAGE value="Migrated profile page pt. 6" />
     <MESSAGE value="Build fixups" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build fixups" />
+    <MESSAGE value="Build imports" />
+    <MESSAGE value="Fixed warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed warnings" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

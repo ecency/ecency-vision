@@ -89,7 +89,7 @@ export function NavbarSideMainMenu({ onHide }: Props) {
         icon: <UilSetting size={16} />
       }
     ],
-    []
+    [activeUser?.username, bookmarks, drafts, fragments, gallery, onHide, schedules, usePrivate]
   );
 
   const authMenu = useMemo(
@@ -107,7 +107,7 @@ export function NavbarSideMainMenu({ onHide }: Props) {
         }
       }
     ],
-    []
+    [setActiveUser, toggleUIProp]
   );
 
   return (

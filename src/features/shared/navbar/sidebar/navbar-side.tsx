@@ -26,7 +26,7 @@ export function NavbarSide({ show, setShow, placement = "right" }: Props) {
 
   useEffect(() => {
     reset();
-  }, [show]);
+  }, [reset, show]);
 
   return (
     <Modal animation={false} show={show} onHide={() => setShow(false)} className="navbar-side">

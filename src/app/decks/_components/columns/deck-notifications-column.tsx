@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ShortListItemSkeleton } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { UserDeckGridItem } from "../types";
@@ -40,12 +40,45 @@ export const DeckNotificationsColumn = ({ id, settings, draggable }: Props) => {
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
 
+  const fetchData = useCallback(
+    async (since?: ApiNotification) => {
+      if (data.length) {
+        setIsReloading(true);
+      }
+      const isAll = settings.contentType === "all";
+
+      try {
+        const response = await getNotifications(
+          activeUser!.username,
+          isAll ? null : (settings.contentType as NotificationFilter),
+          since?.id,
+          settings.username
+        );
+
+        if (response.length === 0) {
+          setHasNextPage(false);
+        }
+
+        if (since) {
+          setData([...data, ...response]);
+        } else {
+          setData(response ?? []);
+        }
+      } catch (e) {
+      } finally {
+        setIsReloading(false);
+        setIsFirstLoaded(true);
+      }
+    },
+    [activeUser, data, settings.contentType, settings.username]
+  );
+
   useEffect(() => {
     if (prevSettings && prevSettings?.contentType !== settings.contentType) {
       setData([]);
       fetchData();
     }
-  }, [settings.contentType]);
+  }, [prevSettings, settings.contentType, fetchData]);
 
   useEffect(() => {
     if (activeUser?.username !== previousActiveUser?.username) {
@@ -55,37 +88,7 @@ export const DeckNotificationsColumn = ({ id, settings, draggable }: Props) => {
     if (!activeUser) {
       setData([]);
     }
-  }, [activeUser]);
-
-  const fetchData = async (since?: ApiNotification) => {
-    if (data.length) {
-      setIsReloading(true);
-    }
-    const isAll = settings.contentType === "all";
-
-    try {
-      const response = await getNotifications(
-        activeUser!.username,
-        isAll ? null : (settings.contentType as NotificationFilter),
-        since?.id,
-        settings.username
-      );
-
-      if (response.length === 0) {
-        setHasNextPage(false);
-      }
-
-      if (since) {
-        setData([...data, ...response]);
-      } else {
-        setData(response ?? []);
-      }
-    } catch (e) {
-    } finally {
-      setIsReloading(false);
-      setIsFirstLoaded(true);
-    }
-  };
+  }, [fetchData, previousActiveUser, activeUser]);
 
   return (
     <GenericDeckWithDataColumn

@@ -1,4 +1,4 @@
-import ChatsProfileBox from "@/app/chats/_components/chat-profile-box";
+import { ChatsProfileBox } from "@/app/chats/_components/chat-profile-box";
 import React, { HTMLProps } from "react";
 import { classNameObject } from "@ui/util";
 import i18next from "i18next";

@@ -87,7 +87,7 @@ interface Props {
 
 export function ProfileInfo({ account }: Props) {
   const { data } = getRcAccountsQuery(account.name).useClientQuery();
-  const rcAccount = useMemo(() => data?.[0], []);
+  const rcAccount = useMemo(() => data?.[0], [data]);
 
   if (account?.__loaded && rcAccount) {
     return (

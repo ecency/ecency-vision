@@ -54,7 +54,7 @@ export function ChatsDirectMessages(props: Props) {
     if (directMessages.length === 0) {
       directMessagesQuery.refetch();
     }
-  }, [directMessages]);
+  }, [directMessages, directMessagesQuery]);
 
   const getDifferenceInCalendarDays = useCallback(
     (i: number, date: Date) => {

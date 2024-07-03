@@ -19,6 +19,8 @@ import Link from "next/link";
 import i18next from "i18next";
 import { Tooltip } from "@ui/tooltip";
 import { pinSvg } from "@ui/svg";
+import useMount from "react-use/lib/useMount";
+import Image from "next/image";
 
 export interface SearchItemProps {
   avatar: string;
@@ -77,15 +79,15 @@ export const SearchListItem = ({
     );
   }, [entry]);
 
-  useEffect(() => {
+  useMount(() => {
     onMounted();
-  }, []);
+  });
 
   useEffect(() => {
     if (inViewport && onAppear) {
       onAppear();
     }
-  }, [inViewport]);
+  }, [inViewport, onAppear]);
 
   let isPinned = community && entry && entry.stats?.is_pinned;
 
@@ -149,7 +151,9 @@ export const SearchListItem = ({
       >
         <div className="flex">
           {username && (
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src={`https://images.ecency.com/${
                 canUseWebp ? "webp/" : ""
               }u/${username}/avatar/medium`}
@@ -175,7 +179,9 @@ export const SearchListItem = ({
         <div className="text-dark-default flex flex-col">
           <div className="flex items-center grow hot-item-link dark:text-gray-400">
             {author && (
-              <img
+              <Image
+                width={1000}
+                height={1000}
                 src={`https://images.ecency.com/${
                   canUseWebp ? "webp/" : ""
                 }u/${author}/avatar/medium`}

@@ -15,7 +15,13 @@ interface Props {
 export function MajorPerkCard({ title, img, subtitle, actionText, icon, onClick }: Props) {
   return (
     <div className="bg-white h-full rounded-3xl cursor-pointer p-6 relative overflow-hidden">
-      <img src={img} alt="" className="absolute top-0 left-0 w-full h-full blur-lg opacity-[15%]" />
+      <Image
+        width={1000}
+        height={1000}
+        src={img}
+        alt=""
+        className="absolute top-0 left-0 w-full h-full blur-lg opacity-[15%]"
+      />
       <div className="flex flex-col text-center justify-between h-full relative items-center">
         <Image width={1000} height={1000} src={img} alt="" className="w-[150px] mb-8" />
         <div className="flex flex-col items-center">

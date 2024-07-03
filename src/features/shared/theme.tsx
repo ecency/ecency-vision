@@ -17,7 +17,7 @@ export function Theme() {
         }
       }
     }
-  }, [theme]);
+  }, [isMobile, theme]);
 
   return <></>;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { cryptoUtils, PrivateKey, PublicKey } from "@hiveio/dhive";
 import { AccountDataType, actionType, Keytype, PublicKeys } from "../manage-authority/types";
 import "./index.scss";
@@ -15,6 +15,7 @@ import { error, success } from "@/features/shared";
 import i18next from "i18next";
 import { keySvg } from "@ui/svg";
 import { ManageAuthIcon } from "../manage-auth-icon";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   accountData: AccountDataType;
@@ -49,21 +50,9 @@ export function ManageKeys(props: Props) {
     );
   }, [isMobile]);
 
-  useEffect(() => {
+  useMount(() => {
     getKeys();
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) {
-      keysSetter();
-    }
-  }, [isMobile]);
-
-  useEffect(() => {
-    if (isMobile) {
-      keysSetter();
-    }
-  }, [privateKeys]);
+  });
 
   const handleOwnerReveal = () => {
     setOwnerReveal(!ownerReveal);
@@ -231,12 +220,12 @@ export function ManageKeys(props: Props) {
     success(i18next.t("manage-authorities.copied"));
   };
 
-  const keysSetter = () => {
+  const keysSetter = useCallback(() => {
     const encryPrivatekeys = keysFormatter(privateKeys);
     const encrypPublicKeys = keysFormatter(props.accountData?.publicKeys);
     setFormattedPrivatekeys(encryPrivatekeys);
     setFormattedPublickeys(encrypPublicKeys);
-  };
+  }, [privateKeys, props.accountData?.publicKeys]);
 
   const handleImportBtn = (type: string) => {
     setKeyType(type);
@@ -247,6 +236,12 @@ export function ManageKeys(props: Props) {
   const finish = () => {
     setKeyDialog(false);
   };
+
+  useEffect(() => {
+    if (isMobile) {
+      keysSetter();
+    }
+  }, [isMobile, privateKeys, keysSetter]);
 
   const passwordModal = () => {
     return (

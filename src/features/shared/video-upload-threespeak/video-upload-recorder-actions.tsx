@@ -24,7 +24,7 @@ export function VideoUploadRecorderActions({
 
   useEffect(() => {
     recordStarted ? stopwatch.start() : stopwatch.clear();
-  }, [recordStarted]);
+  }, [recordStarted, stopwatch]);
 
   const getNextCameraIndex = (index: number) => (index + 1) % cameraList.length;
 

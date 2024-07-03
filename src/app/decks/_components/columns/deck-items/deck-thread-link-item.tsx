@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDeckThreadLinkItemCache } from "./deck-thread-link-item-cache";
 import i18next from "i18next";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   link: string;
@@ -15,9 +16,9 @@ export const DeckThreadLinkItem = ({ link }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedSuccess, setLoadedSuccess] = useState(false);
 
-  useEffect(() => {
+  useMount(() => {
     requestData();
-  }, []);
+  });
 
   const requestData = async () => {
     if (await attemptToLoadCache()) {

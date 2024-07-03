@@ -18,20 +18,23 @@ export function CommunityCardEditPic({ account, onUpdate }: EditPicProps) {
 
   const { mutateAsync: updateProfile, isPending } = useUpdateProfile(account);
 
-  const save = useCallback(async (url: string) => {
-    if (account.profile?.profile_image === url) {
-      setDialog(!dialog);
-      return;
-    }
-
-    await updateProfile({
-      nextProfile: {
-        profile_image: url
+  const save = useCallback(
+    async (url: string) => {
+      if (account.profile?.profile_image === url) {
+        setDialog(!dialog);
+        return;
       }
-    });
-    setDialog(false);
-    onUpdate();
-  }, []);
+
+      await updateProfile({
+        nextProfile: {
+          profile_image: url
+        }
+      });
+      setDialog(false);
+      onUpdate();
+    },
+    [account.profile?.profile_image, dialog, onUpdate, updateProfile]
+  );
 
   return (
     <>

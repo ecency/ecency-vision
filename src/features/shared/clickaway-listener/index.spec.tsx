@@ -11,7 +11,7 @@ it("(1) triggers onClickAway", async () => {
       <button id="outside">press me to trigger clickaway!</button>
       <ClickAwayListener onClickAway={onClickaway}>
         <button id="inside" onClick={() => {}}>
-          I'm inside
+          I`m inside
         </button>
       </ClickAwayListener>
     </div>

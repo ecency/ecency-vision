@@ -57,7 +57,7 @@ export function useDebounceTransferAccountData() {
       delegatedAmount ? delegatedAmount.toString() : "0.001",
       delegateAccount
     ];
-  }, [activeUser?.username, dynamicProps!.hivePerMVests, to, vestingDelegations]);
+  }, [activeUser?.username, dynamicProps, to, vestingDelegations]);
 
   useDebounce(
     async () => {
@@ -75,7 +75,7 @@ export function useDebounceTransferAccountData() {
 
   useEffect(() => {
     setAmount(amount);
-  }, [amount]);
+  }, [amount, setAmount]);
 
   useEffect(() => {
     if (activeUser && activeUser.username && mode === "delegate") {

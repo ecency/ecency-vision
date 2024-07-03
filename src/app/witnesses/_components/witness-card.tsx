@@ -6,6 +6,7 @@ import { openInNewSvg } from "@ui/svg";
 import { dateToRelative } from "@/utils";
 import { WitnessTransformed } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
+import Image from "next/image";
 
 interface Props {
   voted: boolean;
@@ -33,7 +34,9 @@ export const WitnessCard = ({ voted, row, witness, onSuccess }: Props) => {
           </h3>
         </div>
         <div>
-          <img
+          <Image
+            width={1000}
+            height={1000}
             src={`https://images.ecency.com/${canUseWebp ? "webp/" : ""}u/${
               row.name
             }/avatar/medium`}

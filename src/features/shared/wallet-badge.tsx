@@ -20,7 +20,7 @@ export const WalletBadge = ({ icon }: { icon: ReactNode }) => {
     if (activeUser?.data?.__loaded) {
       setHasUnclaimedRewards(new HiveWallet(activeUser.data, dynamicProps!).hasUnclaimedRewards);
     }
-  }, [activeUser]);
+  }, [activeUser, dynamicProps]);
   return (
     <>
       <Tooltip

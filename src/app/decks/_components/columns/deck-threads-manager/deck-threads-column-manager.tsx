@@ -59,6 +59,7 @@ export const DeckThreadsColumnManager = ({ children }: Props) => {
 export function withDeckThreadsColumnManager<T, Y extends JSX.Element>(
   Component: FunctionComponent<T>
 ) {
+  // eslint-disable-next-line react/display-name
   return (props: PropsWithChildren<T>) => {
     return (
       <DeckThreadsColumnManager>

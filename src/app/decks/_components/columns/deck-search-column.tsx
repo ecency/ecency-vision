@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ListItemSkeleton, SearchListItem } from "./deck-items";
 import { GenericDeckWithDataColumn } from "./generic-deck-with-data-column";
 import { SearchDeckGridItem } from "../types";
@@ -12,6 +12,7 @@ import usePrevious from "react-use/lib/usePrevious";
 import { search } from "@/api/search-api";
 import i18next from "i18next";
 import { Entry, SearchResult } from "@/entities";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   id: string;
@@ -28,18 +29,11 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
   const { updateColumnIntervalMs } = useContext(DeckGridContext);
   const prevSettings = usePrevious(settings);
 
-  useEffect(() => {
+  useMount(() => {
     fetchData();
-  }, []);
+  });
 
-  useEffect(() => {
-    if (JSON.stringify(prevSettings) !== JSON.stringify(settings)) {
-      setData([]);
-      fetchData();
-    }
-  }, [settings]);
-
-  const buildQuery = () => {
+  const buildQuery = useCallback(() => {
     let q = settings.query;
 
     if (settings.author) {
@@ -59,9 +53,9 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
     }
 
     return q;
-  };
+  }, [settings.author, settings.category, settings.query, settings.tags, settings.type]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     if (data.length) {
       setIsReloading(true);
     }
@@ -99,7 +93,14 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
       setIsReloading(false);
       setIsFirstLoaded(true);
     }
-  };
+  }, [buildQuery, data.length, settings.date, settings.hideLow, settings.sort]);
+
+  useEffect(() => {
+    if (JSON.stringify(prevSettings) !== JSON.stringify(settings)) {
+      setData([]);
+      fetchData();
+    }
+  }, [fetchData, prevSettings, settings]);
 
   return (
     <GenericDeckWithDataColumn
@@ -142,9 +143,8 @@ export const DeckSearchColumn = ({ id, settings, draggable }: Props) => {
             toggleNotNeeded: true
           }}
           {...item}
-          children=""
           onEntryView={() => setCurrentViewingEntry(item)}
-        />
+        ></SearchListItem>
       )}
     </GenericDeckWithDataColumn>
   );

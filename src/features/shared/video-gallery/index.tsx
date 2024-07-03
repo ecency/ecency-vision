@@ -44,7 +44,7 @@ export const VideoGallery = ({
 
   useEffect(() => {
     setFilterStatus(isEditing ? "published" : "all");
-  }, [activeUser]);
+  }, [activeUser, isEditing]);
 
   return (
     <div>

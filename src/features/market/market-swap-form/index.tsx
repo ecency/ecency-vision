@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
@@ -19,6 +19,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { classNameObject } from "@ui/util";
 import i18next from "i18next";
 import { checkSvg, swapSvg } from "@ui/svg";
+import useMount from "react-use/lib/useMount";
 
 export interface Props {
   padding?: string;
@@ -57,19 +58,15 @@ export const MarketSwapForm = ({ padding = "p-4" }: Props) => {
   const { data } = useCurrencyRateQuery(fromAsset, toAsset);
   const query = useQueryClient();
 
-  useEffect(() => {
+  useMount(() => {
     fetchMarket();
-  }, []);
-
-  useEffect(() => {
-    fetchMarket();
-  }, [currency]);
+  });
 
   useEffect(() => {
     query.invalidateQueries({
       queryKey: [QueryIdentifiers.SWAP_FORM_CURRENCY_RATE, currency, fromAsset, toAsset]
     });
-  }, [fromAsset, toAsset, currency]);
+  }, [fromAsset, toAsset, currency, query]);
 
   useEffect(() => {
     if (data) {
@@ -80,11 +77,54 @@ export const MarketSwapForm = ({ padding = "p-4" }: Props) => {
 
   useEffect(() => {
     if (activeUser) setBalance(getBalance(fromAsset, activeUser));
-  }, [activeUser]);
+  }, [activeUser, fromAsset]);
+
+  const swap = () => {
+    setToAsset(fromAsset);
+    setFromAsset(toAsset);
+    setTo(from);
+    setFrom(to);
+    setMarketRate(1 / marketRate);
+  };
+
+  const fetchMarket = useCallback(async () => {
+    setDisabled(true);
+    setMarketRate(await getHiveMarketRate(fromAsset));
+    setDisabled(false);
+  }, [fromAsset]);
+
+  const submit = () => {
+    if (step === MarketSwapFormStep.FORM) setStep(MarketSwapFormStep.SIGN);
+  };
+
+  const stepBack = () => {
+    if (step === MarketSwapFormStep.SIGN) setStep(MarketSwapFormStep.FORM);
+  };
+
+  const numberAmount = (v: string) => +v.replace(/,/gm, "");
+
+  const validateBalance = useCallback(() => {
+    if (balance) {
+      let [availableBalance] = balance.split(" ");
+      const amount = numberAmount(from);
+      const availableBalanceAmount = +availableBalance;
+
+      if (!isNaN(availableBalanceAmount)) {
+        setIsAmountMoreThanBalance(amount > availableBalanceAmount);
+      }
+    }
+  }, [balance, from]);
+
+  const reset = () => {
+    setFrom("0");
+    setTo("0");
+    fetchMarket();
+    setStep(MarketSwapFormStep.FORM);
+  };
 
   useEffect(() => {
     validateBalance();
-  }, [from, balance]);
+  }, [from, balance, validateBalance]);
 
   useEffect(() => {
     const nextAvailableAssets = MarketPairs[toAsset];
@@ -100,50 +140,11 @@ export const MarketSwapForm = ({ padding = "p-4" }: Props) => {
 
     setAccountFromMarketRate(accountToMarketRate);
     setAccountToMarketRate(accountFromMarketRate);
-  }, [fromAsset]);
+  }, [accountFromMarketRate, accountToMarketRate, activeUser, fetchMarket, fromAsset, toAsset]);
 
-  const swap = () => {
-    setToAsset(fromAsset);
-    setFromAsset(toAsset);
-    setTo(from);
-    setFrom(to);
-    setMarketRate(1 / marketRate);
-  };
-
-  const fetchMarket = async () => {
-    setDisabled(true);
-    setMarketRate(await getHiveMarketRate(fromAsset));
-    setDisabled(false);
-  };
-
-  const submit = () => {
-    if (step === MarketSwapFormStep.FORM) setStep(MarketSwapFormStep.SIGN);
-  };
-
-  const stepBack = () => {
-    if (step === MarketSwapFormStep.SIGN) setStep(MarketSwapFormStep.FORM);
-  };
-
-  const numberAmount = (v: string) => +v.replace(/,/gm, "");
-
-  const validateBalance = () => {
-    if (balance) {
-      let [availableBalance] = balance.split(" ");
-      const amount = numberAmount(from);
-      const availableBalanceAmount = +availableBalance;
-
-      if (!isNaN(availableBalanceAmount)) {
-        setIsAmountMoreThanBalance(amount > availableBalanceAmount);
-      }
-    }
-  };
-
-  const reset = () => {
-    setFrom("0");
-    setTo("0");
+  useEffect(() => {
     fetchMarket();
-    setStep(MarketSwapFormStep.FORM);
-  };
+  }, [currency, fetchMarket]);
 
   return (
     <div

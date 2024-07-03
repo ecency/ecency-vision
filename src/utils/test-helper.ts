@@ -950,18 +950,6 @@ export const dynamicPropsIntance1: DynamicProps = {
   accountCreationFee: "3.000 HIVE"
 };
 
-export const notificationsInstance1: Partial<GlobalStore> = {
-  notifications: {
-    filter: null,
-    unread: 0,
-    list: [],
-    loading: false,
-    hasMore: true,
-    unreadFetchFlag: true,
-    fbSupport: "pending"
-  }
-};
-
 export const apiVoteNotification: ApiVoteNotification = {
   id: "v-705431149",
   type: "vote",
