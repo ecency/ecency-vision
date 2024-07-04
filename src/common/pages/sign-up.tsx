@@ -240,7 +240,7 @@ const SignUpPage = (props: Props | any) => {
                 {step == 1 && (
                   <div className="sign-up">
                     <div className="the-form">
-                      <div className="form-title">Create a Hive acoount</div>
+                      <div className="form-title">Create a Hive account</div>
                       <div className="form-sub-title">
                         {_t("sign-up.description")}
                       </div>
