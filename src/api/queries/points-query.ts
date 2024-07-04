@@ -17,17 +17,13 @@ export function usePointsQuery(username: string, filter = 0) {
     queryFn: async () => {
       const name = username.replace("@", "");
 
-      try {
-        const points = await getPoints(name, usePrivate);
-        const transactions = await getPointTransactions(name, filter);
-        return {
-          points: points.points,
-          uPoints: points.unclaimed_points,
-          transactions
-        };
-      } catch (e) {
-        return DEFAULT;
-      }
+      const points = await getPoints(name, usePrivate);
+      const transactions = await getPointTransactions(name, filter);
+      return {
+        points: points.points,
+        uPoints: points.unclaimed_points,
+        transactions
+      };
     },
     initialData: DEFAULT,
     retryDelay: 30000

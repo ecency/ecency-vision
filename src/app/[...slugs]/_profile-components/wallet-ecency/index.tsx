@@ -85,16 +85,16 @@ export const WalletEcency = ({ account }: Props) => {
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
   const [filter, setFilter] = useState(0);
 
-  const { data: points, isLoading } = usePointsQuery(account.name, filter);
+  const { data: points, isLoading, refetch } = usePointsQuery(account.name, filter);
 
   const queryClient = useQueryClient();
 
   useMount(() => {
+    refetch();
+
     if (!usePrivate) {
       router.push("/");
     }
-    let user = pathname.split("/")[1];
-    user = user.replace("@", "");
     getEstimatedPointsValue();
   });
 
@@ -158,21 +158,6 @@ export const WalletEcency = ({ account }: Props) => {
   }
 
   const isMyPage = activeUser && activeUser.username === account.name;
-
-  // const dropDownConfig = {
-  //     history: history,
-  //     label: '',
-  //     items: [{
-  //         label: i18next.t('points.transfer'),
-  //         onClick: toggleTransfer
-  //     }, {
-  //         label: i18next.t('points.promote'),
-  //         onClick: togglePromote
-  //     }, {
-  //         label: i18next.t('points.boost'),
-  //         onClick: toggleBoost
-  //     }]
-  // };
 
   const txFilters = [
     TransactionType.CHECKIN,
@@ -364,10 +349,10 @@ export const WalletEcency = ({ account }: Props) => {
 
                 return (
                   <div className="transaction-list-body">
-                    {points.transactions.map((tr) => (
+                    {points?.transactions.map((tr) => (
                       <WalletEcencyTransactionRow tr={tr} key={tr.id} />
                     ))}
-                    {!isLoading && points.transactions.length === 0 && (
+                    {!isLoading && points?.transactions.length === 0 && (
                       <p className="text-gray-600 empty-list">{i18next.t("g.empty-list")}</p>
                     )}
                   </div>

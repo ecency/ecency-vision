@@ -4,40 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved to general slugs from exact ones">
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-detect-bottom.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/feedback/_index.scss" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed points request">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/update-profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/update-profile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-full-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-transactions-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-transactions-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-permissions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-permissions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/detect-bottom.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/feedback/feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login-kc.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-toggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +71,7 @@
     "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
-    "npm.dev.executor": "Debug",
+    "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
     "project.structure.last.edited": "Project",
@@ -297,22 +267,6 @@
       <workItem from="1719996468890" duration="9894000" />
       <workItem from="1720021279791" duration="237000" />
       <workItem from="1720021530661" duration="1600000" />
-    </task>
-    <task id="LOCAL-00022" summary="Migrated gallery">
-      <option name="closed" value="true" />
-      <created>1704644731023</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1704644731023</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Migrated drafts">
-      <option name="closed" value="true" />
-      <created>1704646786595</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1704646786595</updated>
     </task>
     <task id="LOCAL-00024" summary="Migrated notifications pt.1">
       <option name="closed" value="true" />
@@ -690,7 +644,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720082691533</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Fixed profile components">
+      <option name="closed" value="true" />
+      <created>1720095334011</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1720095334011</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Fixed points request">
+      <option name="closed" value="true" />
+      <created>1720097001176</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1720097001177</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,8 +678,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated assets" />
-    <MESSAGE value="Added one query client for each request and persist data between server and client" />
     <MESSAGE value="Updated community posts fetching" />
     <MESSAGE value="Updated community content" />
     <MESSAGE value="Moved decks pt. 1" />
@@ -733,7 +701,9 @@
     <MESSAGE value="Build imports" />
     <MESSAGE value="Fixed warnings" />
     <MESSAGE value="Moved to general slugs from exact ones" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved to general slugs from exact ones" />
+    <MESSAGE value="Fixed profile components" />
+    <MESSAGE value="Fixed points request" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed points request" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

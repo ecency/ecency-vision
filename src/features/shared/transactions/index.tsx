@@ -10,6 +10,7 @@ import { LinearProgress } from "@/features/shared";
 import { OperationGroup } from "@/consts";
 import { getTransactionsQuery } from "@/api/queries";
 import { Account } from "@/entities";
+import useMount from "react-use/lib/useMount";
 
 export * from "./transaction-row";
 
@@ -24,7 +25,8 @@ export const TransactionsList = ({ account }: Props) => {
   const {
     data: transactionsList,
     isLoading,
-    fetchNextPage
+    fetchNextPage,
+    refetch
   } = getTransactionsQuery(account.name, 20, group).useClientQuery();
   const transactionsFlow = useMemo(
     () => transactionsList?.pages?.reduce((acc, page) => [...acc, ...page], []) ?? [],
@@ -36,6 +38,8 @@ export const TransactionsList = ({ account }: Props) => {
   );
 
   const loadMore = () => fetchNextPage();
+
+  useMount(() => refetch());
 
   return (
     <div className="transaction-list">
