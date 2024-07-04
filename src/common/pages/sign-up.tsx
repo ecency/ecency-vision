@@ -64,7 +64,7 @@ const SignUpPage = (props: Props | any) => {
   }, [step]);
 
   const initiateAccount = async () => {
-    if (!username || !email) {
+    if (!username) {
       return;
     }
 
@@ -75,7 +75,7 @@ const SignUpPage = (props: Props | any) => {
       setAccountPassword(password);
       const dataToEncode = {
         username,
-        email,
+        email: email ? email : "",
         referral,
         keys: {
           activePubKey: keys.activePubkey,
@@ -113,8 +113,9 @@ const SignUpPage = (props: Props | any) => {
   };
 
   const referralChanged = (e: { target: { value: any } }) => {
-    const { value: email } = e.target;
-    setReferral(email.toLowerCase());
+    const { value: referall } = e.target;
+    setReferral(referall.toLowerCase());
+    console.log(referral)
   };
 
   const getCurrentCommunity = () => {
@@ -288,7 +289,7 @@ const SignUpPage = (props: Props | any) => {
                                   placeholder={_t("sign-up.email")}
                                   value={email}
                                   onChange={emailChanged}
-                                  required={true}
+                                  // required={true}
                                   onInvalid={(e: any) =>
                                     handleInvalid(
                                       e,

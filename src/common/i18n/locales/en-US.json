@@ -163,7 +163,7 @@
     "bottom-description": "Every account is created on a blockchain and only you have control over that account. One account to manage everything on Blockchain and Ecency.",
     "learn-more": "Learn more about benefits in our <a href=\"https://starterkit.tech/faqs#how-to-join\">FAQ</a>",
     "username": "Pick a username",
-    "email": "Enter your email address",
+    "email": "Enter your email address (optional)",
     "referral": "Enter your referral/account creator",
     "submit": "Continue",
     "validation-username": "Username is required.",
