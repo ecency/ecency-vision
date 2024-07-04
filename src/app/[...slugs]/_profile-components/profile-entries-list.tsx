@@ -1,9 +1,10 @@
 import { Entry, FullAccount } from "@/entities";
 import { ListStyle } from "@/enums";
-import { EntryListContent, EntryListLoadingItem } from "@/features/shared";
+import { EntryListContent } from "@/features/shared";
 import React from "react";
-import { getPostQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
+import { getPostQuery, getPostsFeedQueryData } from "@/api/queries";
 import { useGlobalStore } from "@/core/global-store";
+import { ProfileEntriesDetectBottom } from "@/app/[...slugs]/_profile-components/profile-entries-detect-bottom";
 
 interface Props {
   section: string;
@@ -25,7 +26,7 @@ export async function ProfileEntriesList({ section, account }: Props) {
     ? await getPostQuery(account.name, account.profile?.pinned).prefetch()
     : undefined;
 
-  const data = (await prefetchGetPostsFeedQuery(account.name, section))?.pages ?? [];
+  const data = getPostsFeedQueryData(section, `@${account.name}`)?.pages ?? [];
   const entryList = data
     .reduce<Entry[]>((acc, page) => [...acc, ...(page as Entry[])], [])
     .filter((item: Entry) => item.permlink !== account.profile?.pinned);
@@ -34,24 +35,11 @@ export async function ProfileEntriesList({ section, account }: Props) {
     entryList.unshift(pinnedEntry);
   }
 
-  // const bottomReached = async () => {
-  //   const { global, entries, fetchEntries } = props;
-  //   const { filter, tag } = global;
-  //   const groupKey = makeGroupKey(filter, tag);
-  //
-  //   const data = entries[groupKey];
-  //   const { loading, hasMore } = data;
-  //
-  //   if (!loading && hasMore) {
-  //     fetchEntries(filter, tag, true);
-  //   }
-  // };
-
   return (
     <>
       <div className={`entry-list`}>
         <div className={`entry-list-body ${listStyle === ListStyle.grid ? "grid-view" : ""}`}>
-          {entryList.length === 0 && <EntryListLoadingItem />}
+          {/*{entryList.length === 0 && <EntryListLoadingItem />}*/}
           <EntryListContent
             loading={false}
             entries={entryList}
@@ -60,7 +48,7 @@ export async function ProfileEntriesList({ section, account }: Props) {
           />
         </div>
       </div>
-      {/*<DetectBottom onBottom={bottomReached} />*/}
+      <ProfileEntriesDetectBottom section={section} account={account} />
     </>
   );
 }

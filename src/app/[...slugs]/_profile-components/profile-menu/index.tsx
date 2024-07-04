@@ -7,7 +7,7 @@ import { ProfileFilter } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
 import Link from "next/link";
 import i18next from "i18next";
-import { kebabMenuHorizontalSvg, menuDownSvg } from "@ui/svg";
+import { chevronDownSvgForSlider, kebabMenuHorizontalSvg } from "@ui/svg";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 
 interface Props {
@@ -46,41 +46,26 @@ export function ProfileMenu({ username, section }: Props) {
       : kebabMenuItems.filter((item) => item.id != "communities"))
   ];
 
-  let showDropdown = dropDownMenuItems.filter((item) => item.id === section).length > 0;
-
   return (
     <div className="profile-menu">
       <div className="profile-menu-items">
         <>
-          <span
-            className={`flex lg:hidden ${showDropdown ? "selected-item profile-menu-item" : ""}`}
-          >
-            {showDropdown ? (
-              <Dropdown>
-                <DropdownToggle>
-                  {dropDownMenuItems.filter((item) => item.id === section).length > 0
-                    ? i18next.t(`profile.section-${section}`)
-                    : ""}
-                </DropdownToggle>
-                <DropdownMenu align="left">
-                  {dropDownMenuItems.map((item) => (
-                    <DropdownItem selected={item.selected} key={item.id}>
-                      <Link href={item.href}>{item.label}</Link>
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            ) : (
-              <Link
-                className={`${!showDropdown ? "profile-menu-item " : ""}${
-                  section === "blog" ? "selected-item" : ""
-                }`}
-                href={`/@${username}/blog`}
-              >
-                {i18next.t(`profile.section-blog`)}{" "}
-                <span className="menu-down-icon">{menuDownSvg}</span>
-              </Link>
-            )}
+          <span className={`flex lg:hidden profile-menu-item`}>
+            <Dropdown>
+              <DropdownToggle>
+                {dropDownMenuItems.filter((item) => item.id === section).length > 0
+                  ? i18next.t(`profile.section-${section}`)
+                  : i18next.t(`profile.section-${dropDownMenuItems[0].id}`)}
+                {chevronDownSvgForSlider}
+              </DropdownToggle>
+              <DropdownMenu align="left">
+                {dropDownMenuItems.map((item) => (
+                  <DropdownItem selected={item.selected} key={item.id}>
+                    <Link href={item.href}>{item.label}</Link>
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
           </span>
           <div className="hidden lg:flex items-center">
             {menuItems.map((menuItem) => (

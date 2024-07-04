@@ -17,7 +17,7 @@ export function DropdownToggle(props: HTMLProps<HTMLDivElement> & Props) {
     <div
       {...nativeProps}
       className={classNameObject({
-        "cursor-pointer": true,
+        "cursor-pointer ecency-dropdown-toggle": true,
         "flex items-center": !!props.withChevron,
         [props.className ?? ""]: !!props.className
       })}

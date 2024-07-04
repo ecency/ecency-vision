@@ -22,8 +22,8 @@ export function ProfileCover({ account }: Props) {
   const canUseWebp = useGlobalStore((state) => state.canUseWebp);
   const activeUser = useGlobalStore((state) => state.activeUser);
 
-  const coverFallbackDay = "/public/assets/cover-fallback-day.png";
-  const coverFallbackNight = "/public/assets/cover-fallback-night.png";
+  const coverFallbackDay = "/assets/cover-fallback-day.png";
+  const coverFallbackNight = "/assets/cover-fallback-night.png";
   let bgImage = "";
 
   if (account?.__loaded) {

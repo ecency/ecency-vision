@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FeedbackMessage, FeedbackObject } from "@/features/shared";
+import "./_index.scss";
 
 export function Feedback() {
   const [feedback, setFeedBack] = useState<FeedbackObject | null>();

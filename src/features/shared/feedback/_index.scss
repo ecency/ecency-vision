@@ -1,0 +1,182 @@
+@import "src/styles/vars_mixins";
+
+@keyframes feedback-anim {
+  0% {
+    opacity: 0.3;
+    margin-bottom: 20px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 6px;
+  }
+}
+
+.feedback-container {
+  display: block;
+  position: fixed;
+  z-index: 203;
+  right: 20px;
+  bottom: 60px;
+  width: 260px;
+
+  &.visible ~ .announcement-container {
+    bottom: 10rem !important;
+  }
+
+  @media (min-width: $md-break) {
+    width: 500px;
+  }
+
+  .feedback-success,
+  .feedback-error,
+  .feedback-info {
+    box-shadow: $box-shadow;
+    border-radius: 6px;
+    align-items: center;
+    margin-bottom: 6px;
+    animation: feedback-anim 0.5s;
+    overflow: hidden;
+
+    @include themify(day) {
+      @apply bg-light-300;
+      @apply text-dark-default;
+    }
+
+    @include themify(night) {
+      @apply text-light-400;
+      @apply bg-indigo-dark;
+    }
+
+    svg {
+      height: 20px;
+    }
+
+    .feedback-body {
+      padding: 30px 6px 0px 6px;
+    }
+
+    .feedback-content {
+      display: flex;
+
+      .feedback-img {
+        @media (max-width: $md-break) {
+          margin-right: 0.8rem;
+        }
+        margin-right: 2.3rem;
+        margin-left: 0.5rem;
+        border-radius: 50%;
+
+        &.success-img {
+          @apply bg-green;
+        }
+      }
+    }
+
+    .feedback-close-btn {
+      position: absolute;
+      right: 8px;
+      margin-top: -22px;
+      cursor: pointer;
+
+      @media (max-width: $md-break) {
+        svg {
+          display: block;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      @include themify(day) {
+        svg {
+          @apply text-gray-charcoal;
+        }
+      }
+      @include themify(night) {
+        svg {
+          @apply text-light-300;
+        }
+      }
+    }
+
+    .toast-progress-bar {
+      margin-top: 1rem;
+      width: 100%;
+      height: 5px;
+      border-radius: 0 0 6px 6px;
+
+      @include themify(day) {
+        @apply bg-light-400;
+      }
+
+      @include themify(night) {
+        @apply bg-dark-200;
+      }
+
+      .filler {
+        height: 100%;
+        transition: width 0.125s linear;
+
+        &.success {
+          @apply bg-green;
+        }
+
+        &.error {
+          @apply bg-red-020;
+        }
+
+        &.info {
+          @apply bg-blue-dark-sky;
+        }
+      }
+    }
+  }
+
+  .error-content {
+    display: flex;
+
+    .error-img {
+      @media (max-width: $md-break) {
+        margin-right: 0.8rem !important;
+      }
+      margin-left: 0.5rem;
+      margin-right: 2.3rem;
+    }
+  }
+
+  .feedback-success {
+    svg {
+      @apply text-white;
+    }
+  }
+
+  .feedback-error {
+    svg {
+      @apply text-red-020;
+    }
+  }
+
+  .feedback-info {
+    svg {
+      @apply text-blue-dark-sky;
+    }
+  }
+}
+
+.details-button {
+  color: #fff;
+  opacity: 0.5;
+
+  &:hover {
+    color: #fff;
+    opacity: 0.75;
+  }
+}
+
+.theme-night .details-button {
+  color: $primary;
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+  }
+}

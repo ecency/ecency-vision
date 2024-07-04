@@ -1,5 +1,4 @@
 import "./profile.scss";
-import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { ListStyle, ProfileFilter } from "@/enums";
 import { SearchResult } from "@/entities";
 import defaults from "@/defaults.json";
@@ -20,7 +19,12 @@ import {
   WalletSpk
 } from "@/app/[...slugs]/_profile-components";
 import { useGlobalStore } from "@/core/global-store";
-import { getAccountFullQuery, getSearchApiQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
+import {
+  getAccountFullQuery,
+  getDynamicPropsQuery,
+  getSearchApiQuery,
+  prefetchGetPostsFeedQuery
+} from "@/api/queries";
 import { notFound } from "next/navigation";
 import Head from "next/head";
 import { ProfilePermissions } from "@/app/[...slugs]/_profile-components/profile-permissions";
@@ -31,12 +35,17 @@ interface Props {
   searchParams: Record<string, string | undefined>;
 }
 
-export async function ProfilePage({ username, section, searchParams: { q: searchParam } }: Props) {
+export async function ProfilePage({
+  username,
+  section = "posts",
+  searchParams: { q: searchParam }
+}: Props) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const listStyle = useGlobalStore((s) => s.listStyle);
 
   const account = await getAccountFullQuery(username).prefetch();
-  await prefetchGetPostsFeedQuery(section, username);
+  await prefetchGetPostsFeedQuery(section, `@${username}`);
+  await getDynamicPropsQuery().prefetch();
 
   let searchData: SearchResult[] | undefined = undefined;
   if (searchParam && searchParam !== "") {
@@ -68,10 +77,6 @@ export async function ProfilePage({ username, section, searchParams: { q: search
 
   return (
     <>
-      <ScrollToTop />
-      <Theme />
-      <Feedback />
-      <Navbar />
       <Head>
         {/*TODO: Add notification count to title*/}
         <title>{metaTitle}</title>
@@ -118,7 +123,7 @@ export async function ProfilePage({ username, section, searchParams: { q: search
               {section === "communities" && <ProfileCommunities account={account} />}
               {section === "settings" && <ProfileSettings account={account} />}
               {section === "referrals" && <ProfileReferrals account={account} />}
-              {section === "permissions" && activeUser && <ProfilePermissions />}
+              {section === "permissions" && <ProfilePermissions />}
               {section === "trail" && (
                 <>
                   <div className="entry-list">

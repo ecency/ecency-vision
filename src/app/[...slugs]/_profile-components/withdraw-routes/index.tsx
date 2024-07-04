@@ -30,7 +30,7 @@ export function WithdrawRoutesDialog({ onHide }: Props) {
   const [percent, setPercent] = useState("10");
   const [auto, setAuto] = useState("");
 
-  const { data: routes } = getWithdrawRoutesQuery(account).useClientQuery();
+  const { data: routes } = getWithdrawRoutesQuery(activeUser!.username).useClientQuery();
 
   const { mutateAsync: signByKey, isPending: isByKeyPending } = useWithDrawRouteByKey(
     account,

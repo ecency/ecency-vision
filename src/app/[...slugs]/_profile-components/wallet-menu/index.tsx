@@ -23,7 +23,7 @@ export function WalletMenu({ username, active }: Props) {
           <span className="title">Ecency</span>
           <span className="sub-title">Points</span>
           <span className="platform-logo">
-            <Image alt="ecency" src="/public/assets/logo-small-transparent.png" />
+            <Image alt="ecency" width={100} height={100} src="/assets/logo-small-transparent.png" />
           </span>
         </Link>
       )}

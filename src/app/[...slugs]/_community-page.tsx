@@ -1,6 +1,5 @@
 import "./community.scss";
 import { getCommunityCache } from "@/core/caches";
-import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import {
   CommunityCard,
   CommunityCover,
@@ -57,10 +56,6 @@ export async function CommunityPage({ params, searchParams }: Props) {
         <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={metaRss} />
       </Head>
       <JoinCommunityModal community={community} communityId={searchParams.communityid} />
-      <ScrollToTop />
-      <Theme />
-      <Feedback />
-      <Navbar />
       <div className="app-content community-page">
         <div className="profile-side">
           <CommunityCard account={account} community={community} />

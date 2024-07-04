@@ -2,6 +2,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/core/react-query";
 import { ProfilePage } from "@/app/[...slugs]/_profile-page";
 import { CommunityPage } from "@/app/[...slugs]/_community-page";
+import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 
 interface Props {
   params: { slugs: string[] };
@@ -15,9 +16,13 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
 
   return (
     <HydrationBoundary state={dehydrate(getQueryClient())}>
+      <ScrollToTop />
+      <Theme />
+      <Feedback />
+      <Navbar />
       {isProfile && (
         <ProfilePage
-          username={filterOrUsername}
+          username={filterOrUsername.replace("%40", "")}
           section={communityNameOrAccountFilters}
           searchParams={searchParams}
         />

@@ -204,7 +204,7 @@ export function EntryListItem({
                 width={600}
                 height={600}
                 className="w-full"
-                src="/assets/img/nsfw.png"
+                src="/assets/nsfw.png"
                 alt={entry.title}
               />
             </div>
@@ -253,7 +253,7 @@ export function EntryListItem({
                 width={600}
                 height={600}
                 className="w-full"
-                src="/assets/img/nsfw.png"
+                src="/assets/nsfw.png"
                 alt={entry.title}
               />
             </div>
@@ -282,7 +282,7 @@ export function EntryListItem({
               <EntryListItemThumbnail
                 entryProp={entryProp}
                 isCrossPost={isCrossPost}
-                noImage="/assets/img/noimage.png"
+                noImage="/assets/noimage.png"
                 entry={entry}
               />
             )}

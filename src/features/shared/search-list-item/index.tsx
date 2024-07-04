@@ -39,7 +39,7 @@ export function SearchListItem({ res }: Props) {
     () =>
       (canUseWebp
         ? catchPostImage(res.body, 600, 500, "webp")
-        : catchPostImage(res.body, 600, 500)) || "/assets/img/noimage.svg",
+        : catchPostImage(res.body, 600, 500)) || "/public/assets/noimage.svg",
     [canUseWebp, res.body]
   );
 
@@ -83,9 +83,9 @@ export function SearchListItem({ res }: Props) {
               <Image
                 width={500}
                 height={500}
-                src={img ?? "/assets/img/fallback.png"}
+                src={img ?? "/assets/fallback.png"}
                 alt={res.title}
-                className={img === "/assets/img/noimage.svg" ? "no-img" : ""}
+                className={img === "/public/assets/noimage.svg" ? "no-img" : ""}
               />
             </div>
           </EntryLink>

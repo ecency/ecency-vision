@@ -27,9 +27,7 @@ export function CommunityCover({ community, account }: Props) {
 
   const style = useMemo(() => {
     let img =
-      theme === "day"
-        ? "/assets/img/cover-fallback-day.png"
-        : "/assets/img/cover-fallback-night.png";
+      theme === "day" ? "/assets/cover-fallback-day.png" : "/assets/cover-fallback-night.png";
     if (community) {
       img = `https://images.ecency.com/${canUseWebp ? "webp/" : ""}u/${community.name}/cover`;
     }

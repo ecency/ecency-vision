@@ -3,16 +3,32 @@ import { updateProfile } from "@/api/operations";
 import { AccountProfile, FullAccount } from "@/entities";
 import { error, success } from "@/features/shared";
 import i18next from "i18next";
+import { getQueryClient, QueryIdentifiers } from "@/core/react-query";
 
 export function useUpdateProfile(account: FullAccount) {
   return useMutation({
     mutationKey: ["update-profile", account],
     mutationFn: async ({ nextProfile }: { nextProfile: AccountProfile }) => {
       const profile = account.profile;
-      return updateProfile(account, { ...profile, ...nextProfile });
+      await updateProfile(account, { ...profile, ...nextProfile });
+      return profile;
     },
-    onSuccess: () => {
-      success(i18next.t("community-card.profile-image-updated"));
+    onSuccess: (profile) => {
+      success(i18next.t("g.success"));
+
+      getQueryClient().setQueryData<FullAccount>(
+        [QueryIdentifiers.GET_ACCOUNT_FULL, account.name],
+        (data) => {
+          if (!data) {
+            return data;
+          }
+
+          return {
+            ...data,
+            profile
+          };
+        }
+      );
     },
     onError: () => {
       error(i18next.t("g.server-error"));

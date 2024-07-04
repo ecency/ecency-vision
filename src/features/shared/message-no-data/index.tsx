@@ -18,7 +18,7 @@ export function MessageNoData({ buttonText, buttonTo, title, description, img }:
         <Image
           width={400}
           height={400}
-          src={img || "/assets/img/writer.png"}
+          src={img || "/assets/writer.png"}
           alt=""
           className="w-full h-full"
         />

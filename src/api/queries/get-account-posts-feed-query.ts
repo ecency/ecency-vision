@@ -43,3 +43,21 @@ export function getPostsFeedQueryData(what: string, tag: string, limit = 20) {
 
   return getPostsRankedQuery(what, tag, limit, "").getData();
 }
+
+export function usePostsFeedQuery(what: string, tag: string, limit = 20) {
+  const isControversial = ["rising", "controversial"].includes(what);
+  const isUser = tag.startsWith("@");
+
+  const isAccountPosts = isUser && !isControversial;
+  const isControversialPosts = !isUser && isControversial;
+
+  if (isAccountPosts) {
+    return getAccountPostsQuery(tag.replace("@", ""), what, limit, "", true).useClientQuery();
+  }
+
+  if (isControversialPosts) {
+    return getControversialRisingQuery(what, tag).useClientQuery();
+  }
+
+  return getPostsRankedQuery(what, tag, limit, "").useClientQuery();
+}

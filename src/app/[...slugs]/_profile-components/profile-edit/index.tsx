@@ -49,7 +49,9 @@ export function ProfileEdit() {
     }
   }, [activeUser, previousActiveUser, profile]);
 
-  const { mutateAsync: updateProfile } = useUpdateProfile(activeUser?.data as FullAccount);
+  const { mutateAsync: updateProfile, isPending } = useUpdateProfile(
+    activeUser?.data as FullAccount
+  );
   const update = useCallback(async () => {
     await updateProfile({
       nextProfile: {
@@ -213,7 +215,7 @@ export function ProfileEdit() {
         <Button
           icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
           onClick={update}
-          disabled={inProgress || uploading}
+          disabled={inProgress || uploading || isPending}
         >
           {i18next.t("g.update")}
         </Button>

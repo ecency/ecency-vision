@@ -650,32 +650,35 @@ export function WalletHive({ account }: Props) {
             </div>
             <div className="balance-values">
               <div className="amount">
-                <Dropdown>
-                  <DropdownToggle>{menuDownSvg}</DropdownToggle>
-                  <DropdownMenu align="right">
-                    {isMyPage ? (
-                      <DropdownItem
-                        onClick={() => {
-                          setTransfer(true);
-                          setTransferMode("withdraw-saving");
-                          setTransferAsset("HIVE");
-                        }}
-                      >
-                        {i18next.t("wallet.withdraw-hive")}
-                      </DropdownItem>
-                    ) : (
-                      <DropdownItem
-                        onClick={() => {
-                          setTransfer(true);
-                          setTransferMode("transfer-saving");
-                          setTransferAsset("HIVE");
-                        }}
-                      >
-                        {i18next.t("wallet.transfer")}
-                      </DropdownItem>
-                    )}
-                  </DropdownMenu>
-                </Dropdown>
+                <div className="amount-actions">
+                  <Dropdown>
+                    <DropdownToggle>{menuDownSvg}</DropdownToggle>
+                    <DropdownMenu align="right">
+                      {isMyPage ? (
+                        <DropdownItem
+                          onClick={() => {
+                            setTransfer(true);
+                            setTransferMode("withdraw-saving");
+                            setTransferAsset("HIVE");
+                          }}
+                        >
+                          {i18next.t("wallet.withdraw-hive")}
+                        </DropdownItem>
+                      ) : (
+                        <DropdownItem
+                          onClick={() => {
+                            setTransfer(true);
+                            setTransferMode("transfer-saving");
+                            setTransferAsset("HIVE");
+                          }}
+                        >
+                          {i18next.t("wallet.transfer")}
+                        </DropdownItem>
+                      )}
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+
                 <span>{formattedNumber(w.savingBalance, { suffix: "HIVE" })}</span>
               </div>
               <div className="amount">

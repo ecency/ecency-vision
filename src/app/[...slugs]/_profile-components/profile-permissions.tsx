@@ -5,11 +5,14 @@ import { ManageAuthorities } from "@/app/[...slugs]/_profile-components/manage-a
 import { AccountRecovery } from "@/app/[...slugs]/_profile-components/recovery-account";
 import { PasswordUpdate } from "@/app/[...slugs]/_profile-components/password-update";
 import React, { useState } from "react";
+import { useGlobalStore } from "@/core/global-store";
 
 export function ProfilePermissions() {
+  const activeUser = useGlobalStore((s) => s.activeUser);
+
   const [tabState, setTabState] = useState(1);
 
-  return (
+  return activeUser ? (
     <>
       <div className="permission-menu">
         <div className="permission-menu-items">
@@ -53,5 +56,7 @@ export function ProfilePermissions() {
         </div>
       </div>
     </>
+  ) : (
+    <></>
   );
 }

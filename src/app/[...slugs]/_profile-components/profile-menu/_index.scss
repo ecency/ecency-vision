@@ -35,6 +35,10 @@
       height: 50px;
       padding: 0 8px;
 
+      .ecency-dropdown-toggle {
+        @apply flex items-center gap-2;
+      }
+
       .dropdown-btn {
         .label {
           font-size: 14px !important;
@@ -57,11 +61,14 @@
         padding: 0;
       }
 
+
       &.selected-item {
-        border-bottom: 2px solid;
-        @apply border-blue-dark-sky;
-        @apply text-blue-dark-sky;
-        font-weight: 700;
+        @apply border-blue-dark-sky border-b-[2px];
+
+        .ecency-dropdown-toggle {
+          @apply text-blue-dark-sky;
+          font-weight: 700;
+        }
 
         .dropdown-btn {
           .label {

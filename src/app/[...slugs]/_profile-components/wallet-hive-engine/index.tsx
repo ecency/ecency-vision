@@ -345,7 +345,7 @@ export function WalletHiveEngine({ account }: Props) {
                           width={1000}
                           height={1000}
                           alt={b.symbol}
-                          src={imageSrc ?? "/public/assets/noimage.svg"}
+                          src={imageSrc ?? "/assets/noimage.svg"}
                           className="item-image"
                         />
                         {b.symbol}

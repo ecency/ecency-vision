@@ -274,7 +274,7 @@ export function Login({ doLogin, userListRef }: Props) {
     <>
       {users.length === 0 && (
         <div className="dialog-header flex flex-col items-center justify-center">
-          <Image width={100} height={100} src="/public/assets/img/logo-circle.svg" alt="Logo" />
+          <Image width={100} height={100} src="/public/assets/logo-circle.svg" alt="Logo" />
           <h2>{i18next.t("login.title")}</h2>
         </div>
       )}
@@ -368,7 +368,7 @@ export function Login({ doLogin, userListRef }: Props) {
             <Image
               width={100}
               height={100}
-              src="/assets/img/hive-signer.svg"
+              src="/assets/hive-signer.svg"
               className="hs-logo"
               alt="hivesigner"
             />
@@ -388,7 +388,7 @@ export function Login({ doLogin, userListRef }: Props) {
               <Image
                 width={100}
                 height={100}
-                src="/assets/img/keychain.png"
+                src="/assets/keychain.png"
                 className="kc-logo"
                 alt="keychain"
               />

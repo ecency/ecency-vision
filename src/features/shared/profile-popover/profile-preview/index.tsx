@@ -71,8 +71,8 @@ export const ProfilePreview = ({ username, onClose }: Props) => {
                   profile.profile?.cover_image
                     ? `https://images.ecency.com/${canUseWebp ? "webp/" : ""}u/${username}/cover`
                     : theme === "day"
-                      ? "/assets/img/cover-fallback-day.png"
-                      : "/assets/img/cover-fallback-night.png"
+                      ? "/assets/cover-fallback-day.png"
+                      : "/assets/cover-fallback-night.png"
                 }
                 className="w-full cover-img rounded-t"
                 loading="lazy"

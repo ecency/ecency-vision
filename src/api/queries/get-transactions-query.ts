@@ -9,15 +9,17 @@ export const ALL_ACCOUNT_OPERATIONS = [...Object.values(ACCOUNT_OPERATION_GROUPS
   []
 );
 
-export const getTransactionsQuery = (username?: string, limit = 20, group?: OperationGroup) =>
+export const getTransactionsQuery = (
+  username?: string,
+  limit = 20,
+  group: OperationGroup = "" as OperationGroup
+) =>
   EcencyQueriesManager.generateClientServerInfiniteQuery({
     queryKey: [QueryIdentifiers.TRANSACTIONS, username, group],
-    queryFn: ({ pageParam }) => {
+    queryFn: async ({ pageParam }) => {
       if (!username) {
         return [];
       }
-
-      const name = username.replace("@", "");
 
       let filters: any[];
       switch (group) {
@@ -40,16 +42,27 @@ export const getTransactionsQuery = (username?: string, limit = 20, group?: Oper
           filters = utils.makeBitMaskFilter(ALL_ACCOUNT_OPERATIONS); // all
       }
 
-      return (
-        filters
-          ? client.call("condenser_api", "get_account_history", [
-              username,
-              pageParam,
-              limit,
-              ...filters
-            ])
-          : client.call("condenser_api", "get_account_history", [username, pageParam, limit])
-      ) as Promise<Transaction[]>;
+      const response = (await (filters
+        ? client.call("condenser_api", "get_account_history", [
+            username,
+            pageParam,
+            limit,
+            ...filters
+          ])
+        : client.call("condenser_api", "get_account_history", [
+            username,
+            pageParam,
+            limit
+          ]))) as Transaction[];
+      const mapped: Transaction[] = response.map((x: any) => ({
+        num: x[0],
+        type: x[1].op[0],
+        timestamp: x[1].timestamp,
+        trx_id: x[1].trx_id,
+        ...x[1].op[1]
+      }));
+
+      return mapped.filter((x) => x !== null).sort((a: any, b: any) => b.num - a.num);
     },
     initialData: { pages: [], pageParams: [] },
     initialPageParam: -1,

@@ -83,7 +83,7 @@ export function KeyOrHot({ inProgress, onKey, onHot, onKc, keyOnly }: Props) {
                   <Image
                     width={100}
                     height={100}
-                    src="/assets/img/hive-signer.svg"
+                    src="/assets/hive-signer.svg"
                     className="hs-logo"
                     alt="hivesigner"
                   />
@@ -103,7 +103,7 @@ export function KeyOrHot({ inProgress, onKey, onHot, onKc, keyOnly }: Props) {
                     <Image
                       width={100}
                       height={100}
-                      src="/assets/img/keychain.png"
+                      src="/assets/keychain.png"
                       className="kc-logo"
                       alt="keychain"
                     />

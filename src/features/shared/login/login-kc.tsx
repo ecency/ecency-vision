@@ -104,7 +104,7 @@ export function LoginKc({ doLogin }: Props) {
   return (
     <>
       <div className="dialog-header">
-        <Image width={100} height={100} src="/assets/img/keychain.png" alt="Logo" />
+        <Image width={100} height={100} src="/assets/keychain.png" alt="Logo" />
         <h2>{i18next.t("login.with-keychain")}</h2>
       </div>
 
