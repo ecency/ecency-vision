@@ -51,20 +51,24 @@ export function useFollow(follower: string, following: string) {
   });
 }
 
-export function useIgnore(follower: string, following: string) {
+export function useIgnore(follower?: string, following?: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["follow-account", "ignore", follower, following],
-    mutationFn: () =>
-      broadcastPostingJSON(follower, "follow", [
+    mutationFn: () => {
+      if (!following || !follower) {
+        throw new Error("Follower or following missed");
+      }
+      return broadcastPostingJSON(follower, "follow", [
         "follow",
         {
           follower,
           following,
           what: ["ignore"]
         }
-      ]),
+      ]);
+    },
     onError: (err: Error) => {
       error(...formatError(err));
     },

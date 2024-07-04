@@ -5,18 +5,222 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed warnings">
-      <change afterPath="$PROJECT_DIR$/src/app/test/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-toolbar/deck-toolbar-user.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transactions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/account-following.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/account-following.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/favourites.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/favourites.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-relationship-btw-accounts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-relationship-btw-accounts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-activities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-description.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-card-description.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-edit-pic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-card-edit-pic.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-rules.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-card-rules.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-card-team.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-card-team.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/community-image-upload-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-image-upload-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover-edit-image.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover-edit-image.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-post-btn/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-post-btn/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-post-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-rewards-registration/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-rewards-registration/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-rewards-registration/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-rewards-registration/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-role-edit/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-role-edit/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-role-edit/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-role-edit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-roles/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-roles/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-roles/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-roles/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-roles/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-settings/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-settings/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-settings/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-settings/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/community-subscribers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_components/join-community-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/join-community-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/claim-account-credit/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/claim-account-credit/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/claim-account-credit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/claim-account-credit/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts-collateralized/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts-collateralized/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts-collateralized/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts-collateralized/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/converts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/curation-trail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/curation-trail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/delegated-vesting/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/delegated-vesting/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/delegated-vesting/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/delegated-vesting/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/filter-friends.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/filter-friends.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/friends-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/friends-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/friends/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-auth-icon/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-auth-icon/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-auth-icon/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-auth-icon/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-auth-icon/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-auth-icon/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-auth-icon/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-auth-icon/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/types/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/types/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-authority/types/manage-authorities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/types/manage-authorities.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/manage-keys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/open-orders-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/password-update/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/password-update/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/password-update/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/password-update/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/password-update/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/password-update/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/preferences/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-card/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-card/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-card/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-communities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-communities/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-communities/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-communities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-communities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-cover/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-cover/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-cover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-edit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-edit/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-info/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-info/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-info/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-permissions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-permissions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/profile-referral-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/profile-referral-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-referrals/profile-referrals-table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-referrals/profile-referrals-table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-search-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/profile-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-delegation/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-delegation/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-delegations-list/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-delegations-list/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-delegations-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-delegations-list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-info/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-info/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/rc-info/rc-progress-circle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-info/rc-progress-circle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/received-vesting/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/received-vesting/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/received-vesting/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/received-vesting/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/recovery-account/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/savings-withdraw/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/savings-withdraw/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/savings-withdraw/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/savings-withdraw/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/sort-profile-communities/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/sort-profile-communities/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/sort-profile-communities/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/sort-profile-communities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/sort-profile-communities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-ecency/wallet-ecency-transaction-row.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/wallet-ecency-transaction-row.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/engine-tokens-estimated/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/engine-tokens-estimated/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/engine-tokens-estimated/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/hive-engine-chart/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/hive-engine-chart/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/hive-engine-chart/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive-engine/sort-hive-engine-tokens/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-hive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-hive/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-menu/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-confirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-confirm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-delegate-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-delegate-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-lock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-lock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-power-up-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-power-up-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-sign.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-dialog-sign.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/send-spk-success.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/send-spk-success.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/delegate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/util/delegate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/util/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/lock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/util/lock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/power.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/util/power.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/dialog-steps/util/transfer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/dialog-steps/util/transfer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/send-spk-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/send-spk-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/util/estimated-balance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/util/estimated-balance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/util/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/util/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-active-power-down.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-active-power-down.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-dialog-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-dialog-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-dialog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-dialog.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-group.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-group.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-larynx-locked.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-larynx-locked.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-larynx-power.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-larynx-power.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-section.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-steps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-steps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/wallet-spk/wallet-spk-unclaimed-points.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-unclaimed-points.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/withdraw-routes/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/withdraw-routes/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/withdraw-routes/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-components/withdraw-routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/community.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/community.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/types/dialog-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/types/dialog-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[filterOrCategory]/[entryOrCommunity]/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/follow-controls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/follow-controls/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,43 +264,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[filterOrCategory]/[entryOrCommunity]&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.scratch_39.js.executor": "Run",
+    "Node.js.scratch_40.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "feature/nextjs-migration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[filterOrCategory]/[entryOrCommunity]",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JavaScript&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -115,11 +319,11 @@
       <recent name="$PROJECT_DIR$/src/features/shared" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/[...slugs]" />
       <recent name="$PROJECT_DIR$/src/app/search/more" />
       <recent name="$PROJECT_DIR$/src/app/perks" />
       <recent name="$PROJECT_DIR$/src/app/perks/page.tsx" />
       <recent name="$PROJECT_DIR$/src/app/page.tsx" />
-      <recent name="$PROJECT_DIR$/src/core/react-query" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -276,14 +480,6 @@
       <workItem from="1719996468890" duration="9894000" />
       <workItem from="1720021279791" duration="237000" />
       <workItem from="1720021530661" duration="1600000" />
-    </task>
-    <task id="LOCAL-00020" summary="Migrated schedules">
-      <option name="closed" value="true" />
-      <created>1704643204914</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1704643204914</updated>
     </task>
     <task id="LOCAL-00021" summary="Migrated bookmarks">
       <option name="closed" value="true" />
@@ -669,7 +865,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720016380538</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Fixed warnings">
+      <option name="closed" value="true" />
+      <created>1720031030533</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1720031030534</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

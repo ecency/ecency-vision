@@ -20,7 +20,7 @@ interface ButtonProps {
 
 function MuteButton({ disabled, following }: ButtonProps) {
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { mutateAsync: ignore } = useIgnore(activeUser!.username, following);
+  const { mutateAsync: ignore } = useIgnore(activeUser?.username, following);
 
   return activeUser?.username !== following ? (
     <LoginRequired>
@@ -65,7 +65,7 @@ function UnFollowButton({ disabled, following }: ButtonProps) {
 
 export function FollowControls({ where, targetUsername }: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { data, isLoading } = useGetRelationshipBtwAccounts(activeUser!.username, targetUsername);
+  const { data, isLoading } = useGetRelationshipBtwAccounts(activeUser?.username, targetUsername);
 
   const showFollow = useMemo(
     () => data?.follows === false || isLoading,
