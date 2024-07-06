@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated onboard-friend">
-      <change afterPath="$PROJECT_DIR$/src/app/communities/create/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added create community page">
+      <change afterPath="$PROJECT_DIR$/src/app/auth/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -270,15 +270,7 @@
       <workItem from="1720113122996" duration="433000" />
       <workItem from="1720113605686" duration="515000" />
       <workItem from="1720191891515" duration="23000" />
-      <workItem from="1720258342969" duration="2597000" />
-    </task>
-    <task id="LOCAL-00026" summary="Migrated notifications pt.3">
-      <option name="closed" value="true" />
-      <created>1705330784755</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1705330784755</updated>
+      <workItem from="1720258342969" duration="2839000" />
     </task>
     <task id="LOCAL-00027" summary="Fixups">
       <option name="closed" value="true" />
@@ -664,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720114035945</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Added create community page">
+      <option name="closed" value="true" />
+      <created>1720260968692</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1720260968692</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated community content" />
     <MESSAGE value="Moved decks pt. 1" />
     <MESSAGE value="Moved decks pt. 2" />
     <MESSAGE value="Moved decks pt. 3" />
@@ -707,7 +706,8 @@
     <MESSAGE value="Fixed profile components" />
     <MESSAGE value="Fixed points request" />
     <MESSAGE value="Migrated onboard-friend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated onboard-friend" />
+    <MESSAGE value="Added create community page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added create community page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
