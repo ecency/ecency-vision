@@ -28,6 +28,7 @@ import { ActiveUser } from "../store/active-user/types";
 import { getAccount } from "../api/hive";
 import { OffchainUser } from "../components/offchain-users";
 import QRCode from "react-qr-code";
+import { History } from "history";
 
 const HiveLogo = require("../img/hive-logo.jpeg");
 const solanaLogo = require("../img/solanaLogo.png");
@@ -36,11 +37,12 @@ interface Props {
   activeUser: ActiveUser;
   global: Global;
   communities: Community[];
+  history: History;
 }
 
 const SignUpPage = (props: Props | any) => {
   const form = useRef(null);
-  const { global, communities, activeUser } = props;
+  const { global, communities, activeUser, history } = props;
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -380,27 +382,20 @@ const SignUpPage = (props: Props | any) => {
                           )}
                           {activeUser && (
                             <h5 className="text-danger">
-                              Click link below or scan QR code
+                              Click or scan QR code
                             </h5>
                           )}
                           <div className="link-wrap">
-                            <div>
-                              {!activeUser ? (
-                                <></>
-                              ) : (
-                                <a
-                                  href={`${window.origin}/onboard-friend/${urlHash}`}
-                                >
-                                  {_t("onboard.click-link")}
-                                </a>
-                              )}
-                            </div>
                             <div
                               onClick={() => {
-                                clipboard(
-                                  `${window.origin}/onboard-friend/${urlHash}`
-                                );
-                                success(_t("onboard.copy-link"));
+                                if(!activeUser) {
+                                  clipboard(
+                                    `${window.origin}/onboard-friend/${urlHash}`
+                                  );
+                                  success(_t("onboard.copy-link"));
+                                } else {
+                                  history.push(`/onboard-friend/${urlHash}`)
+                                }
                               }}
                               style={{
                                 background: "white",
