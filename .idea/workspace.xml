@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed points request">
-      <change afterPath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/_page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated onboard-friend">
+      <change afterPath="$PROJECT_DIR$/src/app/communities/create/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,15 +268,9 @@
       <workItem from="1720021530661" duration="1600000" />
       <workItem from="1720112966141" duration="150000" />
       <workItem from="1720113122996" duration="433000" />
-      <workItem from="1720113605686" duration="367000" />
-    </task>
-    <task id="LOCAL-00025" summary="Migrated notifications pt.2">
-      <option name="closed" value="true" />
-      <created>1705329123182</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1705329123182</updated>
+      <workItem from="1720113605686" duration="515000" />
+      <workItem from="1720191891515" duration="23000" />
+      <workItem from="1720258342969" duration="2597000" />
     </task>
     <task id="LOCAL-00026" summary="Migrated notifications pt.3">
       <option name="closed" value="true" />
@@ -663,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720112722932</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Migrated onboard-friend">
+      <option name="closed" value="true" />
+      <created>1720114035945</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1720114035945</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated community posts fetching" />
     <MESSAGE value="Updated community content" />
     <MESSAGE value="Moved decks pt. 1" />
     <MESSAGE value="Moved decks pt. 2" />
@@ -706,7 +706,8 @@
     <MESSAGE value="Moved to general slugs from exact ones" />
     <MESSAGE value="Fixed profile components" />
     <MESSAGE value="Fixed points request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed points request" />
+    <MESSAGE value="Migrated onboard-friend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated onboard-friend" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
