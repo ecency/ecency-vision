@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 import "./_index.scss";
@@ -14,13 +16,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { EntryFilter } from "@/enums";
 import useMount from "react-use/lib/useMount";
 import * as ls from "@/utils/local-storage";
+import { PREFIX } from "@/utils/local-storage";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
-
-interface Props {
-  noReblog: boolean;
-  handleFilterReblog: () => void;
-}
+import useLocalStorage from "react-use/lib/useLocalStorage";
 
 export enum IntroductionType {
   FRIENDS = "FRIENDS",
@@ -28,13 +27,6 @@ export enum IntroductionType {
   HOT = "HOT",
   NEW = "NEW",
   NONE = "NONE"
-}
-
-interface States {
-  isGlobal: boolean;
-  isMounted: boolean;
-  introduction: IntroductionType;
-  prevFilter: string;
 }
 
 export const isMyPage = (filter: string, tag: string, activeUser: ActiveUser | null) => {
@@ -46,7 +38,7 @@ export const isMyPage = (filter: string, tag: string, activeUser: ActiveUser | n
 
 export const isActiveUser = (activeUser?: ActiveUser | null) => !!activeUser;
 
-export function EntryIndexMenu({ noReblog, handleFilterReblog }: Props) {
+export function EntryIndexMenu() {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -55,6 +47,7 @@ export function EntryIndexMenu({ noReblog, handleFilterReblog }: Props) {
   const tag = useGlobalStore((s) => s.tag);
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
+  const [noReblog, setNoReblog] = useLocalStorage(PREFIX + "my_reblog", false);
   const [isGlobal, setIsGlobal] = useState(false);
   const [introduction, setIntroduction] = useState(IntroductionType.NONE);
 
@@ -377,7 +370,7 @@ export function EntryIndexMenu({ noReblog, handleFilterReblog }: Props) {
       prevActiveUser !== activeUser &&
       !activeUser &&
       !isActiveUser(activeUser) &&
-      ls.get(`${prevActiveUser!.username}HadTutorial`)
+      ls.get(`${prevActiveUser?.username}HadTutorial`)
     ) {
       setIntroduction(IntroductionType.NONE);
     }
@@ -564,8 +557,8 @@ export function EntryIndexMenu({ noReblog, handleFilterReblog }: Props) {
                 <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                 <span id="check-isGlobal" className="flex items-center pl-3">
                   <EntryIndexMenuDropdown
-                    noReblog={noReblog}
-                    handleFilterReblog={handleFilterReblog}
+                    noReblog={noReblog!!}
+                    handleFilterReblog={() => setNoReblog((v) => !v)}
                     isGlobal={isGlobal}
                     isActive={isActive}
                     onChangeGlobal={onChangeGlobal}
@@ -577,8 +570,8 @@ export function EntryIndexMenu({ noReblog, handleFilterReblog }: Props) {
                 <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                 <span id="check-isGlobal" className="flex items-center pl-3">
                   <EntryIndexMenuDropdown
-                    noReblog={noReblog}
-                    handleFilterReblog={handleFilterReblog}
+                    noReblog={noReblog!!}
+                    handleFilterReblog={() => setNoReblog((v) => !v)}
                     isGlobal={isGlobal}
                     isActive={isActive}
                     onChangeGlobal={onChangeGlobal}

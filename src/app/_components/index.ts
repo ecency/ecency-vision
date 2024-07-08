@@ -1,2 +1,2 @@
 export * from "./landing-page";
-export * from "./entry-index/entry-index";
+export * from "./index-route-listener";

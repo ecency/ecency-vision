@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useCallback } from "react";
 import "./_index.scss";
 import { UilMultiply } from "@iconscout/react-unicons";

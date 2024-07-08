@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import moment from "moment";
 import "./_index.scss";

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useMemo } from "react";
 import "./_index.scss";
 import { Community } from "@/entities";
