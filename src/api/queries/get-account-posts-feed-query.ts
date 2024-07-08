@@ -6,7 +6,7 @@ import { Entry, SearchResponse } from "@/entities";
 
 export async function prefetchGetPostsFeedQuery(
   what: string,
-  tag: string,
+  tag = "",
   limit = 20
 ): Promise<InfiniteData<Entry[] | SearchResponse> | undefined> {
   const isControversial = ["rising", "controversial"].includes(what);

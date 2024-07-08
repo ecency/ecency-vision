@@ -27,14 +27,18 @@ export async function EntryListContent({
   const usePrivate = useGlobalStore((s) => s.usePrivate);
 
   const mutedUsers = await getMutedUsersQuery(activeUser).prefetch();
-  const promotedEntries = await getPromotedEntriesQuery(usePrivate).prefetch();
+
+  let dataToRender = [...entries];
+  let promotedEntries: Entry[] = [];
+  if (isPromoted) {
+    const promotedEntriesResponse = await getPromotedEntriesQuery(usePrivate).prefetch();
+    promotedEntries = promotedEntriesResponse ?? [];
+  }
 
   const isMyProfile =
     !!activeUser && tag.includes("@") && activeUser.username === tag.replace("@", "");
   const mutedList =
     mutedUsers && mutedUsers.length > 0 && activeUser && activeUser.username ? mutedUsers : [];
-
-  const dataToRender = isPromoted ? promotedEntries ?? [] : entries;
 
   return (
     <>
@@ -71,7 +75,6 @@ export async function EntryListContent({
                 <EntryListItem
                   key={`${e.author}-${e.permlink}`}
                   entry={e}
-                  promoted={true}
                   order={i}
                   muted={isPostMuted}
                 />

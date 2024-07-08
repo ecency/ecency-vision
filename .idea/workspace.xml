@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated index page pt.2">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed lang switcher and redirect from landing to feed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/server-init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/server-init.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,15 +275,7 @@
       <workItem from="1720431012651" duration="715000" />
       <workItem from="1720432282073" duration="87000" />
       <workItem from="1720432376888" duration="9179000" />
-      <workItem from="1720445721385" duration="2643000" />
-    </task>
-    <task id="LOCAL-00030" summary="Migrated chats pt.1">
-      <option name="closed" value="true" />
-      <created>1715918188617</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1715918188617</updated>
+      <workItem from="1720445721385" duration="3313000" />
     </task>
     <task id="LOCAL-00031" summary="Migrated static pages">
       <option name="closed" value="true" />
@@ -675,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720448595446</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Fixed lang switcher and redirect from landing to feed">
+      <option name="closed" value="true" />
+      <created>1720449910175</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1720449910175</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +687,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got rid of history" />
     <MESSAGE value="Added sign up page" />
     <MESSAGE value="Added perks page" />
     <MESSAGE value="Migrated purchase page" />
@@ -718,7 +711,8 @@
     <MESSAGE value="Migrated auth page" />
     <MESSAGE value="Migrated index page pt.1" />
     <MESSAGE value="Migrated index page pt.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated index page pt.2" />
+    <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed lang switcher and redirect from landing to feed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
