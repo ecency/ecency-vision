@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { isServer, QueryClient } from "@tanstack/react-query";
 
 export enum QueryIdentifiers {
@@ -100,30 +101,12 @@ function makeQueryClient() {
 }
 
 let browserQueryClient: QueryClient | undefined = undefined;
-let serverQueryClient: QueryClient | undefined = undefined;
 
-export function initServerQueryClient() {
-  serverQueryClient = makeQueryClient();
-}
-
-export function clearServerQueryClient() {
-  serverQueryClient = undefined;
-}
-
-export function getQueryClient() {
-  if (isServer) {
-    // Server: make a new query client once request started \
-    // And persist it during all render time
-    if (!serverQueryClient) serverQueryClient = makeQueryClient();
-    return serverQueryClient;
-  } else {
-    // Browser: make a new query client if we don't already have one
-    // This is very important, so we don't re-make a new client if React
-    // suspends during the initial render. This may not be needed if we
-    // have a suspense boundary BELOW the creation of the query client
-    if (!browserQueryClient) browserQueryClient = makeQueryClient();
-    return browserQueryClient;
-  }
-}
+export const getQueryClient = isServer
+  ? cache(() => makeQueryClient())
+  : () => {
+      if (!browserQueryClient) browserQueryClient = makeQueryClient();
+      return browserQueryClient;
+    };
 
 export * from "./ecency-queries-manager";

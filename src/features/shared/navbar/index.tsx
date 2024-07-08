@@ -13,13 +13,12 @@ import { useGlobalStore } from "@/core/global-store";
 import { LoginDialog } from "@/features/shared";
 
 interface Props {
-  match?: any;
   step?: number;
   setStepOne?: () => void;
   setStepTwo?: () => void;
 }
 
-export function Navbar({ match, setStepOne, setStepTwo, step }: Props) {
+export function Navbar({ setStepOne, setStepTwo, step }: Props) {
   const activeUser = useGlobalStore((state) => state.activeUser);
   const toggleTheme = useGlobalStore((state) => state.toggleTheme);
   const uiLogin = useGlobalStore((state) => state.login);

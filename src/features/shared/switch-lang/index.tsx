@@ -6,6 +6,8 @@ import Link from "next/link";
 import i18next from "i18next";
 import { langOptions } from "@/features/i18n";
 import { useGlobalStore } from "@/core/global-store";
+import { Button } from "@ui/button";
+import { chevronDownSvgForSlider } from "@ui/svg";
 
 interface Props {
   label?: string;
@@ -18,8 +20,12 @@ export function SwitchLang({ label }: Props) {
   return (
     <div className="switch-language">
       <Dropdown>
-        <DropdownToggle>{label ?? lang}</DropdownToggle>
-        <DropdownMenu>
+        <DropdownToggle>
+          <Button size="sm" className="uppercase" appearance="link" icon={chevronDownSvgForSlider}>
+            {label ?? lang.split("-")[0]}
+          </Button>
+        </DropdownToggle>
+        <DropdownMenu align="top" className="max-h-[200px] overflow-y-auto right-0">
           {langOptions.map((locale) => (
             <DropdownItem
               key={locale.code}

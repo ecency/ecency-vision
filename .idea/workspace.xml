@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated index page pt.1">
-      <change afterPath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated index page pt.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index/entry-index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry-index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index/entry-index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/landing-page/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/landing-page/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/market-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/market-data/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/top-communities-widget/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/top-communities-widget/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/server-init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/server-init.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,15 +281,7 @@
       <workItem from="1720431012651" duration="715000" />
       <workItem from="1720432282073" duration="87000" />
       <workItem from="1720432376888" duration="9179000" />
-      <workItem from="1720445721385" duration="1310000" />
-    </task>
-    <task id="LOCAL-00029" summary="Migrated sidebars pt.2">
-      <option name="closed" value="true" />
-      <created>1715525403092</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1715525403092</updated>
+      <workItem from="1720445721385" duration="2643000" />
     </task>
     <task id="LOCAL-00030" summary="Migrated chats pt.1">
       <option name="closed" value="true" />
@@ -678,7 +667,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720443152572</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Migrated index page pt.2">
+      <option name="closed" value="true" />
+      <created>1720448595446</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1720448595446</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,7 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved decks pt. 3" />
     <MESSAGE value="Got rid of history" />
     <MESSAGE value="Added sign up page" />
     <MESSAGE value="Added perks page" />
@@ -721,7 +717,8 @@
     <MESSAGE value="Added create community page" />
     <MESSAGE value="Migrated auth page" />
     <MESSAGE value="Migrated index page pt.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated index page pt.1" />
+    <MESSAGE value="Migrated index page pt.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated index page pt.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

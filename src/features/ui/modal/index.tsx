@@ -49,7 +49,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
         props.onHide();
       }
     }
-  }, [props, show]);
+  }, [show]);
 
   const onKeyUp = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
