@@ -26,7 +26,7 @@ export function createGlobalState() {
     isMobile: false,
     usePrivate: true,
     hsClientId: "ecency.app",
-    lastIndexPath: null
+    lastIndexPath: null as string | null
   };
 }
 
@@ -91,6 +91,11 @@ export function createGlobalActions(set: (state: Partial<State>) => void, getSta
         nsfw: Boolean(Number(value))
       });
       success(i18next.t("preferences.updated"));
+    },
+    setLastIndexPath(value: string | null) {
+      set({
+        lastIndexPath: value
+      });
     }
   };
 }

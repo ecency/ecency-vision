@@ -1,0 +1,17 @@
+.top-communities-widget {
+    margin: 0 auto 0 10px;
+    padding-top: 16px;
+
+    &-header {
+        display: flex;
+        flex-direction: column;
+
+        > .title {
+            font-weight: 500;
+        }
+
+        .linear-progress {
+            margin-top: 8px;
+        }
+    }
+}

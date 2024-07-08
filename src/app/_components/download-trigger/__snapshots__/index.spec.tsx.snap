@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Mac. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-android"
+      href="https://android.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Android
+    </a>
+    <a
+      className="download-button btn-ios"
+      href="https://ios.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      iOS
+    </a>
+  </div>
+</div>
+`;
+
+exports[`(2) Windows. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-android"
+      href="https://android.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Android
+    </a>
+    <a
+      className="download-button btn-ios"
+      href="https://ios.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      iOS
+    </a>
+  </div>
+</div>
+`;
+
+exports[`(3) Linux. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-android"
+      href="https://android.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Android
+    </a>
+    <a
+      className="download-button btn-ios"
+      href="https://ios.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      iOS
+    </a>
+  </div>
+</div>
+`;
+
+exports[`(4) Android. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-android"
+      href="https://android.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Android
+    </a>
+  </div>
+</div>
+`;
+
+exports[`(5) iOS. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-ios"
+      href="https://ios.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      iOS
+    </a>
+  </div>
+</div>
+`;
+
+exports[`(6) Other. 1`] = `
+<div
+  className="download-dialog-content"
+>
+  <h2
+    className="downloads-title"
+  >
+    Download
+  </h2>
+  <div
+    className="downloads-text"
+  >
+    Enjoy Ecency for iPhone, iPad and Android devices
+  </div>
+  <div
+    className="download-buttons"
+  >
+    <a
+      className="download-button btn-android"
+      href="https://android.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Android
+    </a>
+    <a
+      className="download-button btn-ios"
+      href="https://ios.ecency.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      iOS
+    </a>
+  </div>
+</div>
+`;

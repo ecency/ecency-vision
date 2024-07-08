@@ -1,0 +1,1318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) No active user. Default filter 1`] = `
+<div>
+  <div
+    className="hidden"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending"
+                  href="/trending"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot bg-blue-dark-sky text-white hover:text-white"
+                  href="/hot"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot active"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(2) No active user. Trending filter 1`] = `
+<div>
+  <div
+    className="hidden"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending bg-blue-dark-sky text-white hover:text-white"
+                  href="/trending"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot"
+                  href="/hot"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) Active user. Trending filter 1`] = `
+<div>
+  <div
+    className="overlay-for-introduction"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="hidden lg:flex items-center mt-3 md:mt-0 md:mr-4 lg:mr-0"
+      >
+        <ul
+          className="flex flex-wrap relative mb-0 flash"
+        >
+          <li>
+            <a
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
+              href="/@foo/feed"
+              id="feed"
+              onClick={[Function]}
+            >
+              Friends
+            </a>
+          </li>
+          <div
+            className="intro-popup p-4 lg:p-0"
+            style={
+              Object {
+                "left": undefined,
+                "top": 100,
+              }
+            }
+          >
+            <div
+              className="container h-full"
+            >
+              <button
+                className="absolute close-btn"
+                id="close-btn"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+              <div
+                className="grid grid-cols-12 gap-4 h-full items-center mt-4 md:mt-0"
+              >
+                <div
+                  className="col-span-12 md:col-start-3 md:col-span-3 p-0 md:px-3"
+                >
+                  <img
+                    className="media-intro"
+                    id="media"
+                    src="https://ecency.com/assets/our-vision.png"
+                    width="100%"
+                  />
+                </div>
+                <div
+                  className="col-span-12 md:col-span-5 p-0 md:px-3"
+                >
+                  <div
+                    className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
+                  >
+                    Friends
+                  </div>
+                  <p
+                    className="text-gray-600 paragraph mt-2 md:mt-0"
+                    id="description"
+                  >
+                    This feed contains 
+                    <span
+                      className="text-capitalize"
+                    >
+                      Friends
+                    </span>
+                     discussions from people you follow. You can follow more people to fill up this feed.
+                    <a
+                      className="text-blue-dark-sky"
+                      href="/discover"
+                      onClick={[Function]}
+                    >
+                       
+                      Discover People
+                    </a>
+                  </p>
+                  <div
+                    className="flex flex-col md:flex-row"
+                  >
+                    <button
+                      className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active disabled:opacity-50 h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                      onClick={[Function]}
+                      size="lg"
+                      style={
+                        Object {
+                          "outline": "none",
+                        }
+                      }
+                      type="button"
+                    >
+                      <div>
+                        Previous
+                      </div>
+                    </button>
+                    <button
+                      className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                      onClick={[Function]}
+                      size="lg"
+                      style={
+                        Object {
+                          "outline": "none",
+                        }
+                      }
+                      type="button"
+                    >
+                      <div>
+                        Next
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending"
+                  href="/trending"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot"
+                  href="/hot"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          >
+            <div
+              className="intro-popup p-4 lg:p-0"
+              style={
+                Object {
+                  "left": undefined,
+                  "top": 100,
+                }
+              }
+            >
+              <div
+                className="container h-full"
+              >
+                <button
+                  className="absolute close-btn"
+                  id="close-btn"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+                <div
+                  className="grid grid-cols-12 gap-4 h-full items-center mt-4 md:mt-0"
+                >
+                  <div
+                    className="col-span-12 md:col-start-3 md:col-span-3 p-0 md:px-3"
+                  >
+                    <img
+                      className="media-intro"
+                      id="media"
+                      src="https://ecency.com/assets/our-vision.png"
+                      width="100%"
+                    />
+                  </div>
+                  <div
+                    className="col-span-12 md:col-span-5 p-0 md:px-3"
+                  >
+                    <div
+                      className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
+                    >
+                      Friends
+                    </div>
+                    <p
+                      className="text-gray-600 paragraph mt-2 md:mt-0"
+                      id="description"
+                    >
+                      This feed contains 
+                      <span
+                        className="text-capitalize"
+                      >
+                        Friends
+                      </span>
+                       discussions from people you follow. You can follow more people to fill up this feed.
+                      <a
+                        className="text-blue-dark-sky"
+                        href="/discover"
+                        onClick={[Function]}
+                      >
+                         
+                        Discover People
+                      </a>
+                    </p>
+                    <div
+                      className="flex flex-col md:flex-row"
+                    >
+                      <button
+                        className="cursor-pointer rounded-full duration-300 no-wrap border-[1.25px] border-solid border-blue-dark-sky hover:border-blue-dark-sky-hover focus:border-blue-dark-sky-active text-blue-dark-sky hover:text-blue-dark-sky-hover focus:text-blue-dark-sky-active disabled:opacity-50 h-[2.5rem] px-4 mr-0 md:mr-3 w-full md:w-[50%] intro-btn mb-3 md:mb-0"
+                        onClick={[Function]}
+                        size="lg"
+                        style={
+                          Object {
+                            "outline": "none",
+                          }
+                        }
+                        type="button"
+                      >
+                        <div>
+                          Previous
+                        </div>
+                      </button>
+                      <button
+                        className="cursor-pointer rounded-full duration-300 no-wrap bg-blue-dark-sky hover:bg-blue-dark-sky-hover focus:bg-blue-dark-sky-active text-white hover:text-white disabled:opacity-50 disabled:hover:bg-blue-dark-sky disabled:focus:bg-blue-dark-sky h-[2.5rem] px-4 w-full md:w-[50%] intro-btn"
+                        onClick={[Function]}
+                        size="lg"
+                        style={
+                          Object {
+                            "outline": "none",
+                          }
+                        }
+                        type="button"
+                      >
+                        <div>
+                          Next
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-feed"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending active"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-rising"
+                  href="/rising/today"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(4) Active user. Friends 1`] = `
+<div>
+  <div
+    className="hidden"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="hidden lg:flex items-center mt-3 md:mt-0 md:mr-4 lg:mr-0"
+      >
+        <ul
+          className="flex flex-wrap relative mb-0 "
+        >
+          <li>
+            <a
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 bg-blue-dark-sky text-white hover:text-white"
+              href="/@foo/feed"
+              id="feed"
+              onClick={[Function]}
+            >
+              Friends
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending"
+                  href="/trending"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot"
+                  href="/hot"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-feed active"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending"
+                  href="/trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot"
+                  href="/hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-rising"
+                  href="/rising/today"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(5) Active user. Communities 1`] = `
+<div>
+  <div
+    className="hidden"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="hidden lg:flex items-center mt-3 md:mt-0 md:mr-4 lg:mr-0"
+      >
+        <ul
+          className="flex flex-wrap relative mb-0 "
+        >
+          <li>
+            <a
+              className="rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5"
+              href="/@foo/feed"
+              id="feed"
+              onClick={[Function]}
+            >
+              Friends
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending bg-blue-dark-sky text-white hover:text-white"
+                  href="/trending/my"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot"
+                  href="/hot/my"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created/my"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-feed"
+                  href="/@foo/feed"
+                  onClick={[Function]}
+                >
+                  Friends
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending active"
+                  href="/trending/my"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot"
+                  href="/hot/my"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created/my"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-rising"
+                  href="/rising/today"
+                  onClick={[Function]}
+                >
+                  Rising
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(6) No active user. Communities 1`] = `
+<div>
+  <div
+    className="hidden"
+    id="overlay"
+    onClick={[Function]}
+  />
+  <div
+    className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200"
+  >
+    <div
+      className="the-menu flex flex-col-reverse items-center md:flex-row"
+    >
+      <div
+        className="flex items-center"
+      >
+        <div
+          className="main-menu justify-center hidden lg:flex md:mb-0 md:items-center"
+        >
+          <div
+            className="block md:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap mb-0"
+            >
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-trending bg-blue-dark-sky text-white hover:text-white"
+                  href="/trending/my"
+                  id="trending"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-hot"
+                  href="/hot/my"
+                  id="hot"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-created"
+                  href="/created/my"
+                  id="created"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li
+                className=""
+              >
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-controversial"
+                  href="/controversial/today"
+                  id="controversial"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="kebab-icon flex"
+          />
+        </div>
+        <div
+          className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center"
+        >
+          <div
+            className="lg:hidden relative"
+          />
+          <div
+            className="hidden lg:block"
+          >
+            <ul
+              className="flex flex-wrap"
+            >
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-trending active"
+                  href="/trending/my"
+                  onClick={[Function]}
+                >
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-hot"
+                  href="/hot/my"
+                  onClick={[Function]}
+                >
+                  Hot
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-created"
+                  href="/created/my"
+                  onClick={[Function]}
+                >
+                  New
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-controversial"
+                  href="/controversial/today"
+                  onClick={[Function]}
+                >
+                  Controversial
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="border-l border-[--border-color] ml-3 dropDown-left-border-height"
+        />
+        <span
+          className="flex items-center pl-3"
+          id="check-isGlobal"
+        />
+      </div>
+    </div>
+    <div
+      className="flex items-center ml-auto md:ml-0 pl-3"
+    >
+      <span
+        className="info-icon mr-0 md:mr-2"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5,4A1.5,1.5 0 0,0 12,5.5A1.5,1.5 0 0,0 13.5,7A1.5,1.5 0 0,0 15,5.5A1.5,1.5 0 0,0 13.5,4M13.14,8.77C11.95,8.87 8.7,11.46 8.7,11.46C8.5,11.61 8.56,11.6 8.72,11.88C8.88,12.15 8.86,12.17 9.05,12.04C9.25,11.91 9.58,11.7 10.13,11.36C12.25,10 10.47,13.14 9.56,18.43C9.2,21.05 11.56,19.7 12.17,19.3C12.77,18.91 14.38,17.8 14.54,17.69C14.76,17.54 14.6,17.42 14.43,17.17C14.31,17 14.19,17.12 14.19,17.12C13.54,17.55 12.35,18.45 12.19,17.88C12,17.31 13.22,13.4 13.89,10.71C14,10.07 14.3,8.67 13.14,8.77Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div
+        className="viewLayouts"
+      />
+    </div>
+  </div>
+</div>
+`;

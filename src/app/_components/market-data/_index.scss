@@ -1,0 +1,102 @@
+@import "src/styles/vars_mixins";
+
+.market-data {
+  margin: 0 auto 24px 10px;
+
+  .market-data-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+
+    .title {
+      font-weight: 500;
+    }
+
+    .credits {
+      font-size: 12px;
+      text-align: right;
+      opacity: 0.8;
+    }
+  }
+
+  .market-graph {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 8px 6px;
+
+    .graph {
+      min-height: 90px;
+      position: relative;
+      opacity: 0.8;
+
+      .graph-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 100%;
+        background: red;
+        opacity: 0;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    @include themify(day) {
+      @apply bg-light-200;
+    }
+
+    @include themify(night) {
+      @apply bg-dark-200;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 4px;
+
+      .price {
+        font-size: 13px;
+        flex-grow: 1;
+
+        .value {
+          @apply text-blue-dark-sky-010;
+        }
+      }
+
+      .tooltip {
+        @apply text-blue-dark-sky;
+        border-radius: 6px;
+        font-size: 10px;
+        visibility: hidden;
+      }
+    }
+
+    .ct-series-a {
+      .ct-line {
+        @apply stroke-blue-dark-sky-010;
+        stroke-width: 3px;
+      }
+
+      .ct-area {
+        @apply fill-blue-dark-sky-020;
+      }
+
+      .ct-point {
+        @apply stroke-blue-dark-sky-010;
+        stroke-width: 8px;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.pointer {
+  svg {
+    width: 20px;
+  }
+}

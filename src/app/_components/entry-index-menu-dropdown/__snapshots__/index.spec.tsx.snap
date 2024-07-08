@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Renders correctly for global true and active true 1`] = `null`;
+
+exports[`(2) Renders correctly for global false and active false 1`] = `
+<div
+  className="custom-dropdown float-left"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="tagDropDown"
+  >
+    <span
+      className="pl-2"
+    />
+    Global
+     
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7,10L12,15L17,10H7Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+</div>
+`;

@@ -1,0 +1,10 @@
+@import "src/styles/vars_mixins";
+
+.trending-tags-card {
+  @include side-tag-list;
+}
+
+.pointer {
+  cursor: pointer;
+  pointer-events: auto !important;
+}

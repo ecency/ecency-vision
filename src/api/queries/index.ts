@@ -56,3 +56,4 @@ export * from "./get-collateralized-conversion-requests-query";
 export * from "./get-conversion-requests-query";
 export * from "./get-received-vesting-shares-query";
 export * from "./get-referrals-query";
+export * from "./get-market-data-query";

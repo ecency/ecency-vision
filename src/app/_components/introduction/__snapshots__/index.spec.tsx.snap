@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Introduction component (1) renders successfully with minimal props 1`] = `
+<div
+  className="intro-popup p-4 lg:p-0"
+  style={
+    Object {
+      "left": undefined,
+      "top": 100,
+    }
+  }
+>
+  <div
+    className="container h-full"
+  >
+    <button
+      className="absolute close-btn"
+      id="close-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className="grid grid-cols-12 gap-4 h-full items-center mt-4 md:mt-0"
+    >
+      <div
+        className="col-span-12 md:col-start-3 md:col-span-3 p-0 md:px-3"
+      >
+        <img
+          className="media-intro"
+          id="media"
+          src="https://propakistani.pk/wp-content/uploads/2019/12/Social-Media-Insight-top.png"
+          width="100%"
+        />
+      </div>
+      <div
+        className="col-span-12 md:col-span-5 p-0 md:px-3"
+      >
+        <div
+          className="text-4xl mb-2 md:mb-4 text-dark-default font-bold"
+        >
+          Test Title
+        </div>
+        <p
+          className="text-gray-600 paragraph mt-2 md:mt-0"
+          id="description"
+        >
+          Test decription
+        </p>
+        <div
+          className="flex flex-col md:flex-row"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
