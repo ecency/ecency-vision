@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed lang switcher and redirect from landing to feed">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed posts fetching in index feed page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,15 +274,7 @@
       <workItem from="1720431012651" duration="715000" />
       <workItem from="1720432282073" duration="87000" />
       <workItem from="1720432376888" duration="9179000" />
-      <workItem from="1720445721385" duration="3313000" />
-    </task>
-    <task id="LOCAL-00031" summary="Migrated static pages">
-      <option name="closed" value="true" />
-      <created>1715921832425</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1715921832425</updated>
+      <workItem from="1720445721385" duration="3446000" />
     </task>
     <task id="LOCAL-00032" summary="Fixed typos">
       <option name="closed" value="true" />
@@ -669,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720449910175</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Fixed posts fetching in index feed page">
+      <option name="closed" value="true" />
+      <created>1720450644315</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1720450644315</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sign up page" />
     <MESSAGE value="Added perks page" />
     <MESSAGE value="Migrated purchase page" />
     <MESSAGE value="Migrated proposals page pt.1" />
@@ -712,7 +710,8 @@
     <MESSAGE value="Migrated index page pt.1" />
     <MESSAGE value="Migrated index page pt.2" />
     <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed lang switcher and redirect from landing to feed" />
+    <MESSAGE value="Fixed posts fetching in index feed page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed posts fetching in index feed page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

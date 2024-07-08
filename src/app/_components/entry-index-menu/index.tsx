@@ -438,7 +438,9 @@ export function EntryIndexMenu() {
                 <Dropdown>
                   <DropdownToggle>
                     <Button appearance="link" icon={chevronDownSvgForSlider}>
-                      {dropdownLabel}
+                      <Button size="sm" icon={chevronDownSvgForSlider} appearance="link">
+                        {dropdownLabel}
+                      </Button>
                     </Button>
                   </DropdownToggle>
                   <DropdownMenu align="left">
@@ -512,7 +514,11 @@ export function EntryIndexMenu() {
             <div className="main-menu justify-center flex lg:hidden md:mb-0 md:items-center">
               <div className="lg:hidden relative">
                 <Dropdown>
-                  <DropdownToggle>{dropdownLabel}</DropdownToggle>
+                  <DropdownToggle>
+                    <Button size="sm" icon={chevronDownSvgForSlider} appearance="link">
+                      {dropdownLabel}
+                    </Button>
+                  </DropdownToggle>
                   <DropdownMenu align="left">
                     {mobileItems.map((item, i) => (
                       <DropdownItem key={i} onClick={item.onClick}>
