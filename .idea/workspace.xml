@@ -4,59 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed entry index menu dropdown styles">
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/hive-barter/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/hive-barter/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/hive-barter/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/mode-selector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/open-orders/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/open-orders/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_components/open-orders/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/_enums/market-mode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/advanced-mode-settings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/advanced-mode-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/consts/day-change.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/consts/default-layouts.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/types/day-change.type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/types/layout.type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/user-balance-observer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/utils/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/utils/layout-builder.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/widget-layout-builder.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/api/trading-view-api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/caching/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/caching/trading-view-caching.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/history-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/market-advanced-mode-orders-table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/market-advanced-mode-widget-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/market-advanced-mode-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/open-orders-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/pairs-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/stake-widget-header-options.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/stake-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-form-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-view-widget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/chart-stats/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/chart-stats/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/chart-stats/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/chart-stats/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/orders/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/orders/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/_components/orders/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/limit/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/market/swap/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated market pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/_components/mode-selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/_components/mode-selector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/limit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/limit/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,15 +281,7 @@
       <workItem from="1720432282073" duration="87000" />
       <workItem from="1720432376888" duration="9179000" />
       <workItem from="1720445721385" duration="5197000" />
-      <workItem from="1720508971613" duration="3273000" />
-    </task>
-    <task id="LOCAL-00033" summary="Migrated discover page">
-      <option name="closed" value="true" />
-      <created>1716390953280</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1716390953280</updated>
+      <workItem from="1720508971613" duration="4542000" />
     </task>
     <task id="LOCAL-00034" summary="Updated chat providers">
       <option name="closed" value="true" />
@@ -719,7 +667,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720450836938</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Migrated market pages">
+      <option name="closed" value="true" />
+      <created>1720514208687</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1720514208688</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated purchase page" />
     <MESSAGE value="Migrated proposals page pt.1" />
     <MESSAGE value="Migrated proposals page pt.2" />
     <MESSAGE value="Migrated proposals page pt.3" />
@@ -762,7 +717,8 @@
     <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
     <MESSAGE value="Fixed posts fetching in index feed page" />
     <MESSAGE value="Fixed entry index menu dropdown styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed entry index menu dropdown styles" />
+    <MESSAGE value="Migrated market pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated market pages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

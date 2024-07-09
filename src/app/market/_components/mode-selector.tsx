@@ -28,15 +28,12 @@ export const ModeSelector = ({ mode, onSelect, className }: Props) => {
         switch (i) {
           case 0:
             onSelect(MarketMode.SWAP);
-            window.location.hash = "swap";
             break;
           case 1:
             onSelect(MarketMode.LIMIT);
-            window.location.hash = "limit";
             break;
           case 2:
             onSelect(MarketMode.ADVANCED);
-            window.location.hash = "advanced";
             break;
           default:
             break;

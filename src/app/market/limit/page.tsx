@@ -16,6 +16,7 @@ import { MarketMode } from "@/app/market/_enums/market-mode";
 import { Tsx } from "@/features/i18n/helper";
 import { ModeSelector } from "@/app/market/_components/mode-selector";
 import { useRouter } from "next/navigation";
+import "../index.scss";
 
 export default function MarketLimitPage() {
   const router = useRouter();

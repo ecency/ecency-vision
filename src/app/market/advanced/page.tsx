@@ -16,6 +16,8 @@ import { OpenOrdersData, OrdersData, Transaction } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import { MarketMode } from "@/app/market/_enums/market-mode";
 import { useRouter } from "next/navigation";
+import "../index.scss";
+import { Feedback, Navbar } from "@/features/shared";
 
 export default function MarketAdvancedPage() {
   const router = useRouter();
@@ -43,73 +45,83 @@ export default function MarketAdvancedPage() {
   const [allOrders, setAllOrders] = useState<Transaction[]>([]);
 
   return (
-    <div className="advanced-mode">
-      <MarketObserver
-        updateRate={updateRate!}
-        setAllOrders={setAllOrders}
-        refresh={refresh}
-        setRefresh={setRefresh}
-        fromAsset={fromAsset}
-        toAsset={toAsset}
-        onDayChange={(dayChange) => setDayChange(dayChange)}
-        onHistoryChange={(history) => setHistory(history)}
-        onUsdChange={(usdPrice) => setUsdPrice(usdPrice)}
-        setOpenOrdersDataLoading={setOpenOrdersDataLoading}
-        setOpenOrders={setOpenOrdersData}
-      />
-      <UserBalanceObserver
-        fromAsset={fromAsset}
-        setBuyBalance={(v) => setBuyBalance(v)}
-        setSellBalance={(v) => setSellBalance(v)}
-      />
-      <AdvancedModeToolbar
-        fromAsset={fromAsset}
-        toAsset={toAsset}
-        dayChange={dayChange}
-        price={price}
-        usdPrice={usdPrice}
-        mode={MarketMode.ADVANCED}
-        setMode={(mode) => {
-          switch (mode) {
-            case MarketMode.SWAP:
-              router.push("/market/swap");
-              break;
-            case MarketMode.LIMIT:
-              router.push("/market/limit");
-              break;
-            default:
-              break;
-          }
-        }}
-        updateRate={updateRate!}
-        setUpdateRate={setUpdateRate}
-      />
-      <div className="advanced-mode-layout">
-        <WidgetLayoutBuilder
-          allOrders={allOrders}
-          usdPrice={usdPrice}
-          layout={layout}
-          price={price}
-          amount={amount}
-          toAsset={toAsset}
-          fromAsset={fromAsset}
-          sellBalance={sellBalance}
-          buyBalance={buyBalance}
-          history={history}
-          dayChange={dayChange}
-          setPrice={setPrice}
-          setAmount={setAmount}
-          setLayout={(layout) => {
-            setLayout(layout);
-            setLsLayout(layout);
-          }}
-          onSuccessTrade={() => setRefresh(true)}
-          openOrdersData={openOrdersData}
-          openOrdersDataLoading={openOrdersDataLoading}
-          setOpenOrders={setOpenOrdersData}
-          setRefresh={setRefresh}
-        />
+    <>
+      <Feedback />
+      <div className={"flex justify-center market-page " + MarketMode.ADVANCED}>
+        <div className="w-full">
+          <div style={{ marginBottom: "6rem" }}>
+            <Navbar />
+          </div>
+          <div className="advanced-mode">
+            <MarketObserver
+              updateRate={updateRate!}
+              setAllOrders={setAllOrders}
+              refresh={refresh}
+              setRefresh={setRefresh}
+              fromAsset={fromAsset}
+              toAsset={toAsset}
+              onDayChange={(dayChange) => setDayChange(dayChange)}
+              onHistoryChange={(history) => setHistory(history)}
+              onUsdChange={(usdPrice) => setUsdPrice(usdPrice)}
+              setOpenOrdersDataLoading={setOpenOrdersDataLoading}
+              setOpenOrders={setOpenOrdersData}
+            />
+            <UserBalanceObserver
+              fromAsset={fromAsset}
+              setBuyBalance={(v) => setBuyBalance(v)}
+              setSellBalance={(v) => setSellBalance(v)}
+            />
+            <AdvancedModeToolbar
+              fromAsset={fromAsset}
+              toAsset={toAsset}
+              dayChange={dayChange}
+              price={price}
+              usdPrice={usdPrice}
+              mode={MarketMode.ADVANCED}
+              setMode={(mode) => {
+                switch (mode) {
+                  case MarketMode.SWAP:
+                    router.push("/market/swap");
+                    break;
+                  case MarketMode.LIMIT:
+                    router.push("/market/limit");
+                    break;
+                  default:
+                    break;
+                }
+              }}
+              updateRate={updateRate!}
+              setUpdateRate={setUpdateRate}
+            />
+            <div className="advanced-mode-layout">
+              <WidgetLayoutBuilder
+                allOrders={allOrders}
+                usdPrice={usdPrice}
+                layout={layout}
+                price={price}
+                amount={amount}
+                toAsset={toAsset}
+                fromAsset={fromAsset}
+                sellBalance={sellBalance}
+                buyBalance={buyBalance}
+                history={history}
+                dayChange={dayChange}
+                setPrice={setPrice}
+                setAmount={setAmount}
+                setLayout={(layout) => {
+                  setLayout(layout);
+                  setLsLayout(layout);
+                }}
+                onSuccessTrade={() => setRefresh(true)}
+                openOrdersData={openOrdersData}
+                openOrdersDataLoading={openOrdersDataLoading}
+                setOpenOrders={setOpenOrdersData}
+                setRefresh={setRefresh}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

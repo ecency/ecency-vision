@@ -41,7 +41,7 @@ export const HiveHbdObserver = ({
 
   useEffect(() => {
     setAllOrders(
-      transactions?.pages?.[0].filter((item) => item.type === "limit_order_create") ?? []
+      transactions?.pages?.[0]?.filter((item) => item.type === "limit_order_create") ?? []
     );
   }, [setAllOrders, transactions]);
 

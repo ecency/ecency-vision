@@ -4,7 +4,8 @@ import i18next from "i18next";
 import { Theme } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
 
-const ReactHighcharts = require("react-highcharts/dist/ReactHighstock");
+// @ts-ignore
+// const ReactHighcharts = require("react-highcharts/dist/ReactHighstock");
 const power = 100;
 const precision = 1000;
 
@@ -18,7 +19,8 @@ const MarketChart = ({ bids, asks }: any) => {
   const depth_chart_config = generateDepthChart(bids, asks, theme);
   return (
     <div className="DepthChart">
-      <ReactHighcharts config={depth_chart_config} />
+      {/*<ReactHighcharts config={depth_chart_config} />*/}
+      {/*  TODO: Fix this charts*/}
     </div>
   );
 };
