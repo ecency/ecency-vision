@@ -106,6 +106,25 @@ const SignUpPage = (props: Props | any) => {
     } else {
       setError("");
     }
+
+    if (username.length > 16) {
+      setError(_t("sign-up.username-max-length-error"));
+    } else {
+      username.split(".").some((item: any) => {
+        if (item.length < 3) {
+          setError(_t("sign-up.username-min-length-error"));
+        } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
+          setError(_t("sign-up.username-no-ascii-first-letter-error"));
+        } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
+          setError(_t("sign-up.username-contains-symbols-error"));
+        } else if (item.includes("--")) {
+          setError(_t("sign-up.username-contains-double-hyphens"));
+        } else if (/^\d/.test(item)) {
+          setError(_t("sign-up.username-starts-number"));
+        }
+      });
+    }
+    
     setInProgress(false);
   };
 

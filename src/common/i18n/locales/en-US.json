@@ -172,7 +172,18 @@
     "success": "We've sent an email to {{email}}.",
     "success-2": "Follow instructions to complete signup process.",
     "login-text-1": "Do you have an account?",
-    "login-text-2": "Login"
+    "login-text-2": "Login",
+    "username-min-length-error": "Length of username should be at least 3 characters",
+    "username-max-length-error": "Length of username should be no more than 16 characters",
+    "username-no-ascii-first-letter-error": "First character should be a Letter",
+    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
+    "username-contains-double-hyphens": "Should not contain double Hyphens",
+    "username-exists": "This username already registered. Please, try another one",
+    "username-starts-number": "Should not start with Numbers",
+    "referral-invalid": "This referral is invalid. Please, try another one",
+    "referral-min-length-error": "Length of referral should be at least 3 characters",
+    "referral-max-length-error": "Length of referral should be no more than 16 characters",
+    "email-max-length-error": "Length of email should be no more than 72 characters"
   },
   "onboard": {
     "description-active-user": "You can create account for a friend.",
