@@ -37,7 +37,7 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
       {isEntryPage && !isProfilePage && !isIndexPage && (
         <EntryPage
           category={slugs[0]}
-          username={slugs[1]}
+          username={slugs[1].replace("%40", "").replace("@", "")}
           permlink={slugs[2]}
           isEdit={slugs[3] === "edit"}
           searchParams={searchParams}

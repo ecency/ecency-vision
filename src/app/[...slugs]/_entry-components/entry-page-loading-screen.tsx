@@ -2,7 +2,7 @@
 
 import React from "react";
 import { LinearProgress } from "@/features/shared";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 
 export const EntryPageLoadingScreen = () => {

@@ -1,3 +1,5 @@
+"use client";
+
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { useEffect, useMemo, useState } from "react";
 import { addDays, isBefore } from "date-fns";

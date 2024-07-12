@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Manager, Popper } from "react-popper";
 
@@ -6,7 +8,7 @@ import "./index.scss";
 import { ClickAwayListener, success } from "@/features/shared";
 import i18next from "i18next";
 import { copyContent, quotes, twitterSvg } from "@ui/svg";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components";
 
 let tooltipStyle = {

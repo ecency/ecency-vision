@@ -13,7 +13,7 @@ import { EntryPageSimilarEntries } from "@/app/[...slugs]/_entry-components/entr
 import { EntryPageDiscussions } from "@/app/[...slugs]/_entry-components/entry-page-discussions";
 import { Entry } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 
 interface Props {
@@ -41,9 +41,9 @@ export function EntryPageContent({ entry, rawParam, isEdit, category }: Props) {
             <EntryPageWarnings entry={entry} />
             <EntryPageIsCommentHeader entry={entry} />
             <h1 className="entry-title">{entry.title}</h1>
+            <EntryPageMainInfo entry={entry} />
             <EntryPageBodyViewer entry={entry} rawParam={rawParam} isEdit={isEdit} />
           </div>
-          <EntryPageMainInfo entry={entry} />
           <EntryPageProfileBox entry={entry} />
           <div className="entry-footer">
             <EntryTags entry={entry} />

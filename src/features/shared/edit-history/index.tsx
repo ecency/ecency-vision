@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 import { diff_match_patch } from "diff-match-patch";
 import defaults from "@/defaults.json";

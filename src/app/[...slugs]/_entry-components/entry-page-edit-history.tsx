@@ -1,6 +1,6 @@
 import { EditHistory } from "@/features/shared";
 import { Entry } from "@/entities";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 
 interface Props {

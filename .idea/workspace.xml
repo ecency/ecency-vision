@@ -4,70 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated market pages pt.2">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-deleted-entry-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-followers-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/instance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/distance-detector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-info.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-cross-post-body.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-cross-post-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-discussions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-edit-history.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-edit.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-is-comment-header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-loading-screen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-meta.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-might-contains-muted-comments-warning.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-nsfw-warning.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-show-original.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-similar-entries.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-warnings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-tags.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/md-handler.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/selection-reference.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/bridge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/static-navbar.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed client side components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/bridge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-post-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-post-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,23 +287,7 @@
       <workItem from="1720636392458" duration="4096000" />
       <workItem from="1720680752704" duration="53000" />
       <workItem from="1720680817007" duration="3780000" />
-      <workItem from="1720685272541" duration="9867000" />
-    </task>
-    <task id="LOCAL-00035" summary="Updated build">
-      <option name="closed" value="true" />
-      <created>1716738909406</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1716738909406</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Updated build">
-      <option name="closed" value="true" />
-      <created>1716739119881</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1716739119881</updated>
+      <workItem from="1720685272541" duration="15841000" />
     </task>
     <task id="LOCAL-00037" summary="Moved from global axios to local">
       <option name="closed" value="true" />
@@ -737,7 +665,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720515545650</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Migrated entry page">
+      <option name="closed" value="true" />
+      <created>1720780647428</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1720780647428</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Fixed client side components">
+      <option name="closed" value="true" />
+      <created>1720800536248</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1720800536248</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,8 +702,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated proposals page pt.2" />
-    <MESSAGE value="Migrated proposals page pt.3" />
     <MESSAGE value="Migrated proposal details page" />
     <MESSAGE value="Migrated profile page pt. 1" />
     <MESSAGE value="Migrated profile page pt. 2" />
@@ -783,7 +725,9 @@
     <MESSAGE value="Fixed entry index menu dropdown styles" />
     <MESSAGE value="Migrated market pages" />
     <MESSAGE value="Migrated market pages pt.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated market pages pt.2" />
+    <MESSAGE value="Migrated entry page" />
+    <MESSAGE value="Fixed client side components" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed client side components" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

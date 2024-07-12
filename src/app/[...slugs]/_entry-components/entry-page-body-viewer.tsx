@@ -2,7 +2,7 @@ import { Entry } from "@/entities";
 import { PollWidget, useEntryPollExtractor } from "@/features/polls";
 import { renderPostBody } from "@ecency/render-helper";
 import { useGlobalStore } from "@/core/global-store";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { EntryPageEdit } from "@/app/[...slugs]/_entry-components/entry-page-edit";
 import { SelectionPopover } from "@/app/[...slugs]/_entry-components/selection-popover";

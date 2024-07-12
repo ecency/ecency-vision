@@ -3,11 +3,11 @@ import { Comment } from "@/features/shared";
 import i18next from "i18next";
 import { Entry } from "@/entities";
 import { useRouter } from "next/navigation";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { useUpdateReply } from "@/api/mutations";
 import { makeJsonMetaDataReply } from "@/utils";
-import * as appPackage from "../../../../package.json";
+import appPackage from "../../../../package.json";
 
 export interface Props {
   entry: Entry;

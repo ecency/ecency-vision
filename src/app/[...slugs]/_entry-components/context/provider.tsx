@@ -1,3 +1,5 @@
+"use client";
+
 import { PropsWithChildren, useRef, useState } from "react";
 import { EntryPageContext } from "./instance";
 

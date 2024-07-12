@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 import "./_index.scss";
 import { useGlobalStore } from "@/core/global-store";

@@ -237,10 +237,6 @@
         margin-bottom: 15px;
         position: relative;
 
-        @media (min-width: $sm-break) {
-          font-size: 18px;
-        }
-
         @include themify(day) {
           @apply text-gray-steel;
         }

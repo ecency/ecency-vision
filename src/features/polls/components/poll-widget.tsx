@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useState } from "react";
 import { PollSnapshot } from "./polls-creation";
 import { Button } from "@ui/button";

@@ -1,5 +1,6 @@
-import { Context, createContext, PropsWithChildren, Provider, useContext } from "react";
+import { Context, PropsWithChildren, Provider } from "react";
 import { isServer } from "@tanstack/react-query";
+import { createClientContext, useClientContext } from "@/core/client-server-bridge/client-impl";
 
 export namespace EcencyClientServerBridge {
   interface SafeContext<T> {
@@ -14,8 +15,7 @@ export namespace EcencyClientServerBridge {
     }
 
     if (ctx.ClientContext) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      return useContext(ctx.ClientContext);
+      return useClientContext(ctx);
     }
 
     throw new Error("Invalid safe context initialization");
@@ -30,7 +30,8 @@ export namespace EcencyClientServerBridge {
         )) as unknown as Provider<S>
       };
     }
-    const clientContext = createContext(ctxState);
+
+    const clientContext = createClientContext(ctxState);
 
     return {
       ClientContext: clientContext,

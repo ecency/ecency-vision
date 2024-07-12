@@ -1,7 +1,7 @@
 import { useGlobalStore } from "@/core/global-store";
 import { Entry } from "@/entities";
 import { AuthorInfoCard } from "@/app/[...slugs]/_entry-components/author-info-card";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 
 interface Props {

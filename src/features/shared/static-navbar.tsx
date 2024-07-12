@@ -1,4 +1,6 @@
 import { Button } from "@ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   fullVersionUrl: string;
@@ -10,14 +12,14 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
       <div className="sticky-container" id="sticky-container">
         <div className="nav-bar-sm sticky">
           <div className="brand">
-            <a href="/">
-              <img
-                src={require("../../img/logo-circle.svg")}
+            <Link href="/">
+              <Image
+                src="assets/logo-circle.svg"
                 className="logo"
                 style={{ width: "40px", height: "40px" }}
                 alt="Logo"
               />
-            </a>
+            </Link>
           </div>
           <div className="text-menu">
             <a className="menu-item mt-0" href="/discover">
@@ -31,14 +33,14 @@ export const StaticNavbar = ({ fullVersionUrl }: Props) => {
         <div className="nav-bar">
           <div className="nav-bar-inner">
             <div className="brand">
-              <a href="/">
-                <img
-                  src={require("../../img/logo-circle.svg")}
+              <Link href="/">
+                <Image
+                  src="assets/logo-circle.svg"
                   className="logo"
                   style={{ width: "40px", height: "40px" }}
                   alt="Logo"
                 />
-              </a>
+              </Link>
             </div>
             <div className="text-menu">
               <a className="menu-item mt-0" href="/discover">

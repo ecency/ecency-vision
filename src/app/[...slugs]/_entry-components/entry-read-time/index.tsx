@@ -8,7 +8,7 @@ import Link from "next/link";
 import { UserAvatar } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 
 export interface ActiveVotes {
   rshares: number;

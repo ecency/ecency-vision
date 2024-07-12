@@ -20,7 +20,7 @@ import i18next from "i18next";
 import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { CrossPost } from "@/features/shared/entry-menu/cross-post";
 import { EditHistory } from "@/features/shared/edit-history";
-import { ModalConfirm } from "@/features/ui";
+import { Button, ModalConfirm } from "@/features/ui";
 import { MuteBtn } from "@/features/shared/mute-btn";
 import { Promote } from "@/features/shared/promote";
 
@@ -95,7 +95,9 @@ export const EntryMenu = ({
         </div>
       )}
       <Dropdown>
-        <DropdownToggle>{dotsHorizontal}</DropdownToggle>
+        <DropdownToggle>
+          <Button appearance="gray-link" size="sm" icon={dotsHorizontal} />
+        </DropdownToggle>
         <DropdownMenu align="right">
           {menuItems.map((item, i) => (
             <DropdownItemWithIcon

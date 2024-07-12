@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import "./_index.scss";
 import { accountReputation, truncate } from "@/utils";

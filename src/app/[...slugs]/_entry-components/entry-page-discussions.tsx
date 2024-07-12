@@ -7,10 +7,10 @@ import { useMemo, useState } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { CommentEngagement } from "@/app/[...slugs]/_entry-components/comment-engagement";
 import { useSearchParams } from "next/navigation";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { createReplyPermlink, makeJsonMetaDataReply } from "@/utils";
-import * as appPackage from "../../../../package.json";
+import appPackage from "../../../../package.json";
 import { useCreateReply } from "@/api/mutations";
 import { getCommunityCache } from "@/core/caches";
 

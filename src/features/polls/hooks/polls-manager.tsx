@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, PropsWithChildren } from "react";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { PollSnapshot } from "../components";

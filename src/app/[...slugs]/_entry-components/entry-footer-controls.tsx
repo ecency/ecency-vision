@@ -16,7 +16,7 @@ import { rawContentSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import { useMemo, useRef } from "react";
 import { useDistanceDetector } from "@/app/[...slugs]/_entry-components/distance-detector";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { useRouter } from "next/navigation";
 

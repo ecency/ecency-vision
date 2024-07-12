@@ -1,4 +1,4 @@
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { MutableRefObject } from "react";
 
 interface ContextState {

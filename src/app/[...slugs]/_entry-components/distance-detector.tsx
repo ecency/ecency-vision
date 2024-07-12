@@ -1,3 +1,5 @@
+"use client";
+
 import { MutableRefObject, useEffect } from "react";
 
 export function useDistanceDetector<T extends Element | null>(

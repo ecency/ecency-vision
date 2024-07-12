@@ -4,7 +4,7 @@ import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import { useRouter } from "next/navigation";
 import { Tsx } from "@/features/i18n/helper";
-import { EcencyClientServerBridge } from "@/core/bridge";
+import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 
 export function EntryPageNsfwWarning() {
