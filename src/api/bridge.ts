@@ -97,23 +97,23 @@ export const getAccountPosts = (
   });
 };
 
-export const getPost = (
+export const getPost = async (
   author: string = "",
   permlink: string = "",
   observer: string = "",
   num?: number
-): Promise<Entry | null> => {
-  return bridgeApiCall<Entry | null>("get_post", {
+) => {
+  const resp = await bridgeApiCall<Entry | null>("get_post", {
     author,
     permlink,
     observer
-  }).then((resp) => {
-    if (resp) {
-      return resolvePost(resp, observer, num);
-    }
-
-    return resp;
   });
+
+  if (resp) {
+    return await resolvePost(resp, observer, num);
+  }
+
+  return undefined;
 };
 
 export const getPostHeader = (

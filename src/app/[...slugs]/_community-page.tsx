@@ -27,7 +27,7 @@ export async function CommunityPage({ params, searchParams }: Props) {
     return notFound();
   }
 
-  const data = await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
+  await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
 
   if (searchParams.q) {
     await getSearchApiQuery(searchParams.q, "newest", true).prefetch();

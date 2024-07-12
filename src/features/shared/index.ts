@@ -53,3 +53,5 @@ export * from "./image-upload-button";
 export * from "./notifications";
 export * from "./gallery";
 export * from "./boost";
+export * from "./static-navbar";
+export * from "./edit-history";

@@ -5,6 +5,7 @@ import { CommunityPage } from "@/app/[...slugs]/_community-page";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { EntryFilter } from "@/enums";
 import { EntryIndex } from "@/app/[...slugs]/_index";
+import { EntryPage } from "@/app/[...slugs]/_entry-page";
 
 interface Props {
   params: { slugs: string[] };
@@ -14,8 +15,9 @@ interface Props {
 export default function FilteredOrCategorizedPage({ params: { slugs }, searchParams }: Props) {
   const filterOrUsername = slugs[0];
   const communityNameOrAccountFilters = slugs[1];
-  const isProfile = filterOrUsername.startsWith("@") || filterOrUsername.startsWith("%40");
 
+  const isProfilePage = filterOrUsername.startsWith("@") || filterOrUsername.startsWith("%40");
+  const isEntryPage = slugs.length > 2;
   const isIndexPage = Object.values<string>(EntryFilter).includes(slugs[0]) && slugs.length > 0;
 
   return (
@@ -24,15 +26,24 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
       <Theme />
       <Feedback />
       <Navbar />
-      {isIndexPage && <EntryIndex />}
-      {isProfile && !isIndexPage && (
+      {isIndexPage && !isProfilePage && !isEntryPage && <EntryIndex />}
+      {isProfilePage && !isIndexPage && !isEntryPage && (
         <ProfilePage
           username={filterOrUsername.replace("%40", "")}
           section={communityNameOrAccountFilters}
           searchParams={searchParams}
         />
       )}
-      {!isProfile && !isIndexPage && (
+      {isEntryPage && !isProfilePage && !isIndexPage && (
+        <EntryPage
+          category={slugs[0]}
+          username={slugs[1]}
+          permlink={slugs[2]}
+          isEdit={slugs[3] === "edit"}
+          searchParams={searchParams}
+        />
+      )}
+      {!isProfilePage && !isIndexPage && !isEntryPage && (
         <CommunityPage
           searchParams={searchParams}
           params={{

@@ -10,7 +10,6 @@ import {
 import { QueryIdentifiers } from "../react-query";
 import * as bridgeApi from "../../api/bridge";
 import dmca from "@/dmca.json";
-import { commentHistory } from "@/api/private-api";
 import { Entry, EntryVote } from "@/entities";
 import { makeEntryPath } from "@/utils";
 
@@ -114,23 +113,6 @@ export function useEntryReFetch(entry: Entry | null) {
     mutationKey: ["FETCH_ENTRY", key],
     mutationFn: () => bridgeApi.getPost(entry?.author, entry?.permlink),
     onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
-  });
-}
-
-export function useDeletedEntryCache(author: string, permlink: string) {
-  return useQuery({
-    queryKey: [QueryIdentifiers.DELETED_ENTRY, makeEntryPath("", author, permlink)],
-    queryFn: async () => {
-      const history = await commentHistory(author, permlink);
-      const { body, title, tags } = history.list[0];
-      return {
-        body,
-        title,
-        tags
-      };
-    },
-    initialData: null,
-    refetchOnMount: false
   });
 }
 

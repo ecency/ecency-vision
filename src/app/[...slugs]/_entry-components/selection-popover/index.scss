@@ -1,0 +1,20 @@
+@import "src/styles/vars_mixins";
+
+.pointer {
+    cursor: pointer
+}
+
+.icons-container {
+    svg {
+        width: 20px;
+        height: 20px;
+        color: white !important;
+        fill: white !important;
+    }
+    .quotes {
+        transform: rotateZ(180deg);
+    }
+    .twitter:after {
+        display: none
+    }
+}

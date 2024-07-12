@@ -82,7 +82,8 @@ export enum QueryIdentifiers {
   RECEIVED_VESTING_SHARES = "receiving-vesting-shares",
   REFERRALS = "referrals",
   REFERRALS_STATS = "referrals-stats",
-  MARKET_DATA = "market-data"
+  MARKET_DATA = "market-data",
+  GET_FOLLOWING = "get-following"
 }
 
 function makeQueryClient() {

@@ -4,15 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated market pages">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated market pages pt.2">
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-deleted-entry-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/queries/get-followers-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/instance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/context/provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/distance-detector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-body-extra/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-cross-post-body.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-cross-post-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-discussions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-edit-history.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-is-comment-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-loading-screen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-meta.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-might-contains-muted-comments-warning.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-nsfw-warning.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-show-original.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-similar-entries.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-warnings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-read-time/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-tags.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/md-handler.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/selection-popover/selection-reference.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/similar-entries/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/bridge.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/static-navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/_components/mode-selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/_components/mode-selector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/limit/_components/market-chart/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/limit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/limit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/bridge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bridge.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-post-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-post-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_community-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,43 +111,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.scratch_39.js.executor": "Run",
-    "Node.js.scratch_40.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/market/advanced/_components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[...slugs]/_entry-components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JavaScript"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JavaScript&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -104,11 +159,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/[...slugs]/_entry-components" />
+      <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/app/market/advanced/_components" />
       <recent name="$PROJECT_DIR$/src/app/market/limit/_components" />
       <recent name="$PROJECT_DIR$/src/app/market/_components" />
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src/app/_components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/market/advanced" />
@@ -281,15 +336,14 @@
       <workItem from="1720432282073" duration="87000" />
       <workItem from="1720432376888" duration="9179000" />
       <workItem from="1720445721385" duration="5197000" />
-      <workItem from="1720508971613" duration="4542000" />
-    </task>
-    <task id="LOCAL-00034" summary="Updated chat providers">
-      <option name="closed" value="true" />
-      <created>1716553255308</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1716553255308</updated>
+      <workItem from="1720508971613" duration="4616000" />
+      <workItem from="1720631194135" duration="460000" />
+      <workItem from="1720631666980" duration="3640000" />
+      <workItem from="1720635326245" duration="1058000" />
+      <workItem from="1720636392458" duration="4096000" />
+      <workItem from="1720680752704" duration="53000" />
+      <workItem from="1720680817007" duration="3780000" />
+      <workItem from="1720685272541" duration="9867000" />
     </task>
     <task id="LOCAL-00035" summary="Updated build">
       <option name="closed" value="true" />
@@ -675,11 +729,22 @@
       <option name="project" value="LOCAL" />
       <updated>1720514208688</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Migrated market pages pt.2">
+      <option name="closed" value="true" />
+      <created>1720515545650</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1720515545650</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.py" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -693,7 +758,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated proposals page pt.1" />
     <MESSAGE value="Migrated proposals page pt.2" />
     <MESSAGE value="Migrated proposals page pt.3" />
     <MESSAGE value="Migrated proposal details page" />
@@ -718,7 +782,8 @@
     <MESSAGE value="Fixed posts fetching in index feed page" />
     <MESSAGE value="Fixed entry index menu dropdown styles" />
     <MESSAGE value="Migrated market pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated market pages" />
+    <MESSAGE value="Migrated market pages pt.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated market pages pt.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

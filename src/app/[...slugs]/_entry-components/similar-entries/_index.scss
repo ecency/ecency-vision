@@ -1,0 +1,115 @@
+@import "src/styles/vars_mixins";
+
+.similar-entries-list {
+  margin: 20px 0;
+  padding-top: 15px;
+
+  @include themify(day) {
+    border-top: 1px solid;
+    @apply border-light-300;
+  }
+
+  @include themify(night) {
+    border-top: 1px solid;
+    @apply border-dark-200;
+  }
+
+  .similar-entries-list-header {
+    margin-bottom: 14px;
+
+    .list-header-text {
+      @include themify(day) {
+        @apply text-gray-charcoal;
+      }
+
+      @include themify(night) {
+        @apply text-gray-pinkish;
+      }
+
+      font-weight: 500;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .similar-entries-list-body {
+    display: flex;
+    justify-content: space-between;
+
+    .similar-entries-list-item {
+      cursor: pointer;
+      width: 32%;
+
+      @media (max-width: $sm-break - 1px) {
+        width: 48%;
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+
+      .item-title {
+        display: block;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+
+        @include themify(day) {
+          @apply text-gray-steel;
+        }
+
+        @include themify(night) {
+          @apply text-gray-pinkish;
+        }
+      }
+
+      .item-image {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: 120px;
+        justify-content: center;
+        margin: 6px 0;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 8px;
+
+        @include themify(day) {
+          @apply bg-light-600;
+        }
+
+        @include themify(night) {
+          @apply bg-dark-600;
+        }
+
+        img {
+          height: auto;
+          max-width: 100%;
+        }
+      }
+
+      .item-footer {
+        font-size: 13px;
+
+        @include themify(day) {
+          @apply text-gray-steel;
+          opacity: 0.7;
+        }
+
+        @include themify(night) {
+          @apply text-gray-steel-light-015;
+        }
+
+        .item-footer-date {
+          float: right;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
