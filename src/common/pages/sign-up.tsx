@@ -379,6 +379,16 @@ const SignUpPage = (props: Props | any) => {
                         extension on your browser (If you are a using the web
                         browser, we recommend that you pin it to your browser.)
                       </p>
+                      <h3>
+                      <a
+                        className="ml-1"
+                        href="https://hive-keychain.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        download keychain extension here
+                      </a>
+                      </h3>
                       <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
@@ -435,23 +445,13 @@ const SignUpPage = (props: Props | any) => {
                             </div>
                           </div>
                           <div className="account-password">
-                            <h3>Step 3</h3>
-                            <span>
-                              Confirm if your friend has created your account,
-                              then check your email for instructions on setting
-                              up your account and
-                              <a
-                                className="ml-1"
-                                href="https://hive-keychain.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                download keychain extension here
-                              </a>
-                            </span>
-                            <div className="d-flex" />
-                            <div className="d-flex flex-column align-items-center">
-                              <h3>Step 4</h3>
+                            <div className="d-flex flex-column align-items-center mb-5">
+                              <h3 className="mt-2">Step 3</h3>
+                              <span>
+                                Confirm if your friend has created your account,
+                                then check your email for instructions on setting
+                                up your account
+                              </span>
                               <h4 className="text-danger">
                                 Copy your master password below and paste to
                                 keychain to set up your account
