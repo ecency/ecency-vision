@@ -53,6 +53,7 @@ const OnboardFriend = (props: Props | any) => {
   const [transferAmount, setTransferAmount] = useState(0);
   const [customJsonAmount, setCustomJsonAmount] = useState(0);
   const [rcError, setRcError] = useState("");
+  const [showPubKeys, setShowPubKeys] = useState(false)
 
   useEffect(() => {
     console.log(global)
@@ -401,7 +402,12 @@ const OnboardFriend = (props: Props | any) => {
               </div>
             </div>
             <div className="friend-details mt-3">
-            {urlInfo && (
+              <Button 
+              onClick={() => setShowPubKeys(!showPubKeys)}
+              >
+                {`${ !showPubKeys ? "Show account public keys" : "Hide account public keys"}`}
+              </Button>
+            {urlInfo && showPubKeys && (
               <div className="friend-details">
                 <span>Account public keys</span>
                 <span>{_t("onboard.public-posting")} {urlInfo.keys.postingPubKey}</span>

@@ -28,6 +28,7 @@ import { ActiveUser } from "../store/active-user/types";
 import { getAccount } from "../api/hive";
 import { OffchainUser } from "../components/offchain-users";
 import QRCode from "react-qr-code";
+import { History } from "history";
 
 const HiveLogo = require("../img/hive-logo.jpeg");
 const solanaLogo = require("../img/solanaLogo.png");
@@ -36,11 +37,12 @@ interface Props {
   activeUser: ActiveUser;
   global: Global;
   communities: Community[];
+  history: History;
 }
 
 const SignUpPage = (props: Props | any) => {
   const form = useRef(null);
-  const { global, communities, activeUser } = props;
+  const { global, communities, activeUser, history } = props;
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -64,7 +66,7 @@ const SignUpPage = (props: Props | any) => {
   }, [step]);
 
   const initiateAccount = async () => {
-    if (!username || !email) {
+    if (!username) {
       return;
     }
 
@@ -75,7 +77,7 @@ const SignUpPage = (props: Props | any) => {
       setAccountPassword(password);
       const dataToEncode = {
         username,
-        email,
+        email: email ? email : "",
         referral,
         keys: {
           activePubKey: keys.activePubkey,
@@ -97,13 +99,35 @@ const SignUpPage = (props: Props | any) => {
     setInProgress(true);
     const { value: username } = e.target;
     setUsername(username.toLowerCase());
-    const existingAccount = await getAccount(username);
+    let existingAccount;
+
+    if(username.length <= 16)
+     existingAccount = await getAccount(username);
 
     if (existingAccount) {
       setError("username not available");
     } else {
       setError("");
     }
+
+    if (username.length > 16) {
+      setError(_t("sign-up.username-max-length-error"));
+    } else {
+      username.split(".").some((item: any) => {
+        if (item.length < 3) {
+          setError(_t("sign-up.username-min-length-error"));
+        } else if (!/^[\x00-\x7F]*$/.test(item[0])) {
+          setError(_t("sign-up.username-no-ascii-first-letter-error"));
+        } else if (!/^([a-zA-Z0-9]|-|\.)+$/.test(item)) {
+          setError(_t("sign-up.username-contains-symbols-error"));
+        } else if (item.includes("--")) {
+          setError(_t("sign-up.username-contains-double-hyphens"));
+        } else if (/^\d/.test(item)) {
+          setError(_t("sign-up.username-starts-number"));
+        }
+      });
+    }
+    
     setInProgress(false);
   };
 
@@ -113,8 +137,9 @@ const SignUpPage = (props: Props | any) => {
   };
 
   const referralChanged = (e: { target: { value: any } }) => {
-    const { value: email } = e.target;
-    setReferral(email.toLowerCase());
+    const { value: referall } = e.target;
+    setReferral(referall.toLowerCase());
+    console.log(referral)
   };
 
   const getCurrentCommunity = () => {
@@ -288,7 +313,7 @@ const SignUpPage = (props: Props | any) => {
                                   placeholder={_t("sign-up.email")}
                                   value={email}
                                   onChange={emailChanged}
-                                  required={true}
+                                  // required={true}
                                   onInvalid={(e: any) =>
                                     handleInvalid(
                                       e,
@@ -357,6 +382,16 @@ const SignUpPage = (props: Props | any) => {
                         extension on your browser (If you are a using the web
                         browser, we recommend that you pin it to your browser.)
                       </p>
+                      <h3>
+                      <a
+                        className="ml-1"
+                        href="https://hive-keychain.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        download keychain extension here
+                      </a>
+                      </h3>
                       <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
                           {_t("onboard.username")} <strong>{username}</strong>
@@ -379,27 +414,20 @@ const SignUpPage = (props: Props | any) => {
                           )}
                           {activeUser && (
                             <h5 className="text-danger">
-                              Click link below or scan QR code
+                              Click or scan QR code
                             </h5>
                           )}
                           <div className="link-wrap">
-                            <div>
-                              {!activeUser ? (
-                                <></>
-                              ) : (
-                                <a
-                                  href={`${window.origin}/onboard-friend/${urlHash}`}
-                                >
-                                  {_t("onboard.click-link")}
-                                </a>
-                              )}
-                            </div>
                             <div
                               onClick={() => {
-                                clipboard(
-                                  `${window.origin}/onboard-friend/${urlHash}`
-                                );
-                                success(_t("onboard.copy-link"));
+                                if(!activeUser) {
+                                  clipboard(
+                                    `${window.origin}/onboard-friend/${urlHash}`
+                                  );
+                                  success(_t("onboard.copy-link"));
+                                } else {
+                                  history.push(`/onboard-friend/${urlHash}`)
+                                }
                               }}
                               style={{
                                 background: "white",
@@ -420,23 +448,13 @@ const SignUpPage = (props: Props | any) => {
                             </div>
                           </div>
                           <div className="account-password">
-                            <h3>Step 3</h3>
-                            <span>
-                              Confirm if your friend has created your account,
-                              then check your email for instructions on setting
-                              up your account and
-                              <a
-                                className="ml-1"
-                                href="https://hive-keychain.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                download keychain extension here
-                              </a>
-                            </span>
-                            <div className="d-flex" />
-                            <div className="d-flex flex-column align-items-center">
-                              <h3>Step 4</h3>
+                            <div className="d-flex flex-column align-items-center mb-5">
+                              <h3 className="mt-2">Step 3</h3>
+                              <span>
+                                Confirm if your friend has created your account,
+                                then check your email for instructions on setting
+                                up your account
+                              </span>
                               <h4 className="text-danger">
                                 Copy your master password below and paste to
                                 keychain to set up your account
