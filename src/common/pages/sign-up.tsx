@@ -99,7 +99,10 @@ const SignUpPage = (props: Props | any) => {
     setInProgress(true);
     const { value: username } = e.target;
     setUsername(username.toLowerCase());
-    const existingAccount = await getAccount(username);
+    let existingAccount;
+
+    if(username.length <= 16)
+     existingAccount = await getAccount(username);
 
     if (existingAccount) {
       setError("username not available");
