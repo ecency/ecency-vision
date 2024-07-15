@@ -176,7 +176,7 @@
     "username-min-length-error": "Length of username should be at least 3 characters",
     "username-max-length-error": "Length of username should not be more than 16 characters",
     "username-no-ascii-first-letter-error": "First character should be a Letter",
-    "username-contains-symbols-error": "Should not contain spaces, should contain Letters, Numbers, Hyphen only",
+    "username-contains-symbols-error": "Should not contain spaces, can contain Letters, Numbers, Hyphen only",
     "username-contains-double-hyphens": "Should not contain double Hyphens",
     "username-exists": "This username already registered. Please, try another one",
     "username-starts-number": "Should not start with Numbers",
