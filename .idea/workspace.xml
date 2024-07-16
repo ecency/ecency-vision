@@ -4,75 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed client side components">
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/save-draft.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/schedule.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/update.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/community-selector-browser.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/community-selector-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-body-lazy-renderer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-poll-preview.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-preview-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-video-attachments.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/word-counter/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/word-counter/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_functions/handle-shortcuts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_functions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/advanced-manager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/api-draft-detector.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/body-versioning-manager.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/community-detector.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-type-detection.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/local-draft-manager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/polls-manager.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-manager-context.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-manager.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-migration-adapter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/advanced.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/post-base.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/video-props.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/submit/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/path.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/faq/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/intro-tour/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/intro-tour/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Migrated submit page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/private-api/drafts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/private-api/drafts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/editor-toolbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/full-height.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/full-height.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_base.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/temp-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/temp-entry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,15 +286,7 @@
       <workItem from="1721103610089" duration="547000" />
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
-      <workItem from="1721107217090" duration="7037000" />
-    </task>
-    <task id="LOCAL-00038" summary="Updated discover page styles">
-      <option name="closed" value="true" />
-      <created>1716874296121</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1716874296121</updated>
+      <workItem from="1721107217090" duration="7374000" />
     </task>
     <task id="LOCAL-00039" summary="Updated discover page styles">
       <option name="closed" value="true" />
@@ -746,7 +672,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720804153966</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Migrated submit page">
+      <option name="closed" value="true" />
+      <created>1721154074485</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1721154074485</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,7 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated proposal details page" />
     <MESSAGE value="Migrated profile page pt. 1" />
     <MESSAGE value="Migrated profile page pt. 2" />
     <MESSAGE value="Migrated profile page pt. 3" />
@@ -792,7 +725,8 @@
     <MESSAGE value="Migrated market pages pt.2" />
     <MESSAGE value="Migrated entry page" />
     <MESSAGE value="Fixed client side components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed client side components" />
+    <MESSAGE value="Migrated submit page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated submit page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -57,13 +57,13 @@ export function CommunitySelector({ tags, onSelect }: Props) {
             <span className="label">{community.title}</span> {menuDownSvg}
           </>
         )}
-        {((!community && tags?.length > 0) || picked) && (
+        {!community && (tags?.length > 0 || picked) && (
           <>
             <UserAvatar username={activeUser?.username ?? ""} size="small" />
             <span className="label">{i18next.t("community-selector.my-blog")}</span> {menuDownSvg}
           </>
         )}
-        {(!(!community && tags?.length > 0) || picked) && !community && (
+        {!(tags?.length > 0 || picked) && !community && (
           <>
             <span className="label">{i18next.t("community-selector.choose")}</span> {menuDownSvg}
           </>
