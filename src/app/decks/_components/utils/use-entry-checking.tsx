@@ -21,7 +21,7 @@ export function useEntryChecking(
           const entry = await bridgeApi.getPost(activeUser!.username, initialEntry.permlink);
           const isAlreadyAdded =
             initialEntry.permlink === entry?.permlink && !isLocal(initialEntry);
-          const isCustomCondition = customCondition?.(initialEntry, entry) ?? true;
+          const isCustomCondition = customCondition?.(initialEntry, entry ?? null) ?? true;
           if (entry && (!isAlreadyAdded || isCustomCondition)) {
             onSuccessCheck(entry);
           }
