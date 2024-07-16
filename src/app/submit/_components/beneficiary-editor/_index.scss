@@ -1,0 +1,10 @@
+.beneficiary-editor-dialog {
+  .modal-body {
+    padding: 0 10px;
+
+    .beneficiary-list {
+      max-height: 400px;
+      overflow: auto;
+    }
+  }
+}

@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 export function FullHeight() {
   useEffect(() => {
-    document.getElementById("root")?.classList.add("full-height");
+    document.querySelector(".app-content")?.classList.add("full-height");
     return () => {
-      document.getElementById("root")?.classList.remove("full-height");
+      document.querySelector(".app-content")?.classList.remove("full-height");
     };
   }, []);
 

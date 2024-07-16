@@ -1,0 +1,47 @@
+@import "src/styles/vars_mixins";
+
+.post-scheduler-scheduled {
+  display: flex;
+  align-items: center;
+
+  .date, .reset-date {
+    @apply text-blue-dark-sky;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .date {
+    font-size: 90%;
+    margin-right: 20px;
+  }
+
+  .reset-date {
+    display: inline-flex;
+    svg {
+      height: 16px;
+    }
+  }
+}
+
+.post-scheduler-dialog {
+  .modal-body {
+    padding-top: 10px;
+
+    .picker {
+      margin-bottom: 20px;
+    }
+  }
+}
+.error {
+  display:flex;
+  padding: 12px 30px;
+  justify-content: center;
+  .error-info {
+    @apply text-red-020;
+    font-size: 93%;
+    font-weight: 400;
+  }
+}

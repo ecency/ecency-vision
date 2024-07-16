@@ -8,10 +8,10 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-#root {
+body {
   min-width: 280px;
 
-  &.full-height {
+  .full-height {
     position: absolute;
     left: 0;
     right: 0;

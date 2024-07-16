@@ -1,0 +1,81 @@
+@import "src/styles/vars_mixins";
+
+.tag-selector {
+  .tag-list {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
+    .tag-item {
+      padding: 4px 8px 4px 12px;
+      margin: 0 4px 2px 0;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      &.tag-item-ghost {
+        background-color: $primary !important;
+      }
+
+      @include tag;
+
+      .item-inner {
+        cursor: move;
+        // TagLink
+        a {
+          @apply text-white;
+          pointer-events: none;
+        }
+      }
+
+      .item-delete {
+        margin-left: 6px;
+        cursor: pointer;
+        opacity: 0.6;
+
+        svg {
+          height: 16px;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.has-tags {
+    display: flex;
+
+    .form-control {
+      width: 100px;
+    }
+
+    .tag-list {
+      display: flex;
+    }
+  }
+
+  .suggestion-list {
+    left: 6px;
+    width: 300px;
+
+    svg {
+      height: 14px;
+      margin-right: 6px;
+      opacity: 0.6;
+    }
+  }
+  .warning {
+    @apply text-red-030;
+    font-size: 12px;
+    font-family: $font-family-base;
+    padding: 0.375rem 0.75rem;
+  }
+}

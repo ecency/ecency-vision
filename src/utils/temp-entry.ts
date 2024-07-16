@@ -1,6 +1,6 @@
 import moment from "moment";
-import { Entry, FullAccount } from "@/entities";
-import pack from "../../package.json";
+import { Entry, FullAccount, JsonMetadata } from "@/entities";
+import appPackage from "../../package.json";
 
 export interface TempEntryProps {
   author: FullAccount;
@@ -12,6 +12,7 @@ export interface TempEntryProps {
   description: string | null;
   tags: string[];
   post_id?: string;
+  jsonMeta?: JsonMetadata;
 }
 
 export const correctIsoDate = (d: string): string => d.split(".")[0];
@@ -36,8 +37,8 @@ export function tempEntry(p: TempEntryProps): Entry {
     curator_payout_value: "0.000 HBD",
     depth: 0,
     is_paidout: false,
-    json_metadata: {
-      app: `ecency/${pack.version}-vision`,
+    json_metadata: p.jsonMeta ?? {
+      app: `ecency/${appPackage.version}-vision`,
       format: "markdown+html",
       tags: p.tags,
       description: p.description

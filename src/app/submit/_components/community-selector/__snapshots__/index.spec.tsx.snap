@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) Empty tags. 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  id="community-picker"
+  onClick={[Function]}
+>
+  <span
+    className="label"
+  >
+    Choose a community
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(2) Tags with no community 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  id="community-picker"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(3) Tags with community. but in the end 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  id="community-picker"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(4) Tags with community. 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  id="community-picker"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/hive-125125/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    Ecency
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(5) Tags with community. But not valid 1`] = `
+<a
+  className="community-selector"
+  href="#"
+  id="community-picker"
+  onClick={[Function]}
+>
+  <span
+    className="user-avatar small"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+      }
+    }
+  />
+  <span
+    className="label"
+  >
+    My Blog
+  </span>
+   
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7,10L12,15L17,10H7Z"
+      fill="currentColor"
+    />
+  </svg>
+</a>
+`;
+
+exports[`(6) Browser 1`] = `
+<div
+  className="browser"
+>
+  <div
+    className="search"
+  >
+    <input
+      className="border-2 rounded-3xl py-2 px-3 w-full outline-none shadow-0 focus:border-gray-500 hover:border-gray-300 duration-300 dark:border-gray-700 dark:hover:border-gray-600 dark:bg-gray-800 aria-invalid:border-red"
+      id="search-communities-input"
+      onChange={[Function]}
+      placeholder="Search Communities"
+      spellCheck={true}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="browser-list"
+  >
+    <div
+      className="flex flex-wrap py-3 gap-3"
+    >
+      <a
+        className="flex"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
+        >
+          <span
+            className="user-avatar small"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/foo/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notranslate"
+            >
+              My Blog
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="flex"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
+        >
+          <span
+            className="user-avatar small"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-125125/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notranslate"
+            >
+              Ecency
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="flex"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
+        >
+          <span
+            className="user-avatar small"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-131131/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notranslate"
+            >
+              Foo
+            </span>
+          </div>
+        </div>
+      </a>
+      <a
+        className="flex"
+        href="#"
+        onClick={[Function]}
+      >
+        <div
+          className="flex bg-light-600 hover:bg-blue-dark-sky-040 dark:bg-blue-metallic-20 dark:hover:bg-blue-metallic-10 rounded-md px-2 py-1.5 text-sm items-center gap-2 hover:text-blue-dark-sky dark:hover:text-white cursor-pointer"
+        >
+          <span
+            className="user-avatar small"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundImage": "url(https://images.ecency.com/u/hive-145145/avatar/small)",
+              }
+            }
+          />
+          <div
+            className="item-info"
+          >
+            <span
+              className="item-name notranslate"
+            >
+              Bar
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useRef, useState } from "react";
 import { useMountedState } from "react-use";
 import { v4 } from "uuid";

@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(1) No tags 1`] = `
+<div
+  className="tag-selector"
+  id="submit-tags-selector"
+>
+  <div
+    className="suggestion relative z-[11]"
+  >
+    <input
+      autoComplete="off"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onPaste={[Function]}
+      placeholder="Tags. First tag is main category. Sortable."
+      spellCheck={true}
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div />
+  </div>
+  
+</div>
+`;
+
+exports[`(2) With tags 1`] = `
+<div
+  className="tag-selector has-tags"
+  id="submit-tags-selector"
+>
+  <div
+    className="suggestion relative z-[11]"
+  >
+    <input
+      autoComplete="off"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onPaste={[Function]}
+      placeholder="Add More"
+      spellCheck={true}
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div />
+  </div>
+  
+  <div
+    className="tag-list"
+  >
+    <div
+      className="tag-item"
+      data-id="foo"
+    >
+      <div
+        className="item-inner"
+      >
+        <span>
+          foo
+        </span>
+      </div>
+      <span
+        className="item-delete"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      className="tag-item"
+      data-id="bar"
+    >
+      <div
+        className="item-inner"
+      >
+        <span>
+          bar
+        </span>
+      </div>
+      <span
+        className="item-delete"
+        onClick={[Function]}
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`(3) No tags with focus 1`] = `
+<div
+  className="tag-selector"
+  id="submit-tags-selector"
+>
+  <div
+    className="suggestion relative z-[11]"
+  >
+    <input
+      autoComplete="off"
+      className="form-control px-3 py-1 w-full outline-none shadow-0"
+      id="the-tag-input"
+      maxLength={24}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onPaste={[Function]}
+      placeholder="Enter tag"
+      spellCheck={true}
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div />
+  </div>
+  
+</div>
+`;

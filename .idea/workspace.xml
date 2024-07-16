@@ -5,13 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed client side components">
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/save-draft.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/schedule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_api/update.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/community-selector-browser.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/community-selector-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-body-lazy-renderer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-poll-preview.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-preview-content.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/submit-video-attachments.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/word-counter/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_components/word-counter/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_functions/handle-shortcuts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_functions/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/advanced-manager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/api-draft-detector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/body-versioning-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/community-detector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-type-detection.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/local-draft-manager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/polls-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-manager-context.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_hooks/three-speak-migration-adapter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/advanced.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/post-base.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/_types/video-props.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/submit/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/path.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/faq/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/intro-tour/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/intro-tour/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/private-api/drafts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/private-api/drafts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/editor-toolbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/full-height.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/full-height.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/temp-entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/temp-entry.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,43 +116,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/app/[...slugs]/_entry-components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.scratch_39.js.executor": "Run",
+    "Node.js.scratch_40.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "feature/nextjs-migration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/features/faq",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JavaScript&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -103,18 +164,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/[...slugs]/_entry-components" />
-      <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/app/market/advanced/_components" />
-      <recent name="$PROJECT_DIR$/src/app/market/limit/_components" />
-      <recent name="$PROJECT_DIR$/src/app/market/_components" />
+      <recent name="$PROJECT_DIR$/src/features/faq" />
+      <recent name="$PROJECT_DIR$/src/app/submit/_components" />
+      <recent name="$PROJECT_DIR$/src/features/ui" />
+      <recent name="$PROJECT_DIR$/src/app/submit" />
+      <recent name="$PROJECT_DIR$/src/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/submit/_components" />
       <recent name="$PROJECT_DIR$/src/app/market/advanced" />
       <recent name="$PROJECT_DIR$/src/app/market/_enums" />
       <recent name="$PROJECT_DIR$/src/app/market/_components" />
       <recent name="$PROJECT_DIR$/src/app/market" />
-      <recent name="$PROJECT_DIR$/src/app/[...slugs]" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -287,15 +348,11 @@
       <workItem from="1720636392458" duration="4096000" />
       <workItem from="1720680752704" duration="53000" />
       <workItem from="1720680817007" duration="3780000" />
-      <workItem from="1720685272541" duration="15841000" />
-    </task>
-    <task id="LOCAL-00037" summary="Moved from global axios to local">
-      <option name="closed" value="true" />
-      <created>1716739384067</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1716739384067</updated>
+      <workItem from="1720685272541" duration="16038000" />
+      <workItem from="1721103610089" duration="547000" />
+      <workItem from="1721104163993" duration="705000" />
+      <workItem from="1721105243131" duration="1563000" />
+      <workItem from="1721107217090" duration="7037000" />
     </task>
     <task id="LOCAL-00038" summary="Updated discover page styles">
       <option name="closed" value="true" />
@@ -681,7 +738,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720800536248</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Fixed client side components">
+      <option name="closed" value="true" />
+      <created>1720804153966</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1720804153966</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

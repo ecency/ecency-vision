@@ -1,0 +1,100 @@
+@import "src/styles/vars_mixins";
+
+.community-selector {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  .user-avatar {
+    margin-right: 6px;
+  }
+
+  .label {
+    margin-right: 2px;
+  }
+
+  svg {
+    height: 22px;
+    @apply text-silver;
+  }
+
+  &:hover {
+    svg {
+      @apply text-gray-warm;
+    }
+  }
+}
+
+.community-selector-modal {
+  .modal-header{
+    button {
+      position: absolute;
+      right: 15px;
+      top: -2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      @apply bg-blue-metallic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: $box-shadow-alt;
+      @apply text-white;
+      outline: none;
+      border: none;
+      opacity: 1;
+     
+      span:first-child{
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 0;
+        margin-top: -4px;
+        font-weight: 200;
+      }
+    }
+    button:hover {
+      opacity: 1!important;
+    }
+  }
+  .modal-body {
+    .browser {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: auto;
+      margin-bottom: 1.4rem;
+      .search {
+        width: 100%;
+        margin: 0 auto 50px;
+        input {
+          border-radius: 25px !important;
+          padding-left: 1rem;
+          width: 100%;
+          margin: auto;
+        }
+      }
+
+      .browser-list {
+        min-height: 340px;
+        width: 100%;
+        height: auto;
+        
+        @include user-grid-list(1, 1, 2);
+
+        .list-body .list-item:hover .item-main .item-info .item-name {
+          @apply text-blue-dark-sky;
+          height: fit-content;
+        }
+        .list-body {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
