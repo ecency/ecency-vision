@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added edit draft page">
-      <change afterPath="$PROJECT_DIR$/src/app/communities/create-hs/page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added community create hs page">
+      <change afterPath="$PROJECT_DIR$/src/app/_components/hiring-console-log.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,15 +289,7 @@
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
       <workItem from="1721107217090" duration="13283000" />
-      <workItem from="1721197975419" duration="462000" />
-    </task>
-    <task id="LOCAL-00043" summary="Updated assets">
-      <option name="closed" value="true" />
-      <created>1718699472747</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1718699472747</updated>
+      <workItem from="1721197975419" duration="1347000" />
     </task>
     <task id="LOCAL-00044" summary="Added one query client for each request and persist data between server and client">
       <option name="closed" value="true" />
@@ -681,7 +675,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721197639534</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Added community create hs page">
+      <option name="closed" value="true" />
+      <created>1721198453717</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1721198453717</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated profile page pt. 5" />
     <MESSAGE value="Migrated profile page pt. 6" />
     <MESSAGE value="Build fixups" />
     <MESSAGE value="Build imports" />
@@ -727,7 +728,8 @@
     <MESSAGE value="Added entry editing page" />
     <MESSAGE value="Updated build, removed warnings" />
     <MESSAGE value="Added edit draft page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added edit draft page" />
+    <MESSAGE value="Added community create hs page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added community create hs page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
