@@ -4,7 +4,7 @@ import { catchPostImage, postBodySummary } from "@ecency/render-helper";
 import Head from "next/head";
 import { entryCanonical } from "@/utils/entry-canonical";
 import { useGlobalStore } from "@/core/global-store";
-import * as defaults from "@/defaults.json";
+import defaults from "@/defaults.json";
 import moment from "moment";
 
 interface Props {

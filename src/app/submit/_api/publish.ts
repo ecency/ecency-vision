@@ -19,7 +19,7 @@ import {
   makeEntryPath,
   tempEntry
 } from "@/utils";
-import * as appPackage from "../../../../package.json";
+import appPackage from "../../../../package.json";
 import i18next from "i18next";
 import { error, success } from "@/features/shared";
 import { useRouter } from "next/navigation";

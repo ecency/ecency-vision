@@ -31,7 +31,7 @@ import i18next from "i18next";
 import { QueryIdentifiers } from "@/core/react-query";
 import { claimPoints, getCurrencyTokenRate } from "@/api/private-api";
 import { useGlobalStore } from "@/core/global-store";
-import { usePointsQuery } from "@/api/queries";
+import { getPointsQuery } from "@/api/queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { TransactionType } from "@/enums";
@@ -85,7 +85,11 @@ export const WalletEcency = ({ account }: Props) => {
   const [showPurchaseDialog, setShowPurchaseDialog] = useState(false);
   const [filter, setFilter] = useState(0);
 
-  const { data: points, isLoading, refetch } = usePointsQuery(account.name, filter);
+  const {
+    data: points,
+    isLoading,
+    refetch
+  } = getPointsQuery(account.name, filter).useClientQuery();
 
   const queryClient = useQueryClient();
 
@@ -179,12 +183,12 @@ export const WalletEcency = ({ account }: Props) => {
       <div className="wallet-ecency">
         <div className="wallet-main">
           <div className="wallet-info">
-            {points.uPoints !== "0.000" && (
+            {points?.uPoints !== "0.000" && (
               <>
                 <div className="unclaimed-rewards">
                   <div className="title">{i18next.t("points.unclaimed-points")}</div>
                   <div className="rewards">
-                    <span className="reward-type">{`${points.uPoints}`}</span>
+                    <span className="reward-type">{`${points?.uPoints}`}</span>
                     {isMyPage && (
                       <Tooltip content={i18next.t("points.claim-reward-points")}>
                         <a className={`claim-btn ${claiming ? "in-progress" : ""}`} onClick={claim}>
@@ -232,7 +236,7 @@ export const WalletEcency = ({ account }: Props) => {
                                         </div>
                                     )} */}
                   <>
-                    {points.points} {"POINTS"}
+                    {points?.points} {"POINTS"}
                   </>
                 </div>
               </div>
@@ -251,7 +255,7 @@ export const WalletEcency = ({ account }: Props) => {
                     `${i18next.t("wallet.calculating")}...`
                   ) : (
                     <FormattedCurrency
-                      value={estimatedPointsValue * parseFloat(points.points)}
+                      value={estimatedPointsValue * parseFloat(points?.points ?? "0")}
                       fixAt={3}
                     />
                   )}

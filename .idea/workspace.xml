@@ -4,11 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community selector in submit page">
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-edit-page.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added entry editing page">
+      <change afterPath="$PROJECT_DIR$/src/core/global-store/initialization/initial-state.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/utils/use-entry-checking.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/utils/use-entry-checking.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/points-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/points-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-meta.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-meta.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-ecency/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-balance-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-wallet-balance-column.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/active-user-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/client-init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/initialization/client-init.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/global-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/global-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/initial-state.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/notifications-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/notifications-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/server-init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/initialization/server-init.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/signing-key-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/signing-key-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/subscriptions-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/subscriptions-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/ui-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/ui-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/users-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/users-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +98,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -107,11 +126,11 @@
       <recent name="$PROJECT_DIR$/src/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/core/global-store/initialization" />
+      <recent name="$PROJECT_DIR$/src/core/global-store/modules" />
       <recent name="$PROJECT_DIR$/src/app/submit/_components" />
       <recent name="$PROJECT_DIR$/src/app/market/advanced" />
       <recent name="$PROJECT_DIR$/src/app/market/_enums" />
-      <recent name="$PROJECT_DIR$/src/app/market/_components" />
-      <recent name="$PROJECT_DIR$/src/app/market" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -288,15 +307,7 @@
       <workItem from="1721103610089" duration="547000" />
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
-      <workItem from="1721107217090" duration="8222000" />
-    </task>
-    <task id="LOCAL-00040" summary="Migrated community card, started community page">
-      <option name="closed" value="true" />
-      <created>1717048285784</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1717048285784</updated>
+      <workItem from="1721107217090" duration="12654000" />
     </task>
     <task id="LOCAL-00041" summary="Migrated community menu, cover, subscribers, activities">
       <option name="closed" value="true" />
@@ -682,7 +693,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721154455413</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Added entry editing page">
+      <option name="closed" value="true" />
+      <created>1721155412900</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1721155412900</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,7 +722,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated profile page pt. 2" />
     <MESSAGE value="Migrated profile page pt. 3" />
     <MESSAGE value="Migrated profile page pt. 4" />
     <MESSAGE value="Migrated profile page pt. 5" />
@@ -728,7 +746,8 @@
     <MESSAGE value="Fixed client side components" />
     <MESSAGE value="Migrated submit page" />
     <MESSAGE value="Fixed community selector in submit page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed community selector in submit page" />
+    <MESSAGE value="Added entry editing page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added entry editing page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

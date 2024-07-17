@@ -9,7 +9,11 @@ import { PrivateKey } from "@hiveio/dhive";
 import { error } from "../feedback";
 import { SearchByUsername } from "../search-by-username";
 import { isAfter } from "date-fns";
-import { getBoostPlusPricesQuery, useGetBoostPlusAccountPricesQuery } from "@/api/queries";
+import {
+  getBoostPlusPricesQuery,
+  getPointsQuery,
+  useGetBoostPlusAccountPricesQuery
+} from "@/api/queries";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { boostPlus, boostPlusHot, boostPlusKc, formatError } from "@/api/operations";
@@ -30,6 +34,7 @@ export function BoostDialog({ onHide }: Props) {
   const [account, setAccount] = useState("");
   const [inProgress, setInProgress] = useState(false);
 
+  const { data: activeUserPoints } = getPointsQuery(activeUser?.username).useClientQuery();
   const { data: alreadyBoostAccount } = useGetBoostPlusAccountPricesQuery(account);
 
   const price = useMemo(
@@ -38,7 +43,7 @@ export function BoostDialog({ onHide }: Props) {
   );
   const balanceError = useMemo(
     () =>
-      parseFloat(activeUser?.points.points ?? "0") < price
+      parseFloat(activeUserPoints?.points ?? "0") < price
         ? i18next.t("trx-common.insufficient-funds")
         : "",
     [activeUser, price]
@@ -128,7 +133,7 @@ export function BoostDialog({ onHide }: Props) {
                       className={`balance-input ${balanceError ? "is-invalid" : ""}`}
                       plaintext={true}
                       readOnly={true}
-                      value={`${activeUser?.points.points} POINTS`}
+                      value={`${activeUserPoints?.points} POINTS`}
                     />
                     {balanceError && <small className="pl-3 text-red">{balanceError}</small>}
                     {isAlreadyBoosted && (

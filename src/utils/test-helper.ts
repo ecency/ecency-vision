@@ -26,7 +26,7 @@ import {
   TrendingTags,
   Vote
 } from "@/entities";
-import { GlobalStore } from "@/core/global-store/initial-state";
+import { GlobalStore } from "@/core/global-store/initialization/initial-state";
 import { AllFilter, ListStyle, Theme } from "@/enums";
 
 export const allOver = () => new Promise((resolve) => resolve(1));

@@ -13,7 +13,7 @@ import { checkAllSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import { promoteHot } from "@/api/operations";
 import { usePreCheckPromote, usePromoteByApi, usePromoteByKeychain } from "@/api/mutations";
-import { useGetPromotePriceQuery, useSearchPathQuery } from "@/api/queries";
+import { getPointsQuery, useGetPromotePriceQuery, useSearchPathQuery } from "@/api/queries";
 import { useMount } from "react-use";
 import { Entry } from "@/entities";
 
@@ -31,6 +31,7 @@ export function Promote({ onHide, entry }: Props) {
   const [duration, setDuration] = useState(1);
   const [balanceError, setBalanceError] = useState("");
 
+  const { data: activeUserPoints } = getPointsQuery(activeUser?.username).useClientQuery();
   const { data: prices, isLoading: isPricesLoading } = useGetPromotePriceQuery();
   const { data: paths } = useSearchPathQuery(pathQuery);
 
@@ -71,7 +72,7 @@ export function Promote({ onHide, entry }: Props) {
   useEffect(() => {
     const { price } = prices?.find((x) => x.duration === duration)!;
     setBalanceError(
-      parseFloat(activeUser!.points.points) < price
+      parseFloat(activeUserPoints?.points ?? "0.0") < price
         ? i18next.t("trx-common.insufficient-funds")
         : ""
     );
@@ -146,7 +147,7 @@ export function Promote({ onHide, entry }: Props) {
                       className={`balance-input ${balanceError ? "is-invalid" : ""}`}
                       plaintext={true}
                       readOnly={true}
-                      value={`${activeUser?.points.points} POINTS`}
+                      value={`${activeUserPoints?.points} POINTS`}
                     />
                     {balanceError && <small className="pl-3 text-red">{balanceError}</small>}
                   </div>

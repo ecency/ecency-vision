@@ -1,13 +1,13 @@
 import { createStore } from "zustand";
 import { combine } from "zustand/middleware";
-import { INITIAL_STATE } from "@/core/global-store/initial-state";
-import { createUiActions } from "@/core/global-store/ui-module";
-import { createSubscriptionsActions } from "@/core/global-store/subscriptions-module";
-import { createGlobalActions } from "@/core/global-store/global-module";
-import { createUsersActions } from "@/core/global-store/users-module";
-import { createActiveUserActions } from "@/core/global-store/active-user-module";
-import { createSigningKeyActions } from "@/core/global-store/signing-key-module";
-import { createNotificationsActions } from "@/core/global-store/notifications-module";
+import { INITIAL_STATE } from "@/core/global-store/initialization/initial-state";
+import { createUiActions } from "@/core/global-store/modules/ui-module";
+import { createSubscriptionsActions } from "@/core/global-store/modules/subscriptions-module";
+import { createGlobalActions } from "@/core/global-store/modules/global-module";
+import { createUsersActions } from "@/core/global-store/modules/users-module";
+import { createAuthenticationActions } from "@/core/global-store/modules/authentication-module";
+import { createSigningKeyActions } from "@/core/global-store/modules/signing-key-module";
+import { createNotificationsActions } from "@/core/global-store/modules/notifications-module";
 import { cache } from "react";
 
 type FINAL_STATE = typeof INITIAL_STATE &
@@ -15,7 +15,7 @@ type FINAL_STATE = typeof INITIAL_STATE &
   ReturnType<typeof createSubscriptionsActions> &
   ReturnType<typeof createGlobalActions> &
   ReturnType<typeof createUsersActions> &
-  ReturnType<typeof createActiveUserActions> &
+  ReturnType<typeof createAuthenticationActions> &
   ReturnType<typeof createSigningKeyActions> &
   ReturnType<typeof createNotificationsActions>;
 
@@ -26,7 +26,7 @@ const getServerStore = cache(() =>
       ...createSubscriptionsActions(set),
       ...createGlobalActions(set, getState),
       ...createUsersActions(),
-      ...createActiveUserActions(set, getState),
+      ...createAuthenticationActions(set, getState),
       ...createSigningKeyActions(set, getState),
       ...createNotificationsActions(set, getState)
     }))

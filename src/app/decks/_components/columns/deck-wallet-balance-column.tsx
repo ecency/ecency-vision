@@ -5,7 +5,7 @@ import { UserDeckGridItem } from "../types";
 import "./_deck-wallet-balance-column.scss";
 import { DeckGridContext } from "../deck-manager";
 import { Spinner } from "@ui/spinner";
-import { getDynamicPropsQuery, usePointsQuery } from "@/api/queries";
+import { getDynamicPropsQuery, getPointsQuery } from "@/api/queries";
 import { FullAccount } from "@/entities";
 import { getAccount, getConversionRequests } from "@/api/hive";
 import { getCurrencyTokenRate } from "@/api/private-api";
@@ -62,9 +62,7 @@ export const DeckWalletBalanceColumn = ({
   // Ecency wallet
   const [pointsLoading, setPointsLoading] = useState(false);
   const [estimatedValue, setEstimatedValue] = useState(0);
-  const {
-    data: { points }
-  } = usePointsQuery(username);
+  const { data: points } = getPointsQuery(username).useClientQuery();
 
   // Hive wallet
   const [hive, setHive] = useState("0");
@@ -255,7 +253,12 @@ export const DeckWalletBalanceColumn = ({
               <Card
                 title={i18next.t("wallet.estimated-points")}
                 description={i18next.t("wallet.estimated-description-points")}
-                value={<FormattedCurrency value={estimatedValue * parseFloat(points)} fixAt={3} />}
+                value={
+                  <FormattedCurrency
+                    value={estimatedValue * parseFloat(points?.points ?? "0")}
+                    fixAt={3}
+                  />
+                }
                 isLoading={pointsLoading}
               />
             </>

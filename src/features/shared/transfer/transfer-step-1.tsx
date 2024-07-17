@@ -14,7 +14,7 @@ import {
   vestsToHp
 } from "@/utils";
 import { useGlobalStore } from "@/core/global-store";
-import { getDynamicPropsQuery, getTransactionsQuery } from "@/api/queries";
+import { getDynamicPropsQuery, getPointsQuery, getTransactionsQuery } from "@/api/queries";
 import { TransferFormText } from "@/features/shared/transfer/transfer-form-text";
 import { TransferAssetSwitch } from "@/features/shared/transfer/transfer-assets-switch";
 import { EXCHANGE_ACCOUNTS } from "@/consts";
@@ -51,6 +51,7 @@ export function TransferStep1({ titleLngKey }: Props) {
     setAsset
   } = useTransferSharedState();
 
+  const { data: activeUserPoints } = getPointsQuery(activeUser?.username).useClientQuery();
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
   const { data: transactions, isLoading: inProgress } = getTransactionsQuery(
     activeUser?.username
@@ -146,7 +147,7 @@ export function TransferStep1({ titleLngKey }: Props) {
 
   const getBalance = useCallback((): number => {
     if (asset === "POINT") {
-      return parseAsset(activeUser!.points.points).amount;
+      return parseAsset(activeUserPoints?.points ?? "0.0").amount;
     }
     const w = new HiveWallet(activeUser!.data, dynamicProps!);
 

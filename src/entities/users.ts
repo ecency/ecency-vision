@@ -24,5 +24,4 @@ export interface UserPoints {
 export interface ActiveUser {
   username: string;
   data: Account;
-  points: UserPoints;
 }

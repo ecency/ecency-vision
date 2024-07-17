@@ -1,6 +1,5 @@
 import { useGlobalStore } from "@/core/global-store";
-import { useQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
 import { getPoints, getPointTransactions } from "@/api/private-api";
 
 const DEFAULT = {
@@ -9,12 +8,16 @@ const DEFAULT = {
   transactions: []
 };
 
-export function usePointsQuery(username: string, filter = 0) {
+export const getPointsQuery = (username?: string, filter = 0) => {
   const usePrivate = useGlobalStore((state) => state.usePrivate);
 
-  return useQuery({
+  return EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.POINTS, username, filter],
     queryFn: async () => {
+      if (!username) {
+        throw new Error("Get points query – username wasn`t provided");
+      }
+
       const name = username.replace("@", "");
 
       const points = await getPoints(name, usePrivate);
@@ -23,9 +26,10 @@ export function usePointsQuery(username: string, filter = 0) {
         points: points.points,
         uPoints: points.unclaimed_points,
         transactions
-      };
+      } as const;
     },
     initialData: DEFAULT,
+    enabled: !!username,
     retryDelay: 30000
   });
-}
+};
