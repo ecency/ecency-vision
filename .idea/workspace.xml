@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added community create hs page">
-      <change afterPath="$PROJECT_DIR$/src/app/_components/hiring-console-log.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added hiring console log">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,15 +290,7 @@
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
       <workItem from="1721107217090" duration="13283000" />
-      <workItem from="1721197975419" duration="1347000" />
-    </task>
-    <task id="LOCAL-00044" summary="Added one query client for each request and persist data between server and client">
-      <option name="closed" value="true" />
-      <created>1718701793617</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1718701793617</updated>
+      <workItem from="1721197975419" duration="4462000" />
     </task>
     <task id="LOCAL-00045" summary="Updated community posts fetching">
       <option name="closed" value="true" />
@@ -683,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721198453717</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Added hiring console log">
+      <option name="closed" value="true" />
+      <created>1721199329588</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1721199329588</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated profile page pt. 6" />
     <MESSAGE value="Build fixups" />
     <MESSAGE value="Build imports" />
     <MESSAGE value="Fixed warnings" />
@@ -729,7 +729,8 @@
     <MESSAGE value="Updated build, removed warnings" />
     <MESSAGE value="Added edit draft page" />
     <MESSAGE value="Added community create hs page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added community create hs page" />
+    <MESSAGE value="Added hiring console log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added hiring console log" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,11 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import { QueryIdentifiers } from "@/core/react-query";
-import { getTrendingTags } from "@/api/hive";
+import { EcencyQueriesManager, QueryIdentifiers } from "@/core/react-query";
+import { client } from "@/api/hive";
+import { TrendingTag } from "@/entities";
+import { isCommunity } from "@/utils";
 
-export function useTrendingTagsQuery() {
-  return useQuery({
+export const getTrendingTagsQuery = (limit = 250) =>
+  EcencyQueriesManager.generateClientServerInfiniteQuery({
     queryKey: [QueryIdentifiers.TRENDING_TAGS],
-    queryFn: async () => getTrendingTags(),
-    initialData: []
+    queryFn: async ({ pageParam: { afterTag } }) =>
+      client.database.call("get_trending_tags", [afterTag, limit]).then((tags: TrendingTag[]) => {
+        return tags
+          .filter((x) => x.name !== "")
+          .filter((x) => !isCommunity(x.name))
+          .map((x) => x.name);
+      }),
+    initialPageParam: { afterTag: "" },
+    getNextPageParam: (lastPage) => ({
+      afterTag: lastPage?.[lastPage?.length - 1]
+    }),
+    initialData: { pages: [], pageParams: [] }
   });
-}

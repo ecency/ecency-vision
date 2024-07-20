@@ -1,13 +1,13 @@
 "use client";
 
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { makePath as makePathTag } from "../tag";
 import { makePath as makePathProfile } from "../profile-link";
 import defaults from "@/defaults.json";
 import { Community, Reputations } from "@/entities";
 import { usePathname, useRouter } from "next/navigation";
 import { useDebounce, usePrevious } from "react-use";
-import { useTrendingTagsQuery } from "@/api/queries";
+import { getTrendingTagsQuery } from "@/api/queries";
 import i18next from "i18next";
 import { getAccountReputations } from "@/api/hive";
 import { UserAvatar } from "@/features/shared";
@@ -33,7 +33,8 @@ export function SearchSuggester({ changed, value, children, containerClassName }
   const [mode, setMode] = useState("");
   const [suggestionWithMode, setSuggestionWithMode] = useState<any[]>([]);
 
-  const { data: trendingTags } = useTrendingTagsQuery();
+  const { data: trendingTagsPages } = getTrendingTagsQuery().useClientQuery();
+  const trendingTags = useMemo(() => trendingTagsPages?.pages[0] ?? [], [trendingTagsPages?.pages]);
 
   useEffect(() => {
     if (previousPathname !== pathname) {

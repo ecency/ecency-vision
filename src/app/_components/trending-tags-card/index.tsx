@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useMemo } from "react";
 import "./_index.scss";
 import { UilMultiply } from "@iconscout/react-unicons";
 import { TagLink } from "@/features/shared/tag";
@@ -8,7 +8,8 @@ import { makePath } from "@/utils";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { useRouter } from "next/navigation";
-import { useTrendingTagsQuery } from "@/api/queries";
+import { getTrendingTagsQuery } from "@/api/queries";
+import useMount from "react-use/lib/useMount";
 
 export function TrendingTagsCard() {
   const router = useRouter();
@@ -17,11 +18,18 @@ export function TrendingTagsCard() {
   const tag = useGlobalStore((s) => s.tag);
   const activeUser = useGlobalStore((s) => s.activeUser);
 
-  const { data: trendingTags } = useTrendingTagsQuery();
+  const { data: trendingTagsPages, refetch } = getTrendingTagsQuery().useClientQuery();
+  const trendingTags = useMemo(() => trendingTagsPages?.pages[0], [trendingTagsPages?.pages]);
 
   const handleUnselection = useCallback(() => {
     router.push("/" + filter + ((activeUser && activeUser.username && "/my") || ""));
   }, [activeUser, filter, router]);
+
+  useMount(() => {
+    if ((trendingTagsPages?.pages.length ?? 0) === 0) {
+      refetch();
+    }
+  });
 
   return (
     <div className="trending-tags-card">

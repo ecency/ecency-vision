@@ -5,7 +5,7 @@ import i18next from "i18next";
 import { error, SuggestionList } from "@/features/shared";
 import { closeSvg, poundSvg } from "@ui/svg";
 import { ItemInterface, ReactSortable } from "react-sortablejs";
-import { useTrendingTagsQuery } from "@/api/queries";
+import { getTrendingTagsQuery } from "@/api/queries";
 import usePrevious from "react-use/lib/usePrevious";
 
 interface Props {
@@ -16,7 +16,8 @@ interface Props {
 }
 
 export function TagSelector({ tags, onChange, onValid, maxItem }: Props) {
-  const { data: trendingTags } = useTrendingTagsQuery();
+  const { data: trendingTagsPages } = getTrendingTagsQuery().useClientQuery();
+  const trendingTags = useMemo(() => trendingTagsPages?.pages[0] ?? [], [trendingTagsPages?.pages]);
 
   const [hasFocus, setHasFocus] = useState(false);
   const [value, setValue] = useState("");
@@ -37,7 +38,7 @@ export function TagSelector({ tags, onChange, onValid, maxItem }: Props) {
     () =>
       value
         ? trendingTags
-            ?.filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
+            .filter((x: string) => x.toLowerCase().indexOf(value.toLowerCase()) === 0)
             .filter((x: string) => !tags.includes(x))
             .slice(0, 40)
         : [],
