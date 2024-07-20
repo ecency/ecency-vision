@@ -18,7 +18,7 @@ export default function CommunityCreateHsPage() {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const addUser = useGlobalStore((s) => s.addUser);
 
-  const [username, setUsername] = useState("");
+  const [_, setUsername] = useState("");
   const [inProgress, setInProgress] = useState(true);
   const [progress, setProgress] = useState("");
   const [done, setDone] = useState(false);

@@ -10,10 +10,9 @@ import { useDebounce, usePrevious } from "react-use";
 import { getTrendingTagsQuery } from "@/api/queries";
 import i18next from "i18next";
 import { getAccountReputations } from "@/api/hive";
-import { UserAvatar } from "@/features/shared";
+import { SuggestionList, UserAvatar } from "@/features/shared";
 import { accountReputation } from "@/utils";
 import { dataLimit, getCommunities } from "@/api/bridge";
-import { SuggestionList } from "../suggestion-list";
 
 interface Props {
   value: string;
@@ -30,7 +29,7 @@ export function SearchSuggester({ changed, value, children, containerClassName }
 
   const [suggestions, setSuggestions] = useState<string[] | Community[]>([]);
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState("");
+  const [_, setMode] = useState("");
   const [suggestionWithMode, setSuggestionWithMode] = useState<any[]>([]);
 
   const { data: trendingTagsPages } = getTrendingTagsQuery().useClientQuery();

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added hiring console log">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed trending tags fetching">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/tag-selector/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/create-hs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/create-hs/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-suggester/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -290,15 +288,7 @@
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
       <workItem from="1721107217090" duration="13283000" />
-      <workItem from="1721197975419" duration="4462000" />
-    </task>
-    <task id="LOCAL-00045" summary="Updated community posts fetching">
-      <option name="closed" value="true" />
-      <created>1718806700202</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1718806700202</updated>
+      <workItem from="1721197975419" duration="5475000" />
     </task>
     <task id="LOCAL-00046" summary="Updated community content">
       <option name="closed" value="true" />
@@ -684,7 +674,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721199329588</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Fixed trending tags fetching">
+      <option name="closed" value="true" />
+      <created>1721471231498</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1721471231498</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Build fixups" />
     <MESSAGE value="Build imports" />
     <MESSAGE value="Fixed warnings" />
     <MESSAGE value="Moved to general slugs from exact ones" />
@@ -730,7 +727,8 @@
     <MESSAGE value="Added edit draft page" />
     <MESSAGE value="Added community create hs page" />
     <MESSAGE value="Added hiring console log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added hiring console log" />
+    <MESSAGE value="Fixed trending tags fetching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed trending tags fetching" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
