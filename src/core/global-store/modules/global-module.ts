@@ -65,8 +65,10 @@ export function createGlobalActions(set: (state: Partial<State>) => void, getSta
         body.classList.add("dark");
       }
     },
-    setLang: (lang: string) => {
+    setLang: async (lang: string) => {
       ls.set("lang", lang);
+      ls.set("current-language", lang);
+      await i18next.changeLanguage(lang);
       set({
         lang
       });

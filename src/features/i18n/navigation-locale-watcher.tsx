@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import { langOptions } from "@/features/i18n";
 import { useGlobalStore } from "@/core/global-store";
-import { NavigationLocaleWatcherClient } from "@/features/navigation-locale-watcher-client";
+import { NavigationLocaleWatcherClient } from "@/features/i18n/navigation-locale-watcher-client";
 
 interface Props {
   searchParams: Record<string, string | undefined>;

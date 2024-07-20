@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed warnings">
-      <change afterPath="$PROJECT_DIR$/src/features/monitoring/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/monitoring/web-vitals.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/comment-engagement/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/modules/global-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/global-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/navigation-locale-watcher-client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/navigation-locale-watcher-client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,11 +108,11 @@
       <recent name="$PROJECT_DIR$/src/app/submit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/i18n" />
       <recent name="$PROJECT_DIR$/src/core/global-store/initialization" />
       <recent name="$PROJECT_DIR$/src/core/global-store/modules" />
       <recent name="$PROJECT_DIR$/src/app/submit/_components" />
       <recent name="$PROJECT_DIR$/src/app/market/advanced" />
-      <recent name="$PROJECT_DIR$/src/app/market/_enums" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -290,23 +290,7 @@
       <workItem from="1721104163993" duration="705000" />
       <workItem from="1721105243131" duration="1563000" />
       <workItem from="1721107217090" duration="13283000" />
-      <workItem from="1721197975419" duration="6925000" />
-    </task>
-    <task id="LOCAL-00047" summary="Moved decks pt. 1">
-      <option name="closed" value="true" />
-      <created>1718819839276</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1718819839276</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Moved decks pt. 2">
-      <option name="closed" value="true" />
-      <created>1718961352131</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1718961352131</updated>
+      <workItem from="1721197975419" duration="8090000" />
     </task>
     <task id="LOCAL-00049" summary="Moved decks pt. 3">
       <option name="closed" value="true" />
@@ -684,7 +668,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721474178586</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Added web vitals report">
+      <option name="closed" value="true" />
+      <created>1721475633726</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1721475633727</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1721475748114</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1721475748114</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,8 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Build imports" />
-    <MESSAGE value="Moved to general slugs from exact ones" />
     <MESSAGE value="Fixed profile components" />
     <MESSAGE value="Fixed points request" />
     <MESSAGE value="Migrated onboard-friend" />
@@ -730,7 +728,9 @@
     <MESSAGE value="Added hiring console log" />
     <MESSAGE value="Fixed trending tags fetching" />
     <MESSAGE value="Fixed warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed warnings" />
+    <MESSAGE value="Added web vitals report" />
+    <MESSAGE value="Updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
