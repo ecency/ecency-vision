@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from "react";
-import i18n from "i18next";
 import i18next from "i18next";
 import "./_index.scss";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
@@ -106,12 +105,10 @@ export function Preferences() {
               <FormControl
                 value={lang}
                 type="select"
-                onChange={(e: any) =>
-                  i18n.changeLanguage(e.target.value).then(() => {
-                    setLang(e.target.value);
-                    success(i18next.t("preferences.updated"));
-                  })
-                }
+                onChange={(e: any) => {
+                  setLang(e.target.value);
+                  success(i18next.t("preferences.updated"));
+                }}
               >
                 {langOptions.map((x) => (
                   <option key={x.code} value={x.code}>

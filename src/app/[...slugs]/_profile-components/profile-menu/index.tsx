@@ -9,6 +9,7 @@ import Link from "next/link";
 import i18next from "i18next";
 import { chevronDownSvgForSlider, kebabMenuHorizontalSvg } from "@ui/svg";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { Button } from "@ui/button";
 
 interface Props {
   username: string;
@@ -108,9 +109,16 @@ export function ProfileMenu({ username, section }: Props) {
             {i18next.t(`profile.section-settings`)}
           </Link>
         )}
-        <div className="kebab-icon entry-index-menu the-menu main-menu hidden lg:flex">
+        <div className="hidden lg:flex items-center">
           <Dropdown>
-            <DropdownToggle>{kebabMenuHorizontalSvg}</DropdownToggle>
+            <DropdownToggle>
+              <Button
+                noPadding={true}
+                icon={kebabMenuHorizontalSvg}
+                size="sm"
+                appearance="gray-link"
+              />
+            </DropdownToggle>
             <DropdownMenu align="left">
               {kebabMenuItems.map((item) => (
                 <DropdownItem selected={item.selected} key={item.id}>
