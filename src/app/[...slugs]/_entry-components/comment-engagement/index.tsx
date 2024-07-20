@@ -2,6 +2,7 @@ import React from "react";
 import "./_index.scss";
 import { Button } from "@ui/button";
 import { commentSvg } from "@ui/svg";
+import i18next from "i18next";
 
 export function CommentEngagement() {
   const scrollToCommentInput = () => {
@@ -13,9 +14,9 @@ export function CommentEngagement() {
   return (
     <div className="comment-engagement">
       <div className="icon">{commentSvg}</div>
-      <div className="label">{_t("discussion.no-conversation")}</div>
+      <div className="label">{i18next.t("discussion.no-conversation")}</div>
       <Button id="scroll-to-input" onClick={scrollToCommentInput}>
-        {_t("discussion.start-conversation")}
+        {i18next.t("discussion.start-conversation")}
       </Button>
     </div>
   );
