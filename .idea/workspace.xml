@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed locale switcher in profile and three dots menu">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notifications switching in profile settings">
+      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/preferences/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/notify-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/notify-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,15 +292,8 @@
       <workItem from="1721107217090" duration="13283000" />
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
-      <workItem from="1721680194240" duration="542000" />
-    </task>
-    <task id="LOCAL-00052" summary="Added perks page">
-      <option name="closed" value="true" />
-      <created>1718993578963</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1718993578963</updated>
+      <workItem from="1721680194240" duration="1312000" />
+      <workItem from="1721681535786" duration="80000" />
     </task>
     <task id="LOCAL-00053" summary="Migrated purchase page">
       <option name="closed" value="true" />
@@ -685,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721478394699</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Fixed notifications switching in profile settings">
+      <option name="closed" value="true" />
+      <created>1721680817360</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680817360</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,7 +708,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated onboard-friend" />
     <MESSAGE value="Added create community page" />
     <MESSAGE value="Migrated auth page" />
     <MESSAGE value="Migrated index page pt.1" />
@@ -731,7 +732,8 @@
     <MESSAGE value="Updated README.md" />
     <MESSAGE value="Added i18n listeners" />
     <MESSAGE value="Fixed locale switcher in profile and three dots menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed locale switcher in profile and three dots menu" />
+    <MESSAGE value="Fixed notifications switching in profile settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed notifications switching in profile settings" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
