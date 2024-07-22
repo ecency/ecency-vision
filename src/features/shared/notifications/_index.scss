@@ -1,27 +1,8 @@
 @import "src/styles/vars_mixins";
 
-.notifications-modal {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 !important;
-
-  .ecency-modal-content {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-height: 100% !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-
-  .ecency-modal-body {
-    padding: 0 !important;
-    overflow: hidden;
-    height: 100%;
-  }
-}
 
 .notification-list {
-  height: 100%;
+  @apply h-full;
 
   .list-header {
     height: 75px;

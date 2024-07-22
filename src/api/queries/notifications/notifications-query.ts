@@ -18,6 +18,8 @@ export function useNotificationsQuery(filter: NotificationFilter | null) {
     enabled: !!activeUser,
     initialData: { pages: [], pageParams: [] },
     initialPageParam: "",
-    getNextPageParam: (lastPage) => lastPage?.[lastPage.length - 1]?.timestamp ?? ""
+    getNextPageParam: (lastPage) => lastPage?.[lastPage.length - 1]?.timestamp ?? "",
+    refetchOnMount: true,
+    staleTime: 30000
   });
 }

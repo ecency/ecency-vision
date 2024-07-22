@@ -17,7 +17,6 @@ import { NavbarSideMainMenuItem } from "./navbar-side-main-menu-item";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
 import { GalleryDialog } from "@/features/shared/gallery";
-import { NotificationsDialog } from "@/features/shared/notifications";
 import { DraftsDialog } from "@/features/shared/drafts";
 import { BookmarksDialog } from "@/features/shared/bookmarks";
 import { SchedulesDialog } from "@/features/shared/schedules";
@@ -143,7 +142,6 @@ export function NavbarSideMainMenu({ onHide }: Props) {
         ))}
       </div>
       <GalleryDialog setShow={(v) => setGallery(v)} show={gallery} />
-      <NotificationsDialog />
       <DraftsDialog show={drafts} setShow={(v) => setDrafts(v)} />
       <BookmarksDialog show={bookmarks && !!activeUser} setShow={(v) => setBookmarks(v)} />
       <SchedulesDialog show={schedules && !!activeUser} setShow={(v) => setSchedules(v)} />

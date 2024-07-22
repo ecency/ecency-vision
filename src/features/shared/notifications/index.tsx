@@ -1,10 +1,10 @@
 "use client";
 
-import { Modal, ModalBody } from "@ui/modal";
 import React, { useEffect, useState } from "react";
 import { NotificationsContent } from "@/features/shared/notifications/notifications-content";
 import "./_index.scss";
 import { useGlobalStore } from "@/core/global-store";
+import { ModalSidebar } from "@ui/modal/modal-sidebar";
 
 export * from "./notification-list-item";
 
@@ -25,14 +25,13 @@ export function NotificationsDialog({ className, openLinksInNewTab = false }: Pr
   }, [showNotifications, activeUser]);
 
   return (
-    <Modal
+    <ModalSidebar
+      className="notifications-modal min-w-[32rem]"
       show={show}
-      onHide={() => toggleUIProp("notifications", false)}
-      className={"notifications-modal drawer " + className}
+      setShow={setShow}
+      placement="right"
     >
-      <ModalBody>
-        <NotificationsContent openLinksInNewTab={openLinksInNewTab} />
-      </ModalBody>
-    </Modal>
+      <NotificationsContent openLinksInNewTab={openLinksInNewTab} />
+    </ModalSidebar>
   );
 }

@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notifications switching in profile settings">
-      <change afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated sidebars">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/notifications/notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/notifications/notifications-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-notifications-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-notifications-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,15 +297,7 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="80000" />
-    </task>
-    <task id="LOCAL-00053" summary="Migrated purchase page">
-      <option name="closed" value="true" />
-      <created>1719217525866</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1719217525866</updated>
+      <workItem from="1721681535786" duration="1336000" />
     </task>
     <task id="LOCAL-00054" summary="Migrated proposals page pt.1">
       <option name="closed" value="true" />
@@ -687,7 +683,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721680817360</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Updated sidebars">
+      <option name="closed" value="true" />
+      <created>1721681764592</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1721681764592</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +712,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added create community page" />
     <MESSAGE value="Migrated auth page" />
     <MESSAGE value="Migrated index page pt.1" />
     <MESSAGE value="Migrated index page pt.2" />
@@ -733,7 +736,8 @@
     <MESSAGE value="Added i18n listeners" />
     <MESSAGE value="Fixed locale switcher in profile and three dots menu" />
     <MESSAGE value="Fixed notifications switching in profile settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed notifications switching in profile settings" />
+    <MESSAGE value="Updated sidebars" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated sidebars" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

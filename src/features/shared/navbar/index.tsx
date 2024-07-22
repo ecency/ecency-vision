@@ -10,7 +10,7 @@ import { NavbarDesktop } from "./navbar-desktop";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Theme } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
-import { LoginDialog } from "@/features/shared";
+import { LoginDialog, NotificationsDialog } from "@/features/shared";
 
 interface Props {
   step?: number;
@@ -109,6 +109,8 @@ export function Navbar({ setStepOne, setStepTwo, step }: Props) {
         setSmVisible={setSmVisible}
       />
       {uiLogin && <LoginDialog />}
+      {/*Do not remove from here because it`s controlling by global store*/}
+      <NotificationsDialog />
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import "./_navbar-notifications-button.scss";
 import { Button } from "@ui/button";
 import { Tooltip } from "@ui/tooltip";

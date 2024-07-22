@@ -21,6 +21,7 @@ import {
 import { hiveNotifySetLastRead } from "@/api/operations";
 import { useMarkNotifications, useUpdateNotificationsSettings } from "@/api/mutations";
 import { useDebounce, useMap } from "react-use";
+import useMount from "react-use/lib/useMount";
 
 interface Props {
   filter: NotificationFilter | null;
@@ -53,6 +54,8 @@ export function NotificationsActions({ filter }: Props) {
   const markNotifications = useMarkNotifications();
   const updateSettings = useUpdateNotificationsSettings();
 
+  useMount(() => refetchData());
+
   useEffect(() => {
     if (notificationSettings) {
       Array.from(Object.keys(settings) as NotifyTypes[]).forEach((type) =>
@@ -60,7 +63,7 @@ export function NotificationsActions({ filter }: Props) {
       );
       notificationSettings.notify_types?.map((type) => setSettingItem(type, true));
     }
-  }, [notificationSettings, setSettingItem, settings]);
+  }, [notificationSettings, setSettingItem]);
 
   useDebounce(
     () => {
