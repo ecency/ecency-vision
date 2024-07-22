@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Updated sidebars">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notification bar switching and settings changing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/notifications/notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/notifications/notifications-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-notifications-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-notifications-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/sidebar/navbar-side-main-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/_index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/notifications-actions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,15 +290,7 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="1336000" />
-    </task>
-    <task id="LOCAL-00054" summary="Migrated proposals page pt.1">
-      <option name="closed" value="true" />
-      <created>1719300514790</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1719300514790</updated>
+      <workItem from="1721681535786" duration="1433000" />
     </task>
     <task id="LOCAL-00055" summary="Migrated proposals page pt.2">
       <option name="closed" value="true" />
@@ -691,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721681764592</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Fixed notification bar switching and settings changing">
+      <option name="closed" value="true" />
+      <created>1721682915235</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1721682915235</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated auth page" />
     <MESSAGE value="Migrated index page pt.1" />
     <MESSAGE value="Migrated index page pt.2" />
     <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
@@ -737,7 +729,8 @@
     <MESSAGE value="Fixed locale switcher in profile and three dots menu" />
     <MESSAGE value="Fixed notifications switching in profile settings" />
     <MESSAGE value="Updated sidebars" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated sidebars" />
+    <MESSAGE value="Fixed notification bar switching and settings changing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed notification bar switching and settings changing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -28,7 +28,10 @@ export function NotificationsDialog({ className, openLinksInNewTab = false }: Pr
     <ModalSidebar
       className="notifications-modal min-w-[32rem]"
       show={show}
-      setShow={setShow}
+      setShow={(v) => {
+        setShow(v);
+        toggleUIProp("notifications", v);
+      }}
       placement="right"
     >
       <NotificationsContent openLinksInNewTab={openLinksInNewTab} />
