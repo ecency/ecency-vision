@@ -2,18 +2,17 @@ import React, { useCallback, useMemo } from "react";
 import i18next from "i18next";
 import "./_index.scss";
 import { FormControl, InputGroupCopyClipboard } from "@ui/input";
-import { NotifyTypes, Theme } from "@/enums";
+import { ALL_NOTIFY_TYPES, Theme } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
 import { langOptions } from "@/features/i18n";
 import { useUpdateNotificationsSettings } from "@/api/mutations";
 import { success } from "@/features/shared";
 import * as ls from "@/utils/local-storage";
 import currencies from "@/consts/currencies.json";
+import { useNotificationsSettingsQuery } from "@/api/queries";
 
 export function Preferences() {
   const activeUser = useGlobalStore((s) => s.activeUser);
-  // TODO: How it works
-  const notifications = useGlobalStore((s) => s.globalNotifications);
   const setCurrency = useGlobalStore((s) => s.setCurrency);
 
   const nsfw = useGlobalStore((s) => s.nsfw);
@@ -28,12 +27,13 @@ export function Preferences() {
 
   const defaultTheme = useMemo(() => theme, [theme]);
 
+  const { data: notificationSettings } = useNotificationsSettingsQuery();
   const { mutateAsync: updateNotificationSettings } = useUpdateNotificationsSettings();
   const notificationsChanged = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       if (e.target.value === "1") {
         updateNotificationSettings({
-          notifyTypes: [NotifyTypes.ALLOW_NOTIFY],
+          notifyTypes: [...ALL_NOTIFY_TYPES],
           isEnabled: true
         });
       }
@@ -44,8 +44,6 @@ export function Preferences() {
           isEnabled: false
         });
       }
-
-      success(i18next.t("preferences.updated"));
     },
     [updateNotificationSettings]
   );
@@ -78,7 +76,7 @@ export function Preferences() {
             <div className="mb-4">
               <label>{i18next.t("preferences.notifications")}</label>
               <FormControl
-                value={notifications ? 1 : 0}
+                value={notificationSettings?.allows_notify ?? 0}
                 type="select"
                 onChange={notificationsChanged}
               >

@@ -10,6 +10,17 @@ export enum NotifyTypes {
   ALLOW_NOTIFY = "ALLOW_NOTIFY"
 }
 
+export const ALL_NOTIFY_TYPES = [
+  NotifyTypes.VOTE,
+  NotifyTypes.MENTION,
+  NotifyTypes.FOLLOW,
+  NotifyTypes.COMMENT,
+  NotifyTypes.RE_BLOG,
+  NotifyTypes.TRANSFERS,
+  NotifyTypes.FAVORITES,
+  NotifyTypes.BOOKMARKS
+] as const;
+
 export enum NotificationViewType {
   ALL = "All",
   UNREAD = "Unread",
