@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notification bar switching and settings changing">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notification bar double-clicking">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/notifications/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/hive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client-init.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-init.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,15 +292,7 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="1433000" />
-    </task>
-    <task id="LOCAL-00055" summary="Migrated proposals page pt.2">
-      <option name="closed" value="true" />
-      <created>1719301756598</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1719301756598</updated>
+      <workItem from="1721681535786" duration="3189000" />
     </task>
     <task id="LOCAL-00056" summary="Migrated proposals page pt.3">
       <option name="closed" value="true" />
@@ -684,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721682915235</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Fixed notification bar double-clicking">
+      <option name="closed" value="true" />
+      <created>1721683003403</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1721683003403</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +707,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated index page pt.1" />
     <MESSAGE value="Migrated index page pt.2" />
     <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
     <MESSAGE value="Fixed posts fetching in index feed page" />
@@ -730,7 +731,8 @@
     <MESSAGE value="Fixed notifications switching in profile settings" />
     <MESSAGE value="Updated sidebars" />
     <MESSAGE value="Fixed notification bar switching and settings changing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed notification bar switching and settings changing" />
+    <MESSAGE value="Fixed notification bar double-clicking" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed notification bar double-clicking" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
