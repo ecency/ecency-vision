@@ -36,6 +36,8 @@ export function EntryListItemThumbnail({ entry, noImage, isCrossPost, entryProp 
         <div>
           {listStyle === "grid" ? (
             <Image
+              width={1000}
+              height={1000}
               className="w-full mx-auto"
               src={imgGrid ?? noImage}
               alt={isGridLoading ? "" : entry.title}

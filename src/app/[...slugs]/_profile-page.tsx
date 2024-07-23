@@ -137,7 +137,7 @@ export async function ProfilePage({
                   </div>
                 </>
               )}
-              {["", "posts", "comments", "replies"].includes(section) && (
+              {["", "posts", "comments", "replies", "blog"].includes(section) && (
                 <ProfileEntriesList section={section} account={account} />
               )}
               {/*  TODO: Add fallback to / if there is nothing matches*/}

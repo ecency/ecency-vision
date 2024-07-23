@@ -1,10 +1,9 @@
 import { Entry, FullAccount } from "@/entities";
-import { ListStyle } from "@/enums";
 import { EntryListContent } from "@/features/shared";
 import React from "react";
 import { getPostQuery, getPostsFeedQueryData } from "@/api/queries";
-import { useGlobalStore } from "@/core/global-store";
 import { ProfileEntriesDetectBottom } from "@/app/[...slugs]/_profile-components/profile-entries-detect-bottom";
+import { ProfileEntriesLayout } from "@/app/[...slugs]/_profile-components/profile-entries-layout";
 
 interface Props {
   section: string;
@@ -20,8 +19,6 @@ function shouldShowPinnedEntry(account: FullAccount, section: string) {
 }
 
 export async function ProfileEntriesList({ section, account }: Props) {
-  const listStyle = useGlobalStore((s) => s.listStyle);
-
   const pinnedEntry = shouldShowPinnedEntry(account, section)
     ? await getPostQuery(account.name, account.profile?.pinned).prefetch()
     : undefined;
@@ -37,17 +34,15 @@ export async function ProfileEntriesList({ section, account }: Props) {
 
   return (
     <>
-      <div className={`entry-list`}>
-        <div className={`entry-list-body ${listStyle === ListStyle.grid ? "grid-view" : ""}`}>
-          {/*{entryList.length === 0 && <EntryListLoadingItem />}*/}
-          <EntryListContent
-            loading={false}
-            entries={entryList}
-            sectionParam={section}
-            isPromoted={false}
-          />
-        </div>
-      </div>
+      <ProfileEntriesLayout>
+        {/*{entryList.length === 0 && <EntryListLoadingItem />}*/}
+        <EntryListContent
+          loading={false}
+          entries={entryList}
+          sectionParam={section}
+          isPromoted={false}
+        />
+      </ProfileEntriesLayout>
       <ProfileEntriesDetectBottom section={section} account={account} />
     </>
   );

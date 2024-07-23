@@ -131,7 +131,7 @@ export function ProfileMenu({ username, section }: Props) {
       </div>
 
       <div className="page-tools">
-        {ProfileFilter[section as ProfileFilter] && <ListStyleToggle />}
+        {ProfileFilter[section as ProfileFilter] && <ListStyleToggle float="right" />}
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export function useEntryPollExtractor(entry?: Entry | null) {
         voteChange: (entry.json_metadata as JsonPollMetadata)?.vote_change ?? true,
         hideVotes: (entry.json_metadata as JsonPollMetadata)?.hide_votes ?? false,
         filters: {
-          accountAge: (entry.json_metadata as JsonPollMetadata)?.filters.account_age
+          accountAge: (entry.json_metadata as JsonPollMetadata)?.filters?.account_age
         }
       } as PollSnapshot;
     }

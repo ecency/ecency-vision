@@ -192,7 +192,7 @@ export function usePublishApi(onClear: () => void) {
             author: entry.author,
             created: new Date().toISOString(),
             end_time: poll?.endTime.toISOString(),
-            filter_account_age_days: poll?.filters.accountAge,
+            filter_account_age_days: poll?.filters?.accountAge,
             permlink: entry.permlink,
             poll_choices: poll?.choices.map((c, i) => ({
               choice_num: i,
