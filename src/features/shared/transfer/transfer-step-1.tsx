@@ -259,30 +259,33 @@ export function TransferStep1({ titleLngKey }: Props) {
 
   return (
     <>
-      {step === 1 && mode === "power-down" && (
+      {step === 1 && mode === "power-down" && w.isPoweringDown && (
         <div className="transfer-dialog-content">
           <div className="transaction-form">
             <TransferFormHeader title={titleLngKey} step={step} subtitle={subTitleLngKey} />
             <div className="transaction-form-body powering-down">
               <p>{i18next.t("transfer.powering-down")}</p>
               <p>
-                {" "}
                 {i18next.t("wallet.next-power-down", {
                   time: dateToFullRelative(w.nextVestingWithdrawalDate.toString()),
                   amount: `${formatNumber(w.nextVestingSharesWithdrawalHive, 3)} HIVE`,
                   weeks: w.weeksLeft
                 })}
               </p>
-              <p>
-                <Button onClick={nextPowerDown} appearance="danger">
-                  {i18next.t("transfer.stop-power-down")}
-                </Button>
-              </p>
+              <Button
+                onClick={nextPowerDown}
+                appearance="danger"
+                className="mt-4"
+                size="lg"
+                outline={true}
+              >
+                {i18next.t("transfer.stop-power-down")}
+              </Button>
             </div>
           </div>
         </div>
       )}
-      {step === 1 && mode !== "power-down" && (
+      {step === 1 && (mode !== "power-down" || !w.isPoweringDown) && (
         <div className={`transaction-form ${inProgress ? "in-progress" : ""}`}>
           <TransferFormHeader title={titleLngKey} step={step} subtitle={subTitleLngKey} />
           {inProgress && <LinearProgress />}

@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notification bar double-clicking">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added initial dynamic props prefetching on client side + re-fetching by interval">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/hive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/dynamic-props-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client-init.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-init.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/transfer-step-1.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,15 +291,7 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="3189000" />
-    </task>
-    <task id="LOCAL-00056" summary="Migrated proposals page pt.3">
-      <option name="closed" value="true" />
-      <created>1719302224456</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1719302224457</updated>
+      <workItem from="1721681535786" duration="3890000" />
     </task>
     <task id="LOCAL-00057" summary="Migrated proposal details page">
       <option name="closed" value="true" />
@@ -686,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721683003403</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Added initial dynamic props prefetching on client side + re-fetching by interval">
+      <option name="closed" value="true" />
+      <created>1721717969903</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1721717969903</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated index page pt.2" />
     <MESSAGE value="Fixed lang switcher and redirect from landing to feed" />
     <MESSAGE value="Fixed posts fetching in index feed page" />
     <MESSAGE value="Fixed entry index menu dropdown styles" />
@@ -732,7 +730,8 @@
     <MESSAGE value="Updated sidebars" />
     <MESSAGE value="Fixed notification bar switching and settings changing" />
     <MESSAGE value="Fixed notification bar double-clicking" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed notification bar double-clicking" />
+    <MESSAGE value="Added initial dynamic props prefetching on client side + re-fetching by interval" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added initial dynamic props prefetching on client side + re-fetching by interval" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

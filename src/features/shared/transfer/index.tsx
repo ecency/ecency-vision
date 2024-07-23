@@ -62,7 +62,7 @@ function TransferC({ onHide, handleClickAway, account }: Props) {
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         <div className="transfer-dialog-content">
-          <TransferStep1 titleLngKey={titleLngKey} />
+          {step === 1 && <TransferStep1 titleLngKey={titleLngKey} />}
           {step === 2 && <TransferStep2 titleLngKey={titleLngKey} />}
           {step === 3 && <TransferStep3 onHide={onHide} />}
           {step === 4 && (
