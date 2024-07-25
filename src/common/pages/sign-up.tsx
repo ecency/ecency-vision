@@ -136,10 +136,19 @@ const SignUpPage = (props: Props | any) => {
     setEmail(email.toLowerCase());
   };
 
-  const referralChanged = (e: { target: { value: any } }) => {
+  const referralChanged = async (e: { target: { value: any } }) => {
+    setInProgress(true);
     const { value: referall } = e.target;
     setReferral(referall.toLowerCase());
-    console.log(referral)
+
+    const referralIsValid = await getAccount(referall);
+
+    if (!referralIsValid) {
+      setError("Referral is not a valid hive username");
+    } else {
+      setError("");
+    }
+    setInProgress(false);
   };
 
   const getCurrentCommunity = () => {
