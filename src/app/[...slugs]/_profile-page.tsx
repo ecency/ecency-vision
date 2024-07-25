@@ -38,7 +38,7 @@ interface Props {
 export async function ProfilePage({
   username,
   section = "posts",
-  searchParams: { q: searchParam }
+  searchParams: { query: searchParam }
 }: Props) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const listStyle = useGlobalStore((s) => s.listStyle);
@@ -49,7 +49,11 @@ export async function ProfilePage({
 
   let searchData: SearchResult[] | undefined = undefined;
   if (searchParam && searchParam !== "") {
-    const searchPages = await getSearchApiQuery(searchParam, "newest", false).prefetch();
+    const searchPages = await getSearchApiQuery(
+      `${searchParam} author:${username} type:post`,
+      "newest",
+      false
+    ).prefetch();
     searchData = searchPages!!.pages[0].results.sort(
       (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
     );
