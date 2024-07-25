@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import "./_index.scss";
 import { Entry } from "@/entities";
@@ -15,23 +17,18 @@ interface Props {
   isPromoted: boolean;
 }
 
-export async function EntryListContent({
-  sectionParam: section,
-  loading,
-  entries,
-  isPromoted
-}: Props) {
+export function EntryListContent({ sectionParam: section, loading, entries, isPromoted }: Props) {
   const tag = useGlobalStore((s) => s.tag);
   const filter = useGlobalStore((s) => s.filter);
   const activeUser = useGlobalStore((s) => s.activeUser);
   const usePrivate = useGlobalStore((s) => s.usePrivate);
 
-  const mutedUsers = await getMutedUsersQuery(activeUser).prefetch();
+  const { data: mutedUsers } = getMutedUsersQuery(activeUser).useClientQuery();
 
   let dataToRender = [...entries];
   let promotedEntries: Entry[] = [];
   if (isPromoted) {
-    const promotedEntriesResponse = await getPromotedEntriesQuery(usePrivate).prefetch();
+    const { data: promotedEntriesResponse } = getPromotedEntriesQuery(usePrivate).useClientQuery();
     promotedEntries = promotedEntriesResponse ?? [];
   }
 

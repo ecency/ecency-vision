@@ -2,8 +2,8 @@ import { Entry, FullAccount } from "@/entities";
 import { EntryListContent } from "@/features/shared";
 import React from "react";
 import { getPostQuery, getPostsFeedQueryData } from "@/api/queries";
-import { ProfileEntriesDetectBottom } from "@/app/[...slugs]/_profile-components/profile-entries-detect-bottom";
 import { ProfileEntriesLayout } from "@/app/[...slugs]/_profile-components/profile-entries-layout";
+import { ProfileEntriesInfiniteList } from "@/app/[...slugs]/_profile-components/profile-entries-infinite-list";
 
 interface Props {
   section: string;
@@ -24,9 +24,9 @@ export async function ProfileEntriesList({ section, account }: Props) {
     : undefined;
 
   const data = getPostsFeedQueryData(section, `@${account.name}`)?.pages ?? [];
-  const entryList = data
-    .reduce<Entry[]>((acc, page) => [...acc, ...(page as Entry[])], [])
-    .filter((item: Entry) => item.permlink !== account.profile?.pinned);
+  const entryList = (data[0] as Entry[]).filter(
+    (item: Entry) => item.permlink !== account.profile?.pinned
+  );
 
   if (pinnedEntry) {
     entryList.unshift(pinnedEntry);
@@ -34,16 +34,15 @@ export async function ProfileEntriesList({ section, account }: Props) {
 
   return (
     <>
-      <ProfileEntriesLayout>
-        {/*{entryList.length === 0 && <EntryListLoadingItem />}*/}
+      <ProfileEntriesLayout section={section} username={account.name}>
         <EntryListContent
           loading={false}
           entries={entryList}
           sectionParam={section}
           isPromoted={false}
         />
+        <ProfileEntriesInfiniteList section={section} account={account} />
       </ProfileEntriesLayout>
-      <ProfileEntriesDetectBottom section={section} account={account} />
     </>
   );
 }

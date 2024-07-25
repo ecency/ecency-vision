@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed powering down in hive wallet">
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-layout.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile list style switcher">
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-infinite-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-detect-bottom.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/polls/components/poll-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/polls/components/poll-widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/polls/hooks/use-entry-poll-extractor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/polls/hooks/use-entry-poll-extractor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-thumbnail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-thumbnail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/list-style-toggle/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/list-style-toggle/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,15 +294,7 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="5640000" />
-    </task>
-    <task id="LOCAL-00058" summary="Migrated profile page pt. 1">
-      <option name="closed" value="true" />
-      <created>1719425013759</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1719425013760</updated>
+      <workItem from="1721681535786" duration="12217000" />
     </task>
     <task id="LOCAL-00059" summary="Migrated profile page pt. 2">
       <option name="closed" value="true" />
@@ -692,7 +680,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721718681915</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Fixed profile list style switcher">
+      <option name="closed" value="true" />
+      <created>1721720508469</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1721720508469</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -713,7 +709,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed posts fetching in index feed page" />
     <MESSAGE value="Fixed entry index menu dropdown styles" />
     <MESSAGE value="Migrated market pages" />
     <MESSAGE value="Migrated market pages pt.2" />
@@ -738,7 +733,8 @@
     <MESSAGE value="Fixed notification bar double-clicking" />
     <MESSAGE value="Added initial dynamic props prefetching on client side + re-fetching by interval" />
     <MESSAGE value="Fixed powering down in hive wallet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed powering down in hive wallet" />
+    <MESSAGE value="Fixed profile list style switcher" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile list style switcher" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
