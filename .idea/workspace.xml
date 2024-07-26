@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile page searching">
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-client-init.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-context.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-cross-post.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-muted-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-nsfw-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-infinite-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-infinite-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community page infinite loading and searching behavior">
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-search-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-search-data.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,23 +290,7 @@
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
       <workItem from="1721681535786" duration="16133000" />
-      <workItem from="1721980024762" duration="3052000" />
-    </task>
-    <task id="LOCAL-00061" summary="Migrated profile page pt. 4">
-      <option name="closed" value="true" />
-      <created>1719935041591</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1719935041591</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Migrated profile page pt. 5">
-      <option name="closed" value="true" />
-      <created>1719936557876</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1719936557876</updated>
+      <workItem from="1721980024762" duration="8464000" />
     </task>
     <task id="LOCAL-00063" summary="Migrated profile page pt. 6">
       <option name="closed" value="true" />
@@ -697,7 +668,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721934155565</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Made entry list item RCS">
+      <option name="closed" value="true" />
+      <created>1721983128639</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1721983128639</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Fixed community page infinite loading and searching behavior">
+      <option name="closed" value="true" />
+      <created>1722020594022</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1722020594022</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -718,8 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated market pages pt.2" />
-    <MESSAGE value="Migrated entry page" />
     <MESSAGE value="Fixed client side components" />
     <MESSAGE value="Migrated submit page" />
     <MESSAGE value="Fixed community selector in submit page" />
@@ -743,7 +728,9 @@
     <MESSAGE value="Fixed profile list style switcher" />
     <MESSAGE value="Fixed profile page posts infinite loader" />
     <MESSAGE value="Fixed profile page searching" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile page searching" />
+    <MESSAGE value="Made entry list item RCS" />
+    <MESSAGE value="Fixed community page infinite loading and searching behavior" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed community page infinite loading and searching behavior" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -5,6 +5,7 @@ import { PropsWithChildren } from "react";
 import { useGlobalStore } from "@/core/global-store";
 import { usePostsFeedQuery } from "@/api/queries";
 import { LinearProgress } from "@/features/shared";
+import { isCommunity } from "@/utils";
 
 interface Props {
   username: string;
@@ -13,7 +14,10 @@ interface Props {
 
 export function ProfileEntriesLayout(props: PropsWithChildren<Props>) {
   const listStyle = useGlobalStore((s) => s.listStyle);
-  const { isLoading } = usePostsFeedQuery(props.section, `@${props.username}`);
+  const { isLoading } = usePostsFeedQuery(
+    props.section,
+    isCommunity(props.username) ? props.username : `@${props.username}`
+  );
 
   return (
     <div className="entry-list">

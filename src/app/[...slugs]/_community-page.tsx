@@ -8,7 +8,7 @@ import {
 } from "@/app/[...slugs]/_components";
 import defaults from "@/defaults.json";
 import { CommunityContent } from "@/app/[...slugs]/_components/community-content";
-import { getAccountFullQuery, getSearchApiQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
+import { getAccountFullQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
 import Head from "next/head";
 import i18next from "i18next";
 import { capitalize } from "@/utils";
@@ -28,10 +28,6 @@ export async function CommunityPage({ params, searchParams }: Props) {
   }
 
   await prefetchGetPostsFeedQuery(params.filterOrCategory, params.entryOrCommunity);
-
-  if (searchParams.q) {
-    await getSearchApiQuery(searchParams.q, "newest", true).prefetch();
-  }
 
   // TODO: Add notification count to title in client side
   const metaTitle = `${community!!.title.trim()} community ${params.filterOrCategory} list`;

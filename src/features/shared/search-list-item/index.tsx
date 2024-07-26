@@ -95,7 +95,7 @@ export function SearchListItem({ res }: Props) {
             <div className="item-title">{title}</div>
           </EntryLink>
           <EntryLink entry={entry}>
-            <div className="item-title">{summary}</div>
+            <div className="break-all">{summary}</div>
           </EntryLink>
         </div>
         <div className="item-controls">

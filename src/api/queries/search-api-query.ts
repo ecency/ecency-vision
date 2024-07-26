@@ -26,5 +26,6 @@ export const getSearchApiQuery = (
     initialPageParam: { scrollId: "" },
     getNextPageParam: (lastPage: SearchResponse) => ({
       scrollId: lastPage?.scroll_id ?? ""
-    })
+    }),
+    enabled: !!q
   });

@@ -7,6 +7,7 @@ import { EntryFilter } from "@/enums";
 import { EntryIndex } from "@/app/[...slugs]/_index";
 import { EntryPage } from "@/app/[...slugs]/_entry-page";
 import { EntryEditPage } from "@/app/[...slugs]/_entry-edit-page";
+import { isCommunity } from "@/utils";
 
 interface Props {
   params: { slugs: string[] };
@@ -18,7 +19,10 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
   const communityNameOrAccountFilters = slugs[1];
 
   const isEntryPage = slugs.length > 2;
-  const isIndexPage = Object.values<string>(EntryFilter).includes(slugs[0]) && slugs.length > 0;
+  const isIndexPage =
+    Object.values<string>(EntryFilter).includes(slugs[0]) &&
+    slugs.length > 0 &&
+    !isCommunity(communityNameOrAccountFilters);
   const isEditPage = isEntryPage && slugs[2] === "edit";
   const isProfilePage =
     filterOrUsername.startsWith("@") || (filterOrUsername.startsWith("%40") && !isEditPage);

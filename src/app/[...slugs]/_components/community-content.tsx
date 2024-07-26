@@ -1,16 +1,14 @@
 import { CommunitySubscribers } from "@/app/[...slugs]/_components/community-subscribers";
 import { CommunityActivities } from "@/app/[...slugs]/_components/community-activities";
 import { CommunityRoles } from "@/app/[...slugs]/_components/community-roles";
-import { EntryListContent, LinearProgress, SearchListItem } from "@/features/shared";
-import i18next from "i18next";
+import { EntryListContent, LinearProgress } from "@/features/shared";
 import { Fragment } from "react";
-import { classNameObject } from "@ui/util";
-import { ListStyle } from "@/enums";
-import { Community, Entry, SearchResult } from "@/entities";
+import { Community, Entry } from "@/entities";
 import { getPostsFeedQueryData } from "@/api/queries/get-account-posts-feed-query";
 import { CommunityContentSearch } from "@/app/[...slugs]/_components/community-content-search";
-import { getSearchApiQuery } from "@/api/queries";
-import { useGlobalStore } from "@/core/global-store";
+import { ProfileEntriesLayout } from "@/app/[...slugs]/_profile-components/profile-entries-layout";
+import { CommunityContentSearchData } from "@/app/[...slugs]/_components/community-content-search-data";
+import { CommunityContentInfiniteList } from "@/app/[...slugs]/_components/community-content-infinite-list";
 
 interface Props {
   filter: string;
@@ -21,8 +19,6 @@ interface Props {
 }
 
 export async function CommunityContent({ filter, community, tag, query, section }: Props) {
-  const listStyle = useGlobalStore((s) => s.listStyle);
-
   if (filter === "subscribers") {
     return <CommunitySubscribers community={community} />;
   }
@@ -41,17 +37,6 @@ export async function CommunityContent({ filter, community, tag, query, section 
     return <></>;
   }
 
-  const searchData =
-    getSearchApiQuery(query ?? "", "newest", false)
-      .getData()
-      ?.pages.reduce<SearchResult[]>(
-        (acc, page) =>
-          [...acc, ...page.results].sort(
-            (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
-          ),
-        []
-      ) ?? [];
-
   return (
     <>
       {data.pages.length === 0 ? <LinearProgress /> : ""}
@@ -61,42 +46,20 @@ export async function CommunityContent({ filter, community, tag, query, section 
           <CommunityContentSearch community={community} filter={filter} />
         </div>
       )}
-      {searchData.length > 0 ? (
-        <div className="search-list">
-          {searchData.map((res) => (
-            <Fragment key={`${res.author}-${res.permlink}-${res.id}`}>
-              <SearchListItem res={res} />
-            </Fragment>
-          ))}
-        </div>
-      ) : searchData.length === 0 && query ? (
-        i18next.t("g.no-matches")
-      ) : (
-        <></>
-      )}
+      <CommunityContentSearchData query={query} community={community} />
 
       {(!query || query?.length === 0) && (
-        <div className="entry-list">
-          <div
-            className={classNameObject({
-              "entry-list-body": true,
-              "grid-view": ListStyle.grid === listStyle
-            })}
-          >
-            <EntryListContent
-              isPromoted={filter === "promoted"}
-              entries={data.pages.reduce<Entry[]>(
-                (acc, page) => [...acc, ...(page as Entry[])],
-                []
-              )}
-              loading={false}
-              sectionParam={section}
-            />
-          </div>
-        </div>
+        <ProfileEntriesLayout section={section} username={community.name}>
+          <EntryListContent
+            username={community.name}
+            isPromoted={filter === "promoted"}
+            entries={data.pages.reduce<Entry[]>((acc, page) => [...acc, ...(page as Entry[])], [])}
+            loading={false}
+            sectionParam={section}
+          />
+          <CommunityContentInfiniteList community={community} section={section} />
+        </ProfileEntriesLayout>
       )}
-      {/*{search.length === 0 && loading && entryList.length > 0 ? <LinearProgress /> : ""}*/}
-      {/*<DetectBottom onBottom={bottomReached} />*/}
     </>
   );
 }
