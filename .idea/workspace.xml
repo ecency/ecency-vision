@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile page posts infinite loader">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile page searching">
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-client-init.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-context.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-cross-post.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-muted-content.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-nsfw-content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-infinite-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-infinite-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-entries-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-reblog-btn/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,15 +302,8 @@
       <workItem from="1721197975419" duration="12699000" />
       <workItem from="1721653482132" duration="3548000" />
       <workItem from="1721680194240" duration="1312000" />
-      <workItem from="1721681535786" duration="13256000" />
-    </task>
-    <task id="LOCAL-00060" summary="Migrated profile page pt. 3">
-      <option name="closed" value="true" />
-      <created>1719848340169</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1719848340171</updated>
+      <workItem from="1721681535786" duration="16133000" />
+      <workItem from="1721980024762" duration="3052000" />
     </task>
     <task id="LOCAL-00061" summary="Migrated profile page pt. 4">
       <option name="closed" value="true" />
@@ -685,7 +689,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721933044804</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Fixed profile page searching">
+      <option name="closed" value="true" />
+      <created>1721934155565</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1721934155565</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,7 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated market pages" />
     <MESSAGE value="Migrated market pages pt.2" />
     <MESSAGE value="Migrated entry page" />
     <MESSAGE value="Fixed client side components" />
@@ -731,7 +742,8 @@
     <MESSAGE value="Fixed powering down in hive wallet" />
     <MESSAGE value="Fixed profile list style switcher" />
     <MESSAGE value="Fixed profile page posts infinite loader" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile page posts infinite loader" />
+    <MESSAGE value="Fixed profile page searching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile page searching" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -36,6 +36,7 @@ export async function ProfileEntriesList({ section, account }: Props) {
     <>
       <ProfileEntriesLayout section={section} username={account.name}>
         <EntryListContent
+          username={`@${account.name}`}
           loading={false}
           entries={entryList}
           sectionParam={section}

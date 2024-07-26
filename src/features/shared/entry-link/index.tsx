@@ -1,3 +1,5 @@
+"use client";
+
 import React, { PropsWithChildren, useMemo } from "react";
 import { Entry } from "@/entities";
 import Link from "next/link";

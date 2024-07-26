@@ -83,7 +83,6 @@ export async function CommunityContent({ filter, community, tag, query, section 
               "grid-view": ListStyle.grid === listStyle
             })}
           >
-            {/*{loading && entryList.length === 0 && <EntryListLoadingItem />}*/}
             <EntryListContent
               isPromoted={filter === "promoted"}
               entries={data.pages.reduce<Entry[]>(

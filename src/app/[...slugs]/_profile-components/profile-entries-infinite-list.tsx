@@ -26,6 +26,7 @@ export function ProfileEntriesInfiniteList({ section, account }: Props) {
   return (
     <>
       <EntryListContent
+        username={`@${account.name}`}
         loading={false}
         entries={entryList}
         sectionParam={section}
