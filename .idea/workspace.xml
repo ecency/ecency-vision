@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added infinite scrolling in a feed">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved entry menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/bookmarks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/bookmarks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/bookmarks-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/bookmarks-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-controversial-rising-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-controversial-rising-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/points-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/points-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/curation-trail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/curation-trail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/client-server-bridge/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/client-server-bridge/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +117,7 @@
       <recent name="$PROJECT_DIR$/src/app/market/advanced" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -190,8 +184,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Node.js.scratch_40.js" />
         <item itemvalue="Node.js.scratch_39.js" />
         <item itemvalue="npm.start" />
@@ -303,14 +297,6 @@
       <workItem from="1721680194240" duration="1312000" />
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
-    </task>
-    <task id="LOCAL-00066" summary="Build fixups">
-      <option name="closed" value="true" />
-      <created>1719942238840</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1719942238840</updated>
     </task>
     <task id="LOCAL-00067" summary="Build imports">
       <option name="closed" value="true" />
@@ -696,7 +682,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722110498902</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Improved entry menu">
+      <option name="closed" value="true" />
+      <created>1722112834313</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1722112834314</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added entry editing page" />
     <MESSAGE value="Updated build, removed warnings" />
     <MESSAGE value="Added edit draft page" />
     <MESSAGE value="Added community create hs page" />
@@ -742,7 +735,8 @@
     <MESSAGE value="Fixed trading view charts widget" />
     <MESSAGE value="Fixed coingecko api request" />
     <MESSAGE value="Added infinite scrolling in a feed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added infinite scrolling in a feed" />
+    <MESSAGE value="Improved entry menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved entry menu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

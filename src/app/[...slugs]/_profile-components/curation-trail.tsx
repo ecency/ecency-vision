@@ -39,6 +39,7 @@ export function CurationTrail({ account, section }: Props) {
     <>
       <ProfileCover account={account} />
       <EntryListContent
+        username={account.name}
         loading={isLoading}
         isPromoted={false}
         sectionParam={section}

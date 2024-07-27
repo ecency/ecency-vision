@@ -15,7 +15,6 @@ interface Props {
 
 export function EntryPageBodyViewer({ entry, rawParam, isEdit }: Props) {
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
-  const usePrivate = useGlobalStore((s) => s.usePrivate);
 
   const { isRawContent } = EcencyClientServerBridge.useSafeContext(EntryPageContext);
   const postPoll = useEntryPollExtractor(entry);

@@ -15,6 +15,7 @@ export namespace EcencyClientServerBridge {
     }
 
     if (ctx.ClientContext) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useClientContext(ctx);
     }
 

@@ -9,6 +9,7 @@ const DEFAULT = {
 };
 
 export const getPointsQuery = (username?: string, filter = 0) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const usePrivate = useGlobalStore((state) => state.usePrivate);
 
   return EcencyQueriesManager.generateClientServerQuery({

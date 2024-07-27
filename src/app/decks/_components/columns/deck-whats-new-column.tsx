@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./_deck-whats-new-column.scss";
 import { markdownToHTML } from "@ecency/render-helper/lib/methods";
-import { version } from "../../../../../package.json";
+import appPackage from "../../../../../package.json";
 import { DeckGridContext } from "../deck-manager";
 import { ReloadableDeckGridItem } from "../types";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
@@ -69,7 +69,7 @@ export const DeckWhatsNewColumn = ({ id, draggable, settings }: Props) => {
               <AccordionToggle as="div" eventKey="1">
                 <div className="wn-item">
                   {item.name}
-                  {item.name === version && (
+                  {item.name === appPackage.version && (
                     <div className="bg-blue-dark-sky px-2 py-1 text-xs font-bold text-white rounded">
                       {i18next.t("decks.columns.current")}
                     </div>

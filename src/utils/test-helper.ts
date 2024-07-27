@@ -41,6 +41,7 @@ export const activeUserMaker = (name: string): ActiveUser => {
     data: {
       name: name
     },
+    // @ts-ignore
     points: {
       points: "1.000",
       uPoints: "0.500"
