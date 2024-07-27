@@ -22,7 +22,7 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
   const isIndexPage =
     Object.values<string>(EntryFilter).includes(slugs[0]) &&
     slugs.length > 0 &&
-    !isCommunity(communityNameOrAccountFilters);
+    !(communityNameOrAccountFilters ? isCommunity(communityNameOrAccountFilters) : false);
   const isEditPage = isEntryPage && slugs[2] === "edit";
   const isProfilePage =
     filterOrUsername.startsWith("@") || (filterOrUsername.startsWith("%40") && !isEditPage);

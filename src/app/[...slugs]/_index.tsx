@@ -1,14 +1,12 @@
 import React from "react";
 import "./entry-index.scss";
 import { useGlobalStore } from "@/core/global-store";
-import { EntryListContent } from "@/features/shared";
-import { ListStyle } from "@/enums";
 import { TrendingTagsCard } from "@/app/_components/trending-tags-card";
 import { EntryIndexMenu } from "@/app/_components/entry-index-menu";
 import { prefetchGetPostsFeedQuery } from "@/api/queries";
-import { Entry } from "@/entities";
 import { MarketData } from "@/app/_components/market-data";
 import { TopCommunitiesWidget } from "@/app/_components/top-communities-widget";
+import { FeedContent } from "@/app/[...slugs]/_feed-components";
 
 export async function EntryIndex() {
   const isMobile = useGlobalStore((s) => s.isMobile);
@@ -17,8 +15,7 @@ export async function EntryIndex() {
   const filter = useGlobalStore((s) => s.filter);
   const tag = useGlobalStore((s) => s.tag);
 
-  const data = await prefetchGetPostsFeedQuery(filter, tag);
-  const entryList = data?.pages?.reduce<Entry[]>((acc, p) => [...acc, ...(p as Entry[])], []) ?? [];
+  await prefetchGetPostsFeedQuery(filter, tag);
 
   return (
     <>
@@ -28,30 +25,13 @@ export async function EntryIndex() {
           <div className="page-tools">
             <EntryIndexMenu />
           </div>
-          {/*{loading && entryList.length === 0 ? <LinearProgress /> : ""}*/}
-          <div className="entry-list">
-            <div
-              className={`entry-list-body limited-area ${
-                listStyle === ListStyle.grid ? "grid-view" : ""
-              }`}
-            >
-              {/*{loading && entryList.length === 0 && <EntryListLoadingItem />}*/}
-              <EntryListContent
-                loading={false}
-                entries={entryList}
-                sectionParam={filter}
-                isPromoted={true}
-              />
-            </div>
-          </div>
-          {/*{loading && entryList.length > 0 ? <LinearProgress /> : ""}*/}
+          <FeedContent tag={tag} filter={filter} />
         </div>
         <div className="side-menu">
           {!isMobile && !activeUser && <MarketData />}
           {!isMobile && <TopCommunitiesWidget />}
         </div>
       </div>
-      {/*<DetectBottom onBottom={() => fetchNextPage({})} />*/}
     </>
   );
 }
