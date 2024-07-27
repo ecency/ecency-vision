@@ -1,11 +1,11 @@
 import React from "react";
-import { MarketSwapForm } from "./index";
 import { MarketSwapActiveOrders } from "./market-swap-active-orders";
 import "./_swap-mode.scss";
 import { Button } from "@ui/button";
 import i18next from "i18next";
 import Link from "next/link";
 import { useGlobalStore } from "@/core/global-store";
+import { MarketSwapForm } from "@/features/market";
 
 interface Props {
   inline?: boolean;

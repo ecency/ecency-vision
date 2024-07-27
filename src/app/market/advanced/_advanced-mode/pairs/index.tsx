@@ -13,7 +13,6 @@ interface Props {
   refresh: boolean;
   setRefresh: (v: boolean) => void;
   setOpenOrders: (data: OpenOrdersData[]) => void;
-  setOpenOrdersDataLoading: (value: boolean) => void;
   setAllOrders: (value: Transaction[]) => void;
   updateRate: number;
 }
@@ -27,7 +26,6 @@ export const MarketObserver = ({
   refresh,
   setRefresh,
   setOpenOrders,
-  setOpenOrdersDataLoading,
   setAllOrders,
   updateRate
 }: Props) => {
@@ -44,7 +42,6 @@ export const MarketObserver = ({
           onHistoryChange={onHistoryChange}
           onUsdChange={onUsdChange}
           setOpenOrders={setOpenOrders}
-          setOpenOrdersDataLoading={setOpenOrdersDataLoading}
           updateRate={updateRate}
         />
       ) : (

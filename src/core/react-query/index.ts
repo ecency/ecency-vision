@@ -83,7 +83,9 @@ export enum QueryIdentifiers {
   REFERRALS = "referrals",
   REFERRALS_STATS = "referrals-stats",
   MARKET_DATA = "market-data",
-  GET_FOLLOWING = "get-following"
+  GET_FOLLOWING = "get-following",
+  HIVE_HBD_STATS = "hive-hbd-stats",
+  GET_ORDER_BOOK = "get-order-book"
 }
 
 function makeQueryClient() {

@@ -10,11 +10,11 @@ import i18next from "i18next";
 import { OpenOrders } from "@/app/market/_components/open-orders";
 import { useGlobalStore } from "@/core/global-store";
 import Link from "next/link";
+import { getOpenOrdersQuery } from "@/api/queries";
 
 interface Props {
   widgetTypeChanged: (type: Widget) => void;
   openOrdersData: OpenOrdersData[];
-  openOrdersDataLoading: boolean;
   setRefresh: (value: boolean) => void;
   allOrders: Transaction[];
 }
@@ -24,7 +24,6 @@ type TabType = "open" | "completed" | "all";
 export const OpenOrdersWidget = ({
   widgetTypeChanged,
   openOrdersData,
-  openOrdersDataLoading,
   setRefresh,
   allOrders
 }: Props) => {
@@ -34,6 +33,10 @@ export const OpenOrdersWidget = ({
   const [storedType, setStoredType] = useLocalStorage<TabType>(PREFIX + "_amm_oo_t", "open");
   const [type, setType] = useState<TabType>(storedType ?? "open");
   const [completedOrders, setCompletedOrders] = useState<LimitOrderCreate[]>([]);
+
+  const { isLoading: openOrdersDataLoading } = getOpenOrdersQuery(
+    activeUser?.username ?? ""
+  ).useClientQuery();
 
   useEffect(() => {
     setCompletedOrders(
@@ -91,7 +94,6 @@ export const OpenOrdersWidget = ({
 
   return (
     <MarketAdvancedModeWidget
-      history={history}
       type={Widget.OpenOrders}
       className="market-advanced-mode-oo-widget"
       title={

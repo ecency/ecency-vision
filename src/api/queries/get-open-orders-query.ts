@@ -7,5 +7,6 @@ export const getOpenOrdersQuery = (user: string) =>
     queryKey: [QueryIdentifiers.OPEN_ORDERS, user],
     queryFn: () =>
       client.call("condenser_api", "get_open_orders", [user]) as Promise<OpenOrdersData[]>,
-    select: (data) => data.sort((a, b) => a.orderid - b.orderid)
+    select: (data) => data.sort((a, b) => a.orderid - b.orderid),
+    enabled: !!user
   });

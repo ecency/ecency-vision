@@ -27,7 +27,6 @@ interface Props {
   usdPrice: number;
   onSuccessTrade: () => void;
   openOrdersData: OpenOrdersData[];
-  openOrdersDataLoading: boolean;
   setOpenOrders: (data: OpenOrdersData[]) => void;
   setRefresh: (value: boolean) => void;
   allOrders: Transaction[];
@@ -51,7 +50,6 @@ export const WidgetLayoutBuilder = ({
   usdPrice,
   onSuccessTrade,
   openOrdersData,
-  openOrdersDataLoading,
   setRefresh,
   allOrders
 }: Props) => {
@@ -122,7 +120,6 @@ export const WidgetLayoutBuilder = ({
         <OpenOrdersWidget
           allOrders={allOrders}
           widgetTypeChanged={(type) => onWidgetTypeChanged("oo", type)}
-          openOrdersDataLoading={openOrdersDataLoading}
           openOrdersData={openOrdersData}
           setRefresh={setRefresh}
         />

@@ -41,7 +41,6 @@ export default function MarketAdvancedPage() {
   const [amount, setAmount] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [openOrdersData, setOpenOrdersData] = useState<OpenOrdersData[]>([]);
-  const [openOrdersDataLoading, setOpenOrdersDataLoading] = useState(false);
   const [allOrders, setAllOrders] = useState<Transaction[]>([]);
 
   return (
@@ -63,7 +62,6 @@ export default function MarketAdvancedPage() {
               onDayChange={(dayChange) => setDayChange(dayChange)}
               onHistoryChange={(history) => setHistory(history)}
               onUsdChange={(usdPrice) => setUsdPrice(usdPrice)}
-              setOpenOrdersDataLoading={setOpenOrdersDataLoading}
               setOpenOrders={setOpenOrdersData}
             />
             <UserBalanceObserver
@@ -114,7 +112,6 @@ export default function MarketAdvancedPage() {
                 }}
                 onSuccessTrade={() => setRefresh(true)}
                 openOrdersData={openOrdersData}
-                openOrdersDataLoading={openOrdersDataLoading}
                 setOpenOrders={setOpenOrdersData}
                 setRefresh={setRefresh}
               />

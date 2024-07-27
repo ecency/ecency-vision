@@ -3,7 +3,6 @@ import { SwapAmountControl } from "./swap-amount-control";
 import { MarketInfo } from "./market-info";
 import { MarketAsset, MarketPairs } from "./market-pair";
 import { getBalance } from "./api/get-balance";
-import { getHiveMarketRate, HiveMarketRateListener } from "./api/hive";
 import { MarketSwapFormStep } from "./form-step";
 import { SignMethods } from "./sign-methods";
 import { MarketSwapFormHeader } from "./market-swap-form-header";
@@ -20,6 +19,10 @@ import { classNameObject } from "@ui/util";
 import i18next from "i18next";
 import { checkSvg, swapSvg } from "@ui/svg";
 import useMount from "react-use/lib/useMount";
+import {
+  getHiveMarketRate,
+  HiveMarketRateListener
+} from "@/features/market/market-swap-form/api/hive";
 
 export * from "./swap-mode";
 
@@ -142,7 +145,7 @@ export const MarketSwapForm = ({ padding = "p-4" }: Props) => {
 
     setAccountFromMarketRate(accountToMarketRate);
     setAccountToMarketRate(accountFromMarketRate);
-  }, [accountFromMarketRate, accountToMarketRate, activeUser, fetchMarket, fromAsset, toAsset]);
+  }, [fromAsset]);
 
   useEffect(() => {
     fetchMarket();
