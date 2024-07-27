@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community page infinite loading and searching behavior">
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-hive-hbd-stats-query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/queries/get-order-book-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-open-orders-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-open-orders-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/hive-hbd-observer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/pairs/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/widget-layout-builder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_advanced-mode/widget-layout-builder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/open-orders-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/open-orders-widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/hive-market-rate-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/hive/hive-market-rate-listener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/swap-mode.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/pairs-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/pairs-widget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-form-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-form-widget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-view-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-view-widget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/market/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/index.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

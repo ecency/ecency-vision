@@ -44,7 +44,6 @@ export const TradingFormWidget = ({
   return (
     <MarketAdvancedModeWidget
       type={Widget.TradingForm}
-      history={history}
       className="market-advanced-mode-tf-widget"
       title={
         isMobile ? (

@@ -6,7 +6,6 @@ import i18next from "i18next";
 export const PairsWidget = () => {
   return (
     <MarketAdvancedModeWidget
-      history={history}
       type={Widget.Pairs}
       title={i18next.t("market.advanced.pairs")}
       widgetTypeChanged={() => {}}
