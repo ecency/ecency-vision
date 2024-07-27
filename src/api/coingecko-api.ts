@@ -8,12 +8,15 @@ interface CoinGeckoApiResponse {
 }
 
 export const getCGMarketApi = async (ids: string, vs: string): Promise<CoinGeckoApiResponse> => {
-  const resp = await axios.get<CoinGeckoApiResponse>("/coingecko/api/v3/simple/price", {
-    params: {
-      ids,
-      vs_currencies: vs
+  const resp = await axios.get<CoinGeckoApiResponse>(
+    "https://api.coingecko.com/api/v3/simple/price",
+    {
+      params: {
+        ids,
+        vs_currencies: vs
+      }
     }
-  });
+  );
 
   return resp.data;
 };

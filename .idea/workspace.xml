@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community page infinite loading and searching behavior">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed trading view charts widget">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/pairs-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/pairs-widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-form-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-form-widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-view-widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/_components/trading-view-widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/coingecko-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/coingecko-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/market/market-swap-form/api/coingecko-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/market/market-swap-form/api/coingecko-api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,14 +293,6 @@
       <workItem from="1721680194240" duration="1312000" />
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
-    </task>
-    <task id="LOCAL-00063" summary="Migrated profile page pt. 6">
-      <option name="closed" value="true" />
-      <created>1719940548183</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1719940548183</updated>
     </task>
     <task id="LOCAL-00064" summary="Build fixups">
       <option name="closed" value="true" />
@@ -688,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722020594022</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Fixed trading view charts widget">
+      <option name="closed" value="true" />
+      <created>1722108682401</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1722108682401</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +707,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed client side components" />
     <MESSAGE value="Migrated submit page" />
     <MESSAGE value="Fixed community selector in submit page" />
     <MESSAGE value="Added entry editing page" />
@@ -734,7 +731,8 @@
     <MESSAGE value="Fixed profile page searching" />
     <MESSAGE value="Made entry list item RCS" />
     <MESSAGE value="Fixed community page infinite loading and searching behavior" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed community page infinite loading and searching behavior" />
+    <MESSAGE value="Fixed trading view charts widget" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed trading view charts widget" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
