@@ -10,6 +10,7 @@ export function useBookmarksQuery() {
     queryKey: [QueryIdentifiers.BOOKMARKS, activeUser?.username],
     queryFn: () => getBookmarks(activeUser!.username),
     enabled: !!activeUser,
-    initialData: []
+    initialData: [],
+    refetchOnMount: true
   });
 }

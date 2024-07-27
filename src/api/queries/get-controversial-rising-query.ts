@@ -39,9 +39,9 @@ export const getControversialRisingQuery = (what: string, tag: string, enabled =
     },
     initialData: { pages: [], pageParams: [] },
     initialPageParam: { sid: undefined } as PageParam,
-    getNextPageParam: ({ scroll_id }: SearchResponse) => {
+    getNextPageParam: (resp: SearchResponse) => {
       return {
-        sid: scroll_id
+        sid: resp?.scroll_id
       };
     },
     enabled

@@ -9,7 +9,7 @@ import { getCommunityCache, useCommunityPin } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import { useDeleteComment, usePinToBlog } from "@/api/mutations";
 import { useRouter } from "next/navigation";
-import { dotsHorizontal, facebookSvg, redditSvg, shareVariantSvg, twitterSvg } from "@ui/svg";
+import { dotsHorizontal, shareVariantSvg } from "@ui/svg";
 import {
   EntryShare,
   shareFacebook,
@@ -23,6 +23,7 @@ import { EditHistory } from "@/features/shared/edit-history";
 import { Button, ModalConfirm } from "@/features/ui";
 import { MuteBtn } from "@/features/shared/mute-btn";
 import { Promote } from "@/features/shared/promote";
+import { UilFacebook, UilRedditAlienAlt, UilTwitter } from "@iconscout/react-unicons";
 
 interface Props {
   entry: Entry;
@@ -79,18 +80,25 @@ export const EntryMenu = ({
             {shareVariantSvg}
           </div>
           <div className="all-buttons">
-            <div className="share-button" onClick={() => shareReddit(entry)}>
-              {redditSvg}
-            </div>
-            <div className="share-button" onClick={() => shareTwitter(entry)}>
-              {twitterSvg}
-            </div>
-            <div
-              className="share-button share-button-facebook"
+            <Button
+              size="sm"
+              appearance="gray-link"
+              onClick={() => shareReddit(entry)}
+              icon={<UilRedditAlienAlt />}
+            />
+            <Button
+              size="sm"
+              appearance="gray-link"
+              onClick={() => shareTwitter(entry)}
+              icon={<UilTwitter />}
+            />
+
+            <Button
+              size="sm"
+              appearance="gray-link"
               onClick={() => shareFacebook(entry)}
-            >
-              {facebookSvg}
-            </div>
+              icon={<UilFacebook />}
+            />
           </div>
         </div>
       )}

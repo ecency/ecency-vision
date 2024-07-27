@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed coingecko api request">
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-infinite-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/index.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added infinite scrolling in a feed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutations/bookmarks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/bookmarks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/bookmarks-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/bookmarks-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-controversial-rising-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-controversial-rising-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,14 +303,6 @@
       <workItem from="1721680194240" duration="1312000" />
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
-    </task>
-    <task id="LOCAL-00065" summary="Build fixups">
-      <option name="closed" value="true" />
-      <created>1719941869916</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1719941869916</updated>
     </task>
     <task id="LOCAL-00066" summary="Build fixups">
       <option name="closed" value="true" />
@@ -690,7 +688,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722108796954</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Added infinite scrolling in a feed">
+      <option name="closed" value="true" />
+      <created>1722110498902</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1722110498902</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +717,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed community selector in submit page" />
     <MESSAGE value="Added entry editing page" />
     <MESSAGE value="Updated build, removed warnings" />
     <MESSAGE value="Added edit draft page" />
@@ -736,7 +741,8 @@
     <MESSAGE value="Fixed community page infinite loading and searching behavior" />
     <MESSAGE value="Fixed trading view charts widget" />
     <MESSAGE value="Fixed coingecko api request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed coingecko api request" />
+    <MESSAGE value="Added infinite scrolling in a feed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added infinite scrolling in a feed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

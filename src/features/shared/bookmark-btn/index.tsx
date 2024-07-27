@@ -6,10 +6,11 @@ import { useGlobalStore } from "@/core/global-store";
 import { LoginRequired } from "@/features/shared";
 import { Tooltip } from "@ui/tooltip";
 import i18next from "i18next";
-import { bookmarkOutlineSvg, bookmarkSvg } from "@ui/svg";
 import { useBookmarksQuery } from "@/api/queries";
 import { Entry } from "@/entities";
 import { useBookmarkAdd, useBookmarkDelete } from "@/api/mutations/bookmarks";
+import { Button } from "@ui/button";
+import { UilBookmark } from "@iconscout/react-unicons";
 
 export interface Props {
   entry: Entry;
@@ -35,7 +36,7 @@ export function BookmarkBtn({ entry }: Props) {
       <LoginRequired>
         <div className="bookmark-btn">
           <Tooltip content={i18next.t("bookmark-btn.add")}>
-            <span>{bookmarkOutlineSvg}</span>
+            <Button appearance="gray-link" size="sm" icon={<UilBookmark />} />
           </Tooltip>
         </div>
       </LoginRequired>
@@ -49,7 +50,7 @@ export function BookmarkBtn({ entry }: Props) {
         onClick={() => deleteBookmark()}
       >
         <Tooltip content={i18next.t("bookmark-btn.delete")}>
-          <span>{bookmarkSvg}</span>
+          <Button appearance="gray-link" size="sm" icon={<UilBookmark color="green" />} />
         </Tooltip>
       </div>
     );
@@ -58,7 +59,7 @@ export function BookmarkBtn({ entry }: Props) {
   return (
     <div className={`bookmark-btn ${isAdding ? "in-progress" : ""}`} onClick={() => addBookmark()}>
       <Tooltip content={i18next.t("bookmark-btn.add")}>
-        <span>{bookmarkOutlineSvg}</span>
+        <Button appearance="gray-link" size="sm" icon={<UilBookmark />} />
       </Tooltip>
     </div>
   );

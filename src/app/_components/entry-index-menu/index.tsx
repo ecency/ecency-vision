@@ -38,13 +38,16 @@ export const isMyPage = (filter: string, tag: string, activeUser: ActiveUser | n
 
 export const isActiveUser = (activeUser?: ActiveUser | null) => !!activeUser;
 
-export function EntryIndexMenu() {
+interface Props {
+  filter: string;
+  tag: string;
+}
+
+export function EntryIndexMenu({ filter, tag }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const filter = useGlobalStore((s) => s.filter);
-  const tag = useGlobalStore((s) => s.tag);
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
   const [noReblog, setNoReblog] = useLocalStorage(PREFIX + "my_reblog", false);

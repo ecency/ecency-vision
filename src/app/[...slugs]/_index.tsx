@@ -8,12 +8,14 @@ import { MarketData } from "@/app/_components/market-data";
 import { TopCommunitiesWidget } from "@/app/_components/top-communities-widget";
 import { FeedContent } from "@/app/[...slugs]/_feed-components";
 
-export async function EntryIndex() {
+interface Props {
+  filter: string;
+  tag: string;
+}
+
+export async function EntryIndex({ filter, tag }: Props) {
   const isMobile = useGlobalStore((s) => s.isMobile);
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const listStyle = useGlobalStore((s) => s.listStyle);
-  const filter = useGlobalStore((s) => s.filter);
-  const tag = useGlobalStore((s) => s.tag);
 
   await prefetchGetPostsFeedQuery(filter, tag);
 
@@ -23,7 +25,7 @@ export async function EntryIndex() {
         <div className="tags-side">{!isMobile && <TrendingTagsCard />}</div>
         <div className="entry-page-content">
           <div className="page-tools">
-            <EntryIndexMenu />
+            <EntryIndexMenu filter={filter} tag={tag} />
           </div>
           <FeedContent tag={tag} filter={filter} />
         </div>

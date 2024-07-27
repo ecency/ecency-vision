@@ -36,10 +36,10 @@ export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
-    const upVoted = entry?.active_votes.some(
+    const upVoted = entry?.active_votes?.some(
       (v: EntryVote) => v.voter === activeUser.username && v.rshares >= 0
     );
-    const downVoted = entry?.active_votes.some(
+    const downVoted = entry?.active_votes?.some(
       (v: EntryVote) => v.voter === activeUser.username && v.rshares < 0
     );
 

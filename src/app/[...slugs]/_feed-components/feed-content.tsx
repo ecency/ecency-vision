@@ -13,7 +13,15 @@ interface Props {
 export function FeedContent({ filter, tag }: Props) {
   const data = getPostsFeedQueryData(filter, tag);
 
-  const entryList = data?.pages?.reduce<Entry[]>((acc, p) => [...acc, ...(p as Entry[])], []) ?? [];
+  const entryList =
+    data?.pages?.reduce<Entry[]>((acc, p) => {
+      if (p instanceof Array) {
+        return [...acc, ...(p as Entry[])];
+      }
+
+      // @ts-ignore
+      return [...acc, ...(p as { results: Entry[] }).results];
+    }, []) ?? [];
 
   return (
     <FeedLayout tag={tag} filter={filter}>

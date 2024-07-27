@@ -33,7 +33,9 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
       <Theme />
       <Feedback />
       <Navbar />
-      {isIndexPage && !isProfilePage && !isEntryPage && <EntryIndex />}
+      {isIndexPage && !isProfilePage && !isEntryPage && (
+        <EntryIndex filter={filterOrUsername} tag="" />
+      )}
       {isProfilePage && !isIndexPage && !isEntryPage && (
         <ProfilePage
           username={filterOrUsername.replace("%40", "")}

@@ -7,6 +7,7 @@ import { appAxios } from "@/api/axios";
 import { apiBase } from "@/api/helper";
 import { useGlobalStore } from "@/core/global-store";
 import i18next from "i18next";
+import { getQueryClient, QueryIdentifiers } from "@/core/react-query";
 
 export function useBookmarkAdd(entry: Entry) {
   const activeUser = useGlobalStore((s) => s.activeUser);
@@ -26,7 +27,12 @@ export function useBookmarkAdd(entry: Entry) {
       const response = await appAxios.post(apiBase(`/private-api/bookmarks-add`), data);
       return response.data;
     },
-    onSuccess: () => success(i18next.t("bookmark-btn.added")),
+    onSuccess: () => {
+      success(i18next.t("bookmark-btn.added"));
+      getQueryClient().invalidateQueries({
+        queryKey: [QueryIdentifiers.BOOKMARKS, activeUser?.username]
+      });
+    },
     onError: (e) => error(i18next.t("g.server-error"))
   });
 }
@@ -45,7 +51,12 @@ export function useBookmarkDelete(bookmarkId?: string) {
       const response = await appAxios.post(apiBase(`/private-api/bookmarks-delete`), data);
       return response.data;
     },
-    onSuccess: () => success(i18next.t("bookmark-btn.deleted")),
+    onSuccess: () => {
+      success(i18next.t("bookmark-btn.deleted"));
+      getQueryClient().invalidateQueries({
+        queryKey: [QueryIdentifiers.BOOKMARKS, activeUser?.username]
+      });
+    },
     onError: (e) => error(i18next.t("g.server-error"))
   });
 }

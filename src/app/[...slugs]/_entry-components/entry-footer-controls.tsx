@@ -12,13 +12,14 @@ import {
 } from "@/features/shared";
 import { Entry } from "@/entities";
 import { Tooltip } from "@ui/tooltip";
-import { rawContentSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import { useMemo, useRef } from "react";
 import { useDistanceDetector } from "@/app/[...slugs]/_entry-components/distance-detector";
 import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { useRouter } from "next/navigation";
+import { Button } from "@ui/button";
+import { UilEye } from "@iconscout/react-unicons";
 
 interface Props {
   entry: Entry;
@@ -54,11 +55,15 @@ export function EntryFooterControls({ entry }: Props) {
       {!isOwnEntry && <EntryReblogBtn entry={entry} />}
       <span className="flex-spacer" />
       <Tooltip content={i18next.t("entry.raw")}>
-        <span className="raw-content-icon" onClick={() => setIsRawContent(!isRawContent)}>
-          {rawContentSvg}
-        </span>
+        <Button
+          size="sm"
+          appearance="gray-link"
+          onClick={() => setIsRawContent(!isRawContent)}
+          icon={<UilEye />}
+        />
       </Tooltip>
       <BookmarkBtn entry={entry} />
+      <div className="border-l h-6 ml-4 w-[1px]" />
       <EntryMenu
         entry={entry}
         alignBottom={true}
