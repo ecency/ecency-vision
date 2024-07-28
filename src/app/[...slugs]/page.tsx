@@ -9,6 +9,8 @@ import { EntryPage } from "@/app/[...slugs]/_entry-page";
 import { EntryEditPage } from "@/app/[...slugs]/_entry-edit-page";
 import { isCommunity } from "@/utils";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: { slugs: string[] };
   searchParams: Record<string, string | undefined>;

@@ -7,6 +7,8 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/core/react-query";
 import { getCommunitiesQuery } from "@/api/queries";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   searchParams: Record<string, string | undefined>;
 }

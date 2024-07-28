@@ -7,6 +7,8 @@ import { getContributorsQuery } from "@/api/queries";
 import { getQueryClient } from "@/core/react-query";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: i18next.t("contributors.title")
 };

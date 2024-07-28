@@ -10,6 +10,8 @@ import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
 import { FaqSearchResult } from "@/app/faq/_components/faq-search-result";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: i18next.t("static.faq.page-title")
 };

@@ -19,6 +19,8 @@ import { CurationDuration, LeaderBoardDuration } from "@/entities";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/core/react-query";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: i18next.t("discover.title"),
   description: i18next.t("discover.description")

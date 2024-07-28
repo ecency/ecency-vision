@@ -5,6 +5,8 @@ import { getWitnessesQuery } from "@/api/queries";
 import { WitnessesHeader, WitnessesList } from "@/app/witnesses/_components";
 import { getQueryClient } from "@/core/react-query";
 
+export const dynamic = "force-dynamic";
+
 export default async function Witnesses() {
   await getWitnessesQuery(50).prefetch();
 

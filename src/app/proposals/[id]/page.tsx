@@ -14,6 +14,8 @@ import { useEntryCache } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import "../_page.scss";
 
+export const dynamic = "force-dynamic";
+
 export interface Props {
   params: {
     id: string;

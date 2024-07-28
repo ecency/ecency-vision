@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved entry menu">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/points-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/points-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-body-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/curation-trail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/curation-trail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-whats-new-column.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/client-server-bridge/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/client-server-bridge/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/test-helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/test-helper.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed build dynamic routes">
+      <change beforePath="$PROJECT_DIR$/src/core/react-query/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/react-query/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,14 +104,14 @@
       <recent name="$PROJECT_DIR$/src/features/ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/features/i18n" />
       <recent name="$PROJECT_DIR$/src/core/global-store/initialization" />
       <recent name="$PROJECT_DIR$/src/core/global-store/modules" />
       <recent name="$PROJECT_DIR$/src/app/submit/_components" />
-      <recent name="$PROJECT_DIR$/src/app/market/advanced" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.start">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -143,7 +137,7 @@
       <scripts>
         <script value="build" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v20.9.0/bin/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -184,11 +178,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
         <item itemvalue="Node.js.scratch_40.js" />
         <item itemvalue="Node.js.scratch_39.js" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -297,22 +291,6 @@
       <workItem from="1721680194240" duration="1312000" />
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
-    </task>
-    <task id="LOCAL-00067" summary="Build imports">
-      <option name="closed" value="true" />
-      <created>1719997831247</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1719997831247</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Fixed warnings">
-      <option name="closed" value="true" />
-      <created>1720016380538</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1720016380538</updated>
     </task>
     <task id="LOCAL-00069" summary="Fixed warnings">
       <option name="closed" value="true" />
@@ -690,7 +668,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722112834314</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Fixed build semantic errors">
+      <option name="closed" value="true" />
+      <created>1722114289284</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1722114289284</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Fixed build dynamic routes">
+      <option name="closed" value="true" />
+      <created>1722194327668</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1722194327668</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,8 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated build, removed warnings" />
-    <MESSAGE value="Added edit draft page" />
     <MESSAGE value="Added community create hs page" />
     <MESSAGE value="Added hiring console log" />
     <MESSAGE value="Fixed trending tags fetching" />
@@ -736,7 +728,9 @@
     <MESSAGE value="Fixed coingecko api request" />
     <MESSAGE value="Added infinite scrolling in a feed" />
     <MESSAGE value="Improved entry menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved entry menu" />
+    <MESSAGE value="Fixed build semantic errors" />
+    <MESSAGE value="Fixed build dynamic routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed build dynamic routes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

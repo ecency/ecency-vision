@@ -41,6 +41,8 @@ import { getDynamicPropsQuery } from "@/api/queries";
 import { onboardEmail } from "@/api/private-api";
 import { generatePassword, getPrivateKeys } from "@/utils/onBoard-helper";
 
+export const dynamic = "force-dynamic";
+
 export interface AccountInfo {
   email: string;
   username: string;

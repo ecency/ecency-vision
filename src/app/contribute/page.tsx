@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: "Contribute"
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Contribute() {
   return (
     <>

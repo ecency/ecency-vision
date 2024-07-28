@@ -1,5 +1,5 @@
-import { cache } from "react";
 import { isServer, QueryClient } from "@tanstack/react-query";
+import { cache } from "react";
 
 export enum QueryIdentifiers {
   COMMUNITY_THREADS = "community-threads",

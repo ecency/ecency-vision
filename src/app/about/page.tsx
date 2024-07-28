@@ -6,6 +6,8 @@ import Link from "next/link";
 import { blogSvg, discordSvg, githubSvg, mailSvg, newsSvg, telegramSvg, twitterSvg } from "@ui/svg";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: i18next.t("static.about.page-title")
 };
