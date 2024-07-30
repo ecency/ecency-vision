@@ -1,3 +1,5 @@
+"use client";
+
 import { EntryPageNsfwWarning } from "@/app/[...slugs]/_entry-components/entry-page-nsfw-warning";
 import { EntryPageCrossPostBody } from "@/app/[...slugs]/_entry-components/entry-page-cross-post-body";
 import { EntryPageWarnings } from "@/app/[...slugs]/_entry-components/entry-page-warnings";
