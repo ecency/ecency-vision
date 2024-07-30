@@ -12,6 +12,7 @@ import { AppWindow } from "@/types";
 import { UserActivityRecorder } from "@/features/user-activity";
 import { Tracker } from "@/features/monitoring";
 import { Announcements } from "@/features/announcement";
+import { FloatingFAQ } from "@/features/faq";
 
 export function ClientProviders(props: PropsWithChildren) {
   const usePrivate = useGlobalStore((s) => s.usePrivate);
@@ -28,6 +29,7 @@ export function ClientProviders(props: PropsWithChildren) {
         <Tracker />
         <ChatProvider>{props.children}</ChatProvider>
         <Announcements />
+        <FloatingFAQ />
       </UIManager>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

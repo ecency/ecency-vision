@@ -11,12 +11,12 @@ import "./index.scss";
 import { FormControl, InputGroup } from "@ui/input";
 import { Button } from "@ui/button";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
-import { useLocation } from "react-use";
 import { faqKeysGeneral } from "@/consts";
 import { ClickAwayListener } from "@/features/shared";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
 import { Tooltip } from "@ui/tooltip";
+import { usePathname } from "next/navigation";
 
 export interface FaqObject {
   show: boolean;
@@ -30,8 +30,9 @@ export const handleFloatingContainer = (show: boolean) => {
   window.dispatchEvent(ev);
 };
 
-const FloatingFAQ = () => {
-  const routerLocation = useLocation();
+export const FloatingFAQ = () => {
+  const pathname = usePathname();
+
   const [show, setShow] = useState(false);
   const [display, setDisplay] = useState(false);
   const [expandedHelp, setExpandedHelp] = useState(true);
@@ -55,7 +56,7 @@ const FloatingFAQ = () => {
 
   useEffect(() => {
     handleRouterChange();
-  }, [routerLocation]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!searchText) {
@@ -83,7 +84,7 @@ const FloatingFAQ = () => {
     const faqKeys = [...faqKeysGeneral];
     setFaqKeys(faqKeys);
     for (const p of data.faqPaths) {
-      if (routerLocation?.pathname?.match(p.path)) {
+      if (pathname.match(p.path)) {
         setDefaultFaqKeys(p.suggestions);
         setDatatoShow(p.suggestions);
       }
@@ -117,11 +118,9 @@ const FloatingFAQ = () => {
   const handleRouterChange = () => {
     setShow(false);
     setDisplay(false);
-    setIsSubmitPage(
-      !!routerLocation?.pathname?.match("submit") || !!routerLocation?.pathname?.match("edit")
-    );
+    setIsSubmitPage(!!pathname.match("submit") || !!pathname.match("edit"));
     for (const p of data.faqPaths) {
-      if (routerLocation?.pathname?.match(p.path)) {
+      if (pathname.match(p.path)) {
         setDisplay(true);
         setDatatoShow(p.suggestions);
         setDefaultFaqKeys(p.suggestions);
