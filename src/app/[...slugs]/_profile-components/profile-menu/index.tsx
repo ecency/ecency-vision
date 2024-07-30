@@ -50,65 +50,64 @@ export function ProfileMenu({ username, section }: Props) {
   return (
     <div className="profile-menu">
       <div className="profile-menu-items">
-        <>
-          <span className={`flex lg:hidden profile-menu-item`}>
-            <Dropdown>
-              <DropdownToggle>
-                {dropDownMenuItems.filter((item) => item.id === section).length > 0
-                  ? i18next.t(`profile.section-${section}`)
-                  : i18next.t(`profile.section-${dropDownMenuItems[0].id}`)}
-                {chevronDownSvgForSlider}
-              </DropdownToggle>
-              <DropdownMenu align="left">
-                {dropDownMenuItems.map((item) => (
-                  <DropdownItem selected={item.selected} key={item.id}>
-                    <Link href={item.href}>{item.label}</Link>
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </span>
-          <div className="hidden lg:flex items-center">
-            {menuItems.map((menuItem) => (
-              <Link
-                className={`profile-menu-item flex ${menuItem.selected ? "selected-item" : ""}`}
-                href={menuItem.href!}
-                key={`profile-menu-item-${menuItem.label}`}
-              >
-                {menuItem.label}
-              </Link>
-            ))}
-          </div>
-        </>
+        <span className="flex lg:hidden profile-menu-item">
+          <Dropdown>
+            <DropdownToggle>
+              {dropDownMenuItems.filter((item) => item.id === section).length > 0
+                ? i18next.t(`profile.section-${section}`)
+                : i18next.t(`profile.section-${dropDownMenuItems[0].id}`)}
+              {chevronDownSvgForSlider}
+            </DropdownToggle>
+            <DropdownMenu align="left">
+              {dropDownMenuItems.map((item) => (
+                <DropdownItem selected={item.selected} key={item.id}>
+                  <Link href={item.href}>{item.label}</Link>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </span>
+        <div className="hidden lg:flex items-center">
+          {menuItems.map((menuItem) => (
+            <Link
+              className={`profile-menu-item ${menuItem.selected ? "selected-item" : ""}`}
+              href={menuItem.href!}
+              key={`profile-menu-item-${menuItem.label}`}
+            >
+              {menuItem.label}
+            </Link>
+          ))}
+        </div>
+        <div className="flex items-center">
+          {username !== activeUser?.username && (
+            <Link
+              className={`profile-menu-item lg:hidden ${
+                section === "communities" ? "selected-item" : ""
+              }`}
+              href={`/@${username}/communities`}
+            >
+              {i18next.t(`profile.section-communities`)}
+            </Link>
+          )}
 
-        {username !== activeUser?.username && (
           <Link
-            className={`profile-menu-item flex lg:hidden ${
-              section === "communities" ? "selected-item" : ""
+            className={`profile-menu-item ${
+              ["wallet", "points", "engine", "spk"].includes(section) ? "selected-item" : ""
             }`}
-            href={`/@${username}/communities`}
+            href={`/@${username}/wallet`}
           >
-            {i18next.t(`profile.section-communities`)}
+            {i18next.t(`profile.section-wallet`)}
           </Link>
-        )}
 
-        <Link
-          className={`profile-menu-item flex ${
-            ["wallet", "points", "engine", "spk"].includes(section) ? "selected-item" : ""
-          }`}
-          href={`/@${username}/wallet`}
-        >
-          {i18next.t(`profile.section-wallet`)}
-        </Link>
-
-        {activeUser && activeUser.username === username && (
-          <Link
-            className={`profile-menu-item flex ${section === "settings" ? "selected-item" : ""}`}
-            href={`/@${username}/settings`}
-          >
-            {i18next.t(`profile.section-settings`)}
-          </Link>
-        )}
+          {activeUser && activeUser.username === username && (
+            <Link
+              className={`profile-menu-item ${section === "settings" ? "selected-item" : ""}`}
+              href={`/@${username}/settings`}
+            >
+              {i18next.t(`profile.section-settings`)}
+            </Link>
+          )}
+        </div>
         <div className="hidden lg:flex items-center">
           <Dropdown>
             <DropdownToggle>

@@ -5,35 +5,21 @@
   height: 50px;
   margin-bottom: 10px;
 
-  @include themify(day) {
-    border-bottom: 1px solid;
-    @apply border-light-400;
-  }
-
-  @include themify(night) {
-    border-bottom: 1px solid;
-    @apply border-dark-200;
-  }
-
   .profile-menu-items {
     display: flex;
     justify-content: space-between;
-    padding: 0 6px;
     width: 100%;
+
+    @apply bg-gray-100 dark:bg-gray-900 rounded-3xl p-2 lg:p-4;
 
     @media (min-width: $md-break) {
       flex-shrink: 0;
-      padding: 0;
       justify-content: flex-start;
       width: auto;
     }
 
     .profile-menu-item {
-      align-items: center;
-      @apply text-gray-steel;
-      font-size: 14px;
-      height: 50px;
-      padding: 0 8px;
+      @apply text-gray-steel py-1 px-2 text-sm items-center hover:text-blue-dark-sky;
 
       .ecency-dropdown-toggle {
         @apply flex items-center gap-2;
@@ -45,25 +31,13 @@
         }
       }
 
-      @media (min-width: $sm-break) {
-        padding: 0 16px;
-        font-size: 16px;
-
-        .dropdown-btn {
-          .label {
-            font-size: 16px !important;
-          }
-        }
-      }
-
       @media (min-width: $md-break) {
         margin-right: 32px;
-        padding: 0;
       }
 
 
       &.selected-item {
-        @apply border-blue-dark-sky border-b-[2px];
+        @apply bg-blue-dark-sky text-white rounded-full;
 
         .ecency-dropdown-toggle {
           @apply text-blue-dark-sky;

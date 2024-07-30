@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added floating faq">
-      <change afterPath="$PROJECT_DIR$/src/api/mutations/user-activity.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed user activity component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/user-activity/user-activity-recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/user-activity/user-activity-recorder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/svg.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,15 +297,7 @@
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
-      <workItem from="1722363474514" duration="336000" />
-    </task>
-    <task id="LOCAL-00078" summary="Migrated index page pt.2">
-      <option name="closed" value="true" />
-      <created>1720448595446</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1720448595446</updated>
+      <workItem from="1722363474514" duration="1526000" />
     </task>
     <task id="LOCAL-00079" summary="Fixed lang switcher and redirect from landing to feed">
       <option name="closed" value="true" />
@@ -691,7 +683,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722363731753</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="Fixed user activity component">
+      <option name="closed" value="true" />
+      <created>1722363846254</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1722363846254</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +712,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed notifications switching in profile settings" />
     <MESSAGE value="Updated sidebars" />
     <MESSAGE value="Fixed notification bar switching and settings changing" />
     <MESSAGE value="Fixed notification bar double-clicking" />
@@ -737,7 +736,8 @@
     <MESSAGE value="Show chat widget" />
     <MESSAGE value="Added announcements" />
     <MESSAGE value="Added floating faq" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added floating faq" />
+    <MESSAGE value="Fixed user activity component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed user activity component" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
