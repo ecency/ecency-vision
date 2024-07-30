@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed entry page raw viewing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed entry page nsfw viewing">
+      <change beforePath="$PROJECT_DIR$/src/app/chat-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chat-provider.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,15 +293,7 @@
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
-      <workItem from="1722325571472" duration="9905000" />
-    </task>
-    <task id="LOCAL-00074" summary="Migrated onboard-friend">
-      <option name="closed" value="true" />
-      <created>1720114035945</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1720114035945</updated>
+      <workItem from="1722325571472" duration="10215000" />
     </task>
     <task id="LOCAL-00075" summary="Added create community page">
       <option name="closed" value="true" />
@@ -688,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722362252084</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="Fixed entry page nsfw viewing">
+      <option name="closed" value="true" />
+      <created>1722362763712</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1722362763712</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +708,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added web vitals report" />
     <MESSAGE value="Updated README.md" />
     <MESSAGE value="Added i18n listeners" />
     <MESSAGE value="Fixed locale switcher in profile and three dots menu" />
@@ -734,7 +732,8 @@
     <MESSAGE value="Added metadata generator for all pages" />
     <MESSAGE value="Updated favicon.ico" />
     <MESSAGE value="Fixed entry page raw viewing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed entry page raw viewing" />
+    <MESSAGE value="Fixed entry page nsfw viewing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed entry page nsfw viewing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
