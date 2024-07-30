@@ -14,23 +14,23 @@ export namespace PageDetector {
     const isCommunityPage = slugs[1] ? isCommunity(slugs[1]) : false;
     const isIndexPage = Object.values<string>(EntryFilter).includes(slugs[0]);
 
-    if (isIndexPage && !isProfilePage && !isEntryPage && !isCommunityPage) {
+    if (isIndexPage && !isEditPage && !isProfilePage && !isEntryPage && !isCommunityPage) {
       return "index";
     }
 
-    if (isProfilePage && !isIndexPage && !isEntryPage && !isCommunityPage) {
+    if (isProfilePage && !isEntryPage && !isEditPage && !isCommunityPage) {
       return "profile";
     }
 
-    if (isEntryPage && !isEditPage && !isProfilePage && !isIndexPage && !isCommunityPage) {
-      return "entry";
-    }
-
-    if (isEditPage && isEntryPage && !isProfilePage && !isIndexPage && !isCommunityPage) {
+    if (isEditPage && isEntryPage && !isCommunityPage) {
       return "edit";
     }
 
-    if (isCommunityPage && !isEntryPage && !isProfilePage && !isIndexPage) {
+    if (isEntryPage && !isCommunityPage) {
+      return "entry";
+    }
+
+    if (isCommunityPage) {
       return "community";
     }
 
