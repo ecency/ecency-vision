@@ -3,31 +3,23 @@ import { getQueryClient } from "@/core/react-query";
 import { ProfilePage } from "@/app/[...slugs]/_profile-page";
 import { CommunityPage } from "@/app/[...slugs]/_community-page";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
-import { EntryFilter } from "@/enums";
 import { EntryIndex } from "@/app/[...slugs]/_index";
 import { EntryPage } from "@/app/[...slugs]/_entry-page";
 import { EntryEditPage } from "@/app/[...slugs]/_entry-edit-page";
-import { isCommunity } from "@/utils";
-
-export const dynamic = "force-dynamic";
+import { Metadata, ResolvingMetadata } from "next";
+import { MetadataGenerator, PageDetector } from "@/app/[...slugs]/_utils";
 
 interface Props {
   params: { slugs: string[] };
   searchParams: Record<string, string | undefined>;
 }
 
-export default function FilteredOrCategorizedPage({ params: { slugs }, searchParams }: Props) {
-  const filterOrUsername = slugs[0];
-  const communityNameOrAccountFilters = slugs[1];
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  return MetadataGenerator.build(props, parent);
+}
 
-  const isEntryPage = slugs.length > 2;
-  const isIndexPage =
-    Object.values<string>(EntryFilter).includes(slugs[0]) &&
-    slugs.length > 0 &&
-    !(communityNameOrAccountFilters ? isCommunity(communityNameOrAccountFilters) : false);
-  const isEditPage = isEntryPage && slugs[2] === "edit";
-  const isProfilePage =
-    filterOrUsername.startsWith("@") || (filterOrUsername.startsWith("%40") && !isEditPage);
+export default function FilteredOrCategorizedPage({ params: { slugs }, searchParams }: Props) {
+  const page = PageDetector.detect({ params: { slugs } });
 
   return (
     <HydrationBoundary state={dehydrate(getQueryClient())}>
@@ -35,17 +27,15 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
       <Theme />
       <Feedback />
       <Navbar />
-      {isIndexPage && !isProfilePage && !isEntryPage && (
-        <EntryIndex filter={filterOrUsername} tag="" />
-      )}
-      {isProfilePage && !isIndexPage && !isEntryPage && (
+      {page === "index" && <EntryIndex filter={slugs[0]} tag={slugs[1] ?? ""} />}
+      {page === "profile" && (
         <ProfilePage
-          username={filterOrUsername.replace("%40", "")}
-          section={communityNameOrAccountFilters}
+          username={slugs[0].replace("%40", "")}
+          section={slugs[1]}
           searchParams={searchParams}
         />
       )}
-      {isEntryPage && !isEditPage && !isProfilePage && !isIndexPage && (
+      {page === "entry" && (
         <EntryPage
           category={slugs[0]}
           username={slugs[1].replace("%40", "").replace("@", "")}
@@ -54,18 +44,18 @@ export default function FilteredOrCategorizedPage({ params: { slugs }, searchPar
           searchParams={searchParams}
         />
       )}
-      {isEditPage && !isProfilePage && !isIndexPage && (
+      {page === "edit" && (
         <EntryEditPage
           username={slugs[0].replace("%40", "").replace("@", "")}
           permlink={slugs[1]}
         />
       )}
-      {!isProfilePage && !isIndexPage && !isEntryPage && (
+      {page === "community" && (
         <CommunityPage
           searchParams={searchParams}
           params={{
-            filterOrCategory: filterOrUsername,
-            entryOrCommunity: communityNameOrAccountFilters
+            filterOrCategory: slugs[0],
+            entryOrCommunity: slugs[1]
           }}
         />
       )}

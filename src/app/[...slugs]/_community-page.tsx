@@ -9,9 +9,6 @@ import {
 import defaults from "@/defaults.json";
 import { CommunityContent } from "@/app/[...slugs]/_components/community-content";
 import { getAccountFullQuery, prefetchGetPostsFeedQuery } from "@/api/queries";
-import Head from "next/head";
-import i18next from "i18next";
-import { capitalize } from "@/utils";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -31,26 +28,10 @@ export async function CommunityPage({ params, searchParams }: Props) {
 
   // TODO: Add notification count to title in client side
   const metaTitle = `${community!!.title.trim()} community ${params.filterOrCategory} list`;
-  const metaDescription = i18next.t("community.page-description", {
-    f: `${capitalize(params.filterOrCategory)} ${community!!.title.trim()}`
-  });
   const metaUrl = `/${params.filterOrCategory}/${community!!.name}`;
-  const metaRss = `${defaults.base}/${params.filterOrCategory}/${community!!.name}/rss.xml`;
-  const metaImage = `${defaults.imageServer}/u/${community!!.name}/avatar/medium`;
-  const metaCanonical = `${defaults.base}/created/${community!!.name}`;
 
   return (
     <>
-      <Head>
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={metaImage} />
-        <meta property="og:url" content={metaUrl} />
-        <link rel="canonical" href={metaCanonical} />
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={metaRss} />
-      </Head>
       <JoinCommunityModal community={community} communityId={searchParams.communityid} />
       <div className="app-content community-page">
         <div className="profile-side">

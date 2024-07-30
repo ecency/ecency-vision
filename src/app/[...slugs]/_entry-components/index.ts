@@ -21,5 +21,4 @@ export * from "./entry-page-cross-post-body";
 export * from "./entry-page-discussions";
 export * from "./entry-page-edit-history";
 export * from "./context";
-export * from "./entry-page-meta";
 export * from "./entry-page-content";

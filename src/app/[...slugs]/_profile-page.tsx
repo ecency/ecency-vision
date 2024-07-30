@@ -1,7 +1,6 @@
 import "./profile.scss";
 import { ListStyle, ProfileFilter } from "@/enums";
 import { SearchResult } from "@/entities";
-import defaults from "@/defaults.json";
 import {
   CurationTrail,
   ProfileCard,
@@ -26,7 +25,6 @@ import {
   prefetchGetPostsFeedQuery
 } from "@/api/queries";
 import { notFound } from "next/navigation";
-import Head from "next/head";
 import { ProfilePermissions } from "@/app/[...slugs]/_profile-components/profile-permissions";
 
 interface Props {
@@ -63,37 +61,8 @@ export async function ProfilePage({
     return notFound();
   }
 
-  const metaTitle = `${account.profile?.name || account.name}'s ${
-    section ? (section === "engine" ? "tokens" : `${section}`) : ""
-  } on decentralized web`;
-  const metaDescription = `${
-    account.profile?.about
-      ? `${account.profile?.about} ${section ? `${section}` : ""}`
-      : `${account.profile?.name || account.name} ${section ? `${section}` : ""}`
-  }`;
-  const metaUrl = `/@${username.replace("@", "")}${section ? `/${section}` : ""}`;
-  const metaCanonical = `${defaults.base}/@${username.replace("@", "")}${
-    section ? `/${section}` : ""
-  }`;
-  const metaRss = `${defaults.base}/@${username.replace("@", "")}/rss`;
-  const metaKeywords = `${username.replace("@", "")}, ${username.replace("@", "")}'s blog`;
-  const metaImage = `${defaults.imageServer}/u/${username.replace("@", "")}/avatar/medium`;
-
   return (
     <>
-      <Head>
-        {/*TODO: Add notification count to title*/}
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={metaImage} />
-        <meta property="og:url" content={metaUrl} />
-        <meta property="og:keywords" content={metaKeywords} />
-        <link rel="canonical" href={metaCanonical} />
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={metaRss} />
-      </Head>
-
       <div className="app-content profile-page">
         <div className="profile-side">
           <ProfileCard account={account} section={section} />

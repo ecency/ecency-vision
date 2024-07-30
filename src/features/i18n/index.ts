@@ -71,58 +71,62 @@ const ruRU = require("./locales/ru-RU.json");
 const uzUZ = require("./locales/uz-UZ.json");
 const zhCN = require("./locales/zh-CN.json");
 
-const resources = {
-  ["en-US"]: {
-    translation: enUs
-  },
-  ["fi-FI"]: {
-    translation: fiFI
-  },
-  ["es-ES"]: {
-    translation: esES
-  },
-  ["hi-IN"]: {
-    translation: hiIN
-  },
-  ["it-IT"]: {
-    translation: itIT
-  },
-  ["id-ID"]: {
-    translation: idID
-  },
-  ["pt-PT"]: {
-    translation: ptPT
-  },
-  ["sr-CS"]: {
-    translation: srCS
-  },
-  ["uk-UA"]: {
-    translation: ukUA
-  },
-  ["bg-BG"]: {
-    translation: bgBG
-  },
-  ["ru-RU"]: {
-    translation: ruRU
-  },
-  ["uz-UZ"]: {
-    translation: uzUZ
-  },
-  ["zh-CN"]: {
-    translation: zhCN
-  }
-};
+export async function initI18next() {
+  const resources = {
+    ["en-US"]: {
+      translation: enUs
+    },
+    ["fi-FI"]: {
+      translation: fiFI
+    },
+    ["es-ES"]: {
+      translation: esES
+    },
+    ["hi-IN"]: {
+      translation: hiIN
+    },
+    ["it-IT"]: {
+      translation: itIT
+    },
+    ["id-ID"]: {
+      translation: idID
+    },
+    ["pt-PT"]: {
+      translation: ptPT
+    },
+    ["sr-CS"]: {
+      translation: srCS
+    },
+    ["uk-UA"]: {
+      translation: ukUA
+    },
+    ["bg-BG"]: {
+      translation: bgBG
+    },
+    ["ru-RU"]: {
+      translation: ruRU
+    },
+    ["uz-UZ"]: {
+      translation: uzUZ
+    },
+    ["zh-CN"]: {
+      translation: zhCN
+    }
+  };
 
-i18n.init({
-  resources,
-  fallbackLng: "en-US",
-  interpolation: {
-    escapeValue: false
-  }
-});
+  await i18n.init({
+    resources,
+    fallbackLng: "en-US",
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
-i18n.on("languageChanged", function (lang) {
-  moment.locale(lang);
-});
+  i18n.on("languageChanged", function (lang) {
+    moment.locale(lang);
+  });
+}
+
+initI18next();
 
 export * from "./navigation-locale-watcher";

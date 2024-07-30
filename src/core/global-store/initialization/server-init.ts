@@ -8,7 +8,6 @@ import { createUsersActions } from "@/core/global-store/modules/users-module";
 import { createAuthenticationActions } from "@/core/global-store/modules/authentication-module";
 import { createSigningKeyActions } from "@/core/global-store/modules/signing-key-module";
 import { createNotificationsActions } from "@/core/global-store/modules/notifications-module";
-import { cache } from "react";
 
 type FINAL_STATE = typeof INITIAL_STATE &
   ReturnType<typeof createUiActions> &
@@ -19,7 +18,7 @@ type FINAL_STATE = typeof INITIAL_STATE &
   ReturnType<typeof createSigningKeyActions> &
   ReturnType<typeof createNotificationsActions>;
 
-const getServerStore = cache(() =>
+const getServerStore = () =>
   createStore(
     combine(INITIAL_STATE, (set, getState, store) => ({
       ...createUiActions(set, getState),
@@ -30,8 +29,7 @@ const getServerStore = cache(() =>
       ...createSigningKeyActions(set, getState),
       ...createNotificationsActions(set, getState)
     }))
-  )
-);
+  );
 
 export function useServerGlobalStore<T>(fn: (store: FINAL_STATE) => T): T {
   return fn(getServerStore().getState() as any);

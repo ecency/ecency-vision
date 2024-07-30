@@ -6,7 +6,6 @@ import {
   EntryPageCrossPostHeader,
   EntryPageEditHistory,
   EntryPageLoadingScreen,
-  EntryPageMeta,
   MdHandler,
   ReadTime
 } from "@/app/[...slugs]/_entry-components";
@@ -41,7 +40,6 @@ export async function EntryPage({ category, searchParams, permlink, username, is
 
   return (
     <EntryPageContextProvider>
-      <EntryPageMeta entry={entry} />
       <ScrollToTop />
       <Theme />
       <Feedback />
