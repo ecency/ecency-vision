@@ -33,8 +33,10 @@ export function ProfileSearch({ username, section }: Props) {
     () => {
       if (search) {
         router.push(`/@${username}/?query=${encodeURIComponent(search)}`);
+        setTyping(false);
       } else if (params.has("q")) {
         router.push(`/@${username}`);
+        setTyping(false);
       }
     },
     3000,
