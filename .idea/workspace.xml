@@ -4,37 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added entrypoint page metadata generator">
-      <change afterPath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/_page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/metadata/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/create-hs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/create-hs/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/create/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/contributors/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/draft/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/advanced/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/limit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/limit/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/market/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/market/swap/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/perks/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/perks/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/perks/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/perks/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/search/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/search/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/search/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/signup/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/signup/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/signup/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/witnesses/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/witnesses/page.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added metadata generator for all pages" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -321,15 +291,7 @@
       <workItem from="1721681535786" duration="16133000" />
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
-      <workItem from="1722325571472" duration="6016000" />
-    </task>
-    <task id="LOCAL-00071" summary="Fixed profile components">
-      <option name="closed" value="true" />
-      <created>1720095334011</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1720095334011</updated>
+      <workItem from="1722325571472" duration="6375000" />
     </task>
     <task id="LOCAL-00072" summary="Fixed points request">
       <option name="closed" value="true" />
@@ -715,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722336361996</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Added metadata generator for all pages">
+      <option name="closed" value="true" />
+      <created>1722338517010</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1722338517010</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added hiring console log" />
     <MESSAGE value="Fixed trending tags fetching" />
     <MESSAGE value="Fixed warnings" />
     <MESSAGE value="Added web vitals report" />
@@ -761,7 +730,8 @@
     <MESSAGE value="Fixed build semantic errors" />
     <MESSAGE value="Fixed build dynamic routes" />
     <MESSAGE value="Added entrypoint page metadata generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added entrypoint page metadata generator" />
+    <MESSAGE value="Added metadata generator for all pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added metadata generator for all pages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
