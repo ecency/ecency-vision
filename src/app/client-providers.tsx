@@ -9,6 +9,9 @@ import { ClientInit } from "@/app/client-init";
 import { getQueryClient } from "@/core/react-query";
 import { useGlobalStore } from "@/core/global-store";
 import { AppWindow } from "@/types";
+import { UserActivityRecorder } from "@/features/user-activity";
+import { Tracker } from "@/features/monitoring";
+import { Announcements } from "@/features/announcement";
 
 export function ClientProviders(props: PropsWithChildren) {
   const usePrivate = useGlobalStore((s) => s.usePrivate);
@@ -21,7 +24,10 @@ export function ClientProviders(props: PropsWithChildren) {
     <QueryClientProvider client={getQueryClient()}>
       <UIManager>
         <ClientInit />
+        <UserActivityRecorder />
+        <Tracker />
         <ChatProvider>{props.children}</ChatProvider>
+        <Announcements />
       </UIManager>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
