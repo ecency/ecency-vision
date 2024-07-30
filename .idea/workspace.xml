@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile menu">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed page detector">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_utils/page-detector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_utils/page-detector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,15 +296,7 @@
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
-      <workItem from="1722363474514" duration="2818000" />
-    </task>
-    <task id="LOCAL-00080" summary="Fixed posts fetching in index feed page">
-      <option name="closed" value="true" />
-      <created>1720450644315</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1720450644315</updated>
+      <workItem from="1722363474514" duration="3439000" />
     </task>
     <task id="LOCAL-00081" summary="Fixed entry index menu dropdown styles">
       <option name="closed" value="true" />
@@ -689,7 +682,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722365111900</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Fixed page detector">
+      <option name="closed" value="true" />
+      <created>1722367446440</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1722367446440</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed notification bar switching and settings changing" />
     <MESSAGE value="Fixed notification bar double-clicking" />
     <MESSAGE value="Added initial dynamic props prefetching on client side + re-fetching by interval" />
     <MESSAGE value="Fixed powering down in hive wallet" />
@@ -735,7 +735,8 @@
     <MESSAGE value="Added floating faq" />
     <MESSAGE value="Fixed user activity component" />
     <MESSAGE value="Fixed profile menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile menu" />
+    <MESSAGE value="Fixed page detector" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed page detector" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

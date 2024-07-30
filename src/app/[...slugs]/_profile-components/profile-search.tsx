@@ -29,10 +29,17 @@ export function ProfileSearch({ username, section }: Props) {
     setTyping(value.length !== 0);
   }, []);
 
-  // TODO: not routing next
-  useDebounce(() => router.push(`/@${username}/?query=${encodeURIComponent(search)}`), 3000, [
-    search
-  ]);
+  useDebounce(
+    () => {
+      if (search) {
+        router.push(`/@${username}/?query=${encodeURIComponent(search)}`);
+      } else if (params.has("q")) {
+        router.push(`/@${username}`);
+      }
+    },
+    3000,
+    [search, params]
+  );
 
   return (
     <>

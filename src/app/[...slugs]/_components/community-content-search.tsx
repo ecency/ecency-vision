@@ -29,13 +29,17 @@ export function CommunityContentSearch({ community, filter }: Props) {
     setTyping(value.length !== 0);
   }, []);
 
-  useDebounce(() => {
-    if (search) {
-      router.push(`?q=${search}`);
-    } else if (params.has("q")) {
-      router.push(``);
-    }
-  }, 2000);
+  useDebounce(
+    () => {
+      if (search) {
+        router.push(`/${filter}/${community.name}?q=${encodeURIComponent(search)}`);
+      } else if (params.has("q")) {
+        router.push(`/${filter}/${community.name}`);
+      }
+    },
+    2000,
+    [search, params]
+  );
 
   return (
     <SearchBox
