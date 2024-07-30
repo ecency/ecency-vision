@@ -19,7 +19,6 @@ import { getAccounts } from "@/api/hive";
 import { signUp } from "@/api/private-api";
 import { error, Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { b64uEnc, handleInvalid, handleOnInput } from "@/utils";
-import Head from "next/head";
 import { appleSvg, checkSvg, googleSvg, hiveSvg } from "@ui/svg";
 import { Tsx } from "@/features/i18n/helper";
 import { useGlobalStore } from "@/core/global-store";
@@ -220,9 +219,6 @@ export function SignUp() {
 
   return (
     <>
-      <Head>
-        <title>{i18next.t("sign-up.header")}</title>
-      </Head>
       <ScrollToTop />
       <Theme />
       <Feedback />

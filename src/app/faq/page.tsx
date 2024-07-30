@@ -1,6 +1,6 @@
 import { apiBase } from "@/api/helper";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import Image from "next/image";
@@ -9,12 +9,16 @@ import { searchWithinFaq } from "@/app/faq/utils";
 import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
 import { FaqSearchResult } from "@/app/faq/_components/faq-search-result";
+import { PagesMetadataGenerator } from "@/features/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: i18next.t("static.faq.page-title")
-};
+export async function generateMetadata(
+  props: unknown,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return PagesMetadataGenerator.getForPage("faq");
+}
 
 interface Props {
   searchParams: Record<string, string | undefined>;

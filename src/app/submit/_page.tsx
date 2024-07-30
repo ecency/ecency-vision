@@ -66,7 +66,6 @@ import { Draft, Entry, RewardType } from "@/entities";
 import { DraftsDialog } from "@/features/shared/drafts";
 import { dotsMenuIconSvg } from "@ui/icons";
 import { TextareaAutocomplete } from "@/features/shared/textarea-autocomplete";
-import Head from "next/head";
 import { useEntryPollExtractor } from "@/features/polls";
 import { PREFIX } from "@/utils/local-storage";
 import { useGlobalStore } from "@/core/global-store";
@@ -167,7 +166,6 @@ function Submit({ path, draftId, username, permlink }: Props) {
   //   const notifications = props.notifications.unread ? `(${props.notifications.unread}) ` : "";
   //   return notifications + i18next.t("submit.page-title");
   // }, [props.notifications.unread]);
-  const pageTitle = i18next.t("submit.page-title");
 
   const { setLocalDraft } = useLocalDraftManager(
     path,
@@ -440,10 +438,6 @@ function Submit({ path, draftId, username, permlink }: Props) {
 
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={i18next.t("submit.page-description")} />
-      </Head>
       <FullHeight />
       <Theme />
       <Feedback />

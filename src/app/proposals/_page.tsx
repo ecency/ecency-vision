@@ -7,7 +7,6 @@ import "./_page.scss";
 import { Feedback, LinearProgress, Navbar, ScrollToTop, SearchBox, Theme } from "@/features/shared";
 import { Tsx } from "@/features/i18n/helper";
 import i18next from "i18next";
-import Head from "next/head";
 import { ProposalListItem } from "@/app/proposals/_components";
 import { getAccountFullQuery, getDynamicPropsQuery, getProposalsQuery } from "@/api/queries";
 import { parseAsset } from "@/utils";
@@ -105,10 +104,6 @@ export function ProposalsPage() {
       <Theme />
       <Feedback />
       <Navbar />
-      <Head>
-        <title>{i18next.t("proposals.page-title")}</title>
-        <meta name="description" content={i18next.t("proposals.page-description")} />
-      </Head>
 
       <div className="app-content proposals-page">
         <div className="page-header mt-5">

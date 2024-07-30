@@ -1,8 +1,7 @@
 import "./page.scss";
 import { Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
-import { Metadata } from "next";
-import i18next from "i18next";
+import { Metadata, ResolvingMetadata } from "next";
 import { FullHeight } from "@/features/ui";
 import {
   DiscoverContributors,
@@ -18,13 +17,16 @@ import {
 import { CurationDuration, LeaderBoardDuration } from "@/entities";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/core/react-query";
+import { PagesMetadataGenerator } from "@/features/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: i18next.t("discover.title"),
-  description: i18next.t("discover.description")
-};
+export async function generateMetadata(
+  props: unknown,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return PagesMetadataGenerator.getForPage("discover");
+}
 
 interface Props {
   searchParams: Record<string, string | undefined>;

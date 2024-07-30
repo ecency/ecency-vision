@@ -9,7 +9,6 @@ import {
   PurchaseQrDialog,
   PurchaseTypes
 } from "@/features/shared";
-import Head from "next/head";
 import i18next from "i18next";
 import { MajorPerkCard, PerksHeader } from "@/app/perks/components";
 import { UilChart, UilFire, UilMoneyWithdraw, UilRocket } from "@iconscout/react-unicons";
@@ -24,9 +23,6 @@ export function PerksPage() {
     <div className="bg-blue-duck-egg dark:bg-transparent pt-[63px] md:pt-[69px] min-h-[100vh] pb-16">
       <Feedback />
       <Navbar />
-      <Head>
-        <title>{i18next.t("perks.page-title")}</title>
-      </Head>
 
       <div className="container mx-auto">
         <div className="grid grid-cols-12 items-stretch gap-6">

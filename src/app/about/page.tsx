@@ -4,13 +4,17 @@ import { Tsx } from "@/features/i18n/helper";
 import i18next from "i18next";
 import Link from "next/link";
 import { blogSvg, discordSvg, githubSvg, mailSvg, newsSvg, telegramSvg, twitterSvg } from "@ui/svg";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
+import { PagesMetadataGenerator } from "@/features/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: i18next.t("static.about.page-title")
-};
+export async function generateMetadata(
+  props: unknown,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return PagesMetadataGenerator.getForPage("about");
+}
 
 export default function About() {
   return (

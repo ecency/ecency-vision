@@ -1,18 +1,21 @@
 import { Navbar, ProfileLink, ScrollToTop, Theme, UserAvatar } from "@/features/shared";
-import { Metadata } from "next";
 import i18next from "i18next";
 import "./page.scss";
 import { Tsx } from "@/features/i18n/helper";
 import { getContributorsQuery } from "@/api/queries";
 import { getQueryClient } from "@/core/react-query";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { Metadata, ResolvingMetadata } from "next";
+import { PagesMetadataGenerator } from "@/features/metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: i18next.t("contributors.title")
-};
-
+export async function generateMetadata(
+  props: unknown,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return PagesMetadataGenerator.getForPage("contributors");
+}
 export default async function Contributors() {
   const data = await getContributorsQuery().prefetch();
 

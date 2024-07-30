@@ -2,8 +2,6 @@
 
 import React from "react";
 import "./_page.scss";
-import Head from "next/head";
-import i18next from "i18next";
 import { Navbar, Theme } from "@/features/shared";
 import {
   SearchComment,
@@ -15,10 +13,6 @@ import {
 export function SearchPage() {
   return (
     <>
-      <Head>
-        <title>{i18next.t("search-page.title")}</title>
-        <meta name="description" content={i18next.t("search-page.description")} />
-      </Head>
       <Theme />
       <Navbar />
 
