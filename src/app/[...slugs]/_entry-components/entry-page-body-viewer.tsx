@@ -2,10 +2,9 @@ import { Entry } from "@/entities";
 import { PollWidget, useEntryPollExtractor } from "@/features/polls";
 import { renderPostBody } from "@ecency/render-helper";
 import { useGlobalStore } from "@/core/global-store";
-import { EcencyClientServerBridge } from "@/core/client-server-bridge";
-import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
 import { EntryPageEdit } from "@/app/[...slugs]/_entry-components/entry-page-edit";
 import { SelectionPopover } from "@/app/[...slugs]/_entry-components/selection-popover";
+import { EntryPageViewerManager } from "@/app/[...slugs]/_entry-components/entry-page-viewer-manager";
 
 interface Props {
   entry: Entry;
@@ -16,7 +15,6 @@ interface Props {
 export function EntryPageBodyViewer({ entry, rawParam, isEdit }: Props) {
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
-  const { isRawContent } = EcencyClientServerBridge.useSafeContext(EntryPageContext);
   const postPoll = useEntryPollExtractor(entry);
 
   const preparedEntryBody = entry.body.replace(/<a id="/g, '<a data-id="');
@@ -24,8 +22,8 @@ export function EntryPageBodyViewer({ entry, rawParam, isEdit }: Props) {
     __html: renderPostBody(preparedEntryBody, false, canUseWebp)
   };
 
-  return !isRawContent ? (
-    <>
+  return (
+    <EntryPageViewerManager entry={entry}>
       {!isEdit && (
         <>
           <SelectionPopover postUrl={entry.url}>
@@ -43,8 +41,6 @@ export function EntryPageBodyViewer({ entry, rawParam, isEdit }: Props) {
         </>
       )}
       {isEdit && <EntryPageEdit entry={entry} />}
-    </>
-  ) : (
-    <pre className="entry-body markdown-view user-selectable">{entry.body}</pre>
+    </EntryPageViewerManager>
   );
 }
