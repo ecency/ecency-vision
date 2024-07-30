@@ -1,11 +1,11 @@
 import React from "react";
-import { useUserActivity } from "../api/mutations";
 import useInterval from "react-use/lib/useInterval";
-import { useMappedStore } from "../store/use-mapped-store";
 import { useTimeoutFn } from "react-use";
+import { useGlobalStore } from "@/core/global-store";
+import { useUserActivity } from "@/api/mutations";
 
 export function UserActivityRecorder() {
-  const { activeUser } = useMappedStore();
+  const activeUser = useGlobalStore((s) => s.activeUser);
   const { mutate } = useUserActivity(activeUser?.username, 10);
 
   useTimeoutFn(() => mutate(undefined), 5000);
