@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed search list item highlights">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved main screen menu">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/master.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/staging.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/healthCheck.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/healthcheck/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +64,7 @@
     "code.cleanup.on.save": "true",
     "git-widget-placeholder": "feature/nextjs-migration",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/api/mutations",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -101,11 +103,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/api/mutations" />
       <recent name="$PROJECT_DIR$/src/features" />
       <recent name="$PROJECT_DIR$/src/features/monitoring" />
       <recent name="$PROJECT_DIR$/src/features/user-activity" />
-      <recent name="$PROJECT_DIR$/src/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app" />
@@ -297,15 +299,8 @@
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
-      <workItem from="1722363474514" duration="6845000" />
-    </task>
-    <task id="LOCAL-00084" summary="Migrated entry page">
-      <option name="closed" value="true" />
-      <created>1720780647428</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1720780647428</updated>
+      <workItem from="1722363474514" duration="7493000" />
+      <workItem from="1722439887936" duration="1861000" />
     </task>
     <task id="LOCAL-00085" summary="Fixed client side components">
       <option name="closed" value="true" />
@@ -691,7 +686,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722408255571</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Improved main screen menu">
+      <option name="closed" value="true" />
+      <created>1722409815015</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1722409815015</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed profile list style switcher" />
     <MESSAGE value="Fixed profile page posts infinite loader" />
     <MESSAGE value="Fixed profile page searching" />
     <MESSAGE value="Made entry list item RCS" />
@@ -737,7 +739,8 @@
     <MESSAGE value="Fixed searching in community and profile pages" />
     <MESSAGE value="Fixed profile search loading" />
     <MESSAGE value="Fixed search list item highlights" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed search list item highlights" />
+    <MESSAGE value="Improved main screen menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved main screen menu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
