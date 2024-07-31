@@ -1,4 +1,4 @@
-import { accountReputation } from "./account-reputation";
+import { accountReputation } from "../../utils/account-reputation";
 
 describe("Account Reputation", () => {
   it("Should convert raw account reputation", () => {

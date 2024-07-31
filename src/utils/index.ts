@@ -11,7 +11,6 @@ export * from "./hive-signer";
 export * from "./format-number";
 export * from "./make-path";
 export * from "./rnd";
-export * from "./test-helper";
 export * from "./encoder";
 export * from "./generate-private-keys";
 export * from "./account-reputation";

@@ -1,4 +1,4 @@
-import { amountFormatCheck } from "./amount-format-check";
+import { amountFormatCheck } from "../../utils/amount-format-check";
 
 describe("Amount format check", () => {
   it("Valid", () => {

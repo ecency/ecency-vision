@@ -1,11 +1,6 @@
 import React from "react";
-import renderer from "react-test-renderer";
 
-import { createBrowserHistory } from "history";
-
-import { Activities } from "./index";
-
-import { globalInstance, communityInstance1, allOver } from "../../helper/test-helper";
+import { allOver, communityInstance1, globalInstance } from "../../helper/test-helper";
 
 jest.mock("moment", () => () => ({
   fromNow: () => "3 days ago"
@@ -51,15 +46,17 @@ jest.mock("../../api/bridge", () => ({
     })
 }));
 
-it("(1) Default render - With data.", async () => {
-  const props = {
-    history: createBrowserHistory(),
-    global: globalInstance,
-    community: { ...communityInstance1 },
-    addAccount: () => {}
-  };
+describe("Community activities", () => {
+  it("(1) Default render - With data.", async () => {
+    const props = {
+      history: createBrowserHistory(),
+      global: globalInstance,
+      community: { ...communityInstance1 },
+      addAccount: () => {}
+    };
 
-  const component = await renderer.create(<Activities {...props} />);
-  await allOver();
-  expect(component.toJSON()).toMatchSnapshot();
+    const component = await renderer.create(<Activities {...props} />);
+    await allOver();
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });

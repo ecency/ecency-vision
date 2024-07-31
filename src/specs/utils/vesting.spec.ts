@@ -1,4 +1,4 @@
-import { vestsToHp, hpToVests, vestsToRshares } from "./vesting";
+import { hpToVests, vestsToHp, vestsToRshares } from "../../utils/vesting";
 
 describe("Vesting", () => {
   it("(1) vestsToHp", () => {

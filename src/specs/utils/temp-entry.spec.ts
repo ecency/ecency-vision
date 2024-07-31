@@ -1,6 +1,5 @@
-import tempEntry, { TempEntryProps } from "./temp-entry";
-
-import { fullAccountInstance } from "./test-helper";
+import { tempEntry, TempEntryProps } from "../../utils/temp-entry";
+import { fullAccountInstance } from "../test-helper";
 
 global.Date.now = jest.fn(() => new Date("2019-04-22T10:20:30Z").getTime());
 

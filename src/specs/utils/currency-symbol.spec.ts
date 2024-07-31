@@ -1,4 +1,4 @@
-import { currencySymbol } from "./currency-symbol";
+import { currencySymbol } from "../../utils/currency-symbol";
 
 describe("Currency Symbol", () => {
   it("Symbols", () => {

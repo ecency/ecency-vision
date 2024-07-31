@@ -1,6 +1,6 @@
-import { appName } from "./app-name";
+import { appName } from "../../utils/app-name";
 
-describe("app name", () => {
+describe("App name", () => {
   it("(1) should return empty string if argument given is null or undefined or empty string", () => {
     expect(appName("")).toBe("");
 

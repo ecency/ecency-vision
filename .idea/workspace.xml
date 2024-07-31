@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added ns-query, yarn.lock">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved and migrated utils tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/account-reputation.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/account-reputation.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/app-name.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/app-name.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/capitalize.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/capitalize.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/formatted-number.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/formatted-number.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/hive-engine-wallet.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/hive-engine-wallet.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/hive-signer.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/hive-signer.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/is-community.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/is-community.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/nl2list.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/nl2list.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/parse-asset.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/parse-asset.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/parse-date.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/parse-date.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/posting.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/posting.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/temp-entry.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/temp-entry.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/truncate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/truncate.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +67,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Jest.Tests in utils/.executor": "Run",
+    "Jest.Vesting.executor": "Run",
     "Node.js.scratch_39.js.executor": "Run",
     "Node.js.scratch_40.js.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -67,6 +84,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/jest",
     "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
@@ -106,14 +124,35 @@
       <recent name="$PROJECT_DIR$/src/features/user-activity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/specs/utils" />
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/features/i18n" />
       <recent name="$PROJECT_DIR$/src/core/global-store/initialization" />
       <recent name="$PROJECT_DIR$/src/core/global-store/modules" />
-      <recent name="$PROJECT_DIR$/src/app/submit/_components" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="Jest.Vesting">
+    <configuration name="Tests in utils/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="DIRECTORY" />
+      <test-directory value="$PROJECT_DIR$/src/specs/utils" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Vesting" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" />
+      <test-names>
+        <test-name value="Vesting" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -126,12 +165,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="scratch_39.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/scratch_39.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="scratch_40.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/scratch_40.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
     </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -171,8 +204,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.scratch_39.js" />
-      <item itemvalue="Node.js.scratch_40.js" />
+      <item itemvalue="Jest.Tests in utils/" />
+      <item itemvalue="Jest.Vesting" />
       <item itemvalue="npm.run" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.dev" />
@@ -180,11 +213,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Vesting" />
+        <item itemvalue="Jest.Tests in utils/" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
-        <item itemvalue="Node.js.scratch_40.js" />
-        <item itemvalue="Node.js.scratch_39.js" />
       </list>
     </recent_temporary>
   </component>
@@ -296,23 +329,8 @@
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
       <workItem from="1722363474514" duration="7493000" />
-      <workItem from="1722439887936" duration="2800000" />
-    </task>
-    <task id="LOCAL-00087" summary="Migrated submit page">
-      <option name="closed" value="true" />
-      <created>1721154074485</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1721154074485</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Fixed community selector in submit page">
-      <option name="closed" value="true" />
-      <created>1721154455413</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1721154455413</updated>
+      <workItem from="1722439887936" duration="3117000" />
+      <workItem from="1722461868157" duration="1112000" />
     </task>
     <task id="LOCAL-00089" summary="Added entry editing page">
       <option name="closed" value="true" />
@@ -690,7 +708,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722461082825</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Added ns-query, yarn.lock">
+      <option name="closed" value="true" />
+      <created>1722461542671</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1722461542671</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Moved and migrated utils tests">
+      <option name="closed" value="true" />
+      <created>1722462833558</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1722462833559</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +745,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made entry list item RCS" />
     <MESSAGE value="Fixed community page infinite loading and searching behavior" />
     <MESSAGE value="Fixed trading view charts widget" />
     <MESSAGE value="Fixed coingecko api request" />
@@ -736,7 +769,8 @@
     <MESSAGE value="Improved main screen menu" />
     <MESSAGE value="Added Dockerfile and GitHub CI/CD" />
     <MESSAGE value="Added ns-query, yarn.lock" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ns-query, yarn.lock" />
+    <MESSAGE value="Moved and migrated utils tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved and migrated utils tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

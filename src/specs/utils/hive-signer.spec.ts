@@ -1,4 +1,4 @@
-import { buildHotSignUrl } from "./hive-signer";
+import { buildHotSignUrl } from "../../utils/hive-signer";
 
 describe("hotSign", () => {
   it("should build hot signing url", () => {

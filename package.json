@@ -70,8 +70,8 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
     "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",
     "@types/bs58": "^4.0.4",
     "@types/diff-match-patch": "^1.0.36",
@@ -98,6 +98,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
