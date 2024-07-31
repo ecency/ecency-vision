@@ -5,7 +5,12 @@ import { EntryIndexMenuDropdown } from "../entry-index-menu-dropdown";
 import "./_index.scss";
 import { ActiveUser } from "@/entities";
 import { ListStyleToggle } from "@/features/shared";
-import { chevronDownSvgForSlider, informationVariantSvg, kebabMenuHorizontalSvg } from "@ui/svg";
+import {
+  chevronDownSvgForSlider,
+  informationVariantSvg,
+  kebabMenuHorizontalSvg,
+  menuDownSvg
+} from "@ui/svg";
 import Link from "next/link";
 import { Introduction } from "@/app/_components/introduction";
 import i18next from "i18next";
@@ -20,6 +25,7 @@ import { PREFIX } from "@/utils/local-storage";
 import usePrevious from "react-use/lib/usePrevious";
 import { Button } from "@ui/button";
 import useLocalStorage from "react-use/lib/useLocalStorage";
+import { classNameObject } from "@ui/util";
 
 export enum IntroductionType {
   FRIENDS = "FRIENDS",
@@ -383,7 +389,7 @@ export function EntryIndexMenu({ filter, tag }: Props) {
     <div>
       <div className={introductionOverlayClass} id="overlay" onClick={onClosePopup} />
       <div className="entry-index-menu flex items-center justify-center md:justify-between p-[10px] border-b dark:border-dark-200">
-        <div className="the-menu flex flex-col-reverse items-center md:flex-row">
+        <div className="bg-gray-100 dark:bg-gray-900 rounded-3xl lg:px-4 p-2 text-sm flex flex-col-reverse items-center md:flex-row">
           {isActive && (
             <div className="hidden lg:flex items-center mt-3 md:mt-0 md:mr-4 lg:mr-0">
               <ul
@@ -398,18 +404,14 @@ export function EntryIndexMenu({ filter, tag }: Props) {
                 <li>
                   <Link
                     href={`/@${activeUser?.username}/feed`}
-                    className={`rounded-2xl flex items-center text-blue-dark-sky hover:text-blue-dark-sky-hover font-[500] px-2.5 ${
-                      filter === "feed" &&
-                      (introduction === IntroductionType.NONE ||
-                        introduction === IntroductionType.FRIENDS)
-                        ? "bg-blue-dark-sky text-white hover:text-white"
-                        : ""
-                    }   ${
-                      introduction !== IntroductionType.NONE &&
-                      introduction === IntroductionType.FRIENDS
-                        ? "bg-blue-dark-sky text-white hover:text-white"
-                        : ""
-                    }`}
+                    className={classNameObject({
+                      "text-gray-steel hover:text-blue-dark-sky rounded-full flex items-center px-3 py-1.5":
+                        true,
+                      "bg-blue-dark-sky text-white hover:text-white":
+                        filter === "feed" &&
+                        (introduction === IntroductionType.NONE ||
+                          introduction === IntroductionType.FRIENDS)
+                    })}
                     id="feed"
                   >
                     {i18next.t("entry-filter.filter-feed-friends")}
@@ -440,10 +442,8 @@ export function EntryIndexMenu({ filter, tag }: Props) {
               <div className="block md:hidden relative">
                 <Dropdown>
                   <DropdownToggle>
-                    <Button appearance="link" icon={chevronDownSvgForSlider}>
-                      <Button size="sm" icon={chevronDownSvgForSlider} appearance="link">
-                        {dropdownLabel}
-                      </Button>
+                    <Button size="sm" icon={chevronDownSvgForSlider} appearance="gray-link">
+                      {dropdownLabel}
                     </Button>
                   </DropdownToggle>
                   <DropdownMenu align="left">
@@ -461,15 +461,16 @@ export function EntryIndexMenu({ filter, tag }: Props) {
                     <li key={k} className={`${i.flash ? "flash" : ""}`}>
                       <Link
                         href={i.href!}
-                        className={`text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-2xl flex items-center font-[500] px-2.5 link-${
-                          i.id
-                        } ${
-                          introduction !== IntroductionType.NONE && !i.flash && i.selected
-                            ? ""
-                            : i.selected || i.flash
-                              ? "bg-blue-dark-sky text-white hover:text-white"
-                              : ""
-                        }`}
+                        className={classNameObject({
+                          "text-gray-steel hover:text-blue-dark-sky rounded-full flex items-center px-3 py-1.5":
+                            true,
+                          "bg-blue-dark-sky text-white hover:text-white":
+                            i.selected &&
+                            introduction === IntroductionType.NONE &&
+                            !i.flash &&
+                            i.selected,
+                          [`link-${i.id}`]: true
+                        })}
                         id={i.id}
                       >
                         {i.label}
@@ -502,7 +503,9 @@ export function EntryIndexMenu({ filter, tag }: Props) {
               </div>
               <div className="kebab-icon flex">
                 <Dropdown>
-                  <DropdownToggle>{kebabMenuHorizontalSvg}</DropdownToggle>
+                  <DropdownToggle>
+                    <Button size="sm" appearance="gray-link" icon={kebabMenuHorizontalSvg} />
+                  </DropdownToggle>
                   <DropdownMenu align="left">
                     {kebabMenuItems.map((item, i) => (
                       <DropdownItem key={i} onClick={item.onClick}>
@@ -518,7 +521,7 @@ export function EntryIndexMenu({ filter, tag }: Props) {
               <div className="lg:hidden relative">
                 <Dropdown>
                   <DropdownToggle>
-                    <Button size="sm" icon={chevronDownSvgForSlider} appearance="link">
+                    <Button size="sm" icon={menuDownSvg} appearance="gray-link">
                       {dropdownLabel}
                     </Button>
                   </DropdownToggle>
@@ -550,9 +553,12 @@ export function EntryIndexMenu({ filter, tag }: Props) {
                     <li key={k}>
                       <Link
                         href={i.href!}
-                        className={`text-blue-dark-sky hover:text-blue-dark-sky-hover rounded-xl flex items-center font-[500] px-2 link-${
-                          i.id
-                        } ${i.selected ? "active" : ""}`}
+                        className={classNameObject({
+                          "text-gray-steel hover:text-blue-dark-sky rounded-full flex items-center px-3 py-1.5":
+                            true,
+                          active: i.selected,
+                          [`link-${i.id}`]: true
+                        })}
                       >
                         {i.label}
                       </Link>

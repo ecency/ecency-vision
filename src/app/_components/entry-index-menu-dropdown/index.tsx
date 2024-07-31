@@ -3,6 +3,7 @@ import { useGlobalStore } from "@/core/global-store";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, MenuItem } from "@ui/dropdown";
 import i18next from "i18next";
 import { menuDownSvg } from "@ui/svg";
+import { Button } from "@ui/button";
 
 interface Props {
   isActive: boolean;
@@ -135,8 +136,7 @@ export const EntryIndexMenuDropdown = ({
   return (
     <Dropdown>
       <DropdownToggle>
-        <div className="tagDropDown">
-          <span className="pl-2" />
+        <Button icon={menuDownSvg} appearance="gray-link" size="sm">
           {tag === ""
             ? i18next.t("entry-filter.filter-global")
             : tag === "my"
@@ -155,9 +155,8 @@ export const EntryIndexMenuDropdown = ({
                           ? noReblog
                             ? i18next.t("entry-filter.filter-no-reblog")
                             : i18next.t("entry-filter.filter-with-reblog")
-                          : tag}{" "}
-          {menuDownSvg}
-        </div>
+                          : tag}
+        </Button>
         <DropdownMenu align="left">
           {dropDownItems.map((item, i) => (
             <DropdownItem key={i} onClick={item.onClick}>
