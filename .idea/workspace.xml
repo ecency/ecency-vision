@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved main screen menu">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/master.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/staging.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/healthCheck.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/healthcheck/route.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added ns-query, yarn.lock">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,7 @@
       <recent name="$PROJECT_DIR$/src/app/submit/_components" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecency-vision-next" />
       <method v="2">
@@ -184,9 +180,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.build" />
         <item itemvalue="Node.js.scratch_40.js" />
         <item itemvalue="Node.js.scratch_39.js" />
       </list>
@@ -300,23 +296,7 @@
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
       <workItem from="1722363474514" duration="7493000" />
-      <workItem from="1722439887936" duration="1861000" />
-    </task>
-    <task id="LOCAL-00085" summary="Fixed client side components">
-      <option name="closed" value="true" />
-      <created>1720800536248</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1720800536248</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Fixed client side components">
-      <option name="closed" value="true" />
-      <created>1720804153966</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1720804153966</updated>
+      <workItem from="1722439887936" duration="2800000" />
     </task>
     <task id="LOCAL-00087" summary="Migrated submit page">
       <option name="closed" value="true" />
@@ -694,7 +674,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722409815015</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="Added Dockerfile and GitHub CI/CD">
+      <option name="closed" value="true" />
+      <created>1722460677680</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1722460677680</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Added ns-query, yarn.lock">
+      <option name="closed" value="true" />
+      <created>1722461082825</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1722461082825</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,8 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed profile page posts infinite loader" />
-    <MESSAGE value="Fixed profile page searching" />
     <MESSAGE value="Made entry list item RCS" />
     <MESSAGE value="Fixed community page infinite loading and searching behavior" />
     <MESSAGE value="Fixed trading view charts widget" />
@@ -740,7 +734,9 @@
     <MESSAGE value="Fixed profile search loading" />
     <MESSAGE value="Fixed search list item highlights" />
     <MESSAGE value="Improved main screen menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved main screen menu" />
+    <MESSAGE value="Added Dockerfile and GitHub CI/CD" />
+    <MESSAGE value="Added ns-query, yarn.lock" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ns-query, yarn.lock" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
