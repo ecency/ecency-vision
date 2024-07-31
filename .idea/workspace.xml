@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed searching in community and profile pages">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile search loading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-search.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/search-list-item/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -296,15 +295,7 @@
       <workItem from="1721980024762" duration="8464000" />
       <workItem from="1722249932961" duration="4457000" />
       <workItem from="1722325571472" duration="10637000" />
-      <workItem from="1722363474514" duration="4210000" />
-    </task>
-    <task id="LOCAL-00082" summary="Migrated market pages">
-      <option name="closed" value="true" />
-      <created>1720514208687</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1720514208688</updated>
+      <workItem from="1722363474514" duration="5213000" />
     </task>
     <task id="LOCAL-00083" summary="Migrated market pages pt.2">
       <option name="closed" value="true" />
@@ -690,7 +681,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722368094067</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Fixed profile search loading">
+      <option name="closed" value="true" />
+      <created>1722369099379</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1722369099379</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +710,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added initial dynamic props prefetching on client side + re-fetching by interval" />
     <MESSAGE value="Fixed powering down in hive wallet" />
     <MESSAGE value="Fixed profile list style switcher" />
     <MESSAGE value="Fixed profile page posts infinite loader" />
@@ -736,7 +734,8 @@
     <MESSAGE value="Fixed profile menu" />
     <MESSAGE value="Fixed page detector" />
     <MESSAGE value="Fixed searching in community and profile pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed searching in community and profile pages" />
+    <MESSAGE value="Fixed profile search loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile search loading" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

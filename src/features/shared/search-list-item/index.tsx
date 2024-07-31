@@ -6,12 +6,7 @@ import { SearchResult } from "@/entities";
 import { EntryLink, FormattedCurrency, ProfileLink, UserAvatar } from "@/features/shared";
 import { TagLink } from "../tag";
 import { commentSvg, peopleSvg } from "@ui/svg";
-import {
-  accountReputation,
-  dateToFormatted,
-  dateToRelative,
-  transformMarkedContent
-} from "@/utils";
+import { accountReputation, dateToFormatted, dateToRelative } from "@/utils";
 import { useGlobalStore } from "@/core/global-store";
 import Image from "next/image";
 
@@ -43,13 +38,9 @@ export function SearchListItem({ res }: Props) {
     [canUseWebp, res.body]
   );
 
-  const title = useMemo(
-    () => (res.title_marked ? transformMarkedContent(res.title_marked) : res.title),
-    [res]
-  );
+  const title = useMemo(() => (res.title_marked ? res.title_marked : res.title), [res]);
   const summary = useMemo(
-    () =>
-      res.body_marked ? transformMarkedContent(res.body_marked) : postBodySummary(res.body, 200),
+    () => (res.body_marked ? res.body_marked : postBodySummary(res.body, 200)),
     [res]
   );
 
@@ -92,10 +83,10 @@ export function SearchListItem({ res }: Props) {
         </div>
         <div className="item-summary">
           <EntryLink entry={entry}>
-            <div className="item-title">{title}</div>
+            <div className="item-title" dangerouslySetInnerHTML={{ __html: title }} />
           </EntryLink>
           <EntryLink entry={entry}>
-            <div className="break-all">{summary}</div>
+            <div className="break-all" dangerouslySetInnerHTML={{ __html: summary }} />
           </EntryLink>
         </div>
         <div className="item-controls">
