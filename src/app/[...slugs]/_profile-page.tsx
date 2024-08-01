@@ -1,5 +1,5 @@
 import "./profile.scss";
-import { ListStyle, ProfileFilter } from "@/enums";
+import { ProfileFilter } from "@/enums";
 import { SearchResult } from "@/entities";
 import {
   CurationTrail,
@@ -17,7 +17,6 @@ import {
   WalletHiveEngine,
   WalletSpk
 } from "@/app/[...slugs]/_profile-components";
-import { useGlobalStore } from "@/core/global-store";
 import {
   getAccountFullQuery,
   getDynamicPropsQuery,
@@ -26,6 +25,7 @@ import {
 } from "@/api/queries";
 import { notFound } from "next/navigation";
 import { ProfilePermissions } from "@/app/[...slugs]/_profile-components/profile-permissions";
+import { ProfileEntriesLayout } from "@/app/[...slugs]/_profile-components/profile-entries-layout";
 
 interface Props {
   username: string;
@@ -38,9 +38,6 @@ export async function ProfilePage({
   section = "posts",
   searchParams: { query: searchParam }
 }: Props) {
-  const activeUser = useGlobalStore((s) => s.activeUser);
-  const listStyle = useGlobalStore((s) => s.listStyle);
-
   const account = await getAccountFullQuery(username).prefetch();
   await prefetchGetPostsFeedQuery(section, `@${username}`);
   await getDynamicPropsQuery().prefetch();
@@ -86,29 +83,16 @@ export async function ProfilePage({
             <>
               {section === "wallet" && <WalletHive account={account} />}
               {section === "engine" && <WalletHiveEngine account={account} />}
-              {section === "spk" && (
-                <WalletSpk
-                  account={account}
-                  isActiveUserWallet={account.name === activeUser?.username}
-                />
-              )}
+              {section === "spk" && <WalletSpk account={account} />}
               {section === "points" && <WalletEcency account={account} />}
               {section === "communities" && <ProfileCommunities account={account} />}
               {section === "settings" && <ProfileSettings account={account} />}
               {section === "referrals" && <ProfileReferrals account={account} />}
               {section === "permissions" && <ProfilePermissions />}
               {section === "trail" && (
-                <>
-                  <div className="entry-list">
-                    <div
-                      className={`entry-list-body ${
-                        listStyle === ListStyle.grid ? "grid-view" : ""
-                      }`}
-                    >
-                      <CurationTrail account={account} section={section} />
-                    </div>
-                  </div>
-                </>
+                <ProfileEntriesLayout username={username} section={section}>
+                  <CurationTrail account={account} section={section} />
+                </ProfileEntriesLayout>
               )}
               {["", "posts", "comments", "replies", "blog"].includes(section) && (
                 <ProfileEntriesList section={section} account={account} />

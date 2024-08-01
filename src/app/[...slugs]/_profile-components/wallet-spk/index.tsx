@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { WalletSpkSection } from "./wallet-spk-section";
 import { SendSpkDialog } from "./send-spk-dialog";
 import { WalletSpkLarynxPower } from "./wallet-spk-larynx-power";
@@ -18,10 +18,9 @@ import { usePrevious } from "react-use";
 
 export interface Props {
   account: Account;
-  isActiveUserWallet: boolean;
 }
 
-export function WalletSpk({ account, isActiveUserWallet }: Props) {
+export function WalletSpk({ account }: Props) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const previousActiveUser = usePrevious(activeUser);
 
@@ -54,6 +53,11 @@ export function WalletSpk({ account, isActiveUserWallet }: Props) {
   const [delegatingItems, setDelegatingItems] = useState<[string, number][]>([]);
   const [rateLPow, setRateLPow] = useState("0.0001");
   const [rateLDel, setRateLDel] = useState("0.00015");
+
+  const isActiveUserWallet = useMemo(
+    () => activeUser?.username === account.name,
+    [account.name, activeUser?.username]
+  );
 
   let balance = "0";
 
@@ -274,7 +278,6 @@ export function WalletSpk({ account, isActiveUserWallet }: Props) {
               }}
               larynxLockedBalance={larynxLockedBalance}
               account={account}
-              isActiveUserWallet={isActiveUserWallet}
             />
           ) : (
             <></>
