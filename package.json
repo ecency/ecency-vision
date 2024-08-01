@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@ecency/ns-query": "1.2.6-next",
@@ -70,6 +71,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",

@@ -6,6 +6,6 @@ describe("Currency Symbol", () => {
     expect(currencySymbol("usd")).toBe("$");
     expect(currencySymbol("eur")).toBe("€");
     expect(currencySymbol("try")).toBe("₺");
-    expect(currencySymbol("btc")).toBe("฿");
+    expect(currencySymbol("btc")).toBe("₿");
   });
 });

@@ -27,6 +27,7 @@ export function ModalHeader(props: HTMLProps<HTMLDivElement> & Props) {
       {props.children}
       {props.closeButton && (
         <button
+          aria-label="Close"
           className="w-5 h-5 opacity-50 absolute top-3 right-3 hover:opacity-100"
           onClick={() => context.setShow(false)}
         >

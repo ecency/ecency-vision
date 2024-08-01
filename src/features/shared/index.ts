@@ -42,7 +42,7 @@ export * from "./discussion";
 export * from "./entry-delete-btn";
 export * from "./comment";
 export * from "./transactions";
-export * from "./clickaway-listener";
+export * from "./click-away-listener";
 export * from "./available-credits";
 export * from "./login";
 export * from "./wallet-badge";

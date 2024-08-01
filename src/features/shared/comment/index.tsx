@@ -35,14 +35,6 @@ interface Props {
   inputRef?: Ref<any>;
 }
 
-interface State {
-  text: string;
-  preview: string;
-  showEmoji: boolean;
-  showGif: boolean;
-  inputHeight: number;
-}
-
 export function Comment({
   entry,
   onSubmit,

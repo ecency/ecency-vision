@@ -5,23 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved and migrated utils tests">
+      <change afterPath="$PROJECT_DIR$/src/specs/features/shared/boost.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/specs/features/shared/click-away-listener.spec.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/specs/setup-any-spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jest.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/account-reputation.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/account-reputation.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/app-name.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/app-name.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/capitalize.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/capitalize.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/features/shared/bookmark-btn.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmarks/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmarks/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/features/shared/bookmarks.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/click-away-listener.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/formatted-number.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/formatted-number.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/hive-engine-wallet.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/hive-engine-wallet.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/hive-signer.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/hive-signer.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/is-community.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/is-community.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/nl2list.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/nl2list.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/parse-asset.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/parse-asset.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/parse-date.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/parse-date.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/posting.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/posting.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/temp-entry.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/temp-entry.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/truncate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/truncate.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Jest.Account Reputation.executor": "Run",
+    "Jest.Bookmark button.executor": "Run",
+    "Jest.BookmarkBtn.executor": "Run",
+    "Jest.BookmarkBtn.renders login required when no active user.executor": "Debug",
+    "Jest.BookmarksDialog.executor": "Run",
+    "Jest.BookmarksDialog.hides the modal when close button is clicked.executor": "Run",
+    "Jest.BoostDialog.executor": "Run",
+    "Jest.BoostDialog.finishes and calls onHide when finish button is clicked.executor": "Run",
+    "Jest.BoostDialog.handles signing process and transitions to step 3.executor": "Run",
+    "Jest.ClickAwayListener (1).executor": "Run",
+    "Jest.ClickAwayListener.executor": "Run",
+    "Jest.Comment Component.executor": "Run",
+    "Jest.Comment.executor": "Run",
+    "Jest.Comment.handles keyboard shortcuts.executor": "Run",
+    "Jest.Comment.renders with initial text and submit button.executor": "Run",
+    "Jest.Comment.submits comment when submit button is clicked.executor": "Run",
     "Jest.Tests in utils/.executor": "Run",
     "Jest.Vesting.executor": "Run",
     "Node.js.scratch_39.js.executor": "Run",
@@ -90,12 +108,13 @@
     "npm.build.executor": "Run",
     "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
+    "npm.test.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -124,32 +143,74 @@
       <recent name="$PROJECT_DIR$/src/features/user-activity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/features/shared" />
+      <recent name="$PROJECT_DIR$/src/specs/features/shared" />
       <recent name="$PROJECT_DIR$/src/specs/utils" />
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/features/i18n" />
-      <recent name="$PROJECT_DIR$/src/core/global-store/initialization" />
-      <recent name="$PROJECT_DIR$/src/core/global-store/modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Vesting">
-    <configuration name="Tests in utils/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="DIRECTORY" />
-      <test-directory value="$PROJECT_DIR$/src/specs/utils" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Vesting" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.Comment">
+    <configuration name="Comment Component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/specs/utils/vesting.spec.ts" />
+      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
       <test-names>
-        <test-name value="Vesting" />
+        <test-name value="Comment Component" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Comment" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
+      <test-names>
+        <test-name value="Comment" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Comment.handles keyboard shortcuts" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
+      <test-names>
+        <test-name value="Comment" />
+        <test-name value="handles keyboard shortcuts" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Comment.renders with initial text and submit button" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
+      <test-names>
+        <test-name value="Comment" />
+        <test-name value="renders with initial text and submit button" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Comment.submits comment when submit button is clicked" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
+      <test-names>
+        <test-name value="Comment" />
+        <test-name value="submits comment when submit button is clicked" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -166,26 +227,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v20.9.0/bin/node" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.17.1/bin/node" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="run" type="js.build_tools.npm" nameIsGenerated="true">
       <command value="run" />
       <scripts />
@@ -193,31 +234,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Jest.Tests in utils/" />
-      <item itemvalue="Jest.Vesting" />
+      <item itemvalue="Jest.Comment" />
+      <item itemvalue="Jest.Comment Component" />
+      <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
+      <item itemvalue="Jest.Comment.renders with initial text and submit button" />
+      <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
       <item itemvalue="npm.run" />
-      <item itemvalue="npm.build" />
-      <item itemvalue="npm.dev" />
-      <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Vesting" />
-        <item itemvalue="Jest.Tests in utils/" />
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.Comment" />
+        <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
+        <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
+        <item itemvalue="Jest.Comment.renders with initial text and submit button" />
+        <item itemvalue="Jest.Comment Component" />
       </list>
     </recent_temporary>
   </component>
@@ -330,15 +361,7 @@
       <workItem from="1722325571472" duration="10637000" />
       <workItem from="1722363474514" duration="7493000" />
       <workItem from="1722439887936" duration="3117000" />
-      <workItem from="1722461868157" duration="1112000" />
-    </task>
-    <task id="LOCAL-00089" summary="Added entry editing page">
-      <option name="closed" value="true" />
-      <created>1721155412900</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1721155412900</updated>
+      <workItem from="1722461868157" duration="8127000" />
     </task>
     <task id="LOCAL-00090" summary="Updated build, removed warnings">
       <option name="closed" value="true" />
@@ -724,7 +747,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722462833559</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="Moved and migrated utils tests">
+      <option name="closed" value="true" />
+      <created>1722463079432</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1722463079432</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
