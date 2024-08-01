@@ -1,10 +1,10 @@
 import { Account, ActiveUser } from "@/entities";
 import * as ls from "@/utils/local-storage";
 import Cookies from "js-cookie";
-import { activeUserMaker } from "@/utils";
 import { error } from "@/features/shared";
 import { formatError } from "@/api/operations";
 import { getAccountFullQuery } from "@/api/queries";
+import { activeUserMaker } from "@/specs/test-helper";
 
 const load = (): ActiveUser | null => {
   const name = ls.get("active_user");

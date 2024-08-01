@@ -7,10 +7,11 @@ import { Button } from "@ui/button";
 
 interface Props {
   isActive: boolean;
-  isGlobal: boolean;
   onChangeGlobal: (v: string) => void;
   noReblog: boolean;
   handleFilterReblog: () => void;
+  filter: string;
+  tag: string;
 }
 
 // const feedUrlParams : string = window.location.pathname;
@@ -21,11 +22,10 @@ export const EntryIndexMenuDropdown = ({
   noReblog,
   handleFilterReblog,
   onChangeGlobal,
-  isGlobal
+  filter,
+  tag
 }: Props) => {
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const filter = useGlobalStore((s) => s.filter);
-  const tag = useGlobalStore((s) => s.tag);
   const toggleUIProp = useGlobalStore((s) => s.toggleUiProp);
 
   let dropDownItems: MenuItem[] = [

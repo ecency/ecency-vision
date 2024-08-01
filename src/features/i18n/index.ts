@@ -1,7 +1,6 @@
 import i18n from "i18next";
 
 import moment from "moment";
-import { isServer } from "@tanstack/react-query";
 
 export const langOptions = [
   {
@@ -128,8 +127,6 @@ export async function initI18next() {
   });
 }
 
-if (isServer) {
-  initI18next();
-}
+initI18next();
 
 export * from "./navigation-locale-watcher";

@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ecency/ns-query": "1.2.6-next",
+    "@ecency/ns-query": "../ns-query",
     "@ecency/render-helper": "^2.2.29",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",

@@ -138,16 +138,10 @@ export function EntryIndexMenu({ filter, tag }: Props) {
 
   const onChangeGlobal = (value: string) => {
     setIsGlobal(!value);
-    // if (value) {
-    //     history.push(`/${filter}`)
-    // } else {
-    //     history.push(`/${filter}/my`)
-    // }
-    const temp = value ? "/" + value : "";
     if (value === "my") {
       router.push(`/${filter}/my`);
     } else {
-      router.push(`/${filter}${temp}`);
+      router.push(`/${filter}/${value}`);
     }
   };
 
@@ -572,9 +566,10 @@ export function EntryIndexMenu({ filter, tag }: Props) {
                 <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                 <span id="check-isGlobal" className="flex items-center pl-3">
                   <EntryIndexMenuDropdown
+                    filter={filter}
+                    tag={tag}
                     noReblog={noReblog!!}
                     handleFilterReblog={() => setNoReblog((v) => !v)}
-                    isGlobal={isGlobal}
                     isActive={isActive}
                     onChangeGlobal={onChangeGlobal}
                   />
@@ -585,9 +580,10 @@ export function EntryIndexMenu({ filter, tag }: Props) {
                 <div className="border-l border-[--border-color] ml-3 dropDown-left-border-height" />
                 <span id="check-isGlobal" className="flex items-center pl-3">
                   <EntryIndexMenuDropdown
+                    filter={filter}
+                    tag={tag}
                     noReblog={noReblog!!}
                     handleFilterReblog={() => setNoReblog((v) => !v)}
-                    isGlobal={isGlobal}
                     isActive={isActive}
                     onChangeGlobal={onChangeGlobal}
                   />

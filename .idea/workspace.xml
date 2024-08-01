@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Initialize i18n on server and client separately">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile page active user using on SSR">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +138,7 @@
       <recent name="$PROJECT_DIR$/src/features/i18n" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="Comment" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -157,19 +161,6 @@
       <test-names>
         <test-name value="Comment" />
         <test-name value="handles keyboard shortcuts" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Comment.renders with initial text and submit button" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
-      <test-names>
-        <test-name value="Comment" />
-        <test-name value="renders with initial text and submit button" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -199,6 +190,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="run" type="js.build_tools.npm" nameIsGenerated="true">
       <command value="run" />
       <scripts />
@@ -219,18 +220,18 @@
     <list>
       <item itemvalue="Jest.Comment" />
       <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
-      <item itemvalue="Jest.Comment.renders with initial text and submit button" />
       <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
       <item itemvalue="npm.run" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.test" />
         <item itemvalue="Jest.Comment" />
         <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
         <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
-        <item itemvalue="Jest.Comment.renders with initial text and submit button" />
       </list>
     </recent_temporary>
   </component>
@@ -344,15 +345,7 @@
       <workItem from="1722363474514" duration="7493000" />
       <workItem from="1722439887936" duration="3117000" />
       <workItem from="1722461868157" duration="8376000" />
-      <workItem from="1722533733616" duration="1028000" />
-    </task>
-    <task id="LOCAL-00092" summary="Added community create hs page">
-      <option name="closed" value="true" />
-      <created>1721198453717</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1721198453717</updated>
+      <workItem from="1722533733616" duration="2729000" />
     </task>
     <task id="LOCAL-00093" summary="Added hiring console log">
       <option name="closed" value="true" />
@@ -738,7 +731,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722509160554</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Fixed profile page active user using on SSR">
+      <option name="closed" value="true" />
+      <created>1722534807053</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1722534807053</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +760,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed coingecko api request" />
     <MESSAGE value="Added infinite scrolling in a feed" />
     <MESSAGE value="Improved entry menu" />
     <MESSAGE value="Fixed build semantic errors" />
@@ -784,7 +784,8 @@
     <MESSAGE value="Moved and migrated utils tests" />
     <MESSAGE value="Tried to add some tests" />
     <MESSAGE value="Initialize i18n on server and client separately" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize i18n on server and client separately" />
+    <MESSAGE value="Fixed profile page active user using on SSR" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile page active user using on SSR" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1014,10 +1014,8 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@ecency/ns-query@1.2.6-next":
+"@ecency/ns-query@../ns-query":
   version "1.2.6-next"
-  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.2.6-next.tgz#de8b067012c7d577e080302b6bf45ed9020b0e26"
-  integrity sha512-Xyv+pbJUUINGvCT8STd5i2ngNt8VWpve6cQK4lkF2LTTfp0+Iw3RsjtMFBWdGbEljOfvGx/tORfmAupvatlXtg==
   dependencies:
     "@tanstack/react-query" "^5.15.0"
     axios "^0.21.2"
