@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved and migrated utils tests">
-      <change afterPath="$PROJECT_DIR$/src/specs/features/shared/boost.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/specs/features/shared/click-away-listener.spec.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/specs/setup-any-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmark-btn/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/features/shared/bookmark-btn.spec.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmarks/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/bookmarks/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/features/shared/bookmarks.spec.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.spec.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/clickaway-listener/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/click-away-listener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.spec.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/comment/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/specs/utils/currency-symbol.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Tried to add some tests">
+      <change beforePath="$PROJECT_DIR$/src/app/client-init.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client-init.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,19 +133,7 @@
       <recent name="$PROJECT_DIR$/src/features/i18n" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Comment">
-    <configuration name="Comment Component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/specs/features/shared/comment.spec.tsx" />
-      <test-names>
-        <test-name value="Comment Component" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="npm.test">
     <configuration name="Comment" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -234,21 +205,31 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Jest.Comment" />
-      <item itemvalue="Jest.Comment Component" />
       <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
       <item itemvalue="Jest.Comment.renders with initial text and submit button" />
       <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
       <item itemvalue="npm.run" />
+      <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.test" />
         <item itemvalue="Jest.Comment" />
         <item itemvalue="Jest.Comment.handles keyboard shortcuts" />
         <item itemvalue="Jest.Comment.submits comment when submit button is clicked" />
         <item itemvalue="Jest.Comment.renders with initial text and submit button" />
-        <item itemvalue="Jest.Comment Component" />
       </list>
     </recent_temporary>
   </component>
@@ -361,15 +342,7 @@
       <workItem from="1722325571472" duration="10637000" />
       <workItem from="1722363474514" duration="7493000" />
       <workItem from="1722439887936" duration="3117000" />
-      <workItem from="1722461868157" duration="8127000" />
-    </task>
-    <task id="LOCAL-00090" summary="Updated build, removed warnings">
-      <option name="closed" value="true" />
-      <created>1721197343747</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1721197343747</updated>
+      <workItem from="1722461868157" duration="8227000" />
     </task>
     <task id="LOCAL-00091" summary="Added edit draft page">
       <option name="closed" value="true" />
@@ -755,7 +728,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722463079432</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Tried to add some tests">
+      <option name="closed" value="true" />
+      <created>1722509035167</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1722509035167</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +757,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed community page infinite loading and searching behavior" />
     <MESSAGE value="Fixed trading view charts widget" />
     <MESSAGE value="Fixed coingecko api request" />
     <MESSAGE value="Added infinite scrolling in a feed" />
@@ -801,7 +781,8 @@
     <MESSAGE value="Added Dockerfile and GitHub CI/CD" />
     <MESSAGE value="Added ns-query, yarn.lock" />
     <MESSAGE value="Moved and migrated utils tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved and migrated utils tests" />
+    <MESSAGE value="Tried to add some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried to add some tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
