@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile page active user using on SSR">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed feed controversial tags selection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu-dropdown/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/entry-index-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,15 +340,7 @@
       <workItem from="1722363474514" duration="7493000" />
       <workItem from="1722439887936" duration="3117000" />
       <workItem from="1722461868157" duration="8376000" />
-      <workItem from="1722533733616" duration="2729000" />
-    </task>
-    <task id="LOCAL-00093" summary="Added hiring console log">
-      <option name="closed" value="true" />
-      <created>1721199329588</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1721199329588</updated>
+      <workItem from="1722533733616" duration="3836000" />
     </task>
     <task id="LOCAL-00094" summary="Fixed trending tags fetching">
       <option name="closed" value="true" />
@@ -739,7 +726,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722534807053</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Fixed feed controversial tags selection">
+      <option name="closed" value="true" />
+      <created>1722537716611</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1722537716612</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +755,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added infinite scrolling in a feed" />
     <MESSAGE value="Improved entry menu" />
     <MESSAGE value="Fixed build semantic errors" />
     <MESSAGE value="Fixed build dynamic routes" />
@@ -785,7 +779,8 @@
     <MESSAGE value="Tried to add some tests" />
     <MESSAGE value="Initialize i18n on server and client separately" />
     <MESSAGE value="Fixed profile page active user using on SSR" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile page active user using on SSR" />
+    <MESSAGE value="Fixed feed controversial tags selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed feed controversial tags selection" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

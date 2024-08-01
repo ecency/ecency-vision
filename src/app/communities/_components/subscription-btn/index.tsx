@@ -59,7 +59,7 @@ export function SubscriptionBtn({ buttonProps, community }: Props) {
           <Spinner className="w-3.5 h-3.5" />
         </Button>
       )}
-      {subscribed && (
+      {subscribed && !inProgress && (
         <Button
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -71,7 +71,7 @@ export function SubscriptionBtn({ buttonProps, community }: Props) {
           {hover ? i18next.t("community.unsubscribe") : i18next.t("community.subscribed")}
         </Button>
       )}
-      {!activeUser && (
+      {!inProgress && !subscribed && (
         <LoginRequired>
           <Button onClick={subscribeAction} {...buttonProps}>
             {i18next.t("community.subscribe")}
