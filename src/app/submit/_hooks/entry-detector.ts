@@ -7,6 +7,7 @@ import { useEntryCache } from "@/core/caches";
 import { QueryIdentifiers } from "@/core/react-query";
 import { useRouter } from "next/navigation";
 import { error } from "@/features/shared";
+import useMount from "react-use/lib/useMount";
 
 export function useEntryDetector(
   username: string | undefined,
@@ -15,7 +16,7 @@ export function useEntryDetector(
 ) {
   const router = useRouter();
 
-  const { data } = useEntryCache("", username?.replace("@", ""), permlink);
+  const { data, refetch } = useEntryCache("", username?.replace("@", ""), permlink);
   const { data: normalizedEntry } = useQuery({
     queryKey: [QueryIdentifiers.NORMALIZED_ENTRY, username?.replace("@", ""), permlink],
     queryFn: async () => {
@@ -36,6 +37,8 @@ export function useEntryDetector(
     },
     enabled: !!data
   });
+
+  useMount(() => refetch());
 
   useEffect(() => {
     onEntryDetected(normalizedEntry);

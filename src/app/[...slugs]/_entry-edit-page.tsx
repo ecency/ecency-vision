@@ -8,7 +8,7 @@ interface Props {
 export function EntryEditPage({ username, permlink }: Props) {
   return (
     <SubmitWithProvidersPage
-      path={`${username}/${permlink}/edit`}
+      path={`@${username}/${permlink}/edit`}
       permlink={permlink}
       username={username}
     />

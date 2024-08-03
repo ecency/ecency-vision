@@ -126,6 +126,14 @@ export namespace MetadataGenerator {
     return { title, description, openGraph: { url } };
   }
 
+  async function buildForEdit(username: string, permlink: string): Promise<Metadata> {
+    const forEntry = await buildForEntry(username, permlink);
+    return {
+      ...forEntry,
+      title: `Edit – ${forEntry.title}`
+    };
+  }
+
   export async function build(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
     await initI18next();
     const page = PageDetector.detect(props);
@@ -145,6 +153,11 @@ export namespace MetadataGenerator {
         return buildForCommunity(props.params.slugs[0], props.params.slugs[1]);
       case "index":
         return buildForIndex(props.params.slugs[0], props.params.slugs[1]);
+      case "edit":
+        return buildForEdit(
+          props.params.slugs[0].replace("%40", "").replace("@", ""),
+          props.params.slugs[1]
+        );
     }
 
     return {};

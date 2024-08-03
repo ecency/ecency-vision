@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed feed controversial tags selection">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed side widget for communities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-edit-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-edit-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_utils/metadata-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_utils/metadata-generator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,15 +342,8 @@
       <workItem from="1722363474514" duration="7493000" />
       <workItem from="1722439887936" duration="3117000" />
       <workItem from="1722461868157" duration="8376000" />
-      <workItem from="1722533733616" duration="3836000" />
-    </task>
-    <task id="LOCAL-00094" summary="Fixed trending tags fetching">
-      <option name="closed" value="true" />
-      <created>1721471231498</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1721471231498</updated>
+      <workItem from="1722533733616" duration="4009000" />
+      <workItem from="1722687094878" duration="1724000" />
     </task>
     <task id="LOCAL-00095" summary="Fixed warnings">
       <option name="closed" value="true" />
@@ -734,7 +729,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722537716612</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Fixed side widget for communities">
+      <option name="closed" value="true" />
+      <created>1722538967856</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1722538967856</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,7 +758,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved entry menu" />
     <MESSAGE value="Fixed build semantic errors" />
     <MESSAGE value="Fixed build dynamic routes" />
     <MESSAGE value="Added entrypoint page metadata generator" />
@@ -780,7 +782,8 @@
     <MESSAGE value="Initialize i18n on server and client separately" />
     <MESSAGE value="Fixed profile page active user using on SSR" />
     <MESSAGE value="Fixed feed controversial tags selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed feed controversial tags selection" />
+    <MESSAGE value="Fixed side widget for communities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed side widget for communities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
