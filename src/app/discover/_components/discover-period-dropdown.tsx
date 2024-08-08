@@ -18,7 +18,7 @@ export function DiscoverPeriodDropdown() {
       </DropdownToggle>
       <DropdownMenu align="left">
         {["day", "week", "month"].map((f) => (
-          <DropdownItem key={f} onClick={() => router.push(`?period=${f}`)}>
+          <DropdownItem key={f} onClick={() => router.push(`/discover?period=${f}`)}>
             {i18next.t(`leaderboard.period-${f}`)}
           </DropdownItem>
         ))}

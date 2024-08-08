@@ -13,16 +13,20 @@ Fast, simple and clean source code with Reactjs + Typescript.
 - [Production version][ecency_vision] - master branch
 - [Alpha version][ecency_alpha] - development branch
 
+***
+
 ## Developers
 
 Feel free to test it out and submit improvements and pull requests.
 
-### Build instructions
+***
+
+## Build instructions
 
 ##### Requirements
 
-- node ^12.0.0
-- yarn
+- `node ^18.17.x`
+- `yarn`
 
 ##### Clone
 
@@ -36,42 +40,46 @@ Feel free to test it out and submit improvements and pull requests.
 
 ##### Edit config file or define environment variables
 
-`$ nano src/config.ts`
+1. `$ cp .env.template .env`
+2. Update values with your ones
 
 ##### Environment variables
 
-- `USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)
-- `HIVESIGNER_ID` - This is a special application Hive account. If unset, "ecency.app" is the account used.
-- `HIVESIGNER_SECRET` - This is a secret your site shares with HIVE_SIGNER in order to communicate securely.
-
-* `REDIS_URL` - support for caching amp pages
+- ~~`USE_PRIVATE` - if instance has private api address and auth (0 or 1 value)~~ Use extended configuration instead below.
+- ~~`HIVESIGNER_ID`~~ – `NEXT_PUBLIC_HS_CLIENT_ID` – This is a special application Hive account. If unset, "ecency.app" is the account used.
+- ~~`HIVESIGNER_SECRET`~~ – `NEXT_PUBLIC_HS_CLIENT_SECRET` – This is a secret your site shares with HIVE_SIGNER in order to communicate securely.
+- ~~`REDIS_URL` - support for caching amp pages~~. Amp pages has been deprecated and will be removed by Google. Amp pages aren't longer supporting in Ecency vision. 
 
 ###### Hivesigner Variables
 
 When setting up another service like Ecency with Ecency-vision software:
 
-1. You may leave `HIVESIGNER_ID` and `HIVESIGNER_SECRET` environment variables unset and optionally set USE_PRIVATE=1 and leave "base" in the constants/defaults.json set to "https://ecency.com". Your new site will contain more features as it will use Ecency's private API. This is by far the easiest option.
-2. You may change `base` to the URL of your own site, but you will have to set environment variables `HIVESIGNER_ID` and `HIVESIGNER_SECRET`; set USE_PRIVATE=0 as well as configure your the `HIVESIGNER_ID` account at the [Hivesigner website.](https://hivesigner.com/profile). Hivesigner will need a `secret`, in the form of a long lowercase hexadecimal number. The HIVESIGNER_SECRET should be set to this value.
+1. You may leave `NEXT_PUBLIC_HS_CLIENT_ID` and `NEXT_PUBLIC_HS_CLIENT_SECRET` environment variables unset and optionally set USE_PRIVATE=1 and leave "base" in the constants/defaults.json set to "https://ecency.com". Your new site will contain more features as it will use Ecency's private API. This is by far the easiest option.
+2. You may change `base` to the URL of your own site, but you will have to set environment variables `NEXT_PUBLIC_HS_CLIENT_ID` and `NEXT_PUBLIC_HS_CLIENT_SECRET`; set USE_PRIVATE=0 as well as configure your the `HIVESIGNER_ID` account at the [Hivesigner website.](https://hivesigner.com/profile). Hivesigner will need a `secret`, in the form of a long lowercase hexadecimal number. The HIVESIGNER_SECRET should be set to this value.
 
 ###### Hivesigner Login Process
 
-In order to validate a login, and do posting level operations, this software relies on Hivesigner. A user @alice will use login credentials to login to the site via one of several methods, but the site will communicate with Hivesigner and ask it to do all posting operations on behalf of @alice. Hivesigner can and will do this because both @alice will have given posting authority to the `HIVESIGNER_ID` user and the `HIVESIGNER_ID` user will have given its posting authority to Hivesigner.
+In order to validate a login, and do posting level operations, this software relies on Hivesigner. A user @alice will use login credentials to login to the site via one of several methods, but the site will communicate with Hivesigner and ask it to do all posting operations on behalf of @alice. Hivesigner can and will do this because both @alice will have given posting authority to the `NEXT_PUBLIC_HS_CLIENT_ID` user and the `NEXT_PUBLIC_HS_CLIENT_ID` user will have given its posting authority to Hivesigner.
 
 ##### Edit "default" values
 
 If you are setting up your own website other than Ecency.com, you can still leave the value `base` as "https://ecency.com". However, you should change `name`, `title` and `twitterHandle`. There are also a lot of static pages that are Ecency specific.
 
-##### Start website in dev
+### Extended vision configuration
 
-`$ yarn start`
+Ecency vision has extended configuration based on feature-flag on/off specifications built in yaml format.
+```yaml
+#Any ecency vision configuration file should be started with specific tag as below
+vision-config:
+  features:
+    ...
+```
+Feature flags and their formats:
+1. 
 
-##### Pushing new code / Pull requests
+See `src/config/vision-config.template.yml`.  
 
-- Make sure to branch off your changes from `development` branch.
-- Make sure to run `yarn test` and add tests to your changes.
-- Make sure new text, strings are added into `en-US.json` file only.
-- Code on!
-
+***
 ## Docker
 
 You can use official `ecency/vision:latest` image to run Vision locally, deploy it to staging or even production environment. The simplest way is to run it with following command:
@@ -82,8 +90,7 @@ docker run -it --rm -p 3000:3000 ecency/vision:latest
 
 Configure the instance using following environment variables:
 
-- `USE_PRIVATE`
-- `REDIS_URL`
+- ~~`USE_PRIVATE`~~ See extended configuration above.
 
 ```bash
 docker run -it --rm -p 3000:3000 -e USE_PRIVATE=1 ecency/vision:latest
@@ -97,11 +104,22 @@ You can easily deploy a set of vision instances to your production environment, 
 docker stack deploy -c docker-compose.yml -c docker-compose.production.yml vision
 ```
 
-### Contributors
+***
+## Contributors
 
 [![Contributors](https://contrib.rocks/image?repo=ecency/ecency-vision)](https://github.com/ecency/ecency-vision/graphs/contributors)
 
-## Note to DEVS
+
+***
+
+## Pushing new code / Pull requests
+
+- Make sure to branch off your changes from `development` branch.
+- Make sure to run `yarn test` and add tests to your changes.
+- Make sure new text, strings are added into `en-US.json` file only.
+- Code on!
+
+### Note to developers
 
 - Make PRs more clear with description, screenshots or videos, linking to issues, if no issue exist create one that describes PR and mention in PR. Reviewers may or may not run code, but PR should be reviewable even without running, visials helps there.
 - PR should have title WIP, if it is not ready yet. Once ready, run yarn test and update all tests, make sure linting also done before requesting for review.
@@ -109,6 +127,7 @@ docker stack deploy -c docker-compose.yml -c docker-compose.production.yml visio
 - Always make sure component and pages stay fast without unnecessary re-renders because those will slow down app/performance.
 -
 
+***
 ## Issues
 
 To report a non-critical issue, please file an issue on this GitHub project.

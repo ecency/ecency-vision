@@ -70,7 +70,7 @@ export function createGlobalActions(set: (state: Partial<State>) => void, getSta
       ls.set("current-language", lang);
       await i18next.changeLanguage(lang);
       set({
-        lang
+        lang: lang ?? "en-US"
       });
     },
     setListStyle: (listStyle: ListStyle) => {

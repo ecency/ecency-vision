@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed side widget for communities">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed entry editing">
+      <change afterPath="$PROJECT_DIR$/.env.template" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/ecency-config.template.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-edit-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-edit-page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_utils/metadata-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_utils/metadata-generator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/communities-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/communities-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/discover/_components/discover-period-dropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/_components/discover-period-dropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/modules/global-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/global-module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/login/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/anon-user-buttons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,11 +135,11 @@
       <recent name="$PROJECT_DIR$/src/features/user-activity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/config" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/specs/features/shared" />
       <recent name="$PROJECT_DIR$/src/specs/utils" />
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src/features/i18n" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -343,15 +350,12 @@
       <workItem from="1722439887936" duration="3117000" />
       <workItem from="1722461868157" duration="8376000" />
       <workItem from="1722533733616" duration="4009000" />
-      <workItem from="1722687094878" duration="1724000" />
-    </task>
-    <task id="LOCAL-00095" summary="Fixed warnings">
-      <option name="closed" value="true" />
-      <created>1721474178586</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1721474178586</updated>
+      <workItem from="1722687094878" duration="3026000" />
+      <workItem from="1722973990506" duration="1773000" />
+      <workItem from="1723012025824" duration="339000" />
+      <workItem from="1723044865722" duration="3087000" />
+      <workItem from="1723101941733" duration="10000" />
+      <workItem from="1723102133032" duration="3735000" />
     </task>
     <task id="LOCAL-00096" summary="Added web vitals report">
       <option name="closed" value="true" />
@@ -737,7 +741,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722538967856</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Fixed entry editing">
+      <option name="closed" value="true" />
+      <created>1722688895440</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1722688895441</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +770,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed build semantic errors" />
     <MESSAGE value="Fixed build dynamic routes" />
     <MESSAGE value="Added entrypoint page metadata generator" />
     <MESSAGE value="Added metadata generator for all pages" />
@@ -783,7 +794,8 @@
     <MESSAGE value="Fixed profile page active user using on SSR" />
     <MESSAGE value="Fixed feed controversial tags selection" />
     <MESSAGE value="Fixed side widget for communities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed side widget for communities" />
+    <MESSAGE value="Fixed entry editing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed entry editing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

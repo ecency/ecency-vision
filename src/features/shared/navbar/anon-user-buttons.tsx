@@ -15,7 +15,7 @@ export function AnonUserButtons() {
         {i18next.t("g.login")}
       </Button>
 
-      <Button href="/signup" outline={true}>
+      <Button href="/signup" className="flex items-center justify-center" outline={true}>
         {i18next.t("g.signup")}
       </Button>
     </div>

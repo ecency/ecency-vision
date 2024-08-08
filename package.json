@@ -1,6 +1,6 @@
 {
   "name": "ecency-vision-next",
-  "version": "0.1.0",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -101,6 +101,7 @@
     "eslint-config-next": "14.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "next-plugin-yaml": "^1.0.1",
     "postcss": "^8",
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
