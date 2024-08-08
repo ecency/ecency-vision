@@ -65,6 +65,8 @@ export function LoginDialog() {
         const u = `/@${x.username}/feed`;
         router.push(u);
       }
+
+      hide();
     });
   };
 

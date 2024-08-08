@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Removed extra console log">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed language selection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/navbar/navbar-main-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/switch-lang/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,15 +346,7 @@
       <workItem from="1723012025824" duration="339000" />
       <workItem from="1723044865722" duration="3087000" />
       <workItem from="1723101941733" duration="10000" />
-      <workItem from="1723102133032" duration="4993000" />
-    </task>
-    <task id="LOCAL-00099" summary="Added i18n listeners">
-      <option name="closed" value="true" />
-      <created>1721477737927</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1721477737927</updated>
+      <workItem from="1723102133032" duration="6094000" />
     </task>
     <task id="LOCAL-00100" summary="Fixed locale switcher in profile and three dots menu">
       <option name="closed" value="true" />
@@ -741,7 +732,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723120223464</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="Fixed language selection">
+      <option name="closed" value="true" />
+      <created>1723120634303</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1723120634304</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -762,7 +761,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated favicon.ico" />
     <MESSAGE value="Fixed entry page raw viewing" />
     <MESSAGE value="Fixed entry page nsfw viewing" />
     <MESSAGE value="Show chat widget" />
@@ -787,7 +785,8 @@
     <MESSAGE value="Fixed after review" />
     <MESSAGE value="Updated deps" />
     <MESSAGE value="Removed extra console log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed extra console log" />
+    <MESSAGE value="Fixed language selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed language selection" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
