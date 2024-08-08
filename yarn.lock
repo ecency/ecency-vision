@@ -1014,14 +1014,23 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@ecency/ns-query@../ns-query":
-  version "1.2.6-next"
+"@ecency/bytebuffer@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ecency/bytebuffer/-/bytebuffer-6.0.0.tgz#8d4f98bf5777f18e056c85899a9bdb37119cc62a"
+  integrity sha512-rGPjzD7a7cPtMHjpJEtLMt/RmqX8XK25tN5qjuu9iaDMK/Ril86CecU5DN/TXEMUQMY1p6b2cVvKBLTdFMr2DA==
+  dependencies:
+    long "~3"
+
+"@ecency/ns-query@1.2.7-next":
+  version "1.2.7-next"
+  resolved "https://registry.yarnpkg.com/@ecency/ns-query/-/ns-query-1.2.7-next.tgz#57471399f1bb9cd6fb232015cac467da0c626a79"
+  integrity sha512-oL6I72WlAK9UyLt75VlsOH31KmvZt4geuZVdditFmGy5UwV4UJUQvHwuunmszaaUcwOSEWgViTlPxTvZGHfzLQ==
   dependencies:
     "@tanstack/react-query" "^5.15.0"
-    axios "^0.21.2"
+    axios "1.6.0"
     date-fns "^2.30.0"
     nostr-tools "^1.17.0"
-    react "^16.8.6"
+    react "^18.3.1"
 
 "@ecency/render-helper@^2.2.29":
   version "2.2.29"
@@ -1153,14 +1162,14 @@
   dependencies:
     tslib "^2.1.0"
 
-"@hiveio/dhive@^1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-1.2.8.tgz#1ad13d92649a6db8c01b3a80872bcba218f91ba9"
-  integrity sha512-prarzjLnnQagE4wdcdeSzPuzlW7sw/WE6WYJ/mXHuqwiyay2cK8fyoRgGdE5bDQYEzgH5x+jQELbJYbg0ZJ5Sg==
+"@hiveio/dhive@^1.3.1-beta":
+  version "1.3.1-beta"
+  resolved "https://registry.yarnpkg.com/@hiveio/dhive/-/dhive-1.3.1-beta.tgz#c0958e70618a9cfdd3054c757616428ed5887877"
+  integrity sha512-o1dd2OWOaFLjx9ZTwP86Mov4fk5l9WHNTlHjmjMohR9UXr1MOjHsSa53H03P3fhZj3Qt0iD0XxjqVrNah90H8Q==
   dependencies:
+    "@ecency/bytebuffer" "^6.0.0"
     bigi "^1.4.2"
     bs58 "^4.0.1"
-    bytebuffer "^5.0.1"
     core-js "^3.6.4"
     cross-fetch "^3.0.4"
     ecurve "^1.0.6"
@@ -1172,10 +1181,10 @@
     verror "^1.10.0"
     whatwg-fetch "^3.0.0"
 
-"@hiveio/hivescript@^1.2.9":
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/@hiveio/hivescript/-/hivescript-1.2.9.tgz#02b6947cba6aa4869395c61a63583c91421711bb"
-  integrity sha512-KTwthTS2NdCiIHKguey881sxo8I/7vaPGA3Ideu5cBmZbgMobvODGPtrkYt3JrUZ8lNG1c1uaKQjXZPDyXrK7w==
+"@hiveio/hivescript@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@hiveio/hivescript/-/hivescript-1.3.1.tgz#f1ed117902595ddcf915b6a729b223a7b309e6d9"
+  integrity sha512-v70BMOco+pNr/LE6ttAAMTdPZcL/DbSD9s652LufM5osDQrlY8dwGLPUak9hTDdDOmwZY2cVQ5vFYxjMqLfykw==
 
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.13"
@@ -2491,12 +2500,14 @@ axe-core@=4.7.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.7.0.tgz#34ba5a48a8b564f67e103f0aa5768d76e15bbbbf"
   integrity sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==
 
-axios@^0.21.2:
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
-  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+axios@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.0.tgz#f1e5292f26b2fd5c2e66876adc5b06cdbd7d2102"
+  integrity sha512-EZ1DYihju9pwVB+jg67ogm+Tmqc6JmhamRN6I4Zt8DfZu5lbcQGw3ozH9lFejSJgs/ibaef3A9PMXPLeefFGJg==
   dependencies:
-    follow-redirects "^1.14.0"
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 axios@^1.6.2:
   version "1.6.2"
@@ -2745,13 +2756,6 @@ busboy@1.6.0:
   integrity sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==
   dependencies:
     streamsearch "^1.1.0"
-
-bytebuffer@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/bytebuffer/-/bytebuffer-5.0.1.tgz#582eea4b1a873b6d020a48d58df85f0bba6cfddd"
-  integrity sha512-IuzSdmADppkZ6DlpycMkm8l9zeEq16fWtLvunEwFiYciR/BHo4E8/xs5piFquG+Za8OWmMqHF8zuRviz2LHvRQ==
-  dependencies:
-    long "~3"
 
 call-bind@^1.0.0, call-bind@^1.0.2, call-bind@^1.0.4, call-bind@^1.0.5:
   version "1.0.5"
@@ -3967,11 +3971,6 @@ flatted@^3.2.9:
   version "3.2.9"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.9.tgz#7eb4c67ca1ba34232ca9d2d93e9886e611ad7daf"
   integrity sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==
-
-follow-redirects@^1.14.0:
-  version "1.15.6"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
-  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
 follow-redirects@^1.15.0:
   version "1.15.3"
@@ -6495,7 +6494,7 @@ react-virtualized@^9.22.5:
     prop-types "^15.7.2"
     react-lifecycles-compat "^3.0.4"
 
-"react@>=15.0.0 <17.0.0", react@^16.8.6:
+"react@>=15.0.0 <17.0.0":
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
