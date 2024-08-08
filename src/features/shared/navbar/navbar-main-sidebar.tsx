@@ -127,7 +127,7 @@ export function NavbarMainSidebar({ show, setShow, setStepOne }: Props) {
         </div>
         <div className="p-4 items-center flex justify-between">
           <span className="text-xs opacity-50">v{pack.version}</span>
-          <SwitchLang />
+          <SwitchLang onSelect={() => setShow(false)} />
         </div>
       </div>
     </ModalSidebar>

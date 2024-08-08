@@ -12,9 +12,10 @@ import { chevronDownSvgForSlider } from "@ui/svg";
 
 interface Props {
   label?: string;
+  onSelect?: () => void;
 }
 
-export function SwitchLang({ label }: Props) {
+export function SwitchLang({ label, onSelect }: Props) {
   const lang = useGlobalStore((state) => state.lang);
   const setLang = useGlobalStore((state) => state.setLang);
 
@@ -31,7 +32,13 @@ export function SwitchLang({ label }: Props) {
         </DropdownToggle>
         <DropdownMenu align="top" className="max-h-[200px] overflow-y-auto right-0">
           {langOptions.map((locale) => (
-            <DropdownItem key={locale.code} onClick={() => setLang(locale.code)}>
+            <DropdownItem
+              key={locale.code}
+              onClick={async () => {
+                await setLang(locale.code);
+                onSelect?.();
+              }}
+            >
               {locale.name}
             </DropdownItem>
           ))}
