@@ -112,8 +112,6 @@ export namespace MetadataGenerator {
     let canonical = `${defaults.base}/${filter}`;
     let rss = "";
 
-    console.log(title, description);
-
     if (tag) {
       title = `latest #${tag} ${filter} topics on internet`;
       description = i18next.t("entry-index.description-tag", { f: fC, t: tag });
