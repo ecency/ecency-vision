@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ecency/ns-query": "^1.2.6",
-    "@ecency/render-helper": "^2.2.33",
+    "@ecency/render-helper": "^2.2.34",
     "@ecency/render-helper-amp": "^1.1.0",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
