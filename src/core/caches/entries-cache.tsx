@@ -12,7 +12,8 @@ export namespace EcencyEntriesCacheManagement {
         author && permlink ? makeEntryPath("", author!!, permlink!!) : "EMPTY"
       ],
       queryFn: () => bridgeApi.getPost(author, permlink),
-      enabled: typeof author === "string" && typeof permlink === "string"
+      enabled: typeof author === "string" && typeof permlink === "string",
+      staleTime: Infinity
     });
   }
 
@@ -24,7 +25,8 @@ export namespace EcencyEntriesCacheManagement {
       ],
       queryFn: () => bridgeApi.getPost(initialEntry?.author, initialEntry?.permlink) as Promise<T>,
       initialData: initialEntry,
-      enabled: !!initialEntry
+      enabled: !!initialEntry,
+      staleTime: Infinity
     });
   }
 
@@ -63,6 +65,12 @@ export namespace EcencyEntriesCacheManagement {
       payout,
       pending_payout_value: String(payout)
     }));
+  }
+
+  export function invalidate(entry: Entry) {
+    return getQueryClient().invalidateQueries({
+      queryKey: [QueryIdentifiers.ENTRY, makeEntryPath("", entry.author, entry.permlink)]
+    });
   }
 
   export function updateEntryQueryData(entries: Entry[]) {

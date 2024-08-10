@@ -1,33 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
-import { Entry, EntryVote } from "@/entities";
+import { Entry } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import { formatError, vote } from "@/api/operations";
 import { error } from "@/features/shared";
-import { getPost } from "@/api/hive";
 import { getQueryClient, QueryIdentifiers } from "@/core/react-query";
 import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export function useEntryVote(entry?: Entry) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const updateActiveUser = useGlobalStore((s) => s.updateActiveUser);
-
-  const afterVote = async (votes: EntryVote[], estimated: number) => {
-    if (!entry) {
-      throw new Error("No entry provided");
-    }
-
-    const _entry = entry;
-    const { payout } = _entry;
-    const newPayout = payout + estimated;
-    if (_entry.active_votes) {
-      EcencyEntriesCacheManagement.updateVotes(entry, votes, newPayout);
-    } else {
-      const entry = await getPost(_entry.author, _entry.permlink);
-      if (entry) {
-        EcencyEntriesCacheManagement.updateVotes(entry, votes, newPayout);
-      }
-    }
-  };
 
   return useMutation({
     mutationKey: ["entryVote", entry?.author, entry?.permlink],
@@ -54,7 +35,17 @@ export function useEntryVote(entry?: Entry) {
       ] as const;
     },
     onSuccess: ([estimated, votes]) => {
-      afterVote([...votes], estimated);
+      if (!entry) {
+        throw new Error("No entry provided");
+      }
+
+      const newPayout = entry.payout + estimated;
+      if (entry.active_votes) {
+        EcencyEntriesCacheManagement.updateVotes(entry, [...votes], newPayout);
+      } else {
+        EcencyEntriesCacheManagement.invalidate(entry);
+      }
+
       getQueryClient().invalidateQueries({
         queryKey: [QueryIdentifiers.ENTRY_ACTIVE_VOTES, entry!.author, entry!.permlink]
       });

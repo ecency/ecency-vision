@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed login dialog hiding">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Re-worked entries cache management">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/create-reply.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/create-reply.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/mutations/entry-vote.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/entry-vote.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/pin-reply.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/pin-reply.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/update-reply.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/update-reply.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-discussions-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-discussions-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-post-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer-reply.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer-reply.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/content-viewer/deck-thread-item-viewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-search-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-items/deck-thread-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/deck-threads-column-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/columns/deck-threads-manager/deck-threads-column-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/threads-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/threads-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/use-community-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/decks/_components/deck-threads-form/api/use-community-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_api/publish.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_api/update.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_api/update.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-entry-active-votes-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-entry-active-votes-query.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/posting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/posting.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -370,15 +350,8 @@
       <workItem from="1723044865722" duration="3087000" />
       <workItem from="1723101941733" duration="10000" />
       <workItem from="1723102133032" duration="12391000" />
-      <workItem from="1723287104901" duration="6882000" />
-    </task>
-    <task id="LOCAL-00101" summary="Fixed notifications switching in profile settings">
-      <option name="closed" value="true" />
-      <created>1721680817360</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1721680817360</updated>
+      <workItem from="1723287104901" duration="7015000" />
+      <workItem from="1723296953323" duration="1238000" />
     </task>
     <task id="LOCAL-00102" summary="Updated sidebars">
       <option name="closed" value="true" />
@@ -764,7 +737,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723121913483</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Re-worked entries cache management">
+      <option name="closed" value="true" />
+      <created>1723296749242</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1723296749243</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +766,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed entry page nsfw viewing" />
     <MESSAGE value="Show chat widget" />
     <MESSAGE value="Added announcements" />
     <MESSAGE value="Added floating faq" />
@@ -810,7 +790,8 @@
     <MESSAGE value="Removed extra console log" />
     <MESSAGE value="Fixed language selection" />
     <MESSAGE value="Fixed login dialog hiding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed login dialog hiding" />
+    <MESSAGE value="Re-worked entries cache management" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-worked entries cache management" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

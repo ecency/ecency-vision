@@ -17,6 +17,7 @@ import { prepareVotes } from "@/features/shared/entry-vote-btn/utils";
 import { heartSvg } from "@ui/svg";
 import { useGlobalStore } from "@/core/global-store";
 import usePrevious from "react-use/lib/usePrevious";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 type SortOption = "reward" | "timestamp" | "voter" | "percent";
 
@@ -25,7 +26,8 @@ interface Props {
   icon?: ReactNode;
 }
 
-export function EntryVotes({ entry, icon }: Props) {
+export function EntryVotes({ entry: initialEntry, icon }: Props) {
+  const { data: entry } = EcencyEntriesCacheManagement.getEntryQuery(initialEntry).useClientQuery();
   const previousEntry = usePrevious(entry);
 
   const activeUser = useGlobalStore((s) => s.activeUser);
@@ -41,14 +43,14 @@ export function EntryVotes({ entry, icon }: Props) {
     if (!activeUser) {
       return { voted: false };
     }
-    const { active_votes: votes } = entry;
+    const { active_votes: votes } = entry!;
 
     const voted = votes ? votes.some((v) => v.voter === activeUser.username) : false;
 
     return { voted };
   }, [activeUser, entry]);
 
-  const preparedVotes = useMemo(() => prepareVotes(entry, apiVotes ?? []), [apiVotes, entry]);
+  const preparedVotes = useMemo(() => prepareVotes(entry!, apiVotes ?? []), [apiVotes, entry]);
   const votes = useMemo(
     () =>
       preparedVotes.filter((item) =>
@@ -58,9 +60,9 @@ export function EntryVotes({ entry, icon }: Props) {
   );
   const totalVotes = useMemo(
     () =>
-      entry.stats?.total_votes ||
-      (entry.active_votes && entry.active_votes?.length) ||
-      entry.total_votes ||
+      entry?.stats?.total_votes ||
+      (entry?.active_votes && entry?.active_votes?.length) ||
+      entry?.total_votes ||
       0,
     [entry]
   );
