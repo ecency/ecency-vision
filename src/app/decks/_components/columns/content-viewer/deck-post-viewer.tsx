@@ -16,7 +16,7 @@ import {
 } from "../deck-items/deck-thread-item-body-render-helper";
 import { Button } from "@ui/button";
 import { Entry } from "@/entities";
-import { useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { arrowLeftSvg } from "@ui/svg";
 import i18next from "i18next";
 import { Discussion, EntryInfo, EntryVoteBtn, EntryVotes } from "@/features/shared";
@@ -34,7 +34,7 @@ export const DeckPostViewer = ({ entry: initialEntry, onClose, backTitle }: Prop
   const [isMounted, setIsMounted] = useState(false);
   const [renderInitiated, setRenderInitiated] = useState(false);
 
-  const { data: entry } = useEntryCache(initialEntry);
+  const { data: entry } = EcencyEntriesCacheManagement.useEntryQuery(initialEntry);
 
   const { height, ref } = useResizeDetector();
 

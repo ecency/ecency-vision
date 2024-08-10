@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CommentOptions, Entry, FullAccount, MetaData } from "@/entities";
-import { EntriesCacheContext } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { comment, formatError } from "../operations";
 import { tempEntry } from "@/utils";
 import { QueryIdentifiers } from "@/core/react-query";
@@ -9,9 +8,8 @@ import { error } from "@/features/shared";
 import * as ss from "@/utils/session-storage";
 import { useGlobalStore } from "@/core/global-store";
 
-export function useCreateReply(entry: Entry | null, parent?: Entry, onSuccess?: () => void) {
+export function useCreateReply(entry?: Entry | null, parent?: Entry, onSuccess?: () => void) {
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { addReply, updateRepliesCount, updateCache } = useContext(EntriesCacheContext);
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -60,15 +58,15 @@ export function useCreateReply(entry: Entry | null, parent?: Entry, onSuccess?: 
         return;
       }
 
-      addReply(entry, data);
-      updateCache([data]);
+      EcencyEntriesCacheManagement.addReply(entry, data);
+      EcencyEntriesCacheManagement.updateEntryQueryData([data]);
 
       // remove reply draft
       ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);
 
       if (entry.children === 0) {
         // Update parent comment.
-        updateRepliesCount(entry, 1);
+        EcencyEntriesCacheManagement.updateRepliesCount(entry, 1);
       }
       const previousReplies =
         queryClient.getQueryData<Entry[]>([

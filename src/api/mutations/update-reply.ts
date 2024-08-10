@@ -1,15 +1,13 @@
-import { useContext } from "react";
 import { useMutation } from "@tanstack/react-query";
 import * as ss from "@/utils/session-storage";
 import { useGlobalStore } from "@/core/global-store";
-import { EntriesCacheContext } from "@/core/caches";
 import { CommentOptions, Entry, MetaData } from "@/entities";
 import { comment, formatError } from "@/api/operations";
 import { error } from "@/features/shared";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
-export function useUpdateReply(entry: Entry | null, onSuccess?: () => void) {
+export function useUpdateReply(entry?: Entry | null, onSuccess?: () => void) {
   const activeUser = useGlobalStore((state) => state.activeUser);
-  const { updateCache } = useContext(EntriesCacheContext);
 
   return useMutation({
     mutationKey: ["reply-update", activeUser?.username, entry?.author, entry?.permlink],
@@ -50,7 +48,7 @@ export function useUpdateReply(entry: Entry | null, onSuccess?: () => void) {
         return;
       }
 
-      updateCache([data]);
+      EcencyEntriesCacheManagement.updateEntryQueryData([data]);
 
       // remove reply draft
       ss.remove(`reply_draft_${entry.author}_${entry.permlink}`);

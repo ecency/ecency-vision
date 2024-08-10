@@ -37,13 +37,13 @@ export function EntryVotes({ entry, icon }: Props) {
   const [pageSize, setPageSize] = useState(12);
   const [sort, setSort] = useState<SortOption>("reward");
 
-  const isVoted = useMemo(() => {
+  const { voted: isVoted } = useMemo(() => {
     if (!activeUser) {
       return { voted: false };
     }
     const { active_votes: votes } = entry;
 
-    const voted = votes && votes.some((v) => v.voter === activeUser.username);
+    const voted = votes ? votes.some((v) => v.voter === activeUser.username) : false;
 
     return { voted };
   }, [activeUser, entry]);
@@ -124,7 +124,7 @@ export function EntryVotes({ entry, icon }: Props) {
           <span
             className="inner-btn"
             onClick={() => {
-              setVisible(false);
+              setVisible(!visible);
               setSearchText("");
             }}
           >

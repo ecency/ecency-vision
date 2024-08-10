@@ -1,5 +1,5 @@
 import { useResizeDetector } from "react-resize-detector";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { commentSvg, voteSvg } from "../../icons";
 import { DeckThreadItemBody } from "./deck-thread-item-body";
@@ -7,7 +7,7 @@ import { useInViewport } from "react-in-viewport";
 import { useEntryChecking } from "../../utils";
 import { DeckThreadItemHeader } from "./deck-thread-item-header";
 import { Button } from "@ui/button";
-import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import { Entry } from "@/entities";
 import { classNameObject } from "@ui/util";
@@ -47,11 +47,11 @@ export const ThreadItem = ({
   visible = true,
   triggerPendingStatus = false
 }: ThreadItemProps) => {
-  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
   const activeUser = useGlobalStore((s) => s.activeUser);
   const { height, ref } = useResizeDetector();
   const { inViewport } = useInViewport(ref);
-  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+  const { data: entry } =
+    EcencyEntriesCacheManagement.getEntryQuery<IdentifiableEntry>(initialEntry).useClientQuery();
 
   const [renderInitiated, setRenderInitiated] = useState(false);
   const [hasParent, setHasParent] = useState(false);
@@ -61,7 +61,7 @@ export const ThreadItem = ({
   const poll = useEntryPollExtractor(entry);
 
   useEntryChecking(entry, intervalStarted, (nextEntry) => {
-    updateCache([
+    EcencyEntriesCacheManagement.updateEntryQueryData([
       { ...nextEntry, host: initialEntry.host, container: initialEntry.container } as Entry
     ]);
     setIntervalStarted(false);
@@ -78,7 +78,9 @@ export const ThreadItem = ({
   }, [triggerPendingStatus]);
 
   useEffect(() => {
-    setIntervalStarted(typeof entry.post_id === "string" || !entry.post_id || entry.post_id === 1);
+    setIntervalStarted(
+      typeof entry?.post_id === "string" || !entry?.post_id || entry?.post_id === 1
+    );
   }, [entry]);
 
   useEffect(() => {
@@ -89,12 +91,12 @@ export const ThreadItem = ({
 
   useEffect(() => {
     setHasParent(
-      !!entry.parent_author && !!entry.parent_permlink && entry.parent_author !== entry.host
+      !!entry?.parent_author && !!entry?.parent_permlink && entry?.parent_author !== entry?.host
     );
   }, [entry]);
 
   useEffect(() => {
-    if (entry.updated !== entry.created) {
+    if (entry?.updated !== entry?.created) {
       setStatus("default");
     }
   }, [entry]);
@@ -116,9 +118,9 @@ export const ThreadItem = ({
         }
       }}
     >
-      <DeckThreadItemHeader status={status} entry={entry} hasParent={hasParent} pure={pure} />
+      <DeckThreadItemHeader status={status} entry={entry!} hasParent={hasParent} pure={pure} />
       <DeckThreadItemBody
-        entry={entry}
+        entry={entry!}
         height={height}
         renderInitiated={renderInitiated}
         setRenderInitiated={setRenderInitiated}
@@ -129,27 +131,27 @@ export const ThreadItem = ({
           <PollWidget entry={entry} compact={true} poll={poll} isReadOnly={false} />
         </div>
       )}
-      {entry.updated !== entry.created && (
+      {entry?.updated !== entry?.created && (
         <div className="px-3 pb-3 updated-label">
-          {i18next.t("decks.columns.updated", { n: dateToRelative(entry.updated) })}
+          {i18next.t("decks.columns.updated", { n: dateToRelative(entry!.updated) })}
         </div>
       )}
       {status === "default" && (
         <div className="thread-item-actions">
           <div>
-            <EntryVoteBtn entry={entry} isPostSlider={false} />
-            <EntryVotes entry={entry} icon={voteSvg} />
+            <EntryVoteBtn entry={entry!} isPostSlider={false} />
+            <EntryVotes entry={entry!} icon={voteSvg} />
             <Button appearance="link" onClick={() => onEntryView()}>
               <div className="flex items-center comments">
                 <div style={{ paddingRight: 4 }}>{commentSvg}</div>
-                <div>{commentsSlot ?? entry.children}</div>
+                <div>{commentsSlot ?? entry?.children}</div>
               </div>
             </Button>
           </div>
           <div>
-            <EntryMenu entry={entry} />
-            {activeUser?.username === entry.author && (
-              <Button className="edit-btn" appearance="link" onClick={() => onEdit(entry)}>
+            <EntryMenu entry={entry!} />
+            {activeUser?.username === entry?.author && (
+              <Button className="edit-btn" appearance="link" onClick={() => onEdit(entry!)}>
                 {i18next.t("decks.columns.edit-wave")}
               </Button>
             )}
@@ -158,7 +160,7 @@ export const ThreadItem = ({
       )}
       {hasParent && !pure && (
         <div className="thread-item-parent">
-          <UserAvatar size="small" username={entry.parent_author!!} />
+          <UserAvatar size="small" username={entry?.parent_author!!} />
           <Button appearance="link" className="host" onClick={onSeeFullThread}>
             {i18next.t("decks.columns.see-full-thread")}
           </Button>

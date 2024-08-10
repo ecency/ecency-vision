@@ -1,10 +1,10 @@
-import React, { createContext, FunctionComponent, PropsWithChildren, useContext } from "react";
+import React, { createContext, FunctionComponent, PropsWithChildren } from "react";
 import { ThreadItemEntry } from "./identifiable-entry";
 import { communityThreadsQuery } from "./community-api";
 import { threadsQuery } from "./threads-api";
 import { useQueryClient } from "@tanstack/react-query";
 import { FetchQueryOptions } from "@tanstack/query-core";
-import { EntriesCacheContext } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export const DeckThreadsColumnManagerContext = createContext<{
   fetch: (hosts: string[], lastContainers?: ThreadItemEntry[]) => Promise<ThreadItemEntry[]>;
@@ -18,7 +18,6 @@ interface Props {
 
 export const DeckThreadsColumnManager = ({ children }: Props) => {
   const queryClient = useQueryClient();
-  const { updateCache } = useContext(EntriesCacheContext);
 
   const fetch = async (hosts: string[], lastContainers?: ThreadItemEntry[]) => {
     let nextThreadItems: ThreadItemEntry[] = [];
@@ -40,7 +39,7 @@ export const DeckThreadsColumnManager = ({ children }: Props) => {
 
       if (response instanceof Array) {
         // Add entries to global cache
-        updateCache(response);
+        EcencyEntriesCacheManagement.updateEntryQueryData(response);
 
         nextThreadItems = [...nextThreadItems, ...response];
       }

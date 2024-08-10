@@ -1,9 +1,9 @@
 import { ThreadItem } from "../deck-items";
 import { DeckThreadsForm } from "../../deck-threads-form";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import "./_deck-thread-item-viewer-reply.scss";
-import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { classNameObject } from "@ui/util";
 import i18next from "i18next";
 
@@ -20,9 +20,7 @@ export const DeckThreadItemViewerReply = ({
   parentEntry,
   incrementParentEntryCount
 }: Props) => {
-  const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
-
-  const { data: entry } = useEntryCache(initialEntry);
+  const { data: entry } = EcencyEntriesCacheManagement.getEntryQuery(initialEntry).useClientQuery();
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -35,7 +33,7 @@ export const DeckThreadItemViewerReply = ({
     >
       <ThreadItem
         pure={true}
-        initialEntry={entry}
+        initialEntry={entry!}
         onMounted={() => {}}
         onResize={() => {}}
         sequenceItem={isExpanded}
@@ -49,20 +47,23 @@ export const DeckThreadItemViewerReply = ({
           replySource={entry}
           onSuccess={(reply) => {
             // Update entry in global cache
-            addReply(entry, reply);
+            EcencyEntriesCacheManagement.addReply(entry, reply);
             incrementParentEntryCount();
           }}
         />
       )}
       {isExpanded && (
         <div className="deck-thread-item-viewer-reply-sequence">
-          {entry.replies.map((reply) => (
+          {entry?.replies.map((reply) => (
             <DeckThreadItemViewerReply
               key={reply.post_id}
               entry={reply}
               parentEntry={entry}
               incrementParentEntryCount={() =>
-                updateRepliesCount(parentEntry, parentEntry.children + 1)
+                EcencyEntriesCacheManagement.updateRepliesCount(
+                  parentEntry,
+                  parentEntry.children + 1
+                )
               }
             />
           ))}

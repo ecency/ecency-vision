@@ -9,7 +9,6 @@ import { EntryBodyManagement, EntryMetadataManagement } from "@/features/entry-m
 import { GetPollDetailsQueryResponse } from "@/features/polls/api";
 import { usePollsCreationManagement } from "@/features/polls";
 import { useGlobalStore } from "@/core/global-store";
-import { EntriesCacheContext } from "@/core/caches";
 import { BeneficiaryRoute, Entry, FullAccount, RewardType } from "@/entities";
 import {
   createPermlink,
@@ -24,6 +23,7 @@ import i18next from "i18next";
 import { error, success } from "@/features/shared";
 import { useRouter } from "next/navigation";
 import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export function usePublishApi(onClear: () => void) {
   const queryClient = useQueryClient();
@@ -32,7 +32,6 @@ export function usePublishApi(onClear: () => void) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const { activePoll, clearActivePoll } = useContext(PollsContext);
   const { videos, isNsfw, buildBody } = useThreeSpeakManager();
-  const { updateCache } = useContext(EntriesCacheContext);
 
   const { clearAll } = usePollsCreationManagement();
 
@@ -153,7 +152,7 @@ export function usePublishApi(onClear: () => void) {
           max_accepted_payout: options.max_accepted_payout,
           percent_hbd: options.percent_hbd
         };
-        updateCache([entry]);
+        EcencyEntriesCacheManagement.updateEntryQueryData([entry]);
 
         success(i18next.t("submit.published"));
         onClear();

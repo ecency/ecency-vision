@@ -1,20 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import { comment, formatError } from "@/api/operations";
 import moment from "moment/moment";
-import { useContext } from "react";
 import { useThreeSpeakManager } from "../_hooks";
 import { EntryBodyManagement, EntryMetadataManagement } from "@/features/entry-management";
 import { useGlobalStore } from "@/core/global-store";
-import { EntriesCacheContext } from "@/core/caches";
 import { Entry } from "@/entities";
 import { correctIsoDate, makeEntryPath } from "@/utils";
 import { error, success } from "@/features/shared";
 import i18next from "i18next";
 import { useRouter } from "next/navigation";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export function useUpdateApi(onClear: () => void) {
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const { updateCache } = useContext(EntriesCacheContext);
   const { buildBody } = useThreeSpeakManager();
   const router = useRouter();
 
@@ -76,7 +74,7 @@ export function useUpdateApi(onClear: () => void) {
           json_metadata: jsonMeta,
           updated: correctIsoDate(moment().toISOString())
         };
-        updateCache([entry]);
+        EcencyEntriesCacheManagement.updateEntryQueryData([entry]);
 
         onClear();
         success(i18next.t("submit.updated"));

@@ -1,10 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import * as bridgeApi from "../../../api/bridge";
-import { formatError } from "@/api/operations";
 import { useEffect } from "react";
 import { Entry } from "@/entities";
-import { useEntryCache } from "@/core/caches";
-import { QueryIdentifiers } from "@/core/react-query";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { useRouter } from "next/navigation";
 import { error } from "@/features/shared";
 import useMount from "react-use/lib/useMount";
@@ -16,31 +12,22 @@ export function useEntryDetector(
 ) {
   const router = useRouter();
 
-  const { data, refetch } = useEntryCache("", username?.replace("@", ""), permlink);
-  const { data: normalizedEntry } = useQuery({
-    queryKey: [QueryIdentifiers.NORMALIZED_ENTRY, username?.replace("@", ""), permlink],
-    queryFn: async () => {
-      try {
-        const response = await bridgeApi.normalizePost(data);
-
-        if (!response) {
-          error("Could not fetch post data.");
-          router.push("/submit");
-          return;
-        }
-
-        return response;
-      } catch (e) {
-        error(...formatError(e));
-        return;
-      }
-    },
-    enabled: !!data
-  });
+  const { data, refetch } = EcencyEntriesCacheManagement.getEntryQueryByPath(
+    username?.replace("@", ""),
+    permlink
+  ).useClientQuery();
+  const { data: normalizedEntry } =
+    EcencyEntriesCacheManagement.getNormalizedPostQuery(data).useClientQuery();
 
   useMount(() => refetch());
 
   useEffect(() => {
+    if (!normalizedEntry) {
+      error("Could not fetch post data.");
+      router.push("/submit");
+      return;
+    }
+
     onEntryDetected(normalizedEntry);
-  }, [normalizedEntry, onEntryDetected]);
+  }, [normalizedEntry, onEntryDetected, router]);
 }

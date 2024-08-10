@@ -13,6 +13,7 @@ import { Account, Entry, EntryVote } from "@/entities";
 import { getActiveVotes } from "@/api/hive";
 import { prepareVotes } from "@/features/shared/entry-vote-btn/utils";
 import { classNameObject } from "@ui/util";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 interface Props {
   entry: Entry;
@@ -20,11 +21,13 @@ interface Props {
   isPostSlider: boolean;
 }
 
-export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
+export function EntryVoteBtn({ entry: originalEntry, isPostSlider, account }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const updateActiveUser = useGlobalStore((s) => s.updateActiveUser);
+
+  const { data: entry } =
+    EcencyEntriesCacheManagement.getEntryQuery(originalEntry).useClientQuery();
 
   const [dialog, setDialog] = useState(false);
   const [tipDialog, setTipDialog] = useState(false);
@@ -36,12 +39,14 @@ export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
     if (!activeUser) {
       return { upVoted: false, downVoted: false };
     }
-    const upVoted = entry?.active_votes?.some(
-      (v: EntryVote) => v.voter === activeUser.username && v.rshares >= 0
-    );
-    const downVoted = entry?.active_votes?.some(
-      (v: EntryVote) => v.voter === activeUser.username && v.rshares < 0
-    );
+    const upVoted =
+      entry?.active_votes?.some(
+        (v: EntryVote) => v.voter === activeUser.username && v.rshares >= 0
+      ) ?? false;
+    const downVoted =
+      entry?.active_votes?.some(
+        (v: EntryVote) => v.voter === activeUser.username && v.rshares < 0
+      ) ?? false;
 
     return { upVoted, downVoted };
   }, [activeUser, entry?.active_votes]);
@@ -70,7 +75,7 @@ export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
   const getPreviousVote = useCallback(async () => {
     const { upVoted, downVoted } = isVoted;
     let previousVote;
-    if (!activeUser) {
+    if (!activeUser || !entry) {
       return null;
     }
 
@@ -83,7 +88,7 @@ export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
         return sessValue;
       }
 
-      const retData = await getActiveVotes(entry.author, entry.permlink);
+      const retData = await getActiveVotes(entry?.author, entry?.permlink);
       let votes = prepareVotes(entry, retData);
       previousVote = votes.find((x) => x.voter === activeUser.username);
       return previousVote === undefined ? null : previousVote.percent;
@@ -129,7 +134,7 @@ export function EntryVoteBtn({ entry, isPostSlider, account }: Props) {
               >
                 {chevronUpSvgForVote}
               </span>
-              {activeUser && tooltipClass.length > 0 && (
+              {entry && activeUser && tooltipClass.length > 0 && (
                 <div>
                   <div className="tooltiptext" onClick={(e) => e.stopPropagation()}>
                     <EntryVoteDialog

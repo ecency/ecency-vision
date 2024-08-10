@@ -119,7 +119,7 @@ export const makeCommentOptions = (
   return opt;
 };
 
-export const createReplyPermlink = (toAuthor: string) => {
+export const createReplyPermlink = (toAuthor?: string) => {
   const t = new Date(Date.now());
 
   const timeFormat = `${t.getFullYear().toString()}${(t.getMonth() + 1).toString()}${t
@@ -128,13 +128,12 @@ export const createReplyPermlink = (toAuthor: string) => {
     .getSeconds()
     .toString()}${t.getMilliseconds().toString()}z`;
 
-  return `re-${toAuthor.replace(/\./g, "")}-${timeFormat}`;
+  return `re-${toAuthor?.replace(/\./g, "")}-${timeFormat}`;
 };
 
 export const createPatch = (text1: string, text2: string): string | undefined => {
   const dmp = new diff_match_patch();
   if (text1 === "") return undefined;
   const patches = dmp.patch_make(text1, text2);
-  const patch = dmp.patch_toText(patches);
-  return patch;
+  return dmp.patch_toText(patches);
 };

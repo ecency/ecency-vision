@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { catchPostImage, postBodySummary, proxifyImageSrc } from "@ecency/render-helper";
 import { useInViewport } from "react-in-viewport";
 import { commentSvg, voteSvg } from "../../icons";
-import { useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import { dateToRelative, transformMarkedContent } from "@/utils";
 import {
@@ -60,7 +60,7 @@ export const SearchListItem = ({
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
   const ref = useRef<HTMLDivElement | null>(null);
   const { inViewport } = useInViewport(ref);
-  const { data: entry } = useEntryCache(initialEntry);
+  const { data: entry } = EcencyEntriesCacheManagement.getEntryQuery(initialEntry).useClientQuery();
 
   const router = useRouter();
 

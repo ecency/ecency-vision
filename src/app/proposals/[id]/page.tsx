@@ -10,7 +10,7 @@ import { parseDate } from "@/utils";
 import Head from "next/head";
 import { notFound } from "next/navigation";
 import { getProposalQuery } from "@/api/queries";
-import { useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { useGlobalStore } from "@/core/global-store";
 import "../_page.scss";
 
@@ -26,7 +26,10 @@ export default function ProposalDetailsPage({ params: { id } }: Props) {
   const canUseWebp = useGlobalStore((s) => s.canUseWebp);
 
   const { data: proposal, isLoading, isSuccess, isError } = getProposalQuery(+id).useClientQuery();
-  const { data: entry } = useEntryCache("", proposal?.creator, proposal?.permlink);
+  const { data: entry } = EcencyEntriesCacheManagement.getEntryQueryByPath(
+    proposal?.creator,
+    proposal?.permlink
+  ).useClientQuery();
 
   if (!proposal && (isSuccess || isError)) {
     return notFound();

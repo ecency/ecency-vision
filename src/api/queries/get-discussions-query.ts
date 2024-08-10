@@ -4,6 +4,7 @@ import { bridgeApiCall } from "@/api/bridge";
 import { parseAsset } from "@/utils";
 import { SortOrder } from "@/enums";
 import { IdentifiableEntry } from "@/app/decks/_components/columns/deck-threads-manager";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export function sortDiscussions(entry: Entry, discussion: Entry[], order: SortOrder) {
   const allPayout = (c: Entry) =>
@@ -79,12 +80,7 @@ export function sortDiscussions(entry: Entry, discussion: Entry[], order: SortOr
   return sorted;
 }
 
-export const getDiscussionsQuery = (
-  entry: Entry,
-  order: SortOrder,
-  updateCache: any,
-  enabled: boolean = true
-) =>
+export const getDiscussionsQuery = (entry: Entry, order: SortOrder, enabled: boolean = true) =>
   EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.FETCH_DISCUSSIONS, entry?.author, entry?.permlink],
     queryFn: async () => {
@@ -94,7 +90,7 @@ export const getDiscussionsQuery = (
       });
       if (response) {
         const entries = Array.from(Object.values(response));
-        updateCache([...entries], true);
+        EcencyEntriesCacheManagement.updateEntryQueryData([...entries]);
         return entries;
       }
       return [];
@@ -104,25 +100,25 @@ export const getDiscussionsQuery = (
     select: (data) => sortDiscussions(entry, data, order)
   });
 
-export const getDiscussionsMapQuery = (entry: Entry, updateCache: any, enabled: boolean = true) =>
+export const getDiscussionsMapQuery = (entry: Entry | undefined, enabled: boolean = true) =>
   EcencyQueriesManager.generateClientServerQuery({
     queryKey: [QueryIdentifiers.FETCH_DISCUSSIONS_MAP, entry?.author, entry?.permlink],
     queryFn: async () => {
       const response = await bridgeApiCall<Record<string, IdentifiableEntry> | null>(
         "get_discussion",
         {
-          author: entry.author,
-          permlink: entry.permlink
+          author: entry!!.author,
+          permlink: entry!!.permlink
         }
       );
       if (response) {
         const entries = Array.from(Object.values(response));
-        updateCache([...entries], true);
+        EcencyEntriesCacheManagement.updateEntryQueryData([...entries]);
         return response;
       }
       return {};
     },
-    enabled,
+    enabled: enabled && !!entry,
     initialData: {}
   });
 

@@ -1,158 +1,99 @@
-"use client";
-
-import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  DefinedQueryObserverResult,
-  useMutation,
-  useQuery,
-  useQueryClient
-} from "@tanstack/react-query";
-import { QueryIdentifiers } from "../react-query";
+import { EcencyQueriesManager, getQueryClient, QueryIdentifiers } from "../react-query";
 import * as bridgeApi from "../../api/bridge";
 import dmca from "@/dmca.json";
 import { Entry, EntryVote } from "@/entities";
 import { makeEntryPath } from "@/utils";
 
-export const EntriesCacheContext = createContext<{
-  getByLink: (link: string) => Entry | undefined;
-  updateCache: (entries: Entry[], skipInvalidation?: boolean) => Entry[];
-  addReply: (entry: Entry, reply: Entry) => void;
-  updateRepliesCount: (entry: Entry, count: number) => void;
-  updateVotes: (entry: Entry, votes: EntryVote[], estimated: number) => void;
-}>({
-  getByLink: () => ({}) as Entry,
-  updateCache: () => [],
-  addReply: () => {},
-  updateRepliesCount: () => {},
-  updateVotes: () => {}
-});
-
-const cache = new Map<string, Entry>();
-
-export const EntriesCacheManager = ({ children }: { children: any }) => {
-  const queryClient = useQueryClient();
-
-  const updateCache = (entries: Entry[], skipInvalidation = false) => {
-    entries.forEach((e) => {
-      if (dmca.some((rx: string) => new RegExp(rx).test(`@${e.author}/${e.permlink}`))) {
-        e.body = "This post is not available due to a copyright/fraudulent claim.";
-        e.title = "";
-      }
-      cache.set(makeEntryPath("", e.author, e.permlink), e);
+export namespace EcencyEntriesCacheManagement {
+  export function getEntryQueryByPath(author?: string, permlink?: string) {
+    return EcencyQueriesManager.generateClientServerQuery({
+      queryKey: [
+        QueryIdentifiers.ENTRY,
+        author && permlink ? makeEntryPath("", author!!, permlink!!) : "EMPTY"
+      ],
+      queryFn: () => bridgeApi.getPost(author, permlink),
+      enabled: typeof author === "string" && typeof permlink === "string"
     });
+  }
 
-    if (!skipInvalidation) {
-      // Invalidate queries which fetches entry details(only after cache updating)
-      entries.forEach((entry) =>
-        queryClient.invalidateQueries({
-          queryKey: [QueryIdentifiers.ENTRY, makeEntryPath("", entry.author, entry.permlink)]
-        })
-      );
-    }
-    return entries;
-  };
+  export function getEntryQuery<T extends Entry>(initialEntry?: T) {
+    return EcencyQueriesManager.generateClientServerQuery({
+      queryKey: [
+        QueryIdentifiers.ENTRY,
+        initialEntry ? makeEntryPath("", initialEntry.author, initialEntry.permlink) : "EMPTY"
+      ],
+      queryFn: () => bridgeApi.getPost(initialEntry?.author, initialEntry?.permlink) as Promise<T>,
+      initialData: initialEntry,
+      enabled: !!initialEntry
+    });
+  }
 
-  const addReply = (entry: Entry, reply: Entry) => {
-    const cached = cache.get(makeEntryPath("", entry.author, entry.permlink))!!;
+  export function getNormalizedPostQuery<T extends Entry>(entry?: T) {
+    return EcencyQueriesManager.generateClientServerQuery({
+      queryKey: [
+        QueryIdentifiers.NORMALIZED_ENTRY,
+        entry ? makeEntryPath("", entry.author, entry.permlink) : "EMPTY"
+      ],
+      queryFn: () => bridgeApi.normalizePost(entry),
+      enabled: !!entry
+    });
+  }
 
-    updateCache([
-      {
-        ...cached,
-        children: cached.children + 1,
-        replies: [reply, ...cached.replies]
-      }
-    ]);
-  };
+  export function addReply(entry: Entry | undefined, reply: Entry) {
+    return mutateEntryInstance(entry, (value) => ({
+      ...value,
+      children: value.children + 1,
+      replies: [reply, ...value.replies]
+    }));
+  }
 
-  const updateRepliesCount = (entry: Entry, count: number) => {
-    updateCache([
-      {
-        ...cache.get(makeEntryPath("", entry.author, entry.permlink))!!,
-        children: count
-      }
-    ]);
-  };
+  export function updateRepliesCount(entry: Entry, count: number) {
+    return mutateEntryInstance(entry, (value) => ({
+      ...value,
+      children: count
+    }));
+  }
 
-  const getByLink = (link: string): Entry | undefined => {
-    return cache.get(link);
-  };
+  export function updateVotes(entry: Entry, votes: EntryVote[], payout: number) {
+    return mutateEntryInstance(entry, (value) => ({
+      ...value,
+      active_votes: votes,
+      stats: { ...entry.stats, total_votes: votes.length, flag_weight: entry.stats.flag_weight },
+      total_votes: votes.length,
+      payout,
+      pending_payout_value: String(payout)
+    }));
+  }
 
-  const updateVotes = (entry: Entry, votes: EntryVote[], payout: number) => {
-    updateCache([
-      {
-        ...cache.get(makeEntryPath("", entry.author, entry.permlink))!!,
-        active_votes: votes,
-        stats: { ...entry.stats, total_votes: votes.length, flag_weight: entry.stats.flag_weight },
-        total_votes: votes.length,
-        payout,
-        pending_payout_value: String(payout)
-      }
-    ]);
-  };
+  export function updateEntryQueryData(entries: Entry[]) {
+    entries.forEach((entry) =>
+      getQueryClient().setQueryData<Entry>(
+        [QueryIdentifiers.ENTRY, makeEntryPath("", entry.author, entry.permlink)],
+        () => {
+          const data = { ...entry };
+          if (
+            dmca.some((rx: string) => new RegExp(rx).test(`@${entry.author}/${entry.permlink}`))
+          ) {
+            data.body = "This post is not available due to a copyright/fraudulent claim.";
+            data.title = "";
+          }
 
-  return (
-    <EntriesCacheContext.Provider
-      value={{ updateCache, getByLink, addReply, updateRepliesCount, updateVotes }}
-    >
-      {children}
-    </EntriesCacheContext.Provider>
-  );
-};
-
-export function useEntryReFetch(entry: Entry | null) {
-  const [key, setKey] = useState("");
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (entry) {
-      setKey(makeEntryPath("", entry.author, entry.permlink));
-    }
-  }, [entry]);
-
-  return useMutation({
-    mutationKey: ["FETCH_ENTRY", key],
-    mutationFn: () => bridgeApi.getPost(entry?.author, entry?.permlink),
-    onSuccess: (response) => queryClient.setQueryData([QueryIdentifiers.ENTRY, key], response)
-  });
-}
-
-export function useEntryCache<T extends Entry>(initialEntry: T): DefinedQueryObserverResult<T>;
-export function useEntryCache<T extends Entry>(
-  category?: string,
-  author?: string,
-  permlink?: string
-): DefinedQueryObserverResult<T>;
-export function useEntryCache<T extends Entry>(
-  initialOrPath: T | string,
-  author?: string,
-  permlink?: string
-) {
-  const { getByLink, updateCache } = useContext(EntriesCacheContext);
-
-  const queryKey =
-    typeof initialOrPath === "string"
-      ? makeEntryPath("", author!!, permlink!!)
-      : makeEntryPath("", initialOrPath.author, initialOrPath.permlink);
-
-  return useQuery({
-    queryKey: [QueryIdentifiers.ENTRY, queryKey],
-    queryFn: async () => {
-      let entry = getByLink(queryKey) as T;
-
-      if (!entry && typeof initialOrPath === "string") {
-        const response = await bridgeApi.getPost(author, permlink);
-
-        // update cache value to getting from there next time
-        if (response) {
-          updateCache([response]);
+          return data;
         }
-        return response;
-      } else if (!entry) {
-        return updateCache([initialOrPath as T])[0];
-      }
+      )
+    );
+  }
 
-      return entry;
-    },
-    initialData: typeof initialOrPath === "string" ? null : initialOrPath
-  });
+  function mutateEntryInstance(entry: Entry | undefined, callback: (value: Entry) => Entry) {
+    if (!entry) {
+      throw new Error("Mutate entry instance – entry not provided");
+    }
+
+    const actualEntryValue = getQueryClient().getQueryData<Entry>([
+      QueryIdentifiers.ENTRY,
+      makeEntryPath("", entry.author, entry.permlink)
+    ]);
+    const value = callback(actualEntryValue ?? entry);
+    return updateEntryQueryData([value]);
+  }
 }

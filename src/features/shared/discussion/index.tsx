@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { setProxyBase } from "@ecency/render-helper";
 import "./_index.scss";
 import { FormControl } from "@ui/input";
@@ -17,7 +17,6 @@ import { LinearProgress, LoginRequired } from "@/features/shared";
 import { getBotsQuery } from "@/api/queries";
 import { SortOrder } from "@/enums";
 import { getDiscussionsQuery } from "@/api/queries/get-discussions-query";
-import { EntriesCacheContext } from "@/core/caches";
 
 setProxyBase(defaults.imageServer);
 
@@ -34,12 +33,10 @@ export function Discussion({ hideControls, isRawContent, parent, community }: Pr
 
   const [visible, setVisible] = useState(false);
   const [order, setOrder] = useState(SortOrder.trending);
-  const { updateCache } = useContext(EntriesCacheContext);
 
   const { isLoading, data } = getDiscussionsQuery(
     parent,
     order,
-    updateCache,
     visible && !!parent
   ).useClientQuery();
   const { data: botsList } = getBotsQuery().useClientQuery();

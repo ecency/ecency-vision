@@ -2,16 +2,15 @@ import { v4 } from "uuid";
 import { ThreadItemEntry } from "../../columns/deck-threads-manager";
 import { useContext } from "react";
 import { useGlobalStore } from "@/core/global-store";
-import { EntriesCacheContext } from "@/core/caches";
 import { PollsContext } from "@/features/polls";
 import { Entry, FullAccount } from "@/entities";
 import { createReplyPermlink, tempEntry } from "@/utils";
 import { EntryMetadataManagement } from "@/features/entry-management";
 import { comment } from "@/api/operations";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 
 export function useThreadsApi() {
   const activeUser = useGlobalStore((s) => s.activeUser);
-  const { addReply, updateRepliesCount } = useContext(EntriesCacheContext);
   const { activePoll } = useContext(PollsContext);
 
   const request = async (entry: Entry, raw: string, editingEntry?: ThreadItemEntry) => {
@@ -46,7 +45,7 @@ export function useThreadsApi() {
     });
 
     // add new reply to store
-    addReply(entry, nReply);
+    EcencyEntriesCacheManagement.addReply(entry, nReply);
 
     if (entry.children === 0) {
       // Activate discussion section with first comment.
@@ -54,7 +53,7 @@ export function useThreadsApi() {
         ...entry,
         children: 1
       };
-      updateRepliesCount(entry, 1);
+      EcencyEntriesCacheManagement.updateRepliesCount(entry, 1);
     }
 
     return nReply;

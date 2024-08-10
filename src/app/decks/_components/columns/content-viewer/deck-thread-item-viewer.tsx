@@ -1,11 +1,11 @@
-import React, { useCallback, useContext, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { DeckThreadItemSkeleton, ThreadItem } from "../deck-items";
 import { IdentifiableEntry } from "../deck-threads-manager";
 import { DeckThreadsForm } from "../../deck-threads-form";
 import { DeckThreadItemViewerReply } from "./deck-thread-item-viewer-reply";
 import { repliesIconSvg } from "../../icons";
 import { Button } from "@ui/button";
-import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import i18next from "i18next";
 import { arrowLeftSvg } from "@ui/svg";
 import {
@@ -27,20 +27,20 @@ export const DeckThreadItemViewer = ({
   onClose,
   highlightedEntry
 }: Props) => {
-  const { addReply, updateCache, updateRepliesCount } = useContext(EntriesCacheContext);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const { data: entry } = useEntryCache<IdentifiableEntry>(initialEntry);
+  const { data: entry } =
+    EcencyEntriesCacheManagement.getEntryQuery<IdentifiableEntry>(initialEntry).useClientQuery();
   const isMounted = useMounted();
 
-  const { data: discussions } = getDiscussionsMapQuery(entry, updateCache).useClientQuery();
+  const { data: discussions } = getDiscussionsMapQuery(entry).useClientQuery();
 
   const build = useCallback(
     (dataset: Record<string, IdentifiableEntry>) => {
       const result: IdentifiableEntry[] = [];
-      const values = [...Object.values(dataset).filter((v) => v.permlink !== entry.permlink)];
+      const values = [...Object.values(dataset).filter((v) => v.permlink !== entry?.permlink)];
       Object.entries(dataset)
-        .filter(([_, v]) => v.permlink !== entry.permlink)
+        .filter(([_, v]) => v.permlink !== entry?.permlink)
         .forEach(([key, value]) => {
           const parent = values.find((v) => v.replies.includes(key));
           if (parent) {
@@ -65,17 +65,17 @@ export const DeckThreadItemViewer = ({
         });
       return result;
     },
-    [entry.permlink]
+    [entry?.permlink]
   );
 
   const data = useMemo(() => {
     const tempResponse = { ...discussions };
     Object.values(tempResponse).forEach((i) => {
-      i.host = entry.host;
+      i.host = entry?.host ?? "";
     });
 
     return build(tempResponse);
-  }, [build, discussions, entry.host]);
+  }, [build, discussions, entry?.host]);
 
   return (
     <div
@@ -97,7 +97,7 @@ export const DeckThreadItemViewer = ({
           <Button
             className="flex pt-[0.35rem]"
             outline={true}
-            href={entry.url}
+            href={entry?.url}
             target="_blank"
             size="sm"
           >
@@ -107,7 +107,7 @@ export const DeckThreadItemViewer = ({
       </div>
       <ThreadItem
         pure={true}
-        initialEntry={entry}
+        initialEntry={entry!}
         onEntryView={() => {}}
         onMounted={() => {}}
         onResize={() => {}}
@@ -119,9 +119,9 @@ export const DeckThreadItemViewer = ({
         onSuccess={(reply) => {
           reply.replies = [];
           if (data) {
-            addReplyToDiscussionsList(entry, reply);
+            addReplyToDiscussionsList(entry!, reply);
             // Update entry in global cache
-            addReply(entry, reply);
+            addReply(entry!, reply);
           }
         }}
       />
@@ -133,8 +133,8 @@ export const DeckThreadItemViewer = ({
                 isHighlighted={highlightedEntry === `${reply.author}/${reply.permlink}`}
                 key={reply.post_id}
                 entry={reply as IdentifiableEntry}
-                parentEntry={entry}
-                incrementParentEntryCount={() => updateRepliesCount(entry, entry.children + 1)}
+                parentEntry={entry!}
+                incrementParentEntryCount={() => updateRepliesCount(entry!, entry!.children + 1)}
               />
             ))}
             {data.length === 0 && (

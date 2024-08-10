@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Tsx } from "../../i18n/helper";
 import appPackage from "../../../../package.json";
 import { EntryLink } from "../entry-link";
@@ -8,7 +8,7 @@ import { Dropdown, DropdownItemWithIcon, DropdownMenu, DropdownToggle } from "@u
 import { Button } from "@ui/button";
 import { DiscussionBots } from "./discussion-bots";
 import { Community, Entry, ROLES } from "@/entities";
-import { EntriesCacheContext, useEntryCache } from "@/core/caches";
+import { EcencyEntriesCacheManagement } from "@/core/caches";
 import { getMutedUsersQuery } from "@/api/queries/get-muted-users-query";
 import { useGlobalStore } from "@/core/global-store";
 import { getBotsQuery } from "@/api/queries";
@@ -56,19 +56,23 @@ export function DiscussionItem({
   const [edit, setEdit] = useState(false);
   const [lsDraft, setLsDraft] = useState("");
 
-  const { data: entry } = useEntryCache(initialEntry);
+  const { data: entry } = EcencyEntriesCacheManagement.getEntryQuery(initialEntry).useClientQuery();
   const { data: mutedUsers } = getMutedUsersQuery(activeUser).useClientQuery();
-  const { updateVotes, updateCache } = useContext(EntriesCacheContext);
-
   const { data: botsList } = getBotsQuery().useClientQuery();
 
-  const readMore = useMemo(() => entry.children > 0 && entry.depth > 5, [entry]);
-  const showSubList = useMemo(() => !readMore && entry.children > 0, [entry.children, readMore]);
+  const readMore = useMemo(() => (entry ? entry.children > 0 && entry.depth > 5 : false), [entry]);
+  const showSubList = useMemo(
+    () => (entry ? !readMore && entry.children > 0 : false),
+    [entry, readMore]
+  );
   const canEdit = useMemo(
-    () => activeUser && activeUser.username === entry.author,
+    () => activeUser && activeUser.username === entry?.author,
     [activeUser, entry]
   );
-  const anchorId = useMemo(() => `anchor-@${entry.author}/${entry.permlink}`, [entry]);
+  const anchorId = useMemo(
+    () => (entry ? `anchor-@${entry.author}/${entry.permlink}` : ""),
+    [entry]
+  );
   const canMute = useMemo(
     () =>
       !!activeUser &&
@@ -81,28 +85,29 @@ export function DiscussionItem({
     [activeUser, community]
   );
   const selected = useMemo(
-    () => location.hash && location.hash.replace("#", "") === `@${entry.author}/${entry.permlink}`,
+    () =>
+      location.hash && location.hash.replace("#", "") === `@${entry?.author}/${entry?.permlink}`,
     [entry]
   );
   const entryIsMuted = useMemo(
-    () => mutedUsers?.includes(entry.author) ?? false,
+    () => mutedUsers?.includes(entry?.author ?? "") ?? false,
     [entry, mutedUsers]
   );
   const isTopComment = useMemo(
-    () => entry.parent_author === root.author && entry.parent_permlink === root.permlink,
+    () => entry?.parent_author === root.author && entry?.parent_permlink === root.permlink,
     [entry, root]
   );
-  const isComment = useMemo(() => !!entry.parent_author, [entry]);
+  const isComment = useMemo(() => !!entry?.parent_author, [entry]);
   const isOwnRoot = useMemo(
     () => !!activeUser && activeUser.username === root.author,
     [activeUser, root]
   );
   const isOwnReply = useMemo(
-    () => !!activeUser && activeUser.username === entry.author,
+    () => !!activeUser && activeUser.username === entry?.author,
     [activeUser, entry]
   );
   const isHidden = useMemo(
-    () => entry?.net_rshares < -7000000000 && entry?.active_votes?.length > 3,
+    () => (entry ? entry.net_rshares < -7000000000 && entry.active_votes.length > 3 : false),
     [entry]
   ); // 1000 HP
   const isMuted = useMemo(
@@ -119,12 +124,12 @@ export function DiscussionItem({
   );
   const isDeletable = useMemo(
     () =>
-      !(entry.is_paidout || entry.net_rshares > 0 || entry.children > 0) &&
-      entry.author === activeUser?.username,
-    [activeUser?.username, entry.author, entry.children, entry.is_paidout, entry.net_rshares]
+      !(entry?.is_paidout || (entry?.net_rshares ?? 0) > 0 || (entry?.children ?? 0) > 0) &&
+      entry?.author === activeUser?.username,
+    [activeUser?.username, entry?.author, entry?.children, entry?.is_paidout, entry?.net_rshares]
   );
   const isPinned = useMemo(
-    () => root.json_metadata.pinned_reply === `${entry.author}/${entry.permlink}`,
+    () => root.json_metadata.pinned_reply === `${entry?.author}/${entry?.permlink}`,
     [root, entry]
   );
   const hasAnyAction = useMemo(
@@ -134,7 +139,7 @@ export function DiscussionItem({
   const filtered = useMemo(
     () =>
       discussionList.filter(
-        (x) => x.parent_author === entry.author && x.parent_permlink === entry.permlink
+        (x) => x.parent_author === entry?.author && x.parent_permlink === entry?.permlink
       ),
     [discussionList, entry]
   );
@@ -174,8 +179,8 @@ export function DiscussionItem({
   const submitReply = (text: string) =>
     createReply({
       text,
-      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], appPackage.version),
-      permlink: createReplyPermlink(entry.author),
+      jsonMeta: makeJsonMetaDataReply(entry?.json_metadata.tags || ["ecency"], appPackage.version),
+      permlink: createReplyPermlink(entry?.author),
       point: true
     });
 
@@ -183,7 +188,7 @@ export function DiscussionItem({
     updateReply({
       text,
       point: true,
-      jsonMeta: makeJsonMetaDataReply(entry.json_metadata.tags || ["ecency"], appPackage.version)
+      jsonMeta: makeJsonMetaDataReply(entry?.json_metadata.tags || ["ecency"], appPackage.version)
     });
 
   useEffect(() => {
@@ -192,8 +197,8 @@ export function DiscussionItem({
     }
   }, [checkLsDraft, edit, reply]);
 
-  return (
-    <div className={`discussion-item depth-${entry.depth} ${selected ? "selected-item" : ""}`}>
+  return entry ? (
+    <div className={`discussion-item depth-${entry?.depth} ${selected ? "selected-item" : ""}`}>
       <div className="relative">
         <div className="item-anchor" id={anchorId} />
       </div>
@@ -261,7 +266,7 @@ export function DiscussionItem({
                 <MuteBtn
                   entry={entry}
                   community={community}
-                  onSuccess={(entry) => updateCache([entry])}
+                  onSuccess={(entry) => EcencyEntriesCacheManagement.updateEntryQueryData([entry])}
                 />
               )}
 
@@ -352,5 +357,7 @@ export function DiscussionItem({
         />
       )}
     </div>
+  ) : (
+    <></>
   );
 }
