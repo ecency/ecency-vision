@@ -1,8 +1,6 @@
 import "./page.scss";
-import { Navbar, ScrollToTop, Theme } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
 import { Metadata, ResolvingMetadata } from "next";
-import { FullHeight } from "@/features/ui";
 import {
   DiscoverContributors,
   DiscoverCuration,
@@ -46,11 +44,6 @@ export default async function Discover({ searchParams }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(getQueryClient())}>
-      <ScrollToTop />
-      <FullHeight />
-      <Theme />
-      <Navbar />
-
       <div className="app-content discover-page">
         {usePrivate && (
           <div className="top-users">

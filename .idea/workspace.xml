@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed entry voting">
-      <change afterPath="$PROJECT_DIR$/src/app/communities/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/communities/loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/input-skeleton-loader.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added loading state for communities">
+      <change afterPath="$PROJECT_DIR$/src/app/discover/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/discover/loading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/input/form-controls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/input/form-controls/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,15 +351,7 @@
       <workItem from="1723102133032" duration="12391000" />
       <workItem from="1723287104901" duration="7015000" />
       <workItem from="1723296953323" duration="1339000" />
-      <workItem from="1723385234572" duration="5042000" />
-    </task>
-    <task id="LOCAL-00103" summary="Fixed notification bar switching and settings changing">
-      <option name="closed" value="true" />
-      <created>1721682915235</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1721682915235</updated>
+      <workItem from="1723385234572" duration="6434000" />
     </task>
     <task id="LOCAL-00104" summary="Fixed notification bar double-clicking">
       <option name="closed" value="true" />
@@ -747,7 +737,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723298517126</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="Added loading state for communities">
+      <option name="closed" value="true" />
+      <created>1723390832685</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1723390832686</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -768,7 +766,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added announcements" />
     <MESSAGE value="Added floating faq" />
     <MESSAGE value="Fixed user activity component" />
     <MESSAGE value="Fixed profile menu" />
@@ -793,7 +790,8 @@
     <MESSAGE value="Fixed login dialog hiding" />
     <MESSAGE value="Re-worked entries cache management" />
     <MESSAGE value="Fixed entry voting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed entry voting" />
+    <MESSAGE value="Added loading state for communities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added loading state for communities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
