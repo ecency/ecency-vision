@@ -24,3 +24,5 @@ export function FormControl(props: Props) {
       return <Input {...props} />;
   }
 }
+
+export * from "./input-skeleton-loader";

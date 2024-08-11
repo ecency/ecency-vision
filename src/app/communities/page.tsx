@@ -1,4 +1,3 @@
-import { Navbar, ScrollToTop, Theme } from "@/features/shared";
 import i18next from "i18next";
 import Link from "next/link";
 import "./page.scss";
@@ -27,9 +26,6 @@ export default async function Communities({ searchParams }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(getQueryClient())}>
-      <ScrollToTop />
-      <Theme />
-      <Navbar />
       <div className="app-content communities-page">
         <div className="community-list">
           <div className="list-header">
