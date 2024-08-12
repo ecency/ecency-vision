@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added loading state for communities">
-      <change afterPath="$PROJECT_DIR$/src/app/discover/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/discover/loading.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added loading state for discover page">
+      <change afterPath="$PROJECT_DIR$/src/app/communities/_components/community-list-item-animated-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/framer-motion/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/framer-motion/safe-animate-presence.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/discover/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/communities-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_hooks/entry-detector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/entries-cache.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/push-notifications/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,15 +358,9 @@
       <workItem from="1723102133032" duration="12391000" />
       <workItem from="1723287104901" duration="7015000" />
       <workItem from="1723296953323" duration="1339000" />
-      <workItem from="1723385234572" duration="6434000" />
-    </task>
-    <task id="LOCAL-00104" summary="Fixed notification bar double-clicking">
-      <option name="closed" value="true" />
-      <created>1721683003403</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1721683003403</updated>
+      <workItem from="1723385234572" duration="7000000" />
+      <workItem from="1723392875850" duration="1731000" />
+      <workItem from="1723484691361" duration="5409000" />
     </task>
     <task id="LOCAL-00105" summary="Added initial dynamic props prefetching on client side + re-fetching by interval">
       <option name="closed" value="true" />
@@ -745,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723390832686</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Added loading state for discover page">
+      <option name="closed" value="true" />
+      <created>1723392252263</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1723392252263</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +775,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added floating faq" />
     <MESSAGE value="Fixed user activity component" />
     <MESSAGE value="Fixed profile menu" />
     <MESSAGE value="Fixed page detector" />
@@ -791,7 +799,8 @@
     <MESSAGE value="Re-worked entries cache management" />
     <MESSAGE value="Fixed entry voting" />
     <MESSAGE value="Added loading state for communities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added loading state for communities" />
+    <MESSAGE value="Added loading state for discover page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added loading state for discover page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

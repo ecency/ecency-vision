@@ -161,12 +161,6 @@ function Submit({ path, draftId, username, permlink }: Props) {
 
   let _updateTimer: any; // todo think about it
 
-  // todo
-  // const pageTitle = useMemo(() => {
-  //   const notifications = props.notifications.unread ? `(${props.notifications.unread}) ` : "";
-  //   return notifications + i18next.t("submit.page-title");
-  // }, [props.notifications.unread]);
-
   const { setLocalDraft } = useLocalDraftManager(
     path,
     username,

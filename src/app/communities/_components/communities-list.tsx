@@ -3,6 +3,8 @@ import { CommunityListItem } from "@/app/communities/_components/community-list-
 import { getCommunitiesQuery } from "@/api/queries";
 import { CommunitiesListSearch } from "@/app/communities/_components/communities-list-search";
 import { CommunitiesListSortSelector } from "@/app/communities/_components/communities-list-sort-selector";
+import { CommunityListItemAnimatedLayout } from "@/app/communities/_components/community-list-item-animated-layout";
+import { SafeAnimatePresence } from "@/features/framer-motion";
 
 interface Props {
   sort: string;
@@ -26,7 +28,13 @@ export async function CommunitiesList({ sort, query }: Props) {
         {list?.length === 0 && (
           <div className="no-results">{i18next.t("communities.no-results")}</div>
         )}
-        {list?.map((x, i) => <CommunityListItem community={x} key={x.name} />)}
+        <SafeAnimatePresence mode="popLayout">
+          {list?.map((x, i) => (
+            <CommunityListItemAnimatedLayout key={x.name} i={i}>
+              <CommunityListItem community={x} />
+            </CommunityListItemAnimatedLayout>
+          ))}
+        </SafeAnimatePresence>
       </div>
     </>
   );

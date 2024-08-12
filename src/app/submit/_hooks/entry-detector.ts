@@ -16,18 +16,18 @@ export function useEntryDetector(
     username?.replace("@", ""),
     permlink
   ).useClientQuery();
-  const { data: normalizedEntry } =
+  const { data: normalizedEntry, isSuccess } =
     EcencyEntriesCacheManagement.getNormalizedPostQuery(data).useClientQuery();
 
   useMount(() => refetch());
 
   useEffect(() => {
-    if (!normalizedEntry) {
+    if (!normalizedEntry && isSuccess) {
       error("Could not fetch post data.");
       router.push("/submit");
       return;
     }
 
-    onEntryDetected(normalizedEntry);
-  }, [normalizedEntry, onEntryDetected, router]);
+    if (normalizedEntry) onEntryDetected(normalizedEntry);
+  }, [isSuccess, normalizedEntry, onEntryDetected, router]);
 }

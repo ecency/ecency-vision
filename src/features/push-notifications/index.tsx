@@ -8,9 +8,12 @@ import * as ls from "@/utils/local-storage";
 import { useNotificationsSettingsQuery, useNotificationUnreadCountQuery } from "@/api/queries";
 import { playNotificationSound } from "@/utils";
 import { useUpdateNotificationsSettings } from "@/api/mutations";
+import usePrevious from "react-use/lib/usePrevious";
 
 export function PushNotificationsProvider({ children }: PropsWithChildren) {
   const activeUser = useGlobalStore((state) => state.activeUser);
+  const previousActiveUsr = usePrevious(activeUser);
+
   const setFbSupport = useGlobalStore((state) => state.setFbSupport);
 
   const notificationsSettingsQuery = useNotificationsSettingsQuery();
@@ -69,10 +72,10 @@ export function PushNotificationsProvider({ children }: PropsWithChildren) {
   );
 
   useEffect(() => {
-    if (activeUser) {
+    if (activeUser && activeUser?.username !== previousActiveUsr?.username) {
       init(activeUser.username);
     }
-  }, [activeUser, init]);
+  }, [activeUser, previousActiveUsr, init]);
 
   return children;
 }

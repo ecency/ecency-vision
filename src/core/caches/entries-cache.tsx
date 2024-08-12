@@ -12,7 +12,7 @@ export namespace EcencyEntriesCacheManagement {
         author && permlink ? makeEntryPath("", author!!, permlink!!) : "EMPTY"
       ],
       queryFn: () => bridgeApi.getPost(author, permlink),
-      enabled: typeof author === "string" && typeof permlink === "string",
+      enabled: typeof author === "string" && typeof permlink === "string" && !!author && !!permlink,
       staleTime: Infinity
     });
   }
