@@ -157,7 +157,6 @@ export const ResourceCreditsInfo = ({ account, rcPercent }: Props) => {
 
       <Modal
         size="lg"
-        animation={false}
         show={showRcInfo}
         centered={true}
         onHide={hideModal}
@@ -259,13 +258,7 @@ export const ResourceCreditsInfo = ({ account, rcPercent }: Props) => {
         </ModalBody>
       </Modal>
 
-      <Modal
-        onHide={hideList}
-        show={showDelegationsList}
-        centered={true}
-        animation={false}
-        size="lg"
-      >
+      <Modal onHide={hideList} show={showDelegationsList} centered={true} size="lg">
         <ModalHeader closeButton={true}>
           <ModalTitle>
             {listMode === "in" ? i18next.t("rc-info.incoming") : i18next.t("rc-info.outgoing")}
@@ -286,7 +279,6 @@ export const ResourceCreditsInfo = ({ account, rcPercent }: Props) => {
 
       <div>
         <Modal
-          animation={false}
           show={showDelegationModal}
           centered={true}
           onHide={hideDelegation}
@@ -309,7 +301,6 @@ export const ResourceCreditsInfo = ({ account, rcPercent }: Props) => {
         </Modal>
 
         <Modal
-          animation={false}
           show={showConfirmDelete}
           centered={true}
           onHide={hideConfirmDelete}

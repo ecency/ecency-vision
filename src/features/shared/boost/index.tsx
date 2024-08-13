@@ -101,14 +101,7 @@ export function BoostDialog({ onHide }: Props) {
   const finish = () => onHide();
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="boost-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="boost-dialog" size="lg">
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         <div className="promote-dialog-content">

@@ -52,13 +52,7 @@ export function CrossPost({ entry, onSuccess, onHide }: Props) {
   }
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="cross-post-dialog"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="cross-post-dialog">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("cross-post.title")}</ModalTitle>
       </ModalHeader>

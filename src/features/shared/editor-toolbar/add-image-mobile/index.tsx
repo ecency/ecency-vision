@@ -25,13 +25,7 @@ export function AddImageMobile({ onHide, onPick, onUpload, onGallery }: Props) {
   const { data: items } = getImagesQuery(activeUser?.username).useClientQuery();
 
   return (
-    <Modal
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="add-image-mobile-modal"
-      animation={false}
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="add-image-mobile-modal">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("add-image-mobile.title")}</ModalTitle>
       </ModalHeader>

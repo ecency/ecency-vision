@@ -26,13 +26,7 @@ export const FeedbackModal = ({ show, setShow, instance }: Props) => {
   };
 
   return (
-    <Modal
-      animation={false}
-      show={show}
-      centered={true}
-      onHide={() => setShow(false)}
-      className="purchase-qr-dialog"
-    >
+    <Modal show={show} centered={true} onHide={() => setShow(false)} className="purchase-qr-dialog">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("feedback-modal.title")}</ModalTitle>
       </ModalHeader>

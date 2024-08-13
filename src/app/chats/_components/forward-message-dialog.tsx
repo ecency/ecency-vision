@@ -68,7 +68,7 @@ export function ForwardMessageDialog({ show, setShow, message }: Props) {
   }, [forwardMessage, message.content, message.creator, selectedChannel]);
 
   return (
-    <Modal animation={false} centered={true} show={show} onHide={() => setShow(false)}>
+    <Modal centered={true} show={show} onHide={() => setShow(false)}>
       <ModalHeader closeButton={true}>
         <div>{i18next.t("chat.message-forwarding")}</div>
       </ModalHeader>

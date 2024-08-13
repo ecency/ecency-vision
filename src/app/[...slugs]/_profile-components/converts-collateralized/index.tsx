@@ -29,7 +29,7 @@ export function CollateralizedConversionRequests({ account, onHide }: Props) {
   );
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("collateralized-conversion-requests.title")}</ModalTitle>
       </ModalHeader>

@@ -40,7 +40,6 @@ export function JoinCommunityModal({ community, communityId }: Props) {
     show && (
       <LoginRequired>
         <Modal
-          animation={false}
           show={true}
           centered={true}
           onHide={() => setShow(false)}

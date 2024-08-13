@@ -73,7 +73,7 @@ export function LoginDialog() {
   const hide = () => toggleUIProp("login");
 
   return (
-    <Modal show={true} centered={true} onHide={hide} className="login-modal" animation={false}>
+    <Modal show={true} centered={true} onHide={hide} className="login-modal">
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         {!loginKc && (

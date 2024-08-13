@@ -43,7 +43,6 @@ export function EntryTipBtn({ entry, setTipDialogMounted, handleClickAway, accou
       </LoginRequired>
       {dialog && activeUser && (
         <Modal
-          animation={false}
           show={true}
           centered={true}
           onHide={() => setDialog(false)}

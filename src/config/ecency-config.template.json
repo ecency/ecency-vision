@@ -1,0 +1,9 @@
+{
+  "visionConfig": {
+    "features": {
+      "notifications": {
+        "enabled": true
+      }
+    }
+  }
+}

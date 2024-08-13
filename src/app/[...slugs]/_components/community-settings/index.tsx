@@ -156,7 +156,6 @@ export function CommunitySettingsDialog({ onHide, community }: Props) {
 
   return (
     <Modal
-      animation={false}
       show={true}
       centered={true}
       onHide={onHide}

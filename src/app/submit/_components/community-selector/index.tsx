@@ -75,7 +75,6 @@ export function CommunitySelector({ tags, onSelect }: Props) {
           onHide={() => setVisible(!visible)}
           show={true}
           centered={true}
-          animation={false}
           className="community-selector-modal"
         >
           <ModalHeader closeButton={true} />

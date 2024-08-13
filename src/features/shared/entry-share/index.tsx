@@ -43,13 +43,7 @@ export function EntryShare({ entry, onHide }: Props) {
   const linkedin = () => shareLinkedin(entry);
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="entry-share-dialog"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="entry-share-dialog">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("entry-share.title")}</ModalTitle>
       </ModalHeader>

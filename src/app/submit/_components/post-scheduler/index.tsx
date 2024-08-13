@@ -99,13 +99,7 @@ export const PostSchedulerDialog = (props: Props) => {
         </Button>
       )}
       {visible && (
-        <Modal
-          onHide={toggle}
-          show={true}
-          centered={true}
-          animation={false}
-          className="post-scheduler-dialog"
-        >
+        <Modal onHide={toggle} show={true} centered={true} className="post-scheduler-dialog">
           <ModalHeader closeButton={true}>
             <ModalTitle>{i18next.t("post-scheduler.title")}</ModalTitle>
           </ModalHeader>

@@ -143,7 +143,6 @@ export function EntryVotes({ entry: initialEntry, icon }: Props) {
           show={true}
           centered={true}
           size="lg"
-          animation={false}
           className="entry-votes-modal px-3"
         >
           <ModalHeader closeButton={true} className="items-center">

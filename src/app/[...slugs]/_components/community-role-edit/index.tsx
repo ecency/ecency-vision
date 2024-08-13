@@ -68,7 +68,6 @@ export function CommunityRoleEditDialog({
 
   return (
     <Modal
-      animation={false}
       show={true}
       centered={true}
       onHide={onHide}

@@ -558,7 +558,6 @@ export function CreateCommunityPage() {
             </div>
             {keyDialog && (
               <Modal
-                animation={false}
                 show={true}
                 centered={true}
                 onHide={() => setKeyDialog(false)}

@@ -120,14 +120,7 @@ export function BuySellHiveDialog({
   );
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="transfer-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="transfer-dialog" size="lg">
       <ModalHeader closeButton={true} />
       <ModalBody>
         {step === 1 && (

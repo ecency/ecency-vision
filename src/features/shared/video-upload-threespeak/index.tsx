@@ -234,7 +234,6 @@ export const VideoUpload = (props: Props & React.HTMLAttributes<HTMLDivElement>)
       <div className="flex justify-center">{props.children}</div>
       <div>
         <Modal
-          animation={false}
           show={props.show}
           centered={true}
           onHide={() => props.setShow(false)}

@@ -28,7 +28,7 @@ export function ConversionRequests({ account, onHide }: Props) {
   );
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("conversion-requests.title")}</ModalTitle>
       </ModalHeader>

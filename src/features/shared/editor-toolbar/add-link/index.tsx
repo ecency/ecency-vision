@@ -39,7 +39,7 @@ export function AddLink({ onHide, onSubmit }: Props) {
   });
 
   return (
-    <Modal show={true} centered={true} onHide={onHide} className="add-link-modal" animation={false}>
+    <Modal show={true} centered={true} onHide={onHide} className="add-link-modal">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("add-link.title")}</ModalTitle>
       </ModalHeader>

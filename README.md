@@ -67,12 +67,16 @@ If you are setting up your own website other than Ecency.com, you can still leav
 
 ### Extended vision configuration
 
-Ecency vision has extended configuration based on feature-flag on/off specifications built in yaml format.
-```yaml
-#Any ecency vision configuration file should be started with specific tag as below
-vision-config:
-  features:
-    ...
+Ecency vision has extended configuration based on feature-flag on/off specifications built in json format.
+```json
+// Any ecency vision configuration file should be started with specific tag as below
+{
+  "visionConfig": {
+    "features": {
+      ...
+    }
+  }
+}
 ```
 Feature flags and their formats:
 1. 

@@ -45,7 +45,6 @@ export function CommunityRewardsRegistrationDialog({ onHide, community }: Props)
 
   return (
     <Modal
-      animation={false}
       show={true}
       centered={true}
       onHide={onHide}

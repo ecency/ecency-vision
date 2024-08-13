@@ -21,7 +21,6 @@ export const WalletSpkDelegatedPowerDialog = ({ show, setShow, items }: Props) =
 
   return (
     <Modal
-      animation={false}
       show={show}
       centered={true}
       onHide={() => {

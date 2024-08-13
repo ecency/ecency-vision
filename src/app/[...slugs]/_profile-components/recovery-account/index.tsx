@@ -410,7 +410,6 @@ export function AccountRecovery() {
 
         {keyDialog && (
           <Modal
-            animation={false}
             show={true}
             centered={true}
             onHide={toggleKeyDialog}

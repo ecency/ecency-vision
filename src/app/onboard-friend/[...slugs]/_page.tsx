@@ -808,7 +808,6 @@ export const OnboardFriend = ({ params: { slugs } }: Props) => {
         </div>
       )}
       <Modal
-        animation={false}
         show={showModal}
         centered={true}
         onHide={() => setShowModal(false)}

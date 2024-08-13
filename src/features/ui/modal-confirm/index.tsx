@@ -21,7 +21,7 @@ export function ModalConfirm({
   okVariant
 }: Props) {
   return (
-    <Modal animation={false} show={true} centered={true} onHide={() => onCancel?.()}>
+    <Modal show={true} centered={true} onHide={() => onCancel?.()}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{titleText || i18next.t("confirm.title")}</ModalTitle>
       </ModalHeader>

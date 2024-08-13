@@ -112,7 +112,6 @@ export function CommunityCard({ community, account }: Props) {
           show={true}
           centered={true}
           onHide={() => setInfo(undefined)}
-          animation={false}
           className="community-info-dialog"
         >
           <ModalHeader closeButton={true}>

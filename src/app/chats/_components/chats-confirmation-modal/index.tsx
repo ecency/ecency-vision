@@ -37,14 +37,7 @@ export const ChatsConfirmationModal = (props: Props) => {
   );
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onClose}
-      className="chats-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onClose} className="chats-dialog" size="lg">
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody className="chat-modals-body">{confirmationModalContent}</ModalBody>
       <ModalFooter className="flex justify-end gap-4 items-center">

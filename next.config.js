@@ -35,7 +35,5 @@ const config = {
 };
 
 /** @type {import('next').NextConfig} */
-const nextWithPWA = withPWA(config, {
-  disableDevLogs: true
-});
+const nextWithPWA = withPWA(config);
 module.exports = process.env.NODE_ENV === "production" ? nextWithPWA : config;

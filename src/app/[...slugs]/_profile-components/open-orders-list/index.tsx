@@ -32,7 +32,7 @@ export function OpenOrdersList({ account, onHide, tokenType }: Props) {
   const router = useRouter();
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("open-orders-list.title")}</ModalTitle>
       </ModalHeader>

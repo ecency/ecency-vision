@@ -69,7 +69,7 @@ export function DelegatedVesting({ onHide, account, totalDelegated }: Props) {
   }, [data, dynamicProps, totalDelegated]);
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>
           <div>

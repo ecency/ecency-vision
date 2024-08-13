@@ -82,14 +82,7 @@ export function EditHistory({ onHide, entry }: Props) {
   const selectedItem = useMemo(() => history.find((x) => x.v === selected), [history, selected]);
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="edit-history-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="edit-history-dialog" size="lg">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("edit-history.title")}</ModalTitle>
       </ModalHeader>

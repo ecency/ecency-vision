@@ -30,7 +30,7 @@ export function SavingsWithdraw({ onHide, tokenType, account }: Props) {
   );
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("savings-withdraw.title")}</ModalTitle>
       </ModalHeader>

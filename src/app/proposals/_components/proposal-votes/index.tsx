@@ -63,14 +63,7 @@ export function ProposalVotes({ proposal, onHide }: ProposalVotesProps) {
   );
 
   return (
-    <Modal
-      onHide={onHide}
-      show={true}
-      centered={true}
-      size="lg"
-      animation={false}
-      className="proposal-votes-dialog"
-    >
+    <Modal onHide={onHide} show={true} centered={true} size="lg" className="proposal-votes-dialog">
       <ModalHeader closeButton={true} className="items-center">
         <ModalTitle>
           {accounts?.length + " " + i18next.t("proposals.votes-dialog-title", { n: proposal.id })}

@@ -28,13 +28,7 @@ export function ImageUploadDialog({ defImage, title, inProgress, onDone, onHide 
   }, [image, onDone]);
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="image-upload-dialog"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="image-upload-dialog">
       <ModalHeader closeButton={true} />
       <ModalBody>
         <div className="image-upload-dialog-content">

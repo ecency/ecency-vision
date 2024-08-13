@@ -17,7 +17,6 @@ interface Props {
 export const PurchaseQrDialog = ({ show, setShow, type }: Props) => {
   return (
     <Modal
-      animation={false}
       show={show}
       centered={true}
       onHide={() => setShow?.(false)}

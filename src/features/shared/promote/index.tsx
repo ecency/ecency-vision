@@ -112,14 +112,7 @@ export function Promote({ onHide, entry }: Props) {
   const finish = () => onHide();
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="promote-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="promote-dialog" size="lg">
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         <div className="promote-dialog-content">

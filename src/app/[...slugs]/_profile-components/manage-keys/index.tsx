@@ -604,7 +604,6 @@ export function ManageKeys(props: Props) {
 
       {keyDialog && (
         <Modal
-          animation={false}
           show={true}
           centered={true}
           onHide={toggleKeyDialog}

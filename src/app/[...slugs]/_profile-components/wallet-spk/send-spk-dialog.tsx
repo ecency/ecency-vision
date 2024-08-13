@@ -108,7 +108,6 @@ export const SendSpkDialog = ({
 
   return (
     <Modal
-      animation={false}
       show={show}
       centered={true}
       onHide={() => {

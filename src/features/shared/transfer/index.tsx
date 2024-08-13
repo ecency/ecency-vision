@@ -51,14 +51,7 @@ function TransferC({ onHide, handleClickAway, account }: Props) {
   );
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="transfer-dialog"
-      size="lg"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="transfer-dialog" size="lg">
       <ModalHeader thin={true} closeButton={true} />
       <ModalBody>
         <div className="transfer-dialog-content">

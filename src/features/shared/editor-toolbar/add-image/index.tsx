@@ -21,13 +21,7 @@ export function AddImage({ onHide, onSubmit }: Props) {
   const linkChanged = (e: React.ChangeEvent<HTMLInputElement>): void => setLink(e.target.value);
 
   return (
-    <Modal
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="add-image-modal"
-      animation={false}
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="add-image-modal">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("add-image.title")}</ModalTitle>
       </ModalHeader>

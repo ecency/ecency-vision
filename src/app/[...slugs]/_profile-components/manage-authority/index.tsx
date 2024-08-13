@@ -263,7 +263,6 @@ export function ManageAuthorities() {
 
       {keyDialog && (
         <Modal
-          animation={false}
           show={true}
           centered={true}
           onHide={toggleKeyDialog}

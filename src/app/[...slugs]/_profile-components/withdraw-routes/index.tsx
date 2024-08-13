@@ -75,13 +75,7 @@ export function WithdrawRoutesDialog({ onHide }: Props) {
   }, [signByKeychain]);
 
   return (
-    <Modal
-      animation={false}
-      show={true}
-      centered={true}
-      onHide={onHide}
-      className="withdraw-routes-dialog"
-    >
+    <Modal show={true} centered={true} onHide={onHide} className="withdraw-routes-dialog">
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("withdraw-routes.title")}</ModalTitle>
       </ModalHeader>

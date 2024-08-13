@@ -42,13 +42,7 @@ export function KeyOrHotDialog({
       )}
 
       {keyDialog && (
-        <Modal
-          animation={false}
-          show={true}
-          centered={true}
-          onHide={toggleKeyDialog}
-          className="key-or-hot-modal"
-        >
+        <Modal show={true} centered={true} onHide={toggleKeyDialog} className="key-or-hot-modal">
           <ModalHeader closeButton={true} />
           <ModalBody>
             <KeyOrHot

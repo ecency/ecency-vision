@@ -70,7 +70,6 @@ export function MuteBtn({ entry, community, onSuccess, onCancel, onlyDialog }: P
       )}
       {(dialog || onlyDialog) && (
         <Modal
-          animation={false}
           show={true}
           centered={true}
           onHide={() => {

@@ -37,7 +37,7 @@ export function ReceivedVesting({ onHide, account }: Props) {
   );
 
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false}>
+    <Modal onHide={onHide} show={true} centered={true}>
       <ModalHeader closeButton={true}>
         <ModalTitle>{i18next.t("received-vesting.title")}</ModalTitle>
       </ModalHeader>

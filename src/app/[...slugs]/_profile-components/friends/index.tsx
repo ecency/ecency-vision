@@ -12,7 +12,7 @@ interface Props {
 }
 export function Followers({ onHide, account }: Props) {
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
+    <Modal onHide={onHide} show={true} centered={true} size="lg">
       <ModalHeader closeButton={true}>
         <ModalTitle>
           {account.__loaded && account.follow_stats
@@ -31,7 +31,7 @@ export function Followers({ onHide, account }: Props) {
 
 export function Following({ onHide, account }: Props) {
   return (
-    <Modal onHide={onHide} show={true} centered={true} animation={false} size="lg">
+    <Modal onHide={onHide} show={true} centered={true} size="lg">
       <ModalHeader closeButton={true}>
         <ModalTitle>
           {account.__loaded && account.follow_stats

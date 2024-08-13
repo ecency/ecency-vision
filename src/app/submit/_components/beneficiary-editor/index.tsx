@@ -45,7 +45,6 @@ export function BeneficiaryEditorDialog({ list, author, onDelete, body, onAdd }:
           onHide={() => setVisible(!visible)}
           show={true}
           centered={true}
-          animation={false}
           className="beneficiary-editor-dialog"
         >
           <ModalHeader closeButton={true}>
