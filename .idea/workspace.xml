@@ -4,67 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed bugs with private API, added framer-motion animation to communities list">
-      <change afterPath="$PROJECT_DIR$/src/config/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/ecency-config.template.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/global-store/modules/config-module.ts" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile menu and added dropdown animations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-image-upload-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/community-image-upload-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-rewards-registration/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-role-edit/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-settings/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/join-community-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/join-community-modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts-collateralized/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/converts/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/delegated-vesting/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/friends/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-authority/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/manage-keys/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/open-orders-list/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/rc-info/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/received-vesting/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/recovery-account/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/savings-withdraw/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/send-spk-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/send-spk-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/wallet-spk/wallet-spk-delegated-power-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/withdraw-routes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/chats-confirmation-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/chats-confirmation-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/chats/_components/forward-message-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/chats/_components/forward-message-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/create/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/create/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/onboard-friend/[...slugs]/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/proposals/_components/proposal-votes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/beneficiary-editor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/community-selector/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_components/post-scheduler/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/global-store/initialization/initial-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/initialization/initial-state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/boost/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/buy-sell-hive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/edit-history/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/edit-history/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image-mobile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-image/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/editor-toolbar/add-link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/cross-post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/cross-post.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-share/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-share/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-tip-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-votes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/feedback/feedback-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/key-or-hot-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/key-or-hot-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/mute-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/mute-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/promote/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/purchase-qr/purchase-qr-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/transfer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/video-upload-threespeak/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal-confirm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal-confirm/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
-      <change beforePath="$PROJECT_DIR$/src/config/ecency-config.template.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/ecency-config.template.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +94,7 @@
     "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
     "nodejs_package_manager_path": "npm",
     "npm.build.executor": "Run",
-    "npm.dev.executor": "Debug",
+    "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
     "npm.test.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
@@ -411,23 +358,7 @@
       <workItem from="1723385234572" duration="7000000" />
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
-      <workItem from="1723549366576" duration="4880000" />
-    </task>
-    <task id="LOCAL-00106" summary="Fixed powering down in hive wallet">
-      <option name="closed" value="true" />
-      <created>1721718681915</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1721718681915</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Fixed profile list style switcher">
-      <option name="closed" value="true" />
-      <created>1721720508469</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1721720508469</updated>
+      <workItem from="1723549366576" duration="9115000" />
     </task>
     <task id="LOCAL-00108" summary="Fixed profile page posts infinite loader">
       <option name="closed" value="true" />
@@ -805,7 +736,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723490557422</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Improved modal animations, improved sidebar animations">
+      <option name="closed" value="true" />
+      <created>1723554436232</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1723554436233</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Fixed profile menu and added dropdown animations">
+      <option name="closed" value="true" />
+      <created>1723577388757</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1723577388757</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -826,8 +773,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed profile menu" />
-    <MESSAGE value="Fixed page detector" />
     <MESSAGE value="Fixed searching in community and profile pages" />
     <MESSAGE value="Fixed profile search loading" />
     <MESSAGE value="Fixed search list item highlights" />
@@ -851,7 +796,9 @@
     <MESSAGE value="Added loading state for communities" />
     <MESSAGE value="Added loading state for discover page" />
     <MESSAGE value="Fixed bugs with private API, added framer-motion animation to communities list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs with private API, added framer-motion animation to communities list" />
+    <MESSAGE value="Improved modal animations, improved sidebar animations" />
+    <MESSAGE value="Fixed profile menu and added dropdown animations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile menu and added dropdown animations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -36,8 +36,7 @@ export function ProfileMenu({ username, section }: Props) {
         selected: section === x,
         id: x
       };
-    }),
-    ...kebabMenuItems
+    })
   ];
 
   const dropDownMenuItems = [

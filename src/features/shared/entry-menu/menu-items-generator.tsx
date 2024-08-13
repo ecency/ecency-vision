@@ -3,23 +3,24 @@ import { success } from "../feedback";
 import { Community, Entry, FullAccount, ROLES } from "@/entities";
 import { useCommunityPinCache } from "@/core/caches";
 import useMount from "react-use/lib/useMount";
-import { isCommunity } from "@ecency/ns-query";
-import {
-  bullHornSvg,
-  deleteForeverSvg,
-  historySvg,
-  linkVariantSvg,
-  pencilOutlineSvg,
-  pinSvg,
-  shareVariantSvg,
-  shuffleVariantSvg,
-  volumeOffSvg
-} from "@ui/svg";
+import { bullHornSvg } from "@ui/svg";
 import i18next from "i18next";
 import { clipboard } from "@/utils/clipboard";
 import { useGlobalStore } from "@/core/global-store";
 import { useRouter } from "next/navigation";
 import { MenuItem } from "@ui/dropdown";
+import { isCommunity } from "@/utils";
+import {
+  UilHistory,
+  UilHistoryAlt,
+  UilLink,
+  UilMapPin,
+  UilPen,
+  UilShare,
+  UilTrash,
+  UilVolume,
+  UilVolumeOff
+} from "@iconscout/react-unicons";
 
 export function useMenuItemsGenerator(
   entry: Entry,
@@ -125,7 +126,7 @@ export function useMenuItemsGenerator(
                 isComment && toggleEdit
                   ? toggleEdit
                   : () => router.push(`/@${entry.author}/${entry.permlink}/edit`),
-              icon: pencilOutlineSvg
+              icon: <UilPen />
             }
           ]
         : []),
@@ -134,7 +135,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.cross-post"),
               onClick: () => setCross(!cross),
-              icon: shuffleVariantSvg
+              icon: <UilHistory />
             }
           ]
         : []),
@@ -145,7 +146,7 @@ export function useMenuItemsGenerator(
                 ? i18next.t("entry-menu.unmute")
                 : i18next.t("entry-menu.mute"),
               onClick: () => setMute(!mute),
-              icon: volumeOffSvg
+              icon: !!entry.stats?.gray ? <UilVolumeOff /> : <UilVolume />
             }
           ]
         : []),
@@ -155,7 +156,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.edit-history"),
               onClick: () => setEditHistory(!editHistory),
-              icon: historySvg
+              icon: <UilHistoryAlt />
             },
             {
               label: i18next.t("entry-menu.promote"),
@@ -166,7 +167,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry.address-copy"),
               onClick: copyAddress,
-              icon: linkVariantSvg
+              icon: <UilLink />
             }
           ]
         : []),
@@ -175,7 +176,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.share"),
               onClick: () => setShare(!share),
-              icon: shareVariantSvg
+              icon: <UilShare />
             }
           ]
         : []),
@@ -184,7 +185,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.unpin-from-community"),
               onClick: () => toggleUnpin("community"),
-              icon: pinSvg
+              icon: <UilMapPin />
             }
           ]
         : []),
@@ -193,7 +194,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.unpin-from-blog"),
               onClick: () => toggleUnpin("blog"),
-              icon: pinSvg
+              icon: <UilMapPin />
             }
           ]
         : []),
@@ -202,7 +203,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.pin-to-community"),
               onClick: () => togglePin("community"),
-              icon: pinSvg
+              icon: <UilMapPin />
             }
           ]
         : []),
@@ -211,7 +212,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("entry-menu.pin-to-blog"),
               onClick: () => togglePin("blog"),
-              icon: pinSvg
+              icon: <UilMapPin />
             }
           ]
         : []),
@@ -220,7 +221,7 @@ export function useMenuItemsGenerator(
             {
               label: i18next.t("g.delete"),
               onClick: () => setDelete_(!delete_),
-              icon: deleteForeverSvg
+              icon: <UilTrash />
             }
           ]
         : [])
