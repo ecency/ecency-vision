@@ -101,7 +101,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
                 isAnimated && {
                   opacity: 0,
                   scale: 0.95,
-                  y: 16
+                  y: 8
                 }
               }
               animate={
@@ -112,11 +112,13 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
                 }
               }
               exit={
-                isAnimated && {
-                  opacity: 0,
-                  scale: 0.95,
-                  y: 16
-                }
+                isAnimated
+                  ? {
+                      opacity: 0,
+                      scale: 0.95,
+                      y: 8
+                    }
+                  : {}
               }
               onClick={(e) => e.stopPropagation()}
               className={classNameObject({

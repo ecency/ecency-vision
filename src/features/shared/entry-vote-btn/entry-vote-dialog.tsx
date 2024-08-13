@@ -12,6 +12,7 @@ import { parseAsset } from "@/utils";
 import { votingPower } from "@/api/hive";
 import { getDynamicPropsQuery } from "@/api/queries";
 import { Account, Entry } from "@/entities";
+import { Spinner } from "@ui/spinner";
 
 type Mode = "up" | "down";
 
@@ -26,6 +27,7 @@ interface VoteDialogProps {
   onClick: (percent: number, estimated: number) => void;
   handleClickAway: () => void;
   isVoted: { upVoted: boolean; downVoted: boolean };
+  isVotingLoading: boolean;
 }
 
 export function EntryVoteDialog({
@@ -38,7 +40,8 @@ export function EntryVoteDialog({
   isVoted,
   setTipDialogMounted,
   handleClickAway,
-  account
+  account,
+  isVotingLoading
 }: VoteDialogProps) {
   const activeUser = useGlobalStore((s) => s.activeUser);
   const { data: dynamicProps } = getDynamicPropsQuery().useClientQuery();
@@ -235,8 +238,9 @@ export function EntryVoteDialog({
               noPadding={true}
               className="w-8"
               size="xs"
-              icon={chevronUpSvgForSlider}
+              icon={isVotingLoading ? <Spinner /> : chevronUpSvgForSlider}
               onClick={upVoteClicked}
+              disabled={isVotingLoading}
               outline={true}
             />
             <div className="estimated">
@@ -304,8 +308,9 @@ export function EntryVoteDialog({
               size="xs"
               appearance="danger"
               outline={true}
-              icon={chevronDownSvgForSlider}
+              icon={isVotingLoading ? <Spinner /> : chevronDownSvgForSlider}
               onClick={downVoteClicked}
+              disabled={isVotingLoading}
             />
           </div>
 
@@ -329,17 +334,15 @@ export function EntryVoteDialog({
 
       {days >= 7.0 && (
         <div className="vote-error error-message">
-          <p>{i18next.t("entry-list-item.old-post-error")}</p>
-          <div className="vote-error-suggestion">
-            {i18next.t("entry-list-item.old-post-error-suggestion")}
-            <div className="tipping-icon">
-              <EntryTipBtn
-                account={account}
-                entry={entry}
-                setTipDialogMounted={setTipDialogMounted}
-                handleClickAway={handleClickAway}
-              />
-            </div>
+          <span>{i18next.t("entry-list-item.old-post-error")}</span>
+          <span>{i18next.t("entry-list-item.old-post-error-suggestion")}</span>
+          <div className="tipping-icon inline-flex">
+            <EntryTipBtn
+              account={account}
+              entry={entry}
+              setTipDialogMounted={setTipDialogMounted}
+              handleClickAway={handleClickAway}
+            />
           </div>
         </div>
       )}

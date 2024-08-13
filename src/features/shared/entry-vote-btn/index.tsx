@@ -14,6 +14,7 @@ import { getActiveVotes } from "@/api/hive";
 import { prepareVotes } from "@/features/shared/entry-vote-btn/utils";
 import { classNameObject } from "@ui/util";
 import { EcencyEntriesCacheManagement } from "@/core/caches";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   entry: Entry;
@@ -50,16 +51,9 @@ export function EntryVoteBtn({ entry: originalEntry, isPostSlider, account }: Pr
 
     return { upVoted, downVoted };
   }, [activeUser, entry?.active_votes]);
-  const tooltipClass = useMemo(() => {
-    if (dialog) {
-      return "tooltip-vote";
-    }
-
-    return "";
-  }, [dialog]);
 
   useClickAway(rootRef, () => {
-    !tipDialog && dialog && setDialog(false);
+    if (dialog) setDialog(false);
   });
 
   const vote = useCallback(
@@ -113,17 +107,16 @@ export function EntryVoteBtn({ entry: originalEntry, isPostSlider, account }: Pr
           <div
             className={classNameObject({
               "btn-vote btn-up-vote": true,
-              "in-progress": isVotingLoading,
               "btn-vote voted": isVoted.downVoted || isVoted.upVoted,
               "btn-up-vote primary-btn-done": isVoted.upVoted,
               "btn-down-vote secondary-btn-done": isVoted.downVoted,
               "primary-btn secondary-btn": !isVoted.upVoted || !isVoted.downVoted
             })}
           >
-            <div className={tooltipClass}>
+            <div className="tooltip-vote">
               <span
                 className={`btn-inner ${
-                  tooltipClass.length > 0
+                  dialog
                     ? isVoted.upVoted
                       ? "primary-btn-done"
                       : isVoted.downVoted
@@ -134,9 +127,25 @@ export function EntryVoteBtn({ entry: originalEntry, isPostSlider, account }: Pr
               >
                 {chevronUpSvgForVote}
               </span>
-              {entry && activeUser && tooltipClass.length > 0 && (
-                <div>
-                  <div className="tooltiptext" onClick={(e) => e.stopPropagation()}>
+              <AnimatePresence>
+                {dialog && entry && activeUser && (
+                  <motion.div
+                    key="vote-dialog"
+                    initial={{
+                      opacity: 0,
+                      scale: 0.95
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.95
+                    }}
+                    className="tooltiptext"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <EntryVoteDialog
                       account={account}
                       isPostSlider={isPostSlider}
@@ -148,10 +157,11 @@ export function EntryVoteBtn({ entry: originalEntry, isPostSlider, account }: Pr
                       onClick={vote}
                       handleClickAway={() => setDialog(false)}
                       isVoted={isVoted}
+                      isVotingLoading={isVotingLoading}
                     />
-                  </div>
-                </div>
-              )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>

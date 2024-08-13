@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile menu and added dropdown animations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-menu/menu-items-generator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -358,15 +360,7 @@
       <workItem from="1723385234572" duration="7000000" />
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
-      <workItem from="1723549366576" duration="9115000" />
-    </task>
-    <task id="LOCAL-00108" summary="Fixed profile page posts infinite loader">
-      <option name="closed" value="true" />
-      <created>1721933044804</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1721933044804</updated>
+      <workItem from="1723549366576" duration="10277000" />
     </task>
     <task id="LOCAL-00109" summary="Fixed profile page searching">
       <option name="closed" value="true" />
@@ -752,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723577388757</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="Fixed profile menu and added dropdown animations">
+      <option name="closed" value="true" />
+      <created>1723578660785</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1723578660786</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

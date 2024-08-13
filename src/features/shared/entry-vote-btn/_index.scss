@@ -32,9 +32,8 @@
 
 .tooltip-vote .tooltiptext {
   width: 32vw;
-  @apply text-dark-200;
+  @apply rounded-xl bg-white text-dark-200 dark:bg-dark-200 dark:text-white border  border-[--border-color];
   text-align: center;
-  border-radius: 6px;
   padding: 10px;
   position: absolute;
   z-index: 2;
@@ -70,34 +69,19 @@
       width: 60px !important;
     }
   }
-
-  @include themify(day) {
-    box-shadow: 0px 1px 4px 1px #e7e7e7;
-    @apply bg-white;
-    @apply text-dark-200;
-  }
-
-  @include themify(night) {
-    box-shadow: 0px 1px 4px 1px #273445;
-    @apply bg-dark-200;
-    @apply text-white;
-  }
 }
 
 .primary-btn {
-  @apply text-blue-dark-sky;
-  @apply bg-transparent;
+  @apply text-blue-dark-sky bg-transparent;
 }
 
 .primary-btn-done {
   @include themify(night) {
-    @apply text-white;
-    @apply bg-blue-dark-sky;
+    @apply text-white bg-blue-dark-sky;
   }
 
   @include themify(day) {
-    @apply text-white;
-    @apply bg-blue-dark-sky;
+    @apply text-white bg-blue-dark-sky;
   }
 }
 
