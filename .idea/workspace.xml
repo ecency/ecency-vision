@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed profile menu and added dropdown animations">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed and improved entry voting slider actions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/entry-vote-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-vote-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/_index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/favorite-btn/_index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/favorite-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/follow-controls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/follow-controls/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -133,11 +136,11 @@
       <recent name="$PROJECT_DIR$/src/features/monitoring" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/[...slugs]/_entry-components" />
       <recent name="$PROJECT_DIR$/src/config" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
       <recent name="$PROJECT_DIR$/src/specs/features/shared" />
-      <recent name="$PROJECT_DIR$/src/specs/utils" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -360,15 +363,7 @@
       <workItem from="1723385234572" duration="7000000" />
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
-      <workItem from="1723549366576" duration="10277000" />
-    </task>
-    <task id="LOCAL-00109" summary="Fixed profile page searching">
-      <option name="closed" value="true" />
-      <created>1721934155565</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1721934155565</updated>
+      <workItem from="1723549366576" duration="12842000" />
     </task>
     <task id="LOCAL-00110" summary="Made entry list item RCS">
       <option name="closed" value="true" />
@@ -754,7 +749,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723578660786</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Fixed and improved entry voting slider actions">
+      <option name="closed" value="true" />
+      <created>1723579843003</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1723579843004</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -775,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed searching in community and profile pages" />
     <MESSAGE value="Fixed profile search loading" />
     <MESSAGE value="Fixed search list item highlights" />
     <MESSAGE value="Improved main screen menu" />
@@ -800,7 +802,8 @@
     <MESSAGE value="Fixed bugs with private API, added framer-motion animation to communities list" />
     <MESSAGE value="Improved modal animations, improved sidebar animations" />
     <MESSAGE value="Fixed profile menu and added dropdown animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed profile menu and added dropdown animations" />
+    <MESSAGE value="Fixed and improved entry voting slider actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed and improved entry voting slider actions" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

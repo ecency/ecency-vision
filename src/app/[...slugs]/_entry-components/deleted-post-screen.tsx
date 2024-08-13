@@ -3,11 +3,11 @@
 import { renderPostBody } from "@ecency/render-helper";
 import { EditHistory, Navbar, ScrollToTop, StaticNavbar, Theme } from "@/features/shared";
 import { useGlobalStore } from "@/core/global-store";
-import { AuthorInfoCard } from "@/app/[...slugs]/_entry-components/author-info-card";
 import i18next from "i18next";
 import { SimilarEntries } from "@/app/[...slugs]/_entry-components/similar-entries";
 import { EcencyClientServerBridge } from "@/core/client-server-bridge";
 import { EntryPageContext } from "@/app/[...slugs]/_entry-components/context";
+import { AuthorInfoCard } from "@/app/[...slugs]/_entry-components/author-info-card";
 
 interface Props {
   deletedEntry: {

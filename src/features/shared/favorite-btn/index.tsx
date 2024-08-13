@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./_index.scss";
 import { Button } from "@ui/button";
 import { useGlobalStore } from "@/core/global-store";
 import { LoginRequired } from "@/features/shared";
@@ -41,6 +40,7 @@ export function FavouriteBtn({ targetUsername }: Props) {
           <span className="favorite-btn">
             <Tooltip content={i18next.t("favorite-btn.add")}>
               <Button
+                size="sm"
                 disabled={inProgress}
                 onClick={() => deleteFrom({ account: targetUsername })}
                 icon={personFavoriteOutlineSvg}
@@ -53,6 +53,7 @@ export function FavouriteBtn({ targetUsername }: Props) {
         <span className="favorite-btn">
           <Tooltip content={i18next.t("favorite-btn.delete")}>
             <Button
+              size="sm"
               disabled={inProgress}
               onClick={() => deleteFrom({ account: targetUsername })}
               icon={personFavoriteSvg}
@@ -64,6 +65,7 @@ export function FavouriteBtn({ targetUsername }: Props) {
         <span className="favorite-btn">
           <Tooltip content={i18next.t("favorite-btn.add")}>
             <Button
+              size="sm"
               disabled={inProgress}
               onClick={() => add({ account: targetUsername })}
               icon={personFavoriteOutlineSvg}

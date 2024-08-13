@@ -24,7 +24,7 @@ function MuteButton({ disabled, following }: ButtonProps) {
 
   return activeUser?.username !== following ? (
     <LoginRequired>
-      <Button style={{ marginRight: "5px" }} disabled={disabled} onClick={() => ignore()}>
+      <Button size="sm" style={{ marginRight: "5px" }} disabled={disabled} onClick={() => ignore()}>
         {i18next.t("follow-controls.mute")}
       </Button>
     </LoginRequired>
@@ -40,7 +40,7 @@ function FollowButton({ disabled, following }: ButtonProps) {
 
   return activeUser?.username !== following ? (
     <LoginRequired>
-      <Button style={{ marginRight: "5px" }} disabled={disabled} onClick={follow}>
+      <Button size="sm" style={{ marginRight: "5px" }} disabled={disabled} onClick={follow}>
         {i18next.t("follow-controls.follow")}
       </Button>
     </LoginRequired>
@@ -56,7 +56,7 @@ function UnFollowButton({ disabled, following }: ButtonProps) {
 
   return (
     <LoginRequired>
-      <Button style={{ marginRight: "5px" }} disabled={disabled} onClick={unFollow}>
+      <Button size="sm" style={{ marginRight: "5px" }} disabled={disabled} onClick={unFollow}>
         {i18next.t("follow-controls.unFollow")}
       </Button>
     </LoginRequired>

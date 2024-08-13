@@ -13,7 +13,10 @@ export function EntryPageProfileBox({ entry }: Props): JSX.Element {
   const { showProfileBox } = EcencyClientServerBridge.useSafeContext(EntryPageContext);
 
   return !isMobile ? (
-    <div id="avatar-fixed-container" className="invisible">
+    <div
+      id="avatar-fixed-container"
+      className="invisible fixed top-[120px] left-4 lg:left-[2.5%] xl:left-[8%]"
+    >
       {showProfileBox && <AuthorInfoCard entry={entry} />}
     </div>
   ) : (
