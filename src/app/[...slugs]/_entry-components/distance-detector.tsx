@@ -28,7 +28,7 @@ export function useDistanceDetector<T extends Element | null>(
     if (infoCard != null && window.scrollY > 180 && top && !(top <= 0)) {
       infoCard.classList.replace("invisible", "visible");
       setShowProfileBox(true);
-    } else if (infoCard != null && window.scrollY <= 180) {
+    } else if (infoCard != null && window.scrollY <= 240) {
       infoCard.classList.replace("visible", "invisible");
       setShowProfileBox(false);
     } else if (top && top <= 0 && infoCard !== null) {

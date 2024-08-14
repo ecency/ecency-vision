@@ -39,6 +39,7 @@ export function EntryPageContent({ entry, rawParam, isEdit, category }: Props) {
       {!showNsfwWarning && (
         <>
           <EntryPageCrossPostBody entry={entry} />
+          <EntryPageProfileBox entry={entry} />
           <div className="entry-header">
             <EntryPageWarnings entry={entry} />
             <EntryPageIsCommentHeader entry={entry} />
@@ -46,7 +47,6 @@ export function EntryPageContent({ entry, rawParam, isEdit, category }: Props) {
             <EntryPageMainInfo entry={entry} />
             <EntryPageBodyViewer entry={entry} rawParam={rawParam} isEdit={isEdit} />
           </div>
-          <EntryPageProfileBox entry={entry} />
           <div className="entry-footer">
             <EntryTags entry={entry} />
             <EntryFooterInfo entry={entry} />

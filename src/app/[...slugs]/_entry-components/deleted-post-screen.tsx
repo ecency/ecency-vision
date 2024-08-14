@@ -35,7 +35,10 @@ export const DeletedPostScreen = ({ username, permlink, staticNav, deletedEntry 
           <div className="grid grid-cols-12">
             <div className="w-0 lg:w-auto lg:col-span-2 mt-5">
               <div className="mb-4 mt-5">
-                <div id="avatar-fixed-container" className="invisible">
+                <div
+                  id="avatar-fixed-container"
+                  className="invisible sticky top-[8rem] translate-x-[calc(-100%-2rem)] max-w-[180px]"
+                >
                   {!isMobile && showProfileBox && (
                     <AuthorInfoCard entry={{ author: username.replace("@", "") } as any} />
                   )}

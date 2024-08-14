@@ -7,6 +7,7 @@ import { Entry } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import { FavouriteBtn } from "@/features/shared/favorite-btn";
 import { getAccountFullQuery } from "@/api/queries";
+import { motion } from "framer-motion";
 
 interface Props {
   entry: Entry;
@@ -21,7 +22,11 @@ export const AuthorInfoCard = ({ entry }: Props) => {
   const { data } = getAccountFullQuery(!isMobile ? entry.author : undefined).useClientQuery();
 
   return (
-    <div className="w-[180px] flex-col gap-4 hidden md:flex">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: -8 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      className="w-[180px] flex-col gap-4 hidden md:flex"
+    >
       <div className="flex items-center gap-4">
         <ProfileLink username={entry?.author}>
           <UserAvatar username={entry.author} size="large" />
@@ -46,6 +51,6 @@ export const AuthorInfoCard = ({ entry }: Props) => {
           <FavouriteBtn targetUsername={entry.author} />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
