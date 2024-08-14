@@ -43,13 +43,13 @@ export function EntryPageMainInfo({ entry }: Props) {
           </ProfileLink>
         </div>
 
-        <div className="info-line-2">
+        <div className="info-line-2 gap-1">
           <span className="date" title={published.format("LLLL")}>
             {published.fromNow()}
           </span>
           <span className="separator circle-separator" />
           <div className="entry-tag">
-            <span className="in-tag">{i18next.t("entry.community-in")}</span>
+            <span className="in-tag mr-2">{i18next.t("entry.community-in")}</span>
             <TagLink tag={entry.category} type="link">
               <div className="tag-name">
                 {entry.community ? entry.community_title : `#${entry.category}`}

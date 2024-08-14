@@ -7,6 +7,8 @@ import { useGlobalStore } from "@/core/global-store";
 import { getCommunityCache } from "@/core/caches";
 import i18next from "i18next";
 import { useRouter } from "next/navigation";
+import { Badge } from "@ui/badge";
+import Link from "next/link";
 
 export const makePath = (filter: string, tag: string): string => {
   // created is default filter for community pages
@@ -47,27 +49,32 @@ export function TagLink({ tag, type, children }: Props) {
   const { data: community } = getCommunityCache(tag as string).useClientQuery();
 
   if (type === "link") {
-    const props = Object.assign({}, children.props, {
-      href,
-      onClick: (e: React.MouseEvent<HTMLElement>) => {
-        e.preventDefault();
-        const newLoc = typeof tag === "string" ? makePath(filter, tag) : makePath(filter, tag.name);
-        router.push(newLoc);
+    const props = Object.assign(
+      {},
+      { children: <Badge>{children}</Badge> },
+      {
+        href,
+        onClick: (e: React.MouseEvent<HTMLElement>) => {
+          e.preventDefault();
+          const newLoc =
+            typeof tag === "string" ? makePath(filter, tag) : makePath(filter, tag.name);
+          router.push(newLoc);
+        }
       }
-    });
+    );
 
     if (typeof tag === "string") {
       props.title = i18next.t("tag.unmoderated");
       if (community) {
-        props.children = community.title;
+        props.children = <Badge>{community.title}</Badge>;
         props.title = i18next.t("tag.moderated");
       }
     } else {
-      props.children = tag.title;
+      props.children = <Badge>{tag.title}</Badge>;
       props.title = i18next.t("tag.moderated");
     }
 
-    return createElement("a", props);
+    return <Link {...props} />;
   } else if (type === "span") {
     const props = Object.assign({}, children.props);
 

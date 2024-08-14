@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved author info card layout and added animations">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved and fixed entry discussions bots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-bots-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-bots-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-controls.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-footer-info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-main-info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-tags.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-tags.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/entry.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-bots.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-bots.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-info/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-info/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/badge/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -359,15 +368,7 @@
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
       <workItem from="1723549366576" duration="14646000" />
-      <workItem from="1723653618422" duration="2128000" />
-    </task>
-    <task id="LOCAL-00112" summary="Fixed trading view charts widget">
-      <option name="closed" value="true" />
-      <created>1722108682401</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1722108682401</updated>
+      <workItem from="1723653618422" duration="5563000" />
     </task>
     <task id="LOCAL-00113" summary="Fixed coingecko api request">
       <option name="closed" value="true" />
@@ -753,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723654523758</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Improved and fixed entry discussions bots">
+      <option name="closed" value="true" />
+      <created>1723658162554</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1723658162554</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +783,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved main screen menu" />
     <MESSAGE value="Added Dockerfile and GitHub CI/CD" />
     <MESSAGE value="Added ns-query, yarn.lock" />
     <MESSAGE value="Moved and migrated utils tests" />
@@ -799,7 +807,8 @@
     <MESSAGE value="Fixed and improved entry voting slider actions" />
     <MESSAGE value="Fixed and updated author info card" />
     <MESSAGE value="Improved author info card layout and added animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved author info card layout and added animations" />
+    <MESSAGE value="Improved and fixed entry discussions bots" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved and fixed entry discussions bots" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

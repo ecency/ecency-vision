@@ -13,10 +13,10 @@ export function EntryFooterInfo({ entry }: Props) {
   const app = appName(entry.json_metadata.app);
   const appShort = app.split("/")[0].split(" ")[0];
   const published = moment(parseDate(entry.created));
-  const reputation = accountReputation(entry.original_entry?.author_reputation ?? 0);
+  const reputation = accountReputation(entry.author_reputation ?? 0);
 
   return (
-    <div className="entry-info">
+    <div className="entry-info text-sm">
       <div className="date" title={published.format("LLLL")}>
         {published.fromNow()}
       </div>

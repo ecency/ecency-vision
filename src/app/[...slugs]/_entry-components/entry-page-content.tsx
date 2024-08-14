@@ -45,9 +45,9 @@ export function EntryPageContent({ entry, rawParam, isEdit, category }: Props) {
             <EntryPageIsCommentHeader entry={entry} />
             <h1 className="entry-title">{entry.title}</h1>
             <EntryPageMainInfo entry={entry} />
-            <EntryPageBodyViewer entry={entry} rawParam={rawParam} isEdit={isEdit} />
           </div>
-          <div className="entry-footer">
+          <EntryPageBodyViewer entry={entry} rawParam={rawParam} isEdit={isEdit} />
+          <div className="entry-footer flex-wrap mb-4 lg:mb-8 border border-[--border-color] p-2 md:p-4 rounded-2xl">
             <EntryTags entry={entry} />
             <EntryFooterInfo entry={entry} />
             <EntryFooterControls entry={entry} />

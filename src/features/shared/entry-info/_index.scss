@@ -6,14 +6,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   font-size: 14px;
-  height: 40px;
   line-height: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   position: relative;
-
-  @media (min-width: $sm-break) {
-    font-size: 18px;
-  }
 
   @include themify(day) {
     @apply text-gray-steel;
@@ -86,28 +81,6 @@
 
         .separator {
           display: block;
-        }
-      }
-
-      .entry-tag {
-        .in-tag {
-          margin-right: 4px;
-        }
-
-        .tag-name {
-          font-weight: 500;
-
-          @include themify(day) {
-            @apply text-gray-steel;
-          }
-
-          @include themify(night) {
-            @apply text-gray-pinkish;
-          }
-
-          &:hover {
-            @apply text-blue-dark-sky;
-          }
         }
       }
 

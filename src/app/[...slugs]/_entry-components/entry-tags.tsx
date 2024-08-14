@@ -11,7 +11,7 @@ export function EntryTags({ entry }: Props) {
   );
 
   return (
-    <div className="entry-tags">
+    <div className="entry-tags mb-4">
       {tags?.map((t, i) =>
         typeof t === "string" ? (
           <TagLink
@@ -26,7 +26,7 @@ export function EntryTags({ entry }: Props) {
             }
             type="link"
           >
-            <div className="entry-tag">{t}</div>
+            {t}
           </TagLink>
         ) : (
           <></>

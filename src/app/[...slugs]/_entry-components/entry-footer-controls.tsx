@@ -47,29 +47,33 @@ export function EntryFooterControls({ entry }: Props) {
   useDistanceDetector(ref, showProfileBox, showWordCount, setShowProfileBox, setShowWordCount);
 
   return (
-    <div className="entry-controls" ref={ref}>
-      <EntryVoteBtn isPostSlider={true} entry={entry} />
-      <EntryPayout entry={entry} />
-      <EntryVotes entry={entry} />
-      <EntryTipBtn entry={entry} />
-      {!isOwnEntry && <EntryReblogBtn entry={entry} />}
+    <div className="entry-controls text-sm flex-wrap gap-4" ref={ref}>
+      <div className="flex items-center">
+        <EntryVoteBtn isPostSlider={true} entry={entry} />
+        <EntryPayout entry={entry} />
+        <EntryVotes entry={entry} />
+        <EntryTipBtn entry={entry} />
+        {!isOwnEntry && <EntryReblogBtn entry={entry} />}
+      </div>
       <span className="flex-spacer" />
-      <Tooltip content={i18next.t("entry.raw")}>
-        <Button
-          size="sm"
-          appearance="gray-link"
-          onClick={() => setIsRawContent(!isRawContent)}
-          icon={<UilEye />}
+      <div className="flex items-center">
+        <Tooltip content={i18next.t("entry.raw")}>
+          <Button
+            size="sm"
+            appearance="gray-link"
+            onClick={() => setIsRawContent(!isRawContent)}
+            icon={<UilEye />}
+          />
+        </Tooltip>
+        <BookmarkBtn entry={entry} />
+        <div className="border-l border-[--border-color] h-6 ml-4 w-[1px]" />
+        <EntryMenu
+          entry={entry}
+          alignBottom={true}
+          separatedSharing={true}
+          toggleEdit={() => router.push(`/${entry.url}/edit`)}
         />
-      </Tooltip>
-      <BookmarkBtn entry={entry} />
-      <div className="border-l h-6 ml-4 w-[1px]" />
-      <EntryMenu
-        entry={entry}
-        alignBottom={true}
-        separatedSharing={true}
-        toggleEdit={() => router.push(`/${entry.url}/edit`)}
-      />
+      </div>
     </div>
   );
 }

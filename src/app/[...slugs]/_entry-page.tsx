@@ -11,7 +11,7 @@ import {
 } from "@/app/[...slugs]/_entry-components";
 import { Feedback, Navbar, ScrollToTop, Theme } from "@/features/shared";
 import "./entry.scss";
-import { getDeletedEntryQuery, getPostQuery } from "@/api/queries";
+import { getAccountFullQuery, getDeletedEntryQuery, getPostQuery } from "@/api/queries";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -24,6 +24,7 @@ interface Props {
 
 export async function EntryPage({ category, searchParams, permlink, username, isEdit }: Props) {
   const entry = await getPostQuery(username, permlink).prefetch();
+  const author = await getAccountFullQuery(entry.author).prefetch();
 
   if (!entry) {
     const deletedEntry = await getDeletedEntryQuery(username, permlink).prefetch();

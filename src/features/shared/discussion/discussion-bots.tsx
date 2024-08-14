@@ -59,13 +59,13 @@ export function DiscussionBots({ entries }: Props) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 8 }}
                 ref={contentRef}
-                className="bg-gray-100 dark:bg-gray-800 dark:text-white p-2 max-w-[280px] text-sm rounded-2xl border border-(--border-color)"
+                className="bg-gray-100 dark:bg-gray-800 dark:text-white p-2 max-w-[280px] text-sm rounded-2xl border border-[--border-color]"
               >
                 <div className="text-sm font-semibold opacity-50 pb-2">Bots</div>
                 <div className="max-h-[280px] overflow-y-auto">
                   {entries.map((e) => (
                     <div
-                      className="bg-white p-2 border rounded-xl border-(--border-color)"
+                      className="bg-white p-2 border rounded-xl border-[--border-color]"
                       key={e.author + e.permlink}
                     >
                       <div className="flex items-center gap-3 justify-between">
