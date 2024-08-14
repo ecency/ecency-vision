@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed and updated author info card">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved author info card layout and added animations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/deleted-post-screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/distance-detector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/distance-detector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/entry-page-profile-box.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-bots-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-bots-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/discussion/discussion-bots.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/discussion/discussion-bots.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -362,15 +359,7 @@
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
       <workItem from="1723549366576" duration="14646000" />
-      <workItem from="1723653618422" duration="720000" />
-    </task>
-    <task id="LOCAL-00111" summary="Fixed community page infinite loading and searching behavior">
-      <option name="closed" value="true" />
-      <created>1722020594022</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1722020594022</updated>
+      <workItem from="1723653618422" duration="2128000" />
     </task>
     <task id="LOCAL-00112" summary="Fixed trading view charts widget">
       <option name="closed" value="true" />
@@ -756,7 +745,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723584760050</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="Improved author info card layout and added animations">
+      <option name="closed" value="true" />
+      <created>1723654523756</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1723654523758</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -777,7 +774,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed search list item highlights" />
     <MESSAGE value="Improved main screen menu" />
     <MESSAGE value="Added Dockerfile and GitHub CI/CD" />
     <MESSAGE value="Added ns-query, yarn.lock" />
@@ -802,7 +798,8 @@
     <MESSAGE value="Fixed profile menu and added dropdown animations" />
     <MESSAGE value="Fixed and improved entry voting slider actions" />
     <MESSAGE value="Fixed and updated author info card" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed and updated author info card" />
+    <MESSAGE value="Improved author info card layout and added animations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved author info card layout and added animations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

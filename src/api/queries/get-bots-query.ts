@@ -7,5 +7,6 @@ export const getBotsQuery = () =>
     queryKey: [QueryIdentifiers.GET_BOTS],
     queryFn: () =>
       axios.get<string[]>(apiBase("/private-api/public/bots")).then((resp) => resp.data),
-    initialData: []
+    refetchOnMount: true,
+    staleTime: Infinity
   });
