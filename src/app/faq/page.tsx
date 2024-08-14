@@ -4,7 +4,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import Image from "next/image";
-import { FaqSearchBar, FaqSearchBarResultInfo } from "@/app/faq/_components";
+import { FaqSearchBar, FaqSearchBarResultInfo, FaqSearchListener } from "@/app/faq/_components";
 import { searchWithinFaq } from "@/app/faq/utils";
 import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
@@ -36,6 +36,7 @@ export default function FAQ({ searchParams }: Props) {
       <Feedback />
       <Theme />
       <Navbar />
+      <FaqSearchListener searchResult={searchResult} />
       <NavigationLocaleWatcher searchParams={searchParams} />
 
       <div
