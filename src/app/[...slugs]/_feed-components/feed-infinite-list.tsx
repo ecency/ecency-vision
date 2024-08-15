@@ -29,6 +29,7 @@ export function FeedInfiniteList({ filter, tag }: Props) {
         entries={entryList}
         sectionParam={filter}
         isPromoted={false}
+        showEmptyPlaceholder={false}
       />
       <DetectBottom onBottom={() => fetchNextPage()} />
     </>

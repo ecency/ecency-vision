@@ -12,6 +12,7 @@ interface Props {
   sectionParam: string;
   isPromoted: boolean;
   username: string;
+  showEmptyPlaceholder?: boolean;
 }
 
 export function EntryListContent({
@@ -19,7 +20,8 @@ export function EntryListContent({
   entries,
   isPromoted,
   loading,
-  username
+  username,
+  showEmptyPlaceholder = true
 }: Props) {
   const usePrivate = useGlobalStore((s) => s.usePrivate);
 
@@ -64,7 +66,9 @@ export function EntryListContent({
           })}
         </>
       ) : (
-        <EntryListContentNoData username={username} loading={loading} section={section} />
+        showEmptyPlaceholder && (
+          <EntryListContentNoData username={username} loading={loading} section={section} />
+        )
       )}
     </>
   );

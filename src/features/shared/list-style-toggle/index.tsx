@@ -20,7 +20,7 @@ export function ListStyleToggle({ iconClass, float }: Props) {
     <div className="viewLayouts">
       <Dropdown>
         <DropdownToggle>
-          <Button appearance="gray-link">
+          <Button size="sm" noPadding={true} appearance="gray-link">
             <span className="view-feed">
               <span className={`view-layout ${iconClass ? iconClass : ""}`}>
                 {listStyle === "grid" ? gridView : listView}
