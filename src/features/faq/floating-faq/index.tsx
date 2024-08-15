@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   articleSvg,
   chevronDownSvgForSlider,
@@ -8,15 +8,17 @@ import {
 } from "@/assets/img/svg";
 import data from "./path.json";
 import "./index.scss";
-import { FormControl, InputGroup } from "@ui/input";
+import { FormControl } from "@ui/input";
 import { Button } from "@ui/button";
 import { Accordion, AccordionCollapse, AccordionToggle } from "@ui/accordion";
 import { faqKeysGeneral } from "@/consts";
-import { ClickAwayListener } from "@/features/shared";
 import i18next from "i18next";
 import { classNameObject } from "@ui/util";
 import { Tooltip } from "@ui/tooltip";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import useClickAway from "react-use/lib/useClickAway";
+import Link from "next/link";
 
 export interface FaqObject {
   show: boolean;
@@ -31,6 +33,7 @@ export const handleFloatingContainer = (show: boolean) => {
 };
 
 export const FloatingFAQ = () => {
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
   const [show, setShow] = useState(false);
@@ -45,6 +48,8 @@ export const FloatingFAQ = () => {
   const [datatoShow, setDatatoShow] = useState<string[]>([]);
   const [innerWidth, setInnerWidth] = useState(0);
   const [isSubmitPage, setIsSubmitPage] = useState(false);
+
+  useClickAway(rootRef, () => show && setShow(false));
 
   useEffect(() => {
     window.addEventListener("handleShow", onHandleShow);
@@ -138,7 +143,7 @@ export const FloatingFAQ = () => {
   };
   return (
     <>
-      <ClickAwayListener className="floating-faq-button" onClickAway={() => show && setShow(false)}>
+      <div className="floating-faq-button" ref={rootRef}>
         {display && !isSubmitPage && (
           <Button
             noPadding={innerWidth < 768}
@@ -151,157 +156,107 @@ export const FloatingFAQ = () => {
           </Button>
         )}
 
-        {show && display ? (
-          <div className={`floating-container ${isSubmitPage ? "r-[10rem]" : ""}`}>
-            <div className="faq-welcome">
-              <h3 className="faq-welcome-message">{i18next.t("floating-faq.welcome")}</h3>
-              <Button
-                className={classNameObject({
-                  "absolute top-7 right-4": true,
-                  "right-4": !isSubmitPage,
-                  "right-[10rem]": isSubmitPage
-                })}
-                appearance="gray-link"
-                onClick={() => setShow(false)}
-                icon={closeSvg}
-              />
-            </div>
-            <div className="faq-content-list">
-              <div className="faq-content-list-item">
-                <Accordion defaultActiveKey="0">
-                  <AccordionToggle eventKey="0">
-                    <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
-                      <div className="flex justify-between items-center section-card relative">
-                        <div className="flex items-center">
-                          <div className="flex items-center ml-3">
-                            <div className="section-title">
-                              {i18next.t("floating-faq.need-help")}
+        <AnimatePresence>
+          {show && display ? (
+            <motion.div
+              key="faq"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className={`floating-container origin-bottom-right ${
+                isSubmitPage ? "r-[10rem]" : ""
+              }`}
+            >
+              <div className="faq-welcome">
+                <h3 className="faq-welcome-message font-bold">
+                  {i18next.t("floating-faq.welcome")}
+                </h3>
+                <Button
+                  className={classNameObject({
+                    "absolute top-7 right-4 text-white hover:opacity-50 hover:text-white": true,
+                    "right-4": !isSubmitPage,
+                    "right-[10rem]": isSubmitPage
+                  })}
+                  appearance="gray-link"
+                  onClick={() => setShow(false)}
+                  icon={closeSvg}
+                />
+              </div>
+              <div className="faq-content-list">
+                <div className="faq-content-list-item">
+                  <Accordion defaultActiveKey="0">
+                    <AccordionToggle eventKey="0">
+                      <div className={helpClass} onClick={() => setExpandedHelp(!expandedHelp)}>
+                        <div className="flex justify-between items-center section-card relative">
+                          <div className="flex items-center">
+                            <div className="flex items-center ml-3">
+                              <div className="section-title">
+                                {i18next.t("floating-faq.need-help")}
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <Tooltip content={i18next.t("floating-faq.toggle-icon-info")}>
-                          <AccordionToggle
-                            as={Button}
-                            appearance="link"
-                            noPadding={true}
-                            eventKey="0"
-                            onClick={() => {
-                              setExpandedHelp(!expandedHelp);
-                            }}
-                            icon={expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider}
-                          />
-                        </Tooltip>
-                      </div>
-                    </div>
-                  </AccordionToggle>
-
-                  <AccordionCollapse eventKey="0">
-                    <div className="help-content">
-                      <div className="card-body p-3">
-                        <div className="mb-3 search-bar w-full">
-                          <FormControl
-                            type="text"
-                            placeholder={i18next.t("floating-faq.search-placeholder")}
-                            value={searchText}
-                            onChange={(e) => {
-                              setSearchText(e.target.value);
-                            }}
-                          />
+                          <Tooltip content={i18next.t("floating-faq.toggle-icon-info")}>
+                            <AccordionToggle
+                              as={Button}
+                              appearance="link"
+                              noPadding={true}
+                              eventKey="0"
+                              onClick={() => {
+                                setExpandedHelp(!expandedHelp);
+                              }}
+                              icon={expandedHelp ? chevronUpSvgForSlider : chevronDownSvgForSlider}
+                            />
+                          </Tooltip>
                         </div>
-                        {!searchText ? (
-                          <p className="user-info">{i18next.t("floating-faq.suggestion")}</p>
-                        ) : !datatoShow.length ? (
-                          <p className="user-info">{i18next.t("floating-faq.no-results")}</p>
-                        ) : (
-                          ""
-                        )}
-                        {datatoShow.map((x) => {
-                          return (
-                            <a className="faq-article" href={`/faq#${x}`} target="_blank" key={x}>
-                              <div className="faq-image">{articleSvg}</div>
-                              {i18next.t(`static.faq.${x}-header`)}
-                            </a>
-                          );
-                        })}
                       </div>
-                    </div>
-                  </AccordionCollapse>
-                </Accordion>
-              </div>
-              <div className="faq-content-list-item contact-us">
-                <Accordion>
-                  <AccordionToggle eventKey="1">
-                    <div
-                      className={contactClass}
-                      onClick={() => setExpandedContact(!expandedContact)}
-                    >
-                      <div className="flex justify-between items-center section-card relative">
-                        <div className="flex items-center">
-                          <div className="flex items-center ml-3">
-                            <div className="section-title">{i18next.t("floating-faq.contact")}</div>
+                    </AccordionToggle>
+
+                    <AccordionCollapse eventKey="0">
+                      <div className="help-content">
+                        <div className="card-body">
+                          <div className="mb-3 search-bar w-full">
+                            <FormControl
+                              type="text"
+                              placeholder={i18next.t("floating-faq.search-placeholder")}
+                              value={searchText}
+                              onChange={(e) => {
+                                setSearchText(e.target.value);
+                              }}
+                            />
                           </div>
+                          {!searchText ? (
+                            <p className="user-info">{i18next.t("floating-faq.suggestion")}</p>
+                          ) : !datatoShow.length ? (
+                            <p className="user-info">{i18next.t("floating-faq.no-results")}</p>
+                          ) : (
+                            ""
+                          )}
+                          {datatoShow.map((x) => {
+                            return (
+                              <a className="faq-article" href={`/faq#${x}`} target="_blank" key={x}>
+                                <div className="faq-image">{articleSvg}</div>
+                                {i18next.t(`static.faq.${x}-header`)}
+                              </a>
+                            );
+                          })}
                         </div>
-                        <Tooltip content={i18next.t("floating-faq.toggle-icon-info")}>
-                          <AccordionToggle
-                            as={Button}
-                            appearance="link"
-                            eventKey="1"
-                            noPadding={true}
-                            onClick={() => {
-                              setExpandedContact(!expandedContact);
-                            }}
-                            icon={expandedContact ? chevronUpSvgForSlider : chevronDownSvgForSlider}
-                          />
-                        </Tooltip>
                       </div>
-                    </div>
-                  </AccordionToggle>
-                  <AccordionCollapse eventKey="1">
-                    <div className="card-body p-3">
-                      <div className="mb-3">
-                        <InputGroup className="username" prepend="@">
-                          <FormControl
-                            type="text"
-                            autoFocus={true}
-                            required={true}
-                            placeholder={i18next.t("floating-faq.username")}
-                          />
-                        </InputGroup>
-                      </div>
-                      <div className="mb-3">
-                        <InputGroup className="message">
-                          <FormControl
-                            type="textarea"
-                            autoFocus={true}
-                            required={true}
-                            maxLength={1000}
-                            placeholder={i18next.t("floating-faq.message")}
-                          />
-                        </InputGroup>
-                      </div>
-                      <Button
-                        className="submit-btn"
-                        type="submit"
-                        onClick={() =>
-                          window.open(
-                            "mailto:bug@ecency.com?Subject=Reporting issue&Body=Hello team, \n I would like to report issue: \n",
-                            "_blank"
-                          )
-                        }
-                      >
-                        {i18next.t("floating-faq.submit")}
-                      </Button>
-                    </div>
-                  </AccordionCollapse>
-                </Accordion>
+                    </AccordionCollapse>
+                  </Accordion>
+                </div>
+                <div className="faq-content-list-item contact-us p-4">
+                  <Link target="_blank" href="/chats/hive-125126/channel">
+                    {i18next.t("floating-faq.contact")}
+                  </Link>
+                </div>
               </div>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </ClickAwayListener>
+            </motion.div>
+          ) : (
+            <></>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };

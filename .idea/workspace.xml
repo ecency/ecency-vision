@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed trending tags closing and styles">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Removed extra empty feed data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-infinite-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-infinite-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/list-style-toggle/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/list-style-toggle/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/list-style-toggle/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/list-style-toggle/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -362,15 +360,7 @@
       <workItem from="1723484691361" duration="8636000" />
       <workItem from="1723549366576" duration="14646000" />
       <workItem from="1723653618422" duration="8696000" />
-      <workItem from="1723742916701" duration="2657000" />
-    </task>
-    <task id="LOCAL-00116" summary="Fixed build semantic errors">
-      <option name="closed" value="true" />
-      <created>1722114289284</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1722114289284</updated>
+      <workItem from="1723742916701" duration="4975000" />
     </task>
     <task id="LOCAL-00117" summary="Fixed build dynamic routes">
       <option name="closed" value="true" />
@@ -756,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723744514298</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Removed extra empty feed data">
+      <option name="closed" value="true" />
+      <created>1723746162679</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1723746162679</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -777,7 +775,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tried to add some tests" />
     <MESSAGE value="Initialize i18n on server and client separately" />
     <MESSAGE value="Fixed profile page active user using on SSR" />
     <MESSAGE value="Fixed feed controversial tags selection" />
@@ -802,7 +799,8 @@
     <MESSAGE value="Improved and fixed reputation and entry footer layout" />
     <MESSAGE value="Fixed FAQ page scrolling by anchor" />
     <MESSAGE value="Fixed trending tags closing and styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed trending tags closing and styles" />
+    <MESSAGE value="Removed extra empty feed data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed extra empty feed data" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

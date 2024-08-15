@@ -116,7 +116,6 @@
   .section-title {
     font-weight: bold;
     font-size: 1rem;
-    padding: 1rem 0.7rem;
 
     @include themify(day) {
       @apply text-gray-charcoal-010;
@@ -189,11 +188,7 @@
 
   .help-content {
     width: 405px;
-    padding: 0 2rem;
-  }
-
-  .card-body {
-    padding: 0 0 4rem !important;
+    padding: 0 1rem;
   }
 }
 
@@ -211,15 +206,6 @@
       margin-top: -1.9rem;
       height: 49vh;
       width: 300px;
-
-      .faq-content-list-item {
-        width: 268px;
-
-        .section-title {
-          padding: 0.7rem 0.4rem;
-          font-size: 1rem;
-        }
-      }
     }
 
     .help-content {
