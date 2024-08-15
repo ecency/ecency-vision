@@ -17,5 +17,6 @@ export const getTrendingTagsQuery = (limit = 250) =>
     getNextPageParam: (lastPage) => ({
       afterTag: lastPage?.[lastPage?.length - 1]
     }),
-    initialData: { pages: [], pageParams: [] }
+    staleTime: Infinity,
+    refetchOnMount: true
   });

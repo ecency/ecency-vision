@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved and fixed reputation and entry footer layout">
-      <change afterPath="$PROJECT_DIR$/src/app/faq/_components/faq-anchor-listener.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed FAQ page scrolling by anchor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutations/notifications/update-notifications-settings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/_components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/faq/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/trending-tags-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/trending-tags-card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/tag/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -361,15 +362,8 @@
       <workItem from="1723392875850" duration="1731000" />
       <workItem from="1723484691361" duration="8636000" />
       <workItem from="1723549366576" duration="14646000" />
-      <workItem from="1723653618422" duration="7789000" />
-    </task>
-    <task id="LOCAL-00114" summary="Added infinite scrolling in a feed">
-      <option name="closed" value="true" />
-      <created>1722110498902</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1722110498902</updated>
+      <workItem from="1723653618422" duration="8696000" />
+      <workItem from="1723742916701" duration="1550000" />
     </task>
     <task id="LOCAL-00115" summary="Improved entry menu">
       <option name="closed" value="true" />
@@ -755,7 +749,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723661652034</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Fixed FAQ page scrolling by anchor">
+      <option name="closed" value="true" />
+      <created>1723663911769</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1723663911769</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ns-query, yarn.lock" />
     <MESSAGE value="Moved and migrated utils tests" />
     <MESSAGE value="Tried to add some tests" />
     <MESSAGE value="Initialize i18n on server and client separately" />
@@ -801,7 +802,8 @@
     <MESSAGE value="Improved author info card layout and added animations" />
     <MESSAGE value="Improved and fixed entry discussions bots" />
     <MESSAGE value="Improved and fixed reputation and entry footer layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved and fixed reputation and entry footer layout" />
+    <MESSAGE value="Fixed FAQ page scrolling by anchor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed FAQ page scrolling by anchor" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

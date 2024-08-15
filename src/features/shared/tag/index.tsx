@@ -63,17 +63,6 @@ export function TagLink({ tag, type, children }: Props) {
       }
     );
 
-    if (typeof tag === "string") {
-      props.title = i18next.t("tag.unmoderated");
-      if (community) {
-        props.children = <Badge>{community.title}</Badge>;
-        props.title = i18next.t("tag.moderated");
-      }
-    } else {
-      props.children = <Badge>{tag.title}</Badge>;
-      props.title = i18next.t("tag.moderated");
-    }
-
     return <Link {...props} />;
   } else if (type === "span") {
     const props = Object.assign({}, children.props);

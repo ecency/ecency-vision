@@ -96,9 +96,9 @@ export function EntryListItemComponent({
                 : entry.category
             }
           >
-            <a className="category">{entry.community_title || entry.category}</a>
+            <>{entry.community_title || entry.category}</>
           </TagLink>
-          <span className="read-mark" />
+          <span className="read-mark ml-2" />
           <span className="date" title={dateFormatted}>
             {dateRelative}
           </span>

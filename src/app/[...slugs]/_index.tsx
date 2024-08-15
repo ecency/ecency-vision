@@ -22,7 +22,9 @@ export async function EntryIndex({ filter, tag }: Props) {
   return (
     <>
       <div className="app-content overflow-hidden entry-index-page">
-        <div className="tags-side">{!isMobile && <TrendingTagsCard />}</div>
+        <div className="tags-side">
+          {!isMobile && <TrendingTagsCard filter={filter} tag={tag} />}
+        </div>
         <div className="entry-page-content">
           <div className="page-tools">
             <EntryIndexMenu filter={filter} tag={tag} />
