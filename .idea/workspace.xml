@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Removed extra empty feed data">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved floating FAQ layout">
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-about.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-avatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-cell-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-cover.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-followers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-properties-row-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-username.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -83,7 +93,7 @@
     &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/src/config&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -102,7 +112,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -139,6 +149,19 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ecency-vision-next" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ecency-vision-next" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Comment" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -176,19 +199,6 @@
         <test-name value="submits comment when submit button is clicked" />
       </test-names>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="ecency-vision-next" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="ecency-vision-next" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -238,8 +248,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
       </set>
     </attachedChunks>
   </component>
@@ -360,15 +369,13 @@
       <workItem from="1723484691361" duration="8636000" />
       <workItem from="1723549366576" duration="14646000" />
       <workItem from="1723653618422" duration="8696000" />
-      <workItem from="1723742916701" duration="4975000" />
-    </task>
-    <task id="LOCAL-00117" summary="Fixed build dynamic routes">
-      <option name="closed" value="true" />
-      <created>1722194327668</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1722194327668</updated>
+      <workItem from="1723742916701" duration="5498000" />
+      <workItem from="1723993534040" duration="2366000" />
+      <workItem from="1723996573981" duration="692000" />
+      <workItem from="1723997457792" duration="2327000" />
+      <workItem from="1724054678617" duration="403000" />
+      <workItem from="1724092974589" duration="1499000" />
+      <workItem from="1724094490055" duration="2228000" />
     </task>
     <task id="LOCAL-00118" summary="Fixed build dynamic routes">
       <option name="closed" value="true" />
@@ -754,7 +761,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723746162679</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="Improved floating FAQ layout">
+      <option name="closed" value="true" />
+      <created>1723749475190</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1723749475190</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -775,7 +790,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initialize i18n on server and client separately" />
     <MESSAGE value="Fixed profile page active user using on SSR" />
     <MESSAGE value="Fixed feed controversial tags selection" />
     <MESSAGE value="Fixed side widget for communities" />
@@ -800,7 +814,8 @@
     <MESSAGE value="Fixed FAQ page scrolling by anchor" />
     <MESSAGE value="Fixed trending tags closing and styles" />
     <MESSAGE value="Removed extra empty feed data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed extra empty feed data" />
+    <MESSAGE value="Improved floating FAQ layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved floating FAQ layout" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

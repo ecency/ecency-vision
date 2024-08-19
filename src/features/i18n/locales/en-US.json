@@ -898,7 +898,7 @@
     "com-mod": "Moderator of these communities"
   },
   "profile-info": {
-    "joined": "Joined: {{n}}",
+    "joined": "Joined",
     "last-active": "Last active: {{n}}",
     "vote-value": "Vote value: {{n}}",
     "vote-value-max": "(out of max {{n}})",

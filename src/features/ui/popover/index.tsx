@@ -1,20 +1,26 @@
 "use client";
 
 import { HTMLAttributes, ReactNode, useEffect, useState } from "react";
-import { useMountedState } from "react-use";
 import { usePopper } from "react-popper";
 import { createPortal } from "react-dom";
 import { useFilteredProps } from "../util";
+import { AnimatePresence, motion } from "framer-motion";
+import useMountedState from "react-use/lib/useMountedState";
+import { Placement } from "@popperjs/core";
 
 interface ShowProps {
   show: boolean;
   setShow: (v: boolean) => void;
   children: ReactNode;
+  stopPropagationForChild?: boolean;
+  placement?: Placement;
 }
 
 interface Props {
   children: ReactNode;
   anchorParent?: boolean;
+  stopPropagationForChild?: boolean;
+  customClassName?: string;
 }
 
 export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivElement>) {
@@ -23,7 +29,7 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
   const [host, setHost] = useState<any>();
   const [popperElement, setPopperElement] = useState<any>();
   const popper = usePopper(host, popperElement, {
-    placement: "top"
+    placement: "placement" in props ? props.placement : "top"
   });
   const [show, setShow] = useState((props as ShowProps).show ?? false);
 
@@ -32,7 +38,10 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
   useEffect(() => {
     if ((props as Props).anchorParent && host) {
       host.parentElement.addEventListener("mouseenter", () => setShow(true));
-      host.parentElement.addEventListener("mouseleave", () => setShow(false));
+      host.parentElement.addEventListener(
+        "mouseleave",
+        () => !props.stopPropagationForChild && setShow(false)
+      );
     }
   }, [host, props]);
 
@@ -42,21 +51,34 @@ export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivEleme
 
   return (
     <div {...nativeProps} ref={setHost}>
-      {isMounted() && show ? (
+      {isMounted() &&
         createPortal(
           <div
-            className="z-[1060] bg-white border rounded-xl"
+            className="z-[1060]"
             style={popper.styles.popper}
             {...popper.attributes.popper}
             ref={setPopperElement}
+            onMouseLeave={(e) => props.stopPropagationForChild && setShow(false)}
           >
-            {props.children}
+            <AnimatePresence>
+              {show && (
+                <motion.div
+                  className={
+                    "customClassName" in props
+                      ? props.customClassName
+                      : "bg-white border rounded-xl"
+                  }
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                >
+                  {props.children}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>,
           document.querySelector("#popper-container")!!
-        )
-      ) : (
-        <></>
-      )}
+        )}
     </div>
   );
 }
