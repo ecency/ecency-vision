@@ -38,7 +38,7 @@ export const ProfilePreview = ({ username }: Props) => {
       </div>
       <div>
         <ProfilePreviewAvatar username={username} />
-        <div className="flex flex-col px-2 md:px-4">
+        <div className="flex flex-col text-center px-2 md:px-4">
           <ProfilePreviewUsername username={username} />
         </div>
         <div className="w-full">

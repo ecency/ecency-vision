@@ -15,6 +15,7 @@ export const ProfilePopover = ({ entry }: { entry: Entry }) => {
         <span className="author-name">{author}</span>
       </div>
       <Popover
+        useMobileSheet={true}
         placement="auto"
         anchorParent={true}
         stopPropagationForChild={true}

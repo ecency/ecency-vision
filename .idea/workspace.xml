@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Improved floating FAQ layout">
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-about.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-avatar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-cell-layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-cover.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-followers.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-properties-row-layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/profile-preview-username.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added and improved mobile layout of profile preview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/i18n/locales/en-US.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/profile-popover/profile-preview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/popover/popover-popper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover/popover-popper.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -375,23 +364,7 @@
       <workItem from="1723997457792" duration="2327000" />
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
-      <workItem from="1724094490055" duration="2228000" />
-    </task>
-    <task id="LOCAL-00118" summary="Fixed build dynamic routes">
-      <option name="closed" value="true" />
-      <created>1722194394468</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1722194394468</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Added entrypoint page metadata generator">
-      <option name="closed" value="true" />
-      <created>1722336361996</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1722336361996</updated>
+      <workItem from="1724094490055" duration="4464000" />
     </task>
     <task id="LOCAL-00120" summary="Added metadata generator for all pages">
       <option name="closed" value="true" />
@@ -769,7 +742,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723749475190</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="Fixed and improved profile preview widget">
+      <option name="closed" value="true" />
+      <created>1724096772594</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1724096772594</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Added and improved mobile layout of profile preview">
+      <option name="closed" value="true" />
+      <created>1724098848548</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1724098848548</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -790,8 +779,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed profile page active user using on SSR" />
-    <MESSAGE value="Fixed feed controversial tags selection" />
     <MESSAGE value="Fixed side widget for communities" />
     <MESSAGE value="Fixed entry editing" />
     <MESSAGE value="Fixed after review" />
@@ -815,7 +802,9 @@
     <MESSAGE value="Fixed trending tags closing and styles" />
     <MESSAGE value="Removed extra empty feed data" />
     <MESSAGE value="Improved floating FAQ layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved floating FAQ layout" />
+    <MESSAGE value="Fixed and improved profile preview widget" />
+    <MESSAGE value="Added and improved mobile layout of profile preview" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added and improved mobile layout of profile preview" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
