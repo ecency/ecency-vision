@@ -2,10 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import { searchWithinFaq } from "@/app/faq/utils";
+import { searchWithinFaq } from "@/app/(staticPages)/faq/utils";
 import i18next from "i18next";
 import Link from "next/link";
-import { FaqCategory } from "@/app/faq/_components/faq-category";
+import { FaqCategory } from "@/app/(staticPages)/faq/_components/faq-category";
 
 export function FaqSearchResult() {
   const params = useSearchParams();

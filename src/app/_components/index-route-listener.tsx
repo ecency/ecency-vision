@@ -2,11 +2,10 @@
 
 import { useGlobalStore } from "@/core/global-store";
 import { useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useMount from "react-use/lib/useMount";
 
 export function IndexRouteListener() {
-  const pathname = usePathname();
   const router = useRouter();
 
   const activeUser = useGlobalStore((s) => s.activeUser);

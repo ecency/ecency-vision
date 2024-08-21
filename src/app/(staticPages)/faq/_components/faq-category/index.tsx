@@ -1,6 +1,6 @@
 import "./index.scss";
-import { FaqCategoryStateless } from "@/app/faq/_components/faq-category/faq-category-stateless";
-import { FaqCategoryClient } from "@/app/faq/_components/faq-category/faq-category-client";
+import { FaqCategoryStateless } from "@/app/(staticPages)/faq/_components/faq-category/faq-category-stateless";
+import { FaqCategoryClient } from "@/app/(staticPages)/faq/_components/faq-category/faq-category-client";
 import { SSRSafe } from "@/utils/no-ssr";
 
 interface Props {

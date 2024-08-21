@@ -4,11 +4,15 @@ import { Metadata, ResolvingMetadata } from "next";
 import i18next from "i18next";
 import { useGlobalStore } from "@/core/global-store";
 import Image from "next/image";
-import { FaqSearchBar, FaqSearchBarResultInfo, FaqSearchListener } from "@/app/faq/_components";
-import { searchWithinFaq } from "@/app/faq/utils";
+import {
+  FaqSearchBar,
+  FaqSearchBarResultInfo,
+  FaqSearchListener
+} from "@/app/(staticPages)/faq/_components";
+import { searchWithinFaq } from "@/app/(staticPages)/faq/utils";
 import { Tsx } from "@/features/i18n/helper";
 import { NavigationLocaleWatcher } from "@/features/i18n";
-import { FaqSearchResult } from "@/app/faq/_components/faq-search-result";
+import { FaqSearchResult } from "@/app/(staticPages)/faq/_components/faq-search-result";
 import { PagesMetadataGenerator } from "@/features/metadata";
 
 export const dynamic = "force-dynamic";

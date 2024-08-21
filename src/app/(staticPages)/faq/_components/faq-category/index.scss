@@ -1,4 +1,4 @@
-@import "src/styles/vars_mixins";
+@import "../../../../../styles/vars_mixins";
 
 .faq-container.section-container {
   @include themify(night) {

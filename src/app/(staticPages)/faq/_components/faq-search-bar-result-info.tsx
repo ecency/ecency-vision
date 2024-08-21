@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import i18next from "i18next";
 import Link from "next/link";
-import { searchWithinFaqStrict } from "@/app/faq/utils";
+import { searchWithinFaqStrict } from "@/app/(staticPages)/faq/utils";
 
 export function FaqSearchBarResultInfo() {
   const params = useSearchParams();

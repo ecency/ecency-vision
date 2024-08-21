@@ -4,11 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed polls showing in entry">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notifications filters dropdown">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/dropdown/dropdown-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/modal/modal-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/about/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/contributors/page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/contributors/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-anchor-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-anchor-listener.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/__snapshots__/index.spec.tsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/faq-category-client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/faq-category-stateless.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.spec.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar-result-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-bar-result-info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-bar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-result.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/faq/utils/search-within-faq.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/utils/search-within-faq.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/guest-post/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/guest-post/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/privacy-policy/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/privacy-policy/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/terms-of-service/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/terms-of-service/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/whitepaper/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/whitepaper/page.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -56,64 +75,64 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.Account Reputation.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Bookmark button.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BookmarkBtn.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BookmarkBtn.renders login required when no active user.executor&quot;: &quot;Debug&quot;,
-    &quot;Jest.BookmarksDialog.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BookmarksDialog.hides the modal when close button is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BoostDialog.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BoostDialog.finishes and calls onHide when finish button is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.BoostDialog.handles signing process and transitions to step 3.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.ClickAwayListener (1).executor&quot;: &quot;Run&quot;,
-    &quot;Jest.ClickAwayListener.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Comment Component.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Comment.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Comment.handles keyboard shortcuts.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Comment.renders with initial text and submit button.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Comment.submits comment when submit button is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Tests in utils/.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Vesting.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/jest&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.test.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.Account Reputation.executor": "Run",
+    "Jest.Bookmark button.executor": "Run",
+    "Jest.BookmarkBtn.executor": "Run",
+    "Jest.BookmarkBtn.renders login required when no active user.executor": "Debug",
+    "Jest.BookmarksDialog.executor": "Run",
+    "Jest.BookmarksDialog.hides the modal when close button is clicked.executor": "Run",
+    "Jest.BoostDialog.executor": "Run",
+    "Jest.BoostDialog.finishes and calls onHide when finish button is clicked.executor": "Run",
+    "Jest.BoostDialog.handles signing process and transitions to step 3.executor": "Run",
+    "Jest.ClickAwayListener (1).executor": "Run",
+    "Jest.ClickAwayListener.executor": "Run",
+    "Jest.Comment Component.executor": "Run",
+    "Jest.Comment.executor": "Run",
+    "Jest.Comment.handles keyboard shortcuts.executor": "Run",
+    "Jest.Comment.renders with initial text and submit button.executor": "Run",
+    "Jest.Comment.submits comment when submit button is clicked.executor": "Run",
+    "Jest.Tests in utils/.executor": "Run",
+    "Jest.Vesting.executor": "Run",
+    "Node.js.scratch_39.js.executor": "Run",
+    "Node.js.scratch_40.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "feature/nextjs-migration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/jest",
+    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.test.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;TEXT&quot;,
-      &quot;JavaScript&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT",
+      "JavaScript"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -367,15 +386,7 @@
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
-      <workItem from="1724237333526" duration="6030000" />
-    </task>
-    <task id="LOCAL-00126" summary="Added floating faq">
-      <option name="closed" value="true" />
-      <created>1722363731753</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1722363731753</updated>
+      <workItem from="1724237333526" duration="7642000" />
     </task>
     <task id="LOCAL-00127" summary="Fixed user activity component">
       <option name="closed" value="true" />
@@ -761,7 +772,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724254217509</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="Fixed notifications filters dropdown">
+      <option name="closed" value="true" />
+      <created>1724254944807</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1724254944807</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +801,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed language selection" />
     <MESSAGE value="Fixed login dialog hiding" />
     <MESSAGE value="Re-worked entries cache management" />
     <MESSAGE value="Fixed entry voting" />
@@ -807,7 +825,8 @@
     <MESSAGE value="Fixed index menu navigating between sections" />
     <MESSAGE value="Fixed warnings and announcement links" />
     <MESSAGE value="Fixed polls showing in entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed polls showing in entry" />
+    <MESSAGE value="Fixed notifications filters dropdown" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed notifications filters dropdown" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
