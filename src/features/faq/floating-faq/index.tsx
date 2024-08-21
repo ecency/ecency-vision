@@ -167,15 +167,13 @@ export const FloatingFAQ = () => {
                 isSubmitPage ? "r-[10rem]" : ""
               }`}
             >
-              <div className="faq-welcome">
+              <div className="faq-welcome w-full">
                 <h3 className="faq-welcome-message font-bold">
                   {i18next.t("floating-faq.welcome")}
                 </h3>
                 <Button
                   className={classNameObject({
-                    "absolute top-7 right-4 text-white hover:opacity-50 hover:text-white": true,
-                    "right-4": !isSubmitPage,
-                    "right-[10rem]": isSubmitPage
+                    "absolute top-4 right-4 text-white hover:opacity-50 hover:text-white": true
                   })}
                   appearance="gray-link"
                   onClick={() => setShow(false)}

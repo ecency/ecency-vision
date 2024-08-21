@@ -14,10 +14,11 @@
   z-index: 3;
   right: 2.1rem;
   bottom: 4.1rem;
-  height: 75vh;
   width: 435px;
+  height: 600px;
   border-radius: 18px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &.small-screen {
     bottom: 7rem;
@@ -64,25 +65,10 @@
     .faq-welcome-message {
       padding: 11% 0 0 2.5rem;
     }
-
-    .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-
-      @include themify(day) {
-        @apply bg-blue-dusk;
-        border: none;
-      }
-
-      @include themify(night) {
-        border: none;
-      }
-    }
   }
 
   .faq-content-list {
-    height: 59vh;
+    height: 100%;
     margin-top: -2.4rem;
     overflow-y: auto;
     overflow-x: hidden;
@@ -249,7 +235,6 @@
     }
 
     .faq-content-list {
-      height: 57.5vh;
       width: 82vw;
 
       .faq-content-list-item {

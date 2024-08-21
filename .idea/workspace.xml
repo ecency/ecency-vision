@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added and improved mobile layout of profile preview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/popover/popover-popper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover/popover-popper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -29,7 +30,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ecency/ecency-vision.git&quot;,
-    &quot;accountId&quot;: &quot;db4b7e0f-4c22-4d80-a0e2-ccfce4bc55fa&quot;
+    &quot;accountId&quot;: &quot;f57d4960-ae31-4716-8d6e-f39ff28df9e4&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -364,15 +365,8 @@
       <workItem from="1723997457792" duration="2327000" />
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
-      <workItem from="1724094490055" duration="4464000" />
-    </task>
-    <task id="LOCAL-00120" summary="Added metadata generator for all pages">
-      <option name="closed" value="true" />
-      <created>1722338517010</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1722338517010</updated>
+      <workItem from="1724094490055" duration="5948000" />
+      <workItem from="1724237333526" duration="524000" />
     </task>
     <task id="LOCAL-00121" summary="Updated favicon.ico">
       <option name="closed" value="true" />
@@ -758,7 +752,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724098848548</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <task id="LOCAL-00169" summary="Added and improved mobile layout of profile preview">
+      <option name="closed" value="true" />
+      <created>1724099001861</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1724099001861</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
