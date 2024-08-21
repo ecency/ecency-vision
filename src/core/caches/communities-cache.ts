@@ -8,8 +8,9 @@ export const getCommunityCache = (category?: string) =>
     queryKey: [QueryIdentifiers.COMMUNITY, category],
     queryFn: () => {
       if (!isCommunity(category ?? "")) {
-        return;
+        throw new Error("Provided category isn't community");
       }
       return bridgeApiCall<Community | null>("get_community", { name: category, observer: "" });
-    }
+    },
+    enabled: !!category
   });

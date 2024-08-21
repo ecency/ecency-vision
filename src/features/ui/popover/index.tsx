@@ -25,7 +25,14 @@ interface Props {
 }
 
 export function Popover(props: (ShowProps | Props) & HTMLAttributes<HTMLDivElement>) {
-  const nativeProps = useFilteredProps(props, ["anchorParent", "show", "setShow"]);
+  const nativeProps = useFilteredProps(props, [
+    "anchorParent",
+    "show",
+    "setShow",
+    "customClassName",
+    "useMobileSheet",
+    "stopPropagationForChild"
+  ]);
 
   const [host, setHost] = useState<any>();
   const [show, setShow] = useState((props as ShowProps).show ?? false);

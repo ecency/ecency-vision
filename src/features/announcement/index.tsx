@@ -185,7 +185,7 @@ export const Announcements = () => {
                     <p>{x?.description}</p>
                   </div>
                   <div className="flex actions">
-                    <Link href={x?.button_link} onClick={dismissClick}>
+                    <Link href={x?.button_link ?? "/"} onClick={dismissClick}>
                       <Button>{x?.button_text}</Button>
                     </Link>
                     <Button onClick={laterClick} appearance="primary" outline={true}>
