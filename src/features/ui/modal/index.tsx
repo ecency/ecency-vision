@@ -5,6 +5,7 @@ import React, { createContext, HTMLProps, useEffect, useMemo, useState } from "r
 import { classNameObject, useFilteredProps } from "@ui/util";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLockBodyScroll, useMount, useUnmount } from "react-use";
+import useMountedState from "react-use/lib/useMountedState";
 
 interface Props {
   show: boolean;
@@ -37,6 +38,7 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
   ]);
   const isAnimated = useMemo(() => props.animation ?? true, [props.animation]);
 
+  const isMounted = useMountedState();
   useLockBodyScroll(show);
 
   useMount(() => document.addEventListener("keyup", onKeyUp));
@@ -62,25 +64,27 @@ export function Modal(props: Omit<HTMLProps<HTMLDivElement>, "size"> & Props) {
 
   return (
     <ModalContext.Provider value={{ show, setShow }}>
-      {show &&
+      {isMounted() &&
         createPortal(
           <AnimatePresence>
-            <motion.div
-              key="overlay"
-              initial={{
-                opacity: 0
-              }}
-              animate={{
-                opacity: 0.5
-              }}
-              exit={{
-                opacity: 0
-              }}
-              className={classNameObject({
-                "bg-black z-[1040] fixed top-0 left-0 right-0 bottom-0": true,
-                [props.overlayClassName ?? ""]: !!props.overlayClassName
-              })}
-            />
+            {show && (
+              <motion.div
+                key="overlay"
+                initial={{
+                  opacity: 0
+                }}
+                animate={{
+                  opacity: 0.5
+                }}
+                exit={{
+                  opacity: 0
+                }}
+                className={classNameObject({
+                  "bg-black z-[1040] fixed top-0 left-0 right-0 bottom-0": true,
+                  [props.overlayClassName ?? ""]: !!props.overlayClassName
+                })}
+              />
+            )}
           </AnimatePresence>,
           document.querySelector("#modal-dialog-container")!!
         )}

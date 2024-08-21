@@ -54,5 +54,5 @@ export function DropdownItemWithIcon(
 }
 
 export function DropdownItemHeader(props: PropsWithChildren<HTMLProps<HTMLDivElement>>) {
-  return <div {...props} />;
+  return <div className="px-4 text-sm font-semibold opacity-50" {...props} />;
 }

@@ -1,7 +1,6 @@
 import { classNameObject } from "@ui/util";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren } from "react";
 import { Modal } from "@/features/ui";
-import { useTimeoutFn } from "react-use";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -18,14 +17,6 @@ export function ModalSidebar({
   placement,
   className
 }: PropsWithChildren<Props>) {
-  const [showAnimated, setShowAnimated] = useState(false);
-
-  const [isReady, cancel, reset] = useTimeoutFn(() => setShowAnimated(show), 100);
-
-  useEffect(() => {
-    reset();
-  }, [reset, show]);
-
   return (
     <Modal animation={false} show={show} onHide={() => setShow(false)} className={className}>
       <motion.div
