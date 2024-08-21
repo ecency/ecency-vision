@@ -1,12 +1,10 @@
 import React from "react";
 import { setProxyBase } from "@ecency/render-helper";
 import "./_index.scss";
-import { UilPanelAdd } from "@iconscout/react-unicons";
 import defaults from "@/defaults.json";
 import { Account, Community, Entry, FullAccount } from "@/entities";
 import { dateToFormatted, dateToRelative } from "@/utils";
 import { commentSvg, pinSvg, repeatSvg } from "@ui/svg";
-import { StyledTooltip } from "@/features/ui";
 import { EntryLink } from "../entry-link";
 import {
   EntryMenu,
@@ -27,6 +25,7 @@ import { EntryListItemMutedContent } from "@/features/shared/entry-list-item/ent
 import { EntryListItemProvider } from "@/features/shared/entry-list-item/entry-list-item-context";
 import { EntryListItemNsfwContent } from "@/features/shared/entry-list-item/entry-list-item-nsfw-content";
 import { EntryListItemClientInit } from "@/features/shared/entry-list-item/entry-list-item-client-init";
+import { EntryListItemPollIcon } from "@/features/shared/entry-list-item/entry-list-item-poll-icon";
 
 setProxyBase(defaults.imageServer);
 
@@ -103,11 +102,7 @@ export function EntryListItemComponent({
             {dateRelative}
           </span>
 
-          {(entry.json_metadata as any).content_type === "poll" && (
-            <StyledTooltip className="flex" content={i18next.t("polls.poll")}>
-              <UilPanelAdd className="text-gray-600 dark:text-gray-400" size={16} />
-            </StyledTooltip>
-          )}
+          <EntryListItemPollIcon entry={entryProp} />
         </div>
         <div className="item-header-features">
           {((community && !!entry.stats?.is_pinned) || entry.permlink === pinned) && (

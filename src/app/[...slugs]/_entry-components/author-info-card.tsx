@@ -29,20 +29,20 @@ export const AuthorInfoCard = ({ entry }: Props) => {
     >
       <div className="flex items-center gap-4">
         <ProfileLink username={entry?.author}>
-          <UserAvatar username={entry.author} size="large" />
+          <UserAvatar username={entry.author} size="medium" />
         </ProfileLink>
         <div className="flex flex-col">
           <ProfileLink username={entry.author}>
-            <div className="notranslate">
+            <div className="text-sm notranslate">
               <span itemProp="author" itemScope={true} itemType="http://schema.org/Person">
                 <span itemProp="name">{entry.author}</span>
               </span>
               {!isNaN(reputation) && <span className="author-reputation">({reputation})</span>}
             </div>
           </ProfileLink>
-          <div className="text-xl font-semibold">{data?.profile?.name}</div>
         </div>
       </div>
+      <div className="font-semibold">{data?.profile?.name}</div>
       <div>{`${truncate(data?.profile?.about ?? data?.profile?.location ?? "", 130)}`}</div>
 
       <div className="flex items-center justify-start flex-wrap border-t pt-4 border[--border-color]">

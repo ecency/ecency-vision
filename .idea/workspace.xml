@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed index menu navigating between sections">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed warnings and announcement links">
+      <change afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/entry-list-item-poll-icon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/caches/communities-cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/announcement/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/announcement/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/announcement/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/announcement/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/popover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_entry-components/author-info-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-item/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -368,15 +367,7 @@
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
-      <workItem from="1724237333526" duration="2063000" />
-    </task>
-    <task id="LOCAL-00124" summary="Show chat widget">
-      <option name="closed" value="true" />
-      <created>1722363200697</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1722363200697</updated>
+      <workItem from="1724237333526" duration="5208000" />
     </task>
     <task id="LOCAL-00125" summary="Added announcements">
       <option name="closed" value="true" />
@@ -762,7 +753,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724238485799</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="Fixed warnings and announcement links">
+      <option name="closed" value="true" />
+      <created>1724239523953</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1724239523953</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +782,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated deps" />
     <MESSAGE value="Removed extra console log" />
     <MESSAGE value="Fixed language selection" />
     <MESSAGE value="Fixed login dialog hiding" />
@@ -808,7 +806,8 @@
     <MESSAGE value="Fixed floating FAQ layout" />
     <MESSAGE value="Removed market charts from main page" />
     <MESSAGE value="Fixed index menu navigating between sections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed index menu navigating between sections" />
+    <MESSAGE value="Fixed warnings and announcement links" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed warnings and announcement links" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
