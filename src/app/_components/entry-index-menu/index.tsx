@@ -105,9 +105,7 @@ export function EntryIndexMenu({ filter, tag }: Props) {
         href: isActive
           ? filter === "feed" && !isGlobal
             ? `/${x}/my`
-            : filter === "feed" && isGlobal
-              ? `/${x}`
-              : `/${x}${menuTagValue}`
+            : `/${x}`
           : tag[0] === "@"
             ? `/${x}`
             : `/${x}${menuTagValue}`,
