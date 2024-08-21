@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added and improved mobile layout of profile preview">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed floating FAQ layout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/faq/floating-faq/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -366,15 +365,7 @@
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
-      <workItem from="1724237333526" duration="524000" />
-    </task>
-    <task id="LOCAL-00121" summary="Updated favicon.ico">
-      <option name="closed" value="true" />
-      <created>1722338946415</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1722338946415</updated>
+      <workItem from="1724237333526" duration="749000" />
     </task>
     <task id="LOCAL-00122" summary="Fixed entry page raw viewing">
       <option name="closed" value="true" />
@@ -760,7 +751,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724099001861</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="Fixed floating FAQ layout">
+      <option name="closed" value="true" />
+      <created>1724237916551</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1724237916551</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -781,7 +780,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed side widget for communities" />
     <MESSAGE value="Fixed entry editing" />
     <MESSAGE value="Fixed after review" />
     <MESSAGE value="Updated deps" />
@@ -806,7 +804,8 @@
     <MESSAGE value="Improved floating FAQ layout" />
     <MESSAGE value="Fixed and improved profile preview widget" />
     <MESSAGE value="Added and improved mobile layout of profile preview" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added and improved mobile layout of profile preview" />
+    <MESSAGE value="Fixed floating FAQ layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed floating FAQ layout" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
