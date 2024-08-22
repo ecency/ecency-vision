@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved static pages under single group">
-      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/community-stat-item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-items.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-link.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-mobile-dropdown.tsx" afterDir="false" />
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed and improved layout of community and profile menus, improved layout of community cover image">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-infinite-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-infinite-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/_index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.spec.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/community-subscribers-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/community-subscribers-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -70,64 +57,64 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Jest.Account Reputation.executor": "Run",
-    "Jest.Bookmark button.executor": "Run",
-    "Jest.BookmarkBtn.executor": "Run",
-    "Jest.BookmarkBtn.renders login required when no active user.executor": "Debug",
-    "Jest.BookmarksDialog.executor": "Run",
-    "Jest.BookmarksDialog.hides the modal when close button is clicked.executor": "Run",
-    "Jest.BoostDialog.executor": "Run",
-    "Jest.BoostDialog.finishes and calls onHide when finish button is clicked.executor": "Run",
-    "Jest.BoostDialog.handles signing process and transitions to step 3.executor": "Run",
-    "Jest.ClickAwayListener (1).executor": "Run",
-    "Jest.ClickAwayListener.executor": "Run",
-    "Jest.Comment Component.executor": "Run",
-    "Jest.Comment.executor": "Run",
-    "Jest.Comment.handles keyboard shortcuts.executor": "Run",
-    "Jest.Comment.renders with initial text and submit button.executor": "Run",
-    "Jest.Comment.submits comment when submit button is clicked.executor": "Run",
-    "Jest.Tests in utils/.executor": "Run",
-    "Jest.Vesting.executor": "Run",
-    "Node.js.scratch_39.js.executor": "Run",
-    "Node.js.scratch_40.js.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "git-widget-placeholder": "feature/nextjs-migration",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/jest",
-    "nodejs_interpreter_path": "/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "npm.test.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Jest.Account Reputation.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Bookmark button.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BookmarkBtn.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BookmarkBtn.renders login required when no active user.executor&quot;: &quot;Debug&quot;,
+    &quot;Jest.BookmarksDialog.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BookmarksDialog.hides the modal when close button is clicked.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BoostDialog.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BoostDialog.finishes and calls onHide when finish button is clicked.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.BoostDialog.handles signing process and transitions to step 3.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.ClickAwayListener (1).executor&quot;: &quot;Run&quot;,
+    &quot;Jest.ClickAwayListener.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Comment Component.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Comment.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Comment.handles keyboard shortcuts.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Comment.renders with initial text and submit button.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Comment.submits comment when submit button is clicked.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Tests in utils/.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Vesting.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.scratch_39.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.scratch_40.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/nextjs-migration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/jest&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/Users/ildartimerbaev/.nvm/versions/node/v18.17.1/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.test.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "TEXT",
-      "JavaScript"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;,
+      &quot;JavaScript&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -381,15 +368,8 @@
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
-      <workItem from="1724237333526" duration="16086000" />
-    </task>
-    <task id="LOCAL-00128" summary="Fixed profile menu">
-      <option name="closed" value="true" />
-      <created>1722365111900</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1722365111900</updated>
+      <workItem from="1724237333526" duration="16335000" />
+      <workItem from="1724353944136" duration="2424000" />
     </task>
     <task id="LOCAL-00129" summary="Fixed page detector">
       <option name="closed" value="true" />
@@ -775,7 +755,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724256675037</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="Fixed and improved layout of community and profile menus, improved layout of community cover image">
+      <option name="closed" value="true" />
+      <created>1724320991532</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1724320991532</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +784,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-worked entries cache management" />
     <MESSAGE value="Fixed entry voting" />
     <MESSAGE value="Added loading state for communities" />
     <MESSAGE value="Added loading state for discover page" />
@@ -821,7 +808,8 @@
     <MESSAGE value="Fixed polls showing in entry" />
     <MESSAGE value="Fixed notifications filters dropdown" />
     <MESSAGE value="Moved static pages under single group" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved static pages under single group" />
+    <MESSAGE value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -3,7 +3,7 @@
 import React, { Fragment, useMemo } from "react";
 import "./_index.scss";
 import { Button } from "@ui/button";
-import { useGetAccountNotificationsQuery } from "@/api/queries";
+import { getAccountNotificationsQuery } from "@/api/queries";
 import { EntryLink, LinearProgress, ProfileLink, UserAvatar } from "@/features/shared";
 import i18next from "i18next";
 import { Community } from "@/entities";
@@ -90,11 +90,14 @@ interface Props {
 }
 
 export function CommunityActivities({ community }: Props) {
-  const { fetchNextPage, isLoading, data } = useGetAccountNotificationsQuery(community, 50);
+  const { fetchNextPage, isLoading, data } = getAccountNotificationsQuery(
+    community,
+    50
+  ).useClientQuery();
 
   const hasMore = useMemo(
-    () => data.pages && data.pages[data.pages?.length - 1]?.length === 50,
-    [data.pages]
+    () => data?.pages && data.pages[data.pages?.length - 1]?.length === 50,
+    [data?.pages]
   );
   const items = useMemo(
     () => data?.pages?.reduce((acc, page) => [...acc, ...page], []),
@@ -106,7 +109,7 @@ export function CommunityActivities({ community }: Props) {
       {isLoading && <LinearProgress />}
       <div className="activity-list">
         <div className="activity-list-body">
-          {items.length > 0 && items.map((item, i) => <NListItem key={i} notification={item} />)}
+          {items?.map((item, i) => <NListItem key={i} notification={item} />)}
         </div>
       </div>
       {hasMore && (

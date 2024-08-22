@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import "./_index.scss";
-import { useCommunitySubscribersQuery, useGetAccountsQuery } from "@/api/queries";
+import { getCommunitySubscribersQuery, useGetAccountsQuery } from "@/api/queries";
 import { Community, roleMap, Subscription } from "@/entities";
 import { LinearProgress, ProfileLink, UserAvatar } from "@/features/shared";
 import { accountReputation } from "@/utils";
@@ -19,7 +19,7 @@ export function CommunitySubscribers({ community }: Props) {
 
   const [editingSubscriber, setEditingSubscriber] = useState<Subscription>();
 
-  const { data: subscribers, isLoading } = useCommunitySubscribersQuery(community);
+  const { data: subscribers, isLoading } = getCommunitySubscribersQuery(community).useClientQuery();
   const usernames = useMemo(
     () =>
       [
@@ -41,7 +41,7 @@ export function CommunitySubscribers({ community }: Props) {
   const roles = useMemo(() => (roleInTeam ? roleMap[roleInTeam] : []), [roleInTeam]);
 
   return (
-    <div className="community-subscribers">
+    <div className="community-subscribers mt-4 md:mt-8">
       {isLoading && <LinearProgress />}
       {!isLoading && subscribers && subscribers.length > 0 && (
         <div className="user-list">
