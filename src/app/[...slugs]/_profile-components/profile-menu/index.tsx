@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import "./_index.scss";
 import { ListStyleToggle } from "@/features/shared";
 import { ProfileFilter } from "@/enums";
 import { useGlobalStore } from "@/core/global-store";
 import Link from "next/link";
 import i18next from "i18next";
-import { chevronDownSvgForSlider, kebabMenuHorizontalSvg } from "@ui/svg";
+import { kebabMenuHorizontalSvg } from "@ui/svg";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
 import { Button } from "@ui/button";
+import { PageMenu, PageMenuItems, PageMenuLink, PageMenuMobileDropdown } from "@/features/ui";
 
 interface Props {
   username: string;
@@ -47,90 +47,70 @@ export function ProfileMenu({ username, section }: Props) {
   ];
 
   return (
-    <div className="profile-menu">
-      <div className="profile-menu-items">
-        <span className="flex lg:hidden profile-menu-item">
-          <Dropdown>
-            <DropdownToggle>
-              {dropDownMenuItems.filter((item) => item.id === section).length > 0
-                ? i18next.t(`profile.section-${section}`)
-                : i18next.t(`profile.section-${dropDownMenuItems[0].id}`)}
-              {chevronDownSvgForSlider}
-            </DropdownToggle>
-            <DropdownMenu align="left">
-              {dropDownMenuItems.map((item) => (
-                <DropdownItem selected={item.selected} key={item.id}>
-                  <Link href={item.href}>{item.label}</Link>
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
-        </span>
-        <div className="hidden lg:flex items-center">
-          {menuItems.map((menuItem) => (
-            <Link
-              className={`profile-menu-item ${menuItem.selected ? "selected-item" : ""}`}
-              href={menuItem.href!}
-              key={`profile-menu-item-${menuItem.label}`}
-            >
-              {menuItem.label}
-            </Link>
-          ))}
-        </div>
-        <div className="flex items-center">
-          {username !== activeUser?.username && (
-            <Link
-              className={`profile-menu-item lg:hidden ${
-                section === "communities" ? "selected-item" : ""
-              }`}
-              href={`/@${username}/communities`}
-            >
-              {i18next.t(`profile.section-communities`)}
-            </Link>
-          )}
+    <PageMenu className="pb-4 pt-4 md:pt-0">
+      <PageMenuMobileDropdown
+        label={
+          dropDownMenuItems.filter((item) => item.id === section).length > 0
+            ? i18next.t(`profile.section-${section}`)
+            : i18next.t(`profile.section-${dropDownMenuItems[0].id}`)
+        }
+        isSelected={false}
+      >
+        {dropDownMenuItems.map((item) => (
+          <DropdownItem selected={item.selected} key={item.id}>
+            <Link href={item.href}>{item.label}</Link>
+          </DropdownItem>
+        ))}
+      </PageMenuMobileDropdown>
+      <PageMenuItems>
+        {menuItems.map((menuItem) => (
+          <PageMenuLink
+            href={menuItem.href!}
+            key={`profile-menu-item-${menuItem.label}`}
+            label={menuItem.label}
+            isSelected={menuItem.selected}
+          />
+        ))}
+        {username !== activeUser?.username && (
+          <PageMenuLink
+            isSelected={section === "communities"}
+            href={`/@${username}/communities`}
+            label={i18next.t(`profile.section-communities`)}
+          />
+        )}
 
-          <Link
-            className={`profile-menu-item ${
-              ["wallet", "points", "engine", "spk"].includes(section) ? "selected-item" : ""
-            }`}
-            href={`/@${username}/wallet`}
-          >
-            {i18next.t(`profile.section-wallet`)}
-          </Link>
+        <PageMenuLink
+          isSelected={["wallet", "points", "engine", "spk"].includes(section)}
+          href={`/@${username}/wallet`}
+          label={i18next.t(`profile.section-wallet`)}
+        />
 
-          {activeUser && activeUser.username === username && (
-            <Link
-              className={`profile-menu-item ${section === "settings" ? "selected-item" : ""}`}
-              href={`/@${username}/settings`}
-            >
-              {i18next.t(`profile.section-settings`)}
-            </Link>
-          )}
-        </div>
-        <div className="hidden lg:flex items-center">
-          <Dropdown>
-            <DropdownToggle>
-              <Button
-                noPadding={true}
-                icon={kebabMenuHorizontalSvg}
-                size="sm"
-                appearance="gray-link"
-              />
-            </DropdownToggle>
-            <DropdownMenu align="left">
-              {kebabMenuItems.map((item) => (
-                <DropdownItem selected={item.selected} key={item.id}>
-                  <Link href={item.href}>{item.label}</Link>
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
-        </div>
-      </div>
-
-      <div className="page-tools">
-        {ProfileFilter[section as ProfileFilter] && <ListStyleToggle float="right" />}
-      </div>
-    </div>
+        {activeUser && activeUser.username === username && (
+          <PageMenuLink
+            isSelected={section === "settings"}
+            href={`/@${username}/settings`}
+            label={i18next.t(`profile.section-settings`)}
+          />
+        )}
+        <Dropdown>
+          <DropdownToggle>
+            <Button
+              noPadding={true}
+              icon={kebabMenuHorizontalSvg}
+              size="sm"
+              appearance="gray-link"
+            />
+          </DropdownToggle>
+          <DropdownMenu align="left">
+            {kebabMenuItems.map((item) => (
+              <DropdownItem selected={item.selected} key={item.id}>
+                <Link href={item.href}>{item.label}</Link>
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      </PageMenuItems>
+      {ProfileFilter[section as ProfileFilter] && <ListStyleToggle float="right" />}
+    </PageMenu>
   );
 }

@@ -54,13 +54,10 @@ export function SubscriptionBtn({ buttonProps, community }: Props) {
 
   return (
     <>
-      {inProgress && (
-        <Button disabled={true} {...buttonProps}>
-          <Spinner className="w-3.5 h-3.5" />
-        </Button>
-      )}
-      {subscribed && !inProgress && (
+      {subscribed && (
         <Button
+          icon={inProgress && <Spinner className="w-3.5 h-3.5" />}
+          disabled={inProgress}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onClick={unsubscribeAction}

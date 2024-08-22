@@ -4,30 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed notifications filters dropdown">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Moved static pages under single group">
+      <change afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/community-stat-item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-items.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-link.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/ui/page-menu/page-menu-mobile-dropdown.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/index-route-listener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/about/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/contributors/page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/contributors/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/contributors/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-anchor-listener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-anchor-listener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/__snapshots__/index.spec.tsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/__snapshots__/index.spec.tsx.snap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/faq-category-client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/faq-category-stateless.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/faq-category-stateless.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.spec.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.spec.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-category/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-category/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar-result-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-bar-result-info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-bar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-bar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/faq-search-result.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/faq-search-result.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/_components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/utils/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/faq/utils/search-within-faq.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/faq/utils/search-within-faq.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/guest-post/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/guest-post/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/privacy-policy/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/privacy-policy/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/terms-of-service/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/terms-of-service/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/whitepaper/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(staticPages)/whitepaper/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-infinite-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content-infinite-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-cover/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/_index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/__snapshots__/index.spec.tsx.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-post-btn/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_profile-components/profile-menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/communities/_components/subscription-btn/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/message-no-data/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ui/index.ts" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -122,7 +117,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/ildartimerbaev/Work2/ecency-vision-nextjs/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -151,11 +146,11 @@
       <recent name="$PROJECT_DIR$/src/features/monitoring" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/(staticPages)" />
       <recent name="$PROJECT_DIR$/src/app/[...slugs]/_entry-components" />
       <recent name="$PROJECT_DIR$/src/config" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/features/shared" />
-      <recent name="$PROJECT_DIR$/src/specs/features/shared" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -386,15 +381,7 @@
       <workItem from="1724054678617" duration="403000" />
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
-      <workItem from="1724237333526" duration="7642000" />
-    </task>
-    <task id="LOCAL-00127" summary="Fixed user activity component">
-      <option name="closed" value="true" />
-      <created>1722363846254</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1722363846254</updated>
+      <workItem from="1724237333526" duration="16086000" />
     </task>
     <task id="LOCAL-00128" summary="Fixed profile menu">
       <option name="closed" value="true" />
@@ -780,7 +767,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724254944807</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="Moved static pages under single group">
+      <option name="closed" value="true" />
+      <created>1724256675037</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1724256675037</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,7 +796,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed login dialog hiding" />
     <MESSAGE value="Re-worked entries cache management" />
     <MESSAGE value="Fixed entry voting" />
     <MESSAGE value="Added loading state for communities" />
@@ -826,7 +820,8 @@
     <MESSAGE value="Fixed warnings and announcement links" />
     <MESSAGE value="Fixed polls showing in entry" />
     <MESSAGE value="Fixed notifications filters dropdown" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed notifications filters dropdown" />
+    <MESSAGE value="Moved static pages under single group" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved static pages under single group" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -7,10 +7,12 @@ import defaults from "@/defaults.json";
 import i18next from "i18next";
 import { CommunityCoverEditImage } from "@/app/[...slugs]/_components/community-cover-edit-image";
 import { SubscriptionBtn } from "@/app/communities/_components";
-import { CommunityPostBtn } from "@/app/[...slugs]/_components/community-post-btn";
 import { Account, Community, FullAccount } from "@/entities";
 import { useGlobalStore } from "@/core/global-store";
 import { formattedNumber } from "@/utils";
+import { Button } from "@ui/button";
+import Link from "next/link";
+import { CommunityStatItem } from "@/app/[...slugs]/_components/community-cover/community-stat-item";
 
 setProxyBase(defaults.imageServer);
 
@@ -52,34 +54,29 @@ export function CommunityCover({ community, account }: Props) {
   );
 
   return (
-    <div className="community-cover">
-      <div className="cover-image" style={style} />
-      <div className="community-stats">
-        <div className="community-stat">
-          <div className="stat-value">{subscribers}</div>
-          <div className="stat-label">{i18next.t("community.subscribers")}</div>
-        </div>
-        <div className="community-stat">
-          <div className="stat-value">
-            {"$"} {rewards}
-          </div>
-          <div className="stat-label">{i18next.t("community-cover.rewards")}</div>
-        </div>
-        <div className="community-stat">
-          <div className="stat-value">{authors}</div>
-          <div className="stat-label">{i18next.t("community-cover.authors")}</div>
-        </div>
+    <div className="relative overflow-hidden rounded-2xl">
+      <div
+        className="bg-cover absolute top-0 left-0 w-full h-full bg-light-300 dark:bg-dark-default"
+        style={style}
+      />
+      <div className="grid gap-4 md:gap-6 px-4 pb-4 md:px-6 md:pb-6 pt-16 md:pt-24 grid-cols-2 lg:grid-cols-4 w-full relative">
+        <CommunityStatItem value={subscribers} label={i18next.t("community.subscribers")} />
+        <CommunityStatItem value={"$" + rewards} label={i18next.t("community-cover.rewards")} />
+        <CommunityStatItem value={authors} label={i18next.t("community-cover.authors")} />
+
         {community.lang.trim() !== "" && (
-          <div className="community-stat">
-            <div className="stat-value">{community.lang.toUpperCase()}</div>
-            <div className="stat-label">{i18next.t("community-cover.lang")}</div>
-          </div>
+          <CommunityStatItem
+            value={community.lang.toUpperCase()}
+            label={i18next.t("community-cover.lang")}
+          />
         )}
       </div>
 
-      <div className="controls-holder flex gap-3 px-3">
+      <div className="controls-holder absolute z-10 right-0 top-4 flex gap-2 px-2 md:px-4">
         <SubscriptionBtn community={community} />
-        <CommunityPostBtn community={community} />
+        <Link href={`/submit?com=${community.name}`}>
+          <Button>{i18next.t("community.post")}</Button>
+        </Link>
       </div>
       {canUpdateCoverImage && <CommunityCoverEditImage account={account as FullAccount} />}
     </div>

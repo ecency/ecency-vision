@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./_index.scss";
 import { Community } from "@/entities";
 import { EntryFilter } from "@/enums";
 import Link from "next/link";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "@ui/dropdown";
+import { DropdownItem } from "@ui/dropdown";
 import i18next from "i18next";
-import { classNameObject } from "@ui/util";
 import { ListStyleToggle } from "@/features/shared";
+import { PageMenu, PageMenuItems, PageMenuLink, PageMenuMobileDropdown } from "@ui/page-menu";
 
 interface Props {
   community: Community;
@@ -43,75 +42,47 @@ export const CommunityMenu = (props: Props) => {
   const isFilterInItems = () => menuItems.some((item) => props.filter === item);
 
   return (
-    <div className="community-menu">
-      <div className="menu-items">
-        <>
-          <span
-            className={
-              "flex community-menu-item lg:hidden " + (isFilterInItems() ? "selected-item" : "")
-            }
-          >
-            <Dropdown>
-              <DropdownToggle>{label}</DropdownToggle>
-              <DropdownMenu align="left">
-                {menuItems.map((x) => (
-                  <DropdownItem key={x} selected={props.filter === x}>
-                    <Link href={`/${x}/${props.community.name}`}>
-                      {i18next.t(`entry-filter.filter-${x}`)}
-                    </Link>
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </span>
-          <div className="hidden lg:flex items-center">
-            {menuItems
-              .map((x) => ({
-                label: i18next.t(`entry-filter.filter-${x}`),
-                href: `/${x}/${props.community.name}`,
-                selected: props.filter === x
-              }))
-              .map((menuItem) => (
-                <Link
-                  className={classNameObject({
-                    "community-menu-item flex": true,
-                    "selected-item": menuItem.selected
-                  })}
-                  href={menuItem.href!}
-                  key={`community-menu-item-${menuItem.label}`}
-                >
-                  {menuItem.label}
-                </Link>
-              ))}
-          </div>
-        </>
-
-        <Link
+    <PageMenu className="pb-4 pt-4 md:pt-0">
+      <PageMenuMobileDropdown isSelected={isFilterInItems()} label={label}>
+        {menuItems.map((x) => (
+          <DropdownItem key={x} selected={props.filter === x}>
+            <Link href={`/${x}/${props.community.name}`}>
+              {i18next.t(`entry-filter.filter-${x}`)}
+            </Link>
+          </DropdownItem>
+        ))}
+      </PageMenuMobileDropdown>
+      <PageMenuItems>
+        {menuItems
+          .map((x) => ({
+            label: i18next.t(`entry-filter.filter-${x}`),
+            href: `/${x}/${props.community.name}`,
+            selected: props.filter === x
+          }))
+          .map((menuItem) => (
+            <PageMenuLink
+              label={menuItem.label}
+              isSelected={menuItem.selected}
+              href={menuItem.href!}
+              key={`community-menu-item-${menuItem.label}`}
+            />
+          ))}
+        <PageMenuLink
           href={`/subscribers/${props.community.name}`}
-          className={classNameObject({
-            "community-menu-item flex": true,
-            "selected-item": props.filter === "subscribers"
-          })}
-        >
-          {i18next.t("community.subscribers")}
-        </Link>
-        <Link
+          isSelected={props.filter === "subscribers"}
+          label={i18next.t("community.subscribers")}
+        />
+        <PageMenuLink
           href={`/activities/${props.community.name}`}
-          className={classNameObject({
-            "community-menu-item flex": true,
-            "selected-item": props.filter === "activities"
-          })}
-        >
-          {i18next.t("community.activities")}
-        </Link>
+          isSelected={props.filter === "activities"}
+          label={i18next.t("community.activities")}
+        />
+      </PageMenuItems>
+      <div className="menu-items">
+        <div className="hidden lg:flex items-center"></div>
       </div>
-
       {/*@ts-ignore*/}
-      {EntryFilter[props.filter!] && (
-        <div className="page-tools">
-          <ListStyleToggle />
-        </div>
-      )}
-    </div>
+      {EntryFilter[props.filter!] && <ListStyleToggle float="right" />}
+    </PageMenu>
   );
 };

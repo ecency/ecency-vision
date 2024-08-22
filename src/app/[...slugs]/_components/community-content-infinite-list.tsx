@@ -29,13 +29,9 @@ export function CommunityContentInfiniteList({ section, community }: Props) {
         entries={entryList}
         sectionParam={section}
         isPromoted={false}
+        showEmptyPlaceholder={false}
       />
-      <DetectBottom
-        onBottom={() => {
-          fetchNextPage();
-          console.log("fetched next page");
-        }}
-      />
+      <DetectBottom onBottom={() => fetchNextPage()} />
     </>
   );
 }
