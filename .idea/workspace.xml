@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed and improved layout of community and profile menus, improved layout of community cover image">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community page filters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/community-subscribers-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/community-subscribers-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-notifications-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-activities/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-subscribers/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/submit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/page.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -369,15 +367,8 @@
       <workItem from="1724092974589" duration="1499000" />
       <workItem from="1724094490055" duration="5948000" />
       <workItem from="1724237333526" duration="16335000" />
-      <workItem from="1724353944136" duration="2424000" />
-    </task>
-    <task id="LOCAL-00129" summary="Fixed page detector">
-      <option name="closed" value="true" />
-      <created>1722367446440</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1722367446440</updated>
+      <workItem from="1724353944136" duration="3610000" />
+      <workItem from="1724415803934" duration="560000" />
     </task>
     <task id="LOCAL-00130" summary="Fixed searching in community and profile pages">
       <option name="closed" value="true" />
@@ -763,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724320991532</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="Fixed community page filters">
+      <option name="closed" value="true" />
+      <created>1724356589512</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1724356589512</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +783,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed entry voting" />
     <MESSAGE value="Added loading state for communities" />
     <MESSAGE value="Added loading state for discover page" />
     <MESSAGE value="Fixed bugs with private API, added framer-motion animation to communities list" />
@@ -809,7 +807,8 @@
     <MESSAGE value="Fixed notifications filters dropdown" />
     <MESSAGE value="Moved static pages under single group" />
     <MESSAGE value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
+    <MESSAGE value="Fixed community page filters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed community page filters" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

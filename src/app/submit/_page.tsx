@@ -77,9 +77,10 @@ interface Props {
   username?: string;
   permlink?: string;
   draftId?: string;
+  searchParams?: Record<string, string | undefined>;
 }
 
-function Submit({ path, draftId, username, permlink }: Props) {
+function Submit({ path, draftId, username, permlink, searchParams }: Props) {
   const postBodyRef = useRef<HTMLDivElement | null>(null);
   const threeSpeakManager = useThreeSpeakManager();
   const { setActivePoll, activePoll, clearActivePoll } = useContext(PollsContext);
@@ -302,6 +303,12 @@ function Submit({ path, draftId, username, permlink }: Props) {
   useEffect(() => {
     threeSpeakManager.checkBodyForVideos(body);
   }, [body]);
+
+  useEffect(() => {
+    if (searchParams && typeof searchParams?.cat === "string" && searchParams.cat.length > 0) {
+      setTags((value) => Array.from(new Set(value).add(searchParams.cat!)));
+    }
+  }, [searchParams]);
 
   const updatePreview = (): void => {
     if (_updateTimer) {
