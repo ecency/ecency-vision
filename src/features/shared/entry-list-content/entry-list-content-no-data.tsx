@@ -39,7 +39,7 @@ export function EntryListContentNoData({ username, section, loading }: Props) {
         title={i18next.t("profile-info.no-posts-community")}
         description={`${i18next.t("g.no")} ${i18next.t(`g.${section}`)} ${i18next.t("g.found")}.`}
         buttonText={i18next.t("profile-info.create-posts")}
-        buttonTo="/submit"
+        buttonTo={`/submit?cat=${username}`}
       />
     ) : username == "my" ? (
       <MessageNoData

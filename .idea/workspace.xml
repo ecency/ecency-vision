@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Fixed community page filters">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added setting category from url in submit page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/submit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/submit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -368,15 +368,7 @@
       <workItem from="1724094490055" duration="5948000" />
       <workItem from="1724237333526" duration="16335000" />
       <workItem from="1724353944136" duration="3610000" />
-      <workItem from="1724415803934" duration="560000" />
-    </task>
-    <task id="LOCAL-00130" summary="Fixed searching in community and profile pages">
-      <option name="closed" value="true" />
-      <created>1722368094066</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1722368094067</updated>
+      <workItem from="1724415803934" duration="836000" />
     </task>
     <task id="LOCAL-00131" summary="Fixed profile search loading">
       <option name="closed" value="true" />
@@ -762,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724356589512</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="Added setting category from url in submit page">
+      <option name="closed" value="true" />
+      <created>1724416444165</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1724416444165</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +783,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added loading state for communities" />
     <MESSAGE value="Added loading state for discover page" />
     <MESSAGE value="Fixed bugs with private API, added framer-motion animation to communities list" />
     <MESSAGE value="Improved modal animations, improved sidebar animations" />
@@ -808,7 +807,8 @@
     <MESSAGE value="Moved static pages under single group" />
     <MESSAGE value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
     <MESSAGE value="Fixed community page filters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed community page filters" />
+    <MESSAGE value="Added setting category from url in submit page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added setting category from url in submit page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
