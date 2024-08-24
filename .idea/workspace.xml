@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added setting category from url in submit page">
+    <list default="true" id="567b3f09-0d14-4afd-b660-f387a4319347" name="Changes" comment="Added redirect with cat to submit page when community category doesn't have any data">
+      <change afterPath="$PROJECT_DIR$/src/consts/cookies.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_components/community-content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shared/entry-list-content/entry-list-content-no-data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/queries/get-account-posts-feed-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_feed-components/feed-content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[...slugs]/_index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/consts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/consts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/global-store/modules/authentication-module.ts" afterDir="false" />
     </list>
     <list id="c0010c83-5fb5-4c60-99a2-f005b2ed038b" name="dont" comment="">
       <change afterPath="$PROJECT_DIR$/src/config/ecency-config.json" afterDir="false" />
@@ -368,15 +372,7 @@
       <workItem from="1724094490055" duration="5948000" />
       <workItem from="1724237333526" duration="16335000" />
       <workItem from="1724353944136" duration="3610000" />
-      <workItem from="1724415803934" duration="836000" />
-    </task>
-    <task id="LOCAL-00131" summary="Fixed profile search loading">
-      <option name="closed" value="true" />
-      <created>1722369099379</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1722369099379</updated>
+      <workItem from="1724415803934" duration="4601000" />
     </task>
     <task id="LOCAL-00132" summary="Fixed search list item highlights">
       <option name="closed" value="true" />
@@ -762,7 +758,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724416444165</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="Added redirect with cat to submit page when community category doesn't have any data">
+      <option name="closed" value="true" />
+      <created>1724416751467</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1724416751467</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +787,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added loading state for discover page" />
     <MESSAGE value="Fixed bugs with private API, added framer-motion animation to communities list" />
     <MESSAGE value="Improved modal animations, improved sidebar animations" />
     <MESSAGE value="Fixed profile menu and added dropdown animations" />
@@ -808,7 +811,8 @@
     <MESSAGE value="Fixed and improved layout of community and profile menus, improved layout of community cover image" />
     <MESSAGE value="Fixed community page filters" />
     <MESSAGE value="Added setting category from url in submit page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added setting category from url in submit page" />
+    <MESSAGE value="Added redirect with cat to submit page when community category doesn't have any data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added redirect with cat to submit page when community category doesn't have any data" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

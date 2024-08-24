@@ -8,10 +8,11 @@ import { FeedInfiniteList } from "@/app/[...slugs]/_feed-components/feed-infinit
 interface Props {
   filter: string;
   tag: string;
+  observer?: string;
 }
 
-export function FeedContent({ filter, tag }: Props) {
-  const data = getPostsFeedQueryData(filter, tag);
+export function FeedContent({ filter, tag, observer }: Props) {
+  const data = getPostsFeedQueryData(filter, tag, 20, observer);
 
   const entryList =
     data?.pages?.reduce<Entry[]>((acc, p) => {

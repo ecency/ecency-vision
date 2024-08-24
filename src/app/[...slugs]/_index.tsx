@@ -6,6 +6,8 @@ import { EntryIndexMenu } from "@/app/_components/entry-index-menu";
 import { prefetchGetPostsFeedQuery } from "@/api/queries";
 import { TopCommunitiesWidget } from "@/app/_components/top-communities-widget";
 import { FeedContent } from "@/app/[...slugs]/_feed-components";
+import { cookies } from "next/headers";
+import { ACTIVE_USER_COOKIE_NAME } from "@/consts";
 
 interface Props {
   filter: string;
@@ -14,8 +16,10 @@ interface Props {
 
 export async function EntryIndex({ filter, tag }: Props) {
   const isMobile = useGlobalStore((s) => s.isMobile);
+  const cookiesStore = cookies();
 
-  await prefetchGetPostsFeedQuery(filter, tag);
+  const observer = cookiesStore.get(ACTIVE_USER_COOKIE_NAME)?.value;
+  await prefetchGetPostsFeedQuery(filter, tag, 20, observer);
 
   return (
     <>
@@ -27,7 +31,7 @@ export async function EntryIndex({ filter, tag }: Props) {
           <div className="page-tools">
             <EntryIndexMenu filter={filter} tag={tag} />
           </div>
-          <FeedContent tag={tag} filter={filter} />
+          <FeedContent tag={tag} filter={filter} observer={observer} />
         </div>
         <div className="side-menu">{!isMobile && <TopCommunitiesWidget />}</div>
       </div>

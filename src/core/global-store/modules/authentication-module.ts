@@ -5,6 +5,7 @@ import { error } from "@/features/shared";
 import { formatError } from "@/api/operations";
 import { getAccountFullQuery } from "@/api/queries";
 import { activeUserMaker } from "@/specs/test-helper";
+import { ACTIVE_USER_COOKIE_NAME } from "@/consts";
 
 const load = (): ActiveUser | null => {
   const name = ls.get("active_user");
@@ -60,11 +61,11 @@ export const createAuthenticationActions = (
   setActiveUser: (name: string | null) => {
     if (name) {
       ls.set("active_user", name);
-      Cookies.set("active_user", name, { expires: 365 });
+      Cookies.set(ACTIVE_USER_COOKIE_NAME, name, { expires: 365 });
       set({ activeUser: load() });
     } else {
       ls.remove("active_user");
-      Cookies.remove("active_user");
+      Cookies.remove(ACTIVE_USER_COOKIE_NAME);
       set({ activeUser: load() });
     }
   }

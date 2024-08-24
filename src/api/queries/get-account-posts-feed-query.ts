@@ -7,7 +7,8 @@ import { Entry, SearchResponse } from "@/entities";
 export async function prefetchGetPostsFeedQuery(
   what: string,
   tag = "",
-  limit = 20
+  limit = 20,
+  observer?: string
 ): Promise<InfiniteData<Entry[] | SearchResponse> | undefined> {
   const isControversial = ["rising", "controversial"].includes(what);
   const isUser = tag.startsWith("@");
@@ -16,17 +17,17 @@ export async function prefetchGetPostsFeedQuery(
   const isControversialPosts = !isUser && isControversial;
 
   if (isAccountPosts) {
-    return getAccountPostsQuery(tag.replace("@", ""), what, limit, "", true).prefetch();
+    return getAccountPostsQuery(tag.replace("@", ""), what, limit, observer ?? "", true).prefetch();
   }
 
   if (isControversialPosts) {
     return getControversialRisingQuery(what, tag).prefetch();
   }
 
-  return getPostsRankedQuery(what, tag, limit).prefetch();
+  return getPostsRankedQuery(what, tag, limit, observer ?? "").prefetch();
 }
 
-export function getPostsFeedQueryData(what: string, tag: string, limit = 20) {
+export function getPostsFeedQueryData(what: string, tag: string, limit = 20, observer?: string) {
   const isControversial = ["rising", "controversial"].includes(what);
   const isUser = tag.startsWith("@");
 
@@ -34,14 +35,14 @@ export function getPostsFeedQueryData(what: string, tag: string, limit = 20) {
   const isControversialPosts = !isUser && isControversial;
 
   if (isAccountPosts) {
-    return getAccountPostsQuery(tag.replace("@", ""), what, limit, "", true).getData();
+    return getAccountPostsQuery(tag.replace("@", ""), what, limit, observer ?? "", true).getData();
   }
 
   if (isControversialPosts) {
     return getControversialRisingQuery(what, tag).getData();
   }
 
-  return getPostsRankedQuery(what, tag, limit, "").getData();
+  return getPostsRankedQuery(what, tag, limit, observer ?? "").getData();
 }
 
 export function usePostsFeedQuery(what: string, tag: string, limit = 20) {
