@@ -1960,18 +1960,18 @@
       "pin-failed": "Invalid PIN. Failed to verify.",
       "oops": "Oops!",
       "user-not-joined-yet": "You can't send a message. This user or channel hasn't joined to chats yet.",
-      "hello": "Hello",
+      "hello": "Olá",
       "start-description": "Search a person or community and start messaging",
       "join-description": "You aren't part of channel",
       "rejoin-description": "You have left this community chat. Rejoin the chat now!"
     },
     "import": {
       "title": "Importing account",
-      "description": "Please, enter public and private key pair to import your existing account",
-      "button": "Import",
-      "iv": "Initial vector value"
+      "description": "Por favor, insira ambas chaves, pública e privada, para importar sua conta existente",
+      "button": "Importar",
+      "iv": "Valor vetorial inicial"
     },
-    "reply": "Reply",
+    "reply": "Responder",
     "reply-to": "Replying to {{account}}"
   },
   "add-image": {
@@ -2108,7 +2108,7 @@
       "why-publish-gray-header": "Por que o botão Publicar está acinzentado?",
       "why-publish-gray-body": "<p>Once you have finished writing your post, make sure that you have selected a suitable title and at least one valid tag. If you forget to do so, the Publish button will remain grayed out and you will not be able to proceed.</p>",
       "what-links-show-header": "O que os links de Destaque, Quente, Novo, Em Alta e Controverso mostram?",
-      "what-links-show-body": "<p>This is the way of sorting content on Ecency. <ul><li>Trending - Widely mentioned or discussed posts.</li><li>Hot - Popular posts in the last couple of hours.</li><li>New - The newest posts are sorted by the published time.</li><li>Rising - Posts that have more comments and votes compared to others.</li><li>Controversial - Has a relatively equal number of upvotes and downvotes.</li></ul></p>",
+      "what-links-show-body": "<p>Esta é a forma de classificar o conteúdo na Ecency. <ul><li>Destaques - Posts amplamente mencionados ou discutidos.</li><li>Quentes - Posts populares nas últimas horas.</li><li>Novos - Os posts mais recentes são organizados pelo horário de publicação.</li><li>Subindo - Posts que têm mais comentários e votos em comparação com outros.</li><li>Controverso - Têm um número relativamente igual de votos positivos e negativos.</li></ul></p>",
       "what-my-rewards-header": "Quais recompensas tenho na minha carteira?",
       "what-my-rewards-body": "<p>There are three kinds of rewards shown in your wallet: <ul><li>Curation rewards - The rewards earned for upvoting posts and comments.</li><li>Author rewards - The rewards earned by your own posts and comments.</li><li>Points rewards - Social actions and interactions are also rewarded with Ecency points.</li></ul><p/>",
       "what-information-profile-header": "Quais informações são exibidas no meu perfil?",
@@ -2140,7 +2140,7 @@
       "exclude-reblogs-feed-header": "Como excluir reblogs de feed dos amigos?",
       "exclude-reblogs-feed-body": "<p>Your Feed displays updates on your friends' actions, such as when they reblog posts they like. If you prefer not to see posts about your friends' reblogged activity in your Feed, you can use the Excluding Reblog option located at the top right to filter them out.</p> ",
       "how-to-sort-feed-header": "Como classificar links em tendência, em alta e novos?",
-      "how-to-sort-feed-body": "<p>You have the choice to sort posts by Global or My Community options. Typically, the Global option is chosen by default. Under the Global option, you can access links for Hot, Trending, and New posts from all areas of Hive. On the other hand, if you select the My Community option, you will only see posts from the Community link that you are a part of.</p>",
+      "how-to-sort-feed-body": "<p>Você tem a opção de classificar os posts por Comunidades, ou Global. Normalmente, a opção Global é escolhida por padrão. Nessa opção, você pode acessar publicações nos Feeds: Quentes, Destaques e Novos, de todas as áreas da Hive. Por outro lado, se você selecionar a opção Comunidades, verá apenas posts de Comunidades das quais faz parte.</p>",
       "how-to-follow-header": "Como seguir pessoas?",
       "how-to-follow-body": "<p>When you choose to follow a profile, you will receive updates from that person in your Feed. To do this, go to the top left of the Ecency and click on the Searching Bar. Enter the name of the person you want to follow from the search results. Once you are on their profile page, click on the Follow icon.</p>",
       "how-find-information-followers-header": "Como encontrar informações sobre seus Seguidores e Seguidos?",
@@ -2233,10 +2233,10 @@
       "what-is-reblog-body": "<p>A reblog is when you see a post you enjoy on Ecency, and by clicking the reblog button, you make the post appear on your blog too. Now all of your followers can enjoy the post.</p>",
       "how-sort-feed-header": "Como organizar o feed \"Amigos\"?",
       "how-sort-feed-body": "<p>Your Friends Feed contains posts published by your friends and their reblogs. If you only want to see the posts of your friends, you can select Exclude Reblog through the sorting function.</p>",
-      "what-trending-feed-header": "What does the Trending feed show?",
-      "what-trending-feed-body": "<p>Trending feed shows widely mentioned or discussed posts of entire platform.</p>",
+      "what-trending-feed-header": "O que o feed de Destaques mostra?",
+      "what-trending-feed-body": "<p>O feed Destaques mostra posts amplamente mencionados ou discutidos de toda a plataforma.</p>",
       "how-sort-trending-header": "Como organizar o feed \"Destaque\"?",
-      "how-sort-trending-body": "<p>Trending feed can be sorted depending on what information you want to see. For example, you can choose one depending on whether you want to see only posts from My Community or Global posts from the entire platform. If you wan to see Trending feed on specific tag or topic, you can do so here as well by selecting topics from left side.</p>",
+      "how-sort-trending-body": "<p>O feed de Destaques pode ser organizado de acordo com as informações que você deseja ver. Por exemplo, você pode escolher entre ver apenas posts da Minha Comunidade ou posts Globais de toda a plataforma. Se você quiser ver o feed de Destaques em uma tag ou tópico específico, também pode fazer isso aqui, selecionando os tópicos no lado esquerdo.</p>",
       "how-search-tags-header": "Como pesquisar conteúdo por tags?",
       "how-search-tags-body": "<p>No lado esquerdo do seu feed estão as tags mais utilizadas, para agilizar sua busca. Clicando na tag desejada, você encontrará todas as publicações que a utilizaram.</p>",
       "what-new-feed-header": "O que o feed \"Novo\" mostra?",
@@ -2278,11 +2278,11 @@
       "what-is-boost-body": "O que é +Impuslo?",
       "what-is-boost-header": "<p>O +Impulso é um recurso que permite aos usuários pegarem uma delegação de Poder Hive (HP) da Ecency. A função funciona com os pontos Ecency para obter delegação, durante 7, 30 ou 90 dias. Cerca de 350.000 VESTS, equivalente a + de 200 Poder Hive (HP), foram alocados para esta finalidade.</p>",
       "can-pin-comments-header": "Posso fixar comentários na minha publicação?",
-      "can-pin-comments-body": "<p>Yes, you have the ability to pin comments that you want by selecting the three dots located near the comment and choosing the Pin option.</p>",
-      "what-are-snippets-header": "What are Snippets?",
-      "what-are-snippets-body": "<p>Snippets are small fragment of notes, footnotes, phrases, sentences you can format and insert in your posts and comments any time. They are very helpful if you have footnote on your posts or if you have catch-phrases that you use often.</p>",
-      "can-upload-video-header": "Can I upload a video on Ecency?",
-      "can-upload-video-body": "You have the option to upload a video on both the Mobile App and Ecency.com by clicking on the video icon on the editor page when creating content."
+      "can-pin-comments-body": "<p>Sim, você consegue fixar os comentários que desejar, selecionando os três pontos próximos ao comentário e escolhendo a opção Fixar.</p>",
+      "what-are-snippets-header": "O que são Trechos?",
+      "what-are-snippets-body": "<p>Trechos são pequenos fragmentos de notas, notas de rodapé, frases ou idéias que você pode formatar e inserir em suas postagens e comentários a qualquer momento. Eles são muito úteis se você tiver nota de rodapé em seus posts ou se tiver frases \"de impacto\" usadas frequentemente.</p>",
+      "can-upload-video-header": "Posso fazer o upload de um vídeo na Ecency?",
+      "can-upload-video-body": "Você pode fazer upload de um vídeo tanto pelo aplicativo móvel quanto pelo site. Basta clicar no ícone de vídeo na página do editor ao criar conteúdo."
     }
   },
   "contributors": {
@@ -2318,7 +2318,7 @@
   },
   "landing-page": {
     "welcome-text": "Ecency",
-    "what-is-ecency": "Freespeech, True ownership, rewarding communities on Web3",
+    "what-is-ecency": "Liberdade de Expressão. Propriedade verdadeira. Comunidades que valem a pena na Web3",
     "powered-by-hive": "possibilitado pela Hive",
     "how-it-works": "COMO FUNCIONA?",
     "get-started": "INSCREVA-SE JÁ",
@@ -2393,12 +2393,12 @@
     "report": "Reportar"
   },
   "perks": {
-    "page-title": "Welcome to Perks",
-    "title": "Meet Ecency perks",
+    "page-title": "Bem-vindo aos Benefícios",
+    "title": "Conheça os Benefícios Ecency",
     "title-next": "unified, fast and simple way to boost your account",
     "points-title": "Comprar pontos",
     "points-action": "Comprar",
-    "points-description": "Jump start to improve engagement on your content by purchasing Points with Ecency Mobile",
+    "points-description": "Impulsione o engajamento do seu conteúdo comprando Pontos com o aplicativo da Ecency",
     "account-boost-title": "Impulsionamento de conta",
     "account-boost-action": "Impulsionar agora!",
     "account-boost-description": "Utilize as compras no aplicativo para adquirir mais poderes",
@@ -2420,9 +2420,9 @@
     "tags-hint": "Tags helps to find out your post by special keywords",
     "body-hint": "Post body is rich text which may contain various of different components, styles",
     "community-hint": "Post may be attached to specific community which helps to promote your post within community members",
-    "toolbar-hint": "Toolbar allow to insert a lot of different components, apply formatting, insert images, videos and links",
-    "advanced-hint": "Configure advanced settings such as scheduling, beneficiaries",
-    "help-hint": "Have any questions? Check out help center"
+    "toolbar-hint": "A barra de ferramentas permite inserir diversos componentes diferentes. Edite a formatação, insera imagens, vídeos e links",
+    "advanced-hint": "Configurar configurações avançadas como agendamento e beneficiários",
+    "help-hint": "Tem alguma dúvida? Confira o centro de ajuda"
   },
   "polls": {
     "poll": "Enquete",
