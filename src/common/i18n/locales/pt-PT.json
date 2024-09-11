@@ -1951,19 +1951,19 @@
     "select-contact-or-channel": "Selecione contato ou canal",
     "message-forwarding": "Message forwarding",
     "forward": "Encaminhar mensagem",
-    "forwarded-from": "Forwarded message",
+    "forwarded-from": "Mensagem encaminhada",
     "welcome": {
       "title": "Bem-vindo ao Bate-Papo",
-      "description": "Create or import an account start using Chats",
+      "description": "Crie ou importe uma conta para usar o chat",
       "already-joined-title": "Looks like, you've already joined the Chats",
       "already-joined-hint": "Please, verify your account and get access by entering PIN",
       "pin-failed": "PIN inválido. Falha ao verificar.",
-      "oops": "Oops!",
-      "user-not-joined-yet": "You can't send a message. This user or channel hasn't joined to chats yet.",
+      "oops": "Ops!",
+      "user-not-joined-yet": "A mensagem não pode ser enviada. O usuário ainda não entrou no chat.",
       "hello": "Olá",
       "start-description": "Search a person or community and start messaging",
       "join-description": "Você não faz parte do canal",
-      "rejoin-description": "You have left this community chat. Rejoin the chat now!"
+      "rejoin-description": "Você saiu do chat dessa comunidade. Junte-se agora!"
     },
     "import": {
       "title": "Importando conta",
@@ -1972,7 +1972,7 @@
       "iv": "Valor vetorial inicial"
     },
     "reply": "Responder",
-    "reply-to": "Replying to {{account}}"
+    "reply-to": "Respondendo para {{account}}"
   },
   "add-image": {
     "title": "Adicionar imagem",
@@ -2094,7 +2094,7 @@
       "what-delegated-hp-header": "O que é Hive Power delegado?",
       "what-delegated-hp-body": "<p>Users can delegate Hive Power to other users, allowing them to have the same benefits and privileges as if they had their own Hive Power. This includes having their Resource Credits, content votes, and curation rewards calculated based on the delegated Hive Power. However, users who receive delegated Hive Power cannot power down or withdraw it as it still belongs to the original owner.</p>",
       "what-powering-up-header": "O que é fazer Power Up?",
-      "what-powering-up-body": "<p>You have the option to increase the power of your earned Hive tokens by converting them into Hive Power. This process involves keeping your HIVE tokens in your wallet and converting them into HIVE Power, which in turn boosts your voting power and resource credits on the blockchain. By having more Hive Power, you can earn higher curation rewards and receive additional vested tokens. Additionally, possessing more HP gives you greater influence in approving Hive witnesses.</p>",
+      "what-powering-up-body": "<p>Você tem a opção de aumentar o poder dos seus tokens Hive ganhos, convertendo-os em Poder Hive. Esse processo envolve manter seus tokens HIVE na sua carteira e convertê-los em Poder Hive, o que, por sua vez, aumenta seu poder de voto e créditos de recursos na blockchain. Ao ter mais Poder Hive, você pode ganhar maiores recompensas de curadoria e receber tokens adicionais investidos. Além disso, possuir mais Poder Hive dá a você maior influência na aprovação de testemunhas da Hive.</p>",
       "what-powering-down-header": "O que significa fazer Power Down?",
       "what-powering-down-body": "<p>You can both power up and power down Hive Power using the same wallets. However, when you choose to power down, your Hive Power will not be immediately accessible as Hive. Instead, it will be converted into 13 equal parts and transferred to your Hive wallet on a weekly basis. The first portion will only be available one week after the power down process has been initiated.</p>",
       "why-different-keys-header": "Por que existem várias chaves?",
@@ -2205,7 +2205,7 @@
       "how-delete-scheduled-body": "<p>From the main Menu choose Schedule. Thee you will se a list of scheduled posts. Under posts there are 2 options: Move to drafts(there you can reschedule, edit)or delete scheduled post.</p>",
       "how-set-beneficiaries-header": "Como estabelecer beneficiários?",
       "how-set-beneficiaries-body": "<p>You can set beneficiaries to share author reward with other accounts. Authors may share their rewards with others for a variety of reasons. It's up to you how much of your reward you want to share with. First create Post then Click Advanced. There you can Set Beneficiaries by clicking on it.  Choose username and percent of the reward you want to share and click Done.</p>",
-      "possible-current-RC-header": "What's possible with my current available RC?",
+      "possible-current-RC-header": "O que é possível com os meus Recursos de Créditos disponíveis atualmente?",
       "possible-current-RC-body": "<p>Below your username, there is a brief description of your RC. Click on the bottom of this information. You will have complete details on how many RC you have, your RC delegations, and how many activities you can perform with your existing RC.</p>",
       "what-delegating-RC-header": "O que significa delegar RC (créditos de recursos)?",
       "what-delegating-RC-body": "<p>If you have extra RC that you don't use you can delegate your RC. It recharges during the time so you don't loose anyting. You can't delegate all your RC (and end up with 0 RC). RC give extra recoursec to perform more operations to the account you delegate. They can make more post or comments....</p>",
@@ -2213,11 +2213,11 @@
       "how-to-delegate-body": "<p>Clicking on your RC information under your username you can see Delegate RC operation. Enter username and amount RC you want to delegate then click Next and Confirm it.</p>",
       "who-are-curators-header": "Quem são os curadores?",
       "who-are-curators-body": "<p>Curators discover and vote for posts created by authors. They play an important role in Hive. The consensus in the community is that good content should be upvoted and should be rewarding for authors. The spam, plagiarized content should be downvoted.</p>",
-      "what-curation-reward-header": "What is curation reward?",
+      "what-curation-reward-header": "O que é recompensa por curadoria?",
       "what-curation-reward-body": "<p>Curators will have reward (Hive Power) from the post payout.  As a result of the vote given by the curators, the post will have a certain amount of payout. The author and the curator(s) share the post payout in the ratio of 50:50. The post payout happens in 7 days. So at the end of the 7 days, the author's and curator's rewards are available for claim.</p>",
       "what-ecency-wallet-header": "O que é a carteira Ecency?",
       "what-ecency-wallet-body": "<p>Ecency wallet is is a cryptocurrency wallet that allows Ecency community to manage their Hive, HBD, Hive Power, Savings and other different tokens. So a Ecency wallet provides all the features that are necessary for safe and secure transfers.</p>",
-      "what-do-hive-tokens-header": "What can I do with my Hive tokens?",
+      "what-do-hive-tokens-header": "O que posso fazer com meus tokens Hive?",
       "what-do-hive-tokens-body": "<p>In the Ecency wallet, you can perform various operations on your Hives:  <img src=\"{i.imgur.com/X6QOtcU.png}\"/>  <ul><li>Transfer- If you want to Transfer your Hive to someone, you can select Transfer and fill in the account name and amount of Hives to Transfer it.</li><li>Transfer to Savings- By transferring your Hive to Savings, you will get annual Interest from them.</li><li>Power Up- When powered up, your HIVE becomes staked and converts to HIVE Power, which increases your voting power and resource credits on the blockchain. You can Power Up Hive and Save it in your Account or Transfer it to other accounts as Hive Power through filling account name field.</li><li>Trade Token- Clicking on it redirects you the Ecency Market Page where you can exchange tokens. Hive can be Swapped to HBD wihtout waiting period 3,5 days.</li></ul> </p>",
       "what-delegated-HP-header": "O que significa Poder Hive delegado?",
       "what-delegated-HP-body": "<p>Quando você delega o seu Poder Hive, você disponibiliza uma parte do seu Poder (HP) para outro usuário. O Poder Hive delegado aumenta a forca do Voto, as Recompensas de Curadoria e os Créditos de Recursos daquela conta. Quando uma delegação é cancelada, o Poder HIVE só ficará disponível novamente após 7 dias.</p>",
