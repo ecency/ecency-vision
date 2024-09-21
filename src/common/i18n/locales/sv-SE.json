@@ -1706,7 +1706,7 @@
     "list-fee": "Fee",
     "list-feed": "Feed",
     "list-version": "Version",
-    "username-placeholder": "användarnamn",
+    "username-placeholder": "Användarnamn",
     "extra-description": "Enter account name below to vote for a witness outside of Top 50",
     "proxy-description": "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
     "proxy-btn-label": "Set Proxy",
