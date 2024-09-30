@@ -533,7 +533,7 @@ const SignUpPage = (props: Props | any) => {
                                 }}
                                 >
                                 {!global.isMobile && <h4 className="text-danger">
-                                  Copy your master password below and paste to
+                                  Click to opy your master password below and paste to
                                   keychain to set up your account
                                 </h4>}
                                 <div className="password">
