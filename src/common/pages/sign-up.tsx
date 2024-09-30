@@ -223,9 +223,17 @@ const SignUpPage = (props: Props | any) => {
       style={{ marginRight: "6px" }}
     />
   );
+
   let containerClasses = global.isElectron
     ? "app-content sign-up-page mb-lg-0 mt-0 pt-6"
     : "app-content sign-up-page mb-lg-0";
+
+    const formatString = (str: string)=> {
+      const first10 = str.substring(0, 10);
+      const last10 = str.substring(str.length - 10);
+    
+      return `${first10}...${last10}`;
+    }
 
   return (
     <>
@@ -386,20 +394,68 @@ const SignUpPage = (props: Props | any) => {
                   <div className="success-wrapper">
                     <div className="success-info">
                       <h3>Account creation steps</h3>
-                      <p>
+                      <strong style={{textAlign: "center"}}>
                         Please make sure you have keychain installed as an
                         extension on your browser (If you are a using the web
                         browser, we recommend that you pin it to your browser.)
-                      </p>
+                      </strong>
                       <h3>
-                      <a
-                        className="ml-1"
-                        href="https://hive-keychain.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        download keychain extension here
-                      </a>
+                      <div className="keychain-ext">
+                        <p>Download the Hive Keychain extension for your preferred device:</p>
+                        <ul className="ul">
+                          <li className="kc-list">
+                            <img className="a-c" src="https://hive-keychain.com/img/browsers/android.svg" alt="" />
+                            <a
+                              href="https://play.google.com/store/apps/details?id=com.mobilekeychain"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Android
+                            </a>
+                          </li>
+                          <li className="kc-list">
+                            <img className="a-c" src="https://hive-keychain.com/img/browsers/ios.svg" alt="" />
+                            <a
+                              href="https://apps.apple.com/us/app/hive-keychain/id1552190010"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Apple
+                            </a>
+                          </li>
+                          <li className="kc-list">
+                            <img src="https://hive-keychain.com/img/browsers/chrome.svg" alt="" />
+                            <a
+                              href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep?hl=en"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Chrome
+                            </a>
+                          </li>
+                          <li className="kc-list">
+                            <img src="https://hive-keychain.com/img/browsers/firefox.svg" alt="" />
+                            <a
+                              href="https://addons.mozilla.org/en-US/firefox/addon/hive-keychain/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Mozilla
+                            </a>
+                          </li>
+                          <li className="kc-list">
+                            <img src="https://hive-keychain.com/img/browsers/brave.svg" alt="" />
+                            <a
+                              href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep?hl=en"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Brave
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
                       </h3>
                       <div className="account-details">
                         <span style={{ lineHeight: 2 }}>
@@ -459,27 +515,34 @@ const SignUpPage = (props: Props | any) => {
                           <div className="account-password">
                             <div className="d-flex flex-column align-items-center mb-5">
                               <h3 className="mt-2">Step 3</h3>
-                              <span>
+                              <h4 style={{textAlign: "center"}}>
                                 Confirm if your friend has created your account,
                                 then check your email for instructions on setting
                                 up your account
-                              </span>
-                              <h4 className="text-danger">
-                                Copy your master password below and paste to
-                                keychain to set up your account
                               </h4>
-                              <div className="password">
-                                <strong>{accountPassword}</strong>
-                                <span
-                                  className="icon"
-                                  onClick={() => {
-                                    clipboard(accountPassword);
-                                    success(_t("onboard.key-copied"));
-                                  }}
+                              {global.isMobile && <h4 className="text-danger" style={{textAlign: "center"}}>
+                                  Click the button below to copy your master password and paste to
+                                  keychain to set up your account
+                                </h4>}
+                              <Button
+                                style={{textAlign: "center"}}
+                                className="d-flex flex-column align-items-center mt-3 p-3"
+                                onClick={() => {
+                                  clipboard(accountPassword);
+                                  success(_t("onboard.key-copied"));
+                                }}
                                 >
-                                  {copyContent}
-                                </span>
-                              </div>
+                                {!global.isMobile && <h4 className="text-danger">
+                                  Click to opy your master password below and paste to
+                                  keychain to set up your account
+                                </h4>}
+                                <div className="password">
+                                  {global.isMobile ? 
+                                  <strong>{formatString(accountPassword)}</strong> :
+                                  <strong>{accountPassword}</strong>
+                                }
+                                </div>
+                              </Button>
                             </div>
                           </div>
                         </div>
