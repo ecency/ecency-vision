@@ -593,6 +593,7 @@ export class Login extends BaseComponent<LoginProps, State> {
   render() {
     const { username, key, inProgress } = this.state;
     const { users, activeUser, global, userListRef } = this.props;
+    console.log(global)
     const logo = setupConfig.navBarImg;
     const hsLogo = global.isElectron
       ? "./img/hive-signer.svg"
@@ -643,7 +644,7 @@ export class Login extends BaseComponent<LoginProps, State> {
           </>
         )}
 
-        {/* <Form
+        {(global.communityTitle === "Vibes" && global.hive_id === "hive-140169") && <Form
           className="login-form"
           onSubmit={(e: React.FormEvent) => {
             e.preventDefault();
@@ -680,7 +681,7 @@ export class Login extends BaseComponent<LoginProps, State> {
             {inProgress && username && key && spinner}
             {_t("g.login")}
           </Button>
-        </Form> */}
+        </Form>}
         <OrDivider />
         {/* <div className="hs-login">
           <a
