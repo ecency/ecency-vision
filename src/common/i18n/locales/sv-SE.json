@@ -326,12 +326,12 @@
     "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Ämnen"
   },
   "sort-trending-tags": {
     "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "ascending": "Stigande",
+    "descending": "Fallande"
   },
   "selected-tags": {
     "title": "Featured"
@@ -570,10 +570,10 @@
       "market": "Market",
       "swap-form": "Swapping form",
       "msf-description": "Swap your funds quickie with zero latency.",
-      "faq": "Help center",
+      "faq": "Hjälpcenter",
       "faq-subtitle": "FAQ",
       "faq-description": "Find answer to all your questions about Ecency in our help center.",
-      "no-replies": "No replies yet",
+      "no-replies": "Inga svar än",
       "add-new-reply": "Add new reply",
       "no-content": "No content",
       "infinite-loading": "Loading 🌊...",
@@ -730,7 +730,7 @@
     "cross-post-by": "Cross post by",
     "cross-post-community": "community",
     "community-in": "in",
-    "post-word-count": "Words:",
+    "post-word-count": "Ord:",
     "post-read-time": "Reading:",
     "post-read-minuites": "min",
     "raw": "View RAW format",
@@ -828,7 +828,7 @@
     "sort-rank": "Rank",
     "sort-subs": "Medlemmar",
     "sort-new": "New",
-    "no-results": "No results found",
+    "no-results": "Inga resultat hittades",
     "create": "Create community"
   },
   "communities-create": {
@@ -1109,8 +1109,8 @@
   },
   "sort-engine-tokens": {
     "sort": "Sort",
-    "sort-in-ascending": "Ascending",
-    "sort-in-descending": "Descending",
+    "sort-in-ascending": "Stigande",
+    "sort-in-descending": "Fallande",
     "sort-by-value": "Value",
     "sort-by-balance": "Balance",
     "sort-by-stake": "Stake",
@@ -1123,7 +1123,7 @@
   },
   "withdraw-routes": {
     "title": "Withdraw accounts",
-    "account": "Account",
+    "account": "Konto",
     "percent": "Percent",
     "validation-account": "Account is required.",
     "validation-percent": "Percentage is required.",
@@ -1216,7 +1216,7 @@
     "post-boosted-exists": "This content is already boosted",
     "post-promoted-exists": "This content is already promoted",
     "success-message": "Your request submitted. It will be activated in a couple minutes.",
-    "account": "Account"
+    "account": "Konto"
   },
   "transfer": {
     "transfer-title": "Transfer to Account",
@@ -1373,7 +1373,7 @@
   },
   "savings-withdraw": {
     "title": "Withdraw from Savings",
-    "to": "To"
+    "to": "Till"
   },
   "open-orders-list": {
     "title": "Open orders",
@@ -1384,7 +1384,7 @@
   "friends": {
     "followers": "Följare ({{n}})",
     "following": "Följer ({{n}})",
-    "search-placeholder": "Search",
+    "search-placeholder": "Sök",
     "active": "Active:"
   },
   "friends-filter": {
@@ -1397,13 +1397,13 @@
     "filter": "Filter"
   },
   "follow-controls": {
-    "follow": "Follow",
+    "follow": "Följ",
     "unFollow": "Unfollow",
     "mute": "Mute",
     "unMute": "Unmute"
   },
   "favorite-btn": {
-    "add": "Add to favorites",
+    "add": "Lägg till i favoriter",
     "added": "Added to favorites",
     "delete": "Remove from favorites",
     "deleted": "Removed from favorites"
@@ -1614,8 +1614,8 @@
     "inactive-str": "Be active! Write a post, continue earning",
     "referral-str": "joined with referral, welcome them",
     "refresh": "Refresh",
-    "mark-all-read": "Mark All as Read",
-    "mark-read": "Mark as Read",
+    "mark-all-read": "Markera alla som lästa",
+    "mark-read": "Markera som läst",
     "mute": "Turn off notification alerts",
     "unmute": "Turn on notification alerts",
     "settings": "Inställningar",
@@ -1639,14 +1639,14 @@
     "header-votes-tip": "Number of votes in this period"
   },
   "popular-users": {
-    "title": "Popular Users"
+    "title": "Populära användare"
   },
   "discover": {
     "title": "Discover",
     "description": "Discover top online users"
   },
   "search-page": {
-    "title": "Search",
+    "title": "Sök",
     "description": "Find uncensored content, communities and users"
   },
   "search-comment": {
@@ -1657,7 +1657,7 @@
     "search": "Sök",
     "search-placeholder": "Search content",
     "author": "Author",
-    "author-placeholder": "username",
+    "author-placeholder": "Användarnamn",
     "type": "Typ",
     "type-": "Alla",
     "type-post": "Post",
@@ -1682,7 +1682,7 @@
     "title": "People"
   },
   "search-topics": {
-    "title": "Topics"
+    "title": "Ämnen"
   },
   "search-communities": {
     "title": "Communities"
@@ -1692,13 +1692,13 @@
     "page-description": "Consensus block producers selection",
     "page-description-long": "Role of witnesses or block producers in Hive blockchain is to act as the network's governance body. Community elects them to represent their voice and each user can elect up to 30 witnesses. Top 20 witnesses are producing blocks every minute while rest remain as backup witness and gets randomized chance every minute. This role is integral part of consensus mechanism blockchain runs on and recommend user engagement to vote on trusted witnesses.",
     "remaining": "<span>{{n}}</span> of {{max}} votes remaining",
-    "search-placeholder": "Search",
+    "search-placeholder": "Sök",
     "sort": "Sort",
     "sort-rank": "Rank",
     "sort-name": "Namn",
     "sort-fee": "Fee",
     "searching": "Searching",
-    "no-results": "No results found",
+    "no-results": "Inga resultat hittades",
     "list-rank": "Rank",
     "list-witness": "Witness",
     "list-miss": "Miss",
@@ -1754,11 +1754,11 @@
     "sort": "Sort",
     "sort-reputation": "Reputation",
     "sort-hp": "Hive Power",
-    "no-results": "No results found",
+    "no-results": "Inga resultat hittades",
     "searching": "Searching"
   },
   "gallery": {
-    "title": "Gallery",
+    "title": "Galleri",
     "copied": "Copied to clipboard"
   },
   "drafts": {
@@ -1770,10 +1770,10 @@
     "move": "Flytta till utkast"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Bokmärken"
   },
   "favorites": {
-    "title": "Favorites"
+    "title": "Favoriter"
   },
   "fragments": {
     "title": "Snippets",
@@ -1788,7 +1788,7 @@
   "password-update": {
     "title": "Ändra lösenord",
     "account": "Konto",
-    "cur-pass": "Current password",
+    "cur-pass": "Nuvarande lösenord",
     "new-pass": "Nytt lösenord",
     "new-pass2": "Bekräfta nytt lösenord",
     "error-new2": "Passwords must be same",
@@ -1879,20 +1879,20 @@
     "search": "Search people or communities",
     "join-chat": "Join chat",
     "join-channel": "Join channel",
-    "back": "Back",
-    "no-chat": "No conversation found",
+    "back": "Tillbaka",
+    "no-chat": "Ingen konversation hittades",
     "start-chat": "Start chatting",
     "not-joined": "This user hasn't joined the chat yet",
-    "subscribers": "Subscribers",
+    "subscribers": "Prenumeranter",
     "invite": "Invite",
     "send-invite": "Send an invite",
     "leave:": "Lämna",
     "refresh": "Refresh",
     "message-warning": "You cannot send messages in this group.",
     "edit-community-roles": "Edit Community Roles",
-    "add": "Add",
+    "add": "Lägg till",
     "no-admin": "No admin or moderator for this community chat.",
-    "blocked-users": "Blocked Users",
+    "blocked-users": "Blockerade användare",
     "action": "Action",
     "unblock": "Unblock",
     "ecency-key": "Ecency key",
@@ -1940,7 +1940,7 @@
     "view-and-save": "Show keys and save",
     "blocked-users-management": "Blocked users management",
     "unlock-the-section": "Please, enter your PIN to see your credentials information",
-    "no-contacts-or-channels": "No conversations yet",
+    "no-contacts-or-channels": "Inga konversationer än",
     "upload-image": "Ladda upp bild",
     "hidden-messages": "Dolda meddelanden",
     "hidden-messages-management": "Hidden messages management",
@@ -2000,7 +2000,7 @@
   "static": {
     "about": {
       "page-title": "Om",
-      "intro-title": "What is <span>Ecency</span>",
+      "intro-title": "Vad är <span>Ecency</span>",
       "intro-content": "Ecency is beautiful and handy wrapper interface around the Hive blockchain network allowing you to create your own posts, surf your feeds, vote what you like, write comments, read replies, do all major Hive functions in your daily social surfing as well as wallet actions and other extras such as search, discover different tags etc.",
       "faq-title": "FAQ",
       "faqs": "All FAQs",
