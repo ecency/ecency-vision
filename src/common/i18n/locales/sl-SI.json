@@ -233,23 +233,23 @@
     "validation-email": "Email is required.",
     "success": "We've sent an email to {{email}}.",
     "success-2": "Verify to finalize signup process. Note: Check spam folder if you couldn't find email.",
-    "login-text-1": "Do you have an account?",
-    "login-text-2": "Login",
-    "free-account": "Free account",
+    "login-text-1": "Ali imate račun?",
+    "login-text-2": "Vpis",
+    "free-account": "Brezplačen račun",
     "free-account-desc": "Get a full-fledged Hive account, this method has basic checks to make sure botnet doesn't abuse our signup faucet.",
-    "register-free": "Register free",
-    "buy-account": "Buy account",
+    "register-free": "Prijavite se brezplačno",
+    "buy-account": "Kupite račun",
     "buy-account-desc": "Get a full-fledged Hive account with no extra checks and few perks such as:",
     "buy-account-li-1": "Instant creation without extra checks and waiting",
     "buy-account-li-2": "3x RC compared to normal new accounts",
-    "buy-account-li-3": "300 Points to help you get started",
-    "qr-desc": "Scan with Ecency mobile app to continue",
-    "username-min-length-error": "Length of username should be at least 3 characters",
-    "username-max-length-error": "Length of username should be no more than 16 characters",
-    "username-no-ascii-first-letter-error": "First character should be a Letter",
-    "username-contains-symbols-error": "Should contain Letters, Numbers, Hyphen only",
-    "username-contains-double-hyphens": "Should not contain double Hyphens",
-    "username-exists": "This username already registered. Please, try another one",
+    "buy-account-li-3": "300 točk za lažji začetek",
+    "qr-desc": "Za nadaljevanje poskenirajte z aplikacijo Ecency",
+    "username-min-length-error": "Dolžina uporabniškega imena naj bo vsaj 3 znake",
+    "username-max-length-error": "Dolžina uporabniškega imena naj ne presega 16 znakov",
+    "username-no-ascii-first-letter-error": "Prvi znak naj bo črka",
+    "username-contains-symbols-error": "Naj vsebuje le črke, številke, vezaje",
+    "username-contains-double-hyphens": "Naj ne vsebuje dvojnih vezajev",
+    "username-exists": "To uporabniško ime je zasedeno. Prosimo, poskusite drugo",
     "username-starts-number": "Should not start with Numbers",
     "referral-invalid": "This referral is invalid. Please, try another one",
     "referral-min-length-error": "Length of referral should be at least 3 characters",
@@ -319,22 +319,22 @@
     "sign-sub-title": "Sign your transaction",
     "rc-to-new-acc": "Delegate some resource credits to",
     "minimum-rc": "(Minimum Rc is 5Bn)",
-    "posts-comments": "Posts/Comments:",
-    "votes": "Votes:",
+    "posts-comments": "Objave/Komentarji:",
+    "votes": "Glasovi:",
     "transfers": "Transfers:",
     "reblogs-follows": "Reblogs/Follows:",
     "rc-error": "You can not delegate below 5bn Rc"
   },
   "trending-tags": {
-    "title": "Topics"
+    "title": "Teme"
   },
   "sort-trending-tags": {
-    "sort": "Sort",
-    "ascending": "Ascending",
-    "descending": "Descending"
+    "sort": "Razvrsti",
+    "ascending": "Naraščajoče",
+    "descending": "Padajoče"
   },
   "selected-tags": {
-    "title": "Featured"
+    "title": "Predstavljeno"
   },
   "entry-list-item": {
     "cross-posted": "cross-posted",
